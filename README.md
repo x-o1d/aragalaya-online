@@ -1,3 +1,2 @@
-# create-svelte
-
-Everything you need to build a Svelte project, powered by [`create-svelte`]]
+# aragalaya-online
+public repository for the aragalaya.online project
