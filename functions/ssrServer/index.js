@@ -18479,7 +18479,7 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/events-034dcff5.js
+// .svelte-kit/output/server/chunks/events-0893a042.js
 function writable2(value, start = noop2) {
   let stop;
   const subscribers = /* @__PURE__ */ new Set();
@@ -18630,8 +18630,8 @@ function tweened(value, defaults = {}) {
   };
 }
 var import_chroma_js, import_rxjs, COLUMNS, subscriber_queue2, current, pallette, themes, EventService, events;
-var init_events_034dcff5 = __esm({
-  ".svelte-kit/output/server/chunks/events-034dcff5.js"() {
+var init_events_0893a042 = __esm({
+  ".svelte-kit/output/server/chunks/events-0893a042.js"() {
     init_shims();
     init_index_165a3f99();
     import_chroma_js = __toESM(require_chroma(), 1);
@@ -18680,7 +18680,8 @@ var init_events_034dcff5 = __esm({
       ["#2b2b4e", "#777586", "#ABA9BB", "#6D4746"],
       ["#c09c41", "#4D4637", "#B4AA99", "#2CDEC0"],
       ["#299D84", "#354B45", "#98B0A9", "#4992CE"],
-      ["#E76F51", "#56423D", "#BEA6A0", "#63A23F"]
+      ["#E76F51", "#56423D", "#BEA6A0", "#63A23F"],
+      ["#5f0f41", "#a63253", "#bba5b0", "#4c4452"]
     ];
     themes = pallette.map((_, i2) => {
       const contrast = import_chroma_js.default.contrast(_[0], "black");
@@ -18733,7 +18734,7 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_165a3f99();
-    init_events_034dcff5();
+    init_events_0893a042();
     import_chroma_js2 = __toESM(require_chroma(), 1);
     css$2 = {
       code: ".navigation.svelte-t5j42m{position:fixed;right:5px;bottom:5px;z-index:100;display:flex;align-items:center;flex-direction:column;background-color:black;border-radius:3px}.animated.svelte-t5j42m{position:relative}.icons.svelte-t5j42m{position:relative;overflow:hidden}.icon.svelte-t5j42m{position:relative;width:70px;height:70px;display:flex;align-items:center;justify-content:center;color:var(--nav-buttons);font-size:22px}.icon.svelte-t5j42m:hover{cursor:pointer}.toggle.svelte-t5j42m{color:white}.show-hide.svelte-t5j42m{background-color:black;z-index:1;color:white;border-radius:3px}.scroll.svelte-t5j42m{position:absolute;right:0;width:4px;background:var(--theme-start);border-radius:3px}.titles.svelte-t5j42m{position:absolute;bottom:0;right:70px;width:230px;overflow:hidden}.title_c.svelte-t5j42m{position:relative;height:70px}.title.svelte-t5j42m{position:absolute;bottom:0;right:0;font-size:0.9rem;font-weight:bold;color:black;padding:2px 5px;background-color:var(--background)}",
@@ -18829,8 +18830,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-0a413b6b.js";
-    js = ["pages/__layout.svelte-0a413b6b.js", "chunks/index-310d938e.js", "chunks/events-cb1fb3a6.js", "chunks/index-db63fa58.js"];
+    entry = "pages/__layout.svelte-4816fe18.js";
+    js = ["pages/__layout.svelte-4816fe18.js", "chunks/index-310d938e.js", "chunks/events-e7c6528b.js", "chunks/index-db63fa58.js"];
     css2 = ["assets/pages/__layout.svelte-efae22ac.css"];
   }
 });
@@ -18899,7 +18900,7 @@ var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
     init_index_165a3f99();
-    init_events_034dcff5();
+    init_events_0893a042();
     import_chroma_js3 = __toESM(require_chroma(), 1);
     css$12 = {
       code: ".card.svelte-1y9d784{width:100%;border-radius:5px;background-color:white;padding:10px}",
@@ -18992,8 +18993,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-e4ffbf88.js";
-    js3 = ["pages/index.svelte-e4ffbf88.js", "chunks/index-310d938e.js", "chunks/events-cb1fb3a6.js", "chunks/index-db63fa58.js"];
+    entry3 = "pages/index.svelte-b2649d8b.js";
+    js3 = ["pages/index.svelte-b2649d8b.js", "chunks/index-310d938e.js", "chunks/events-e7c6528b.js", "chunks/index-db63fa58.js"];
     css5 = ["assets/pages/index.svelte-837d0510.css"];
   }
 });
@@ -21303,7 +21304,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png"]),
   mimeTypes: { ".png": "image/png" },
   _: {
-    entry: { "file": "start-245b1e9f.js", "js": ["start-245b1e9f.js", "chunks/index-310d938e.js", "chunks/index-db63fa58.js"], "css": [] },
+    entry: { "file": "start-994256cd.js", "js": ["start-994256cd.js", "chunks/index-310d938e.js", "chunks/index-db63fa58.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
