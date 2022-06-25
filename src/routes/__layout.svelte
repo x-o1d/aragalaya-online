@@ -17,6 +17,7 @@
 			document.documentElement.style
 				.setProperty('--lang-font-size', _langFontSize[v] + 'px');
 		});
+		document.querySelector("meta[name=viewport]").setAttribute('content', 'width=device-width, initial-scale='+(1/window.devicePixelRatio));
 	})
 	
 </script>
