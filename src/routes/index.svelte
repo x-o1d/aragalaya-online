@@ -7,6 +7,8 @@
     import { themes, current } from '../theme';
     import events from '../events';
 
+    export const prerender = true;
+    
     const _count = COLUMNS.length;
 
     const WINDOW_SIZE = 3;
