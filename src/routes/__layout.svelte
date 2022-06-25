@@ -2,6 +2,23 @@
 	import Nav from './_components/Nav.svelte'
 	import ThemeSelector from './_components/ThemeSelector.svelte';
 	import { _lang } from '$lib/services/store';
+	import { _langFonts, _langFontSize } from '$lib/utils/theme';
+	import { onMount } from 'svelte';
+
+	// listen to language changes and set root font-family and font sizes
+	// fonts in different languages have different display sizes for the 
+	// same pixel value.
+	// this is managed by setting a correction font size on the root element
+	// and using rem font sizes throughout the app
+	onMount(() => {
+		_lang.subscribe((v) => {
+			document.documentElement.style
+				.setProperty('--lang-font', _langFonts[v]);
+			document.documentElement.style
+				.setProperty('--lang-font-size', _langFontSize[v] + 'px');
+		});
+	})
+	
 </script>
 
 <Nav/>
@@ -39,11 +56,14 @@
 </main>
 
 <style>
+
+	:global(html) {
+		font-family: var(--lang-font);
+		font-size: var(--lang-font-size);
+	}
+
 	:global(body) {
 		margin: 0;
-		/* font-family: 'Abhaya Libre', serif;
-		font-family: 'Catamaran', sans-serif; */
-		font-family: 'Roboto', sans-serif;
 		overflow: hidden;
 	}
 
@@ -94,20 +114,22 @@
 	}
 	.aragalaya {
 		display: inline-block;
-		font-size: 2.2rem;
-		line-height: 1.6rem;
+		font-size: 38px;
+		line-height: 28px;
 		font-weight: bold;
 		font-family: 'Gemunu Libre', sans-serif;
 	}
 	.online {
 		display: inline-block;
-		font-size: 1.2rem;
+		font-size: 18px;
+		font-family: 'Roboto', sans-serif;
 	}
 
 	.nav-right li {
-		font-size: 0.9rem;
-		line-height: 0.9rem;
+		font-size: 14px;
+		line-height: 14px;
 		padding: 0 5px;
+		font-family: 'Roboto', sans-serif;
 	}
 	.nav-right:last-child {
 		margin-right: 5px;
@@ -116,7 +138,7 @@
 		margin-left: 30px;
 	}
 	.fa-user-astronaut {
-		font-size: 1.3rem;
+		font-size: 21px;
 		margin-right: 10px;
 	}
 	.nav-right li {

@@ -1,8 +1,18 @@
 import chroma from "chroma-js";
 import { COLUMNS } from '../../data/columns';
 import { writable } from 'svelte/store';
+import { _lang } from '$lib/services/store';
 
-export const current = writable(2);
+export const _langFonts = [
+    "'Abhaya Libre', serif",
+    "'Open Sans', sans-serif",
+    "'Mukta Malar', sans-serif"
+];
+export const _langFontSize = [
+    17,
+    13,
+    13
+];
 
 const pallette = [
     ['#E96491', '#574141', '#BFA5A4', '#83982B'],
@@ -12,6 +22,8 @@ const pallette = [
     ['#E76F51', '#56423D', '#BEA6A0', '#63A23F'],
     ['#5f0f41', '#a63253', '#bba5b0', '#4c4452']
 ];
+
+export const current = writable(2); // current theme
 
 export const themes = pallette.map((_, i) => {
     const contrast = chroma.contrast(_[0],'black');

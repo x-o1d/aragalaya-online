@@ -244,15 +244,14 @@
         height: 100%;
     }
     .header:first-child {
-		font-size: 1.5rem;
+		font-size: 24px;
     }
     .header span {
         font-size: 1.3rem;
         margin-left: 10px;
-        font-family: 'Abhaya Libre', serif;
     }
     .fa-add {
-        font-size: 1rem;
+        font-size: 17px;
     }
 
     /* cards */

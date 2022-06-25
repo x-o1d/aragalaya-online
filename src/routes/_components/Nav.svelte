@@ -173,7 +173,7 @@
         position: absolute;
         bottom: 0;
         right: 0;
-        font-size: 0.9rem;
+        font-size: 1.0rem;
         font-weight: bold;
         color: black;
         padding: 2px 5px;

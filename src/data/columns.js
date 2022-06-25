@@ -2,7 +2,7 @@ export const COLUMNS = [
     {
         title: [
             'දැන්වීම් පුවරුව', 
-            'bulletin board', 
+            'Bulletin board', 
             'அறிவிப்பு பலகை'
         ],
         icon: 'fa-solid fa-file-lines',
@@ -11,7 +11,7 @@ export const COLUMNS = [
     {
         title: [
             'මත විමසීම්', 
-            'polls', 
+            'Polls', 
             'தேர்தல்கள்'
         ],
         icon: 'fa-solid fa-check-to-slot',
@@ -20,7 +20,7 @@ export const COLUMNS = [
     {
         title: [
             'මහජන අදහස් සඳහා යෝජනා', 
-            'proposals for public comments', 
+            'Proposals for public comments', 
             'பொது கருத்துகளுக்கான முன்மொழிவுகள்'
         ],
         icon: 'fa-solid fa-comments',
@@ -29,7 +29,7 @@ export const COLUMNS = [
     {
         title: [
             'පුවත් සහ සාකච්චා', 
-            'news & discussions', 
+            'News & discussions', 
             'செய்தி மற்றும் விவாதங்கள்'
         ],
         icon: 'fa-solid fa-radio',
@@ -38,7 +38,7 @@ export const COLUMNS = [
     {
         title: [
             'සාමුහික ලේඛන',
-            'collaborative documents',
+            'Collaborative documents',
             'கூட்டு ஆவணங்கள்'
         ],
         icon: 'fa-solid fa-file-signature',
@@ -47,7 +47,7 @@ export const COLUMNS = [
     {
         title: [
             'විවුර්ත අයවැය', 
-            'open budgets', 
+            'Open budgets', 
             'திறந்த பட்ஜெட்'
         ],
         icon: 'fa-solid fa-coins',
@@ -56,7 +56,7 @@ export const COLUMNS = [
     {
         title: [
             'ගැලරිය', 
-            'gallery', 
+            'Gallery', 
             'கேலரி'
         ],
         icon: 'fa-solid fa-camera-retro',
