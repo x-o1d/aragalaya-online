@@ -237,6 +237,7 @@
         color: var(--color);
         padding: 0 15px 0 10px;
         font-weight: bold;
+        z-index: 2;
     }
     .header div {
         display: flex;
