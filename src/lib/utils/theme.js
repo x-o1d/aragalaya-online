@@ -1,5 +1,5 @@
 import chroma from "chroma-js";
-import { COLUMNS } from './data/columns';
+import { COLUMNS } from '../../data/columns';
 import { writable } from 'svelte/store';
 
 export const current = writable(2);

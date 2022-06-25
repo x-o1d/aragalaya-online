@@ -1,5 +1,5 @@
 <script>
-    import { themes, current } from '../../theme';
+    import { themes, current } from '$lib/utils/theme';
     import { COLUMNS } from '../../data/columns'; 
 
     let themeSelect;

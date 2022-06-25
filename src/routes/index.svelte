@@ -4,10 +4,9 @@
     import { tweened } from "svelte/motion";
     import { quartOut, backInOut } from "svelte/easing";
     import { onMount } from 'svelte';
-    import { themes, current } from '../theme';
-    import events from '../events';
-
-    export const prerender = true;
+    import { themes, current } from '$lib/utils/theme';
+    import events from '$lib/services/events';
+    import { _lang } from '$lib/services/store';
     
     const _count = COLUMNS.length;
 
@@ -176,7 +175,7 @@
                             top: {_headerAnimation[_i]}px">
                         <div>
                             <i class="{column.icon}"></i>
-                            <span>{column.title}</span>
+                            <span>{column.title[$_lang]}</span>
                         </div>
                         <div>
                             <i class="fa-solid fa-add"></i>

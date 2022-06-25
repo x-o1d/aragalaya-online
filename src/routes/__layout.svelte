@@ -1,6 +1,7 @@
 <script>
 	import Nav from './_components/Nav.svelte'
 	import ThemeSelector from './_components/ThemeSelector.svelte';
+	import { _lang } from '$lib/services/store';
 </script>
 
 <Nav/>
@@ -15,9 +16,15 @@
 		</div>
 	</div>
 	<ul class="nav-right">
-		<li> සිංහල </li>
-		<li> English </li>
-		<li> தமிழ் </li>
+		<li on:click={() => _lang.set(0)}> 
+			සිංහල 
+		</li>
+		<li on:click={() => _lang.set(1)}> 
+			English 
+		</li>
+		<li on:click={() => _lang.set(2)}> 
+			தமிழ் 
+		</li>
 		<li class="login">
 			<i class="fa-solid fa-user-astronaut"></i>
 		</li>
@@ -111,6 +118,9 @@
 	.fa-user-astronaut {
 		font-size: 1.3rem;
 		margin-right: 10px;
+	}
+	.nav-right li {
+		cursor: pointer;
 	}
 
 	/* route viewport */

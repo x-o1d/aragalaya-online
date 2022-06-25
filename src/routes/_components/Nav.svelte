@@ -3,8 +3,9 @@
     import { COLUMNS } from '../../data/columns';
     import { tweened } from "svelte/motion";
     import { circIn, quartOut } from "svelte/easing";
-    import { themes, current } from '../../theme';
-    import events from '../../events';
+    import { themes, current } from '$lib/utils/theme';
+    import events from '$lib/services/events';
+    import { _lang } from '$lib/services/store';
 
     const _count = COLUMNS.length;
 
@@ -83,7 +84,7 @@
             {#each COLUMNS as column, _i}
             <div class="title_c">
                 <div class="title">
-                    {column.title}
+                    {column.title[$_lang]}
                 </div>
             </div>
             {/each}
@@ -161,7 +162,7 @@
         position: absolute;
         bottom: 0;
         right: 70px;
-        width: 230px;
+        width: 300px;
         overflow: hidden;
     }
     .title_c {
