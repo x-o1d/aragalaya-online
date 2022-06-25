@@ -1,0 +1,182 @@
+<script>
+    import { onMount } from 'svelte';
+    import { COLUMNS } from '../../data/columns';
+    import { tweened } from "svelte/motion";
+    import { circIn, quartOut } from "svelte/easing";
+    import { themes, current } from '../../theme';
+    import events from '../../events';
+
+    const _count = COLUMNS.length;
+
+    const height = tweened((_count + 1) * 70, {
+        duration: 350,
+        easing: circIn
+    });
+
+    let scrollHeight = 0;
+
+    onMount(() => {
+        scrollHeight = (_count * 70) / 
+            (_count * 500) * window.innerWidth;
+    })
+    
+    const scrollPosition = tweened(0, {
+        duration: 350,
+        easing: quartOut
+    });
+
+    events.register('h-scroll').subscribe(v => {
+        scrollPosition.set(v/(_count * 500)*(_count * 70));
+    });
+
+    let hidden = false;
+    let showNames = true;
+
+    function showHide() {
+        if(hidden) {
+            height.set((_count + 1) * 70);
+        } else {
+            height.set(0);
+        }
+        hidden = !hidden;
+    }
+
+</script>
+
+<div 
+    class="navigation"
+    style="
+        --nav-buttons: {themes[$current].nav};
+        --background: {themes[$current].background}">
+    <div class="animated">
+        <div 
+            class="icons"
+            style="max-height: {$height}px">
+            {#each COLUMNS as column, _i}
+                <div 
+                    class="icon"
+                    on:click={() => events.emit('nav-click', _i)}>
+                    <i class={column.icon}/>
+                </div>
+            {/each}
+            <div 
+                class="toggle icon" 
+                on:click={() => showNames = !showNames}>
+                {#if !showNames}
+                    <i class="fa-solid fa-toggle-off"/>
+                {:else}
+                    <i class="fa-solid fa-toggle-on"/>
+                {/if}
+            </div>
+            <div 
+                class="scroll"
+                style="
+                    --theme-start: {themes[$current].columns[0]};
+                    height: {scrollHeight}px;
+                    top: {$scrollPosition}px;">
+            </div>
+        </div>
+        {#if showNames}
+        <div 
+            class="titles"
+            style="max-height: {$height}px">
+            {#each COLUMNS as column, _i}
+            <div class="title_c">
+                <div class="title">
+                    {column.title}
+                </div>
+            </div>
+            {/each}
+            <div class="title_c">
+                <div class="title">
+                </div>
+            </div>
+        </div>
+        {/if}
+    </div>
+    
+    <div 
+        on:click={showHide}
+        class="icon show-hide">
+        {#if !hidden}
+            <i class="fa-solid fa-angles-down"/>
+        {:else}
+             <i class="fa-solid fa-angles-up"/>
+        {/if}
+    </div>
+</div>
+
+<style>
+    .navigation {
+        position: fixed;
+        right: 5px;
+        bottom: 5px;
+        z-index: 100;
+
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background-color: black;
+        border-radius: 3px;
+    }
+    .animated {
+        position: relative;
+    }
+    .icons {
+        position: relative;
+        overflow: hidden;
+    }
+    .icon {
+        position: relative;
+        width: 70px;
+        height: 70px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--nav-buttons);
+        font-size: 22px;
+    }
+    .icon:hover {
+        cursor: pointer;
+    }
+    .toggle {
+        color: white;
+    }
+    .show-hide {
+        background-color: black;
+        z-index: 1;
+        color: white;
+        border-radius: 3px;
+    }
+    .scroll {
+        position: absolute;
+        right: 0;
+        width: 4px;
+        background: var(--theme-start);
+        border-radius: 3px;
+    }
+
+    .titles{
+        position: absolute;
+        bottom: 0;
+        right: 70px;
+        width: 230px;
+        overflow: hidden;
+    }
+    .title_c {
+        position: relative;
+        height: 70px;
+    }
+    .title {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: black;
+        padding: 2px 5px;
+        background-color: var(--background);
+    }
+
+</style>
