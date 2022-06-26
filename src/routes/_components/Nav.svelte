@@ -14,10 +14,10 @@
         easing: circIn
     });
 
-    let scrollHeight = 0;
+    let scrollBarHeight = 0;
 
     onMount(() => {
-        scrollHeight = (_count * 70) / 
+        scrollBarHeight = (_count * 70) / 
             (_count * 500) * window.innerWidth;
     })
     
@@ -31,13 +31,16 @@
     });
 
     let hidden = false;
+    let namesHidden = false;
     let showNames = true;
 
     function showHide() {
         if(hidden) {
             height.set((_count + 1) * 70);
+            setTimeout(() => namesHidden = false, 350);
         } else {
             height.set(0);
+            namesHidden = true;
         }
         hidden = !hidden;
     }
@@ -75,26 +78,22 @@
                     --theme-2: {themes[$current].columns[2]};
                     --theme-3: {themes[$current].columns[4]};
                     --theme-4: {themes[$current].columns[6]};
-                    height: {scrollHeight}px;
+                    height: {scrollBarHeight}px;
                     top: {$scrollPosition}px;">
             </div>
         </div>
-        {#if showNames}
+        {#if showNames && !namesHidden}
+        {#each COLUMNS as column, _i}
         <div 
-            class="titles"
-            style="max-height: {$height}px">
-            {#each COLUMNS as column, _i}
-            <div class="title_c">
-                <div class="title">
-                    {column.title[$_lang]}
-                </div>
-            </div>
-            {/each}
-            <div class="title_c">
-                <div class="title">
-                </div>
+            class="title_c"
+            style="
+                right: {75/window.devicePixelRatio}px;
+                bottom: {(70*(_count+1-_i)+5)/window.devicePixelRatio}px">
+            <div class="title">
+                {column.title[$_lang]}
             </div>
         </div>
+        {/each}
         {/if}
     </div>
     
@@ -166,21 +165,11 @@
         border-radius: var(--s3px);
     }
 
-    .titles{
-        position: absolute;
-        bottom: 0;
-        right: var(--s70px);
-        width: var(--s300px);
-        overflow: hidden;
-    }
+
     .title_c {
-        position: relative;
-        height: var(--s70px);
+        position: fixed;
     }
     .title {
-        position: absolute;
-        bottom: 0;
-        right: 0;
         font-size: 1.06rem;
         font-weight: bold;
         color: black;

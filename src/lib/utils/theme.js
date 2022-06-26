@@ -16,11 +16,11 @@ export const _langFontSize = [
 
 const pallette = [
     {
-        header: ['#9A031A', '#fb8b24', '#e26413', '#0f4C5C', '#5f0f41'],
+        header: ['#9A031A', '#e26413', '#fb8b24', '#0f4C5C', '#5f0f41'],
         light: '#c9ada7',
         dark: '#4c4452'
     }, {
-        header: ['#ca353f', '#E63A46', '#1E3557', '#7ec8cb', '#457b9d', '#275757'],
+        header: ['#E63A46', '#e12f7d', '#bf47af', '#7f63d1', '#0076dc'],
         light: '#BEA6A0',
         dark: '#63A23F'
     }, {
