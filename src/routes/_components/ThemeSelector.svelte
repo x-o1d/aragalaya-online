@@ -55,18 +55,18 @@
         z-index: 1000;
     }
     div {
-        width: 30px;
-        height: 30px;
+        width: var(--s30px);
+        height: var(--s30px);
         background: var(--theme-start);
         background: radial-gradient(
             circle at bottom right, 
             var(--theme-start) 20%, 
             var(--theme-end)) 100%; 
-        border-radius: 3px;
-        border: 1px solid black;
+        border-radius: var(--s3px);
+        border: 0.0520vw solid black;
         cursor: pointer;
     }
     span div {
-        margin-bottom: 5px;
+        margin-bottom: var(--s5px);
     }
 </style>

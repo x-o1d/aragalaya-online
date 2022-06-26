@@ -5,6 +5,8 @@
 	import { _langFonts, _langFontSize } from '$lib/utils/theme';
 	import { onMount } from 'svelte';
 
+	let cssReady = false;
+
 	// listen to language changes and set root font-family and font sizes
 	// fonts in different languages have different display sizes for the 
 	// same pixel value.
@@ -15,13 +17,44 @@
 			document.documentElement.style
 				.setProperty('--lang-font', _langFonts[v]);
 			document.documentElement.style
-				.setProperty('--lang-font-size', _langFontSize[v] + 'px');
+				.setProperty('--lang-font-size', (_langFontSize[v]/window.devicePixelRatio) + 'px');
 		});
-		document.querySelector("meta[name=viewport]").setAttribute('content', 'width=device-width, initial-scale='+(1/window.devicePixelRatio));
 	})
+
+	// pixel ratio on windows devices (125%/150% scaling) results the app
+	// to look zoomed in and doesn't look pretty
+	// to overcome this we're calculating pixel values devided by 
+	// devicePixelRatio and setting them as css variables to use throught
+	// the app.
+	// this ensures that the app looks consistent on all browsers regardless
+	// of window scaling.
+	// NOTE: mobile browser behavior not tested
+	// NOTE: performance cost not measured, so far so good
+	// NOTE: ALWAYS use var(--s5px) instead of 5px in absolute lengths (5 = any number)
+	// make sure the specified value is in the below pixelValues array
+	// var(--s(n)px) values are automatically scaled as per the device
+	// pixel ratio
+	onMount(() => {
+		document.documentElement.style
+			.setProperty('--pixel-ratio', window.devicePixelRatio);
+
+		const pixelValues = [
+			-3.75, 1, 2, 3, 4, 3.75, 5, 7.5, 10, 14, 15, 17, 18, 21, 22 ,24, 28, 
+			30, 36, 38, 50, 70, 100, 300, 500
+		];
+		pixelValues.map(p => {
+			const absP = Math.abs(p);
+			const cssVar = '--s' + ((p<0)? '-': '') +
+					String(absP).replace('.','_') + 'px';
+			const cssVal = p/window.devicePixelRatio + 'px';
+			document.documentElement.style.setProperty(cssVar, cssVal);
+		})
+		cssReady = true;
+	});
 	
 </script>
 
+{#if cssReady}
 <Nav/>
 
 <div class="nav">
@@ -55,6 +88,8 @@
 <main id="main">
 	<slot />
 </main>
+
+{/if}
 
 <style>
 
@@ -94,7 +129,7 @@
 			rgba(0, 0, 0, 0.1) 30%,
 			transparent 100%
 		);
-		height: 50px;
+		height: var(--s50px);
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -109,38 +144,38 @@
 
 	.nav-logo {
 		display: flex;
-		padding: 10px 10px;
+		padding: var(--s10px) var(--s10px);
 		align-items: baseline;
 		padding-bottom: 10px;
 	}
 	.aragalaya {
 		display: inline-block;
-		font-size: 38px;
-		line-height: 28px;
+		font-size: var(--s36px);
+		line-height: var(--s28px);
 		font-weight: bold;
 		font-family: 'Gemunu Libre', sans-serif;
 	}
 	.online {
 		display: inline-block;
-		font-size: 18px;
+		font-size: var(--s18px);
 		font-family: 'Roboto', sans-serif;
 	}
 
 	.nav-right li {
-		font-size: 14px;
-		line-height: 14px;
-		padding: 0 5px;
+		font-size: var(--s14px);
+		line-height: var(--s14px);
+		padding: 0 var(--s5px);
 		font-family: 'Roboto', sans-serif;
 	}
 	.nav-right:last-child {
-		margin-right: 5px;
+		margin-right: var(--s5px);
 	}
 	.login {
-		margin-left: 30px;
+		margin-left: var(--s30px);
 	}
 	.fa-user-astronaut {
-		font-size: 21px;
-		margin-right: 10px;
+		font-size: var(--s21px);
+		margin-right: var(--s5px);
 	}
 	.nav-right li {
 		cursor: pointer;

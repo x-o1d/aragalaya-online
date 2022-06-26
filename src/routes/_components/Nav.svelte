@@ -110,15 +110,15 @@
 <style>
     .navigation {
         position: fixed;
-        right: 5px;
-        bottom: 5px;
+        right: var(--s5px);
+        bottom: var(--s5px);
         z-index: 100;
 
         display: flex;
         align-items: center;
         flex-direction: column;
         background-color: black;
-        border-radius: 3px;
+        border-radius: var(--s3px);
     }
     .animated {
         position: relative;
@@ -129,14 +129,14 @@
     }
     .icon {
         position: relative;
-        width: 70px;
-        height: 70px;
+        width: var(--s70px);
+        height: var(--s70px);
 
         display: flex;
         align-items: center;
         justify-content: center;
         color: var(--nav-buttons);
-        font-size: 22px;
+        font-size: var(--s22px);
     }
     .icon:hover {
         cursor: pointer;
@@ -148,26 +148,26 @@
         background-color: black;
         z-index: 1;
         color: white;
-        border-radius: 3px;
+        border-radius: var(--s3px);
     }
     .scroll {
         position: absolute;
         right: 0;
-        width: 4px;
+        width: var(--s4px);
         background: var(--theme-start);
-        border-radius: 3px;
+        border-radius: var(--s3px);
     }
 
     .titles{
         position: absolute;
         bottom: 0;
-        right: 70px;
-        width: 300px;
+        right: var(--s70px);
+        width: var(--s300px);
         overflow: hidden;
     }
     .title_c {
         position: relative;
-        height: 70px;
+        height: var(--s70px);
     }
     .title {
         position: absolute;
@@ -176,7 +176,7 @@
         font-size: 1.0rem;
         font-weight: bold;
         color: black;
-        padding: 2px 5px;
+        padding: var(--s2px) var(--s5px);
         background-color: var(--background);
     }
 

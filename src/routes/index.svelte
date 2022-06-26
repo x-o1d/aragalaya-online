@@ -215,17 +215,17 @@
 <style> 
     /* column headers */
 	.columns {
-        --column-width: 500px;
-        --header-height: 50px;
+        --column-width: var(--s500px);
+        --header-height: var(--s50px);
         --color: white;
-        --padding: 7.5px;
+        --padding: var(--s7_5px);
         overflow: hidden;
         background-color: var(--background);
     }
     .column {
         position: relative;
         width: var(--column-width);
-        height: calc(100vh - 50px);
+        height: calc(100vh - var(--s50px));
     }
     .header {
         position: relative;
@@ -235,7 +235,7 @@
         width: 100%;
         height: var(--header-height);
         color: var(--color);
-        padding: 0 15px 0 10px;
+        padding: 0 var(--s15px) 0 var(--s10px);
         font-weight: bold;
         z-index: 2;
     }
@@ -245,21 +245,21 @@
         height: 100%;
     }
     .header:first-child {
-		font-size: 24px;
+		font-size: var(--s24px);
     }
     .header span {
         font-size: 1.3rem;
-        margin-left: 10px;
+        margin-left: var(--s10px);
     }
     .fa-add {
-        font-size: 17px;
+        font-size: var(--s17px);
     }
 
     /* cards */
     .cards {
         position: relative;
         width: 100%;
-        height: calc(100vh - 100px);
+        height: calc(100vh - var(--s100px));
         overflow-y: scroll;
         overflow-x: hidden;
         -ms-overflow-style: none;
@@ -275,7 +275,7 @@
     }
     .spacer {
         width: var(--padding);
-        height: calc(100vh - 50px);
+        height: calc(100vh - var(--s50px));
     }
     .spacer::after {
         display: block;
@@ -286,16 +286,16 @@
     }
     .scroll_c {
         position: absolute;
-        top: 50px;
+        top: var(--s50px);
         right: 0;
     }
     .scroll {
         position: absolute;
         overflow: hidden;
-        top: 20px;
-        right: -3.75px;
-        width: 7.5px;
-        border-radius: 7.5px;
+        top: var(--s20px);
+        right: var(--s-3_75px);
+        width: var(--s7_5px);
+        border-radius: var(--s7_5px);
         opacity: 0.5;
         background-color: rgba(0,0,0,0.4);
     }
