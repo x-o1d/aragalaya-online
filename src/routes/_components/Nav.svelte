@@ -71,7 +71,10 @@
             <div 
                 class="scroll"
                 style="
-                    --theme-start: {themes[$current].columns[0]};
+                    --theme-1: {themes[$current].columns[0]};
+                    --theme-2: {themes[$current].columns[2]};
+                    --theme-3: {themes[$current].columns[4]};
+                    --theme-4: {themes[$current].columns[6]};
                     height: {scrollHeight}px;
                     top: {$scrollPosition}px;">
             </div>
@@ -153,7 +156,13 @@
         position: absolute;
         right: 0;
         width: var(--s4px);
-        background: var(--theme-start);
+        background: var(--theme-1);
+        background: radial-gradient(
+            circle at bottom right, 
+            var(--theme-1) 25%, 
+            var(--theme-2) 50%,
+            var(--theme-3) 75%, 
+            var(--theme-4) 100%);
         border-radius: var(--s3px);
     }
 

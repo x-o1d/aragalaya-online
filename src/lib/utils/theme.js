@@ -51,7 +51,7 @@ export const current = writable(2); // current theme
 export const themes = pallette.map((_, i) => {
 
     let columns = chroma.scale(_.header).mode('lch')
-                        .colors(COLUMNS.length + 2, 'hex');
+                        .colors(COLUMNS.length, 'hex');
 
     const nav = columns.map((c, _i) => {
         return chroma(c).luminance(0.3).hex();

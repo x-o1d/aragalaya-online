@@ -105,7 +105,6 @@
             // greater than a threshold
             const moment = Math.abs(deltaXWindow.reduce((p,c) => (p+c), 0));
             if(moment < WHEEL_THRESHOLD) return;
-            console.log(moment);
 
             if(direction < 0) {
                 if(leftColumn < (_count - Math.ceil(window.innerWidth/_width))) {
@@ -144,9 +143,13 @@
 
     let lastScrollTime = Array(_count).fill(0);
     function handleVerticalScroll(event, index) {
-        scrollColumn[index] = (window.innerHeight - 145)
-            / event.originalTarget.scrollTopMax
-            * event.originalTarget.scrollTop
+        const height = Array.from(event.target.childNodes).reduce((p, c) => {
+            return p + c.offsetHeight;
+        }, 0);
+        const scrollTopMax = height-(window.innerHeight-100);
+        scrollColumn[index] = (window.innerHeight - 160)
+            / scrollTopMax
+            * event.target.scrollTop
             + 15;
 
         scrollAnimation[index].set(1);
@@ -191,7 +194,7 @@
                 </div>
                 <div 
                     class="cards"
-                    on:scroll={(e) => handleVerticalScroll(e, _i)}>
+                    on:scroll|stopPropagation={(e) => handleVerticalScroll(e, _i)}>
                     {#each Array(10) as _}
                     <div class="card_c">
                         <Card>
