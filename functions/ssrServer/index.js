@@ -18981,8 +18981,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-8d19e6c6.js";
-    js3 = ["pages/index.svelte-8d19e6c6.js", "chunks/index-78ebd1dc.js", "chunks/events-b44b0633.js", "chunks/index-05f69a79.js"];
+    entry3 = "pages/index.svelte-21cc3799.js";
+    js3 = ["pages/index.svelte-21cc3799.js", "chunks/index-78ebd1dc.js", "chunks/events-b44b0633.js", "chunks/index-05f69a79.js"];
     css5 = ["assets/pages/index.svelte-0e74e448.css"];
   }
 });
@@ -21305,7 +21305,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png"]),
   mimeTypes: { ".png": "image/png" },
   _: {
-    entry: { "file": "start-67dc3412.js", "js": ["start-67dc3412.js", "chunks/index-78ebd1dc.js", "chunks/index-05f69a79.js"], "css": [] },
+    entry: { "file": "start-d90ef69b.js", "js": ["start-d90ef69b.js", "chunks/index-78ebd1dc.js", "chunks/index-05f69a79.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

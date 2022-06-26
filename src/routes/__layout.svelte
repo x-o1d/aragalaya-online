@@ -4,6 +4,8 @@
 	import { _lang } from '$lib/services/store';
 	import { _langFonts, _langFontSize } from '$lib/utils/theme';
 	import { onMount } from 'svelte';
+	import Login from './_components/Login.svelte';
+	import events from '$lib/services/events';
 
 	let cssReady = false;
 
@@ -39,8 +41,8 @@
 			.setProperty('--pixel-ratio', window.devicePixelRatio);
 
 		const pixelValues = [
-			-3.75, 1, 2, 3, 4, 3.75, 5, 7.5, 10, 14, 15, 17, 18, 21, 22 ,24, 28, 
-			30, 36, 38, 50, 70, 100, 300, 500
+			-3.75, 1, 2, 3, 4, 3.75, 5, 7.5, 10, 13, 14, 15, 17, 18, 21, 
+			22 ,24, 28, 30, 36, 38, 45, 50, 70, 100, 300, 340, 360, 500,
 		];
 		pixelValues.map(p => {
 			const absP = Math.abs(p);
@@ -54,6 +56,7 @@
 	
 </script>
 
+<Login/>
 {#if cssReady}
 <Nav/>
 
@@ -76,7 +79,9 @@
 		<li on:click={() => _lang.set(2)}> 
 			தமிழ் 
 		</li>
-		<li class="login">
+		<li 
+			on:click={() => events.emit('show-hide-login', true)}
+			class="login">
 			<i class="fa-solid fa-user-astronaut"></i>
 		</li>
 		<li>

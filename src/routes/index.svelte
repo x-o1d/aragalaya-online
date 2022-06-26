@@ -181,7 +181,7 @@
                     <div 
                         class="header"
                         style="
-                            background-color: {themes[$current].columns[_i]};
+                            background-color: {themes[$current].columns[_i+1]};
                             top: {_headerAnimation[_i]}px">
                         <div>
                             <i class="{column.icon}"></i>

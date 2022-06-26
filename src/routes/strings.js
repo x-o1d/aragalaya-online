@@ -1,5 +1,5 @@
-const _strings = {
+const strings = {
     
 }
 
-export default _strings;
+export default strings;
