@@ -255,6 +255,7 @@
 		font-size: var(--s24px);
     }
     .header span {
+        text-shadow: 0px 0px 5px #1b1b1b, 0 0 10px #525252;
         font-size: 1.3rem;
         margin-left: var(--s10px);
     }

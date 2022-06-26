@@ -53,13 +53,6 @@ export const themes = pallette.map((_, i) => {
     let columns = chroma.scale(_.header).mode('lch')
                         .colors(COLUMNS.length + 2, 'hex');
 
-    columns = columns.map(c => {
-        if(chroma().contrast(c, 'white') < 5) {
-            return chroma(c).darken(1.5).hex();
-        }
-        return c;
-    });
-
     const nav = columns.map((c, _i) => {
         return chroma(c).luminance(0.3).hex();
     });
