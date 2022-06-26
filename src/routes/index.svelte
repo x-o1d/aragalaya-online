@@ -10,7 +10,9 @@
     
     const _count = COLUMNS.length;
 
-    const WINDOW_SIZE = 3;
+    const WINDOW_SIZE = 4;
+    const WHEEL_THRESHOLD = 550;
+
     let deltaXWindow = [];
     let deltaXIndex = 0;
 
@@ -42,17 +44,18 @@
     const _headerAnimation = Array(_count).fill(1);
 
     events.register('nav-click').subscribe((index) => {
-        const maxLeft = (_count - Math.floor(window.innerWidth/500))
+        const _width = 500/window.devicePixelRatio;
+        const maxLeft = (_count - Math.floor(window.innerWidth/_width))
         if(index < maxLeft) {
             leftColumn = index;
-            _hScroll(500*index);
+            _hScroll(_width*index);
         } else {
             leftColumn = maxLeft;
-            const remainingSpace = (_count*500 + 15)
-                - leftColumn*500
+            const remainingSpace = (_count*_width + 15)
+                - leftColumn*_width
                 - window.innerWidth;
             leftColumn --;
-            _hScroll(500*maxLeft + remainingSpace);
+            _hScroll(_width*maxLeft + remainingSpace);
         }
 
         headerAnimation[index].set(8);
@@ -76,6 +79,7 @@
 
     let ignore = false;
     function handleHorizontalScroll (event) {
+        const _width = 500/window.devicePixelRatio;
         // save wheel/touch event delta x in a window
         deltaXWindow[deltaXIndex] = event.wheelDeltaX;
         if(deltaXIndex < WINDOW_SIZE) deltaXIndex++;
@@ -84,55 +88,58 @@
         if(event.wheelDeltaX && !ignore) {
             // check if window contains zero values
             // 0 values indicate a vertical scroll
-            if(!deltaXWindow.some(d => (d == 0))) {
+            if(deltaXWindow.some(d => (d == 0))) return;
 
-                // check if all the values in the window point
-                // in the same direction
-                let direction = deltaXWindow.reduce((p,c) => {
-                    if(Math.sign(p) === Math.sign(c)) {
-                        return Math.sign(c);
-                    } else {
-                        return undefined
-                    }
-                });
+            // check if all the values in the window point
+            // in the same direction
+            const direction = deltaXWindow.reduce((p,c) => {
+                if(Math.sign(p) === Math.sign(c)) {
+                    return Math.sign(c);
+                } else {
+                    return undefined
+                }
+            });
+            if(!direction) return;
 
-                if(direction) {
-                    if(direction < 0) {
-                        if(leftColumn < (_count - Math.ceil(window.innerWidth/500))) {
-                            leftColumn++;
-                        }
-                    }
-                    if(direction > 0) {
-                        if(leftColumn > 0) {
-                            leftColumn--;
-                        }
-                    }
-                    let scrollTo = leftColumn*500;
+            // check if the total distance travelled by the wheel is
+            // greater than a threshold
+            const moment = Math.abs(deltaXWindow.reduce((p,c) => (p+c), 0));
+            if(moment < WHEEL_THRESHOLD) return;
+            console.log(moment);
 
-                    const remainingSpace = (_count*500 + 15)
-                        - leftColumn*500
-                        - window.innerWidth;
-
-                    if(remainingSpace < 500) {
-                        scrollTo += remainingSpace;
-                    }
-
-                    // set tween value for vertical scroll
-                    _hScroll(scrollTo);
-
-                    // debounce horizontal scroll
-                    ignore = true; 
-                    setTimeout(() => {
-                        ignore = false;
-                    }, 500);
-
-                    // reset window
-                    deltaXWindow = [];
-                    deltaXIndex = 0;
+            if(direction < 0) {
+                if(leftColumn < (_count - Math.ceil(window.innerWidth/_width))) {
+                    leftColumn++;
                 }
             }
+            if(direction > 0) {
+                if(leftColumn > 0) {
+                    leftColumn--;
+                }
+            }
+            let scrollTo = leftColumn*_width;
+
+            const remainingSpace = (_count*_width + 15)
+                - leftColumn*_width
+                - window.innerWidth;
+
+            if(remainingSpace < _width) {
+                scrollTo += remainingSpace;
+            }
+
+            // set tween value for vertical scroll
+            _hScroll(scrollTo);
+
+            // debounce horizontal scroll
+            ignore = true; 
+            setTimeout(() => {
+                ignore = false;
+            }, 500);
+
+            // reset window
+            deltaXWindow = [];
+            deltaXIndex = 0;
         }
-        event.stopPropagation();
     }
 
     let lastScrollTime = Array(_count).fill(0);
