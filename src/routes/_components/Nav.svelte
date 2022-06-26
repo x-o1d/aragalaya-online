@@ -46,15 +46,14 @@
 
 <div 
     class="navigation"
-    style="
-        --nav-buttons: {themes[$current].nav};
-        --background: {themes[$current].background}">
+    style="--background: {themes[$current].background}">
     <div class="animated">
         <div 
             class="icons"
             style="max-height: {$height}px">
             {#each COLUMNS as column, _i}
                 <div 
+                    style="color: {themes[$current].nav[_i]}"
                     class="icon"
                     on:click={() => events.emit('nav-click', _i)}>
                     <i class={column.icon}/>

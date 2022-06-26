@@ -28,8 +28,10 @@
     bind:this={themeSelect}
     on:click={togglePanel}
     style="
-        --theme-start: {themes[$current].columns[0]};
-        --theme-end: {themes[$current].columns[COLUMNS.length - 1]};">
+        --theme-1: {themes[$current].columns[0]};
+        --theme-2: {themes[$current].columns[2]};
+        --theme-3: {themes[$current].columns[4]};
+        --theme-4: {themes[$current].columns[6]};">
 </div>
 
 <span 
@@ -41,8 +43,10 @@
     <div 
         on:click={() => selectTheme(_i)}
         style="
-            --theme-start: {theme.columns[0]};
-            --theme-end: {theme.columns[COLUMNS.length - 1]};">
+            --theme-1: {theme.columns[0]};
+            --theme-2: {theme.columns[2]};
+            --theme-3: {theme.columns[4]};
+            --theme-4: {theme.columns[6]};">
     </div>
     {/if}
     {/each}
@@ -57,11 +61,13 @@
     div {
         width: var(--s30px);
         height: var(--s30px);
-        background: var(--theme-start);
+        background: var(--theme-1);
         background: radial-gradient(
             circle at bottom right, 
-            var(--theme-start) 20%, 
-            var(--theme-end)) 100%; 
+            var(--theme-1) 25%, 
+            var(--theme-2) 50%,
+            var(--theme-3) 75%, 
+            var(--theme-4) 100%);
         border-radius: var(--s3px);
         border: 0.0520vw solid black;
         cursor: pointer;
