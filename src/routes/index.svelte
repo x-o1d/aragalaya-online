@@ -179,7 +179,8 @@
             <div class="column">
                 <div style="background-color: #e6e6e6;">
                     <div 
-                        class="header"
+                        class="header _clickable"
+                        on:click={() => events.emit('nav-click', _i)}
                         style="
                             background-color: {themes[$current].columns[_i+1]};
                             top: {_headerAnimation[_i]}px">

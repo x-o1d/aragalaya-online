@@ -18479,7 +18479,7 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/events-5204c5fe.js
+// .svelte-kit/output/server/chunks/events-8f76af39.js
 function writable2(value, start = noop2) {
   let stop;
   const subscribers = /* @__PURE__ */ new Set();
@@ -18521,9 +18521,9 @@ function writable2(value, start = noop2) {
   }
   return { set, update, subscribe: subscribe2 };
 }
-var import_chroma_js, import_rxjs, COLUMNS, subscriber_queue2, _lang, pallette, current, themes, EventService, events;
-var init_events_5204c5fe = __esm({
-  ".svelte-kit/output/server/chunks/events-5204c5fe.js"() {
+var import_chroma_js, import_rxjs, COLUMNS, subscriber_queue2, _lang, _count, pallette, current, themes, EventService, events;
+var init_events_8f76af39 = __esm({
+  ".svelte-kit/output/server/chunks/events-8f76af39.js"() {
     init_shims();
     import_chroma_js = __toESM(require_chroma(), 1);
     init_index_d7da944c();
@@ -18595,49 +18595,46 @@ var init_events_5204c5fe = __esm({
     ];
     subscriber_queue2 = [];
     _lang = writable2(0);
+    _count = COLUMNS.length;
     pallette = [
       {
-        header: ["#9A031A", "#e26413", "#fb8b24", "#0f4C5C", "#5f0f41"],
-        light: "#c9ada7",
+        colors: ["#9A031A", "#e26413", "#fb8b24", "#0f4C5C", "#5f0f41"],
         dark: "#4c4452"
       },
       {
-        header: ["#E63A46", "#e12f7d", "#bf47af", "#7f63d1", "#0076dc"],
-        light: "#BEA6A0",
+        colors: ["#E63A46", "#e12f7d", "#bf47af", "#7f63d1", "#0076dc"],
         dark: "#63A23F"
       },
       {
-        header: ["#274654", "#299d8f", "#e9c46a", "#f4a261", "#e76f51"],
-        light: "#bba5b0",
+        colors: ["#274654", "#299d8f", "#e9c46a", "#f4a261", "#e76f51"],
         dark: "#4c4452"
       },
       {
-        header: ["#E96491", "#bd629f", "#8b629f", "#5d5e90", "#3c5576"],
-        light: "#BFA5A4",
+        colors: ["#E96491", "#bd629f", "#8b629f", "#5d5e90", "#3c5576"],
         dark: "#83982B"
       },
       {
-        header: ["#fffe00", "#85e757", "#00c484", "#009b95", "#007184"],
-        light: "#B4AA99",
+        colors: ["#fffe00", "#85e757", "#00c484", "#009b95", "#007184"],
         dark: "#2CDEC0"
       },
       {
-        header: ["#6f3cb1", "#ca369c", "#ff537c", "#ff885f", "#ffc154"],
-        light: "#98B0A9",
+        colors: ["#6f3cb1", "#ca369c", "#ff537c", "#ff885f", "#ffc154"],
         dark: "#4992CE"
       }
     ];
     current = writable2(2);
     themes = pallette.map((_, i2) => {
-      let columns = import_chroma_js.default.scale(_.header).mode("lch").colors(COLUMNS.length + 2, "hex");
+      let columns = import_chroma_js.default.scale(_.colors).mode("lch").colors(_count + 2, "hex");
       const nav = columns.map((c, _i) => {
         return (0, import_chroma_js.default)(c).luminance(0.3).hex();
       });
-      const background = import_chroma_js.default.scale([_.light, "white"])(0.5).hex();
+      const header = import_chroma_js.default.scale(["black", "white"])(0.86).hex();
+      const background = import_chroma_js.default.scale(["black", "white"])(0.92).hex();
       const button = nav[0];
       return {
         columns,
         nav,
+        header,
         background,
         button
       };
@@ -18681,12 +18678,12 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_d7da944c();
-    init_events_5204c5fe();
+    init_events_8f76af39();
     import_chroma_js2 = __toESM(require_chroma(), 1);
     strings = {
       enter: [
         "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA\u0DC0\u0DB1\u0DCA\u0DB1",
-        "login",
+        "Login",
         "\u0B89\u0BB3\u0BCD\u0BA8\u0BC1\u0BB4\u0BC8\u0BAF"
       ],
       email: [
@@ -18706,7 +18703,7 @@ var init_layout_svelte = __esm({
       ]
     };
     css$1 = {
-      code: ".overlay.svelte-2k6yxx{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;width:100vw;height:100vh;background-color:rgba(0,0,0,0.9)}.login_c.svelte-2k6yxx{width:var(--s340px);padding:var(--s3_75px);background:var(--theme-1);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-1) 25%, \n            var(--theme-2) 50%,\n            var(--theme-3) 75%, \n            var(--theme-4) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c}.login.svelte-2k6yxx{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s18px);width:100%;height:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}span.svelte-2k6yxx{font-size:1.3rem;font-weight:bold;color:black;margin-bottom:var(--s18px)}input.svelte-2k6yxx{height:var(--s45px);width:90%;border-radius:var(--s5px);padding:var(--s10px);border:var(--s1px) solid var(--button);font-size:1rem;font-family:inherit;margin-bottom:var(--s18px)}.button.svelte-2k6yxx{display:flex;align-items:center;justify-content:center;height:var(--s45px);width:90%;border-radius:var(--s5px);padding:var(--s5px);background-color:var(--button);cursor:pointer;color:white;font-size:1.1rem;font-weight:bold;margin-bottom:var(--s14px)}.or.svelte-2k6yxx{font-size:1.2rem;color:#5c5c5c;margin-bottom:var(--s14px)}.facebook.svelte-2k6yxx{font-family:'Roboto', sans-serif;font-size:var(--s13px);background-color:#0a82ec}.fa-facebook-square.svelte-2k6yxx{font-size:1.3rem;margin-right:var(--s10px)}",
+      code: ".overlay.svelte-hk9idd{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;width:100vw;height:100vh;background-color:rgba(0,0,0,0.9)}.login_c.svelte-hk9idd{width:var(--s340px);padding:var(--s3_75px);background:var(--theme-1);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-1) 25%, \n            var(--theme-2) 50%,\n            var(--theme-3) 75%, \n            var(--theme-4) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c}.login.svelte-hk9idd{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s20px);width:100%;height:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}span.svelte-hk9idd{font-size:1.3rem;font-weight:bold;color:black;margin-bottom:var(--s20px)}input.svelte-hk9idd{height:var(--s45px);width:90%;border-radius:var(--s5px);padding:var(--s10px);border:var(--s1px) solid var(--button);font-size:1rem;font-family:inherit;margin-bottom:var(--s18px)}.button.svelte-hk9idd{display:flex;align-items:center;justify-content:center;height:var(--s45px);width:90%;border-radius:var(--s5px);padding:var(--s5px);background-color:var(--button);cursor:pointer;color:white;font-size:1.1rem;font-weight:bold;margin-bottom:var(--s14px)}.or.svelte-hk9idd{font-size:1.2rem;color:#5c5c5c;margin-bottom:var(--s14px)}.facebook.svelte-hk9idd{font-family:'Roboto', sans-serif;font-size:var(--s13px);background-color:#0a82ec}.fa-facebook-square.svelte-hk9idd{font-size:1.3rem;margin-right:var(--s10px)}",
       map: null
     };
     Login = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -18722,20 +18719,23 @@ var init_layout_svelte = __esm({
       $$result.css.add(css$1);
       $$unsubscribe_current();
       $$unsubscribe__lang();
-      return `${showLogin ? `<div class="${"overlay svelte-2k6yxx"}"><div class="${"login_c svelte-2k6yxx"}" style="${"--theme-1: " + escape(themes[$current].nav[0]) + "; --theme-2: " + escape(themes[$current].nav[2]) + "; --theme-3: " + escape(themes[$current].nav[4]) + "; --theme-4: " + escape(themes[$current].nav[6]) + "; --button: " + escape(themes[$current].button)}"><div class="${"login svelte-2k6yxx"}"><span class="${"svelte-2k6yxx"}">${escape(strings["enter"][$_lang])}</span>
-            <input type="${"text"}"${add_attribute("placeholder", strings["email"][$_lang], 0)} class="${"svelte-2k6yxx"}"${add_attribute("value", email, 0)}>
-            <div class="${"button svelte-2k6yxx"}">${escape(strings["continue"][$_lang])}</div>
-            <span class="${"or svelte-2k6yxx"}">${escape(strings["or"][$_lang])}</span>
-            <div class="${"button facebook svelte-2k6yxx"}"><i class="${"fa-brands fa-facebook-square svelte-2k6yxx"}"></i>
+      return `${showLogin ? `<div class="${"overlay svelte-hk9idd"}"><div class="${"login_c svelte-hk9idd"}" style="${"--theme-1: " + escape(themes[$current].nav[0]) + "; --theme-2: " + escape(themes[$current].nav[2]) + "; --theme-3: " + escape(themes[$current].nav[4]) + "; --theme-4: " + escape(themes[$current].nav[6]) + "; --button: " + escape(themes[$current].button)}"><div class="${"login svelte-hk9idd"}"><span class="${"svelte-hk9idd"}">${escape(strings["enter"][$_lang])}</span>
+            <input type="${"text"}"${add_attribute("placeholder", strings["email"][$_lang], 0)} class="${"svelte-hk9idd"}"${add_attribute("value", email, 0)}>
+            <div class="${"button svelte-hk9idd"}">${escape(strings["continue"][$_lang])}</div>
+            <span class="${"or svelte-hk9idd"}">${escape(strings["or"][$_lang])}</span>
+            <div class="${"button facebook svelte-hk9idd"}"><i class="${"fa-brands fa-facebook-square svelte-hk9idd"}"></i>
                 facebook
             </div></div></div></div>` : ``}`;
     });
     css = {
-      code: "html{font-family:var(--lang-font);font-size:var(--lang-font-size)}body{margin:0;overflow:hidden}*{box-sizing:border-box}ul{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li{display:inline-flex}.nav.svelte-cwilol.svelte-cwilol{--text:rgb(163, 47, 47);--shadow-height:0.5rem;--shadow-gradient:linear-gradient(\n			to bottom,\n			rgba(0, 0, 0, 0.3) 0%,\n			rgba(0, 0, 0, 0.1) 30%,\n			transparent 100%\n		);height:var(--s50px);display:flex;align-items:center;justify-content:space-between;width:100vw;margin:0;background-color:#e6e6e6;font-family:var(--font);transition:transform 0.2s;user-select:none;padding:0}.nav-logo.svelte-cwilol.svelte-cwilol{display:flex;padding:var(--s10px) var(--s10px);align-items:baseline;padding-bottom:10px}.aragalaya.svelte-cwilol.svelte-cwilol{display:inline-block;font-size:var(--s36px);line-height:var(--s28px);font-weight:bold;font-family:'Gemunu Libre', sans-serif}.online.svelte-cwilol.svelte-cwilol{display:inline-block;font-size:var(--s18px);font-family:'Roboto', sans-serif}.nav-right.svelte-cwilol li.svelte-cwilol{font-size:var(--s14px);line-height:var(--s14px);padding:0 var(--s5px);font-family:'Roboto', sans-serif}.nav-right.svelte-cwilol.svelte-cwilol:last-child{margin-right:var(--s5px)}.login.svelte-cwilol.svelte-cwilol{margin-left:var(--s30px)}.fa-user-astronaut.svelte-cwilol.svelte-cwilol{font-size:var(--s21px);margin-right:var(--s5px)}.nav-right.svelte-cwilol li.svelte-cwilol{cursor:pointer}main.svelte-cwilol.svelte-cwilol{position:relative;margin:0 auto;overflow:hiden}",
+      code: "html{font-family:var(--lang-font);font-size:var(--lang-font-size)}body{margin:0;overflow:hidden}*{box-sizing:border-box}ul{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li{display:inline-flex}._clickable:hover{cursor:pointer}.header.svelte-wu91oc.svelte-wu91oc{--text:rgb(163, 47, 47);--shadow-height:0.5rem;--shadow-gradient:linear-gradient(\n			to bottom,\n			rgba(0, 0, 0, 0.3) 0%,\n			rgba(0, 0, 0, 0.1) 30%,\n			transparent 100%\n		);height:var(--s50px);display:flex;align-items:center;justify-content:space-between;width:100vw;margin:0;font-family:var(--font);transition:transform 0.2s;user-select:none;padding:0}.logo.svelte-wu91oc.svelte-wu91oc{display:flex;padding:var(--s10px) var(--s7px);align-items:baseline;padding-bottom:var(--s10px)}.aragalaya.svelte-wu91oc.svelte-wu91oc{display:inline-block;font-size:var(--s36px);line-height:var(--s28px);font-weight:bold;font-family:'Gemunu Libre', sans-serif}.online.svelte-wu91oc.svelte-wu91oc{display:inline-block;font-size:var(--s18px);font-family:'Roboto', sans-serif}.header-right.svelte-wu91oc li.svelte-wu91oc{font-size:var(--s14px);line-height:var(--s14px);padding:0 var(--s5px);font-family:'Roboto', sans-serif}.header-right.svelte-wu91oc.svelte-wu91oc:last-child{margin-right:var(--s5px)}.login.svelte-wu91oc.svelte-wu91oc{margin-left:var(--s30px)}.fa-user-astronaut.svelte-wu91oc.svelte-wu91oc{font-size:var(--s21px);margin-right:var(--s5px)}.header-right.svelte-wu91oc li.svelte-wu91oc{cursor:pointer}main.svelte-wu91oc.svelte-wu91oc{position:relative;margin:0 auto;overflow:hiden}",
       map: null
     };
     _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $$unsubscribe_current;
+      $$unsubscribe_current = subscribe(current, (value) => value);
       $$result.css.add(css);
+      $$unsubscribe_current();
       return `${validate_component(Login, "Login").$$render($$result, {}, {}, {})}
 ${``}`;
     });
@@ -18757,9 +18757,9 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-91f189f2.js";
-    js = ["pages/__layout.svelte-91f189f2.js", "chunks/index-c869d510.js", "chunks/events-18b7c0e9.js", "chunks/index-b76fb223.js"];
-    css2 = ["assets/pages/__layout.svelte-f1629ccb.css"];
+    entry = "pages/__layout.svelte-4f03a4d8.js";
+    js = ["pages/__layout.svelte-4f03a4d8.js", "chunks/index-c869d510.js", "chunks/events-f25d1ef9.js", "chunks/index-b76fb223.js"];
+    css2 = ["assets/pages/__layout.svelte-cd946703.css"];
   }
 });
 
@@ -18932,19 +18932,19 @@ var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
     init_index_d7da944c();
-    init_events_5204c5fe();
+    init_events_8f76af39();
     import_chroma_js3 = __toESM(require_chroma(), 1);
     css$12 = {
-      code: ".card.svelte-1y9d784{width:100%;border-radius:5px;background-color:white;padding:10px}",
+      code: ".card.svelte-9udy6e{width:100%;border-radius:var(--s3px);background-color:white;padding:var(--s10px)}",
       map: null
     };
     Card = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       $$result.css.add(css$12);
-      return `<div class="${"card svelte-1y9d784"}">${slots.default ? slots.default({}) : ``}
+      return `<div class="${"card svelte-9udy6e"}">${slots.default ? slots.default({}) : ``}
 </div>`;
     });
     css4 = {
-      code: ".columns.svelte-1od1es8.svelte-1od1es8{--column-width:var(--s500px);--header-height:var(--s50px);--color:white;--padding:var(--s7_5px);overflow:hidden;background-color:var(--background)}.column.svelte-1od1es8.svelte-1od1es8{position:relative;width:var(--column-width);height:calc(100vh - var(--s50px))}.header.svelte-1od1es8.svelte-1od1es8{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;height:var(--header-height);color:var(--color);padding:0 var(--s15px) 0 var(--s10px);font-weight:bold;z-index:2}.header.svelte-1od1es8 div.svelte-1od1es8{display:flex;align-items:center;height:100%}.header.svelte-1od1es8.svelte-1od1es8:first-child{font-size:var(--s24px)}.header.svelte-1od1es8 span.svelte-1od1es8{text-shadow:0px 0px 5px #1b1b1b, 0 0 10px #525252;font-size:1.3rem;margin-left:var(--s10px)}.fa-add.svelte-1od1es8.svelte-1od1es8{font-size:var(--s17px)}.cards.svelte-1od1es8.svelte-1od1es8{position:relative;width:100%;height:calc(100vh - var(--s100px));overflow-y:scroll;overflow-x:hidden;-ms-overflow-style:none;scrollbar-width:none;padding:var(--padding) 0}.cards.svelte-1od1es8.svelte-1od1es8::-webkit-scrollbar{display:none}.card_c.svelte-1od1es8.svelte-1od1es8{padding:var(--padding)}.spacer.svelte-1od1es8.svelte-1od1es8{width:var(--padding);height:calc(100vh - var(--s50px))}.spacer.svelte-1od1es8.svelte-1od1es8::after{display:block;content:'';height:var(--header-height);width:var(--padding);background-color:var(--background)}.scroll_c.svelte-1od1es8.svelte-1od1es8{position:absolute;top:var(--s50px);right:0}.scroll.svelte-1od1es8.svelte-1od1es8{position:absolute;overflow:hidden;top:var(--s20px);right:var(--s-3_75px);width:var(--s7_5px);border-radius:var(--s7_5px);opacity:0.5;background-color:rgba(0,0,0,0.4)}",
+      code: ".columns.svelte-l9ezhf.svelte-l9ezhf{--column-width:var(--s500px);--header-height:var(--s50px);--color:white;--padding:var(--s6px);overflow:hidden;background-color:var(--background)}.column.svelte-l9ezhf.svelte-l9ezhf{position:relative;width:var(--column-width);height:calc(100vh - var(--s50px))}.header.svelte-l9ezhf.svelte-l9ezhf{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;height:var(--header-height);color:var(--color);padding:0 var(--s15px) 0 var(--s10px);font-weight:bold;z-index:2}.header.svelte-l9ezhf div.svelte-l9ezhf{display:flex;align-items:center;height:100%}.header.svelte-l9ezhf.svelte-l9ezhf:first-child{font-size:var(--s24px)}.header.svelte-l9ezhf span.svelte-l9ezhf{text-shadow:0px 0px 3px #1b1b1b, 0 0 8px #525252;font-size:1.2rem;margin-left:var(--s10px)}.fa-add.svelte-l9ezhf.svelte-l9ezhf{font-size:var(--s17px)}.cards.svelte-l9ezhf.svelte-l9ezhf{position:relative;width:100%;height:calc(100vh - var(--s100px));overflow-y:scroll;overflow-x:hidden;-ms-overflow-style:none;scrollbar-width:none;padding:var(--padding) 0}.cards.svelte-l9ezhf.svelte-l9ezhf::-webkit-scrollbar{display:none}.card_c.svelte-l9ezhf.svelte-l9ezhf{padding:var(--padding)}.spacer.svelte-l9ezhf.svelte-l9ezhf{width:var(--padding);height:calc(100vh - var(--s50px))}.spacer.svelte-l9ezhf.svelte-l9ezhf::after{display:block;content:'';height:var(--header-height);width:var(--padding);background-color:var(--background)}.scroll_c.svelte-l9ezhf.svelte-l9ezhf{position:absolute;top:var(--s50px);right:0}.scroll.svelte-l9ezhf.svelte-l9ezhf{position:absolute;overflow:hidden;top:var(--s20px);right:var(--s-3_75px);width:var(--s7_5px);border-radius:var(--s7_5px);opacity:0.5;background-color:rgba(0,0,0,0.4)}",
       map: null
     };
     Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -18952,28 +18952,28 @@ var init_index_svelte = __esm({
       let $_lang, $$unsubscribe__lang;
       $$unsubscribe_current = subscribe(current, (value) => $current = value);
       $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
-      const _count = COLUMNS.length;
+      const _count2 = COLUMNS.length;
       let leftColumn = 0;
       let columnsElement;
-      let scrollColumn = Array(_count).fill(15);
+      let scrollColumn = Array(_count2).fill(15);
       const hScroll = tweened(0, { duration: 350, easing: quartOut });
       function _hScroll(v) {
         hScroll.set(v);
         events.emit("h-scroll", v);
       }
-      Array(_count).fill(0).map((_) => tweened(0, { duration: 350, easing: quartOut }));
-      const _scrollAnimation = Array(_count).fill(0);
-      const headerAnimation = Array(_count).fill(1).map((_) => tweened(0, { duration: 350, easing: backInOut }));
-      const _headerAnimation = Array(_count).fill(1);
+      Array(_count2).fill(0).map((_) => tweened(0, { duration: 350, easing: quartOut }));
+      const _scrollAnimation = Array(_count2).fill(0);
+      const headerAnimation = Array(_count2).fill(1).map((_) => tweened(0, { duration: 350, easing: backInOut }));
+      const _headerAnimation = Array(_count2).fill(1);
       events.register("nav-click").subscribe((index4) => {
         const _width = 500 / window.devicePixelRatio;
-        const maxLeft = _count - Math.floor(window.innerWidth / _width);
+        const maxLeft = _count2 - Math.floor(window.innerWidth / _width);
         if (index4 < maxLeft) {
           leftColumn = index4;
           _hScroll(_width * index4);
         } else {
           leftColumn = maxLeft;
-          const remainingSpace = _count * _width + 15 - leftColumn * _width - window.innerWidth;
+          const remainingSpace = _count2 * _width + 15 - leftColumn * _width - window.innerWidth;
           leftColumn--;
           _hScroll(_width * maxLeft + remainingSpace);
         }
@@ -18982,18 +18982,18 @@ var init_index_svelte = __esm({
           headerAnimation[index4].set(0);
         }, 350);
       });
-      Array(_count).fill(0);
+      Array(_count2).fill(0);
       $$result.css.add(css4);
       $$unsubscribe_current();
       $$unsubscribe__lang();
-      return `<div class="${"columns svelte-1od1es8"}" style="${"--background: " + escape(themes[$current].background)}"${add_attribute("this", columnsElement, 0)}><ul><li class="${"spacer svelte-1od1es8"}" style="${"--background: " + escape(themes[$current].columns[0])}"></li>
+      return `<div class="${"columns svelte-l9ezhf"}" style="${"--background: " + escape(themes[$current].background)}"${add_attribute("this", columnsElement, 0)}><ul><li class="${"spacer svelte-l9ezhf"}" style="${"--background: " + escape(themes[$current].columns[0])}"></li>
         ${each(COLUMNS, (column, _i) => {
-        return `<li><div class="${"column svelte-1od1es8"}"><div style="${"background-color: #e6e6e6;"}"><div class="${"header svelte-1od1es8"}" style="${"background-color: " + escape(themes[$current].columns[_i + 1]) + "; top: " + escape(_headerAnimation[_i]) + "px"}"><div class="${"svelte-1od1es8"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-1od1es8"}"></i>
-                            <span class="${"svelte-1od1es8"}">${escape(column.title[$_lang])}</span></div>
-                        <div class="${"svelte-1od1es8"}"><i class="${"fa-solid fa-add svelte-1od1es8"}"></i></div>
+        return `<li><div class="${"column svelte-l9ezhf"}"><div style="${"background-color: #e6e6e6;"}"><div class="${"header svelte-l9ezhf"}" style="${"background-color: " + escape(themes[$current].columns[_i + 1]) + "; top: " + escape(_headerAnimation[_i]) + "px"}"><div class="${"svelte-l9ezhf"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-l9ezhf"}"></i>
+                            <span class="${"svelte-l9ezhf"}">${escape(column.title[$_lang])}</span></div>
+                        <div class="${"svelte-l9ezhf"}"><i class="${"fa-solid fa-add svelte-l9ezhf"}"></i></div>
                     </div></div>
-                <div class="${"cards svelte-1od1es8"}">${each(Array(10), (_) => {
-          return `<div class="${"card_c svelte-1od1es8"}">${validate_component(Card, "Card").$$render($$result, {}, {}, {
+                <div class="${"cards svelte-l9ezhf"}">${each(Array(10), (_) => {
+          return `<div class="${"card_c svelte-l9ezhf"}">${validate_component(Card, "Card").$$render($$result, {}, {}, {
             default: () => {
               return `<div style="${"height: " + escape(column.height) + ";"}"></div>
                         `;
@@ -19001,11 +19001,11 @@ var init_index_svelte = __esm({
           })}
                     </div>`;
         })}</div>
-                <div class="${"scroll_c svelte-1od1es8"}"><div class="${"scroll svelte-1od1es8"}" style="${"top: " + escape(scrollColumn[_i]) + "px; opacity: " + escape(_scrollAnimation[_i]) + "; height: " + escape(_scrollAnimation[_i] * 30) + "px"}"></div>
+                <div class="${"scroll_c svelte-l9ezhf"}"><div class="${"scroll svelte-l9ezhf"}" style="${"top: " + escape(scrollColumn[_i]) + "px; opacity: " + escape(_scrollAnimation[_i]) + "; height: " + escape(_scrollAnimation[_i] * 25) + "px"}"></div>
                 </div></div>
         </li>`;
       })}
-        <li class="${"spacer svelte-1od1es8"}" style="${"--background: " + escape(themes[$current].columns[_count - 1])}"></li></ul>
+        <li class="${"spacer svelte-l9ezhf"}" style="${"--background: " + escape(themes[$current].columns[_count2 - 1])}"></li></ul>
 </div>`;
     });
   }
@@ -19026,9 +19026,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-628dcd93.js";
-    js3 = ["pages/index.svelte-628dcd93.js", "chunks/index-c869d510.js", "chunks/events-18b7c0e9.js", "chunks/index-b76fb223.js"];
-    css5 = ["assets/pages/index.svelte-0e74e448.css"];
+    entry3 = "pages/index.svelte-e79008a8.js";
+    js3 = ["pages/index.svelte-e79008a8.js", "chunks/index-c869d510.js", "chunks/events-f25d1ef9.js", "chunks/index-b76fb223.js"];
+    css5 = ["assets/pages/index.svelte-6e38ffe6.css"];
   }
 });
 
@@ -21287,7 +21287,7 @@ function set_paths(paths) {
   base = paths.base;
   assets = paths.assets || base;
 }
-var template = ({ head, body, assets: assets2, nonce }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\n		<meta name="viewport" content="width=device-width, initial-scale=1" />\n		<script src="https://kit.fontawesome.com/111a0d026a.js" crossorigin="anonymous"><\/script>\n		<link rel="preconnect" href="https://fonts.googleapis.com">\n		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n		<link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600&family=Gemunu+Libre:wght@700&family=Mukta+Malar:wght@300;500&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"> \n		' + head + "\n	</head>\n	<body>\n		<div>" + body + "</div>\n	</body>\n</html>\n";
+var template = ({ head, body, assets: assets2, nonce }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\n		<meta name="viewport" content="width=device-width, initial-scale=1" />\n		<script src="https://kit.fontawesome.com/111a0d026a.js" crossorigin="anonymous"><\/script>\n		<link rel="preconnect" href="https://fonts.googleapis.com">\n		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n		<link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@600&family=Mukta+Malar:wght@300;500&family=Noto+Sans+Sinhala:wght@300;400&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">  \n		' + head + "\n	</head>\n	<body>\n		<div>" + body + "</div>\n	</body>\n</html>\n";
 var read = null;
 set_paths({ "base": "", "assets": "" });
 var Server = class {
@@ -21350,7 +21350,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png"]),
   mimeTypes: { ".png": "image/png" },
   _: {
-    entry: { "file": "start-6770cd04.js", "js": ["start-6770cd04.js", "chunks/index-c869d510.js", "chunks/index-b76fb223.js"], "css": [] },
+    entry: { "file": "start-b09b8d3a.js", "js": ["start-b09b8d3a.js", "chunks/index-c869d510.js", "chunks/index-b76fb223.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
