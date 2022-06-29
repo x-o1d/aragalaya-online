@@ -209,7 +209,7 @@
                         style="
                             top: {scrollColumn[_i]}px;
                             opacity: {_scrollAnimation[_i]};
-                            height: {_scrollAnimation[_i]*30}px">
+                            height: {_scrollAnimation[_i]*25}px">
                     </div>
                 </div>
             </div>
@@ -228,7 +228,7 @@
         --column-width: var(--s500px);
         --header-height: var(--s50px);
         --color: white;
-        --padding: var(--s7_5px);
+        --padding: var(--s6px);
         overflow: hidden;
         background-color: var(--background);
     }
@@ -258,8 +258,8 @@
 		font-size: var(--s24px);
     }
     .header span {
-        text-shadow: 0px 0px 5px #1b1b1b, 0 0 10px #525252;
-        font-size: 1.3rem;
+        text-shadow: 0px 0px 3px #1b1b1b, 0 0 8px #525252;
+        font-size: 1.2rem;
         margin-left: var(--s10px);
     }
     .fa-add {

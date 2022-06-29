@@ -2,7 +2,7 @@
 	import Nav from './_components/Nav.svelte'
 	import ThemeSelector from './_components/ThemeSelector.svelte';
 	import { _lang } from '$lib/services/store';
-	import { _langFonts, _langFontSize } from '$lib/utils/theme';
+	import { themes, current, _langFonts, _langFontSize } from '$lib/utils/theme';
 	import { onMount } from 'svelte';
 	import Login from './_components/Login.svelte';
 	import events from '$lib/services/events';
@@ -33,18 +33,15 @@
 	// NOTE: mobile browser behavior not tested
 	// NOTE: performance cost not measured, so far so good
 	// NOTE: ALWAYS use var(--s5px) instead of 5px in absolute lengths (5 = any number)
-	// make sure the specified value is in the below pixelValues array
+	// any value from -10px to 500px with increments of 0.25px can be specified
+	// like this.
 	// var(--s(n)px) values are automatically scaled as per the device
 	// pixel ratio
 	onMount(() => {
 		document.documentElement.style
 			.setProperty('--pixel-ratio', window.devicePixelRatio);
-
-		const pixelValues = [
-			-3.75, 1, 2, 3, 4, 3.75, 5, 7.5, 10, 13, 14, 15, 17, 18, 21, 
-			22 ,24, 28, 30, 36, 38, 45, 50, 70, 100, 300, 340, 360,
-			500,
-		];
+			
+		const pixelValues = Array(512*4).fill(0).map((_, _i) => (_i/4-10));
 		pixelValues.map(p => {
 			const absP = Math.abs(p);
 			const cssVar = '--s' + ((p<0)? '-': '') +
@@ -61,8 +58,10 @@
 {#if cssReady}
 <Nav/>
 
-<div class="nav">
-	<div class="nav-logo">
+<div 
+	class="header"
+	style="background-color: {themes[$current].header}">
+	<div class="logo">
 		<div class="aragalaya">
 			අරගලය
 		</div>
@@ -70,7 +69,7 @@
 			.online
 		</div>
 	</div>
-	<ul class="nav-right">
+	<ul class="header-right">
 		<li on:click={() => _lang.set(0)}> 
 			සිංහල 
 		</li>
@@ -125,8 +124,12 @@
 		display: inline-flex;
 	}
 
+	:global(._clickable:hover) {
+		cursor: pointer;
+	}
+
 	/* nav bar */
-	.nav {
+	.header {
 		--text: rgb(163, 47, 47);
 		--shadow-height: 0.5rem;
 		--shadow-gradient: linear-gradient(
@@ -141,18 +144,17 @@
 		justify-content: space-between;
 		width: 100vw;
 		margin: 0;
-		background-color: #e6e6e6;
 		font-family: var(--font);
 		transition: transform 0.2s;
 		user-select: none;
 		padding: 0;
 	}
 
-	.nav-logo {
+	.logo {
 		display: flex;
-		padding: var(--s10px) var(--s10px);
+		padding: var(--s10px) var(--s7px);
 		align-items: baseline;
-		padding-bottom: 10px;
+		padding-bottom: var(--s10px);
 	}
 	.aragalaya {
 		display: inline-block;
@@ -167,13 +169,13 @@
 		font-family: 'Roboto', sans-serif;
 	}
 
-	.nav-right li {
+	.header-right li {
 		font-size: var(--s14px);
 		line-height: var(--s14px);
 		padding: 0 var(--s5px);
 		font-family: 'Roboto', sans-serif;
 	}
-	.nav-right:last-child {
+	.header-right:last-child {
 		margin-right: var(--s5px);
 	}
 	.login {
@@ -183,7 +185,7 @@
 		font-size: var(--s21px);
 		margin-right: var(--s5px);
 	}
-	.nav-right li {
+	.header-right li {
 		cursor: pointer;
 	}
 

@@ -57,13 +57,13 @@
             {#each COLUMNS as column, _i}
                 <div 
                     style="color: {themes[$current].nav[_i]}"
-                    class="icon"
+                    class="icon _clickable"
                     on:click={() => events.emit('nav-click', _i)}>
                     <i class={column.icon}/>
                 </div>
             {/each}
             <div 
-                class="toggle icon" 
+                class="toggle icon _clickable" 
                 on:click={() => showNames = !showNames}>
                 {#if !showNames}
                     <i class="fa-solid fa-toggle-off"/>
@@ -85,7 +85,8 @@
         {#if showNames && !namesHidden}
         {#each COLUMNS as column, _i}
         <div 
-            class="title_c"
+            on:click={() => showNames = !showNames}
+            class="title_c _clickable"
             style="
                 right: {75/window.devicePixelRatio}px;
                 bottom: {(70*(_count+1-_i)+5)/window.devicePixelRatio}px">
@@ -99,7 +100,7 @@
     
     <div 
         on:click={showHide}
-        class="icon show-hide">
+        class="icon show-hide _clickable">
         {#if !hidden}
             <i class="fa-solid fa-angles-down"/>
         {:else}
@@ -139,9 +140,6 @@
         color: var(--nav-buttons);
         font-size: var(--s22px);
     }
-    .icon:hover {
-        cursor: pointer;
-    }
     .toggle {
         color: white;
     }
@@ -170,11 +168,12 @@
         position: fixed;
     }
     .title {
-        font-size: 1.06rem;
+        font-size: 0.95rem;
         font-weight: bold;
-        color: black;
-        padding: var(--s2px) var(--s5px);
-        background-color: var(--background);
+        color: rgb(85, 85, 85);
+        padding: var(--s0px) var(--s5px);
+        background-color: white; 
+        /* var(--background); */
     }
 
 </style>

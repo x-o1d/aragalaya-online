@@ -18479,7 +18479,7 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/events-b6231bf1.js
+// .svelte-kit/output/server/chunks/events-5204c5fe.js
 function writable2(value, start = noop2) {
   let stop;
   const subscribers = /* @__PURE__ */ new Set();
@@ -18522,8 +18522,8 @@ function writable2(value, start = noop2) {
   return { set, update, subscribe: subscribe2 };
 }
 var import_chroma_js, import_rxjs, COLUMNS, subscriber_queue2, _lang, pallette, current, themes, EventService, events;
-var init_events_b6231bf1 = __esm({
-  ".svelte-kit/output/server/chunks/events-b6231bf1.js"() {
+var init_events_5204c5fe = __esm({
+  ".svelte-kit/output/server/chunks/events-5204c5fe.js"() {
     init_shims();
     import_chroma_js = __toESM(require_chroma(), 1);
     init_index_d7da944c();
@@ -18597,12 +18597,12 @@ var init_events_b6231bf1 = __esm({
     _lang = writable2(0);
     pallette = [
       {
-        header: ["#9A031A", "#fb8b24", "#e26413", "#0f4C5C", "#5f0f41"],
+        header: ["#9A031A", "#e26413", "#fb8b24", "#0f4C5C", "#5f0f41"],
         light: "#c9ada7",
         dark: "#4c4452"
       },
       {
-        header: ["#ca353f", "#E63A46", "#1E3557", "#7ec8cb", "#457b9d", "#275757"],
+        header: ["#E63A46", "#e12f7d", "#bf47af", "#7f63d1", "#0076dc"],
         light: "#BEA6A0",
         dark: "#63A23F"
       },
@@ -18681,7 +18681,7 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_d7da944c();
-    init_events_b6231bf1();
+    init_events_5204c5fe();
     import_chroma_js2 = __toESM(require_chroma(), 1);
     strings = {
       enter: [
@@ -18757,9 +18757,9 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-f00b9eba.js";
-    js = ["pages/__layout.svelte-f00b9eba.js", "chunks/index-c869d510.js", "chunks/events-82209ee6.js", "chunks/index-b76fb223.js"];
-    css2 = ["assets/pages/__layout.svelte-0ebc629c.css"];
+    entry = "pages/__layout.svelte-91f189f2.js";
+    js = ["pages/__layout.svelte-91f189f2.js", "chunks/index-c869d510.js", "chunks/events-18b7c0e9.js", "chunks/index-b76fb223.js"];
+    css2 = ["assets/pages/__layout.svelte-f1629ccb.css"];
   }
 });
 
@@ -18932,7 +18932,7 @@ var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
     init_index_d7da944c();
-    init_events_b6231bf1();
+    init_events_5204c5fe();
     import_chroma_js3 = __toESM(require_chroma(), 1);
     css$12 = {
       code: ".card.svelte-1y9d784{width:100%;border-radius:5px;background-color:white;padding:10px}",
@@ -19026,8 +19026,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-8d518ffc.js";
-    js3 = ["pages/index.svelte-8d518ffc.js", "chunks/index-c869d510.js", "chunks/events-82209ee6.js", "chunks/index-b76fb223.js"];
+    entry3 = "pages/index.svelte-628dcd93.js";
+    js3 = ["pages/index.svelte-628dcd93.js", "chunks/index-c869d510.js", "chunks/events-18b7c0e9.js", "chunks/index-b76fb223.js"];
     css5 = ["assets/pages/index.svelte-0e74e448.css"];
   }
 });
@@ -21350,7 +21350,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png"]),
   mimeTypes: { ".png": "image/png" },
   _: {
-    entry: { "file": "start-72bc30ab.js", "js": ["start-72bc30ab.js", "chunks/index-c869d510.js", "chunks/index-b76fb223.js"], "css": [] },
+    entry: { "file": "start-6770cd04.js", "js": ["start-6770cd04.js", "chunks/index-c869d510.js", "chunks/index-b76fb223.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

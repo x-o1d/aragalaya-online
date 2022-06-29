@@ -5,8 +5,8 @@
 <style>
     .card {
         width: 100%;
-        border-radius: 5px;
+        border-radius: var(--s3px);
         background-color: white;
-        padding: 10px;
+        padding: var(--s10px);
     }
 </style>

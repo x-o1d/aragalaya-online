@@ -1,7 +1,7 @@
 const strings = {
     enter: [
         'ඇතුල්වන්න',
-        'login',
+        'Login',
         'உள்நுழைய'
     ],
     email: [

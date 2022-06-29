@@ -74,7 +74,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: var(--s18px);
+        padding: var(--s20px);
         width: 100%;
         height: 100%;
         background-color: #f0f0f0;
@@ -85,7 +85,7 @@
         font-size: 1.3rem;
         font-weight: bold;
         color: black;
-        margin-bottom: var(--s18px);
+        margin-bottom: var(--s20px);
     }
     input {
         height: var(--s45px);
