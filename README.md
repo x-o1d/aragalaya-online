@@ -17,6 +17,11 @@ Node 16.x LTS (https://nodejs.org/en/download/)
 git clone git@github.com:x-o1d/aragalaya-online.git
 ```
 
+#### setup editor
+
+install the 'Svelte for VS Code' plugin for VS Code
+while any text editor should work, the official VS Code plugin provides a lot more feature
+
 #### start dev server
 
 go to the project root directory in a terminal and run the below commands

@@ -18988,7 +18988,7 @@ var init_index_svelte = __esm({
       $$unsubscribe__lang();
       return `<div class="${"columns svelte-l9ezhf"}" style="${"--background: " + escape(themes[$current].background)}"${add_attribute("this", columnsElement, 0)}><ul><li class="${"spacer svelte-l9ezhf"}" style="${"--background: " + escape(themes[$current].columns[0])}"></li>
         ${each(COLUMNS, (column, _i) => {
-        return `<li><div class="${"column svelte-l9ezhf"}"><div style="${"background-color: #e6e6e6;"}"><div class="${"header svelte-l9ezhf"}" style="${"background-color: " + escape(themes[$current].columns[_i + 1]) + "; top: " + escape(_headerAnimation[_i]) + "px"}"><div class="${"svelte-l9ezhf"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-l9ezhf"}"></i>
+        return `<li><div class="${"column svelte-l9ezhf"}"><div style="${"background-color: #e6e6e6;"}"><div class="${"header _clickable svelte-l9ezhf"}" style="${"background-color: " + escape(themes[$current].columns[_i + 1]) + "; top: " + escape(_headerAnimation[_i]) + "px"}"><div class="${"svelte-l9ezhf"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-l9ezhf"}"></i>
                             <span class="${"svelte-l9ezhf"}">${escape(column.title[$_lang])}</span></div>
                         <div class="${"svelte-l9ezhf"}"><i class="${"fa-solid fa-add svelte-l9ezhf"}"></i></div>
                     </div></div>
@@ -19026,8 +19026,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-e79008a8.js";
-    js3 = ["pages/index.svelte-e79008a8.js", "chunks/index-c869d510.js", "chunks/events-f25d1ef9.js", "chunks/index-b76fb223.js"];
+    entry3 = "pages/index.svelte-bcad22eb.js";
+    js3 = ["pages/index.svelte-bcad22eb.js", "chunks/index-c869d510.js", "chunks/events-f25d1ef9.js", "chunks/index-b76fb223.js"];
     css5 = ["assets/pages/index.svelte-6e38ffe6.css"];
   }
 });
@@ -21350,7 +21350,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png"]),
   mimeTypes: { ".png": "image/png" },
   _: {
-    entry: { "file": "start-b09b8d3a.js", "js": ["start-b09b8d3a.js", "chunks/index-c869d510.js", "chunks/index-b76fb223.js"], "css": [] },
+    entry: { "file": "start-88dffa39.js", "js": ["start-88dffa39.js", "chunks/index-c869d510.js", "chunks/index-b76fb223.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

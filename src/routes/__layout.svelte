@@ -8,12 +8,15 @@
 	import events from '$lib/services/events';
 
 	let cssReady = false;
+	let userReady = false;
 
-	// listen to language changes and set root font-family and font sizes
+	events.register('user-ready').subscribe(() => (userReady = true));
+
+	// listen to language changes and set root font-family and font sizes.
 	// fonts in different languages have different display sizes for the 
 	// same pixel value.
 	// this is managed by setting a correction font size on the root element
-	// and using rem font sizes throughout the app
+	// and using rem font sizes throughout the app.
 	onMount(() => {
 		_lang.subscribe((v) => {
 			document.documentElement.style
@@ -23,20 +26,23 @@
 		});
 	})
 
+	// in css throughout the app var(--s(n)px) values are automatically 
+	// scaled as per the device pixel ratio.
+	// any value from -10px to 500px with increments of 0.25px can be specified
+	// like this.
+	// this is achieved by settings corrected pixel values in the below hook.
+	//
+	// DESCRIPTION:: 
 	// pixel ratio on windows devices (125%/150% scaling) results the app
-	// to look zoomed in and doesn't look pretty
-	// to overcome this we're calculating pixel values devided by 
+	// to look zoomed in and doesn't look pretty.
+	// to overcome this we're calculating pixel values divided by 
 	// devicePixelRatio and setting them as css variables to use throught
 	// the app.
 	// this ensures that the app looks consistent on all browsers regardless
 	// of window scaling.
+	//
 	// NOTE: mobile browser behavior not tested
 	// NOTE: performance cost not measured, so far so good
-	// NOTE: ALWAYS use var(--s5px) instead of 5px in absolute lengths (5 = any number)
-	// any value from -10px to 500px with increments of 0.25px can be specified
-	// like this.
-	// var(--s(n)px) values are automatically scaled as per the device
-	// pixel ratio
 	onMount(() => {
 		document.documentElement.style
 			.setProperty('--pixel-ratio', window.devicePixelRatio);
@@ -82,7 +88,11 @@
 		<li 
 			on:click={() => events.emit('show-hide-login', true)}
 			class="login">
+			{#if !userReady}
 			<i class="fa-solid fa-user-astronaut"></i>
+			{:else}
+			<i class="fa-solid fa-user-nurse"></i>
+			{/if}
 		</li>
 		<li>
 			<ThemeSelector/>
@@ -181,7 +191,7 @@
 	.login {
 		margin-left: var(--s30px);
 	}
-	.fa-user-astronaut {
+	.fa-solid {
 		font-size: var(--s21px);
 		margin-right: var(--s5px);
 	}
