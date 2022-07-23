@@ -1,5 +1,3 @@
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "../config/firebase";
 import { 
     FacebookAuthProvider, 
     signInWithPopup, 
@@ -9,13 +7,13 @@ import {
     sendEmailVerification,
     getAuth  
 } from "firebase/auth";
+import { app } from './firebase';
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-const provider = new FacebookAuthProvider();
-
+const auth = getAuth(app);
 
 export const facebookSignin = () => {
+    const provider = new FacebookAuthProvider();
+    
     signInWithPopup(auth, provider)
     .then((result) => {
         // The signed-in user info.

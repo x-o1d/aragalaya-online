@@ -7,6 +7,7 @@ export const COLUMNS = [
         ],
         icon: 'fa-solid fa-file-lines',
         height: '200px',
+        type: 'bulletin'
     },
     {
         title: [
@@ -15,7 +16,8 @@ export const COLUMNS = [
             'தேர்தல்கள்'
         ],
         icon: 'fa-solid fa-check-to-slot',
-        height: '300px'
+        height: '300px',
+        type: 'poll'
     },
     {
         title: [
@@ -24,7 +26,8 @@ export const COLUMNS = [
             'பொது கருத்துகளுக்கான முன்மொழிவுகள்'
         ],
         icon: 'fa-solid fa-comments',
-        height: '400px'
+        height: '400px',
+        type: 'proposal'
     },
     {
         title: [
@@ -33,7 +36,8 @@ export const COLUMNS = [
             'செய்தி மற்றும் விவாதங்கள்'
         ],
         icon: 'fa-solid fa-radio',
-        height: '310px'
+        height: '310px',
+        type: 'news'
     },
     {
         title: [
@@ -42,7 +46,8 @@ export const COLUMNS = [
             'கூட்டு ஆவணங்கள்'
         ],
         icon: 'fa-solid fa-file-signature',
-        height: '500px'
+        height: '500px',
+        type: ''
     },
     {
         title: [
@@ -51,7 +56,8 @@ export const COLUMNS = [
             'திறந்த பட்ஜெட்'
         ],
         icon: 'fa-solid fa-coins',
-        height: '410px'
+        height: '410px',
+        type: 'budget'
     },
     {
         title: [
@@ -60,6 +66,7 @@ export const COLUMNS = [
             'கேலரி'
         ],
         icon: 'fa-solid fa-camera-retro',
-        height: '290px'
+        height: '290px',
+        type: 'photo'
     }
 ];

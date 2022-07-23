@@ -1,166 +1,142 @@
+<script context="module">
+    export async function load({ fetch }) {
+        const res = await fetch('/api');
+        if(res.ok) return { 
+            props: {
+                bulletins: await res.json()
+            }
+        };
+        return {
+            status: res.status,
+            error: new Error()
+        };
+    }
+</script>
+
 <script>
     import { COLUMNS } from '../data/columns'
-    import Card from "../lib/components/Card.svelte";
+    import Card from "../lib/components/card.svelte";
     import { tweened } from "svelte/motion";
     import { quartOut, backInOut } from "svelte/easing";
     import { onMount } from 'svelte';
     import { themes, current } from '$lib/utils/theme';
     import events from '$lib/services/events';
     import { _lang } from '$lib/services/store';
+    import { handleHorizontalScroll, handleVerticalScroll } from '$lib/utils/scroll';
+
+    export let bulletins;
     
+    // columns count:
+    // the column configuration is specified in ../data/columns
     const _count = COLUMNS.length;
 
-    const WINDOW_SIZE = 4;
-    const WHEEL_THRESHOLD = 550;
-
-    let deltaXWindow = [];
-    let deltaXIndex = 0;
-
-    let leftColumn = 0;
+    // the DOM element that contains all the columns
+    // this element is moves left and right to produce the
+    // horizontal scroll effect
     let columnsElement;
 
-    let scrollColumn = Array(_count).fill(15);
+    ////////////////////////////////////////////////////////////////////
+    // NOTE:: variables prepended with _ are number arrays that track the
+    // current value of a tween of the same name
+    ////////////////////////////////////////////////////////////////////
 
+    // vertical scroll:
+    // array that holds the vertical scroll positions of 
+    // each indidual column
+    // initial value is set to 15px to align with the edge of the card
+    const vScroll = Array(_count).fill(15);
+    // above value is updated by the update-vscroll event triggered by the
+    // handleVerticalScroll() method
+    // NOTE:: updating the value with an event ensures that the value remains
+    // reactive, there might be a better way to do it
+    events.register('update-vscroll').subscribe(v => {
+        vScroll[v.index] = v.value;
+    });
+
+    // column scroll bar visibility and size animation
+    const vScrollAnimation = Array(_count).fill(0).map(_ => tweened(0, {
+        duration: 350,
+        easing: quartOut
+    }));
+    const _vScrollAnimation = Array(_count).fill(0);
+
+    // horizontal scroll index:
+    // index of the left most column in view
+    // this value is modified by both handleVerticalScroll method
+    // and the nav-click event
+    //
+    // NOTE:: hScrollIndex is passed to handleVerticalScroll as an object so that 
+    // the changes can be reflected in the component
+    // https://www.tutorialspoint.com/explain-javascript-pass-by-reference-in-javascript
+    let hScrollIndex = {
+        value: 0
+    }
+
+    // horizontal scroll animation tween
     const hScroll = tweened(0, {
         duration: 350,
         easing: quartOut
     });
 
-    function _hScroll(v) {
+    const setHorizontalScroll = (v) => {
         hScroll.set(v);
+        // emit the h-scroll event to trigger the corresponding
+        // animation in the navigation bar
         events.emit('h-scroll', v);
     }
 
-    const scrollAnimation = Array(_count).fill(0).map(_ => tweened(0, {
-        duration: 350,
-        easing: quartOut
-    }));
-    const _scrollAnimation = Array(_count).fill(0);
-
-    const headerAnimation = Array(_count).fill(1).map(_ => tweened(0, {
+    // header bounce animation on navigation click
+    const bounceAnimation = Array(_count).fill(1).map(_ => tweened(0, {
         duration: 350,
         easing: backInOut
     }));
-    const _headerAnimation = Array(_count).fill(1);
+    const _bounceAnimation = Array(_count).fill(1);
 
+    // hook that listens to to navigation click events
     events.register('nav-click').subscribe((index) => {
         const _width = 500/window.devicePixelRatio;
         const maxLeft = (_count - Math.floor(window.innerWidth/_width))
         if(index < maxLeft) {
-            leftColumn = index;
-            _hScroll(_width*index);
+            hScrollIndex.value = index;
+            setHorizontalScroll(_width * index);
         } else {
-            leftColumn = maxLeft;
+            hScrollIndex.value = maxLeft;
             const remainingSpace = (_count*_width + 15)
-                - leftColumn*_width
+                - hScrollIndex.value * _width
                 - window.innerWidth;
-            leftColumn --;
-            _hScroll(_width*maxLeft + remainingSpace);
+            hScrollIndex.value--;
+            setHorizontalScroll(_width*maxLeft + remainingSpace);
         }
 
-        headerAnimation[index].set(8);
+        bounceAnimation[index].set(8);
         setTimeout(() => {
-            headerAnimation[index].set(0);
+            bounceAnimation[index].set(0);
         }, 350);
     });
 
     onMount(() => {
-        // set columns scroll left to follow hScroll tween
+        // set columnsElement.scrolLeft to follow hScroll tween
+        // hScroll is used for the horizontal scrolling animation
         hScroll.subscribe(v => (columnsElement.scrollLeft = v));
-        headerAnimation.map((t, _i) => {
-            t.subscribe(v => _headerAnimation[_i] = v);
+        
+        // set _bounceAnimation[index] to follow 
+        // bounceAnimation[index] tween
+        // _bounceAnimation is used for the bounce effect of the
+        // column headers
+        bounceAnimation.map((t, _i) => {
+            t.subscribe(v => (_bounceAnimation[_i] = v));
         })
-        scrollAnimation.map((t, _i) => {
+
+        // set _vScrollAnimation[index] to follow 
+        // vScrollAnimation[index] tween
+        // _vScrollAnimation[index] is used for the vertical scroll
+        // bar visibility and size animation
+        vScrollAnimation.map((t, _i) => {
             t.subscribe(v => {
-                _scrollAnimation[_i] = v
+                _vScrollAnimation[_i] = v;
             });
         })
     });
-
-    let ignore = false;
-    function handleHorizontalScroll (event) {
-        const _width = 500/window.devicePixelRatio;
-        // save wheel/touch event delta x in a window
-        deltaXWindow[deltaXIndex] = event.wheelDeltaX;
-        if(deltaXIndex < WINDOW_SIZE) deltaXIndex++;
-        else deltaXIndex = 0;
-
-        if(event.wheelDeltaX && !ignore) {
-            // check if window contains zero values
-            // 0 values indicate a vertical scroll
-            if(deltaXWindow.some(d => (d == 0))) return;
-
-            // check if all the values in the window point
-            // in the same direction
-            const direction = deltaXWindow.reduce((p,c) => {
-                if(Math.sign(p) === Math.sign(c)) {
-                    return Math.sign(c);
-                } else {
-                    return undefined
-                }
-            });
-            if(!direction) return;
-
-            // check if the total distance travelled by the wheel is
-            // greater than a threshold
-            const moment = Math.abs(deltaXWindow.reduce((p,c) => (p+c), 0));
-            if(moment < WHEEL_THRESHOLD) return;
-
-            if(direction < 0) {
-                if(leftColumn < (_count - Math.ceil(window.innerWidth/_width))) {
-                    leftColumn++;
-                }
-            }
-            if(direction > 0) {
-                if(leftColumn > 0) {
-                    leftColumn--;
-                }
-            }
-            let scrollTo = leftColumn*_width;
-
-            const remainingSpace = (_count*_width + 15)
-                - leftColumn*_width
-                - window.innerWidth;
-
-            if(remainingSpace < _width) {
-                scrollTo += remainingSpace;
-            }
-
-            // set tween value for vertical scroll
-            _hScroll(scrollTo);
-
-            // debounce horizontal scroll
-            ignore = true; 
-            setTimeout(() => {
-                ignore = false;
-            }, 500);
-
-            // reset window
-            deltaXWindow = [];
-            deltaXIndex = 0;
-        }
-    }
-
-    let lastScrollTime = Array(_count).fill(0);
-    function handleVerticalScroll(event, index) {
-        const height = Array.from(event.target.childNodes).reduce((p, c) => {
-            return p + c.offsetHeight;
-        }, 0);
-        const scrollTopMax = height-(window.innerHeight-100);
-        scrollColumn[index] = (window.innerHeight - 160)
-            / scrollTopMax
-            * event.target.scrollTop
-            + 15;
-
-        scrollAnimation[index].set(1);
-        setTimeout(() => {
-            let time = (new Date()).getTime();
-            if((time-lastScrollTime[index]) > 490) {
-                scrollAnimation[index].set(0);
-            }
-        }, 500);
-        lastScrollTime[index] = (new Date()).getTime();
-    }
 
 </script>
 
@@ -168,7 +144,9 @@
     class="columns"
     style="--background: {themes[$current].background}"
     bind:this={columnsElement}
-    on:wheel|stopPropagation={(e) => handleHorizontalScroll(e)}>
+    on:wheel|stopPropagation={(e) => {
+        handleHorizontalScroll(e, hScrollIndex, setHorizontalScroll)
+    }}>
 	<ul>
         <li 
             class="spacer"
@@ -183,7 +161,7 @@
                         on:click={() => events.emit('nav-click', _i)}
                         style="
                             background-color: {themes[$current].columns[_i+1]};
-                            top: {_headerAnimation[_i]}px">
+                            top: {_bounceAnimation[_i]}px">
                         <div>
                             <i class="{column.icon}"></i>
                             <span>{column.title[$_lang]}</span>
@@ -195,7 +173,7 @@
                 </div>
                 <div 
                     class="cards"
-                    on:scroll|stopPropagation={(e) => handleVerticalScroll(e, _i)}>
+                    on:scroll|stopPropagation={(e) => handleVerticalScroll(e, _i, vScrollAnimation)}>
                     {#each Array(10) as _}
                     <div class="card_c">
                         <Card>
@@ -208,9 +186,9 @@
                     <div 
                         class="scroll"
                         style="
-                            top: {scrollColumn[_i]}px;
-                            opacity: {_scrollAnimation[_i]};
-                            height: {_scrollAnimation[_i]*25}px">
+                            top: {vScroll[_i]}px;
+                            opacity: {_vScrollAnimation[_i]};
+                            height: {_vScrollAnimation[_i]*25}px">
                     </div>
                 </div>
             </div>

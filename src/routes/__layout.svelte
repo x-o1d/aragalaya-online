@@ -1,10 +1,10 @@
 <script>
-	import Nav from './_components/Nav.svelte'
-	import ThemeSelector from './_components/ThemeSelector.svelte';
+	import Nav from './_components/nav.svelte'
+	import ThemeSelector from './_components/theme-selector.svelte';
 	import { _lang } from '$lib/services/store';
 	import { themes, current, _langFonts, _langFontSize } from '$lib/utils/theme';
 	import { onMount } from 'svelte';
-	import Login from './_components/Login.svelte';
+	import Login from './_components/login.svelte';
 	import events from '$lib/services/events';
 
 	let cssReady = false;
