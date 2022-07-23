@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "../../../sensitive/firebase";
+import { firebaseConfig } from "../config/firebase";
 import { 
     FacebookAuthProvider, 
     signInWithPopup, 
