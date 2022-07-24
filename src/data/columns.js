@@ -7,7 +7,7 @@ export const COLUMNS = [
         ],
         icon: 'fa-solid fa-file-lines',
         height: '200px',
-        type: 'bulletin'
+        type: 'bulletin',
     },
     {
         title: [

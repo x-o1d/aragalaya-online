@@ -5,17 +5,44 @@ import { _lang } from '$lib/services/store';
 
 const _count = COLUMNS.length;
 
-export const _langFonts = [
-    "'Noto Sans Sinhala', sans-serif",
-    "'Open Sans', sans-serif",
-    "'Mukta Malar', sans-serif"
-];
-export const _langFontSize = [
-    12,
-    13,
-    13
+// ** style configuration
+
+// a font group is a set of fonts in all three languages which can be used
+// for a particular text with the <Font> component
+// ex: <Font group={0} remSize={1}>text</Font>
+// any text that doesn't use a <Font> component will automatically use the
+// first font group
+export const _fontGroups = [
+    [   // 0 - default font group if a Font component is not used
+        // can be used for block texts, buttons, etc..
+        "'Abhaya Libre', serif", // si
+        "'Nunito', sans-serif", // en
+        "'Hind Madurai', sans-serif" // ta
+    ],[ // 1 - can be used for titles
+        "'Noto Serif Sinhala', serif", // si
+        "'Source Sans Pro', sans-serif", // en
+        "'Pavanam', sans-serif" // ta
+    ],[ // 2 - fonts used in header columns
+        "'Noto Sans Sinhala', sans-serif", // si
+        "'Open Sans', sans-serif", // en
+        "'Mukta Malar', sans-serif" // ta
+    ]
 ];
 
+
+// different fonts for the three languages doesn't always 
+// have the same perceived height for the same pixel value.
+// each value in a row sets a relative size for a language within a group
+// the default value is 16.
+// within the code the value is speified in rem, typically between 0.9rem 1.5rem (titles)
+export const _fontSizes = [
+    [15, 13, 13],
+    [13, 13, 13],
+    [12, 13, 13],
+];
+
+// each element in the pallette specifies a set of colors to be used in
+// a theme
 const pallette = [
     {
         colors: ['#9A031A', '#e26413', '#fb8b24', '#0f4C5C', '#5f0f41'],
@@ -37,6 +64,8 @@ const pallette = [
         dark: '#4992CE'
     }
 ];
+
+// ** END - style configuration
 
 export const current = writable(2); // current theme
 

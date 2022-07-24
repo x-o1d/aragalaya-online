@@ -1,21 +1,6 @@
-<script context="module">
-    export async function load({ fetch }) {
-        const res = await fetch('/api');
-        if(res.ok) return { 
-            props: {
-                bulletins: await res.json()
-            }
-        };
-        return {
-            status: res.status,
-            error: new Error()
-        };
-    }
-</script>
-
 <script>
     import { COLUMNS } from '../data/columns'
-    import Card from "../lib/components/card.svelte";
+    import Card from "./_components/card.svelte";
     import { tweened } from "svelte/motion";
     import { quartOut, backInOut } from "svelte/easing";
     import { onMount } from 'svelte';
@@ -23,9 +8,16 @@
     import events from '$lib/services/events';
     import { _lang } from '$lib/services/store';
     import { handleHorizontalScroll, handleVerticalScroll } from '$lib/utils/scroll';
+    import Post from './_components/post.svelte';
+    import Font from './_components/font.svelte';
+    import Bulletin from './_components/bulletin.svelte';
 
-    export let bulletins;
-    
+    const COMPONENTS = {
+        bulletin: Bulletin,
+    }
+
+    export let columnData;
+
     // columns count:
     // the column configuration is specified in ../data/columns
     const _count = COLUMNS.length;
@@ -77,7 +69,7 @@
         duration: 350,
         easing: quartOut
     });
-
+    
     const setHorizontalScroll = (v) => {
         hScroll.set(v);
         // emit the h-scroll event to trigger the corresponding
@@ -164,7 +156,13 @@
                             top: {_bounceAnimation[_i]}px">
                         <div>
                             <i class="{column.icon}"></i>
-                            <span>{column.title[$_lang]}</span>
+                            <span>
+                                <Font 
+                                    group={2}
+                                    remSize={1.1}>
+                                    {column.title[$_lang]}
+                                </Font>
+                            </span>
                         </div>
                         <div>
                             <i class="fa-solid fa-add"></i>
@@ -174,15 +172,18 @@
                 <div 
                     class="cards"
                     on:scroll|stopPropagation={(e) => handleVerticalScroll(e, _i, vScrollAnimation)}>
-                    {#each Array(10) as _}
+                    {#each columnData[_i] as item, _i}
                     <div class="card_c">
                         <Card>
+                            <Post component={COMPONENTS[column.type]} data={item}/>
+                            {#if !item}
                             <div style="height: {column.height};"></div>
+                            {/if}
                         </Card>
                     </div>
                     {/each}
                 </div>
-                <div class="scroll_c">
+                <div class="scrollbar">
                     <div 
                         class="scroll"
                         style="
@@ -238,7 +239,6 @@
     }
     .header span {
         text-shadow: 0px 0px 3px #1b1b1b, 0 0 8px #525252;
-        font-size: 1.2rem;
         margin-left: var(--s10px);
     }
     .fa-add {
@@ -274,7 +274,7 @@
         width: var(--padding);
         background-color: var(--background);
     }
-    .scroll_c {
+    .scrollbar {
         position: absolute;
         top: var(--s50px);
         right: 0;

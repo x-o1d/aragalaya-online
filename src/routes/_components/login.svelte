@@ -9,7 +9,7 @@
         emailSignin, 
         changePassword 
     } from '$lib/services/auth';
-    import Progress from '$lib/components/progress.svelte';
+    import Progress from './progress.svelte';
 
     let showLogin = false;
     let email, name, password, repeatPassword;

@@ -2,7 +2,7 @@
 	import Nav from './_components/nav.svelte'
 	import ThemeSelector from './_components/theme-selector.svelte';
 	import { _lang } from '$lib/services/store';
-	import { themes, current, _langFonts, _langFontSize } from '$lib/utils/theme';
+	import { themes, current, _fontGroups, _fontSizes } from '$lib/utils/theme';
 	import { onMount } from 'svelte';
 	import Login from './_components/login.svelte';
 	import events from '$lib/services/events';
@@ -20,9 +20,9 @@
 	onMount(() => {
 		_lang.subscribe((v) => {
 			document.documentElement.style
-				.setProperty('--lang-font', _langFonts[v]);
+				.setProperty('--lang-font', _fontGroups[0][v]);
 			document.documentElement.style
-				.setProperty('--lang-font-size', (_langFontSize[v]/window.devicePixelRatio) + 'px');
+				.setProperty('--lang-font-size', (_fontSizes[0][v]/window.devicePixelRatio) + 'px');
 		});
 	})
 
