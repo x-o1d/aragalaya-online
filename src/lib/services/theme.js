@@ -1,5 +1,5 @@
 import chroma from "chroma-js";
-import { COLUMNS } from '../../data/columns';
+import COLUMNS from '$lib/config/columns-config';
 import { writable } from 'svelte/store';
 import { _lang } from '$lib/services/store';
 
@@ -26,6 +26,12 @@ export const _fontGroups = [
         "'Noto Sans Sinhala', sans-serif", // si
         "'Open Sans', sans-serif", // en
         "'Mukta Malar', sans-serif" // ta
+    ],[ // 3 - used for text elements where language can't be determined
+        // roboto can render all three languages in unicode (some of the above fonts can't)
+        // example: user names
+        "'Roboto', sans-serif", // si
+        "'Roboto', sans-serif", // en
+        "'Roboto', sans-serif" // ta
     ]
 ];
 
@@ -37,8 +43,9 @@ export const _fontGroups = [
 // within the code the value is speified in rem, typically between 0.9rem 1.5rem (titles)
 export const _fontSizes = [
     [15, 13, 13],
-    [13, 13, 13],
+    [11, 13, 13],
     [12, 13, 13],
+    [12, 12, 12],
 ];
 
 // each element in the pallette specifies a set of colors to be used in

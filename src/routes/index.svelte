@@ -1,25 +1,39 @@
 <script>
-    import { COLUMNS } from '../data/columns'
-    import Card from "./_components/card.svelte";
+    import COLUMNS from '$lib/config/columns-config'
+    
     import { tweened } from "svelte/motion";
-    import { quartOut, backInOut } from "svelte/easing";
+    import { quartOut, backInOut } from 'svelte/easing';
     import { onMount } from 'svelte';
-    import { themes, current } from '$lib/utils/theme';
-    import events from '$lib/services/events';
+    
+    import { events } from '$lib/services/events';
     import { _lang } from '$lib/services/store';
-    import { handleHorizontalScroll, handleVerticalScroll } from '$lib/utils/scroll';
-    import Post from './_components/post.svelte';
-    import Font from './_components/font.svelte';
-    import Bulletin from './_components/bulletin.svelte';
+    import { userSignedIn } from '$lib/services/auth';
+    import { themes, current } from '$lib/services/theme';
 
-    const COMPONENTS = {
-        bulletin: Bulletin,
+    import { handleHorizontalScroll, handleVerticalScroll } from '$lib/utils/scroll';
+
+    import Font from '$lib/components/display/font.svelte';
+    import Card from '$lib/components/util/card.svelte';
+    import bulletin from './_components/posts/bulletin.svelte';
+    
+
+    // the component of the card to be loaded for a particular column
+    // [columnType]: component
+    // refer: comments in columns.js config file
+    // NOTE:: if a component is not specified for a column type it will load an
+    // empty card
+    export const COMPONENTS = {
+        bulletin: bulletin,
     }
 
     export let columnData;
+    events.register('add-to-column').subscribe(event => {
+        columnData[event.index].pop(event.data);
+    })
+
 
     // columns count:
-    // the column configuration is specified in ../data/columns
+    // based on the column configuration is specified in '$lib/config/columns.js'
     const _count = COLUMNS.length;
 
     // the DOM element that contains all the columns
@@ -106,6 +120,9 @@
         }, 350);
     });
 
+    // NOTE:: sunscriptions in this onMount function can potentially be
+    // automatically subscribed through reactive declarations, 
+    // have to try it out.
     onMount(() => {
         // set columnsElement.scrolLeft to follow hScroll tween
         // hScroll is used for the horizontal scrolling animation
@@ -129,6 +146,14 @@
             });
         })
     });
+
+    const addDocument = (event, index) => {
+        if(userSignedIn()) {
+            events.emit('add-document', {columnIndex: index});
+        } else {
+            events.emit('show-hide-login', true);
+        }
+    }
 
 </script>
 
@@ -165,7 +190,9 @@
                             </span>
                         </div>
                         <div>
-                            <i class="fa-solid fa-add"></i>
+                            <i 
+                                class="fa-solid fa-add"
+                                on:click={(e) => addDocument(e, _i)}></i>
                         </div>
                     </div>
                 </div>
@@ -174,12 +201,15 @@
                     on:scroll|stopPropagation={(e) => handleVerticalScroll(e, _i, vScrollAnimation)}>
                     {#each columnData[_i] as item, _i}
                     <div class="card_c">
+                        {#if item}
+                        <svelte:component 
+                            this={COMPONENTS[column.type]}
+                            data={item}/>
+                        {:else}
                         <Card>
-                            <Post component={COMPONENTS[column.type]} data={item}/>
-                            {#if !item}
                             <div style="height: {column.height};"></div>
-                            {/if}
                         </Card>
+                        {/if}
                     </div>
                     {/each}
                 </div>
@@ -204,6 +234,16 @@
 
 <style> 
     /* column headers */
+    ul {
+		display: inline-flex;
+		align-items: center;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	li {
+		display: inline-flex;
+	}
 	.columns {
         --column-width: var(--s500px);
         --header-height: var(--s50px);

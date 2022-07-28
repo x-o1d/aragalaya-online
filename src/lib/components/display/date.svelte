@@ -1,6 +1,6 @@
 <script>
     import { _lang } from '$lib/services/store';
-    import _strings from './strings';
+    import _strings from './date-strings';
 
     export let date;
 
@@ -83,10 +83,3 @@
 <div class="timestamp">
     {timeAgoString}
 </div>
-
-<style>
-    .timestamp {
-        font-size: 0.9rem;
-        color: rgb(100, 99, 99);
-    }
-</style>

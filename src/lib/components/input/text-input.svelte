@@ -1,0 +1,52 @@
+<script>
+    import { _lang } from '$lib/services/store';
+    import Font from '$lib/components/display/font.svelte';
+
+    export let disabled;
+    export let config;
+    export let data;
+
+    export let error;
+    
+</script>
+
+<div class="text-input">
+    <input 
+        type="text"
+        class:error={error}
+        disabled={disabled}
+        placeholder={config.placeholder[$_lang]}
+        bind:value={data[config.name]}/>
+    <!-- if error is a string show the error -->
+    {#if typeof error === 'string'}
+    <span>
+        <Font group={0} remSize={1.3}>
+            {error}
+        </Font>
+    </span>
+    {/if}
+</div>
+
+<style>
+    .text-input {
+        width: 90%;
+    }
+    input {
+        height: var(--s45px);
+        width: 100%;
+        border-radius: var(--s5px);
+        padding: var(--s10px);
+        border: var(--s1px) solid var(--button);
+        font-size: 1rem;
+        font-family: inherit;
+
+        margin-bottom: var(--s18px);
+    }
+    span {
+        color: red;
+    }
+    .error {
+        border-width: 2px;
+        border-color: #c02e46;
+    }
+</style>

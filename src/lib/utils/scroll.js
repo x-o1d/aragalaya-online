@@ -1,5 +1,5 @@
-import { COLUMNS } from '../../data/columns'
-import events from '$lib/services/events';
+import COLUMNS from '$lib/config/columns-config'
+import { events }from '$lib/services/events';
 
 const _count = COLUMNS.length;
 

@@ -1,6 +1,5 @@
 <script>
-    import { themes, current } from '$lib/utils/theme';
-    import { COLUMNS } from '../../data/columns'; 
+    import { themes, current } from '$lib/services/theme';
 
     let themeSelect;
     let themePanel;

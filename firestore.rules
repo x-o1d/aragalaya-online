@@ -3,158 +3,31 @@ service cloud.firestore {
   match /databases/{database}/documents {
   	match /Users/{user} {
     	allow create: if true;
-      allow update: if request.auth.uid == resource.data.uid;
-      allow read: if request.auth.uid == resource.data.uid;
+        allow update: if request.auth.uid == resource.data.uid;
+        allow read: if request.auth.uid == resource.data.uid;
     }
     match /Posts/{post} {
     	allow create: if 
         	request.auth.uid != null;
-      allow update, delete: if 
+        allow update, delete: if 
         	request.auth.uid != resource.data.createdBy;
-      allow read: if true;
-    }
-    match /Gallery/{photo} {
-    	allow create, update: if 
-        	request.auth.uid != null;
-      allow read: if true;
-    }
-    match /UserEmails/{user} {
-    	allow create, update: if 
-        	request.auth.uid != null;
-      allow read: if true;
-    }
-    match /Bulletin/{bulletin} {
-    	allow create, update: if 
-        	request.auth.uid != null;
-      allow read: if true;
+        allow read: if true;
     }
     match /Errors/{error} {
     	allow create: if true;
     }
-    match /News/{news} {
-    	allow create, update: if 
-        	request.auth.uid != null;
-      allow read: if true;
-    }
-    match /Discussions/{discussion} {
-    	allow create, update: if 
-        	request.auth.uid != null;
-      allow read: if true;
-    }
     match /Logs/{logs} {
     	allow create: if true;
     }
-		match /Nominations/{nomination} {
-      allow create, update: if 
-        request.auth.uid != null;
-      allow delete: if 
-        request.auth.uid == resource.data.createdBy;
-      allow read: if true;
-    }
-    match /Elections/{election} {
-      allow create, update: if 
-        request.auth.uid != null;
-      allow delete: if 
-        request.auth.uid == resource.data.createdBy;
-      allow read: if true;
-    }
-    match /Proposals/{election} {
-      allow create, update: if 
-        request.auth.uid != null;
-      allow delete: if 
-        request.auth.uid == resource.data.createdBy;
-      allow read: if true;
-    }
     match /Comments/{comment} {
-      allow create, update, delete: if 
-        request.auth.uid != null;
-      allow read: if true;
+        allow create, update, delete: if 
+            request.auth.uid != null;
+        allow read: if true;
     }
     match /Edits/{edit} {
-      allow create, update, delete: if 
-        request.auth.token.admin == true;
-      allow read: if true;
-    }
-    
-    match /Users-dev/{user} {
-    	allow create: if true;
-      allow update: if request.auth.uid == resource.data.uid;
-      allow read: if request.auth.uid == resource.data.uid;
-    }
-    match /Posts-dev/{post} {
-    	allow create: if 
-        	request.auth.uid != null;
-      allow update, delete: if 
-        	request.auth.uid != resource.data.createdBy;
-      allow read: if true;
-    }
-    match /Gallery-dev/{photo} {
-    	allow create, update: if 
-        	request.auth.uid != null;
-      allow read: if true;
-    }
-    match /UserEmails-dev/{user} {
-    	allow create: if 
-        	request.auth.uid != null;
-      allow read: if true;
-    }
-    match /Bulletin-dev/{bulletin} {
-    	allow create: if 
-        	request.auth.uid != null;
-      allow delete, update: if 
-        request.auth.uid == resource.data.createdBy;
-      allow read: if true;
-    }
-    match /Errors-dev/{error} {
-    	allow create: if true;
-    }
-    match /News-dev/{news} {
-    	allow create: if 
-        	request.auth.uid != null;
-      allow delete, update: if 
-        request.auth.uid == resource.data.createdBy;
-      allow read: if true;
-    }
-    match /Discussions-dev/{discussion} {
-    	allow create: if 
-        	request.auth.uid != null;
-      allow delete, update: if 
-        request.auth.uid == resource.data.createdBy;
-      allow read: if true;
-    }
-    match /Logs-dev/{logs} {
-    	allow create: if true;
-    }
-		match /Nominations-dev/{nomination} {
-      allow create: if 
-        request.auth.uid != null;
-      allow delete, update: if 
-        request.auth.uid == resource.data.createdBy;
-      allow read: if true;
-    }
-    match /Elections-dev/{election} {
-      allow create: if 
-        request.auth.uid != null;
-      allow delete, update: if 
-        request.auth.uid == resource.data.createdBy;
-      allow read: if true;
-    }
-    match /Proposals-dev/{election} {
-      allow create: if 
-        request.auth.uid != null;
-      allow delete, update: if 
-        request.auth.uid == resource.data.createdBy;
-      allow read: if true;
-    }
-    match /Comments-dev/{comment} {
-      allow create, update, delete: if 
-        request.auth.uid != null;
-      allow read: if true;
-    }
-    match /Edits-dev/{edit} {
-      allow create, update, delete: if 
-        request.auth.token.admin == true;
-      allow read: if true;
+        allow create, update, delete: if 
+            request.auth.token.admin == true;
+        allow read: if true;
     }
   }
 }

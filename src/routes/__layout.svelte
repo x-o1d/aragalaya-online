@@ -1,11 +1,15 @@
 <script>
-	import Nav from './_components/nav.svelte'
-	import ThemeSelector from './_components/theme-selector.svelte';
-	import { _lang } from '$lib/services/store';
-	import { themes, current, _fontGroups, _fontSizes } from '$lib/utils/theme';
 	import { onMount } from 'svelte';
-	import Login from './_components/login.svelte';
-	import events from '$lib/services/events';
+
+	import { _lang } from '$lib/services/store';
+	import { events } from '$lib/services/events';
+	import { themes, current, _fontGroups, _fontSizes } from '$lib/services/theme';
+
+	import Login from './_components/overlays/login.svelte';
+	import Form from './_components/overlays/form.svelte';
+	import Nav from './_components/nav.svelte'
+
+	import ThemeSelector from '$lib/components/util/theme-selector.svelte';
 
 	let cssReady = false;
 	let userReady = false;
@@ -57,10 +61,14 @@
 		})
 		cssReady = true;
 	});
-	
+
 </script>
 
+<!-- Login and Form are overlay components -->
+<!-- they are shown and hidden using the events service -->
 <Login/>
+<Form/>
+
 {#if cssReady}
 <Nav/>
 
@@ -123,20 +131,25 @@
 	}
 
 	/*inline lists */
-	:global(ul) {
+	ul {
 		display: inline-flex;
 		align-items: center;
 		margin: 0;
 		padding: 0;
 		list-style: none;
 	}
-	:global(li) {
+	li {
 		display: inline-flex;
 	}
 
 	:global(._clickable:hover) {
 		cursor: pointer;
 	}
+
+	/* applies to paragraph elements added by content-editables */
+    :global(p) {
+        margin: 0px;
+    }
 
 	/* nav bar */
 	.header {

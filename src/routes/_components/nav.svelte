@@ -1,10 +1,12 @@
 <script>
     import { onMount } from 'svelte';
-    import { COLUMNS } from '../../data/columns';
     import { tweened } from "svelte/motion";
     import { circIn, quartOut } from "svelte/easing";
-    import { themes, current } from '$lib/utils/theme';
-    import events from '$lib/services/events';
+
+    import COLUMNS from '$lib/config/columns-config';
+    
+    import { themes, current } from '$lib/services/theme';
+    import { events } from '$lib/services/events';
     import { _lang } from '$lib/services/store';
 
     const _count = COLUMNS.length;

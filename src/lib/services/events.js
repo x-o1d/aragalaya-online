@@ -29,6 +29,4 @@ class EventService {
     };
 }
 
-const events = new EventService();
-
-export default events;
+export const events = new EventService();

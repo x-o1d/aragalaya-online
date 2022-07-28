@@ -1,7 +1,6 @@
 <script>
-    import { themes, current } from '$lib/utils/theme';
-    import events from '$lib/services/events';
-    import _strings from './strings';
+    import { themes, current } from '$lib/services/theme';
+    import { events } from '$lib/services/events';
     import { _lang } from '$lib/services/store';
     import { 
         facebookSignin, 
@@ -9,22 +8,22 @@
         emailSignin, 
         changePassword 
     } from '$lib/services/auth';
-    import Progress from './progress.svelte';
+
+    import _strings from './login-strings';
+   
+    import Button from '$lib/components/input/button.svelte';
 
     let showLogin = false;
     let email, name, password, repeatPassword;
     let emailError, nameError, passwordError, repeatPasswordError;
-    let buttonProgress = false;
 
     let signinOrSignup = 0; // 0: enter_email, 1: signin, 2: signup
 
     events.register('show-hide-login').subscribe((v) => {
         showLogin = v;
     })
-
     
     const continueEmailSignin = async () => {
-        
         // check if account exists
         if(!signinOrSignup) {
             // validate email
@@ -60,9 +59,9 @@
             }
 
             let result = await emailSignin(email, password);
-            if(result.authUser) {
+            if(result.user) {
                 showLogin = false;
-                events.emit('user-ready', result.authUser);
+                events.emit('user-ready', result.user);
                 reset();
             }
             return;
@@ -92,10 +91,10 @@
 
             // NOTE:: since a user is already created with a mock password
             // it is later updated to the value the user entered
-            let result = await changePassword(password);
-            if(!result.error) {
+            let result = await changePassword(password, name, email);
+            if(result.user) {
                 showLogin = false;
-                events.emit('user-ready', result.authUser);
+                events.emit('user-ready', result.user);
                 reset();
             }
             return;
@@ -151,22 +150,12 @@
                 placeholder="{_strings['repeat_password'][$_lang]}"
                 bind:value={repeatPassword}/>
             {/if}
-            <div 
-                class="button"
-                on:click={async () => {
-                    buttonProgress = true;
-                    await continueEmailSignin();
-                    buttonProgress = false;
-                }}>
-                {#if buttonProgress}
-                <Progress/>
-                {:else}
-                {_strings['continue'][$_lang]}
-                {/if}
-            </div>
+            <Button
+                onclick={continueEmailSignin}
+                text={_strings['continue']}/>
             <span class="or">{_strings['or'][$_lang]}</span>
             <div 
-                class="button facebook"
+                class="fb-button"
                 on:click={() => facebookSignin()}>
                 <i class="fa-brands fa-facebook-square"></i>
                 facebook
@@ -236,7 +225,7 @@
         border-width: 2px;
         border-color: #c02e46;
     }
-    .button {
+    .fb-button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -253,16 +242,15 @@
         font-weight: bold;
 
         margin-bottom: var(--s14px);
+
+        font-family: 'Roboto', sans-serif;
+        font-size: var(--s13px);
+        background-color: #0a82ec;
     }
     .or {
         font-size: 1.2rem;
         color: #5c5c5c;
         margin-bottom: var(--s14px);
-    }
-    .facebook {
-        font-family: 'Roboto', sans-serif;
-        font-size: var(--s13px);
-        background-color: #0a82ec;
     }
     .fa-facebook-square {
         font-size: 1.3rem;

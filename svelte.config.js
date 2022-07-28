@@ -6,7 +6,11 @@ const config = {
 		adapter: firebase(),
 		prerender: {
 			default: true
-		}
+		},
+		files: {
+			lib: 'src/lib',
+			routes: 'src/routes',
+		},
 	}
 };
 

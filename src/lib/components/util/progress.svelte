@@ -40,6 +40,6 @@
 <style>
     .progress {
         white-space: pre;
-        color: black;
+        color: inherit;
     }
 </style>
