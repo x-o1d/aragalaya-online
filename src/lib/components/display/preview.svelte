@@ -8,22 +8,30 @@
     export let preview;
 
     let text, croppedText, croppedFlag;
-
-    // reactive code block $: {}
+    
+    let images = data[0].match(/src="([\w\W]+?)"/g);
+    if(images) {
+        images = images.map((src, _i) => {
+            return src.replace('src="', '')
+                    .replace('"','')
+                    .replace('&amp;', '&')
+        });
+    }
+    
+    
+    // reactive declaration $:
     // https://svelte.dev/docs#component-format-script-3-$-marks-a-statement-as-reactive
     // as _lang changes the text variable needs to be reactively updated
-    // typically assignment operations are automatically reactive
+    // typically assignment operations (=) are automatically reactive
     // https://svelte.dev/docs#component-format-script-2-assignments-are-reactive
-    // however in this case the reactive variable is used as an index and that doesn't
-    // work without making the expression as reactive
+    // however in this case since an automatic subscription ($_lang) is used
+    // text is no longer reactive without the reactive declatration.
     // svelte documentation is not clear about this use case
-    // TODO:: raise bug with svelte
-    $: {
-        text = stripHtml(data[$_lang]).result;
-        croppedText = text.substring(0, limit);
-        croppedFlag = (text.length > limit) || data[$_lang].includes('img');
-        if(croppedFlag) text += '...';
-    }
+    // TODO:: update svelte docs
+    $: text = stripHtml(data[$_lang]).result;
+    $: croppedText = text.substring(0, limit);
+    $: croppedFlag = (text.length > limit) || images;
+    $: croppedText += croppedFlag? '...' : '';
     
 </script>
 
@@ -36,6 +44,26 @@
         <span style='font-weight:bold; text-decoration:underline'>
             {_strings['read_more'][$_lang]}
         </span>
+            {#if images}
+            <div 
+                class="image"
+                style="--url: url({images[0]})">
+            </div>
+            {/if}
         {/if}
     {/if}
 </div>
+
+<style>
+    .image {
+        background-image: var(--url); /* The image used */
+        background-color: #cccccc; /* Used if the image is unavailable */
+        height: 200px; /* You must set a specified height */
+        width: 100%;
+        background-position: center; /* Center the image */
+        background-repeat: no-repeat; /* Do not repeat the image */
+        background-size: cover; /* Resize the background image to cover the entire container */
+
+        margin-top: 5px;
+    }
+</style>

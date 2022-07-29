@@ -9014,9 +9014,9 @@ var require_url_state_machine = __commonJS({
         url.username += percentEncodeChar(decoded[i2], isUserinfoPercentEncode);
       }
     };
-    module2.exports.setThePassword = function(url, password) {
+    module2.exports.setThePassword = function(url, password2) {
       url.password = "";
-      const decoded = punycode.ucs2.decode(password);
+      const decoded = punycode.ucs2.decode(password2);
       for (let i2 = 0; i2 < decoded.length; ++i2) {
         url.password += percentEncodeChar(decoded[i2], isUserinfoPercentEncode);
       }
@@ -10920,6 +10920,12 @@ async function updateEmailPassword(auth2, request) {
 async function signInWithPassword(auth2, request) {
   return _performSignInRequest(auth2, "POST", "/v1/accounts:signInWithPassword", _addTidIfNecessary(auth2, request));
 }
+async function sendOobCode(auth2, request) {
+  return _performApiRequest(auth2, "POST", "/v1/accounts:sendOobCode", _addTidIfNecessary(auth2, request));
+}
+async function sendEmailVerification$1(auth2, request) {
+  return sendOobCode(auth2, request);
+}
 async function signInWithEmailLink$1(auth2, request) {
   return _performSignInRequest(auth2, "POST", "/v1/accounts:signInWithEmailLink", _addTidIfNecessary(auth2, request));
 }
@@ -10953,6 +10959,105 @@ function parseDeepLink(url) {
   const iOSDeepLink = querystringDecode(extractQuerystring(url))["deep_link_id"];
   const iOSDoubleDeepLink = iOSDeepLink ? querystringDecode(extractQuerystring(iOSDeepLink))["link"] : null;
   return iOSDoubleDeepLink || iOSDeepLink || doubleDeepLink || link || url;
+}
+async function signUp(auth2, request) {
+  return _performSignInRequest(auth2, "POST", "/v1/accounts:signUp", _addTidIfNecessary(auth2, request));
+}
+function providerIdForResponse(response) {
+  if (response.providerId) {
+    return response.providerId;
+  }
+  if ("phoneNumber" in response) {
+    return "phone";
+  }
+  return null;
+}
+function _processCredentialSavingMfaContextIfNecessary(auth2, operationType, credential, user2) {
+  const idTokenProvider = operationType === "reauthenticate" ? credential._getReauthenticationResolver(auth2) : credential._getIdTokenResponse(auth2);
+  return idTokenProvider.catch((error2) => {
+    if (error2.code === `auth/${"multi-factor-auth-required"}`) {
+      throw MultiFactorError._fromErrorAndOperation(auth2, error2, operationType, user2);
+    }
+    throw error2;
+  });
+}
+async function _signInWithCredential(auth2, credential, bypassAuthState = false) {
+  const operationType = "signIn";
+  const response = await _processCredentialSavingMfaContextIfNecessary(auth2, operationType, credential);
+  const userCredential = await UserCredentialImpl._fromIdTokenResponse(auth2, operationType, response);
+  if (!bypassAuthState) {
+    await auth2._updateCurrentUser(userCredential.user);
+  }
+  return userCredential;
+}
+async function signInWithCredential(auth2, credential) {
+  return _signInWithCredential(_castAuth(auth2), credential);
+}
+function _setActionCodeSettingsOnRequest(auth2, request, actionCodeSettings) {
+  var _a;
+  _assert(((_a = actionCodeSettings.url) === null || _a === void 0 ? void 0 : _a.length) > 0, auth2, "invalid-continue-uri");
+  _assert(typeof actionCodeSettings.dynamicLinkDomain === "undefined" || actionCodeSettings.dynamicLinkDomain.length > 0, auth2, "invalid-dynamic-link-domain");
+  request.continueUrl = actionCodeSettings.url;
+  request.dynamicLinkDomain = actionCodeSettings.dynamicLinkDomain;
+  request.canHandleCodeInApp = actionCodeSettings.handleCodeInApp;
+  if (actionCodeSettings.iOS) {
+    _assert(actionCodeSettings.iOS.bundleId.length > 0, auth2, "missing-ios-bundle-id");
+    request.iOSBundleId = actionCodeSettings.iOS.bundleId;
+  }
+  if (actionCodeSettings.android) {
+    _assert(actionCodeSettings.android.packageName.length > 0, auth2, "missing-android-pkg-name");
+    request.androidInstallApp = actionCodeSettings.android.installApp;
+    request.androidMinimumVersionCode = actionCodeSettings.android.minimumVersion;
+    request.androidPackageName = actionCodeSettings.android.packageName;
+  }
+}
+async function createUserWithEmailAndPassword(auth2, email, password2) {
+  const authInternal = _castAuth(auth2);
+  const response = await signUp(authInternal, {
+    returnSecureToken: true,
+    email,
+    password: password2
+  });
+  const userCredential = await UserCredentialImpl._fromIdTokenResponse(authInternal, "signIn", response);
+  await authInternal._updateCurrentUser(userCredential.user);
+  return userCredential;
+}
+function signInWithEmailAndPassword(auth2, email, password2) {
+  return signInWithCredential(getModularInstance(auth2), EmailAuthProvider.credential(email, password2));
+}
+async function sendEmailVerification(user2, actionCodeSettings) {
+  const userInternal = getModularInstance(user2);
+  const idToken = await user2.getIdToken();
+  const request = {
+    requestType: "VERIFY_EMAIL",
+    idToken
+  };
+  if (actionCodeSettings) {
+    _setActionCodeSettingsOnRequest(userInternal.auth, request, actionCodeSettings);
+  }
+  const { email } = await sendEmailVerification$1(userInternal.auth, request);
+  if (email !== user2.email) {
+    await user2.reload();
+  }
+}
+function updatePassword(user2, newPassword) {
+  return updateEmailOrPassword(getModularInstance(user2), null, newPassword);
+}
+async function updateEmailOrPassword(user2, email, password2) {
+  const { auth: auth2 } = user2;
+  const idToken = await user2.getIdToken();
+  const request = {
+    idToken,
+    returnSecureToken: true
+  };
+  if (email) {
+    request.email = email;
+  }
+  if (password2) {
+    request.password = password2;
+  }
+  const response = await _logoutIfInvalidated(user2, updateEmailPassword(auth2, request));
+  await user2._updateTokensIfNecessary(response, true);
 }
 function onAuthStateChanged(auth2, nextOrObserver, error2, completed) {
   return getModularInstance(auth2).onAuthStateChanged(nextOrObserver, error2, completed);
@@ -11012,7 +11117,7 @@ function getAuth(app2 = getApp()) {
   }
   return initializeAuth(app2);
 }
-var fetchImpl, prodErrorMap, _DEFAULT_AUTH_ERROR_FACTORY, logClient, instanceCache, Delay, FetchProvider, SERVER_ERROR_MAP, DEFAULT_API_TIMEOUT_MS, NetworkTimeout, ProactiveRefresh, UserMetadata, StsTokenManager, UserImpl, InMemoryPersistence, inMemoryPersistence, PersistenceUserManager, AuthMiddlewareQueue, AuthImpl, Subscription, AuthCredential, EmailAuthCredential, IDP_REQUEST_URI$1, OAuthCredential, ActionCodeURL, EmailAuthProvider, FederatedAuthProvider, BaseOAuthProvider, FacebookAuthProvider, GoogleAuthProvider, GithubAuthProvider, TwitterAuthProvider, name2, version2, AuthInterop, NOT_AVAILABLE_ERROR;
+var fetchImpl, prodErrorMap, _DEFAULT_AUTH_ERROR_FACTORY, logClient, instanceCache, Delay, FetchProvider, SERVER_ERROR_MAP, DEFAULT_API_TIMEOUT_MS, NetworkTimeout, ProactiveRefresh, UserMetadata, StsTokenManager, UserImpl, InMemoryPersistence, inMemoryPersistence, PersistenceUserManager, AuthMiddlewareQueue, AuthImpl, Subscription, AuthCredential, EmailAuthCredential, IDP_REQUEST_URI$1, OAuthCredential, ActionCodeURL, EmailAuthProvider, FederatedAuthProvider, BaseOAuthProvider, FacebookAuthProvider, GoogleAuthProvider, GithubAuthProvider, TwitterAuthProvider, UserCredentialImpl, MultiFactorError, name2, version2, AuthInterop, NOT_AVAILABLE_ERROR;
 var init_index_a262d8f8 = __esm({
   "node_modules/@firebase/auth/dist/node-esm/index-a262d8f8.js"() {
     init_shims();
@@ -11990,8 +12095,8 @@ var init_index_a262d8f8 = __esm({
         this._password = _password;
         this._tenantId = _tenantId;
       }
-      static _fromEmailAndPassword(email, password) {
-        return new EmailAuthCredential(email, password, "password");
+      static _fromEmailAndPassword(email, password2) {
+        return new EmailAuthCredential(email, password2, "password");
       }
       static _fromEmailAndCode(email, oobCode, tenantId = null) {
         return new EmailAuthCredential(email, oobCode, "emailLink", tenantId);
@@ -12178,8 +12283,8 @@ var init_index_a262d8f8 = __esm({
       constructor() {
         this.providerId = EmailAuthProvider.PROVIDER_ID;
       }
-      static credential(email, password) {
-        return EmailAuthCredential._fromEmailAndPassword(email, password);
+      static credential(email, password2) {
+        return EmailAuthCredential._fromEmailAndPassword(email, password2);
       }
       static credentialWithLink(email, emailLink) {
         const actionCodeUrl = ActionCodeURL.parseLink(emailLink);
@@ -12359,6 +12464,53 @@ var init_index_a262d8f8 = __esm({
     };
     TwitterAuthProvider.TWITTER_SIGN_IN_METHOD = "twitter.com";
     TwitterAuthProvider.PROVIDER_ID = "twitter.com";
+    UserCredentialImpl = class {
+      constructor(params) {
+        this.user = params.user;
+        this.providerId = params.providerId;
+        this._tokenResponse = params._tokenResponse;
+        this.operationType = params.operationType;
+      }
+      static async _fromIdTokenResponse(auth2, operationType, idTokenResponse, isAnonymous = false) {
+        const user2 = await UserImpl._fromIdTokenResponse(auth2, idTokenResponse, isAnonymous);
+        const providerId = providerIdForResponse(idTokenResponse);
+        const userCred = new UserCredentialImpl({
+          user: user2,
+          providerId,
+          _tokenResponse: idTokenResponse,
+          operationType
+        });
+        return userCred;
+      }
+      static async _forOperation(user2, operationType, response) {
+        await user2._updateTokensIfNecessary(response, true);
+        const providerId = providerIdForResponse(response);
+        return new UserCredentialImpl({
+          user: user2,
+          providerId,
+          _tokenResponse: response,
+          operationType
+        });
+      }
+    };
+    MultiFactorError = class extends FirebaseError {
+      constructor(auth2, error2, operationType, user2) {
+        var _a;
+        super(error2.code, error2.message);
+        this.operationType = operationType;
+        this.user = user2;
+        Object.setPrototypeOf(this, MultiFactorError.prototype);
+        this.customData = {
+          appName: auth2.name,
+          tenantId: (_a = auth2.tenantId) !== null && _a !== void 0 ? _a : void 0,
+          _serverResponse: error2.customData._serverResponse,
+          operationType
+        };
+      }
+      static _fromErrorAndOperation(auth2, error2, operationType, user2) {
+        return new MultiFactorError(auth2, error2, operationType, user2);
+      }
+    };
     name2 = "@firebase/auth";
     version2 = "0.20.4";
     AuthInterop = class {
@@ -29219,6 +29371,26 @@ function deepClone(source) {
 function isMaxValue(value) {
   return (((value.mapValue || {}).fields || {})["__type__"] || {}).stringValue === MAX_VALUE_TYPE;
 }
+function extractFieldMask(value) {
+  const fields = [];
+  forEach(value.fields, (key2, value2) => {
+    const currentPath = new FieldPath$1([key2]);
+    if (isMapValue(value2)) {
+      const nestedMask = extractFieldMask(value2.mapValue);
+      const nestedFields = nestedMask.fields;
+      if (nestedFields.length === 0) {
+        fields.push(currentPath);
+      } else {
+        for (const nestedPath of nestedFields) {
+          fields.push(currentPath.child(nestedPath));
+        }
+      }
+    } else {
+      fields.push(currentPath);
+    }
+  });
+  return new FieldMask(fields);
+}
 function compareDocumentsByField(field, d1, d22) {
   const v1 = d1.data.field(field);
   const v22 = d22.data.field(field);
@@ -29584,6 +29756,9 @@ function newMutationMap() {
 function newDocumentKeyMap() {
   return new ObjectMap((key2) => key2.toString(), (l, r2) => l.isEqual(r2));
 }
+function documentVersionMap() {
+  return EMPTY_DOCUMENT_VERSION_MAP;
+}
 function documentKeySet(...keys) {
   let set = EMPTY_DOCUMENT_KEY_SET;
   for (const key2 of keys) {
@@ -29749,6 +29924,20 @@ function mutationApplyToLocalView(mutation, document2, previousMask, localWriteT
     return deleteMutationApplyToLocalView(mutation, document2, previousMask);
   }
 }
+function mutationExtractBaseValue(mutation, document2) {
+  let baseObject = null;
+  for (const fieldTransform of mutation.fieldTransforms) {
+    const existingValue = document2.data.field(fieldTransform.field);
+    const coercedValue = computeTransformOperationBaseValue(fieldTransform.transform, existingValue || null);
+    if (coercedValue != null) {
+      if (baseObject === null) {
+        baseObject = ObjectValue.empty();
+      }
+      baseObject.set(fieldTransform.field, coercedValue);
+    }
+  }
+  return baseObject ? baseObject : null;
+}
 function mutationEquals(left, right) {
   if (left.type !== right.type) {
     return false;
@@ -29850,6 +30039,35 @@ function deleteMutationApplyToLocalView(mutation, document2, previousMask) {
     return null;
   }
   return previousMask;
+}
+function isPermanentError(code) {
+  switch (code) {
+    case Code.OK:
+      return fail();
+    case Code.CANCELLED:
+    case Code.UNKNOWN:
+    case Code.DEADLINE_EXCEEDED:
+    case Code.RESOURCE_EXHAUSTED:
+    case Code.INTERNAL:
+    case Code.UNAVAILABLE:
+    case Code.UNAUTHENTICATED:
+      return false;
+    case Code.INVALID_ARGUMENT:
+    case Code.NOT_FOUND:
+    case Code.ALREADY_EXISTS:
+    case Code.PERMISSION_DENIED:
+    case Code.FAILED_PRECONDITION:
+    case Code.ABORTED:
+    case Code.OUT_OF_RANGE:
+    case Code.UNIMPLEMENTED:
+    case Code.DATA_LOSS:
+      return true;
+    default:
+      return fail();
+  }
+}
+function isPermanentWriteError(code) {
+  return isPermanentError(code) && code !== Code.ABORTED;
 }
 function mapCodeFromRpcCode(code) {
   if (code === void 0) {
@@ -29956,6 +30174,9 @@ function fromBytes(serializer, value) {
     return ByteString.fromUint8Array(value ? value : new Uint8Array());
   }
 }
+function toVersion(serializer, version7) {
+  return toTimestamp(serializer, version7.toTimestamp());
+}
 function fromVersion(version7) {
   hardAssert(!!version7);
   return SnapshotVersion.fromTimestamp(fromTimestamp(version7));
@@ -29967,6 +30188,9 @@ function fromResourceName(name7) {
   const resource = ResourcePath.fromString(name7);
   hardAssert(isValidResourceName(resource));
   return resource;
+}
+function toName(serializer, key2) {
+  return toResourceName(serializer.databaseId, key2.path);
 }
 function fromName(serializer, name7) {
   const resource = fromResourceName(name7);
@@ -30008,6 +30232,12 @@ function fullyQualifiedPrefixPath(databaseId) {
 function extractLocalPathFromResourceName(resourceName) {
   hardAssert(resourceName.length > 4 && resourceName.get(4) === "documents");
   return resourceName.popFirst(5);
+}
+function toMutationDocument(serializer, key2, fields) {
+  return {
+    name: toName(serializer, key2),
+    fields: fields.value.mapValue.fields
+  };
 }
 function fromWatchChange(serializer, change) {
   let watchChange;
@@ -30090,6 +30320,90 @@ function versionFromListenResponse(change) {
     return SnapshotVersion.min();
   }
   return fromVersion(targetChange.readTime);
+}
+function toMutation(serializer, mutation) {
+  let result;
+  if (mutation instanceof SetMutation) {
+    result = {
+      update: toMutationDocument(serializer, mutation.key, mutation.value)
+    };
+  } else if (mutation instanceof DeleteMutation) {
+    result = { delete: toName(serializer, mutation.key) };
+  } else if (mutation instanceof PatchMutation) {
+    result = {
+      update: toMutationDocument(serializer, mutation.key, mutation.data),
+      updateMask: toDocumentMask(mutation.fieldMask)
+    };
+  } else if (mutation instanceof VerifyMutation) {
+    result = {
+      verify: toName(serializer, mutation.key)
+    };
+  } else {
+    return fail();
+  }
+  if (mutation.fieldTransforms.length > 0) {
+    result.updateTransforms = mutation.fieldTransforms.map((transform) => toFieldTransform(serializer, transform));
+  }
+  if (!mutation.precondition.isNone) {
+    result.currentDocument = toPrecondition(serializer, mutation.precondition);
+  }
+  return result;
+}
+function toPrecondition(serializer, precondition) {
+  if (precondition.updateTime !== void 0) {
+    return {
+      updateTime: toVersion(serializer, precondition.updateTime)
+    };
+  } else if (precondition.exists !== void 0) {
+    return { exists: precondition.exists };
+  } else {
+    return fail();
+  }
+}
+function fromWriteResult(proto, commitTime) {
+  let version7 = proto.updateTime ? fromVersion(proto.updateTime) : fromVersion(commitTime);
+  if (version7.isEqual(SnapshotVersion.min())) {
+    version7 = fromVersion(commitTime);
+  }
+  return new MutationResult(version7, proto.transformResults || []);
+}
+function fromWriteResults(protos2, commitTime) {
+  if (protos2 && protos2.length > 0) {
+    hardAssert(commitTime !== void 0);
+    return protos2.map((proto) => fromWriteResult(proto, commitTime));
+  } else {
+    return [];
+  }
+}
+function toFieldTransform(serializer, fieldTransform) {
+  const transform = fieldTransform.transform;
+  if (transform instanceof ServerTimestampTransform) {
+    return {
+      fieldPath: fieldTransform.field.canonicalString(),
+      setToServerValue: "REQUEST_TIME"
+    };
+  } else if (transform instanceof ArrayUnionTransformOperation) {
+    return {
+      fieldPath: fieldTransform.field.canonicalString(),
+      appendMissingElements: {
+        values: transform.elements
+      }
+    };
+  } else if (transform instanceof ArrayRemoveTransformOperation) {
+    return {
+      fieldPath: fieldTransform.field.canonicalString(),
+      removeAllFromArray: {
+        values: transform.elements
+      }
+    };
+  } else if (transform instanceof NumericIncrementTransformOperation) {
+    return {
+      fieldPath: fieldTransform.field.canonicalString(),
+      increment: transform.operand
+    };
+  } else {
+    throw fail();
+  }
 }
 function toDocumentsTarget(serializer, target) {
   return { documents: [toQueryPath(serializer, target.path)] };
@@ -30391,6 +30705,13 @@ function fromUnaryFilter(filter) {
       return fail();
   }
 }
+function toDocumentMask(fieldMask) {
+  const canonicalFields = [];
+  fieldMask.fields.forEach((field) => canonicalFields.push(field.canonicalString()));
+  return {
+    fieldPaths: canonicalFields
+  };
+}
 function isValidResourceName(path) {
   return path.length >= 4 && path.get(0) === "projects" && path.get(2) === "databases";
 }
@@ -30461,6 +30782,75 @@ async function localStoreHandleUserChange(localStore, user2) {
     });
   });
   return result;
+}
+function localStoreWriteLocally(localStore, mutations) {
+  const localStoreImpl = debugCast(localStore);
+  const localWriteTime = Timestamp.now();
+  const keys = mutations.reduce((keys2, m3) => keys2.add(m3.key), documentKeySet());
+  let overlayedDocuments;
+  let mutationBatch;
+  return localStoreImpl.persistence.runTransaction("Locally write mutations", "readwrite", (txn) => {
+    let remoteDocs = mutableDocumentMap();
+    let docsWithoutRemoteVersion = documentKeySet();
+    return localStoreImpl.remoteDocuments.getEntries(txn, keys).next((docs) => {
+      remoteDocs = docs;
+      remoteDocs.forEach((key2, doc2) => {
+        if (!doc2.isValidDocument()) {
+          docsWithoutRemoteVersion = docsWithoutRemoteVersion.add(key2);
+        }
+      });
+    }).next(() => {
+      return localStoreImpl.localDocuments.getOverlayedDocuments(txn, remoteDocs);
+    }).next((docs) => {
+      overlayedDocuments = docs;
+      const baseMutations = [];
+      for (const mutation of mutations) {
+        const baseValue = mutationExtractBaseValue(mutation, overlayedDocuments.get(mutation.key).overlayedDocument);
+        if (baseValue != null) {
+          baseMutations.push(new PatchMutation(mutation.key, baseValue, extractFieldMask(baseValue.value.mapValue), Precondition.exists(true)));
+        }
+      }
+      return localStoreImpl.mutationQueue.addMutationBatch(txn, localWriteTime, baseMutations, mutations);
+    }).next((batch) => {
+      mutationBatch = batch;
+      const overlays = batch.applyToLocalDocumentSet(overlayedDocuments, docsWithoutRemoteVersion);
+      return localStoreImpl.documentOverlayCache.saveOverlays(txn, batch.batchId, overlays);
+    });
+  }).then(() => ({
+    batchId: mutationBatch.batchId,
+    changes: convertOverlayedDocumentMapToDocumentMap(overlayedDocuments)
+  }));
+}
+function localStoreAcknowledgeBatch(localStore, batchResult) {
+  const localStoreImpl = debugCast(localStore);
+  return localStoreImpl.persistence.runTransaction("Acknowledge batch", "readwrite-primary", (txn) => {
+    const affected = batchResult.batch.keys();
+    const documentBuffer = localStoreImpl.remoteDocuments.newChangeBuffer({
+      trackRemovals: true
+    });
+    return applyWriteToRemoteDocuments(localStoreImpl, txn, batchResult, documentBuffer).next(() => documentBuffer.apply(txn)).next(() => localStoreImpl.mutationQueue.performConsistencyCheck(txn)).next(() => localStoreImpl.documentOverlayCache.removeOverlaysForBatchId(txn, affected, batchResult.batch.batchId)).next(() => localStoreImpl.localDocuments.recalculateAndSaveOverlaysForDocumentKeys(txn, getKeysWithTransformResults(batchResult))).next(() => localStoreImpl.localDocuments.getDocuments(txn, affected));
+  });
+}
+function getKeysWithTransformResults(batchResult) {
+  let result = documentKeySet();
+  for (let i2 = 0; i2 < batchResult.mutationResults.length; ++i2) {
+    const mutationResult = batchResult.mutationResults[i2];
+    if (mutationResult.transformResults.length > 0) {
+      result = result.add(batchResult.batch.mutations[i2].key);
+    }
+  }
+  return result;
+}
+function localStoreRejectBatch(localStore, batchId) {
+  const localStoreImpl = debugCast(localStore);
+  return localStoreImpl.persistence.runTransaction("Reject batch", "readwrite-primary", (txn) => {
+    let affectedKeys;
+    return localStoreImpl.mutationQueue.lookupMutationBatch(txn, batchId).next((batch) => {
+      hardAssert(batch !== null);
+      affectedKeys = batch.keys();
+      return localStoreImpl.mutationQueue.removeMutationBatch(txn, batch);
+    }).next(() => localStoreImpl.mutationQueue.performConsistencyCheck(txn)).next(() => localStoreImpl.documentOverlayCache.removeOverlaysForBatchId(txn, affectedKeys, batchId)).next(() => localStoreImpl.localDocuments.recalculateAndSaveOverlaysForDocumentKeys(txn, affectedKeys)).next(() => localStoreImpl.localDocuments.getDocuments(txn, affectedKeys));
+  });
 }
 function localStoreGetLastRemoteSnapshotVersion(localStore) {
   const localStoreImpl = debugCast(localStore);
@@ -30578,6 +30968,15 @@ async function localStoreNotifyLocalViewChanges(localStore, viewChanges) {
     }
   }
 }
+function localStoreGetNextMutationBatch(localStore, afterBatchId) {
+  const localStoreImpl = debugCast(localStore);
+  return localStoreImpl.persistence.runTransaction("Get next mutation batch", "readonly", (txn) => {
+    if (afterBatchId === void 0) {
+      afterBatchId = BATCHID_UNKNOWN;
+    }
+    return localStoreImpl.mutationQueue.getNextMutationBatchAfterBatchId(txn, afterBatchId);
+  });
+}
 function localStoreAllocateTarget(localStore, target) {
   const localStoreImpl = debugCast(localStore);
   return localStoreImpl.persistence.runTransaction("Allocate target", "readwrite", (txn) => {
@@ -30649,6 +31048,25 @@ function localStoreExecuteQuery(localStore, query2, usePreviousResults) {
     });
   });
 }
+function applyWriteToRemoteDocuments(localStoreImpl, txn, batchResult, documentBuffer) {
+  const batch = batchResult.batch;
+  const docKeys = batch.keys();
+  let promiseChain = PersistencePromise.resolve();
+  docKeys.forEach((docKey) => {
+    promiseChain = promiseChain.next(() => documentBuffer.getEntry(txn, docKey)).next((doc2) => {
+      const ackVersion = batchResult.docVersions.get(docKey);
+      hardAssert(ackVersion !== null);
+      if (doc2.version.compareTo(ackVersion) < 0) {
+        batch.applyToRemoteDocument(doc2, batchResult);
+        if (doc2.isValidDocument()) {
+          doc2.setReadTime(batchResult.commitVersion);
+          documentBuffer.addEntry(doc2);
+        }
+      }
+    });
+  });
+  return promiseChain.next(() => localStoreImpl.mutationQueue.removeMutationBatch(txn, batch));
+}
 function setMaxReadTime(localStoreImpl, collectionGroup, changedDocs) {
   let readTime = SnapshotVersion.min();
   changedDocs.forEach((_2, doc2) => {
@@ -30702,6 +31120,11 @@ function newSerializer(databaseId) {
 }
 function newDatastore(authCredentials, appCheckCredentials, connection, serializer) {
   return new DatastoreImpl(authCredentials, appCheckCredentials, connection, serializer);
+}
+function newPersistentWriteStream(datastore, queue, listener) {
+  const datastoreImpl = debugCast(datastore);
+  datastoreImpl.verifyInitialized();
+  return new PersistentWriteStream(queue, datastoreImpl.connection, datastoreImpl.authCredentials, datastoreImpl.appCheckCredentials, datastoreImpl.serializer, listener);
 }
 function newPersistentWatchStream(datastore, queue, listener) {
   const datastoreImpl = debugCast(datastore);
@@ -30846,6 +31269,9 @@ async function disableNetworkUntilRecovery(remoteStoreImpl, e2, op) {
     throw e2;
   }
 }
+function executeWithRecovery(remoteStoreImpl, op) {
+  return op().catch((e2) => disableNetworkUntilRecovery(remoteStoreImpl, e2, op));
+}
 function raiseWatchSnapshot(remoteStoreImpl, snapshotVersion) {
   const remoteEvent = remoteStoreImpl.watchChangeAggregator.createRemoteEvent(snapshotVersion);
   remoteEvent.targetChanges.forEach((change, targetId) => {
@@ -30876,6 +31302,77 @@ async function handleTargetError(remoteStoreImpl, watchChange) {
       remoteStoreImpl.listenTargets.delete(targetId);
       remoteStoreImpl.watchChangeAggregator.removeTarget(targetId);
     }
+  }
+}
+async function fillWritePipeline(remoteStore) {
+  const remoteStoreImpl = debugCast(remoteStore);
+  const writeStream = ensureWriteStream(remoteStoreImpl);
+  let lastBatchIdRetrieved = remoteStoreImpl.writePipeline.length > 0 ? remoteStoreImpl.writePipeline[remoteStoreImpl.writePipeline.length - 1].batchId : BATCHID_UNKNOWN;
+  while (canAddToWritePipeline(remoteStoreImpl)) {
+    try {
+      const batch = await localStoreGetNextMutationBatch(remoteStoreImpl.localStore, lastBatchIdRetrieved);
+      if (batch === null) {
+        if (remoteStoreImpl.writePipeline.length === 0) {
+          writeStream.markIdle();
+        }
+        break;
+      } else {
+        lastBatchIdRetrieved = batch.batchId;
+        addToWritePipeline(remoteStoreImpl, batch);
+      }
+    } catch (e2) {
+      await disableNetworkUntilRecovery(remoteStoreImpl, e2);
+    }
+  }
+  if (shouldStartWriteStream(remoteStoreImpl)) {
+    startWriteStream(remoteStoreImpl);
+  }
+}
+function canAddToWritePipeline(remoteStoreImpl) {
+  return canUseNetwork(remoteStoreImpl) && remoteStoreImpl.writePipeline.length < MAX_PENDING_WRITES;
+}
+function addToWritePipeline(remoteStoreImpl, batch) {
+  remoteStoreImpl.writePipeline.push(batch);
+  const writeStream = ensureWriteStream(remoteStoreImpl);
+  if (writeStream.isOpen() && writeStream.handshakeComplete) {
+    writeStream.writeMutations(batch.mutations);
+  }
+}
+function shouldStartWriteStream(remoteStoreImpl) {
+  return canUseNetwork(remoteStoreImpl) && !ensureWriteStream(remoteStoreImpl).isStarted() && remoteStoreImpl.writePipeline.length > 0;
+}
+function startWriteStream(remoteStoreImpl) {
+  ensureWriteStream(remoteStoreImpl).start();
+}
+async function onWriteStreamOpen(remoteStoreImpl) {
+  ensureWriteStream(remoteStoreImpl).writeHandshake();
+}
+async function onWriteHandshakeComplete(remoteStoreImpl) {
+  const writeStream = ensureWriteStream(remoteStoreImpl);
+  for (const batch of remoteStoreImpl.writePipeline) {
+    writeStream.writeMutations(batch.mutations);
+  }
+}
+async function onMutationResult(remoteStoreImpl, commitVersion, results) {
+  const batch = remoteStoreImpl.writePipeline.shift();
+  const success = MutationBatchResult.from(batch, commitVersion, results);
+  await executeWithRecovery(remoteStoreImpl, () => remoteStoreImpl.remoteSyncer.applySuccessfulWrite(success));
+  await fillWritePipeline(remoteStoreImpl);
+}
+async function onWriteStreamClose(remoteStoreImpl, error2) {
+  if (error2 && ensureWriteStream(remoteStoreImpl).handshakeComplete) {
+    await handleWriteError(remoteStoreImpl, error2);
+  }
+  if (shouldStartWriteStream(remoteStoreImpl)) {
+    startWriteStream(remoteStoreImpl);
+  }
+}
+async function handleWriteError(remoteStoreImpl, error2) {
+  if (isPermanentWriteError(error2.code)) {
+    const batch = remoteStoreImpl.writePipeline.shift();
+    ensureWriteStream(remoteStoreImpl).inhibitBackoff();
+    await executeWithRecovery(remoteStoreImpl, () => remoteStoreImpl.remoteSyncer.rejectFailedWrite(batch.batchId, error2));
+    await fillWritePipeline(remoteStoreImpl);
   }
 }
 async function restartNetwork(remoteStore) {
@@ -30933,6 +31430,29 @@ function ensureWatchStream(remoteStoreImpl) {
     });
   }
   return remoteStoreImpl.watchStream;
+}
+function ensureWriteStream(remoteStoreImpl) {
+  if (!remoteStoreImpl.writeStream) {
+    remoteStoreImpl.writeStream = newPersistentWriteStream(remoteStoreImpl.datastore, remoteStoreImpl.asyncQueue, {
+      onOpen: onWriteStreamOpen.bind(null, remoteStoreImpl),
+      onClose: onWriteStreamClose.bind(null, remoteStoreImpl),
+      onHandshakeComplete: onWriteHandshakeComplete.bind(null, remoteStoreImpl),
+      onMutationResult: onMutationResult.bind(null, remoteStoreImpl)
+    });
+    remoteStoreImpl.onNetworkStatusChange.push(async (enabled) => {
+      if (enabled) {
+        remoteStoreImpl.writeStream.inhibitBackoff();
+        await fillWritePipeline(remoteStoreImpl);
+      } else {
+        await remoteStoreImpl.writeStream.stop();
+        if (remoteStoreImpl.writePipeline.length > 0) {
+          logDebug(LOG_TAG$5, `Stopping write stream with ${remoteStoreImpl.writePipeline.length} pending writes`);
+          remoteStoreImpl.writePipeline = [];
+        }
+      }
+    });
+  }
+  return remoteStoreImpl.writeStream;
 }
 function wrapInUserErrorIfRecoverable(e2, msg) {
   logError(LOG_TAG$4, `${msg}: ${e2}`);
@@ -31124,6 +31644,19 @@ async function syncEngineUnlisten(syncEngine, query2) {
     await localStoreReleaseTarget(syncEngineImpl.localStore, queryView.targetId, true);
   }
 }
+async function syncEngineWrite(syncEngine, batch, userCallback) {
+  const syncEngineImpl = syncEngineEnsureWriteCallbacks(syncEngine);
+  try {
+    const result = await localStoreWriteLocally(syncEngineImpl.localStore, batch);
+    syncEngineImpl.sharedClientState.addPendingMutation(result.batchId);
+    addMutationCallback(syncEngineImpl, result.batchId, userCallback);
+    await syncEngineEmitNewSnapsAndNotifyLocalStore(syncEngineImpl, result.changes);
+    await fillWritePipeline(syncEngineImpl.remoteStore);
+  } catch (e2) {
+    const error2 = wrapInUserErrorIfRecoverable(e2, `Failed to persist write`);
+    userCallback.reject(error2);
+  }
+}
 async function syncEngineApplyRemoteEvent(syncEngine, remoteEvent) {
   const syncEngineImpl = debugCast(syncEngine);
   try {
@@ -31186,6 +31719,37 @@ async function syncEngineRejectListen(syncEngine, targetId, err) {
     await localStoreReleaseTarget(syncEngineImpl.localStore, targetId, false).then(() => removeAndCleanupTarget(syncEngineImpl, targetId, err)).catch(ignoreIfPrimaryLeaseLoss);
   }
 }
+async function syncEngineApplySuccessfulWrite(syncEngine, mutationBatchResult) {
+  const syncEngineImpl = debugCast(syncEngine);
+  const batchId = mutationBatchResult.batch.batchId;
+  try {
+    const changes = await localStoreAcknowledgeBatch(syncEngineImpl.localStore, mutationBatchResult);
+    processUserCallback(syncEngineImpl, batchId, null);
+    triggerPendingWritesCallbacks(syncEngineImpl, batchId);
+    syncEngineImpl.sharedClientState.updateMutationState(batchId, "acknowledged");
+    await syncEngineEmitNewSnapsAndNotifyLocalStore(syncEngineImpl, changes);
+  } catch (error2) {
+    await ignoreIfPrimaryLeaseLoss(error2);
+  }
+}
+async function syncEngineRejectFailedWrite(syncEngine, batchId, error2) {
+  const syncEngineImpl = debugCast(syncEngine);
+  try {
+    const changes = await localStoreRejectBatch(syncEngineImpl.localStore, batchId);
+    processUserCallback(syncEngineImpl, batchId, error2);
+    triggerPendingWritesCallbacks(syncEngineImpl, batchId);
+    syncEngineImpl.sharedClientState.updateMutationState(batchId, "rejected", error2);
+    await syncEngineEmitNewSnapsAndNotifyLocalStore(syncEngineImpl, changes);
+  } catch (error3) {
+    await ignoreIfPrimaryLeaseLoss(error3);
+  }
+}
+function triggerPendingWritesCallbacks(syncEngineImpl, batchId) {
+  (syncEngineImpl.pendingWritesCallbacks.get(batchId) || []).forEach((callback) => {
+    callback.resolve();
+  });
+  syncEngineImpl.pendingWritesCallbacks.delete(batchId);
+}
 function rejectOutstandingPendingWritesCallbacks(syncEngineImpl, errorMessage) {
   syncEngineImpl.pendingWritesCallbacks.forEach((callbacks) => {
     callbacks.forEach((callback) => {
@@ -31193,6 +31757,30 @@ function rejectOutstandingPendingWritesCallbacks(syncEngineImpl, errorMessage) {
     });
   });
   syncEngineImpl.pendingWritesCallbacks.clear();
+}
+function addMutationCallback(syncEngineImpl, batchId, callback) {
+  let newCallbacks = syncEngineImpl.mutationUserCallbacks[syncEngineImpl.currentUser.toKey()];
+  if (!newCallbacks) {
+    newCallbacks = new SortedMap(primitiveComparator);
+  }
+  newCallbacks = newCallbacks.insert(batchId, callback);
+  syncEngineImpl.mutationUserCallbacks[syncEngineImpl.currentUser.toKey()] = newCallbacks;
+}
+function processUserCallback(syncEngine, batchId, error2) {
+  const syncEngineImpl = debugCast(syncEngine);
+  let newCallbacks = syncEngineImpl.mutationUserCallbacks[syncEngineImpl.currentUser.toKey()];
+  if (newCallbacks) {
+    const callback = newCallbacks.get(batchId);
+    if (callback) {
+      if (error2) {
+        callback.reject(error2);
+      } else {
+        callback.resolve();
+      }
+      newCallbacks = newCallbacks.remove(batchId);
+    }
+    syncEngineImpl.mutationUserCallbacks[syncEngineImpl.currentUser.toKey()] = newCallbacks;
+  }
 }
 function removeAndCleanupTarget(syncEngineImpl, targetId, error2 = null) {
   syncEngineImpl.sharedClientState.removeLocalQueryTarget(targetId);
@@ -31336,6 +31924,12 @@ function ensureWatchCallbacks(syncEngine) {
   syncEngineImpl.syncEngineListener.onWatchError = eventManagerOnWatchError.bind(null, syncEngineImpl.eventManager);
   return syncEngineImpl;
 }
+function syncEngineEnsureWriteCallbacks(syncEngine) {
+  const syncEngineImpl = debugCast(syncEngine);
+  syncEngineImpl.remoteStore.remoteSyncer.applySuccessfulWrite = syncEngineApplySuccessfulWrite.bind(null, syncEngineImpl);
+  syncEngineImpl.remoteStore.remoteSyncer.rejectFailedWrite = syncEngineRejectFailedWrite.bind(null, syncEngineImpl);
+  return syncEngineImpl;
+}
 function validateNonEmptyArgument(functionName, argumentName, argument) {
   if (!argument) {
     throw new FirestoreError(Code.INVALID_ARGUMENT, `Function ${functionName}() cannot be called with an empty ${argumentName}.`);
@@ -31452,6 +32046,9 @@ async function ensureOnlineComponents(client) {
   }
   return client.onlineComponents;
 }
+function getSyncEngine(client) {
+  return ensureOnlineComponents(client).then((c3) => c3.syncEngine);
+}
 async function getEventManager(client) {
   const onlineComponentProvider = await ensureOnlineComponents(client);
   const eventManager = onlineComponentProvider.eventManager;
@@ -31472,6 +32069,14 @@ function firestoreClientGetDocumentsViaSnapshotListener(client, query2, options 
   client.asyncQueue.enqueueAndForget(async () => {
     const eventManager = await getEventManager(client);
     return executeQueryViaSnapshotListener(eventManager, client.asyncQueue, query2, options, deferred);
+  });
+  return deferred.promise;
+}
+function firestoreClientWrite(client, mutations) {
+  const deferred = new Deferred2();
+  client.asyncQueue.enqueueAndForget(async () => {
+    const syncEngine = await getSyncEngine(client);
+    return syncEngineWrite(syncEngine, mutations, deferred);
   });
   return deferred.promise;
 }
@@ -31626,6 +32231,34 @@ function newUserDataReader(firestore) {
   const serializer = newSerializer(firestore._databaseId);
   return new UserDataReader(firestore._databaseId, !!settings.ignoreUndefinedProperties, serializer);
 }
+function parseSetData(userDataReader, methodName, targetDoc, input, hasConverter, options = {}) {
+  const context = userDataReader.createContext(options.merge || options.mergeFields ? 2 : 0, methodName, targetDoc, hasConverter);
+  validatePlainObject("Data must be an object, but it was:", context, input);
+  const updateData = parseObject(input, context);
+  let fieldMask;
+  let fieldTransforms;
+  if (options.merge) {
+    fieldMask = new FieldMask(context.fieldMask);
+    fieldTransforms = context.fieldTransforms;
+  } else if (options.mergeFields) {
+    const validatedFieldPaths = [];
+    for (const stringOrFieldPath of options.mergeFields) {
+      const fieldPath = fieldPathFromArgument$1(methodName, stringOrFieldPath, targetDoc);
+      if (!context.contains(fieldPath)) {
+        throw new FirestoreError(Code.INVALID_ARGUMENT, `Field '${fieldPath}' is specified in your field mask but missing from your input data.`);
+      }
+      if (!fieldMaskContains(validatedFieldPaths, fieldPath)) {
+        validatedFieldPaths.push(fieldPath);
+      }
+    }
+    fieldMask = new FieldMask(validatedFieldPaths);
+    fieldTransforms = context.fieldTransforms.filter((transform) => fieldMask.covers(transform.field));
+  } else {
+    fieldMask = null;
+    fieldTransforms = context.fieldTransforms;
+  }
+  return new ParsedSetData(new ObjectValue(updateData), fieldMask, fieldTransforms);
+}
 function parseQueryValue(userDataReader, methodName, input, allowArrays = false) {
   const context = userDataReader.createContext(allowArrays ? 4 : 3, methodName);
   const parsed = parseData(input, context);
@@ -31751,6 +32384,17 @@ function validatePlainObject(message, context, input) {
     }
   }
 }
+function fieldPathFromArgument$1(methodName, path, targetDoc) {
+  path = getModularInstance(path);
+  if (path instanceof FieldPath) {
+    return path._internalPath;
+  } else if (typeof path === "string") {
+    return fieldPathFromDotSeparatedString(methodName, path);
+  } else {
+    const message = "Field path arguments must be of type string or ";
+    throw createError2(message, methodName, false, void 0, targetDoc);
+  }
+}
 function fieldPathFromDotSeparatedString(methodName, path, targetDoc) {
   const found = path.search(FIELD_PATH_RESERVED);
   if (found >= 0) {
@@ -31782,6 +32426,9 @@ function createError2(reason, methodName, hasConverter, path, targetDoc) {
     description += ")";
   }
   return new FirestoreError(Code.INVALID_ARGUMENT, message + reason + description);
+}
+function fieldMaskContains(haystack, needle) {
+  return haystack.some((v3) => v3.isEqual(needle));
 }
 function fieldPathFromArgument(methodName, arg) {
   if (typeof arg === "string") {
@@ -31993,6 +32640,19 @@ function validateOrderByAndInequalityMatch(baseQuery, inequality, orderBy2) {
     throw new FirestoreError(Code.INVALID_ARGUMENT, `Invalid query. You have a where filter with an inequality (<, <=, !=, not-in, >, or >=) on field '${inequality.toString()}' and so you must also use '${inequality.toString()}' as your first argument to orderBy(), but your first orderBy() is on field '${orderBy2.toString()}' instead.`);
   }
 }
+function applyFirestoreDataConverter(converter, value, options) {
+  let convertedValue;
+  if (converter) {
+    if (options && (options.merge || options.mergeFields)) {
+      convertedValue = converter.toFirestore(value, options);
+    } else {
+      convertedValue = converter.toFirestore(value);
+    }
+  } else {
+    convertedValue = value;
+  }
+  return convertedValue;
+}
 function getDoc(reference) {
   reference = cast(reference, DocumentReference);
   const firestore = cast(reference.firestore, Firestore);
@@ -32007,12 +32667,25 @@ function getDocs(query2) {
   validateHasExplicitOrderByForLimitToLast(query2._query);
   return firestoreClientGetDocumentsViaSnapshotListener(client, query2._query).then((snapshot) => new QuerySnapshot(firestore, userDataWriter, query2, snapshot));
 }
+function setDoc(reference, data, options) {
+  reference = cast(reference, DocumentReference);
+  const firestore = cast(reference.firestore, Firestore);
+  const convertedValue = applyFirestoreDataConverter(reference.converter, data, options);
+  const dataReader = newUserDataReader(firestore);
+  const parsed = parseSetData(dataReader, "setDoc", reference._key, convertedValue, reference.converter !== null, options);
+  const mutation = parsed.toMutation(reference._key, Precondition.none());
+  return executeWrite(firestore, [mutation]);
+}
+function executeWrite(firestore, mutations) {
+  const client = ensureFirestoreConfigured(firestore);
+  return firestoreClientWrite(client, mutations);
+}
 function convertToDocSnapshot(firestore, ref, snapshot) {
   const doc2 = snapshot.docs.get(ref._key);
   const userDataWriter = new ExpUserDataWriter(firestore);
   return new DocumentSnapshot(firestore, userDataWriter, ref._key, doc2, new SnapshotMetadata(snapshot.hasPendingWrites, snapshot.fromCache), ref.converter);
 }
-var import_util6, import_crypto2, grpc, protoLoader, name3, version$12, User, version3, SDK_VERSION2, logClient2, Code, FirestoreError, Deferred2, OAuthToken, EmptyAuthCredentialsProvider, FirebaseAuthCredentialsProvider, FirstPartyToken, FirstPartyAuthCredentialsProvider, AppCheckToken, FirebaseAppCheckTokenProvider, AutoId, MIN_SECONDS, MS_TO_NANOS, Timestamp, SnapshotVersion, DOCUMENT_KEY_NAME, BasePath, ResourcePath, identifierRegExp, FieldPath$1, DocumentKey, INITIAL_LARGEST_BATCH_ID, FieldIndex, IndexOffset, PRIMARY_LEASE_LOST_ERROR_MSG, PersistenceTransaction, PersistencePromise, ListenSequence, DbRemoteDocumentStore$1, DbPrimaryClientStore, DbMutationQueueStore, DbMutationBatchStore, DbDocumentMutationStore, DbRemoteDocumentStore, DbRemoteDocumentGlobalStore, DbTargetStore, DbTargetDocumentStore, DbTargetGlobalStore, DbCollectionParentStore, DbClientMetadataStore, DbBundleStore, DbNamedQueryStore, DbIndexConfigurationStore, DbIndexStateStore, DbIndexEntryStore, DbDocumentOverlayStore, V1_STORES, V3_STORES, V4_STORES, V6_STORES, V8_STORES, V11_STORES, V12_STORES, V13_STORES, V14_STORES, V15_STORES, SortedMap, SortedMapIterator, LLRBNode, LLRBEmptyNode, SortedSet, SortedSetIterator, FieldMask, ByteString, ISO_TIMESTAMP_REG_EXP, SERVER_TIMESTAMP_SENTINEL, TYPE_KEY, PREVIOUS_VALUE_KEY, LOCAL_WRITE_TIME_KEY, DatabaseInfo, DEFAULT_DATABASE_NAME, DatabaseId, BATCHID_UNKNOWN, MAX_VALUE_TYPE, MAX_VALUE, ObjectValue, MutableDocument, TargetImpl, Filter, FieldFilter, KeyFieldFilter, KeyFieldInFilter, KeyFieldNotInFilter, ArrayContainsFilter, InFilter, NotInFilter, ArrayContainsAnyFilter, Bound, OrderBy, QueryImpl, ObjectMap, EMPTY_MUTABLE_DOCUMENT_MAP, EMPTY_DOCUMENT_MAP, EMPTY_DOCUMENT_VERSION_MAP, EMPTY_DOCUMENT_KEY_SET, EMPTY_TARGET_ID_SET, TransformOperation, ServerTimestampTransform, ArrayUnionTransformOperation, ArrayRemoveTransformOperation, NumericIncrementTransformOperation, Precondition, Mutation, SetMutation, PatchMutation, DeleteMutation, MutationBatch, Overlay, ExistenceFilter, RpcCode, RemoteEvent, TargetChange, DocumentWatchChange, ExistenceFilterChange, WatchTargetChange, TargetState, LOG_TAG$g, WatchChangeAggregator, DIRECTIONS, OPERATORS, JsonProtoSerializer, TargetData, LocalSerializer, INDEX_TYPE_NULL, INDEX_TYPE_BOOLEAN, INDEX_TYPE_NAN, INDEX_TYPE_NUMBER, INDEX_TYPE_TIMESTAMP, INDEX_TYPE_STRING, INDEX_TYPE_BLOB, INDEX_TYPE_REFERENCE, INDEX_TYPE_GEOPOINT, INDEX_TYPE_ARRAY, INDEX_TYPE_MAP, INDEX_TYPE_REFERENCE_SEGMENT, NOT_TRUNCATED, FirestoreIndexValueWriter, MemoryIndexManager, MemoryCollectionParentIndex, EMPTY_VALUE, OFFSET, TargetIdGenerator, LRU_COLLECTION_DISABLED, LRU_DEFAULT_CACHE_SIZE_BYTES, LruParams, LRU_MINIMUM_CACHE_SIZE_BYTES, INITIAL_GC_DELAY_MS, REGULAR_GC_DELAY_MS, RemoteDocumentChangeBuffer, OverlayedDocument, LocalDocumentsView, MemoryBundleCache, MemoryDocumentOverlayCache, ReferenceSet, DocReference, MemoryMutationQueue, MemoryRemoteDocumentCacheImpl, MemoryRemoteDocumentChangeBuffer, MemoryTargetCache, LOG_TAG$d, MemoryPersistence, MemoryTransaction, MemoryEagerDelegate, MAX_CLIENT_AGE_MS, LOG_TAG$b, RESUME_TOKEN_MAX_AGE_MICROS, LocalStoreImpl, QueryEngine, LocalClientState, MemorySharedClientState, NoopConnectivityMonitor, StreamBridge, grpcVersion, LOG_TAG$9, X_GOOG_API_CLIENT_VALUE, GrpcConnection, nested, protos, protos$1, protoLoaderOptions, LOG_TAG$8, DEFAULT_BACKOFF_INITIAL_DELAY_MS, DEFAULT_BACKOFF_FACTOR, DEFAULT_BACKOFF_MAX_DELAY_MS, ExponentialBackoff, LOG_TAG$7, IDLE_TIMEOUT_MS, HEALTHY_TIMEOUT_MS, PersistentStream, PersistentListenStream, Datastore, DatastoreImpl, LOG_TAG$6, MAX_WATCH_STREAM_FAILURES, ONLINE_STATE_TIMEOUT_MS, OnlineStateTracker, LOG_TAG$5, RemoteStoreImpl, LOG_TAG$4, DelayedOperation, DocumentSet, DocumentChangeSet, ViewSnapshot, QueryListenersInfo, EventManagerImpl, QueryListener, LocalViewChanges, AddedLimboDocument, RemovedLimboDocument, View, LOG_TAG$3, QueryView, LimboResolution, SyncEngineImpl, MemoryOfflineComponentProvider, OnlineComponentProvider, AsyncObserver, LOG_TAG$2, MAX_CONCURRENT_LIMBO_RESOLUTIONS, FirestoreClient, LOG_TAG$1, datastoreInstances, DEFAULT_HOST, DEFAULT_SSL, FirestoreSettingsImpl, Firestore$1, DocumentReference, Query, CollectionReference, LOG_TAG, AsyncQueueImpl, Firestore, FieldPath, Bytes, FieldValue, GeoPoint, RESERVED_FIELD_REGEX, ParseContextImpl, UserDataReader, FIELD_PATH_RESERVED, DocumentSnapshot$1, QueryDocumentSnapshot$1, SnapshotMetadata, DocumentSnapshot, QueryDocumentSnapshot, QuerySnapshot, QueryConstraint, QueryFilterConstraint, QueryOrderByConstraint, QueryLimitConstraint, AbstractUserDataWriter, ExpUserDataWriter;
+var import_util6, import_crypto2, grpc, protoLoader, name3, version$12, User, version3, SDK_VERSION2, logClient2, Code, FirestoreError, Deferred2, OAuthToken, EmptyAuthCredentialsProvider, FirebaseAuthCredentialsProvider, FirstPartyToken, FirstPartyAuthCredentialsProvider, AppCheckToken, FirebaseAppCheckTokenProvider, AutoId, MIN_SECONDS, MS_TO_NANOS, Timestamp, SnapshotVersion, DOCUMENT_KEY_NAME, BasePath, ResourcePath, identifierRegExp, FieldPath$1, DocumentKey, INITIAL_LARGEST_BATCH_ID, FieldIndex, IndexOffset, PRIMARY_LEASE_LOST_ERROR_MSG, PersistenceTransaction, PersistencePromise, ListenSequence, DbRemoteDocumentStore$1, DbPrimaryClientStore, DbMutationQueueStore, DbMutationBatchStore, DbDocumentMutationStore, DbRemoteDocumentStore, DbRemoteDocumentGlobalStore, DbTargetStore, DbTargetDocumentStore, DbTargetGlobalStore, DbCollectionParentStore, DbClientMetadataStore, DbBundleStore, DbNamedQueryStore, DbIndexConfigurationStore, DbIndexStateStore, DbIndexEntryStore, DbDocumentOverlayStore, V1_STORES, V3_STORES, V4_STORES, V6_STORES, V8_STORES, V11_STORES, V12_STORES, V13_STORES, V14_STORES, V15_STORES, SortedMap, SortedMapIterator, LLRBNode, LLRBEmptyNode, SortedSet, SortedSetIterator, FieldMask, ByteString, ISO_TIMESTAMP_REG_EXP, SERVER_TIMESTAMP_SENTINEL, TYPE_KEY, PREVIOUS_VALUE_KEY, LOCAL_WRITE_TIME_KEY, DatabaseInfo, DEFAULT_DATABASE_NAME, DatabaseId, BATCHID_UNKNOWN, MAX_VALUE_TYPE, MAX_VALUE, ObjectValue, MutableDocument, TargetImpl, Filter, FieldFilter, KeyFieldFilter, KeyFieldInFilter, KeyFieldNotInFilter, ArrayContainsFilter, InFilter, NotInFilter, ArrayContainsAnyFilter, Bound, OrderBy, QueryImpl, ObjectMap, EMPTY_MUTABLE_DOCUMENT_MAP, EMPTY_DOCUMENT_MAP, EMPTY_DOCUMENT_VERSION_MAP, EMPTY_DOCUMENT_KEY_SET, EMPTY_TARGET_ID_SET, TransformOperation, ServerTimestampTransform, ArrayUnionTransformOperation, ArrayRemoveTransformOperation, NumericIncrementTransformOperation, MutationResult, Precondition, Mutation, SetMutation, PatchMutation, DeleteMutation, VerifyMutation, MutationBatch, MutationBatchResult, Overlay, ExistenceFilter, RpcCode, RemoteEvent, TargetChange, DocumentWatchChange, ExistenceFilterChange, WatchTargetChange, TargetState, LOG_TAG$g, WatchChangeAggregator, DIRECTIONS, OPERATORS, JsonProtoSerializer, TargetData, LocalSerializer, INDEX_TYPE_NULL, INDEX_TYPE_BOOLEAN, INDEX_TYPE_NAN, INDEX_TYPE_NUMBER, INDEX_TYPE_TIMESTAMP, INDEX_TYPE_STRING, INDEX_TYPE_BLOB, INDEX_TYPE_REFERENCE, INDEX_TYPE_GEOPOINT, INDEX_TYPE_ARRAY, INDEX_TYPE_MAP, INDEX_TYPE_REFERENCE_SEGMENT, NOT_TRUNCATED, FirestoreIndexValueWriter, MemoryIndexManager, MemoryCollectionParentIndex, EMPTY_VALUE, OFFSET, TargetIdGenerator, LRU_COLLECTION_DISABLED, LRU_DEFAULT_CACHE_SIZE_BYTES, LruParams, LRU_MINIMUM_CACHE_SIZE_BYTES, INITIAL_GC_DELAY_MS, REGULAR_GC_DELAY_MS, RemoteDocumentChangeBuffer, OverlayedDocument, LocalDocumentsView, MemoryBundleCache, MemoryDocumentOverlayCache, ReferenceSet, DocReference, MemoryMutationQueue, MemoryRemoteDocumentCacheImpl, MemoryRemoteDocumentChangeBuffer, MemoryTargetCache, LOG_TAG$d, MemoryPersistence, MemoryTransaction, MemoryEagerDelegate, MAX_CLIENT_AGE_MS, LOG_TAG$b, RESUME_TOKEN_MAX_AGE_MICROS, LocalStoreImpl, QueryEngine, LocalClientState, MemorySharedClientState, NoopConnectivityMonitor, StreamBridge, grpcVersion, LOG_TAG$9, X_GOOG_API_CLIENT_VALUE, GrpcConnection, nested, protos, protos$1, protoLoaderOptions, LOG_TAG$8, DEFAULT_BACKOFF_INITIAL_DELAY_MS, DEFAULT_BACKOFF_FACTOR, DEFAULT_BACKOFF_MAX_DELAY_MS, ExponentialBackoff, LOG_TAG$7, IDLE_TIMEOUT_MS, HEALTHY_TIMEOUT_MS, PersistentStream, PersistentListenStream, PersistentWriteStream, Datastore, DatastoreImpl, LOG_TAG$6, MAX_WATCH_STREAM_FAILURES, ONLINE_STATE_TIMEOUT_MS, OnlineStateTracker, LOG_TAG$5, MAX_PENDING_WRITES, RemoteStoreImpl, LOG_TAG$4, DelayedOperation, DocumentSet, DocumentChangeSet, ViewSnapshot, QueryListenersInfo, EventManagerImpl, QueryListener, LocalViewChanges, AddedLimboDocument, RemovedLimboDocument, View, LOG_TAG$3, QueryView, LimboResolution, SyncEngineImpl, MemoryOfflineComponentProvider, OnlineComponentProvider, AsyncObserver, LOG_TAG$2, MAX_CONCURRENT_LIMBO_RESOLUTIONS, FirestoreClient, LOG_TAG$1, datastoreInstances, DEFAULT_HOST, DEFAULT_SSL, FirestoreSettingsImpl, Firestore$1, DocumentReference, Query, CollectionReference, LOG_TAG, AsyncQueueImpl, Firestore, FieldPath, Bytes, FieldValue, GeoPoint, RESERVED_FIELD_REGEX, ParsedSetData, ParseContextImpl, UserDataReader, FIELD_PATH_RESERVED, DocumentSnapshot$1, QueryDocumentSnapshot$1, SnapshotMetadata, DocumentSnapshot, QueryDocumentSnapshot, QuerySnapshot, QueryConstraint, QueryFilterConstraint, QueryOrderByConstraint, QueryLimitConstraint, AbstractUserDataWriter, ExpUserDataWriter;
 var init_index_node = __esm({
   "node_modules/@firebase/firestore/dist/index.node.mjs"() {
     init_shims();
@@ -33971,6 +34644,12 @@ var init_index_node = __esm({
         this.operand = operand;
       }
     };
+    MutationResult = class {
+      constructor(version7, transformResults) {
+        this.version = version7;
+        this.transformResults = transformResults;
+      }
+    };
     Precondition = class {
       constructor(updateTime, exists) {
         this.updateTime = updateTime;
@@ -34033,6 +34712,18 @@ var init_index_node = __esm({
         return null;
       }
     };
+    VerifyMutation = class extends Mutation {
+      constructor(key2, precondition) {
+        super();
+        this.key = key2;
+        this.precondition = precondition;
+        this.type = 3;
+        this.fieldTransforms = [];
+      }
+      getFieldMask() {
+        return null;
+      }
+    };
     MutationBatch = class {
       constructor(batchId, localWriteTime, baseMutations, mutations) {
         this.batchId = batchId;
@@ -34085,6 +34776,23 @@ var init_index_node = __esm({
       }
       isEqual(other) {
         return this.batchId === other.batchId && arrayEquals(this.mutations, other.mutations, (l, r2) => mutationEquals(l, r2)) && arrayEquals(this.baseMutations, other.baseMutations, (l, r2) => mutationEquals(l, r2));
+      }
+    };
+    MutationBatchResult = class {
+      constructor(batch, commitVersion, mutationResults, docVersions) {
+        this.batch = batch;
+        this.commitVersion = commitVersion;
+        this.mutationResults = mutationResults;
+        this.docVersions = docVersions;
+      }
+      static from(batch, commitVersion, results) {
+        hardAssert(batch.mutations.length === results.length);
+        let versionMap = documentVersionMap();
+        const mutations = batch.mutations;
+        for (let i2 = 0; i2 < mutations.length; i2++) {
+          versionMap = versionMap.insert(mutations[i2].key, results[i2].version);
+        }
+        return new MutationBatchResult(batch, commitVersion, results, versionMap);
       }
     };
     Overlay = class {
@@ -38914,6 +39622,55 @@ var init_index_node = __esm({
         this.sendRequest(request);
       }
     };
+    PersistentWriteStream = class extends PersistentStream {
+      constructor(queue, connection, authCredentials, appCheckCredentials, serializer, listener) {
+        super(queue, "write_stream_connection_backoff", "write_stream_idle", "health_check_timeout", connection, authCredentials, appCheckCredentials, listener);
+        this.serializer = serializer;
+        this.handshakeComplete_ = false;
+      }
+      get handshakeComplete() {
+        return this.handshakeComplete_;
+      }
+      start() {
+        this.handshakeComplete_ = false;
+        this.lastStreamToken = void 0;
+        super.start();
+      }
+      tearDown() {
+        if (this.handshakeComplete_) {
+          this.writeMutations([]);
+        }
+      }
+      startRpc(authToken, appCheckToken) {
+        return this.connection.openStream("Write", authToken, appCheckToken);
+      }
+      onMessage(responseProto) {
+        hardAssert(!!responseProto.streamToken);
+        this.lastStreamToken = responseProto.streamToken;
+        if (!this.handshakeComplete_) {
+          hardAssert(!responseProto.writeResults || responseProto.writeResults.length === 0);
+          this.handshakeComplete_ = true;
+          return this.listener.onHandshakeComplete();
+        } else {
+          this.backoff.reset();
+          const results = fromWriteResults(responseProto.writeResults, responseProto.commitTime);
+          const commitVersion = fromVersion(responseProto.commitTime);
+          return this.listener.onMutationResult(commitVersion, results);
+        }
+      }
+      writeHandshake() {
+        const request = {};
+        request.database = getEncodedDatabaseId(this.serializer);
+        this.sendRequest(request);
+      }
+      writeMutations(mutations) {
+        const request = {
+          streamToken: this.lastStreamToken,
+          writes: mutations.map((mutation) => toMutation(this.serializer, mutation))
+        };
+        this.sendRequest(request);
+      }
+    };
     Datastore = class {
     };
     DatastoreImpl = class extends Datastore {
@@ -39039,6 +39796,7 @@ This typically indicates that your device does not have a healthy Internet conne
       }
     };
     LOG_TAG$5 = "RemoteStore";
+    MAX_PENDING_WRITES = 10;
     RemoteStoreImpl = class {
       constructor(localStore, datastore, asyncQueue, onlineStateHandler, connectivityMonitor) {
         this.localStore = localStore;
@@ -40173,6 +40931,20 @@ This typically indicates that your device does not have a healthy Internet conne
       }
     };
     RESERVED_FIELD_REGEX = /^__.*__$/;
+    ParsedSetData = class {
+      constructor(data, fieldMask, fieldTransforms) {
+        this.data = data;
+        this.fieldMask = fieldMask;
+        this.fieldTransforms = fieldTransforms;
+      }
+      toMutation(key2, precondition) {
+        if (this.fieldMask !== null) {
+          return new PatchMutation(key2, this.data, this.fieldMask, precondition, this.fieldTransforms);
+        } else {
+          return new SetMutation(key2, this.data, precondition, this.fieldTransforms);
+        }
+      }
+    };
     ParseContextImpl = class {
       constructor(settings, databaseId, serializer, ignoreUndefinedProperties, fieldTransforms, fieldMask) {
         this.settings = settings;
@@ -40522,10 +41294,10 @@ var init_dist3 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/columns-config-5985d0e3.js
-var firebaseConfig, app, db, _getPosts, _getUserRecord, COLUMNS, COLUMN_COUNT;
-var init_columns_config_5985d0e3 = __esm({
-  ".svelte-kit/output/server/chunks/columns-config-5985d0e3.js"() {
+// .svelte-kit/output/server/chunks/columns-config-679680cb.js
+var firebaseConfig, app, db, _getPosts, _createUserRecord, _getUserRecord, COLUMNS, COLUMN_COUNT;
+var init_columns_config_679680cb = __esm({
+  ".svelte-kit/output/server/chunks/columns-config-679680cb.js"() {
     init_shims();
     init_dist2();
     init_dist3();
@@ -40554,6 +41326,16 @@ var init_columns_config_5985d0e3 = __esm({
       } catch (error2) {
         createError(error2, "DBService:getBulletins");
         return [];
+      }
+    };
+    _createUserRecord = async (user2) => {
+      try {
+        const docRef = doc(collection(db, "Users"), user2.uid);
+        user2.id = user2.uid;
+        await setDoc(docRef, user2);
+        return { user: user2 };
+      } catch (error2) {
+        createError(error2, "DBService:createUserRecord");
       }
     };
     _getUserRecord = async (uid) => {
@@ -53551,7 +54333,7 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/index-3fca4a58.js
+// .svelte-kit/output/server/chunks/index-c02c8cf1.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -53701,12 +54483,12 @@ function tweened(value, defaults = {}) {
     subscribe: store.subscribe
   };
 }
-var import_rxjs, import_chroma_js, subscriber_queue2, _lang, events, _emitEvent, _registerEvent, _fontGroups, _fontSizes, pallettes, _themes, auth, user, _userSignedIn, Font;
-var init_index_3fca4a58 = __esm({
-  ".svelte-kit/output/server/chunks/index-3fca4a58.js"() {
+var import_rxjs, import_chroma_js, subscriber_queue2, _lang, events, _emitEvent, _registerEvent, _fontGroups, _fontSizes, pallettes, _themes, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, Font;
+var init_index_c02c8cf1 = __esm({
+  ".svelte-kit/output/server/chunks/index-c02c8cf1.js"() {
     init_shims();
     init_dist();
-    init_columns_config_5985d0e3();
+    init_columns_config_679680cb();
     import_rxjs = __toESM(require_cjs(), 1);
     init_index_cd57f8af();
     import_chroma_js = __toESM(require_chroma(), 1);
@@ -53795,8 +54577,51 @@ var init_index_3fca4a58 = __esm({
     });
     _userSignedIn = () => {
       let authUser = getAuth().currentUser;
-      return authUser.uid == (user && user.uid) && user;
+      return authUser && user && authUser.uid == user.uid && user;
     };
+    _emailSignup = (email, password2) => new Promise((resolve2) => {
+      createUserWithEmailAndPassword(auth, email, password2).then((userCredential) => {
+        let authUser = userCredential.user;
+        sendEmailVerification(authUser);
+        resolve2({ authUser });
+      }).catch((error2) => {
+        resolve2({
+          error: error2.code,
+          message: error2.message
+        });
+      });
+    });
+    _emailSignin = (email, password2) => new Promise((resolve2) => {
+      signInWithEmailAndPassword(auth, email, password2).then(async (userCredential) => {
+        let authUser = userCredential.user;
+        user = await _getUserRecord(authUser.uid);
+        resolve2({ user });
+      }).catch((error2) => {
+        resolve2({
+          error: error2.code,
+          message: error2.message
+        });
+      });
+    });
+    _changePassword = (newPassword, name7, email) => new Promise((resolve2) => {
+      let authUser = getAuth().currentUser;
+      updatePassword(authUser, newPassword).then(async () => {
+        user = await _createUserRecord({
+          name: name7,
+          email,
+          uid: authUser.uid,
+          language: 0,
+          theme: 0
+        });
+        resolve2({ user });
+      }).catch((error2) => {
+        console.log(error2);
+        resolve2({
+          error: error2.code,
+          message: error2.message
+        });
+      });
+    });
     Font = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let fontSize;
       let font;
@@ -71808,13 +72633,13 @@ var layout_svelte_exports = {};
 __export(layout_svelte_exports, {
   default: () => _layout
 });
-var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_chroma_js2, __defProp3, __defProps3, __getOwnPropDescs3, __getOwnPropSymbols3, __hasOwnProp3, __propIsEnum3, __defNormalProp3, __spreadValues3, __spreadProps3, strings, css$8, Button, css$7, Login, functions, _createPost, css$6, Text_input, css$5, Tiptap_editor, css$4, Html_input, css$3, Form, css$2, Nav, css$1, currentTheme, Theme_selector, css, _layout;
+var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_chroma_js2, __defProp3, __defProps3, __getOwnPropDescs3, __getOwnPropSymbols3, __hasOwnProp3, __propIsEnum3, __defNormalProp3, __spreadValues3, __spreadProps3, strings, css$8, Button, css$7, Text_input, css$6, Login, functions, _createPost, css$5, Tiptap_editor, css$4, Html_input, css$3, Form, css$2, Nav, css$1, currentTheme, Theme_selector, css, _layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_cd57f8af();
-    init_index_3fca4a58();
-    init_columns_config_5985d0e3();
+    init_index_c02c8cf1();
+    init_columns_config_679680cb();
     init_dist4();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
     import_extension_bold = __toESM(require_tiptap_extension_bold_cjs(), 1);
@@ -71891,7 +72716,7 @@ var init_layout_svelte = __esm({
       ]
     };
     css$8 = {
-      code: ".button.svelte-11l1rp7{display:flex;align-items:center;justify-content:center;height:var(--s45px);width:90%;border-radius:var(--s5px);padding:var(--s5px);background-color:var(--button);cursor:pointer;color:white;font-size:1.1rem;font-weight:bold;margin-bottom:var(--s14px)}",
+      code: ".button.svelte-8zngsj{display:flex;align-items:center;justify-content:center;height:var(--s45px);width:90%;border-radius:var(--s5px);padding:var(--s5px);cursor:pointer;color:white;font-size:1.1rem;font-weight:bold;margin-bottom:var(--s14px);background-color:var(--theme-defaultbutton)}.cancel.svelte-8zngsj{background-color:var(--theme-cancelbutton)}",
       map: null
     };
     Button = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -71908,55 +72733,11 @@ var init_layout_svelte = __esm({
         $$bindings.cancel(cancel);
       $$result.css.add(css$8);
       $$unsubscribe__lang();
-      return `<div class="${"button svelte-11l1rp7"}" cancel:class="${"cancel"}">${`${escape(text[$_lang])}`}
+      return `<div class="${["button svelte-8zngsj", cancel ? "cancel" : ""].join(" ").trim()}">${`${escape(text[$_lang])}`}
 </div>`;
     });
     css$7 = {
-      code: ".overlay.svelte-fgddm3{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;width:100vw;height:100vh;background-color:rgba(0,0,0,0.9)}.login_c.svelte-fgddm3{width:var(--s340px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c}.login.svelte-fgddm3{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s20px);width:100%;height:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}span.svelte-fgddm3{font-size:1.3rem;font-weight:bold;color:black;margin-bottom:var(--s20px)}input.svelte-fgddm3{height:var(--s45px);width:90%;border-radius:var(--s5px);padding:var(--s10px);border:var(--s1px) solid var(--button);font-size:1rem;font-family:inherit;margin-bottom:var(--s18px)}.error.svelte-fgddm3{border-width:2px;border-color:#c02e46}.fb-button.svelte-fgddm3{display:flex;align-items:center;justify-content:center;height:var(--s45px);width:90%;border-radius:var(--s5px);padding:var(--s5px);background-color:var(--button);cursor:pointer;color:white;font-size:1.1rem;font-weight:bold;margin-bottom:var(--s14px);font-family:'Roboto', sans-serif;font-size:var(--s13px);background-color:#0a82ec}.or.svelte-fgddm3{font-size:1.2rem;color:#5c5c5c;margin-bottom:var(--s14px)}.fa-facebook-square.svelte-fgddm3{font-size:1.3rem;margin-right:var(--s10px)}",
-      map: null
-    };
-    Login = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang, $$unsubscribe__lang;
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
-      let showLogin = false;
-      let email;
-      let emailError;
-      const showHideEvent = _registerEvent("show-hide-login").subscribe((v3) => {
-        showLogin = v3;
-      });
-      onDestroy(() => {
-        showHideEvent.unsubscribe();
-      });
-      const continueEmailSignin = async () => {
-        {
-          {
-            emailError = true;
-            return;
-          }
-        }
-      };
-      $$result.css.add(css$7);
-      $$unsubscribe__lang();
-      return `${showLogin ? `<div class="${"overlay svelte-fgddm3"}"><div class="${"login_c svelte-fgddm3"}"><div class="${"login svelte-fgddm3"}"><span class="${"svelte-fgddm3"}">${escape(strings["enter"][$_lang])}</span>
-            <input type="${"email"}" ${""}${add_attribute("placeholder", strings["email"][$_lang], 0)} class="${["svelte-fgddm3", emailError ? "error" : ""].join(" ").trim()}"${add_attribute("value", email, 0)}>
-            ${``}
-            ${``}
-            ${``}
-            ${validate_component(Button, "Button").$$render($$result, {
-        onclick: continueEmailSignin,
-        text: strings["continue"]
-      }, {}, {})}
-            <span class="${"or svelte-fgddm3"}">${escape(strings["or"][$_lang])}</span>
-            <div class="${"fb-button svelte-fgddm3"}"><i class="${"fa-brands fa-facebook-square svelte-fgddm3"}"></i>
-                facebook
-            </div></div></div></div>` : ``}`;
-    });
-    functions = getFunctions(app);
-    _createPost = async (post) => {
-      return httpsCallable(functions, "addpost")(post);
-    };
-    css$6 = {
-      code: ".text-input.svelte-13bmwpw{width:90%}input.svelte-13bmwpw{height:var(--s45px);width:100%;border-radius:var(--s5px);padding:var(--s10px);border:var(--s1px) solid var(--button);font-size:1rem;font-family:inherit;margin-bottom:var(--s18px)}span.svelte-13bmwpw{color:red}.error.svelte-13bmwpw{border-width:2px;border-color:#c02e46}",
+      code: ".text-input.svelte-yzox37{width:90%}input.svelte-yzox37{height:var(--s45px);width:100%;border-radius:var(--s5px);padding:var(--s10px);border:var(--s1px) solid var(--theme-defaultbutton);font-size:1rem;font-family:inherit;margin-bottom:var(--s18px)}span.svelte-yzox37{color:red}.error.svelte-yzox37{border-width:2px;border-color:#c02e46}",
       map: null
     };
     Text_input = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -71974,20 +72755,150 @@ var init_layout_svelte = __esm({
         $$bindings.data(data);
       if ($$props.error === void 0 && $$bindings.error && error2 !== void 0)
         $$bindings.error(error2);
-      $$result.css.add(css$6);
+      $$result.css.add(css$7);
       $$unsubscribe__lang();
-      return `<div class="${"text-input svelte-13bmwpw"}"><input type="${"text"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)} class="${["svelte-13bmwpw", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>
+      return `<div class="${"text-input svelte-yzox37"}">${config.type !== "password" ? `<input type="${"text"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)} class="${["svelte-yzox37", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>` : `<input type="${"password"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)} class="${["svelte-yzox37", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>`}
     
-    ${typeof error2 === "string" ? `<span class="${"svelte-13bmwpw"}">${validate_component(Font, "Font").$$render($$result, { group: 0, remSize: 1.3 }, {}, {
+    ${typeof error2 === "string" ? `<span class="${"svelte-yzox37"}">${validate_component(Font, "Font").$$render($$result, { group: 0, remSize: 1.3 }, {}, {
         default: () => {
           return `${escape(error2)}`;
         }
       })}</span>` : ``}
 </div>`;
     });
+    css$6 = {
+      code: ".overlay.svelte-fgddm3{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;width:100vw;height:100vh;background-color:rgba(0,0,0,0.9)}.login_c.svelte-fgddm3{width:var(--s340px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c}.login.svelte-fgddm3{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s20px);width:100%;height:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}span.svelte-fgddm3{font-size:1.3rem;font-weight:bold;color:black;margin-bottom:var(--s20px)}.fb-button.svelte-fgddm3{display:flex;align-items:center;justify-content:center;height:var(--s45px);width:90%;border-radius:var(--s5px);padding:var(--s5px);background-color:var(--button);cursor:pointer;color:white;font-size:1.1rem;font-weight:bold;margin-bottom:var(--s14px);font-family:'Roboto', sans-serif;font-size:var(--s13px);background-color:#0a82ec}.or.svelte-fgddm3{font-size:1.2rem;color:#5c5c5c;margin-bottom:var(--s14px)}.fa-facebook-square.svelte-fgddm3{font-size:1.3rem;margin-right:var(--s10px)}",
+      map: null
+    };
+    Login = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $_lang, $$unsubscribe__lang;
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let showLogin = false;
+      let user2 = {};
+      let emailError, nameError, passwordError, repeatPasswordError;
+      let signinOrSignup = 0;
+      const showHideEvent = _registerEvent("show-hide-login").subscribe((v3) => {
+        showLogin = v3;
+      });
+      onDestroy(() => {
+        showHideEvent.unsubscribe();
+      });
+      const continueEmailSignin = async () => {
+        if (!signinOrSignup) {
+          if (!user2.email || !user2.email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+            emailError = true;
+            return;
+          } else {
+            emailError = false;
+          }
+          let result = await _emailSignup(user2.email, "CHECK_EMAIL_EXISTS");
+          if (result.error == "auth/email-already-in-use") {
+            signinOrSignup = 1;
+          } else {
+            signinOrSignup = 2;
+          }
+          return;
+        }
+        if (signinOrSignup == 1) {
+          if (!user2.password || user2.password.length < 6) {
+            passwordError = true;
+            return;
+          } else {
+            passwordError = false;
+          }
+          let result = await _emailSignin(user2.email, user2.password);
+          if (result.user) {
+            showLogin = false;
+            _emitEvent("user-ready", result.user);
+            reset();
+          }
+          return;
+        }
+        if (signinOrSignup == 2) {
+          if (!user2.name) {
+            nameError = true;
+          } else {
+            nameError = false;
+          }
+          if (!user2.password || user2.password.length < 6) {
+            passwordError = true;
+          } else {
+            passwordError = false;
+          }
+          if (user2.password != user2.repeatPassword && !passwordError) {
+            repeatPasswordError = true;
+          } else {
+            repeatPasswordError = false;
+          }
+          if (nameError || passwordError || repeatPasswordError) {
+            return;
+          }
+          let result = await _changePassword(password, user2.name, user2.email);
+          if (result.user) {
+            showLogin = false;
+            _emitEvent("user-ready", result.user);
+            reset();
+          }
+          return;
+        }
+      };
+      const reset = () => user2 = {};
+      $$result.css.add(css$6);
+      $$unsubscribe__lang();
+      return `${showLogin ? `<div class="${"overlay svelte-fgddm3"}"><div class="${"login_c svelte-fgddm3"}"><div class="${"login svelte-fgddm3"}"><span class="${"svelte-fgddm3"}">${escape(strings["enter"][$_lang])}</span>
+            ${validate_component(Text_input, "TextInput").$$render($$result, {
+        disabled: signinOrSignup,
+        error: emailError,
+        data: user2,
+        config: {
+          placeholder: strings["email"],
+          name: "email",
+          type: "text"
+        }
+      }, {}, {})}
+            ${signinOrSignup == 2 ? `${validate_component(Text_input, "TextInput").$$render($$result, {
+        error: nameError,
+        data: user2,
+        config: {
+          placeholder: strings["name"],
+          name: "name",
+          type: "text"
+        }
+      }, {}, {})}` : ``}
+            ${signinOrSignup ? `${validate_component(Text_input, "TextInput").$$render($$result, {
+        error: passwordError,
+        data: user2,
+        config: {
+          placeholder: strings["password"],
+          name: "password",
+          type: "password"
+        }
+      }, {}, {})}` : ``}
+            ${signinOrSignup == 2 ? `${validate_component(Text_input, "TextInput").$$render($$result, {
+        error: repeatPasswordError,
+        data: user2,
+        config: {
+          placeholder: strings["repeatPassword"],
+          name: "repeatPassword",
+          type: "password"
+        }
+      }, {}, {})}` : ``}
+            ${validate_component(Button, "Button").$$render($$result, {
+        onclick: continueEmailSignin,
+        text: strings["continue"]
+      }, {}, {})}
+            <span class="${"or svelte-fgddm3"}">${escape(strings["or"][$_lang])}</span>
+            <div class="${"fb-button svelte-fgddm3"}"><i class="${"fa-brands fa-facebook-square svelte-fgddm3"}"></i>
+                facebook
+            </div></div></div></div>` : ``}`;
+    });
+    functions = getFunctions(app);
+    _createPost = async (post) => {
+      return httpsCallable(functions, "addpost")(post);
+    };
     getStorage(app);
     css$5 = {
-      code: ".editor-container.svelte-12ti0om{position:relative}.editor-mask.svelte-12ti0om{display:flex;align-items:center;justify-content:center;position:absolute;top:0;left:0;height:100%;width:100%;color:white;background-color:black;font-size:1.5rem;opacity:0.7;border-radius:var(--s5px);z-index:10000}.editable > .ProseMirror{min-height:var(--s300px);max-height:80vh;overflow-y:auto;border-radius:var(--s5px);background-color:white;border:var(--s1px) solid var(--button);padding:var(--s10px)}.error > .ProseMirror{border:var(--s2px) solid #c02e46}button.svelte-12ti0om{background:white;font-size:13px;border:var(--s1px) solid var(--button);border-radius:var(--s3px)}button.active.svelte-12ti0om{background:black;color:white}.ProseMirror img{max-width:100%}h2{margin:var(--s10px) 0px}.ProseMirror p.is-editor-empty:first-child::before{content:attr(data-placeholder);float:left;color:#a3a3a3;pointer-events:none;height:0}",
+      code: ".editor-container.svelte-1e8yveh{position:relative}.editor-mask.svelte-1e8yveh{display:flex;align-items:center;justify-content:center;position:absolute;top:0;left:0;height:100%;width:100%;color:white;background-color:black;font-size:1.5rem;opacity:0.7;border-radius:var(--s5px);z-index:10000}.editable > .ProseMirror{min-height:var(--s300px);max-height:80vh;overflow-y:auto;border-radius:var(--s5px);background-color:white;border:var(--s1px) solid var(--button);padding:var(--s10px)}.error > .ProseMirror{border:var(--s2px) solid #c02e46}button.svelte-1e8yveh{background:white;font-size:13px;border:var(--s1px) solid var(--theme-defaultbutton);padding:var(--s3px);border-radius:var(--s3px)}button.active.svelte-1e8yveh{background:black;color:white}.ProseMirror img{max-width:100%}h2{margin:var(--s10px) 0px}.ProseMirror p.is-editor-empty:first-child::before{content:attr(data-placeholder);float:left;color:#a3a3a3;pointer-events:none;height:0}",
       map: null
     };
     Tiptap_editor = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -72012,7 +72923,7 @@ var init_layout_svelte = __esm({
       $$unsubscribe__lang();
       return `${``}
   
-<div class="${"editor-container svelte-12ti0om"}">${validate_component(Font, "Font").$$render($$result, { group: 3, remSize: 0.8 }, {}, {
+<div class="${"editor-container svelte-1e8yveh"}">${validate_component(Font, "Font").$$render($$result, { group: 3, remSize: 0.8 }, {}, {
         default: () => {
           return `<div${add_attribute("class", error2 ? "editable error" : "editable", 0)}${add_attribute("this", element, 0)}></div>`;
         }
@@ -72091,6 +73002,8 @@ var init_layout_svelte = __esm({
             return false;
           }
         });
+        if (errors.some((e2) => e2))
+          return;
         let user2 = _userSignedIn();
         await _createPost(__spreadProps3(__spreadValues3(__spreadValues3({}, data), fieldTypes), {
           createdOn: new Date().getTime(),
@@ -72099,6 +73012,10 @@ var init_layout_svelte = __esm({
           verified: false,
           type: COLUMNS[columnIndex].type
         }));
+        showForm = false;
+      };
+      const cancelDocument = async () => {
+        data = {};
         showForm = false;
       };
       $$result.css.add(css$3);
@@ -72117,7 +73034,7 @@ var init_layout_svelte = __esm({
       }, {}, {})}
             ${validate_component(Button, "Button").$$render($$result, {
         cancel: true,
-        onclick: submitDocument,
+        onclick: cancelDocument,
         text: COLUMNS[columnIndex].cancelButton
       }, {}, {})}</div></div></div>` : ``}`;
     });
@@ -72246,9 +73163,9 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-a4773276.js";
-    js = ["pages/__layout.svelte-a4773276.js", "chunks/index-27e5ea2d.js", "chunks/index-d2d64b3f.js", "chunks/index-d8b95b2e.js"];
-    css2 = ["assets/pages/__layout.svelte-55e75ab4.css"];
+    entry = "pages/__layout.svelte-605aa7d1.js";
+    js = ["pages/__layout.svelte-605aa7d1.js", "chunks/index-721e7700.js", "chunks/index-3c815786.js", "chunks/index-cfad40b5.js"];
+    css2 = ["assets/pages/__layout.svelte-dd6a1e13.css"];
   }
 });
 
@@ -72300,8 +73217,8 @@ var init__2 = __esm({
     init_shims();
     init_error_svelte();
     index2 = 1;
-    entry2 = "error.svelte-3e129d35.js";
-    js2 = ["error.svelte-3e129d35.js", "chunks/index-27e5ea2d.js"];
+    entry2 = "error.svelte-c2294701.js";
+    js2 = ["error.svelte-c2294701.js", "chunks/index-721e7700.js"];
     css3 = [];
   }
 });
@@ -74346,8 +75263,8 @@ var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
     init_index_cd57f8af();
-    init_columns_config_5985d0e3();
-    init_index_3fca4a58();
+    init_columns_config_679680cb();
+    init_index_c02c8cf1();
     init_string_strip_html_esm();
     init_dist2();
     init_dist3();
@@ -74530,7 +75447,7 @@ var init_index_svelte = __esm({
         {
           text = ue(data[$_lang]).result;
           croppedText = text.substring(0, limit2);
-          croppedFlag = text.length > limit2;
+          croppedFlag = text.length > limit2 || data[$_lang].includes("img");
           if (croppedFlag)
             text += "...";
         }
@@ -74582,7 +75499,7 @@ var init_index_svelte = __esm({
       })}`;
     });
     css4 = {
-      code: "ul.svelte-17yutfo.svelte-17yutfo{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.svelte-17yutfo.svelte-17yutfo{display:inline-flex}.columns.svelte-17yutfo.svelte-17yutfo{--column-width:var(--s500px);--header-height:var(--s50px);--color:white;--padding:var(--s6px);overflow:hidden;background-color:var(--theme-columnbackground)}.column.svelte-17yutfo.svelte-17yutfo{position:relative;width:var(--column-width);height:calc(100vh - var(--s50px))}.header.svelte-17yutfo.svelte-17yutfo{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;height:var(--header-height);color:var(--color);padding:0 var(--s15px) 0 var(--s10px);font-weight:bold;z-index:2}.header.svelte-17yutfo div.svelte-17yutfo{display:flex;align-items:center;height:100%}.header.svelte-17yutfo.svelte-17yutfo:first-child{font-size:var(--s24px)}.header.svelte-17yutfo span.svelte-17yutfo{text-shadow:0px 0px 3px #1b1b1b, 0 0 8px #525252;margin-left:var(--s10px)}.fa-add.svelte-17yutfo.svelte-17yutfo{font-size:var(--s17px)}.cards.svelte-17yutfo.svelte-17yutfo{position:relative;width:100%;height:calc(100vh - var(--s100px));overflow-y:scroll;overflow-x:hidden;-ms-overflow-style:none;scrollbar-width:none;padding:var(--padding) 0}.cards.svelte-17yutfo.svelte-17yutfo::-webkit-scrollbar{display:none}.card_c.svelte-17yutfo.svelte-17yutfo{padding:var(--padding)}.spacer.svelte-17yutfo.svelte-17yutfo{width:var(--padding);height:calc(100vh - var(--s50px))}.spacer.svelte-17yutfo.svelte-17yutfo::after{display:block;content:'';height:var(--header-height);width:var(--padding);background-color:var(--background)}.scrollbar.svelte-17yutfo.svelte-17yutfo{position:absolute;top:var(--s50px);right:0}.scroll.svelte-17yutfo.svelte-17yutfo{position:absolute;overflow:hidden;top:var(--s20px);right:var(--s-3_75px);width:var(--s7_5px);border-radius:var(--s7_5px);opacity:0.5;background-color:rgba(0,0,0,0.4)}",
+      code: "ul.svelte-bclnsw.svelte-bclnsw{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.svelte-bclnsw.svelte-bclnsw{display:inline-flex}.columns.svelte-bclnsw.svelte-bclnsw{--column-width:var(--s500px);--header-height:var(--s50px);--color:white;--padding:var(--s6px);overflow:hidden;background-color:var(--theme-columnbackground)}.column.svelte-bclnsw.svelte-bclnsw{position:relative;width:var(--column-width);height:calc(100vh - var(--s50px))}.header.svelte-bclnsw.svelte-bclnsw{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;height:var(--header-height);color:var(--color);padding:0 var(--s15px) 0 var(--s10px);font-weight:bold;z-index:2}.header.svelte-bclnsw div.svelte-bclnsw{display:flex;align-items:center;height:100%}.header.svelte-bclnsw.svelte-bclnsw:first-child{font-size:var(--s24px)}.header.svelte-bclnsw span.svelte-bclnsw{text-shadow:0px 0px 3px #1b1b1b, 0 0 8px #525252;margin-left:var(--s10px)}.icon-button.svelte-bclnsw.svelte-bclnsw{display:inline-flex;align-items:center;justify-content:center;width:35px;height:35px;font-size:var(--s17px)}.cards.svelte-bclnsw.svelte-bclnsw{position:relative;width:100%;height:calc(100vh - var(--s100px));overflow-y:scroll;overflow-x:hidden;-ms-overflow-style:none;scrollbar-width:none;padding:var(--padding) 0}.cards.svelte-bclnsw.svelte-bclnsw::-webkit-scrollbar{display:none}.card_c.svelte-bclnsw.svelte-bclnsw{padding:var(--padding)}.spacer.svelte-bclnsw.svelte-bclnsw{width:var(--padding);height:calc(100vh - var(--s50px))}.spacer.svelte-bclnsw.svelte-bclnsw::after{display:block;content:'';height:var(--header-height);width:var(--padding);background-color:var(--background)}.scrollbar.svelte-bclnsw.svelte-bclnsw{position:absolute;top:var(--s50px);right:0}.scroll.svelte-bclnsw.svelte-bclnsw{position:absolute;overflow:hidden;top:var(--s20px);right:var(--s-3_75px);width:var(--s7_5px);border-radius:var(--s7_5px);opacity:0.5;background-color:rgba(0,0,0,0.4)}",
       map: null
     };
     Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -74631,20 +75548,21 @@ var init_index_svelte = __esm({
         $$bindings.columnData(columnData);
       $$result.css.add(css4);
       $$unsubscribe__lang();
-      return `<div class="${"columns svelte-17yutfo"}"${add_attribute("this", columnsElement, 0)}><ul class="${"svelte-17yutfo"}"><li class="${"spacer svelte-17yutfo"}" style="${"--background: var(--theme-columns-0);"}"></li>
+      return `<div class="${"columns svelte-bclnsw"}"${add_attribute("this", columnsElement, 0)}><ul class="${"svelte-bclnsw"}"><li class="${"spacer svelte-bclnsw"}" style="${"--background: var(--theme-columns-0);"}"></li>
         ${each(COLUMNS, (column, _i) => {
-        return `<li class="${"svelte-17yutfo"}"><div class="${"column svelte-17yutfo"}"><div style="${"background-color: #e6e6e6;"}"><div class="${"header _clickable svelte-17yutfo"}" style="${"background-color: var(--theme-columns-" + escape(_i + 1) + "); top: " + escape(_bounceAnimation[_i]) + "px"}"><div class="${"svelte-17yutfo"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-17yutfo"}"></i>
-                            <span class="${"svelte-17yutfo"}">${validate_component(Font, "Font").$$render($$result, { group: 2, remSize: 1 }, {}, {
+        return `<li class="${"svelte-bclnsw"}"><div class="${"column svelte-bclnsw"}"><div style="${"background-color: #e6e6e6;"}"><div class="${"header _clickable svelte-bclnsw"}" style="${"background-color: var(--theme-columns-" + escape(_i + 1) + "); top: " + escape(_bounceAnimation[_i]) + "px"}"><div class="${"svelte-bclnsw"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-bclnsw"}"></i>
+                            <span class="${"svelte-bclnsw"}">${validate_component(Font, "Font").$$render($$result, { group: 2, remSize: 1 }, {}, {
           default: () => {
             return `${escape(column.title[$_lang])}
                                 `;
           }
         })}
                             </span></div>
-                        <div class="${"svelte-17yutfo"}"><i class="${"fa-solid fa-add svelte-17yutfo"}"></i></div>
+                        <div class="${"svelte-bclnsw"}"><div class="${"icon-button svelte-bclnsw"}"><i class="${"fa-solid fa-add"}"></i>
+                            </div></div>
                     </div></div>
-                <div class="${"cards svelte-17yutfo"}">${each(columnData[_i], (item, _i2) => {
-          return `<div class="${"card_c svelte-17yutfo"}">${item ? `${validate_component(COMPONENTS[column.type] || missing_component, "svelte:component").$$render($$result, { data: item }, {}, {})}` : `${validate_component(Card, "Card").$$render($$result, {}, {}, {
+                <div class="${"cards svelte-bclnsw"}">${each(columnData[_i], (item, _i2) => {
+          return `<div class="${"card_c svelte-bclnsw"}">${item ? `${validate_component(COMPONENTS[column.type] || missing_component, "svelte:component").$$render($$result, { data: item }, {}, {})}` : `${validate_component(Card, "Card").$$render($$result, {}, {}, {
             default: () => {
               return `<div style="${"height: " + escape(column.height) + ";"}"></div>
                         `;
@@ -74652,11 +75570,11 @@ var init_index_svelte = __esm({
           })}`}
                     </div>`;
         })}</div>
-                <div class="${"scrollbar svelte-17yutfo"}"><div class="${"scroll svelte-17yutfo"}" style="${"top: " + escape(vScroll[_i]) + "px; opacity: " + escape(_vScrollAnimation[_i]) + "; height: " + escape(_vScrollAnimation[_i] * 25) + "px"}"></div>
+                <div class="${"scrollbar svelte-bclnsw"}"><div class="${"scroll svelte-bclnsw"}" style="${"top: " + escape(vScroll[_i]) + "px; opacity: " + escape(_vScrollAnimation[_i]) + "; height: " + escape(_vScrollAnimation[_i] * 25) + "px"}"></div>
                 </div></div>
         </li>`;
       })}
-        <li class="${"spacer svelte-17yutfo"}" style="${"--background: var(--theme-columns-" + escape(COLUMN_COUNT - 1) + ");"}"></li></ul>
+        <li class="${"spacer svelte-bclnsw"}" style="${"--background: var(--theme-columns-" + escape(COLUMN_COUNT - 1) + ");"}"></li></ul>
 </div>`;
     });
   }
@@ -74677,9 +75595,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-ce538746.js";
-    js3 = ["pages/index.svelte-ce538746.js", "chunks/index-27e5ea2d.js", "chunks/index-d2d64b3f.js", "chunks/index-d8b95b2e.js"];
-    css5 = ["assets/pages/index.svelte-9e832537.css"];
+    entry3 = "pages/index.svelte-580dd764.js";
+    js3 = ["pages/index.svelte-580dd764.js", "chunks/index-721e7700.js", "chunks/index-3c815786.js", "chunks/index-cfad40b5.js"];
+    css5 = ["assets/pages/index.svelte-d3de5655.css"];
   }
 });
 
@@ -74692,7 +75610,7 @@ var get;
 var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
-    init_columns_config_5985d0e3();
+    init_columns_config_679680cb();
     init_dist2();
     init_dist3();
     get = async () => {
@@ -77020,7 +77938,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-351eebee.js", "js": ["start-351eebee.js", "chunks/index-27e5ea2d.js", "chunks/index-d8b95b2e.js"], "css": [] },
+    entry: { "file": "start-88c0710e.js", "js": ["start-88c0710e.js", "chunks/index-721e7700.js", "chunks/index-cfad40b5.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
