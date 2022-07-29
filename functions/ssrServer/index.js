@@ -75258,7 +75258,7 @@ var index_svelte_exports = {};
 __export(index_svelte_exports, {
   default: () => Routes
 });
-var import_chroma_js3, css$22, Card, strings$1, Date_1, strings2, Preview, css$12, Bulletin, css4, Routes;
+var import_chroma_js3, css$32, Card, strings$1, Date_1, strings2, css$22, Preview, css$12, Bulletin, css4, Routes;
 var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
@@ -75271,12 +75271,12 @@ var init_index_svelte = __esm({
     init_dist();
     import_chroma_js3 = __toESM(require_chroma(), 1);
     Array(COLUMN_COUNT).fill(0);
-    css$22 = {
+    css$32 = {
       code: ".card.svelte-9udy6e{width:100%;border-radius:var(--s3px);background-color:white;padding:var(--s10px)}",
       map: null
     };
     Card = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css$22);
+      $$result.css.add(css$32);
       return `<div class="${"card svelte-9udy6e"}">${slots.default ? slots.default({}) : ``}
 </div>`;
     });
@@ -75430,6 +75430,10 @@ var init_index_svelte = __esm({
         "\u0BAE\u0BC7\u0BB2\u0BC1\u0BAE\u0BCD \u0BAA\u0B9F\u0BBF\u0B95\u0BCD\u0B95"
       ]
     };
+    css$22 = {
+      code: ".image.svelte-15qqizp{background-image:var(--url);background-color:#cccccc;height:200px;width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;margin-top:5px}",
+      map: null
+    };
     Preview = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $_lang, $$unsubscribe__lang;
       $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
@@ -75437,24 +75441,28 @@ var init_index_svelte = __esm({
       let { limit: limit2 } = $$props;
       let { preview } = $$props;
       let text, croppedText, croppedFlag;
+      let images = data[0].match(/src="([\w\W]+?)"/g);
+      if (images) {
+        images = images.map((src, _i) => {
+          return src.replace('src="', "").replace('"', "").replace("&amp;", "&");
+        });
+      }
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
       if ($$props.limit === void 0 && $$bindings.limit && limit2 !== void 0)
         $$bindings.limit(limit2);
       if ($$props.preview === void 0 && $$bindings.preview && preview !== void 0)
         $$bindings.preview(preview);
-      {
-        {
-          text = ue(data[$_lang]).result;
-          croppedText = text.substring(0, limit2);
-          croppedFlag = text.length > limit2 || data[$_lang].includes("img");
-          if (croppedFlag)
-            text += "...";
-        }
-      }
+      $$result.css.add(css$22);
+      text = ue(data[$_lang]).result;
+      croppedText = text.substring(0, limit2);
+      croppedFlag = text.length > limit2 || images;
+      croppedText += croppedFlag ? "..." : "";
       $$unsubscribe__lang();
       return `<div>${!preview ? `<!-- HTML_TAG_START -->${data[$_lang]}<!-- HTML_TAG_END -->` : `${escape(croppedText)}
-        ${croppedFlag ? `<span style="${"font-weight:bold; text-decoration:underline"}">${escape(strings2["read_more"][$_lang])}</span>` : ``}`}</div>`;
+        ${croppedFlag ? `<span style="${"font-weight:bold; text-decoration:underline"}">${escape(strings2["read_more"][$_lang])}</span>
+            ${images ? `<div class="${"image svelte-15qqizp"}" style="${"--url: url(" + escape(images[0]) + ")"}"></div>` : ``}` : ``}`}
+</div>`;
     });
     css$12 = {
       code: ".timestamp.svelte-wo51nv{color:rgb(100, 99, 99)}.title.svelte-wo51nv{font-weight:bold;padding:var(--s5px) 0 0 0}.author.svelte-wo51nv{margin:0;color:rgb(55, 55, 55)}.description.svelte-wo51nv{padding:var(--s7px) 0;color:rgb(57, 56, 56)}.description img{width:100%;border-radius:3px}",
@@ -75595,9 +75603,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-580dd764.js";
-    js3 = ["pages/index.svelte-580dd764.js", "chunks/index-721e7700.js", "chunks/index-3c815786.js", "chunks/index-cfad40b5.js"];
-    css5 = ["assets/pages/index.svelte-d3de5655.css"];
+    entry3 = "pages/index.svelte-2d758e22.js";
+    js3 = ["pages/index.svelte-2d758e22.js", "chunks/index-721e7700.js", "chunks/index-3c815786.js", "chunks/index-cfad40b5.js"];
+    css5 = ["assets/pages/index.svelte-0afd858b.css"];
   }
 });
 
@@ -77938,7 +77946,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-88c0710e.js", "js": ["start-88c0710e.js", "chunks/index-721e7700.js", "chunks/index-cfad40b5.js"], "css": [] },
+    entry: { "file": "start-ae67ebd9.js", "js": ["start-ae67ebd9.js", "chunks/index-721e7700.js", "chunks/index-cfad40b5.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

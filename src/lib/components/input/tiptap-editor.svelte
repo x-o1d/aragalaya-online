@@ -60,6 +60,9 @@
             onTransaction: () => {
                 // force re-render so `editor.isActive` works as expected
                 editor = editor;
+                if(element.innerHTML.includes('is-empty')) {
+                    console.log(editor.getHTML());
+                }
                 data[config.name] = element.innerHTML.includes('is-empty')?
                     '': editor.getHTML();
             },

@@ -10,7 +10,7 @@ import {
 } from "firebase/auth";
 import { app } from './firebase';
 
-import { _createUserRecord, _getUserRecord } from '$lib/services/database';
+import { _createUserRecord, _getUserRecord, _createError } from '$lib/services/database';
 import { _emitEvent } from '$lib/services/events';
 
 const auth = getAuth(app);
@@ -20,14 +20,19 @@ let user;
 
 onAuthStateChanged(auth, async (authUser) => {
     if (authUser) {
-        user = await _getUserRecord(authUser.uid);
-        if(!user) {
-            console.log('no user record for', authUser);
+        if(authUser.reloadUserInfo.passwordHash === 'UkVEQUNURUQ=') {
+            console.log('user has not set a password: mock account');
+            user = null;
         } else {
-            _emitEvent('user-ready', user);
+            user = await _getUserRecord(authUser.uid);
+            if(!user) {
+                console.log('no user: improper or incomplete signup');
+            } else {
+                _emitEvent('user-ready', user);
+            }
         }
     } else {
-        console.log('sign in failed');
+        console.log('user nor signed in');
     }
 });
 
@@ -45,25 +50,16 @@ export const _facebookSignin = () => {
     
     signInWithPopup(auth, provider)
     .then((result) => {
-        // The signed-in user info.
         const user = result.user;
 
-        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
         const credential = FacebookAuthProvider.credentialFromResult(result);
         const accessToken = credential.accessToken;
 
         // ...
     })
     .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = FacebookAuthProvider.credentialFromError(error);
-
-        // ...
+        error.credential = FacebookAuthProvider.credentialFromError(error);
+        _createError(error, 'authService::_facebookSignin')
     });
 }
 
@@ -102,6 +98,9 @@ export const _emailSignin = (email, password) => new Promise((resolve) => {
         resolve({user});
     })
     .catch((error) => {
+        if(error.code !== 'auth/email-already-in-use') {
+            _createError(error, 'authService::_emailSignup');
+        }
         resolve({
             error: error.code,
             message: error.message
@@ -129,7 +128,7 @@ export const _changePassword = (newPassword, name, email) => new Promise((resolv
         resolve({user});
     })
     .catch((error) => { 
-        console.log(error);
+        _createError(error, 'authService::_changePassword');
         resolve({
             error: error.code,
             message: error.message

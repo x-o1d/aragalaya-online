@@ -25,6 +25,7 @@ export const _createError = async (error, caller) => {
             console.error(caller, error);
             return;
         } else {
+            console.error(caller, error);
             const docRef = await addDoc(collection(db, 'Errors'), {
                 message: error.message,
                 code: error.code,
@@ -53,7 +54,7 @@ export const _getPosts = async (type) => {
         });
         return items;
     } catch (error) {
-        createError(error, 'DBService:getBulletins');
+        _createError(error, 'DBService:getBulletins');
         return [];
     }
 }
@@ -67,7 +68,7 @@ export const _createUserRecord = async (user) => {
         await setDoc(docRef, user);
         return {user};
     } catch (error) {
-        createError(error, 'DBService:createUserRecord');
+        _createError(error, 'DBService:createUserRecord');
     }
 }
 
@@ -76,6 +77,6 @@ export const _getUserRecord = async (uid) => {
         const docRef = doc(collection(db, 'Users'), uid);
         return (await getDoc(docRef)).data();
     } catch (error) {
-        createError(error, 'DBService:getUserRecord');
+        _createError(error, 'DBService:getUserRecord');
     }
 }
