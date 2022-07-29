@@ -17,27 +17,36 @@
         class='_clickable'
         on:click={() => (minimized = !minimized)}>
         <div class="timestamp">
-            <Date date={data.createdOn}/>
+            <Font
+                group={0}
+                remSize={0.75}>
+                <Date date={data.createdOn}/>
+            </Font>
         </div>
         <div class="title">
             <Font 
                 group={1}
-                remSize={1.4}>
+                remSize={1.25}>
                 {data.title[$_lang]}
             </Font>
         </div>
         <div class="author">
             <Font 
                 group={3}
-                remSize={0.9}>
+                remSize={0.75}>
                 {data.createdByName}
             </Font>
         </div>
         <div class="description">
-            <Preview
-                data={data.description}
-                limit={150}
-                preview={minimized}/>
+            <Font
+                group={0}
+                remSize={0.9}>
+                <Preview
+                    data={data.description}
+                    limit={100}
+                    preview={minimized}/>
+            </Font>
+            
         </div>
     </div>
 </Card>
@@ -45,24 +54,22 @@
 
 <style>
     .timestamp {
-        font-size: 0.9rem;
         color: rgb(100, 99, 99);
     }
     .title {
-        font-size: 1.5rem;
         font-weight: bold;
-        padding: var(--s7px) 0 0 0;
-        letter-spacing: -0.016rem;
+        padding: var(--s5px) 0 0 0;
+        /* TODO: set letter spacing variable for different fonts */
+        /* letter-spacing: -1px; */
     }
     .author {
-        padding: 0 0 var(--s7px) 0;
+        margin: 0;
         color: rgb(55, 55, 55);
     }
     .description {
-        font-size: 1rem;
         padding: var(--s7px) 0;
         color: rgb(57, 56, 56);
-        letter-spacing: 0px;
+        /* letter-spacing: -0.0px; */
     }
     :global(.description img) {
         width: 100%;

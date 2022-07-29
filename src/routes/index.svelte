@@ -8,7 +8,7 @@
     import { _registerEvent, _emitEvent } from '$lib/services/events';
     import { _lang } from '$lib/services/store';
     import { _userSignedIn } from '$lib/services/auth';
-    import { _themes, _current } from '$lib/services/theme';
+    import { _themes } from '$lib/services/theme';
 
     import { handleHorizontalScroll, handleVerticalScroll } from '$lib/utils/scroll';
 
@@ -16,7 +16,6 @@
     import Card from '$lib/components/util/card.svelte';
     import bulletin from './_components/posts/bulletin.svelte';
     
-
     // the component of the card to be loaded for a particular column
     // [columnType]: component
     // refer: comments in columns.js config file
@@ -84,7 +83,7 @@
         hScroll.set(v);
         // emit the h-scroll event to trigger the corresponding
         // animation in the navigation bar
-        events.emit('h-scroll', v);
+        _emitEvent('h-scroll', v);
     }
 
     // header bounce animation on navigation click
@@ -145,10 +144,10 @@
 
     // header + icon click event
     const addDocument = (event, index) => {
-        if(userSignedIn()) {
-            events.emit('show-add-document-form', {columnIndex: index});
+        if(_userSignedIn()) {
+            _emitEvent('show-add-document-form', {columnIndex: index});
         } else {
-            events.emit('show-hide-login', true);
+            _emitEvent('show-hide-login', true);
         }
     }
 
@@ -156,7 +155,6 @@
 
 <div 
     class="columns"
-    style="--background: {_themes[$_current].columnBackground}"
     bind:this={columnsElement}
     on:wheel|stopPropagation={(e) => {
         handleHorizontalScroll(e, hScrollIndex, setHorizontalScroll)
@@ -164,7 +162,7 @@
 	<ul>
         <li 
             class="spacer"
-            style="--background: {_themes[$_current].columns[0]}">
+            style="--background: var(--theme-columns-0);">
         </li>
         {#each COLUMNS as column, _i}
         <li>
@@ -174,14 +172,14 @@
                         class="header _clickable"
                         on:click={() => _emitEvent('nav-click', _i)}
                         style="
-                            background-color: {_themes[$_current].columns[_i+1]};
+                            background-color: var(--theme-columns-{_i+1});
                             top: {_bounceAnimation[_i]}px">
                         <div>
                             <i class="{column.icon}"></i>
                             <span>
                                 <Font 
                                     group={2}
-                                    remSize={1.1}>
+                                    remSize={1}>
                                     {column.title[$_lang]}
                                 </Font>
                             </span>
@@ -224,7 +222,7 @@
         {/each}
         <li 
             class="spacer"
-            style="--background: {_themes[$_current].columns[COLUMN_COUNT - 1]}">
+            style="--background: var(--theme-columns-{COLUMN_COUNT-1});">
         </li>
 	</ul>
 </div>
@@ -247,7 +245,7 @@
         --color: white;
         --padding: var(--s6px);
         overflow: hidden;
-        background-color: var(--background);
+        background-color: var(--theme-columnbackground);
     }
     .column {
         position: relative;

@@ -3,7 +3,7 @@
 
 	import { _lang } from '$lib/services/store';
 	import { _registerEvent, _emitEvent } from '$lib/services/events';
-	import { _themes, _current, _fontGroups, _fontSizes } from '$lib/services/theme';
+	import { _themes, _fontGroups, _fontSizes } from '$lib/services/theme';
 
 	import Login from './_components/fixed/login.svelte';
 	import Form from './_components/fixed/form.svelte';
@@ -11,29 +11,40 @@
 
 	import ThemeSelector from '$lib/components/util/theme-selector.svelte';
 
-	let cssReady = false;
-	let userReady = false;
+    // listen to if the user is signed in
+    const userReady = _registerEvent('user-ready');
+	$: user = $userReady;
 
-    // TODO: try automatic subscriptions
-	const userReadyEvent =_registerEvent('user-ready').subscribe(() => (userReady = true));
-    // clear subscription
-    onDestroy(() => {
-        userReadyEvent.unsubscribe();
-    })
+    // // TODO: try automatic subscriptions
+	// const userReadyEvent =_registerEvent('user-ready').subscribe(() => (userReady = true));
+    // // clear subscription
+    // onDestroy(() => {
+    //     userReadyEvent.unsubscribe();
+    // })
 
-	// listen to language changes and set root font-family and font sizes.
-	// fonts in different languages have different display sizes for the 
-	// same pixel value.
-	// this is managed by setting a correction font size on the root element
-	// and using rem font sizes throughout the app.
+	// set all the theme variables as css variables
+    // refer theme.js comments
+    const setThemeProps = (object, styleName) => {
+        Object.keys(object).map(prop => {
+            const newStyleName = styleName + '-' + prop.toLowerCase();
+            if(typeof object[prop] == 'string') {
+                document.documentElement.style.setProperty(newStyleName, object[prop]);
+            } else {
+                setThemeProps(object[prop], newStyleName);
+            }
+        })
+    }
+    // set default theme color properties
 	onMount(() => {
-		_lang.subscribe((v) => {
-			document.documentElement.style
-				.setProperty('--lang-font', _fontGroups[0][v]);
-			document.documentElement.style
-				.setProperty('--lang-font-size', (_fontSizes[0][v]/window.devicePixelRatio) + 'px');
-		});
+        setThemeProps(_themes[0], '--theme');
 	})
+    // set theme color properties on theme change
+    const themeChangedEvent = _registerEvent('theme-changed').subscribe(value => {
+        setThemeProps(_themes[value], '--theme');
+    })
+    onDestroy(() => {
+        themeChangedEvent.unsubscribe();
+    })
 
 	// in css throughout the app var(--s(n)px) values are automatically 
 	// scaled as per the device pixel ratio.
@@ -64,9 +75,7 @@
 			const cssVal = p/window.devicePixelRatio + 'px';
 			document.documentElement.style.setProperty(cssVar, cssVal);
 		})
-		cssReady = true;
 	});
-    console.log(_themes);
 </script>
 
 <!-- Login, Form and Nav are fixed overlay components -->
@@ -75,20 +84,8 @@
 <Form/>
 <Nav/>
 
-{#if cssReady}
 <div 
-	class="header"
-    style="
-            background-color: {_themes[$_current].headerBackground};
-            --theme-1: {_themes[$_current].navigation[0]};
-            --theme-2: {_themes[$_current].navigation[1]};
-            --theme-3: {_themes[$_current].navigation[2]};
-            --theme-4: {_themes[$_current].navigation[3]};
-            --theme-5: {_themes[$_current].navigation[4]};
-            --theme-6: {_themes[$_current].navigation[5]};
-            --theme-7: {_themes[$_current].navigation[6]};
-            --theme-button: {_themes[$_current].button}
-            --theme-button-darker: {_themes[$_current].button}">
+	class="header">
 	<div class="logo">
 		<div class="aragalaya">
 			අරගලය
@@ -110,7 +107,7 @@
 		<li 
 			on:click={() => _emitEvent('show-hide-login', true)}
 			class="login">
-			{#if !userReady}
+			{#if !user}
 			<i class="fa-solid fa-user-astronaut"></i>
 			{:else}
 			<i class="fa-solid fa-user-nurse"></i>
@@ -126,13 +123,10 @@
 	<slot />
 </main>
 
-{/if}
-
 <style>
 
 	:global(html) {
-		font-family: var(--lang-font);
-		font-size: var(--lang-font-size);
+		font-family: 'Roboto', sans-serif;
 	}
 
 	:global(body) {
@@ -185,6 +179,7 @@
 		transition: transform 0.2s;
 		user-select: none;
 		padding: 0;
+        background-color: var(--theme-header-background);
 	}
 
 	.logo {
@@ -222,6 +217,9 @@
 		font-size: var(--s21px);
 		margin-right: var(--s5px);
 	}
+    .fa-user-nurse {
+        color: green;
+    }
 	.header-right li {
 		cursor: pointer;
 	}

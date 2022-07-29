@@ -1,8 +1,10 @@
 <script>
-    import { _themes, _current } from '$lib/services/theme';
+    import { _themes } from '$lib/services/theme';
+    import { _registerEvent, _emitEvent } from '$lib/services/events';
 
     let themeSelect;
     let themePanel;
+    let currentTheme = 0;
 
     let showPanel = false;
 
@@ -18,7 +20,7 @@
     }
 
     const selectTheme = (index) => {
-        _current.set(index);
+        _emitEvent('theme-changed', index);
         showPanel = false;
     }
 </script>
@@ -27,10 +29,10 @@
     bind:this={themeSelect}
     on:click={togglePanel}
     style="
-        --theme-1: {_themes[$_current].columns[0]};
-        --theme-2: {_themes[$_current].columns[2]};
-        --theme-3: {_themes[$_current].columns[4]};
-        --theme-4: {_themes[$_current].columns[6]};">
+        --theme-1: var(--theme-columns-0);
+        --theme-2: var(--theme-columns-2);
+        --theme-3: var(--theme-columns-4);
+        --theme-4: var(--theme-columns-6);">
 </div>
 
 <span 
@@ -38,7 +40,7 @@
     style="display: {showPanel? 'block': 'none'};">
 
     {#each _themes as theme, _i}
-    {#if (_i != $_current)}
+    {#if (_i != currentTheme)}
     <div 
         on:click={() => selectTheme(_i)}
         style="

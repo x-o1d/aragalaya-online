@@ -1,4 +1,4 @@
-import { COLUMNS, COLUMN_COUNT } from '$lib/config/columns-config'
+import { COLUMN_COUNT } from '$lib/config/columns-config'
 import { _emitEvent }from '$lib/services/events';
 
 

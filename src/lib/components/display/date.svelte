@@ -3,6 +3,7 @@
     import _strings from './date-strings';
 
     export let date;
+    export let inline;
 
     const MONTH_NAMES = [
         ['ජනවාරි', 'January', 'ஜனவரி'],
@@ -80,6 +81,8 @@
 
 </script>
 
-<div class="timestamp">
+<div 
+    class="timestamp"
+    style="display: {inline? 'inline-block': 'block'}">
     {timeAgoString}
 </div>

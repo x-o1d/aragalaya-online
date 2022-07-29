@@ -41,22 +41,25 @@ export const _fontGroups = [
 
 // different fonts for the three languages doesn't always 
 // have the same perceived height for the same pixel value.
-// each value in a row sets a relative size for a language within a group
-// the default value is 16.
-// within the code the value is speified in rem, typically between 0.9rem 1.5rem (titles)
+// each value in a row sets a relative size for a language within a group.
+// since english fonts are more standard, the second column of this array 
+// should always be fixed at 1.
+// column one and two can be adjusted to make the sinhala and tamil fonts 
+// within a font group to have a similar display height.
 export const _fontSizes = [
-    [15, 13, 13],
-    [11, 13, 13],
-    [12, 13, 13],
-    [12, 12, 12],
+    [1.2, 1, 1.0],
+    [0.8, 1, 1.0],
+    [0.9, 1, 1.0],
+    [1.0, 1, 1.0],
 ];
 
 // each element in the pallette specifies a set of colors to be used in
 // a theme
+// first element (index 0) is the default theme
 const pallettes = [
+    ['#274654', '#299d8f', '#e9c46a', '#f4a261', '#e76f51'],
     ['#9A031A', '#e26413', '#fb8b24', '#0f4C5C', '#5f0f41'],
     ['#E63A46', '#e12f7d', '#bf47af', '#7f63d1', '#0076dc'],
-    ['#274654', '#299d8f', '#e9c46a', '#f4a261', '#e76f51'],
     ['#E96491', '#bd629f', '#8b629f', '#5d5e90', '#3c5576'],
     ['#fffe00', '#85e757', '#00c484', '#009b95', '#007184'],
     ['#6f3cb1', '#ca369c', '#ff537c', '#ff885f', '#ffc154'],
@@ -64,15 +67,18 @@ const pallettes = [
 
 // ** END - style configuration
 
-// _current variable holds the current theme index
-export const _current = writable(2); 
-
-// themes contains a theme object per pallette item
-// it constructs various color options based on the colors
-// colors specified in the pallette
-// the current theme object can be referred inside components using
-// import { _themes, _current } from '$lib/services/theme';
-// let currentTheme = themes[$current];
+// _themes contains a theme object per pallette item.
+// it constructs various color options based on the
+// colors specified in the pallette.
+//
+// current theme colors are available as css properties throughout
+// the app. (set in __layout.svelte line 25)
+// NOTATION: --theme-[propertyName.toLowerCase()]-[index]
+//
+// EXAMPLES:
+// headerBackground -> var(--theme-headerbackground)
+// columns[0] -> var(--theme-columns-0)
+// navigation[6] -> var(--theme-navigation-6)
 export const _themes = pallettes.map((pallette, i) => { 
 
     // convert the pallette colors to an lch scale

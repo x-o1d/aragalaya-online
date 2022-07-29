@@ -22,6 +22,7 @@
     import { _lang } from '$lib/services/store';
 
     import Progress from '$lib/components/util/progress.svelte';
+    import Font from '$lib/components/display/font.svelte';
 
     export let placeholder;
     export let data;
@@ -100,8 +101,8 @@
     bind:this={fileSelector}>
 <!-- toolbar items -->
 <button
-    on:click={() => editor.chain().focus().toggleHeading({ level: 2}).run()}
-    class:active={editor.isActive('heading', { level: 2 })}
+    on:click={() => editor.chain().focus().toggleHeading({ level: 3}).run()}
+    class:active={editor.isActive('heading', { level: 3 })}
     disabled={editorDisabled}>
     <i class="fa-solid fa-heading"></i>
 </button>
@@ -148,9 +149,14 @@
 {/if}
   
 <div class='editor-container'>
-    <div 
+    <Font
+        group={3}
+        remSize={0.8}>
+        <div 
         class={error? 'editable error': 'editable'}
         bind:this={element}/>
+    </Font>
+    
     {#if editorDisabled}
     <div class='editor-mask'>
         <Progress delay={200}/>
@@ -186,7 +192,7 @@
         border-radius: var(--s5px);
         background-color: white;
         border: var(--s1px) solid var(--button);
-        padding: var(--s5px);
+        padding: var(--s10px);
     }
     :global(.error > .ProseMirror) {
         border: var(--s2px) solid #c02e46;

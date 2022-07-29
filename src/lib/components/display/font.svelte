@@ -4,21 +4,20 @@
 
     export let group;
     export let remSize;
+    export let inline;
 
-    // reactive declaration is neccesary because the reactive variable is 
-    // used as an index $_lang
-    // more info in the preview component
-    $: rootFontSize = _fontSizes[group][$_lang];
+    // reactive declaration ($:) is neccesary to maintain reactivity
+    // when there is an automatically subscribed variable in the 
+    // expression ($_lang)
+    $: fontSize = _fontSizes[group][$_lang]*remSize*16;
     $: font = _fontGroups[group][$_lang];
 
 </script>
 
-<span style="font-size: {rootFontSize}px">
-    <span style="
-        font-family: {font};
-        font-size: {remSize}em">
-        <slot/>
-    </span>
-</span>
-
+<div style="
+    font-family: {font};
+    font-size: {fontSize}px;
+    display: {inline? 'inline-block': 'block'}">
+    <slot/>
+</div>
 
