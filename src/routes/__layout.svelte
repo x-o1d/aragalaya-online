@@ -4,6 +4,7 @@
 	import { _lang } from '$lib/services/store';
 	import { _registerEvent, _emitEvent } from '$lib/services/events';
 	import { _themes, _fontGroups, _fontSizes } from '$lib/services/theme';
+    import { _setUserTheme } from '$lib/services/database';
 
 	import Login from './_components/fixed/login.svelte';
 	import Form from './_components/fixed/form.svelte';
@@ -41,10 +42,13 @@
     // set theme color properties on theme change
     const themeChangedEvent = _registerEvent('theme-changed').subscribe(value => {
         setThemeProps(_themes[value], '--theme');
+        if(user) {
+            console.log(user);
+            _setUserTheme(user, value);
+        }
     })
-    onDestroy(() => {
-        themeChangedEvent.unsubscribe();
-    })
+    // clear subscription
+    onDestroy(() => themeChangedEvent.unsubscribe());
 
 	// in css throughout the app var(--s(n)px) values are automatically 
 	// scaled as per the device pixel ratio.

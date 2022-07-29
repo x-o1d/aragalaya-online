@@ -19,22 +19,18 @@ const auth = getAuth(app);
 let user;
 
 onAuthStateChanged(auth, async (authUser) => {
+    console.log(authUser);
     if (authUser) {
-        if(authUser.reloadUserInfo.passwordHash === 'UkVEQUNURUQ=') {
-            console.log('user has not set a password: mock account');
-            user = null;
+        if((user && (user.uid != authUser.uid)) || !user) {
+            user = await _getUserRecord(authUser.uid);
+        }
+        if(!user) {
+            _createError({
+                error: 'invalid-user',
+                authUser
+            }, 'authService::onAuthStateChanged');
         } else {
-            if(user && user.uid != authUser.uid) {
-                user = await _getUserRecord(authUser.uid);
-            }
-            if(!user) {
-                _createError({
-                    error: 'invalid-user',
-                    authUser
-                }, 'authService::onAuthStateChanged');
-            } else {
-                _emitEvent('user-ready', user);
-            }
+            _emitEvent('user-ready', user);
         }
     } else {
         console.log('user not signed in');

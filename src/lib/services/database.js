@@ -72,6 +72,18 @@ export const _createUserRecord = async (user) => {
     }
 }
 
+export const _setUserTheme = async (user, theme) => {
+    try {
+        const docRef = doc(collection(db, 'Users'), user.uid);
+        // as convention, the id of the document is added to 
+        // the document in all documents
+        const result = await updateDoc(docRef, {theme});
+        return result;
+    } catch (error) {
+        _createError(error, 'DBService:createUserRecord');
+    }
+}
+
 export const _getUserRecord = async (uid) => {
     try {
         const docRef = doc(collection(db, 'Users'), uid);

@@ -5,13 +5,13 @@
     export let disabled;
     export let config;
     export let data;
-    export let onchange;
 
     export let error;
     
 </script>
 
 <div class="text-input">
+    <!-- type='password' cannot be dynamically sey -->
     {#if config.type !== 'password'}
     <input 
         type="text"

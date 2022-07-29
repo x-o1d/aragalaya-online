@@ -54352,7 +54352,7 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/index-e44a49b5.js
+// .svelte-kit/output/server/chunks/index-1bbb55a2.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -54503,8 +54503,8 @@ function tweened(value, defaults = {}) {
   };
 }
 var import_rxjs, import_chroma_js, subscriber_queue2, _lang, events, _emitEvent, _registerEvent, _fontGroups, _fontSizes, pallettes, _themes, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, Font;
-var init_index_e44a49b5 = __esm({
-  ".svelte-kit/output/server/chunks/index-e44a49b5.js"() {
+var init_index_1bbb55a2 = __esm({
+  ".svelte-kit/output/server/chunks/index-1bbb55a2.js"() {
     init_shims();
     init_dist();
     init_columns_config_33db9e1d();
@@ -54588,51 +54588,60 @@ var init_index_e44a49b5 = __esm({
           console.log("user has not set a password: mock account");
           user = null;
         } else {
-          user = await _getUserRecord(authUser.uid);
+          if (user && user.uid != authUser.uid) {
+            user = await _getUserRecord(authUser.uid);
+          }
           if (!user) {
-            console.log("no user: improper or incomplete signup");
+            _createError2({
+              error: "invalid-user",
+              authUser
+            }, "authService::onAuthStateChanged");
           } else {
             _emitEvent("user-ready", user);
           }
         }
       } else {
-        console.log("user nor signed in");
+        console.log("user not signed in");
       }
     });
     _userSignedIn = () => {
       let authUser = getAuth2().currentUser;
       return authUser && user && authUser.uid == user.uid && user;
     };
-    _emailSignup = (email, password) => new Promise((resolve2) => {
-      createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
-        let authUser = userCredential.user;
-        sendEmailVerification(authUser);
-        resolve2({ authUser });
-      }).catch((error2) => {
-        resolve2({
-          error: error2.code,
-          message: error2.message
-        });
-      });
-    });
-    _emailSignin = (email, password) => new Promise((resolve2) => {
-      signInWithEmailAndPassword(auth, email, password).then(async (userCredential) => {
-        let authUser = userCredential.user;
-        user = await _getUserRecord(authUser.uid);
-        resolve2({ user });
-      }).catch((error2) => {
-        if (error2.code !== "auth/email-already-in-use") {
-          _createError2(error2, "authService::_emailSignup");
+    _emailSignup = (email, password) => new Promise(async (resolve2) => {
+      try {
+        const result = await createUserWithEmailAndPassword(auth, email, password);
+        const authUser = result.user;
+        if (authUser) {
+          await sendEmailVerification(authUser);
+          resolve2({ authUser });
         }
-        resolve2({
-          error: error2.code,
-          message: error2.message
-        });
-      });
+      } catch (error2) {
+        if (error2.code == "auth/email-already-in-use") {
+          resolve2(error2);
+          return;
+        }
+        _createError2(error2, "authService::_emailSignup");
+      }
     });
-    _changePassword = (newPassword, name7, email) => new Promise((resolve2) => {
-      let authUser = getAuth2().currentUser;
-      updatePassword(authUser, newPassword).then(async () => {
+    _emailSignin = (email, password) => new Promise(async (resolve2) => {
+      try {
+        let result = await signInWithEmailAndPassword(auth, email, password);
+        if (!(user && (user.uid && result.user.uid))) {
+          user = await _getUserRecord(result.user.uid);
+        }
+        resolve2({ user });
+      } catch (error2) {
+        if (error2.code == "auth/wrong-password") {
+          resolve2(error2);
+          return;
+        }
+        _createError2(error2, "authService::_emailSignin");
+      }
+    });
+    _changePassword = (newPassword, name7, email) => new Promise(async (resolve2) => {
+      try {
+        let authUser = getAuth2().currentUser;
         user = await _createUserRecord({
           name: name7,
           email,
@@ -54640,14 +54649,11 @@ var init_index_e44a49b5 = __esm({
           language: 0,
           theme: 0
         });
-        resolve2({ user });
-      }).catch((error2) => {
-        _createError2(error2, "authService::_changePassword");
-        resolve2({
-          error: error2.code,
-          message: error2.message
-        });
-      });
+        let result = await updatePassword(authUser, newPassword);
+        resolve2(result);
+      } catch (error2) {
+        _createError2(error2);
+      }
     });
     Font = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let fontSize;
@@ -72665,7 +72671,7 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_cd57f8af();
-    init_index_e44a49b5();
+    init_index_1bbb55a2();
     init_columns_config_33db9e1d();
     init_dist4();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
@@ -72764,7 +72770,7 @@ var init_layout_svelte = __esm({
 </div>`;
     });
     css$7 = {
-      code: ".text-input.svelte-yzox37{width:90%}input.svelte-yzox37{height:var(--s45px);width:100%;border-radius:var(--s5px);padding:var(--s10px);border:var(--s1px) solid var(--theme-defaultbutton);font-size:1rem;font-family:inherit;margin-bottom:var(--s18px)}span.svelte-yzox37{color:red}.error.svelte-yzox37{border-width:2px;border-color:#c02e46}",
+      code: ".text-input.svelte-1keabnd{width:90%;margin-bottom:var(--s18px)}input.svelte-1keabnd{height:var(--s45px);width:100%;border-radius:var(--s5px);padding:var(--s10px);border:var(--s1px) solid var(--theme-defaultbutton);font-size:1rem;margin-bottom:3px}span.svelte-1keabnd{color:red}.error.svelte-1keabnd{border-width:2px;border-color:#c02e46}",
       map: null
     };
     Text_input = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -72773,6 +72779,7 @@ var init_layout_svelte = __esm({
       let { disabled } = $$props;
       let { config } = $$props;
       let { data } = $$props;
+      let { onchange } = $$props;
       let { error: error2 } = $$props;
       if ($$props.disabled === void 0 && $$bindings.disabled && disabled !== void 0)
         $$bindings.disabled(disabled);
@@ -72780,13 +72787,15 @@ var init_layout_svelte = __esm({
         $$bindings.config(config);
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
+      if ($$props.onchange === void 0 && $$bindings.onchange && onchange !== void 0)
+        $$bindings.onchange(onchange);
       if ($$props.error === void 0 && $$bindings.error && error2 !== void 0)
         $$bindings.error(error2);
       $$result.css.add(css$7);
       $$unsubscribe__lang();
-      return `<div class="${"text-input svelte-yzox37"}">${config.type !== "password" ? `<input type="${"text"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)} class="${["svelte-yzox37", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>` : `<input type="${"password"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)} class="${["svelte-yzox37", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>`}
+      return `<div class="${"text-input svelte-1keabnd"}">${config.type !== "password" ? `<input type="${"text"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["svelte-1keabnd", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>` : `<input type="${"password"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["svelte-1keabnd", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>`}
     
-    ${typeof error2 === "string" ? `<span class="${"svelte-yzox37"}">${validate_component(Font, "Font").$$render($$result, { group: 0, remSize: 1.3 }, {}, {
+    ${typeof error2 === "string" ? `<span class="${"svelte-1keabnd"}">${validate_component(Font, "Font").$$render($$result, { group: 0, remSize: 0.8 }, {}, {
         default: () => {
           return `${escape(error2)}`;
         }
@@ -72794,7 +72803,7 @@ var init_layout_svelte = __esm({
 </div>`;
     });
     css$6 = {
-      code: ".overlay.svelte-fgddm3{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;width:100vw;height:100vh;background-color:rgba(0,0,0,0.9)}.login_c.svelte-fgddm3{width:var(--s340px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c}.login.svelte-fgddm3{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s20px);width:100%;height:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}span.svelte-fgddm3{font-size:1.3rem;font-weight:bold;color:black;margin-bottom:var(--s20px)}.fb-button.svelte-fgddm3{display:flex;align-items:center;justify-content:center;height:var(--s45px);width:90%;border-radius:var(--s5px);padding:var(--s5px);background-color:var(--button);cursor:pointer;color:white;font-size:1.1rem;font-weight:bold;margin-bottom:var(--s14px);font-family:'Roboto', sans-serif;font-size:var(--s13px);background-color:#0a82ec}.or.svelte-fgddm3{font-size:1.2rem;color:#5c5c5c;margin-bottom:var(--s14px)}.fa-facebook-square.svelte-fgddm3{font-size:1.3rem;margin-right:var(--s10px)}",
+      code: ".overlay.svelte-m0p4w7{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;width:100vw;height:100vh;background-color:rgba(0,0,0,0.9)}.overlay.svelte-m0p4w7:hover{cursor:ne-resize}.login_c.svelte-m0p4w7{width:var(--s340px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c;cursor:auto}.login.svelte-m0p4w7{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s20px);width:100%;height:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}span.svelte-m0p4w7{font-size:1.3rem;font-weight:bold;color:black;margin-bottom:var(--s20px)}.fb-button.svelte-m0p4w7{display:flex;align-items:center;justify-content:center;height:var(--s45px);width:90%;border-radius:var(--s5px);padding:var(--s5px);background-color:var(--button);cursor:pointer;color:white;font-size:1.1rem;font-weight:bold;margin-bottom:var(--s14px);font-family:'Roboto', sans-serif;font-size:var(--s13px);background-color:#0a82ec}.or.svelte-m0p4w7{font-size:1.2rem;color:#5c5c5c;margin-bottom:var(--s14px)}.fa-facebook-square.svelte-m0p4w7{font-size:1.3rem;margin-right:var(--s10px)}",
       map: null
     };
     Login = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -72819,7 +72828,10 @@ var init_layout_svelte = __esm({
             emailError = false;
           }
           let result = await _emailSignup(user2.email, "CHECK_EMAIL_EXISTS");
-          if (result.error == "auth/email-already-in-use") {
+          if (result.authUser) {
+            user2.uid = result.authUser.uid;
+          }
+          if (result.code == "auth/email-already-in-use") {
             signinOrSignup = 1;
           } else {
             signinOrSignup = 2;
@@ -72834,6 +72846,10 @@ var init_layout_svelte = __esm({
             passwordError = false;
           }
           let result = await _emailSignin(user2.email, user2.password);
+          if (result.code === "auth/wrong-password") {
+            passwordError = true;
+            return;
+          }
           if (result.user) {
             showLogin = false;
             _emitEvent("user-ready", result.user);
@@ -72847,13 +72863,16 @@ var init_layout_svelte = __esm({
           } else {
             nameError = false;
           }
-          if (!user2.password || user2.password.length < 6) {
+          if (!user2.password) {
             passwordError = true;
+          } else if (user2.password.length < 6) {
+            passwordError = "should be atlest 6 characters";
           } else {
             passwordError = false;
           }
           if (user2.password != user2.repeatPassword && !passwordError) {
             repeatPasswordError = true;
+            passwordError = true;
           } else {
             repeatPasswordError = false;
           }
@@ -72861,9 +72880,9 @@ var init_layout_svelte = __esm({
             return;
           }
           let result = await _changePassword(user2.password, user2.name, user2.email);
-          if (result.user) {
+          if (!result) {
             showLogin = false;
-            _emitEvent("user-ready", result.user);
+            _emitEvent("user-ready", user2);
             reset();
           }
           return;
@@ -72871,11 +72890,14 @@ var init_layout_svelte = __esm({
       };
       const reset = () => {
         user2 = {};
+        nameError = false;
+        passwordError = false;
+        repeatPasswordError = false;
         signinOrSignup = 0;
       };
       $$result.css.add(css$6);
       $$unsubscribe__lang();
-      return `${showLogin ? `<div class="${"overlay svelte-fgddm3"}"><div class="${"login_c svelte-fgddm3"}"><div class="${"login svelte-fgddm3"}"><span class="${"svelte-fgddm3"}">${escape(strings["enter"][$_lang])}</span>
+      return `${showLogin ? `<div class="${"overlay svelte-m0p4w7"}"><div class="${"login_c svelte-m0p4w7"}"><div class="${"login svelte-m0p4w7"}"><span class="${"svelte-m0p4w7"}">${escape(strings["enter"][$_lang])}</span>
             ${validate_component(Text_input, "TextInput").$$render($$result, {
         disabled: signinOrSignup,
         error: emailError,
@@ -72883,7 +72905,8 @@ var init_layout_svelte = __esm({
         config: {
           placeholder: strings["email"],
           name: "email",
-          type: "text"
+          type: "text",
+          autocomplete: "username"
         }
       }, {}, {})}
             ${signinOrSignup == 2 ? `${validate_component(Text_input, "TextInput").$$render($$result, {
@@ -72892,7 +72915,8 @@ var init_layout_svelte = __esm({
         config: {
           placeholder: strings["name"],
           name: "name",
-          type: "text"
+          type: "text",
+          autocomplete: "name"
         }
       }, {}, {})}` : ``}
             ${signinOrSignup ? `${validate_component(Text_input, "TextInput").$$render($$result, {
@@ -72901,7 +72925,8 @@ var init_layout_svelte = __esm({
         config: {
           placeholder: strings["password"],
           name: "password",
-          type: "password"
+          type: "password",
+          autocomplete: signinOrSignup == 1 ? "current-password" : void 0
         }
       }, {}, {})}` : ``}
             ${signinOrSignup == 2 ? `${validate_component(Text_input, "TextInput").$$render($$result, {
@@ -72917,8 +72942,8 @@ var init_layout_svelte = __esm({
         onclick: continueEmailSignin,
         text: strings["continue"]
       }, {}, {})}
-            <span class="${"or svelte-fgddm3"}">${escape(strings["or"][$_lang])}</span>
-            <div class="${"fb-button svelte-fgddm3"}"><i class="${"fa-brands fa-facebook-square svelte-fgddm3"}"></i>
+            <span class="${"or svelte-m0p4w7"}">${escape(strings["or"][$_lang])}</span>
+            <div class="${"fb-button svelte-m0p4w7"}"><i class="${"fa-brands fa-facebook-square svelte-m0p4w7"}"></i>
                 facebook
             </div></div></div></div>` : ``}`;
     });
@@ -73193,9 +73218,9 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-2585f781.js";
-    js = ["pages/__layout.svelte-2585f781.js", "chunks/index-721e7700.js", "chunks/index-aa313952.js", "chunks/index-cfad40b5.js"];
-    css2 = ["assets/pages/__layout.svelte-dd6a1e13.css"];
+    entry = "pages/__layout.svelte-63e9feed.js";
+    js = ["pages/__layout.svelte-63e9feed.js", "chunks/index-7670d703.js", "chunks/index-be4a0379.js", "chunks/index-564f7e1c.js"];
+    css2 = ["assets/pages/__layout.svelte-345a864c.css"];
   }
 });
 
@@ -73247,8 +73272,8 @@ var init__2 = __esm({
     init_shims();
     init_error_svelte();
     index2 = 1;
-    entry2 = "error.svelte-c2294701.js";
-    js2 = ["error.svelte-c2294701.js", "chunks/index-721e7700.js"];
+    entry2 = "error.svelte-cac78f08.js";
+    js2 = ["error.svelte-cac78f08.js", "chunks/index-7670d703.js"];
     css3 = [];
   }
 });
@@ -75294,7 +75319,7 @@ var init_index_svelte = __esm({
     init_shims();
     init_index_cd57f8af();
     init_columns_config_33db9e1d();
-    init_index_e44a49b5();
+    init_index_1bbb55a2();
     init_string_strip_html_esm();
     init_dist2();
     init_dist3();
@@ -75461,7 +75486,7 @@ var init_index_svelte = __esm({
       ]
     };
     css$22 = {
-      code: ".image.svelte-15qqizp{background-image:var(--url);background-color:#cccccc;height:200px;width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;margin-top:5px}",
+      code: ".preview-image.svelte-1t2z4vb{background-image:var(--url);background-color:#cccccc;height:200px;width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;margin-top:5px}.description img{width:100%;border-radius:3px}",
       map: null
     };
     Preview = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -75491,7 +75516,7 @@ var init_index_svelte = __esm({
       $$unsubscribe__lang();
       return `<div>${!preview ? `<!-- HTML_TAG_START -->${data[$_lang]}<!-- HTML_TAG_END -->` : `${escape(croppedText)}
         ${croppedFlag ? `<span style="${"font-weight:bold; text-decoration:underline"}">${escape(strings2["read_more"][$_lang])}</span>
-            ${images ? `<div class="${"image svelte-15qqizp"}" style="${"--url: url(" + escape(images[0]) + ")"}"></div>` : ``}` : ``}`}
+            ${images ? `<div class="${"preview-image svelte-1t2z4vb"}" style="${"--url: url(" + escape(images[0]) + ")"}"></div>` : ``}` : ``}`}
 </div>`;
     });
     css$12 = {
@@ -75633,9 +75658,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-72567fe7.js";
-    js3 = ["pages/index.svelte-72567fe7.js", "chunks/index-721e7700.js", "chunks/index-aa313952.js", "chunks/index-cfad40b5.js"];
-    css5 = ["assets/pages/index.svelte-0afd858b.css"];
+    entry3 = "pages/index.svelte-a659fda6.js";
+    js3 = ["pages/index.svelte-a659fda6.js", "chunks/index-7670d703.js", "chunks/index-be4a0379.js", "chunks/index-564f7e1c.js"];
+    css5 = ["assets/pages/index.svelte-21586433.css"];
   }
 });
 
@@ -77976,7 +78001,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-6d106b02.js", "js": ["start-6d106b02.js", "chunks/index-721e7700.js", "chunks/index-cfad40b5.js"], "css": [] },
+    entry: { "file": "start-5e2c9461.js", "js": ["start-5e2c9461.js", "chunks/index-7670d703.js", "chunks/index-564f7e1c.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
