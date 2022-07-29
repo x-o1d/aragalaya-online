@@ -5,6 +5,7 @@
     export let disabled;
     export let config;
     export let data;
+    export let onchange;
 
     export let error;
     
@@ -18,6 +19,8 @@
         disabled={disabled}
         placeholder={config.placeholder[$_lang]}
         maxlength={config.maxlength}
+        autocomplete={config.autocomplete}
+        on:change={() => (error = false)}
         bind:value={data[config.name]}/>
     {:else}
     <input 
@@ -26,12 +29,14 @@
         disabled={disabled}
         placeholder={config.placeholder[$_lang]}
         maxlength={config.maxlength}
+        autocomplete={config.autocomplete}
+        on:change={() => (error = false)}
         bind:value={data[config.name]}/>
     {/if}
     <!-- if error is a string show the error -->
     {#if typeof error === 'string'}
     <span>
-        <Font group={0} remSize={1.3}>
+        <Font group={0} remSize={0.8}>
             {error}
         </Font>
     </span>
@@ -41,6 +46,7 @@
 <style>
     .text-input {
         width: 90%;
+        margin-bottom: var(--s18px);
     }
     input {
         height: var(--s45px);
@@ -49,9 +55,7 @@
         padding: var(--s10px);
         border: var(--s1px) solid var(--theme-defaultbutton);
         font-size: 1rem;
-        font-family: inherit;
-
-        margin-bottom: var(--s18px);
+        margin-bottom: 3px;
     }
     span {
         color: red;

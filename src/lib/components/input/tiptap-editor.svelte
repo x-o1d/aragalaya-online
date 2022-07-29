@@ -50,7 +50,11 @@
                 BulletList, 
                 OrderedList, 
                 ListItem,
-                Image,
+                Image.extend({
+                    renderHTML({ HTMLAttributes }) {
+                        return ['div', HTMLAttributes, 0]
+                    },
+                }),
                 Dropcursor,
                 Placeholder.configure({
                     placeholder: placeholder[$_lang],

@@ -24,15 +24,20 @@ onAuthStateChanged(auth, async (authUser) => {
             console.log('user has not set a password: mock account');
             user = null;
         } else {
-            user = await _getUserRecord(authUser.uid);
+            if(user && user.uid != authUser.uid) {
+                user = await _getUserRecord(authUser.uid);
+            }
             if(!user) {
-                console.log('no user: improper or incomplete signup');
+                _createError({
+                    error: 'invalid-user',
+                    authUser
+                }, 'authService::onAuthStateChanged');
             } else {
                 _emitEvent('user-ready', user);
             }
         }
     } else {
-        console.log('user nor signed in');
+        console.log('user not signed in');
     }
 });
 
@@ -69,43 +74,22 @@ export const _facebookSignin = () => {
 //     error: error code
 //     message: error message
 // }>
-export const _emailSignup = (email, password) => new Promise((resolve) => {
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        let authUser = userCredential.user;
-        sendEmailVerification(authUser);
-        resolve({authUser});
-    })
-    .catch((error) => {
-        resolve({
-            error: error.code,
-            message: error.message
-        })
-    });
-})
+export const _emailSignup = (email, password) => new Promise(async (resolve) => {
+    try {
+        const result = await createUserWithEmailAndPassword(auth, email, password);
 
-// args: email: string, password: string
-// returns: Promise<{
-//     authUser: auth user object
-//     error: error code
-//     message: error message
-// }>
-export const _emailSignin = (email, password) => new Promise((resolve) => {
-    signInWithEmailAndPassword(auth, email, password)
-    .then(async (userCredential) => {
-        let authUser = userCredential.user;
-        user = await _getUserRecord(authUser.uid);
-        resolve({user});
-    })
-    .catch((error) => {
-        if(error.code !== 'auth/email-already-in-use') {
-            _createError(error, 'authService::_emailSignup');
+        const authUser = result.user;
+        if(authUser) {
+            await sendEmailVerification(authUser);
+            resolve({authUser});
         }
-        resolve({
-            error: error.code,
-            message: error.message
-        })
-    });
+    } catch (error) {
+        if(error.code == 'auth/email-already-in-use') {
+            resolve(error);
+            return;
+        }
+        _createError(error, 'authService::_emailSignup');
+    }
 })
 
 // args: email: string, password: string
@@ -114,10 +98,32 @@ export const _emailSignin = (email, password) => new Promise((resolve) => {
 //     error: error code
 //     message: error message
 // }>
-export const _changePassword = (newPassword, name, email) => new Promise((resolve) => {
-    let authUser = getAuth().currentUser;
-    updatePassword(authUser, newPassword)
-    .then(async () => {
+export const _emailSignin = (email, password) => new Promise(async (resolve) => {
+    try {
+        let result = await signInWithEmailAndPassword(auth, email, password);
+
+        if(!(user && (user.uid && result.user.uid))) {
+            user = await _getUserRecord(result.user.uid);
+        } 
+        resolve({user});
+    } catch (error) {
+        if(error.code == 'auth/wrong-password') {
+            resolve(error);
+            return;
+        }
+        _createError(error, 'authService::_emailSignin');
+    }
+});
+
+// args: email: string, password: string
+// returns: Promise<{
+//     authUser: auth user object
+//     error: error code
+//     message: error message
+// }>
+export const _changePassword = (newPassword, name, email) => new Promise(async (resolve) => {
+    try {
+        let authUser = getAuth().currentUser;
         user = await _createUserRecord({
             name,
             email,
@@ -125,13 +131,9 @@ export const _changePassword = (newPassword, name, email) => new Promise((resolv
             language: 0,
             theme: 0
         });
-        resolve({user});
-    })
-    .catch((error) => { 
-        _createError(error, 'authService::_changePassword');
-        resolve({
-            error: error.code,
-            message: error.message
-        });
-    });
-})
+        let result = await updatePassword(authUser, newPassword);
+        resolve(result);
+    } catch (error) {
+        _createError(error);
+    }
+});

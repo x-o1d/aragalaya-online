@@ -9014,9 +9014,9 @@ var require_url_state_machine = __commonJS({
         url.username += percentEncodeChar(decoded[i2], isUserinfoPercentEncode);
       }
     };
-    module2.exports.setThePassword = function(url, password2) {
+    module2.exports.setThePassword = function(url, password) {
       url.password = "";
-      const decoded = punycode.ucs2.decode(password2);
+      const decoded = punycode.ucs2.decode(password);
       for (let i2 = 0; i2 < decoded.length; ++i2) {
         url.password += percentEncodeChar(decoded[i2], isUserinfoPercentEncode);
       }
@@ -11011,19 +11011,19 @@ function _setActionCodeSettingsOnRequest(auth2, request, actionCodeSettings) {
     request.androidPackageName = actionCodeSettings.android.packageName;
   }
 }
-async function createUserWithEmailAndPassword(auth2, email, password2) {
+async function createUserWithEmailAndPassword(auth2, email, password) {
   const authInternal = _castAuth(auth2);
   const response = await signUp(authInternal, {
     returnSecureToken: true,
     email,
-    password: password2
+    password
   });
   const userCredential = await UserCredentialImpl._fromIdTokenResponse(authInternal, "signIn", response);
   await authInternal._updateCurrentUser(userCredential.user);
   return userCredential;
 }
-function signInWithEmailAndPassword(auth2, email, password2) {
-  return signInWithCredential(getModularInstance(auth2), EmailAuthProvider.credential(email, password2));
+function signInWithEmailAndPassword(auth2, email, password) {
+  return signInWithCredential(getModularInstance(auth2), EmailAuthProvider.credential(email, password));
 }
 async function sendEmailVerification(user2, actionCodeSettings) {
   const userInternal = getModularInstance(user2);
@@ -11043,7 +11043,7 @@ async function sendEmailVerification(user2, actionCodeSettings) {
 function updatePassword(user2, newPassword) {
   return updateEmailOrPassword(getModularInstance(user2), null, newPassword);
 }
-async function updateEmailOrPassword(user2, email, password2) {
+async function updateEmailOrPassword(user2, email, password) {
   const { auth: auth2 } = user2;
   const idToken = await user2.getIdToken();
   const request = {
@@ -11053,8 +11053,8 @@ async function updateEmailOrPassword(user2, email, password2) {
   if (email) {
     request.email = email;
   }
-  if (password2) {
-    request.password = password2;
+  if (password) {
+    request.password = password;
   }
   const response = await _logoutIfInvalidated(user2, updateEmailPassword(auth2, request));
   await user2._updateTokensIfNecessary(response, true);
@@ -11110,7 +11110,7 @@ function registerAuth(clientPlatform) {
   registerVersion(name2, version2, getVersionForPlatform(clientPlatform));
   registerVersion(name2, version2, "esm2017");
 }
-function getAuth(app2 = getApp()) {
+function getAuth2(app2 = getApp()) {
   const provider = _getProvider(app2, "auth");
   if (provider.isInitialized()) {
     return provider.getImmediate();
@@ -12095,8 +12095,8 @@ var init_index_a262d8f8 = __esm({
         this._password = _password;
         this._tenantId = _tenantId;
       }
-      static _fromEmailAndPassword(email, password2) {
-        return new EmailAuthCredential(email, password2, "password");
+      static _fromEmailAndPassword(email, password) {
+        return new EmailAuthCredential(email, password, "password");
       }
       static _fromEmailAndCode(email, oobCode, tenantId = null) {
         return new EmailAuthCredential(email, oobCode, "emailLink", tenantId);
@@ -12283,8 +12283,8 @@ var init_index_a262d8f8 = __esm({
       constructor() {
         this.providerId = EmailAuthProvider.PROVIDER_ID;
       }
-      static credential(email, password2) {
-        return EmailAuthCredential._fromEmailAndPassword(email, password2);
+      static credential(email, password) {
+        return EmailAuthCredential._fromEmailAndPassword(email, password);
       }
       static credentialWithLink(email, emailLink) {
         const actionCodeUrl = ActionCodeURL.parseLink(emailLink);
@@ -32392,21 +32392,21 @@ function fieldPathFromArgument$1(methodName, path, targetDoc) {
     return fieldPathFromDotSeparatedString(methodName, path);
   } else {
     const message = "Field path arguments must be of type string or ";
-    throw createError2(message, methodName, false, void 0, targetDoc);
+    throw createError(message, methodName, false, void 0, targetDoc);
   }
 }
 function fieldPathFromDotSeparatedString(methodName, path, targetDoc) {
   const found = path.search(FIELD_PATH_RESERVED);
   if (found >= 0) {
-    throw createError2(`Invalid field path (${path}). Paths must not contain '~', '*', '/', '[', or ']'`, methodName, false, void 0, targetDoc);
+    throw createError(`Invalid field path (${path}). Paths must not contain '~', '*', '/', '[', or ']'`, methodName, false, void 0, targetDoc);
   }
   try {
     return new FieldPath(...path.split("."))._internalPath;
   } catch (e2) {
-    throw createError2(`Invalid field path (${path}). Paths must not be empty, begin with '.', end with '.', or contain '..'`, methodName, false, void 0, targetDoc);
+    throw createError(`Invalid field path (${path}). Paths must not be empty, begin with '.', end with '.', or contain '..'`, methodName, false, void 0, targetDoc);
   }
 }
-function createError2(reason, methodName, hasConverter, path, targetDoc) {
+function createError(reason, methodName, hasConverter, path, targetDoc) {
   const hasPath = path && !path.isEmpty();
   const hasDocument = targetDoc !== void 0;
   let message = `Function ${methodName}() called with invalid data`;
@@ -40984,7 +40984,7 @@ This typically indicates that your device does not have a healthy Internet conne
         return this.contextWith({ path: void 0, arrayElement: true });
       }
       createError(reason) {
-        return createError2(reason, this.settings.methodName, this.settings.hasConverter || false, this.path, this.settings.targetDoc);
+        return createError(reason, this.settings.methodName, this.settings.hasConverter || false, this.path, this.settings.targetDoc);
       }
       contains(fieldPath) {
         return this.fieldMask.find((field) => fieldPath.isPrefixOf(field)) !== void 0 || this.fieldTransforms.find((transform) => fieldPath.isPrefixOf(transform.field)) !== void 0;
@@ -41294,13 +41294,14 @@ var init_dist3 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/columns-config-679680cb.js
-var firebaseConfig, app, db, _getPosts, _createUserRecord, _getUserRecord, COLUMNS, COLUMN_COUNT;
-var init_columns_config_679680cb = __esm({
-  ".svelte-kit/output/server/chunks/columns-config-679680cb.js"() {
+// .svelte-kit/output/server/chunks/columns-config-33db9e1d.js
+var dev, firebaseConfig, app, db, _createError2, _getPosts, _createUserRecord, _getUserRecord, COLUMNS, COLUMN_COUNT;
+var init_columns_config_33db9e1d = __esm({
+  ".svelte-kit/output/server/chunks/columns-config-33db9e1d.js"() {
     init_shims();
     init_dist2();
     init_dist3();
+    dev = false;
     firebaseConfig = {
       apiKey: "AIzaSyCFIhFlai5zMvE-9eeSiaL4ZiGiSvpg0yY",
       authDomain: "aragalaya-online.firebaseapp.com",
@@ -41311,6 +41312,24 @@ var init_columns_config_679680cb = __esm({
     };
     app = initializeApp(firebaseConfig);
     db = getFirestore(app);
+    _createError2 = async (error2, caller) => {
+      try {
+        if (dev)
+          ;
+        else {
+          console.error(caller, error2);
+          const docRef = await addDoc(collection(db, "Errors"), {
+            message: error2.message,
+            code: error2.code,
+            caller,
+            signedin: getAuth().currentUser != null,
+            time: new Date().getTime()
+          });
+        }
+      } catch (error22) {
+        console.log(`Couldn't save error:`, error22);
+      }
+    };
     _getPosts = async (type) => {
       try {
         const c3 = collection(db, "Posts");
@@ -41324,7 +41343,7 @@ var init_columns_config_679680cb = __esm({
         });
         return items;
       } catch (error2) {
-        createError(error2, "DBService:getBulletins");
+        _createError2(error2, "DBService:getBulletins");
         return [];
       }
     };
@@ -41335,7 +41354,7 @@ var init_columns_config_679680cb = __esm({
         await setDoc(docRef, user2);
         return { user: user2 };
       } catch (error2) {
-        createError(error2, "DBService:createUserRecord");
+        _createError2(error2, "DBService:createUserRecord");
       }
     };
     _getUserRecord = async (uid) => {
@@ -41343,7 +41362,7 @@ var init_columns_config_679680cb = __esm({
         const docRef = doc(collection(db, "Users"), uid);
         return (await getDoc(docRef)).data();
       } catch (error2) {
-        createError(error2, "DBService:getUserRecord");
+        _createError2(error2, "DBService:getUserRecord");
       }
     };
     COLUMNS = [
@@ -54333,7 +54352,7 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/index-c02c8cf1.js
+// .svelte-kit/output/server/chunks/index-e44a49b5.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -54484,11 +54503,11 @@ function tweened(value, defaults = {}) {
   };
 }
 var import_rxjs, import_chroma_js, subscriber_queue2, _lang, events, _emitEvent, _registerEvent, _fontGroups, _fontSizes, pallettes, _themes, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, Font;
-var init_index_c02c8cf1 = __esm({
-  ".svelte-kit/output/server/chunks/index-c02c8cf1.js"() {
+var init_index_e44a49b5 = __esm({
+  ".svelte-kit/output/server/chunks/index-e44a49b5.js"() {
     init_shims();
     init_dist();
-    init_columns_config_679680cb();
+    init_columns_config_33db9e1d();
     import_rxjs = __toESM(require_cjs(), 1);
     init_index_cd57f8af();
     import_chroma_js = __toESM(require_chroma(), 1);
@@ -54562,25 +54581,30 @@ var init_index_c02c8cf1 = __esm({
       let cancelButton = navigation[1];
       return { columns, navigation, headerBackground, columnBackground, defaultButton, cancelButton };
     });
-    auth = getAuth(app);
+    auth = getAuth2(app);
     onAuthStateChanged(auth, async (authUser) => {
       if (authUser) {
-        user = await _getUserRecord(authUser.uid);
-        if (!user) {
-          console.log("no user record for", authUser);
+        if (authUser.reloadUserInfo.passwordHash === "UkVEQUNURUQ=") {
+          console.log("user has not set a password: mock account");
+          user = null;
         } else {
-          _emitEvent("user-ready", user);
+          user = await _getUserRecord(authUser.uid);
+          if (!user) {
+            console.log("no user: improper or incomplete signup");
+          } else {
+            _emitEvent("user-ready", user);
+          }
         }
       } else {
-        console.log("sign in failed");
+        console.log("user nor signed in");
       }
     });
     _userSignedIn = () => {
-      let authUser = getAuth().currentUser;
+      let authUser = getAuth2().currentUser;
       return authUser && user && authUser.uid == user.uid && user;
     };
-    _emailSignup = (email, password2) => new Promise((resolve2) => {
-      createUserWithEmailAndPassword(auth, email, password2).then((userCredential) => {
+    _emailSignup = (email, password) => new Promise((resolve2) => {
+      createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
         let authUser = userCredential.user;
         sendEmailVerification(authUser);
         resolve2({ authUser });
@@ -54591,12 +54615,15 @@ var init_index_c02c8cf1 = __esm({
         });
       });
     });
-    _emailSignin = (email, password2) => new Promise((resolve2) => {
-      signInWithEmailAndPassword(auth, email, password2).then(async (userCredential) => {
+    _emailSignin = (email, password) => new Promise((resolve2) => {
+      signInWithEmailAndPassword(auth, email, password).then(async (userCredential) => {
         let authUser = userCredential.user;
         user = await _getUserRecord(authUser.uid);
         resolve2({ user });
       }).catch((error2) => {
+        if (error2.code !== "auth/email-already-in-use") {
+          _createError2(error2, "authService::_emailSignup");
+        }
         resolve2({
           error: error2.code,
           message: error2.message
@@ -54604,7 +54631,7 @@ var init_index_c02c8cf1 = __esm({
       });
     });
     _changePassword = (newPassword, name7, email) => new Promise((resolve2) => {
-      let authUser = getAuth().currentUser;
+      let authUser = getAuth2().currentUser;
       updatePassword(authUser, newPassword).then(async () => {
         user = await _createUserRecord({
           name: name7,
@@ -54615,7 +54642,7 @@ var init_index_c02c8cf1 = __esm({
         });
         resolve2({ user });
       }).catch((error2) => {
-        console.log(error2);
+        _createError2(error2, "authService::_changePassword");
         resolve2({
           error: error2.code,
           message: error2.message
@@ -72638,8 +72665,8 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_cd57f8af();
-    init_index_c02c8cf1();
-    init_columns_config_679680cb();
+    init_index_e44a49b5();
+    init_columns_config_33db9e1d();
     init_dist4();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
     import_extension_bold = __toESM(require_tiptap_extension_bold_cjs(), 1);
@@ -72833,7 +72860,7 @@ var init_layout_svelte = __esm({
           if (nameError || passwordError || repeatPasswordError) {
             return;
           }
-          let result = await _changePassword(password, user2.name, user2.email);
+          let result = await _changePassword(user2.password, user2.name, user2.email);
           if (result.user) {
             showLogin = false;
             _emitEvent("user-ready", result.user);
@@ -72842,7 +72869,10 @@ var init_layout_svelte = __esm({
           return;
         }
       };
-      const reset = () => user2 = {};
+      const reset = () => {
+        user2 = {};
+        signinOrSignup = 0;
+      };
       $$result.css.add(css$6);
       $$unsubscribe__lang();
       return `${showLogin ? `<div class="${"overlay svelte-fgddm3"}"><div class="${"login_c svelte-fgddm3"}"><div class="${"login svelte-fgddm3"}"><span class="${"svelte-fgddm3"}">${escape(strings["enter"][$_lang])}</span>
@@ -72878,7 +72908,7 @@ var init_layout_svelte = __esm({
         error: repeatPasswordError,
         data: user2,
         config: {
-          placeholder: strings["repeatPassword"],
+          placeholder: strings["repeat_password"],
           name: "repeatPassword",
           type: "password"
         }
@@ -73163,8 +73193,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-605aa7d1.js";
-    js = ["pages/__layout.svelte-605aa7d1.js", "chunks/index-721e7700.js", "chunks/index-3c815786.js", "chunks/index-cfad40b5.js"];
+    entry = "pages/__layout.svelte-2585f781.js";
+    js = ["pages/__layout.svelte-2585f781.js", "chunks/index-721e7700.js", "chunks/index-aa313952.js", "chunks/index-cfad40b5.js"];
     css2 = ["assets/pages/__layout.svelte-dd6a1e13.css"];
   }
 });
@@ -75263,8 +75293,8 @@ var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
     init_index_cd57f8af();
-    init_columns_config_679680cb();
-    init_index_c02c8cf1();
+    init_columns_config_33db9e1d();
+    init_index_e44a49b5();
     init_string_strip_html_esm();
     init_dist2();
     init_dist3();
@@ -75603,8 +75633,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-2d758e22.js";
-    js3 = ["pages/index.svelte-2d758e22.js", "chunks/index-721e7700.js", "chunks/index-3c815786.js", "chunks/index-cfad40b5.js"];
+    entry3 = "pages/index.svelte-72567fe7.js";
+    js3 = ["pages/index.svelte-72567fe7.js", "chunks/index-721e7700.js", "chunks/index-aa313952.js", "chunks/index-cfad40b5.js"];
     css5 = ["assets/pages/index.svelte-0afd858b.css"];
   }
 });
@@ -75618,7 +75648,7 @@ var get;
 var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
-    init_columns_config_679680cb();
+    init_columns_config_33db9e1d();
     init_dist2();
     init_dist3();
     get = async () => {
@@ -76327,12 +76357,12 @@ var Csp = class {
   #directives;
   #script_src;
   #style_src;
-  constructor({ mode, directives }, { dev, prerender, needs_nonce }) {
+  constructor({ mode, directives }, { dev: dev2, prerender, needs_nonce }) {
     this.#use_hashes = mode === "hash" || mode === "auto" && prerender;
-    this.#directives = dev ? __spreadValues2({}, directives) : directives;
-    this.#dev = dev;
+    this.#directives = dev2 ? __spreadValues2({}, directives) : directives;
+    this.#dev = dev2;
     const d3 = this.#directives;
-    if (dev) {
+    if (dev2) {
       const effective_style_src2 = d3["style-src"] || d3["default-src"];
       if (effective_style_src2 && !effective_style_src2.includes("unsafe-inline")) {
         d3["style-src"] = [...effective_style_src2, "unsafe-inline"];
@@ -76343,7 +76373,7 @@ var Csp = class {
     const effective_script_src = d3["script-src"] || d3["default-src"];
     const effective_style_src = d3["style-src"] || d3["default-src"];
     this.#script_needs_csp = !!effective_script_src && effective_script_src.filter((value) => value !== "unsafe-inline").length > 0;
-    this.#style_needs_csp = !dev && !!effective_style_src && effective_style_src.filter((value) => value !== "unsafe-inline").length > 0;
+    this.#style_needs_csp = !dev2 && !!effective_style_src && effective_style_src.filter((value) => value !== "unsafe-inline").length > 0;
     this.script_needs_nonce = this.#script_needs_csp && !this.#use_hashes;
     this.style_needs_nonce = this.#style_needs_csp && !this.#use_hashes;
     if (this.script_needs_nonce || this.style_needs_nonce || needs_nonce) {
@@ -77946,7 +77976,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-ae67ebd9.js", "js": ["start-ae67ebd9.js", "chunks/index-721e7700.js", "chunks/index-cfad40b5.js"], "css": [] },
+    entry: { "file": "start-6d106b02.js", "js": ["start-6d106b02.js", "chunks/index-721e7700.js", "chunks/index-cfad40b5.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

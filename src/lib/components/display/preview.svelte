@@ -46,7 +46,7 @@
         </span>
             {#if images}
             <div 
-                class="image"
+                class="preview-image"
                 style="--url: url({images[0]})">
             </div>
             {/if}
@@ -55,7 +55,7 @@
 </div>
 
 <style>
-    .image {
+    .preview-image {
         background-image: var(--url); /* The image used */
         background-color: #cccccc; /* Used if the image is unavailable */
         height: 200px; /* You must set a specified height */
@@ -65,5 +65,10 @@
         background-size: cover; /* Resize the background image to cover the entire container */
 
         margin-top: 5px;
+    }
+
+    :global(.description img) {
+        width: 100%;
+        border-radius: 3px;
     }
 </style>
