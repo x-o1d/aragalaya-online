@@ -110,7 +110,7 @@
 			{#if !user}
 			<i class="fa-solid fa-user-astronaut"></i>
 			{:else}
-			<i class="fa-solid fa-user-nurse"></i>
+            <i class="fa-solid fa-user-nurse"></i>
 			{/if}
 		</li>
 		<li>

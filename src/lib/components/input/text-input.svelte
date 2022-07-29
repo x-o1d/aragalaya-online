@@ -11,12 +11,23 @@
 </script>
 
 <div class="text-input">
+    {#if config.type !== 'password'}
     <input 
         type="text"
         class:error={error}
         disabled={disabled}
         placeholder={config.placeholder[$_lang]}
+        maxlength={config.maxlength}
         bind:value={data[config.name]}/>
+    {:else}
+    <input 
+        type="password"
+        class:error={error}
+        disabled={disabled}
+        placeholder={config.placeholder[$_lang]}
+        maxlength={config.maxlength}
+        bind:value={data[config.name]}/>
+    {/if}
     <!-- if error is a string show the error -->
     {#if typeof error === 'string'}
     <span>
@@ -36,7 +47,7 @@
         width: 100%;
         border-radius: var(--s5px);
         padding: var(--s10px);
-        border: var(--s1px) solid var(--button);
+        border: var(--s1px) solid var(--theme-defaultbutton);
         font-size: 1rem;
         font-family: inherit;
 

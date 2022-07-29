@@ -21,7 +21,7 @@
     $: {
         text = stripHtml(data[$_lang]).result;
         croppedText = text.substring(0, limit);
-        croppedFlag = text.length > limit;
+        croppedFlag = (text.length > limit) || data[$_lang].includes('img');
         if(croppedFlag) text += '...';
     }
     

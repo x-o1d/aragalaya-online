@@ -34,9 +34,10 @@ onAuthStateChanged(auth, async (authUser) => {
 // NOTE: properties exposed from services (export) are prepended with
 // an _ so that they can easily be distinguished from component properties
 
+// checks if a user is signed in and returns the user object if so
 export const _userSignedIn = () => {
     let authUser = getAuth().currentUser;
-    return (authUser.uid == (user && user.uid)) && user;
+    return (authUser && user) && (authUser.uid == user.uid) && user;
 }
 
 export const _facebookSignin = () => {

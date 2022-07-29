@@ -69,7 +69,6 @@
     .description {
         padding: var(--s7px) 0;
         color: rgb(57, 56, 56);
-        /* letter-spacing: -0.0px; */
     }
     :global(.description img) {
         width: 100%;

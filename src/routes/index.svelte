@@ -185,9 +185,11 @@
                             </span>
                         </div>
                         <div>
-                            <i 
-                                class="fa-solid fa-add"
-                                on:click={(e) => addDocument(e, _i)}></i>
+                            <div 
+                                class='icon-button'
+                                on:click|stopPropagation={(e) => addDocument(e, _i)}>
+                                <i class="fa-solid fa-add"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -276,9 +278,17 @@
         text-shadow: 0px 0px 3px #1b1b1b, 0 0 8px #525252;
         margin-left: var(--s10px);
     }
-    .fa-add {
+    .icon-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 35px;
+        height: 35px;
+
         font-size: var(--s17px);
     }
+
 
     /* cards */
     .cards {

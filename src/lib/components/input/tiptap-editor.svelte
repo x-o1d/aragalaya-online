@@ -200,7 +200,8 @@
     button {
         background: white;
         font-size: 13px;
-        border: var(--s1px) solid var(--button);
+        border: var(--s1px) solid var(--theme-defaultbutton);
+        padding: var(--s3px);
         border-radius: var(--s3px);
     }
     button.active {

@@ -1,7 +1,6 @@
 import { COLUMN_COUNT } from '$lib/config/columns-config';
 
 import chroma from "chroma-js";
-import { writable } from 'svelte/store';
 
 import { _lang } from '$lib/services/store';
 
@@ -47,7 +46,7 @@ export const _fontGroups = [
 // column one and two can be adjusted to make the sinhala and tamil fonts 
 // within a font group to have a similar display height.
 export const _fontSizes = [
-    [1.2, 1, 1.0],
+    [1.2, 1, 0.85],
     [0.8, 1, 1.0],
     [0.9, 1, 1.0],
     [1.0, 1, 1.0],

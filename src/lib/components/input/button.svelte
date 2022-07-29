@@ -11,7 +11,7 @@
 
 <div 
     class="button"
-    cancel:class="cancel"
+    class:cancel={cancel}
     on:click={async () => {
         buttonProgress = true;
         await onclick();
@@ -34,7 +34,6 @@
         width: 90%;
         border-radius: var(--s5px);
         padding: var(--s5px);
-        background-color: var(--button);
         cursor: pointer;
 
         color: white;
@@ -42,5 +41,10 @@
         font-weight: bold;
 
         margin-bottom: var(--s14px);
+
+        background-color: var(--theme-defaultbutton);
+    }
+    .cancel {
+        background-color: var(--theme-cancelbutton);
     }
 </style>
