@@ -1,20 +1,25 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 
 	import { _lang } from '$lib/services/store';
-	import { events } from '$lib/services/events';
-	import { themes, current, _fontGroups, _fontSizes } from '$lib/services/theme';
+	import { _registerEvent, _emitEvent } from '$lib/services/events';
+	import { _themes, _current, _fontGroups, _fontSizes } from '$lib/services/theme';
 
-	import Login from './_components/overlays/login.svelte';
-	import Form from './_components/overlays/form.svelte';
-	import Nav from './_components/nav.svelte'
+	import Login from './_components/fixed/login.svelte';
+	import Form from './_components/fixed/form.svelte';
+	import Nav from './_components/fixed/nav.svelte'
 
 	import ThemeSelector from '$lib/components/util/theme-selector.svelte';
 
 	let cssReady = false;
 	let userReady = false;
 
-	events.register('user-ready').subscribe(() => (userReady = true));
+    // TODO: try automatic subscriptions
+	const userReadyEvent =_registerEvent('user-ready').subscribe(() => (userReady = true));
+    // clear subscription
+    onDestroy(() => {
+        userReadyEvent.unsubscribe();
+    })
 
 	// listen to language changes and set root font-family and font sizes.
 	// fonts in different languages have different display sizes for the 
@@ -61,20 +66,29 @@
 		})
 		cssReady = true;
 	});
-
+    console.log(_themes);
 </script>
 
-<!-- Login and Form are overlay components -->
+<!-- Login, Form and Nav are fixed overlay components -->
 <!-- they are shown and hidden using the events service -->
 <Login/>
 <Form/>
-
-{#if cssReady}
 <Nav/>
 
+{#if cssReady}
 <div 
 	class="header"
-	style="background-color: {themes[$current].header}">
+    style="
+            background-color: {_themes[$_current].headerBackground};
+            --theme-1: {_themes[$_current].navigation[0]};
+            --theme-2: {_themes[$_current].navigation[1]};
+            --theme-3: {_themes[$_current].navigation[2]};
+            --theme-4: {_themes[$_current].navigation[3]};
+            --theme-5: {_themes[$_current].navigation[4]};
+            --theme-6: {_themes[$_current].navigation[5]};
+            --theme-7: {_themes[$_current].navigation[6]};
+            --theme-button: {_themes[$_current].button}
+            --theme-button-darker: {_themes[$_current].button}">
 	<div class="logo">
 		<div class="aragalaya">
 			අරගලය
@@ -94,7 +108,7 @@
 			தமிழ் 
 		</li>
 		<li 
-			on:click={() => events.emit('show-hide-login', true)}
+			on:click={() => _emitEvent('show-hide-login', true)}
 			class="login">
 			{#if !userReady}
 			<i class="fa-solid fa-user-astronaut"></i>

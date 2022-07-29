@@ -1,5 +1,6 @@
 <script>
     import { _lang } from '$lib/services/store';
+    
     import Date from '$lib/components/display/date.svelte';
     import Font from '$lib/components/display/font.svelte';
     import Preview from '$lib/components/display/preview.svelte';
@@ -62,6 +63,10 @@
         padding: var(--s7px) 0;
         color: rgb(57, 56, 56);
         letter-spacing: 0px;
+    }
+    :global(.description img) {
+        width: 100%;
+        border-radius: 3px;
     }
 
 </style>

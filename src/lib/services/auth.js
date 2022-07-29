@@ -10,33 +10,36 @@ import {
 } from "firebase/auth";
 import { app } from './firebase';
 
-import { createUserRecord, getUserRecord } from '$lib/services/database';
-import { events } from '$lib/services/events';
+import { _createUserRecord, _getUserRecord } from '$lib/services/database';
+import { _emitEvent } from '$lib/services/events';
 
 const auth = getAuth(app);
 
 // holds the user record for the session
-export let user;
+let user;
 
 onAuthStateChanged(auth, async (authUser) => {
     if (authUser) {
-        user = await getUserRecord(authUser.uid);
+        user = await _getUserRecord(authUser.uid);
         if(!user) {
             console.log('no user record for', authUser);
         } else {
-            events.emit('user-ready', user);
+            _emitEvent('user-ready', user);
         }
     } else {
         console.log('sign in failed');
     }
 });
 
-export const userSignedIn = () => {
+// NOTE: properties exposed from services (export) are prepended with
+// an _ so that they can easily be distinguished from component properties
+
+export const _userSignedIn = () => {
     let authUser = getAuth().currentUser;
-    return (authUser.uid == user.uid) && user;
+    return (authUser.uid == (user && user.uid)) && user;
 }
 
-export const facebookSignin = () => {
+export const _facebookSignin = () => {
     const provider = new FacebookAuthProvider();
     
     signInWithPopup(auth, provider)
@@ -69,7 +72,7 @@ export const facebookSignin = () => {
 //     error: error code
 //     message: error message
 // }>
-export const emailSignup = (email, password) => new Promise((resolve) => {
+export const _emailSignup = (email, password) => new Promise((resolve) => {
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
         let authUser = userCredential.user;
@@ -90,11 +93,11 @@ export const emailSignup = (email, password) => new Promise((resolve) => {
 //     error: error code
 //     message: error message
 // }>
-export const emailSignin = (email, password) => new Promise((resolve) => {
+export const _emailSignin = (email, password) => new Promise((resolve) => {
     signInWithEmailAndPassword(auth, email, password)
     .then(async (userCredential) => {
         let authUser = userCredential.user;
-        user = await getUserRecord(authUser.uid);
+        user = await _getUserRecord(authUser.uid);
         resolve({user});
     })
     .catch((error) => {
@@ -111,11 +114,11 @@ export const emailSignin = (email, password) => new Promise((resolve) => {
 //     error: error code
 //     message: error message
 // }>
-export const changePassword = (newPassword, name, email) => new Promise((resolve) => {
+export const _changePassword = (newPassword, name, email) => new Promise((resolve) => {
     let authUser = getAuth().currentUser;
     updatePassword(authUser, newPassword)
     .then(async () => {
-        user = await createUserRecord({
+        user = await _createUserRecord({
             name,
             email,
             uid: authUser.uid,

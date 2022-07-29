@@ -3,12 +3,15 @@
     import { _lang } from '$lib/services/store';
 
     let buttonProgress;
+    
     export let onclick;
     export let text;
+    export let cancel;
 </script>
 
 <div 
     class="button"
+    cancel:class="cancel"
     on:click={async () => {
         buttonProgress = true;
         await onclick();

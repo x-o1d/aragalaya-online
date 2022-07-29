@@ -40,8 +40,8 @@ var __commonJS = (cb, mod2) => function __require() {
   return mod2 || (0, cb[__getOwnPropNames(cb)[0]])((mod2 = { exports: {} }).exports, mod2), mod2.exports;
 };
 var __export = (target, all) => {
-  for (var name6 in all)
-    __defProp(target, name6, { get: all[name6], enumerable: true });
+  for (var name7 in all)
+    __defProp(target, name7, { get: all[name7], enumerable: true });
 };
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
@@ -211,27 +211,27 @@ var init_multipart_parser = __esm({
         const bufferLength = data.length;
         let c3;
         let cl;
-        const mark = (name6) => {
-          this[name6 + "Mark"] = i2;
+        const mark = (name7) => {
+          this[name7 + "Mark"] = i2;
         };
-        const clear = (name6) => {
-          delete this[name6 + "Mark"];
+        const clear = (name7) => {
+          delete this[name7 + "Mark"];
         };
         const callback = (callbackSymbol, start2, end, ui8a) => {
           if (start2 === void 0 || start2 !== end) {
             this[callbackSymbol](ui8a && ui8a.subarray(start2, end));
           }
         };
-        const dataCallback = (name6, clear2) => {
-          const markSymbol = name6 + "Mark";
+        const dataCallback = (name7, clear2) => {
+          const markSymbol = name7 + "Mark";
           if (!(markSymbol in this)) {
             return;
           }
           if (clear2) {
-            callback(name6, this[markSymbol], i2, data);
+            callback(name7, this[markSymbol], i2, data);
             delete this[markSymbol];
           } else {
-            callback(name6, this[markSymbol], data.length, data);
+            callback(name7, this[markSymbol], data.length, data);
             this[markSymbol] = 0;
           }
         };
@@ -535,10 +535,10 @@ function fromRawHeaders(headers = []) {
       result.push(array2.slice(index4, index4 + 2));
     }
     return result;
-  }, []).filter(([name6, value]) => {
+  }, []).filter(([name7, value]) => {
     try {
-      validateHeaderName(name6);
-      validateHeaderValue(name6, String(value));
+      validateHeaderName(name7);
+      validateHeaderValue(name7, String(value));
       return true;
     } catch {
       return false;
@@ -782,8 +782,8 @@ async function fetch2(url, options_) {
               referrerPolicy: request.referrerPolicy
             };
             if (!isDomainOrSubdomain(request.url, locationURL)) {
-              for (const name6 of ["authorization", "www-authenticate", "cookie", "cookie2"]) {
-                requestOptions.headers.delete(name6);
+              for (const name7 of ["authorization", "www-authenticate", "cookie", "cookie2"]) {
+                requestOptions.headers.delete(name7);
               }
             }
             if (response_.statusCode !== 303 && request.body && options_.body instanceof import_node_stream.default.Readable) {
@@ -928,11 +928,11 @@ function fixResponseChunkedTransferBadEnding(request, errorCallback) {
   });
 }
 function installPolyfills() {
-  for (const name6 in globals) {
-    Object.defineProperty(globalThis, name6, {
+  for (const name7 in globals) {
+    Object.defineProperty(globalThis, name7, {
       enumerable: true,
       configurable: true,
-      value: globals[name6]
+      value: globals[name7]
     });
   }
 }
@@ -1124,8 +1124,8 @@ var init_polyfills = __esm({
           reader._ownerReadableStream._reader = void 0;
           reader._ownerReadableStream = void 0;
         }
-        function readerLockException(name6) {
-          return new TypeError("Cannot " + name6 + " a stream using a released reader");
+        function readerLockException(name7) {
+          return new TypeError("Cannot " + name7 + " a stream using a released reader");
         }
         function defaultReaderClosedPromiseInitialize(reader) {
           reader._closedPromise = newPromise((resolve2, reject) => {
@@ -1352,8 +1352,8 @@ var init_polyfills = __esm({
             stream._readableStreamController[PullSteps](readRequest);
           }
         }
-        function defaultReaderBrandCheckException(name6) {
-          return new TypeError(`ReadableStreamDefaultReader.prototype.${name6} can only be used on a ReadableStreamDefaultReader`);
+        function defaultReaderBrandCheckException(name7) {
+          return new TypeError(`ReadableStreamDefaultReader.prototype.${name7} can only be used on a ReadableStreamDefaultReader`);
         }
         const AsyncIteratorPrototype = Object.getPrototypeOf(Object.getPrototypeOf(async function* () {
         }).prototype);
@@ -1463,8 +1463,8 @@ var init_polyfills = __esm({
             return false;
           }
         }
-        function streamAsyncIteratorBrandCheckException(name6) {
-          return new TypeError(`ReadableStreamAsyncIterator.${name6} can only be used on a ReadableSteamAsyncIterator`);
+        function streamAsyncIteratorBrandCheckException(name7) {
+          return new TypeError(`ReadableStreamAsyncIterator.${name7} can only be used on a ReadableSteamAsyncIterator`);
         }
         const NumberIsNaN = Number.isNaN || function(x3) {
           return x3 !== x3;
@@ -2104,11 +2104,11 @@ var init_polyfills = __esm({
           request._associatedReadableByteStreamController = controller;
           request._view = view;
         }
-        function byobRequestBrandCheckException(name6) {
-          return new TypeError(`ReadableStreamBYOBRequest.prototype.${name6} can only be used on a ReadableStreamBYOBRequest`);
+        function byobRequestBrandCheckException(name7) {
+          return new TypeError(`ReadableStreamBYOBRequest.prototype.${name7} can only be used on a ReadableStreamBYOBRequest`);
         }
-        function byteStreamControllerBrandCheckException(name6) {
-          return new TypeError(`ReadableByteStreamController.prototype.${name6} can only be used on a ReadableByteStreamController`);
+        function byteStreamControllerBrandCheckException(name7) {
+          return new TypeError(`ReadableByteStreamController.prototype.${name7} can only be used on a ReadableByteStreamController`);
         }
         function AcquireReadableStreamBYOBReader(stream) {
           return new ReadableStreamBYOBReader(stream);
@@ -2241,8 +2241,8 @@ var init_polyfills = __esm({
             ReadableByteStreamControllerPullInto(stream._readableStreamController, view, readIntoRequest);
           }
         }
-        function byobReaderBrandCheckException(name6) {
-          return new TypeError(`ReadableStreamBYOBReader.prototype.${name6} can only be used on a ReadableStreamBYOBReader`);
+        function byobReaderBrandCheckException(name7) {
+          return new TypeError(`ReadableStreamBYOBReader.prototype.${name7} can only be used on a ReadableStreamBYOBReader`);
         }
         function ExtractHighWaterMark(strategy, defaultHWM) {
           const { highWaterMark } = strategy;
@@ -3012,17 +3012,17 @@ var init_polyfills = __esm({
           WritableStreamDefaultControllerClearAlgorithms(controller);
           WritableStreamStartErroring(stream, error2);
         }
-        function streamBrandCheckException$2(name6) {
-          return new TypeError(`WritableStream.prototype.${name6} can only be used on a WritableStream`);
+        function streamBrandCheckException$2(name7) {
+          return new TypeError(`WritableStream.prototype.${name7} can only be used on a WritableStream`);
         }
-        function defaultControllerBrandCheckException$2(name6) {
-          return new TypeError(`WritableStreamDefaultController.prototype.${name6} can only be used on a WritableStreamDefaultController`);
+        function defaultControllerBrandCheckException$2(name7) {
+          return new TypeError(`WritableStreamDefaultController.prototype.${name7} can only be used on a WritableStreamDefaultController`);
         }
-        function defaultWriterBrandCheckException(name6) {
-          return new TypeError(`WritableStreamDefaultWriter.prototype.${name6} can only be used on a WritableStreamDefaultWriter`);
+        function defaultWriterBrandCheckException(name7) {
+          return new TypeError(`WritableStreamDefaultWriter.prototype.${name7} can only be used on a WritableStreamDefaultWriter`);
         }
-        function defaultWriterLockException(name6) {
-          return new TypeError("Cannot " + name6 + " a stream using a released writer");
+        function defaultWriterLockException(name7) {
+          return new TypeError("Cannot " + name7 + " a stream using a released writer");
         }
         function defaultWriterClosedPromiseInitialize(writer) {
           writer._closedPromise = newPromise((resolve2, reject) => {
@@ -3114,9 +3114,9 @@ var init_polyfills = __esm({
           }
         }
         function createDOMExceptionPolyfill() {
-          const ctor = function DOMException2(message, name6) {
+          const ctor = function DOMException2(message, name7) {
             this.message = message || "";
-            this.name = name6 || "Error";
+            this.name = name7 || "Error";
             if (Error.captureStackTrace) {
               Error.captureStackTrace(this, this.constructor);
             }
@@ -3504,8 +3504,8 @@ var init_polyfills = __esm({
           }
           SetUpReadableStreamDefaultController(stream, controller, startAlgorithm, pullAlgorithm, cancelAlgorithm, highWaterMark, sizeAlgorithm);
         }
-        function defaultControllerBrandCheckException$1(name6) {
-          return new TypeError(`ReadableStreamDefaultController.prototype.${name6} can only be used on a ReadableStreamDefaultController`);
+        function defaultControllerBrandCheckException$1(name7) {
+          return new TypeError(`ReadableStreamDefaultController.prototype.${name7} can only be used on a ReadableStreamDefaultController`);
         }
         function ReadableStreamTee(stream, cloneForBranch2) {
           if (IsReadableByteStreamController(stream._readableStreamController)) {
@@ -4113,8 +4113,8 @@ var init_polyfills = __esm({
             reader._readIntoRequests = new SimpleQueue();
           }
         }
-        function streamBrandCheckException$1(name6) {
-          return new TypeError(`ReadableStream.prototype.${name6} can only be used on a ReadableStream`);
+        function streamBrandCheckException$1(name7) {
+          return new TypeError(`ReadableStream.prototype.${name7} can only be used on a ReadableStream`);
         }
         function convertQueuingStrategyInit(init2, context) {
           assertDictionary(init2, context);
@@ -4163,8 +4163,8 @@ var init_polyfills = __esm({
             configurable: true
           });
         }
-        function byteLengthBrandCheckException(name6) {
-          return new TypeError(`ByteLengthQueuingStrategy.prototype.${name6} can only be used on a ByteLengthQueuingStrategy`);
+        function byteLengthBrandCheckException(name7) {
+          return new TypeError(`ByteLengthQueuingStrategy.prototype.${name7} can only be used on a ByteLengthQueuingStrategy`);
         }
         function IsByteLengthQueuingStrategy(x3) {
           if (!typeIsObject(x3)) {
@@ -4214,8 +4214,8 @@ var init_polyfills = __esm({
             configurable: true
           });
         }
-        function countBrandCheckException(name6) {
-          return new TypeError(`CountQueuingStrategy.prototype.${name6} can only be used on a CountQueuingStrategy`);
+        function countBrandCheckException(name7) {
+          return new TypeError(`CountQueuingStrategy.prototype.${name7} can only be used on a CountQueuingStrategy`);
         }
         function IsCountQueuingStrategy(x3) {
           if (!typeIsObject(x3)) {
@@ -4515,11 +4515,11 @@ var init_polyfills = __esm({
           TransformStreamSetBackpressure(stream, false);
           return stream._backpressureChangePromise;
         }
-        function defaultControllerBrandCheckException(name6) {
-          return new TypeError(`TransformStreamDefaultController.prototype.${name6} can only be used on a TransformStreamDefaultController`);
+        function defaultControllerBrandCheckException(name7) {
+          return new TypeError(`TransformStreamDefaultController.prototype.${name7} can only be used on a TransformStreamDefaultController`);
         }
-        function streamBrandCheckException(name6) {
-          return new TypeError(`TransformStream.prototype.${name6} can only be used on a TransformStream`);
+        function streamBrandCheckException(name7) {
+          return new TypeError(`TransformStream.prototype.${name7} can only be used on a TransformStream`);
         }
         exports3.ByteLengthQueuingStrategy = ByteLengthQueuingStrategy;
         exports3.CountQueuingStrategy = CountQueuingStrategy;
@@ -4558,7 +4558,7 @@ var init_polyfills = __esm({
     try {
       const { Blob: Blob4 } = require("buffer");
       if (Blob4 && !Blob4.prototype.stream) {
-        Blob4.prototype.stream = function name6(params) {
+        Blob4.prototype.stream = function name7(params) {
           let position = 0;
           const blob = this;
           return new ReadableStream({
@@ -4914,8 +4914,8 @@ var init_polyfills = __esm({
         if (ct.startsWith("application/x-www-form-urlencoded")) {
           const formData = new FormData();
           const parameters = new URLSearchParams(await this.text());
-          for (const [name6, value] of parameters) {
-            formData.append(name6, value);
+          for (const [name7, value] of parameters) {
+            formData.append(name7, value);
           }
           return formData;
         }
@@ -5020,16 +5020,16 @@ var init_polyfills = __esm({
         await pipeline(body, dest);
       }
     };
-    validateHeaderName = typeof import_node_http.default.validateHeaderName === "function" ? import_node_http.default.validateHeaderName : (name6) => {
-      if (!/^[\^`\-\w!#$%&'*+.|~]+$/.test(name6)) {
-        const error2 = new TypeError(`Header name must be a valid HTTP token [${name6}]`);
+    validateHeaderName = typeof import_node_http.default.validateHeaderName === "function" ? import_node_http.default.validateHeaderName : (name7) => {
+      if (!/^[\^`\-\w!#$%&'*+.|~]+$/.test(name7)) {
+        const error2 = new TypeError(`Header name must be a valid HTTP token [${name7}]`);
         Object.defineProperty(error2, "code", { value: "ERR_INVALID_HTTP_TOKEN" });
         throw error2;
       }
     };
-    validateHeaderValue = typeof import_node_http.default.validateHeaderValue === "function" ? import_node_http.default.validateHeaderValue : (name6, value) => {
+    validateHeaderValue = typeof import_node_http.default.validateHeaderValue === "function" ? import_node_http.default.validateHeaderValue : (name7, value) => {
       if (/[^\t\u0020-\u007E\u0080-\u00FF]/.test(value)) {
-        const error2 = new TypeError(`Invalid character in header content ["${name6}"]`);
+        const error2 = new TypeError(`Invalid character in header content ["${name7}"]`);
         Object.defineProperty(error2, "code", { value: "ERR_INVALID_CHAR" });
         throw error2;
       }
@@ -5039,8 +5039,8 @@ var init_polyfills = __esm({
         let result = [];
         if (init2 instanceof Headers2) {
           const raw = init2.raw();
-          for (const [name6, values] of Object.entries(raw)) {
-            result.push(...values.map((value) => [name6, value]));
+          for (const [name7, values] of Object.entries(raw)) {
+            result.push(...values.map((value) => [name7, value]));
           }
         } else if (init2 == null)
           ;
@@ -5067,10 +5067,10 @@ var init_polyfills = __esm({
         } else {
           throw new TypeError("Failed to construct 'Headers': The provided value is not of type '(sequence<sequence<ByteString>> or record<ByteString, ByteString>)");
         }
-        result = result.length > 0 ? result.map(([name6, value]) => {
-          validateHeaderName(name6);
-          validateHeaderValue(name6, String(value));
-          return [String(name6).toLowerCase(), String(value)];
+        result = result.length > 0 ? result.map(([name7, value]) => {
+          validateHeaderName(name7);
+          validateHeaderValue(name7, String(value));
+          return [String(name7).toLowerCase(), String(value)];
         }) : void 0;
         super(result);
         return new Proxy(this, {
@@ -5078,17 +5078,17 @@ var init_polyfills = __esm({
             switch (p2) {
               case "append":
               case "set":
-                return (name6, value) => {
-                  validateHeaderName(name6);
-                  validateHeaderValue(name6, String(value));
-                  return URLSearchParams.prototype[p2].call(target, String(name6).toLowerCase(), String(value));
+                return (name7, value) => {
+                  validateHeaderName(name7);
+                  validateHeaderValue(name7, String(value));
+                  return URLSearchParams.prototype[p2].call(target, String(name7).toLowerCase(), String(value));
                 };
               case "delete":
               case "has":
               case "getAll":
-                return (name6) => {
-                  validateHeaderName(name6);
-                  return URLSearchParams.prototype[p2].call(target, String(name6).toLowerCase());
+                return (name7) => {
+                  validateHeaderName(name7);
+                  return URLSearchParams.prototype[p2].call(target, String(name7).toLowerCase());
                 };
               case "keys":
                 return () => {
@@ -5107,30 +5107,30 @@ var init_polyfills = __esm({
       toString() {
         return Object.prototype.toString.call(this);
       }
-      get(name6) {
-        const values = this.getAll(name6);
+      get(name7) {
+        const values = this.getAll(name7);
         if (values.length === 0) {
           return null;
         }
         let value = values.join(", ");
-        if (/^content-encoding$/i.test(name6)) {
+        if (/^content-encoding$/i.test(name7)) {
           value = value.toLowerCase();
         }
         return value;
       }
       forEach(callback, thisArg = void 0) {
-        for (const name6 of this.keys()) {
-          Reflect.apply(callback, thisArg, [this.get(name6), name6, this]);
+        for (const name7 of this.keys()) {
+          Reflect.apply(callback, thisArg, [this.get(name7), name7, this]);
         }
       }
       *values() {
-        for (const name6 of this.keys()) {
-          yield this.get(name6);
+        for (const name7 of this.keys()) {
+          yield this.get(name7);
         }
       }
       *entries() {
-        for (const name6 of this.keys()) {
-          yield [name6, this.get(name6)];
+        for (const name7 of this.keys()) {
+          yield [name7, this.get(name7)];
         }
       }
       [Symbol.iterator]() {
@@ -5561,11 +5561,11 @@ function each(items, fn) {
   }
   return str;
 }
-function validate_component(component, name6) {
+function validate_component(component, name7) {
   if (!component || !component.$$render) {
-    if (name6 === "svelte:component")
-      name6 += " this={...}";
-    throw new Error(`<${name6}> is not a valid SSR component. You may need to review your build config to ensure that dependencies are compiled, rather than imported as pre-compiled modules`);
+    if (name7 === "svelte:component")
+      name7 += " this={...}";
+    throw new Error(`<${name7}> is not a valid SSR component. You may need to review your build config to ensure that dependencies are compiled, rather than imported as pre-compiled modules`);
   }
   return component;
 }
@@ -5603,11 +5603,11 @@ function create_ssr_component(fn) {
     $$render
   };
 }
-function add_attribute(name6, value, boolean) {
+function add_attribute(name7, value, boolean) {
   if (value == null || boolean && !value)
     return "";
   const assignment = boolean && value === true ? "" : `="${escape_attribute_value(value.toString())}"`;
-  return ` ${name6}${assignment}`;
+  return ` ${name7}${assignment}`;
 }
 var identity, is_client, now, raf, tasks, current_component, escaped, missing_component, on_destroy;
 var init_index_b1adb880 = __esm({
@@ -6151,8 +6151,8 @@ var init_index_esm2017 = __esm({
     init_shims();
     init_index_node_esm();
     Component = class {
-      constructor(name6, instanceFactory, type) {
-        this.name = name6;
+      constructor(name7, instanceFactory, type) {
+        this.name = name7;
         this.instanceFactory = instanceFactory;
         this.type = type;
         this.multipleInstances = false;
@@ -6179,8 +6179,8 @@ var init_index_esm2017 = __esm({
     };
     DEFAULT_ENTRY_NAME = "[DEFAULT]";
     Provider = class {
-      constructor(name6, container) {
-        this.name = name6;
+      constructor(name7, container) {
+        this.name = name7;
         this.container = container;
         this.component = null;
         this.instances = /* @__PURE__ */ new Map();
@@ -6361,8 +6361,8 @@ var init_index_esm2017 = __esm({
       }
     };
     ComponentContainer = class {
-      constructor(name6) {
-        this.name = name6;
+      constructor(name7) {
+        this.name = name7;
         this.providers = /* @__PURE__ */ new Map();
       }
       addComponent(component) {
@@ -6379,12 +6379,12 @@ var init_index_esm2017 = __esm({
         }
         this.addComponent(component);
       }
-      getProvider(name6) {
-        if (this.providers.has(name6)) {
-          return this.providers.get(name6);
+      getProvider(name7) {
+        if (this.providers.has(name7)) {
+          return this.providers.get(name7);
         }
-        const provider = new Provider(name6, this);
-        this.providers.set(name6, provider);
+        const provider = new Provider(name7, this);
+        this.providers.set(name7, provider);
         return provider;
       }
       getProviders() {
@@ -6437,8 +6437,8 @@ var init_index_esm20172 = __esm({
       }
     };
     Logger = class {
-      constructor(name6) {
-        this.name = name6;
+      constructor(name7) {
+        this.name = name7;
         this._logLevel = defaultLogLevel;
         this._logHandler = defaultLogHandler;
         this._userLogHandler = null;
@@ -6643,8 +6643,8 @@ var init_wrap_idb_value = __esm({
 });
 
 // node_modules/idb/build/index.js
-function openDB(name6, version6, { blocked, upgrade, blocking, terminated } = {}) {
-  const request = indexedDB.open(name6, version6);
+function openDB(name7, version7, { blocked, upgrade, blocking, terminated } = {}) {
+  const request = indexedDB.open(name7, version7);
   const openPromise = wrap(request);
   if (upgrade) {
     request.addEventListener("upgradeneeded", (event) => {
@@ -6727,59 +6727,59 @@ function _registerComponent(component) {
   }
   return true;
 }
-function _getProvider(app2, name6) {
+function _getProvider(app2, name7) {
   const heartbeatController = app2.container.getProvider("heartbeat").getImmediate({ optional: true });
   if (heartbeatController) {
     void heartbeatController.triggerHeartbeat();
   }
-  return app2.container.getProvider(name6);
+  return app2.container.getProvider(name7);
 }
 function initializeApp(options, rawConfig = {}) {
   if (typeof rawConfig !== "object") {
-    const name7 = rawConfig;
-    rawConfig = { name: name7 };
+    const name8 = rawConfig;
+    rawConfig = { name: name8 };
   }
   const config = Object.assign({ name: DEFAULT_ENTRY_NAME2, automaticDataCollectionEnabled: false }, rawConfig);
-  const name6 = config.name;
-  if (typeof name6 !== "string" || !name6) {
+  const name7 = config.name;
+  if (typeof name7 !== "string" || !name7) {
     throw ERROR_FACTORY.create("bad-app-name", {
-      appName: String(name6)
+      appName: String(name7)
     });
   }
-  const existingApp = _apps.get(name6);
+  const existingApp = _apps.get(name7);
   if (existingApp) {
     if (deepEqual(options, existingApp.options) && deepEqual(config, existingApp.config)) {
       return existingApp;
     } else {
-      throw ERROR_FACTORY.create("duplicate-app", { appName: name6 });
+      throw ERROR_FACTORY.create("duplicate-app", { appName: name7 });
     }
   }
-  const container = new ComponentContainer(name6);
+  const container = new ComponentContainer(name7);
   for (const component of _components.values()) {
     container.addComponent(component);
   }
   const newApp = new FirebaseAppImpl(options, config, container);
-  _apps.set(name6, newApp);
+  _apps.set(name7, newApp);
   return newApp;
 }
-function getApp(name6 = DEFAULT_ENTRY_NAME2) {
-  const app2 = _apps.get(name6);
+function getApp(name7 = DEFAULT_ENTRY_NAME2) {
+  const app2 = _apps.get(name7);
   if (!app2) {
-    throw ERROR_FACTORY.create("no-app", { appName: name6 });
+    throw ERROR_FACTORY.create("no-app", { appName: name7 });
   }
   return app2;
 }
-function registerVersion(libraryKeyOrName, version6, variant) {
+function registerVersion(libraryKeyOrName, version7, variant) {
   var _a;
   let library = (_a = PLATFORM_LOG_STRING[libraryKeyOrName]) !== null && _a !== void 0 ? _a : libraryKeyOrName;
   if (variant) {
     library += `-${variant}`;
   }
   const libraryMismatch = library.match(/\s|\//);
-  const versionMismatch = version6.match(/\s|\//);
+  const versionMismatch = version7.match(/\s|\//);
   if (libraryMismatch || versionMismatch) {
     const warning = [
-      `Unable to register library "${library}" with version "${version6}":`
+      `Unable to register library "${library}" with version "${version7}":`
     ];
     if (libraryMismatch) {
       warning.push(`library name "${library}" contains illegal characters (whitespace or "/")`);
@@ -6788,12 +6788,12 @@ function registerVersion(libraryKeyOrName, version6, variant) {
       warning.push("and");
     }
     if (versionMismatch) {
-      warning.push(`version name "${version6}" contains illegal characters (whitespace or "/")`);
+      warning.push(`version name "${version7}" contains illegal characters (whitespace or "/")`);
     }
     logger.warn(warning.join(" "));
     return;
   }
-  _registerComponent(new Component(`${library}-version`, () => ({ library, version: version6 }), "VERSION"));
+  _registerComponent(new Component(`${library}-version`, () => ({ library, version: version7 }), "VERSION"));
 }
 function getDbPromise() {
   if (!dbPromise) {
@@ -9621,10 +9621,10 @@ var require_lib2 = __commonJS({
       text: { enumerable: true }
     });
     Body2.mixIn = function(proto) {
-      for (const name6 of Object.getOwnPropertyNames(Body2.prototype)) {
-        if (!(name6 in proto)) {
-          const desc = Object.getOwnPropertyDescriptor(Body2.prototype, name6);
-          Object.defineProperty(proto, name6, desc);
+      for (const name7 of Object.getOwnPropertyNames(Body2.prototype)) {
+        if (!(name7 in proto)) {
+          const desc = Object.getOwnPropertyDescriptor(Body2.prototype, name7);
+          Object.defineProperty(proto, name7, desc);
         }
       }
     };
@@ -9812,10 +9812,10 @@ var require_lib2 = __commonJS({
     Body2.Promise = global.Promise;
     var invalidTokenRegex = /[^\^_`a-zA-Z\-0-9!#$%&'*+.|~]/;
     var invalidHeaderCharRegex = /[^\t\x20-\x7e\x80-\xff]/;
-    function validateName(name6) {
-      name6 = `${name6}`;
-      if (invalidTokenRegex.test(name6) || name6 === "") {
-        throw new TypeError(`${name6} is not a legal HTTP header name`);
+    function validateName(name7) {
+      name7 = `${name7}`;
+      if (invalidTokenRegex.test(name7) || name7 === "") {
+        throw new TypeError(`${name7} is not a legal HTTP header name`);
       }
     }
     function validateValue(value) {
@@ -9824,10 +9824,10 @@ var require_lib2 = __commonJS({
         throw new TypeError(`${value} is not a legal HTTP header value`);
       }
     }
-    function find(map, name6) {
-      name6 = name6.toLowerCase();
+    function find(map, name7) {
+      name7 = name7.toLowerCase();
       for (const key2 in map) {
-        if (key2.toLowerCase() === name6) {
+        if (key2.toLowerCase() === name7) {
           return key2;
         }
       }
@@ -9879,10 +9879,10 @@ var require_lib2 = __commonJS({
           throw new TypeError("Provided initializer must be an object");
         }
       }
-      get(name6) {
-        name6 = `${name6}`;
-        validateName(name6);
-        const key2 = find(this[MAP], name6);
+      get(name7) {
+        name7 = `${name7}`;
+        validateName(name7);
+        const key2 = find(this[MAP], name7);
         if (key2 === void 0) {
           return null;
         }
@@ -9894,41 +9894,41 @@ var require_lib2 = __commonJS({
         let i2 = 0;
         while (i2 < pairs.length) {
           var _pairs$i = pairs[i2];
-          const name6 = _pairs$i[0], value = _pairs$i[1];
-          callback.call(thisArg, value, name6, this);
+          const name7 = _pairs$i[0], value = _pairs$i[1];
+          callback.call(thisArg, value, name7, this);
           pairs = getHeaders(this);
           i2++;
         }
       }
-      set(name6, value) {
-        name6 = `${name6}`;
+      set(name7, value) {
+        name7 = `${name7}`;
         value = `${value}`;
-        validateName(name6);
+        validateName(name7);
         validateValue(value);
-        const key2 = find(this[MAP], name6);
-        this[MAP][key2 !== void 0 ? key2 : name6] = [value];
+        const key2 = find(this[MAP], name7);
+        this[MAP][key2 !== void 0 ? key2 : name7] = [value];
       }
-      append(name6, value) {
-        name6 = `${name6}`;
+      append(name7, value) {
+        name7 = `${name7}`;
         value = `${value}`;
-        validateName(name6);
+        validateName(name7);
         validateValue(value);
-        const key2 = find(this[MAP], name6);
+        const key2 = find(this[MAP], name7);
         if (key2 !== void 0) {
           this[MAP][key2].push(value);
         } else {
-          this[MAP][name6] = [value];
+          this[MAP][name7] = [value];
         }
       }
-      has(name6) {
-        name6 = `${name6}`;
-        validateName(name6);
-        return find(this[MAP], name6) !== void 0;
+      has(name7) {
+        name7 = `${name7}`;
+        validateName(name7);
+        return find(this[MAP], name7) !== void 0;
       }
-      delete(name6) {
-        name6 = `${name6}`;
-        validateName(name6);
-        const key2 = find(this[MAP], name6);
+      delete(name7) {
+        name7 = `${name7}`;
+        validateName(name7);
+        const key2 = find(this[MAP], name7);
         if (key2 !== void 0) {
           delete this[MAP][key2];
         }
@@ -10023,23 +10023,23 @@ var require_lib2 = __commonJS({
     }
     function createHeadersLenient(obj) {
       const headers = new Headers4();
-      for (const name6 of Object.keys(obj)) {
-        if (invalidTokenRegex.test(name6)) {
+      for (const name7 of Object.keys(obj)) {
+        if (invalidTokenRegex.test(name7)) {
           continue;
         }
-        if (Array.isArray(obj[name6])) {
-          for (const val of obj[name6]) {
+        if (Array.isArray(obj[name7])) {
+          for (const val of obj[name7]) {
             if (invalidHeaderCharRegex.test(val)) {
               continue;
             }
-            if (headers[MAP][name6] === void 0) {
-              headers[MAP][name6] = [val];
+            if (headers[MAP][name7] === void 0) {
+              headers[MAP][name7] = [val];
             } else {
-              headers[MAP][name6].push(val);
+              headers[MAP][name7].push(val);
             }
           }
-        } else if (!invalidHeaderCharRegex.test(obj[name6])) {
-          headers[MAP][name6] = [obj[name6]];
+        } else if (!invalidHeaderCharRegex.test(obj[name7])) {
+          headers[MAP][name7] = [obj[name7]];
         }
       }
       return headers;
@@ -10379,8 +10379,8 @@ var require_lib2 = __commonJS({
                   size: request.size
                 };
                 if (!isDomainOrSubdomain2(request.url, locationURL)) {
-                  for (const name6 of ["authorization", "www-authenticate", "cookie", "cookie2"]) {
-                    requestOpts.headers.delete(name6);
+                  for (const name7 of ["authorization", "www-authenticate", "cookie", "cookie2"]) {
+                    requestOpts.headers.delete(name7);
                   }
                 }
                 if (res.statusCode !== 303 && request.body && getTotalBytes2(request) === null) {
@@ -11503,9 +11503,9 @@ var init_index_a262d8f8 = __esm({
         this.persistence = persistence;
         this.auth = auth2;
         this.userKey = userKey;
-        const { config, name: name6 } = this.auth;
-        this.fullUserKey = _persistenceKeyName(this.userKey, config.apiKey, name6);
-        this.fullPersistenceKey = _persistenceKeyName("persistence", config.apiKey, name6);
+        const { config, name: name7 } = this.auth;
+        this.fullUserKey = _persistenceKeyName(this.userKey, config.apiKey, name7);
+        this.fullPersistenceKey = _persistenceKeyName("persistence", config.apiKey, name7);
         this.boundEventHandler = auth2._onStorageEvent.bind(auth2);
         this.persistence._addListener(this.fullUserKey, this.boundEventHandler);
       }
@@ -12986,9 +12986,9 @@ var require_call_stream = __commonJS({
     var TRACER_NAME = "call_stream";
     var { HTTP2_HEADER_STATUS, HTTP2_HEADER_CONTENT_TYPE, NGHTTP2_CANCEL } = http2.constants;
     function getSystemErrorName(errno) {
-      for (const [name6, num] of Object.entries(os2.constants.errno)) {
+      for (const [name7, num] of Object.entries(os2.constants.errno)) {
         if (num === errno) {
-          return name6;
+          return name7;
         }
       }
       return "Unknown system error " + errno;
@@ -13793,8 +13793,8 @@ var require_service_config = __commonJS({
       if (!("name" in obj) || !Array.isArray(obj.name)) {
         throw new Error("Invalid method config: invalid name array");
       }
-      for (const name6 of obj.name) {
-        result.name.push(validateName(name6));
+      for (const name7 of obj.name) {
+        result.name.push(validateName(name7));
       }
       if ("waitForReady" in obj) {
         if (typeof obj.waitForReady !== "boolean") {
@@ -13865,13 +13865,13 @@ var require_service_config = __commonJS({
       }
       const seenMethodNames = [];
       for (const methodConfig of result.methodConfig) {
-        for (const name6 of methodConfig.name) {
+        for (const name7 of methodConfig.name) {
           for (const seenName of seenMethodNames) {
-            if (name6.service === seenName.service && name6.method === seenName.method) {
-              throw new Error(`Invalid service config: duplicate name ${name6.service}/${name6.method}`);
+            if (name7.service === seenName.service && name7.method === seenName.method) {
+              throw new Error(`Invalid service config: duplicate name ${name7.service}/${name7.method}`);
             }
           }
-          seenMethodNames.push(name6);
+          seenMethodNames.push(name7);
         }
       }
       return result;
@@ -14448,8 +14448,8 @@ var require_resolving_load_balancer = __commonJS({
         const method = (_b = splitName[1]) !== null && _b !== void 0 ? _b : "";
         if (serviceConfig && serviceConfig.methodConfig) {
           for (const methodConfig of serviceConfig.methodConfig) {
-            for (const name6 of methodConfig.name) {
-              if (name6.service === service && (name6.method === void 0 || name6.method === method)) {
+            for (const name7 of methodConfig.name) {
+              if (name7.service === service && (name7.method === void 0 || name7.method === method)) {
                 return {
                   methodConfig,
                   pickInformation: {},
@@ -15248,15 +15248,15 @@ var require_client_interceptors = __commonJS({
       const parent2 = (_b = options.parent) !== null && _b !== void 0 ? _b : null;
       const propagateFlags = options.propagate_flags;
       const credentials2 = options.credentials;
-      const call = channel.createCall(path, deadline, host, parent2, propagateFlags);
+      const call2 = channel.createCall(path, deadline, host, parent2, propagateFlags);
       if (credentials2) {
-        call.setCredentials(credentials2);
+        call2.setCredentials(credentials2);
       }
-      return call;
+      return call2;
     }
     var BaseInterceptingCall = class {
-      constructor(call, methodDefinition) {
-        this.call = call;
+      constructor(call2, methodDefinition) {
+        this.call = call2;
         this.methodDefinition = methodDefinition;
       }
       cancelWithStatus(status, details) {
@@ -15322,8 +15322,8 @@ var require_client_interceptors = __commonJS({
       }
     };
     var BaseUnaryInterceptingCall = class extends BaseInterceptingCall {
-      constructor(call, methodDefinition) {
-        super(call, methodDefinition);
+      constructor(call2, methodDefinition) {
+        super(call2, methodDefinition);
       }
       start(metadata, listener) {
         var _a, _b;
@@ -15351,11 +15351,11 @@ var require_client_interceptors = __commonJS({
     var BaseStreamingInterceptingCall = class extends BaseInterceptingCall {
     };
     function getBottomInterceptingCall(channel, options, methodDefinition) {
-      const call = getCall(channel, methodDefinition.path, options);
+      const call2 = getCall(channel, methodDefinition.path, options);
       if (methodDefinition.responseStream) {
-        return new BaseStreamingInterceptingCall(call, methodDefinition);
+        return new BaseStreamingInterceptingCall(call2, methodDefinition);
       } else {
-        return new BaseUnaryInterceptingCall(call, methodDefinition);
+        return new BaseUnaryInterceptingCall(call2, methodDefinition);
       }
     }
     function getInterceptingCall(interceptorArgs, methodDefinition, options, channel) {
@@ -15502,20 +15502,20 @@ var require_client = __commonJS({
           callInterceptors: (_a = callProperties.callOptions.interceptors) !== null && _a !== void 0 ? _a : [],
           callInterceptorProviders: (_b = callProperties.callOptions.interceptor_providers) !== null && _b !== void 0 ? _b : []
         };
-        const call = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
-        emitter.call = call;
+        const call2 = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
+        emitter.call = call2;
         if (callProperties.callOptions.credentials) {
-          call.setCredentials(callProperties.callOptions.credentials);
+          call2.setCredentials(callProperties.callOptions.credentials);
         }
         let responseMessage = null;
         let receivedStatus = false;
-        call.start(callProperties.metadata, {
+        call2.start(callProperties.metadata, {
           onReceiveMetadata: (metadata2) => {
             emitter.emit("metadata", metadata2);
           },
           onReceiveMessage(message) {
             if (responseMessage !== null) {
-              call.cancelWithStatus(constants_1.Status.INTERNAL, "Too many responses received");
+              call2.cancelWithStatus(constants_1.Status.INTERNAL, "Too many responses received");
             }
             responseMessage = message;
           },
@@ -15540,8 +15540,8 @@ var require_client = __commonJS({
             emitter.emit("status", status);
           }
         });
-        call.sendMessage(argument);
-        call.halfClose();
+        call2.sendMessage(argument);
+        call2.halfClose();
         return emitter;
       }
       makeClientStreamRequest(method, serialize2, deserialize, metadata, options, callback) {
@@ -15572,20 +15572,20 @@ var require_client = __commonJS({
           callInterceptors: (_a = callProperties.callOptions.interceptors) !== null && _a !== void 0 ? _a : [],
           callInterceptorProviders: (_b = callProperties.callOptions.interceptor_providers) !== null && _b !== void 0 ? _b : []
         };
-        const call = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
-        emitter.call = call;
+        const call2 = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
+        emitter.call = call2;
         if (callProperties.callOptions.credentials) {
-          call.setCredentials(callProperties.callOptions.credentials);
+          call2.setCredentials(callProperties.callOptions.credentials);
         }
         let responseMessage = null;
         let receivedStatus = false;
-        call.start(callProperties.metadata, {
+        call2.start(callProperties.metadata, {
           onReceiveMetadata: (metadata2) => {
             emitter.emit("metadata", metadata2);
           },
           onReceiveMessage(message) {
             if (responseMessage !== null) {
-              call.cancelWithStatus(constants_1.Status.INTERNAL, "Too many responses received");
+              call2.cancelWithStatus(constants_1.Status.INTERNAL, "Too many responses received");
             }
             responseMessage = message;
           },
@@ -15660,13 +15660,13 @@ var require_client = __commonJS({
           callInterceptors: (_a = callProperties.callOptions.interceptors) !== null && _a !== void 0 ? _a : [],
           callInterceptorProviders: (_b = callProperties.callOptions.interceptor_providers) !== null && _b !== void 0 ? _b : []
         };
-        const call = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
-        stream.call = call;
+        const call2 = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
+        stream.call = call2;
         if (callProperties.callOptions.credentials) {
-          call.setCredentials(callProperties.callOptions.credentials);
+          call2.setCredentials(callProperties.callOptions.credentials);
         }
         let receivedStatus = false;
-        call.start(callProperties.metadata, {
+        call2.start(callProperties.metadata, {
           onReceiveMetadata(metadata2) {
             stream.emit("metadata", metadata2);
           },
@@ -15685,8 +15685,8 @@ var require_client = __commonJS({
             stream.emit("status", status);
           }
         });
-        call.sendMessage(argument);
-        call.halfClose();
+        call2.sendMessage(argument);
+        call2.halfClose();
         return stream;
       }
       makeBidiStreamRequest(method, serialize2, deserialize, metadata, options) {
@@ -15716,13 +15716,13 @@ var require_client = __commonJS({
           callInterceptors: (_a = callProperties.callOptions.interceptors) !== null && _a !== void 0 ? _a : [],
           callInterceptorProviders: (_b = callProperties.callOptions.interceptor_providers) !== null && _b !== void 0 ? _b : []
         };
-        const call = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
-        stream.call = call;
+        const call2 = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
+        stream.call = call2;
         if (callProperties.callOptions.credentials) {
-          call.setCredentials(callProperties.callOptions.credentials);
+          call2.setCredentials(callProperties.callOptions.credentials);
         }
         let receivedStatus = false;
-        call.start(callProperties.metadata, {
+        call2.start(callProperties.metadata, {
           onReceiveMetadata(metadata2) {
             stream.emit("metadata", metadata2);
           },
@@ -15771,13 +15771,13 @@ var require_make_client = __commonJS({
       }
       class ServiceClientImpl extends client_1.Client {
       }
-      Object.keys(methods).forEach((name6) => {
-        if (isPrototypePolluted(name6)) {
+      Object.keys(methods).forEach((name7) => {
+        if (isPrototypePolluted(name7)) {
           return;
         }
-        const attrs = methods[name6];
+        const attrs = methods[name7];
         let methodType;
-        if (typeof name6 === "string" && name6.charAt(0) === "$") {
+        if (typeof name7 === "string" && name7.charAt(0) === "$") {
           throw new Error("Method names cannot start with $");
         }
         if (attrs.requestStream) {
@@ -15796,10 +15796,10 @@ var require_make_client = __commonJS({
         const serialize2 = attrs.requestSerialize;
         const deserialize = attrs.responseDeserialize;
         const methodFunc = partial(requesterFuncs[methodType], attrs.path, serialize2, deserialize);
-        ServiceClientImpl.prototype[name6] = methodFunc;
-        Object.assign(ServiceClientImpl.prototype[name6], attrs);
+        ServiceClientImpl.prototype[name7] = methodFunc;
+        Object.assign(ServiceClientImpl.prototype[name7], attrs);
         if (attrs.originalName && !isPrototypePolluted(attrs.originalName)) {
-          ServiceClientImpl.prototype[attrs.originalName] = ServiceClientImpl.prototype[name6];
+          ServiceClientImpl.prototype[attrs.originalName] = ServiceClientImpl.prototype[name7];
         }
       });
       ServiceClientImpl.service = methods;
@@ -16276,7 +16276,7 @@ var require_base64 = __commonJS({
     for (i2 = 0; i2 < 64; )
       s64[b64[i2] = i2 < 26 ? i2 + 65 : i2 < 52 ? i2 + 71 : i2 < 62 ? i2 - 4 : i2 - 59 | 43] = i2++;
     var i2;
-    base643.encode = function encode2(buffer, start2, end) {
+    base643.encode = function encode3(buffer, start2, end) {
       var parts = null, chunk = [];
       var i3 = 0, j = 0, t2;
       while (start2 < end) {
@@ -16317,7 +16317,7 @@ var require_base64 = __commonJS({
       return String.fromCharCode.apply(String, chunk.slice(0, i3));
     };
     var invalidEncoding = "invalid encoding";
-    base643.decode = function decode2(string, buffer, offset) {
+    base643.decode = function decode3(string, buffer, offset) {
       var start2 = offset;
       var j = 0, t2;
       for (var i3 = 0; i3 < string.length; ) {
@@ -16875,7 +16875,7 @@ var require_minimal = __commonJS({
     util.lcFirst = function lcFirst(str) {
       return str.charAt(0).toLowerCase() + str.substring(1);
     };
-    function newError(name6) {
+    function newError(name7) {
       function CustomError(message, properties) {
         if (!(this instanceof CustomError))
           return new CustomError(message, properties);
@@ -16891,7 +16891,7 @@ var require_minimal = __commonJS({
       }
       (CustomError.prototype = Object.create(Error.prototype)).constructor = CustomError;
       Object.defineProperty(CustomError.prototype, "name", { get: function() {
-        return name6;
+        return name7;
       } });
       CustomError.prototype.toString = function toString() {
         return this.name + ": " + this.message;
@@ -16911,9 +16911,9 @@ var require_minimal = __commonJS({
       };
     };
     util.oneOfSetter = function setOneOf(fieldNames) {
-      return function(name6) {
+      return function(name7) {
         for (var i2 = 0; i2 < fieldNames.length; ++i2)
-          if (fieldNames[i2] !== name6)
+          if (fieldNames[i2] !== name7)
             delete this[fieldNames[i2]];
       };
     };
@@ -17811,10 +17811,10 @@ var require_field = __commonJS({
     var util = require_util();
     var Type;
     var ruleRe = /^required|optional|repeated$/;
-    Field.fromJSON = function fromJSON2(name6, json) {
-      return new Field(name6, json.id, json.type, json.rule, json.extend, json.options, json.comment);
+    Field.fromJSON = function fromJSON2(name7, json) {
+      return new Field(name7, json.id, json.type, json.rule, json.extend, json.options, json.comment);
     };
-    function Field(name6, id, type, rule, extend, options, comment) {
+    function Field(name7, id, type, rule, extend, options, comment) {
       if (util.isObject(rule)) {
         comment = extend;
         options = rule;
@@ -17824,7 +17824,7 @@ var require_field = __commonJS({
         options = extend;
         extend = void 0;
       }
-      ReflectionObject.call(this, name6, options);
+      ReflectionObject.call(this, name7, options);
       if (!util.isInteger(id) || id < 0)
         throw TypeError("id must be a non-negative integer");
       if (!util.isString(type))
@@ -17863,10 +17863,10 @@ var require_field = __commonJS({
         return this._packed;
       }
     });
-    Field.prototype.setOption = function setOption(name6, value, ifNotSet) {
-      if (name6 === "packed")
+    Field.prototype.setOption = function setOption(name7, value, ifNotSet) {
+      if (name7 === "packed")
         this._packed = null;
-      return ReflectionObject.prototype.setOption.call(this, name6, value, ifNotSet);
+      return ReflectionObject.prototype.setOption.call(this, name7, value, ifNotSet);
     };
     Field.prototype.toJSON = function toJSON(toJSONOptions) {
       var keepComments = toJSONOptions ? Boolean(toJSONOptions.keepComments) : false;
@@ -17953,20 +17953,20 @@ var require_oneof = __commonJS({
     ((OneOf.prototype = Object.create(ReflectionObject.prototype)).constructor = OneOf).className = "OneOf";
     var Field = require_field();
     var util = require_util();
-    function OneOf(name6, fieldNames, options, comment) {
+    function OneOf(name7, fieldNames, options, comment) {
       if (!Array.isArray(fieldNames)) {
         options = fieldNames;
         fieldNames = void 0;
       }
-      ReflectionObject.call(this, name6, options);
+      ReflectionObject.call(this, name7, options);
       if (!(fieldNames === void 0 || Array.isArray(fieldNames)))
         throw TypeError("fieldNames must be an Array");
       this.oneof = fieldNames || [];
       this.fieldsArray = [];
       this.comment = comment;
     }
-    OneOf.fromJSON = function fromJSON2(name6, json) {
-      return new OneOf(name6, json.oneof, json.options, json.comment);
+    OneOf.fromJSON = function fromJSON2(name7, json) {
+      return new OneOf(name7, json.oneof, json.options, json.comment);
     };
     OneOf.prototype.toJSON = function toJSON(toJSONOptions) {
       var keepComments = toJSONOptions ? Boolean(toJSONOptions.keepComments) : false;
@@ -18057,8 +18057,8 @@ var require_namespace = __commonJS({
     var Type;
     var Service;
     var Enum;
-    Namespace.fromJSON = function fromJSON2(name6, json) {
-      return new Namespace(name6, json.options).addJSON(json.nested);
+    Namespace.fromJSON = function fromJSON2(name7, json) {
+      return new Namespace(name7, json.options).addJSON(json.nested);
     };
     function arrayToJSON(array2, toJSONOptions) {
       if (!(array2 && array2.length))
@@ -18077,16 +18077,16 @@ var require_namespace = __commonJS({
       }
       return false;
     };
-    Namespace.isReservedName = function isReservedName(reserved2, name6) {
+    Namespace.isReservedName = function isReservedName(reserved2, name7) {
       if (reserved2) {
         for (var i2 = 0; i2 < reserved2.length; ++i2)
-          if (reserved2[i2] === name6)
+          if (reserved2[i2] === name7)
             return true;
       }
       return false;
     };
-    function Namespace(name6, options) {
-      ReflectionObject.call(this, name6, options);
+    function Namespace(name7, options) {
+      ReflectionObject.call(this, name7, options);
       this.nested = void 0;
       this._nestedArray = null;
     }
@@ -18117,13 +18117,13 @@ var require_namespace = __commonJS({
       }
       return this;
     };
-    Namespace.prototype.get = function get2(name6) {
-      return this.nested && this.nested[name6] || null;
+    Namespace.prototype.get = function get2(name7) {
+      return this.nested && this.nested[name7] || null;
     };
-    Namespace.prototype.getEnum = function getEnum(name6) {
-      if (this.nested && this.nested[name6] instanceof Enum)
-        return this.nested[name6].values;
-      throw Error("no such enum: " + name6);
+    Namespace.prototype.getEnum = function getEnum(name7) {
+      if (this.nested && this.nested[name7] instanceof Enum)
+        return this.nested[name7].values;
+      throw Error("no such enum: " + name7);
     };
     Namespace.prototype.add = function add(object) {
       if (!(object instanceof Field && object.extend !== void 0 || object instanceof Type || object instanceof Enum || object instanceof Service || object instanceof Namespace || object instanceof OneOf))
@@ -18261,16 +18261,16 @@ var require_mapfield = __commonJS({
     ((MapField.prototype = Object.create(Field.prototype)).constructor = MapField).className = "MapField";
     var types2 = require_types();
     var util = require_util();
-    function MapField(name6, id, keyType, type, options, comment) {
-      Field.call(this, name6, id, type, void 0, void 0, options, comment);
+    function MapField(name7, id, keyType, type, options, comment) {
+      Field.call(this, name7, id, type, void 0, void 0, options, comment);
       if (!util.isString(keyType))
         throw TypeError("keyType must be a string");
       this.keyType = keyType;
       this.resolvedKeyType = null;
       this.map = true;
     }
-    MapField.fromJSON = function fromJSON2(name6, json) {
-      return new MapField(name6, json.id, json.keyType, json.type, json.options, json.comment);
+    MapField.fromJSON = function fromJSON2(name7, json) {
+      return new MapField(name7, json.id, json.keyType, json.type, json.options, json.comment);
     };
     MapField.prototype.toJSON = function toJSON(toJSONOptions) {
       var keepComments = toJSONOptions ? Boolean(toJSONOptions.keepComments) : false;
@@ -18317,7 +18317,7 @@ var require_method = __commonJS({
     var ReflectionObject = require_object();
     ((Method.prototype = Object.create(ReflectionObject.prototype)).constructor = Method).className = "Method";
     var util = require_util();
-    function Method(name6, type, requestType, responseType, requestStream, responseStream, options, comment, parsedOptions) {
+    function Method(name7, type, requestType, responseType, requestStream, responseStream, options, comment, parsedOptions) {
       if (util.isObject(requestStream)) {
         options = requestStream;
         requestStream = responseStream = void 0;
@@ -18331,7 +18331,7 @@ var require_method = __commonJS({
         throw TypeError("requestType must be a string");
       if (!util.isString(responseType))
         throw TypeError("responseType must be a string");
-      ReflectionObject.call(this, name6, options);
+      ReflectionObject.call(this, name7, options);
       this.type = type || "rpc";
       this.requestType = requestType;
       this.requestStream = requestStream ? true : void 0;
@@ -18342,8 +18342,8 @@ var require_method = __commonJS({
       this.comment = comment;
       this.parsedOptions = parsedOptions;
     }
-    Method.fromJSON = function fromJSON2(name6, json) {
-      return new Method(name6, json.type, json.requestType, json.responseType, json.requestStream, json.responseStream, json.options, json.comment, json.parsedOptions);
+    Method.fromJSON = function fromJSON2(name7, json) {
+      return new Method(name7, json.type, json.requestType, json.responseType, json.requestStream, json.responseStream, json.options, json.comment, json.parsedOptions);
     };
     Method.prototype.toJSON = function toJSON(toJSONOptions) {
       var keepComments = toJSONOptions ? Boolean(toJSONOptions.keepComments) : false;
@@ -18387,13 +18387,13 @@ var require_service2 = __commonJS({
     var Method = require_method();
     var util = require_util();
     var rpc = require_rpc();
-    function Service(name6, options) {
-      Namespace.call(this, name6, options);
+    function Service(name7, options) {
+      Namespace.call(this, name7, options);
       this.methods = {};
       this._methodsArray = null;
     }
-    Service.fromJSON = function fromJSON2(name6, json) {
-      var service = new Service(name6, json.options);
+    Service.fromJSON = function fromJSON2(name7, json) {
+      var service = new Service(name7, json.options);
       if (json.methods)
         for (var names = Object.keys(json.methods), i2 = 0; i2 < names.length; ++i2)
           service.add(Method.fromJSON(names[i2], json.methods[names[i2]]));
@@ -18425,8 +18425,8 @@ var require_service2 = __commonJS({
       service._methodsArray = null;
       return service;
     }
-    Service.prototype.get = function get2(name6) {
-      return this.methods[name6] || Namespace.prototype.get.call(this, name6);
+    Service.prototype.get = function get2(name7) {
+      return this.methods[name7] || Namespace.prototype.get.call(this, name7);
     };
     Service.prototype.resolveAll = function resolveAll() {
       var methods = this.methodsArray;
@@ -18484,13 +18484,13 @@ var require_message = __commonJS({
     Message.create = function create(properties) {
       return this.$type.create(properties);
     };
-    Message.encode = function encode2(message, writer) {
+    Message.encode = function encode3(message, writer) {
       return this.$type.encode(message, writer);
     };
     Message.encodeDelimited = function encodeDelimited(message, writer) {
       return this.$type.encodeDelimited(message, writer);
     };
-    Message.decode = function decode2(reader) {
+    Message.decode = function decode3(reader) {
       return this.$type.decode(reader);
     };
     Message.decodeDelimited = function decodeDelimited(reader) {
@@ -18874,8 +18874,8 @@ var require_wrappers = __commonJS({
     wrappers[".google.protobuf.Any"] = {
       fromObject: function(object) {
         if (object && object["@type"]) {
-          var name6 = object["@type"].substring(object["@type"].lastIndexOf("/") + 1);
-          var type = this.lookup(name6);
+          var name7 = object["@type"].substring(object["@type"].lastIndexOf("/") + 1);
+          var type = this.lookup(name7);
           if (type) {
             var type_url = object["@type"].charAt(0) === "." ? object["@type"].substr(1) : object["@type"];
             if (type_url.indexOf("/") === -1) {
@@ -18892,11 +18892,11 @@ var require_wrappers = __commonJS({
       toObject: function(message, options) {
         var googleApi = "type.googleapis.com/";
         var prefix = "";
-        var name6 = "";
+        var name7 = "";
         if (options && options.json && message.type_url && message.value) {
-          name6 = message.type_url.substring(message.type_url.lastIndexOf("/") + 1);
+          name7 = message.type_url.substring(message.type_url.lastIndexOf("/") + 1);
           prefix = message.type_url.substring(0, message.type_url.lastIndexOf("/") + 1);
-          var type = this.lookup(name6);
+          var type = this.lookup(name7);
           if (type)
             message = type.decode(message.value);
         }
@@ -18906,8 +18906,8 @@ var require_wrappers = __commonJS({
           if (prefix === "") {
             prefix = googleApi;
           }
-          name6 = prefix + messageName;
-          object["@type"] = name6;
+          name7 = prefix + messageName;
+          object["@type"] = name7;
           return object;
         }
         return this.toObject(message, options);
@@ -18938,8 +18938,8 @@ var require_type = __commonJS({
     var verifier = require_verifier();
     var converter = require_converter();
     var wrappers = require_wrappers();
-    function Type(name6, options) {
-      Namespace.call(this, name6, options);
+    function Type(name7, options) {
+      Namespace.call(this, name7, options);
       this.fields = {};
       this.oneofs = void 0;
       this.extensions = void 0;
@@ -19018,8 +19018,8 @@ var require_type = __commonJS({
       delete type.verify;
       return type;
     }
-    Type.fromJSON = function fromJSON2(name6, json) {
-      var type = new Type(name6, json.options);
+    Type.fromJSON = function fromJSON2(name7, json) {
+      var type = new Type(name7, json.options);
       type.extensions = json.extensions;
       type.reserved = json.reserved;
       var names = Object.keys(json.fields), i2 = 0;
@@ -19077,8 +19077,8 @@ var require_type = __commonJS({
         oneofs[i2++].resolve();
       return Namespace.prototype.resolveAll.call(this);
     };
-    Type.prototype.get = function get2(name6) {
-      return this.fields[name6] || this.oneofs && this.oneofs[name6] || this.nested && this.nested[name6] || null;
+    Type.prototype.get = function get2(name7) {
+      return this.fields[name7] || this.oneofs && this.oneofs[name7] || this.nested && this.nested[name7] || null;
     };
     Type.prototype.add = function add(object) {
       if (this.get(object.name))
@@ -19128,8 +19128,8 @@ var require_type = __commonJS({
     Type.prototype.isReservedId = function isReservedId(id) {
       return Namespace.isReservedId(this.reserved, id);
     };
-    Type.prototype.isReservedName = function isReservedName(name6) {
-      return Namespace.isReservedName(this.reserved, name6);
+    Type.prototype.isReservedName = function isReservedName(name7) {
+      return Namespace.isReservedName(this.reserved, name7);
     };
     Type.prototype.create = function create(properties) {
       return new this.ctor(properties);
@@ -19449,8 +19449,8 @@ var require_util = __commonJS({
     };
     var safePropBackslashRe = /\\/g;
     var safePropQuoteRe = /"/g;
-    util.isReserved = function isReserved(name6) {
-      return /^(?:do|if|in|for|let|new|try|var|case|else|enum|eval|false|null|this|true|void|with|break|catch|class|const|super|throw|while|yield|delete|export|import|public|return|static|switch|typeof|default|extends|finally|package|private|continue|debugger|function|arguments|interface|protected|implements|instanceof)$/.test(name6);
+    util.isReserved = function isReserved(name7) {
+      return /^(?:do|if|in|for|let|new|try|var|case|else|enum|eval|false|null|this|true|void|with|break|catch|class|const|super|throw|while|yield|delete|export|import|public|return|static|switch|typeof|default|extends|finally|package|private|continue|debugger|function|arguments|interface|protected|implements|instanceof)$/.test(name7);
     };
     util.safeProp = function safeProp2(prop) {
       if (!/^[$\w_]+$/.test(prop) || util.isReserved(prop))
@@ -19538,14 +19538,14 @@ var require_object = __commonJS({
     ReflectionObject.className = "ReflectionObject";
     var util = require_util();
     var Root2;
-    function ReflectionObject(name6, options) {
-      if (!util.isString(name6))
+    function ReflectionObject(name7, options) {
+      if (!util.isString(name7))
         throw TypeError("name must be a string");
       if (options && !util.isObject(options))
         throw TypeError("options must be an object");
       this.options = options;
       this.parsedOptions = null;
-      this.name = name6;
+      this.name = name7;
       this.parent = null;
       this.resolved = false;
       this.comment = null;
@@ -19597,36 +19597,36 @@ var require_object = __commonJS({
         this.resolved = true;
       return this;
     };
-    ReflectionObject.prototype.getOption = function getOption(name6) {
+    ReflectionObject.prototype.getOption = function getOption(name7) {
       if (this.options)
-        return this.options[name6];
+        return this.options[name7];
       return void 0;
     };
-    ReflectionObject.prototype.setOption = function setOption(name6, value, ifNotSet) {
-      if (!ifNotSet || !this.options || this.options[name6] === void 0)
-        (this.options || (this.options = {}))[name6] = value;
+    ReflectionObject.prototype.setOption = function setOption(name7, value, ifNotSet) {
+      if (!ifNotSet || !this.options || this.options[name7] === void 0)
+        (this.options || (this.options = {}))[name7] = value;
       return this;
     };
-    ReflectionObject.prototype.setParsedOption = function setParsedOption(name6, value, propName) {
+    ReflectionObject.prototype.setParsedOption = function setParsedOption(name7, value, propName) {
       if (!this.parsedOptions) {
         this.parsedOptions = [];
       }
       var parsedOptions = this.parsedOptions;
       if (propName) {
         var opt = parsedOptions.find(function(opt2) {
-          return Object.prototype.hasOwnProperty.call(opt2, name6);
+          return Object.prototype.hasOwnProperty.call(opt2, name7);
         });
         if (opt) {
-          var newValue = opt[name6];
+          var newValue = opt[name7];
           util.setProperty(newValue, propName, value);
         } else {
           opt = {};
-          opt[name6] = util.setProperty({}, propName, value);
+          opt[name7] = util.setProperty({}, propName, value);
           parsedOptions.push(opt);
         }
       } else {
         var newOpt = {};
-        newOpt[name6] = value;
+        newOpt[name7] = value;
         parsedOptions.push(newOpt);
       }
       return this;
@@ -19659,8 +19659,8 @@ var require_enum = __commonJS({
     ((Enum.prototype = Object.create(ReflectionObject.prototype)).constructor = Enum).className = "Enum";
     var Namespace = require_namespace();
     var util = require_util();
-    function Enum(name6, values, options, comment, comments) {
-      ReflectionObject.call(this, name6, options);
+    function Enum(name7, values, options, comment, comments) {
+      ReflectionObject.call(this, name7, options);
       if (values && typeof values !== "object")
         throw TypeError("values must be an object");
       this.valuesById = {};
@@ -19674,8 +19674,8 @@ var require_enum = __commonJS({
             this.valuesById[this.values[keys[i2]] = values[keys[i2]]] = keys[i2];
       }
     }
-    Enum.fromJSON = function fromJSON2(name6, json) {
-      var enm = new Enum(name6, json.values, json.options, json.comment, json.comments);
+    Enum.fromJSON = function fromJSON2(name7, json) {
+      var enm = new Enum(name7, json.values, json.options, json.comment, json.comments);
       enm.reserved = json.reserved;
       return enm;
     };
@@ -19694,42 +19694,42 @@ var require_enum = __commonJS({
         keepComments ? this.comments : void 0
       ]);
     };
-    Enum.prototype.add = function add(name6, id, comment) {
-      if (!util.isString(name6))
+    Enum.prototype.add = function add(name7, id, comment) {
+      if (!util.isString(name7))
         throw TypeError("name must be a string");
       if (!util.isInteger(id))
         throw TypeError("id must be an integer");
-      if (this.values[name6] !== void 0)
-        throw Error("duplicate name '" + name6 + "' in " + this);
+      if (this.values[name7] !== void 0)
+        throw Error("duplicate name '" + name7 + "' in " + this);
       if (this.isReservedId(id))
         throw Error("id " + id + " is reserved in " + this);
-      if (this.isReservedName(name6))
-        throw Error("name '" + name6 + "' is reserved in " + this);
+      if (this.isReservedName(name7))
+        throw Error("name '" + name7 + "' is reserved in " + this);
       if (this.valuesById[id] !== void 0) {
         if (!(this.options && this.options.allow_alias))
           throw Error("duplicate id " + id + " in " + this);
-        this.values[name6] = id;
+        this.values[name7] = id;
       } else
-        this.valuesById[this.values[name6] = id] = name6;
-      this.comments[name6] = comment || null;
+        this.valuesById[this.values[name7] = id] = name7;
+      this.comments[name7] = comment || null;
       return this;
     };
-    Enum.prototype.remove = function remove(name6) {
-      if (!util.isString(name6))
+    Enum.prototype.remove = function remove(name7) {
+      if (!util.isString(name7))
         throw TypeError("name must be a string");
-      var val = this.values[name6];
+      var val = this.values[name7];
       if (val == null)
-        throw Error("name '" + name6 + "' does not exist in " + this);
+        throw Error("name '" + name7 + "' does not exist in " + this);
       delete this.valuesById[val];
-      delete this.values[name6];
-      delete this.comments[name6];
+      delete this.values[name7];
+      delete this.comments[name7];
       return this;
     };
     Enum.prototype.isReservedId = function isReservedId(id) {
       return Namespace.isReservedId(this.reserved, id);
     };
-    Enum.prototype.isReservedName = function isReservedName(name6) {
-      return Namespace.isReservedName(this.reserved, name6);
+    Enum.prototype.isReservedName = function isReservedName(name7) {
+      return Namespace.isReservedName(this.reserved, name7);
     };
   }
 });
@@ -20107,14 +20107,14 @@ var require_parse = __commonJS({
       var tn = tokenize(source, options.alternateCommentMode || false), next = tn.next, push = tn.push, peek = tn.peek, skip = tn.skip, cmnt = tn.cmnt;
       var head = true, pkg, imports, weakImports, syntax, isProto3 = false;
       var ptr = root;
-      var applyCase = options.keepCase ? function(name6) {
-        return name6;
+      var applyCase = options.keepCase ? function(name7) {
+        return name7;
       } : util.camelCase;
-      function illegal(token2, name6, insideTryCatch) {
+      function illegal(token2, name7, insideTryCatch) {
         var filename = parse2.filename;
         if (!insideTryCatch)
           parse2.filename = null;
-        return Error("illegal " + (name6 || "token") + " '" + token2 + "' (" + (filename ? filename + ", " : "") + "line " + tn.line + ")");
+        return Error("illegal " + (name7 || "token") + " '" + token2 + "' (" + (filename ? filename + ", " : "") + "line " + tn.line + ")");
       }
       function readString() {
         var values = [], token2;
@@ -20333,12 +20333,12 @@ var require_parse = __commonJS({
         }
         if (!typeRefRe.test(type))
           throw illegal(type, "type");
-        var name6 = next();
-        if (!nameRe.test(name6))
-          throw illegal(name6, "name");
-        name6 = applyCase(name6);
+        var name7 = next();
+        if (!nameRe.test(name7))
+          throw illegal(name7, "name");
+        name7 = applyCase(name7);
         skip("=");
-        var field = new Field(name6, parseId(next()), type, rule, extend);
+        var field = new Field(name7, parseId(next()), type, rule, extend);
         ifBlock(field, function parseField_block(token2) {
           if (token2 === "option") {
             parseOption(field, token2);
@@ -20349,7 +20349,7 @@ var require_parse = __commonJS({
           parseInlineOptions(field);
         });
         if (rule === "proto3_optional") {
-          var oneof = new OneOf("_" + name6);
+          var oneof = new OneOf("_" + name7);
           field.setOption("proto3_optional", true);
           oneof.add(field);
           parent2.add(oneof);
@@ -20360,17 +20360,17 @@ var require_parse = __commonJS({
           field.setOption("packed", false, true);
       }
       function parseGroup(parent2, rule) {
-        var name6 = next();
-        if (!nameRe.test(name6))
-          throw illegal(name6, "name");
-        var fieldName = util.lcFirst(name6);
-        if (name6 === fieldName)
-          name6 = util.ucFirst(name6);
+        var name7 = next();
+        if (!nameRe.test(name7))
+          throw illegal(name7, "name");
+        var fieldName = util.lcFirst(name7);
+        if (name7 === fieldName)
+          name7 = util.ucFirst(name7);
         skip("=");
         var id = parseId(next());
-        var type = new Type(name6);
+        var type = new Type(name7);
         type.group = true;
-        var field = new Field(fieldName, id, name6, rule);
+        var field = new Field(fieldName, id, name7, rule);
         field.filename = parse2.filename;
         ifBlock(type, function parseGroup_block(token2) {
           switch (token2) {
@@ -20405,11 +20405,11 @@ var require_parse = __commonJS({
         if (!typeRefRe.test(valueType))
           throw illegal(valueType, "type");
         skip(">");
-        var name6 = next();
-        if (!nameRe.test(name6))
-          throw illegal(name6, "name");
+        var name7 = next();
+        if (!nameRe.test(name7))
+          throw illegal(name7, "name");
         skip("=");
-        var field = new MapField(applyCase(name6), parseId(next()), keyType, valueType);
+        var field = new MapField(applyCase(name7), parseId(next()), keyType, valueType);
         ifBlock(field, function parseMapField_block(token2) {
           if (token2 === "option") {
             parseOption(field, token2);
@@ -20475,25 +20475,25 @@ var require_parse = __commonJS({
         var isCustom = skip("(", true);
         if (!typeRefRe.test(token2 = next()))
           throw illegal(token2, "name");
-        var name6 = token2;
-        var option = name6;
+        var name7 = token2;
+        var option = name7;
         var propName;
         if (isCustom) {
           skip(")");
-          name6 = "(" + name6 + ")";
-          option = name6;
+          name7 = "(" + name7 + ")";
+          option = name7;
           token2 = peek();
           if (fqTypeRefRe.test(token2)) {
             propName = token2.substr(1);
-            name6 += token2;
+            name7 += token2;
             next();
           }
         }
         skip("=");
-        var optionValue = parseOptionValue(parent2, name6);
+        var optionValue = parseOptionValue(parent2, name7);
         setParsedOption(parent2, option, optionValue, propName);
       }
-      function parseOptionValue(parent2, name6) {
+      function parseOptionValue(parent2, name7) {
         if (skip("{", true)) {
           var result = {};
           while (!skip("}", true)) {
@@ -20502,14 +20502,14 @@ var require_parse = __commonJS({
             var value;
             var propName = token;
             if (peek() === "{")
-              value = parseOptionValue(parent2, name6 + "." + token);
+              value = parseOptionValue(parent2, name7 + "." + token);
             else {
               skip(":");
               if (peek() === "{")
-                value = parseOptionValue(parent2, name6 + "." + token);
+                value = parseOptionValue(parent2, name7 + "." + token);
               else {
                 value = readValue(true);
-                setOption(parent2, name6 + "." + token, value);
+                setOption(parent2, name7 + "." + token, value);
               }
             }
             var prevValue = result[propName];
@@ -20521,16 +20521,16 @@ var require_parse = __commonJS({
           return result;
         }
         var simpleValue = readValue(true);
-        setOption(parent2, name6, simpleValue);
+        setOption(parent2, name7, simpleValue);
         return simpleValue;
       }
-      function setOption(parent2, name6, value) {
+      function setOption(parent2, name7, value) {
         if (parent2.setOption)
-          parent2.setOption(name6, value);
+          parent2.setOption(name7, value);
       }
-      function setParsedOption(parent2, name6, value, propName) {
+      function setParsedOption(parent2, name7, value, propName) {
         if (parent2.setParsedOption)
-          parent2.setParsedOption(name6, value, propName);
+          parent2.setParsedOption(name7, value, propName);
       }
       function parseInlineOptions(parent2) {
         if (skip("[", true)) {
@@ -20560,7 +20560,7 @@ var require_parse = __commonJS({
         var type = token2;
         if (!nameRe.test(token2 = next()))
           throw illegal(token2, "name");
-        var name6 = token2, requestType, requestStream, responseType, responseStream;
+        var name7 = token2, requestType, requestStream, responseType, responseStream;
         skip("(");
         if (skip("stream", true))
           requestStream = true;
@@ -20576,7 +20576,7 @@ var require_parse = __commonJS({
           throw illegal(token2);
         responseType = token2;
         skip(")");
-        var method = new Method(name6, type, requestType, responseType, requestStream, responseStream);
+        var method = new Method(name7, type, requestType, responseType, requestStream, responseStream);
         method.comment = commentText;
         ifBlock(method, function parseMethod_block(token3) {
           if (token3 === "option") {
@@ -20662,12 +20662,12 @@ var require_common = __commonJS({
     init_shims();
     module2.exports = common;
     var commonRe = /\/|\./;
-    function common(name6, json) {
-      if (!commonRe.test(name6)) {
-        name6 = "google/protobuf/" + name6 + ".proto";
+    function common(name7, json) {
+      if (!commonRe.test(name7)) {
+        name7 = "google/protobuf/" + name7 + ".proto";
         json = { nested: { google: { nested: { protobuf: { nested: json } } } } };
       }
-      common[name6] = json;
+      common[name7] = json;
     }
     common("any", {
       Any: {
@@ -21897,8 +21897,8 @@ var require_descriptor2 = __commonJS({
       var values = {};
       if (descriptor.value)
         for (var i2 = 0; i2 < descriptor.value.length; ++i2) {
-          var name6 = descriptor.value[i2].name, value = descriptor.value[i2].number || 0;
-          values[name6 && name6.length ? name6 : "NAME" + value] = value;
+          var name7 = descriptor.value[i2].name, value = descriptor.value[i2].number || 0;
+          values[name7 && name7.length ? name7 : "NAME" + value] = value;
         }
       return new Enum(descriptor.name && descriptor.name.length ? descriptor.name : "Enum" + unnamedEnumIndex++, values, fromDescriptorOptions(descriptor.options, exports2.EnumOptions));
     };
@@ -23383,11 +23383,11 @@ var require_src2 = __commonJS({
       oneofs: true,
       json: true
     };
-    function joinName(baseName, name6) {
+    function joinName(baseName, name7) {
       if (baseName === "") {
-        return name6;
+        return name7;
       } else {
-        return baseName + "." + name6;
+        return baseName + "." + name7;
       }
     }
     function isHandledReflectionObject(obj) {
@@ -23402,8 +23402,8 @@ var require_src2 = __commonJS({
         return [[objName, obj]];
       } else {
         if (isNamespaceBase(obj) && typeof obj.nested !== "undefined") {
-          return Object.keys(obj.nested).map((name6) => {
-            return getAllHandledReflectionObjects(obj.nested[name6], objName);
+          return Object.keys(obj.nested).map((name7) => {
+            return getAllHandledReflectionObjects(obj.nested[name7], objName);
           }).reduce((accumulator, currentValue) => accumulator.concat(currentValue), []);
         }
       }
@@ -23439,10 +23439,10 @@ var require_src2 = __commonJS({
         responseType: createMessageDefinition(responseType, fileDescriptors)
       };
     }
-    function createServiceDefinition(service, name6, options, fileDescriptors) {
+    function createServiceDefinition(service, name7, options, fileDescriptors) {
       const def = {};
       for (const method of service.methodsArray) {
-        def[method.name] = createMethodDefinition(method, name6, options, fileDescriptors);
+        def[method.name] = createMethodDefinition(method, name7, options, fileDescriptors);
       }
       return def;
     }
@@ -23462,9 +23462,9 @@ var require_src2 = __commonJS({
         fileDescriptorProtos: fileDescriptors
       };
     }
-    function createDefinition(obj, name6, options, fileDescriptors) {
+    function createDefinition(obj, name7, options, fileDescriptors) {
       if (obj instanceof Protobuf.Service) {
-        return createServiceDefinition(obj, name6, options, fileDescriptors);
+        return createServiceDefinition(obj, name7, options, fileDescriptors);
       } else if (obj instanceof Protobuf.Type) {
         return createMessageDefinition(obj, fileDescriptors);
       } else if (obj instanceof Protobuf.Enum) {
@@ -23478,8 +23478,8 @@ var require_src2 = __commonJS({
       root.resolveAll();
       const descriptorList = root.toDescriptor("proto3").file;
       const bufferList = descriptorList.map((value) => Buffer.from(descriptor.FileDescriptorProto.encode(value).finish()));
-      for (const [name6, obj] of getAllHandledReflectionObjects(root, "")) {
-        def[name6] = createDefinition(obj, name6, options, bufferList);
+      for (const [name7, obj] of getAllHandledReflectionObjects(root, "")) {
+        def[name7] = createDefinition(obj, name7, options, bufferList);
       }
       return def;
     }
@@ -23708,18 +23708,18 @@ var require_channelz = __commonJS({
     var subchannels = [];
     var servers = [];
     var sockets = [];
-    function registerChannelzChannel(name6, getInfo, channelzEnabled) {
+    function registerChannelzChannel(name7, getInfo, channelzEnabled) {
       const id = getNextId();
-      const ref = { id, name: name6, kind: "channel" };
+      const ref = { id, name: name7, kind: "channel" };
       if (channelzEnabled) {
         channels[id] = { ref, getInfo };
       }
       return ref;
     }
     exports2.registerChannelzChannel = registerChannelzChannel;
-    function registerChannelzSubchannel(name6, getInfo, channelzEnabled) {
+    function registerChannelzSubchannel(name7, getInfo, channelzEnabled) {
       const id = getNextId();
-      const ref = { id, name: name6, kind: "subchannel" };
+      const ref = { id, name: name7, kind: "subchannel" };
       if (channelzEnabled) {
         subchannels[id] = { ref, getInfo };
       }
@@ -23735,9 +23735,9 @@ var require_channelz = __commonJS({
       return ref;
     }
     exports2.registerChannelzServer = registerChannelzServer;
-    function registerChannelzSocket(name6, getInfo, channelzEnabled) {
+    function registerChannelzSocket(name7, getInfo, channelzEnabled) {
       const id = getNextId();
-      const ref = { id, name: name6, kind: "socket" };
+      const ref = { id, name: name7, kind: "socket" };
       if (channelzEnabled) {
         sockets[id] = { ref, getInfo };
       }
@@ -23850,8 +23850,8 @@ var require_channelz = __commonJS({
         subchannel_ref: resolvedInfo.children.subchannels.map((ref) => subchannelRefToMessage(ref))
       };
     }
-    function GetChannel(call, callback) {
-      const channelId = Number.parseInt(call.request.channel_id);
+    function GetChannel(call2, callback) {
+      const channelId = Number.parseInt(call2.request.channel_id);
       const channelEntry = channels[channelId];
       if (channelEntry === void 0) {
         callback({
@@ -23862,10 +23862,10 @@ var require_channelz = __commonJS({
       }
       callback(null, { channel: getChannelMessage(channelEntry) });
     }
-    function GetTopChannels(call, callback) {
-      const maxResults = Number.parseInt(call.request.max_results);
+    function GetTopChannels(call2, callback) {
+      const maxResults = Number.parseInt(call2.request.max_results);
       const resultList = [];
-      let i2 = Number.parseInt(call.request.start_channel_id);
+      let i2 = Number.parseInt(call2.request.start_channel_id);
       for (; i2 < channels.length; i2++) {
         const channelEntry = channels[i2];
         if (channelEntry === void 0) {
@@ -23895,8 +23895,8 @@ var require_channelz = __commonJS({
         listen_socket: resolvedInfo.listenerChildren.sockets.map((ref) => socketRefToMessage(ref))
       };
     }
-    function GetServer(call, callback) {
-      const serverId = Number.parseInt(call.request.server_id);
+    function GetServer(call2, callback) {
+      const serverId = Number.parseInt(call2.request.server_id);
       const serverEntry = servers[serverId];
       if (serverEntry === void 0) {
         callback({
@@ -23907,10 +23907,10 @@ var require_channelz = __commonJS({
       }
       callback(null, { server: getServerMessage(serverEntry) });
     }
-    function GetServers(call, callback) {
-      const maxResults = Number.parseInt(call.request.max_results);
+    function GetServers(call2, callback) {
+      const maxResults = Number.parseInt(call2.request.max_results);
       const resultList = [];
-      let i2 = Number.parseInt(call.request.start_server_id);
+      let i2 = Number.parseInt(call2.request.start_server_id);
       for (; i2 < servers.length; i2++) {
         const serverEntry = servers[i2];
         if (serverEntry === void 0) {
@@ -23926,8 +23926,8 @@ var require_channelz = __commonJS({
         end: i2 >= servers.length
       });
     }
-    function GetSubchannel(call, callback) {
-      const subchannelId = Number.parseInt(call.request.subchannel_id);
+    function GetSubchannel(call2, callback) {
+      const subchannelId = Number.parseInt(call2.request.subchannel_id);
       const subchannelEntry = subchannels[subchannelId];
       if (subchannelEntry === void 0) {
         callback({
@@ -23971,9 +23971,9 @@ var require_channelz = __commonJS({
         };
       }
     }
-    function GetSocket(call, callback) {
+    function GetSocket(call2, callback) {
       var _a, _b, _c, _d, _e;
-      const socketId = Number.parseInt(call.request.socket_id);
+      const socketId = Number.parseInt(call2.request.socket_id);
       const socketEntry = sockets[socketId];
       if (socketEntry === void 0) {
         callback({
@@ -24016,8 +24016,8 @@ var require_channelz = __commonJS({
       };
       callback(null, { socket: socketMessage });
     }
-    function GetServerSockets(call, callback) {
-      const serverId = Number.parseInt(call.request.server_id);
+    function GetServerSockets(call2, callback) {
+      const serverId = Number.parseInt(call2.request.server_id);
       const serverEntry = servers[serverId];
       if (serverEntry === void 0) {
         callback({
@@ -24026,8 +24026,8 @@ var require_channelz = __commonJS({
         });
         return;
       }
-      const startId = Number.parseInt(call.request.start_socket_id);
-      const maxResults = Number.parseInt(call.request.max_results);
+      const startId = Number.parseInt(call2.request.start_socket_id);
+      const maxResults = Number.parseInt(call2.request.max_results);
       const resolvedInfo = serverEntry.getInfo();
       const allSockets = resolvedInfo.sessionChildren.sockets.sort((ref1, ref2) => ref1.id - ref2.id);
       const resultList = [];
@@ -25805,9 +25805,9 @@ var require_server_call = __commonJS({
       waitForTrailers: true
     };
     var ServerUnaryCallImpl = class extends events_1.EventEmitter {
-      constructor(call, metadata, request) {
+      constructor(call2, metadata, request) {
         super();
-        this.call = call;
+        this.call = call2;
         this.metadata = metadata;
         this.request = request;
         this.cancelled = false;
@@ -25825,9 +25825,9 @@ var require_server_call = __commonJS({
     };
     exports2.ServerUnaryCallImpl = ServerUnaryCallImpl;
     var ServerReadableStreamImpl = class extends stream_1.Readable {
-      constructor(call, metadata, deserialize, encoding) {
+      constructor(call2, metadata, deserialize, encoding) {
         super({ objectMode: true });
-        this.call = call;
+        this.call = call2;
         this.metadata = metadata;
         this.deserialize = deserialize;
         this.cancelled = false;
@@ -25852,9 +25852,9 @@ var require_server_call = __commonJS({
     };
     exports2.ServerReadableStreamImpl = ServerReadableStreamImpl;
     var ServerWritableStreamImpl = class extends stream_1.Writable {
-      constructor(call, metadata, serialize2, request) {
+      constructor(call2, metadata, serialize2, request) {
         super({ objectMode: true });
-        this.call = call;
+        this.call = call2;
         this.metadata = metadata;
         this.serialize = serialize2;
         this.request = request;
@@ -25905,9 +25905,9 @@ var require_server_call = __commonJS({
     };
     exports2.ServerWritableStreamImpl = ServerWritableStreamImpl;
     var ServerDuplexStreamImpl = class extends stream_1.Duplex {
-      constructor(call, metadata, serialize2, deserialize, encoding) {
+      constructor(call2, metadata, serialize2, deserialize, encoding) {
         super({ objectMode: true });
-        this.call = call;
+        this.call = call2;
         this.metadata = metadata;
         this.serialize = serialize2;
         this.deserialize = deserialize;
@@ -26189,10 +26189,10 @@ var require_server_call = __commonJS({
       resume() {
         this.stream.resume();
       }
-      setupSurfaceCall(call) {
+      setupSurfaceCall(call2) {
         this.once("cancelled", (reason) => {
-          call.cancelled = true;
-          call.emit("cancelled", reason);
+          call2.cancelled = true;
+          call2.emit("cancelled", reason);
         });
       }
       setupReadable(readable2, encoding) {
@@ -26305,12 +26305,12 @@ var require_server_call = __commonJS({
       }
     };
     exports2.Http2ServerCallStream = Http2ServerCallStream;
-    function handleExpiredDeadline(call) {
+    function handleExpiredDeadline(call2) {
       const err = new Error("Deadline exceeded");
       err.code = constants_1.Status.DEADLINE_EXCEEDED;
-      call.sendError(err);
-      call.cancelled = true;
-      call.emit("cancelled", "deadline");
+      call2.sendError(err);
+      call2.cancelled = true;
+      call2.emit("cancelled", "deadline");
     }
   }
 });
@@ -26417,20 +26417,20 @@ var require_server = __commonJS({
       const unimplementedStatusResponse = getUnimplementedStatusResponse(methodName);
       switch (handlerType) {
         case "unary":
-          return (call, callback) => {
+          return (call2, callback) => {
             callback(unimplementedStatusResponse, null);
           };
         case "clientStream":
-          return (call, callback) => {
+          return (call2, callback) => {
             callback(unimplementedStatusResponse, null);
           };
         case "serverStream":
-          return (call) => {
-            call.emit("error", unimplementedStatusResponse);
+          return (call2) => {
+            call2.emit("error", unimplementedStatusResponse);
           };
         case "bidi":
-          return (call) => {
-            call.emit("error", unimplementedStatusResponse);
+          return (call2) => {
+            call2.emit("error", unimplementedStatusResponse);
           };
         default:
           throw new Error(`Invalid handlerType ${handlerType}`);
@@ -26522,8 +26522,8 @@ var require_server = __commonJS({
         if (serviceKeys.length === 0) {
           throw new Error("Cannot add an empty service to a server");
         }
-        serviceKeys.forEach((name6) => {
-          const attrs = service[name6];
+        serviceKeys.forEach((name7) => {
+          const attrs = service[name7];
           let methodType;
           if (attrs.requestStream) {
             if (attrs.responseStream) {
@@ -26538,7 +26538,7 @@ var require_server = __commonJS({
               methodType = "unary";
             }
           }
-          let implFn = implementation[name6];
+          let implFn = implementation[name7];
           let impl;
           if (implFn === void 0 && typeof attrs.originalName === "string") {
             implFn = implementation[attrs.originalName];
@@ -26546,7 +26546,7 @@ var require_server = __commonJS({
           if (implFn !== void 0) {
             impl = implFn.bind(implementation);
           } else {
-            impl = getDefaultHandler(methodType, name6);
+            impl = getDefaultHandler(methodType, name7);
           }
           const success = this.register(attrs.path, impl, attrs.responseSerialize, attrs.requestDeserialize, methodType);
           if (success === false) {
@@ -26559,8 +26559,8 @@ var require_server = __commonJS({
           throw new Error("removeService() requires object as argument");
         }
         const serviceKeys = Object.keys(service);
-        serviceKeys.forEach((name6) => {
-          const attrs = service[name6];
+        serviceKeys.forEach((name7) => {
+          const attrs = service[name7];
           this.unregister(attrs.path);
         });
       }
@@ -26811,21 +26811,21 @@ var require_server = __commonJS({
           channelz_1.unregisterChannelzRef(this.channelzRef);
         }
       }
-      register(name6, handler, serialize2, deserialize, type) {
-        if (this.handlers.has(name6)) {
+      register(name7, handler, serialize2, deserialize, type) {
+        if (this.handlers.has(name7)) {
           return false;
         }
-        this.handlers.set(name6, {
+        this.handlers.set(name7, {
           func: handler,
           serialize: serialize2,
           deserialize,
           type,
-          path: name6
+          path: name7
         });
         return true;
       }
-      unregister(name6) {
-        return this.handlers.delete(name6);
+      unregister(name7) {
+        return this.handlers.delete(name7);
       }
       start() {
         if (this.http2ServerList.length === 0 || this.http2ServerList.every(({ server: http2Server }) => http2Server.listening !== true)) {
@@ -26904,7 +26904,7 @@ var require_server = __commonJS({
             }
             return;
           }
-          let call = null;
+          let call2 = null;
           try {
             const path = headers[http2.constants.HTTP2_HEADER_PATH];
             const serverAddress = http2Server.address();
@@ -26922,8 +26922,8 @@ var require_server = __commonJS({
               this.trace("No handler registered for method " + path + ". Sending UNIMPLEMENTED status.");
               throw getUnimplementedStatusResponse(path);
             }
-            call = new server_call_1.Http2ServerCallStream(stream, handler, this.options);
-            call.once("callEnd", (code) => {
+            call2 = new server_call_1.Http2ServerCallStream(stream, handler, this.options);
+            call2.once("callEnd", (code) => {
               if (code === constants_1.Status.OK) {
                 this.callTracker.addCallSucceeded();
               } else {
@@ -26931,44 +26931,44 @@ var require_server = __commonJS({
               }
             });
             if (this.channelzEnabled && channelzSessionInfo) {
-              call.once("streamEnd", (success) => {
+              call2.once("streamEnd", (success) => {
                 if (success) {
                   channelzSessionInfo.streamTracker.addCallSucceeded();
                 } else {
                   channelzSessionInfo.streamTracker.addCallFailed();
                 }
               });
-              call.on("sendMessage", () => {
+              call2.on("sendMessage", () => {
                 channelzSessionInfo.messagesSent += 1;
                 channelzSessionInfo.lastMessageSentTimestamp = new Date();
               });
-              call.on("receiveMessage", () => {
+              call2.on("receiveMessage", () => {
                 channelzSessionInfo.messagesReceived += 1;
                 channelzSessionInfo.lastMessageReceivedTimestamp = new Date();
               });
             }
-            const metadata = call.receiveMetadata(headers);
+            const metadata = call2.receiveMetadata(headers);
             const encoding = (_a = metadata.get("grpc-encoding")[0]) !== null && _a !== void 0 ? _a : "identity";
             metadata.remove("grpc-encoding");
             switch (handler.type) {
               case "unary":
-                handleUnary(call, handler, metadata, encoding);
+                handleUnary(call2, handler, metadata, encoding);
                 break;
               case "clientStream":
-                handleClientStreaming(call, handler, metadata, encoding);
+                handleClientStreaming(call2, handler, metadata, encoding);
                 break;
               case "serverStream":
-                handleServerStreaming(call, handler, metadata, encoding);
+                handleServerStreaming(call2, handler, metadata, encoding);
                 break;
               case "bidi":
-                handleBidiStreaming(call, handler, metadata, encoding);
+                handleBidiStreaming(call2, handler, metadata, encoding);
                 break;
               default:
                 throw new Error(`Unknown handler type: ${handler.type}`);
             }
           } catch (err) {
-            if (!call) {
-              call = new server_call_1.Http2ServerCallStream(stream, null, this.options);
+            if (!call2) {
+              call2 = new server_call_1.Http2ServerCallStream(stream, null, this.options);
               if (this.channelzEnabled) {
                 this.callTracker.addCallFailed();
                 channelzSessionInfo === null || channelzSessionInfo === void 0 ? void 0 : channelzSessionInfo.streamTracker.addCallFailed();
@@ -26977,7 +26977,7 @@ var require_server = __commonJS({
             if (err.code === void 0) {
               err.code = constants_1.Status.INTERNAL;
             }
-            call.sendError(err);
+            call2.sendError(err);
           }
         });
         http2Server.on("session", (session) => {
@@ -27014,39 +27014,39 @@ var require_server = __commonJS({
       }
     };
     exports2.Server = Server2;
-    async function handleUnary(call, handler, metadata, encoding) {
-      const request = await call.receiveUnaryMessage(encoding);
-      if (request === void 0 || call.cancelled) {
+    async function handleUnary(call2, handler, metadata, encoding) {
+      const request = await call2.receiveUnaryMessage(encoding);
+      if (request === void 0 || call2.cancelled) {
         return;
       }
-      const emitter = new server_call_1.ServerUnaryCallImpl(call, metadata, request);
+      const emitter = new server_call_1.ServerUnaryCallImpl(call2, metadata, request);
       handler.func(emitter, (err, value, trailer, flags) => {
-        call.sendUnaryMessage(err, value, trailer, flags);
+        call2.sendUnaryMessage(err, value, trailer, flags);
       });
     }
-    function handleClientStreaming(call, handler, metadata, encoding) {
-      const stream = new server_call_1.ServerReadableStreamImpl(call, metadata, handler.deserialize, encoding);
+    function handleClientStreaming(call2, handler, metadata, encoding) {
+      const stream = new server_call_1.ServerReadableStreamImpl(call2, metadata, handler.deserialize, encoding);
       function respond2(err, value, trailer, flags) {
         stream.destroy();
-        call.sendUnaryMessage(err, value, trailer, flags);
+        call2.sendUnaryMessage(err, value, trailer, flags);
       }
-      if (call.cancelled) {
+      if (call2.cancelled) {
         return;
       }
       stream.on("error", respond2);
       handler.func(stream, respond2);
     }
-    async function handleServerStreaming(call, handler, metadata, encoding) {
-      const request = await call.receiveUnaryMessage(encoding);
-      if (request === void 0 || call.cancelled) {
+    async function handleServerStreaming(call2, handler, metadata, encoding) {
+      const request = await call2.receiveUnaryMessage(encoding);
+      if (request === void 0 || call2.cancelled) {
         return;
       }
-      const stream = new server_call_1.ServerWritableStreamImpl(call, metadata, handler.serialize, request);
+      const stream = new server_call_1.ServerWritableStreamImpl(call2, metadata, handler.serialize, request);
       handler.func(stream);
     }
-    function handleBidiStreaming(call, handler, metadata, encoding) {
-      const stream = new server_call_1.ServerDuplexStreamImpl(call, metadata, handler.serialize, handler.deserialize, encoding);
-      if (call.cancelled) {
+    function handleBidiStreaming(call2, handler, metadata, encoding) {
+      const stream = new server_call_1.ServerDuplexStreamImpl(call2, metadata, handler.serialize, handler.deserialize, encoding);
+      if (call2.cancelled) {
         return;
       }
       handler.func(stream);
@@ -28623,8 +28623,8 @@ var require_src3 = __commonJS({
 });
 
 // node_modules/@firebase/firestore/dist/index.node.mjs
-function setSDKVersion(version6) {
-  SDK_VERSION2 = version6;
+function setSDKVersion(version7) {
+  SDK_VERSION2 = version7;
 }
 function formatJSON(value) {
   return (0, import_util6.inspect)(value, { depth: 100 });
@@ -29219,26 +29219,6 @@ function deepClone(source) {
 function isMaxValue(value) {
   return (((value.mapValue || {}).fields || {})["__type__"] || {}).stringValue === MAX_VALUE_TYPE;
 }
-function extractFieldMask(value) {
-  const fields = [];
-  forEach(value.fields, (key2, value2) => {
-    const currentPath = new FieldPath$1([key2]);
-    if (isMapValue(value2)) {
-      const nestedMask = extractFieldMask(value2.mapValue);
-      const nestedFields = nestedMask.fields;
-      if (nestedFields.length === 0) {
-        fields.push(currentPath);
-      } else {
-        for (const nestedPath of nestedFields) {
-          fields.push(currentPath.child(nestedPath));
-        }
-      }
-    } else {
-      fields.push(currentPath);
-    }
-  });
-  return new FieldMask(fields);
-}
 function compareDocumentsByField(field, d1, d22) {
   const v1 = d1.data.field(field);
   const v22 = d22.data.field(field);
@@ -29604,9 +29584,6 @@ function newMutationMap() {
 function newDocumentKeyMap() {
   return new ObjectMap((key2) => key2.toString(), (l, r2) => l.isEqual(r2));
 }
-function documentVersionMap() {
-  return EMPTY_DOCUMENT_VERSION_MAP;
-}
 function documentKeySet(...keys) {
   let set = EMPTY_DOCUMENT_KEY_SET;
   for (const key2 of keys) {
@@ -29772,20 +29749,6 @@ function mutationApplyToLocalView(mutation, document2, previousMask, localWriteT
     return deleteMutationApplyToLocalView(mutation, document2, previousMask);
   }
 }
-function mutationExtractBaseValue(mutation, document2) {
-  let baseObject = null;
-  for (const fieldTransform of mutation.fieldTransforms) {
-    const existingValue = document2.data.field(fieldTransform.field);
-    const coercedValue = computeTransformOperationBaseValue(fieldTransform.transform, existingValue || null);
-    if (coercedValue != null) {
-      if (baseObject === null) {
-        baseObject = ObjectValue.empty();
-      }
-      baseObject.set(fieldTransform.field, coercedValue);
-    }
-  }
-  return baseObject ? baseObject : null;
-}
 function mutationEquals(left, right) {
   if (left.type !== right.type) {
     return false;
@@ -29887,35 +29850,6 @@ function deleteMutationApplyToLocalView(mutation, document2, previousMask) {
     return null;
   }
   return previousMask;
-}
-function isPermanentError(code) {
-  switch (code) {
-    case Code.OK:
-      return fail();
-    case Code.CANCELLED:
-    case Code.UNKNOWN:
-    case Code.DEADLINE_EXCEEDED:
-    case Code.RESOURCE_EXHAUSTED:
-    case Code.INTERNAL:
-    case Code.UNAVAILABLE:
-    case Code.UNAUTHENTICATED:
-      return false;
-    case Code.INVALID_ARGUMENT:
-    case Code.NOT_FOUND:
-    case Code.ALREADY_EXISTS:
-    case Code.PERMISSION_DENIED:
-    case Code.FAILED_PRECONDITION:
-    case Code.ABORTED:
-    case Code.OUT_OF_RANGE:
-    case Code.UNIMPLEMENTED:
-    case Code.DATA_LOSS:
-      return true;
-    default:
-      return fail();
-  }
-}
-function isPermanentWriteError(code) {
-  return isPermanentError(code) && code !== Code.ABORTED;
 }
 function mapCodeFromRpcCode(code) {
   if (code === void 0) {
@@ -30022,26 +29956,20 @@ function fromBytes(serializer, value) {
     return ByteString.fromUint8Array(value ? value : new Uint8Array());
   }
 }
-function toVersion(serializer, version6) {
-  return toTimestamp(serializer, version6.toTimestamp());
-}
-function fromVersion(version6) {
-  hardAssert(!!version6);
-  return SnapshotVersion.fromTimestamp(fromTimestamp(version6));
+function fromVersion(version7) {
+  hardAssert(!!version7);
+  return SnapshotVersion.fromTimestamp(fromTimestamp(version7));
 }
 function toResourceName(databaseId, path) {
   return fullyQualifiedPrefixPath(databaseId).child("documents").child(path).canonicalString();
 }
-function fromResourceName(name6) {
-  const resource = ResourcePath.fromString(name6);
+function fromResourceName(name7) {
+  const resource = ResourcePath.fromString(name7);
   hardAssert(isValidResourceName(resource));
   return resource;
 }
-function toName(serializer, key2) {
-  return toResourceName(serializer.databaseId, key2.path);
-}
-function fromName(serializer, name6) {
-  const resource = fromResourceName(name6);
+function fromName(serializer, name7) {
+  const resource = fromResourceName(name7);
   if (resource.get(1) !== serializer.databaseId.projectId) {
     throw new FirestoreError(Code.INVALID_ARGUMENT, "Tried to deserialize key from different project: " + resource.get(1) + " vs " + serializer.databaseId.projectId);
   }
@@ -30053,8 +29981,8 @@ function fromName(serializer, name6) {
 function toQueryPath(serializer, path) {
   return toResourceName(serializer.databaseId, path);
 }
-function fromQueryPath(name6) {
-  const resourceName = fromResourceName(name6);
+function fromQueryPath(name7) {
+  const resourceName = fromResourceName(name7);
   if (resourceName.length === 4) {
     return ResourcePath.emptyPath();
   }
@@ -30081,12 +30009,6 @@ function extractLocalPathFromResourceName(resourceName) {
   hardAssert(resourceName.length > 4 && resourceName.get(4) === "documents");
   return resourceName.popFirst(5);
 }
-function toMutationDocument(serializer, key2, fields) {
-  return {
-    name: toName(serializer, key2),
-    fields: fields.value.mapValue.fields
-  };
-}
 function fromWatchChange(serializer, change) {
   let watchChange;
   if ("targetChange" in change) {
@@ -30104,11 +30026,11 @@ function fromWatchChange(serializer, change) {
     assertPresent(entityChange.document.name);
     assertPresent(entityChange.document.updateTime);
     const key2 = fromName(serializer, entityChange.document.name);
-    const version6 = fromVersion(entityChange.document.updateTime);
+    const version7 = fromVersion(entityChange.document.updateTime);
     const data = new ObjectValue({
       mapValue: { fields: entityChange.document.fields }
     });
-    const doc2 = MutableDocument.newFoundDocument(key2, version6, data);
+    const doc2 = MutableDocument.newFoundDocument(key2, version7, data);
     const updatedTargetIds = entityChange.targetIds || [];
     const removedTargetIds = entityChange.removedTargetIds || [];
     watchChange = new DocumentWatchChange(updatedTargetIds, removedTargetIds, doc2.key, doc2);
@@ -30117,8 +30039,8 @@ function fromWatchChange(serializer, change) {
     const docDelete = change.documentDelete;
     assertPresent(docDelete.document);
     const key2 = fromName(serializer, docDelete.document);
-    const version6 = docDelete.readTime ? fromVersion(docDelete.readTime) : SnapshotVersion.min();
-    const doc2 = MutableDocument.newNoDocument(key2, version6);
+    const version7 = docDelete.readTime ? fromVersion(docDelete.readTime) : SnapshotVersion.min();
+    const doc2 = MutableDocument.newNoDocument(key2, version7);
     const removedTargetIds = docDelete.removedTargetIds || [];
     watchChange = new DocumentWatchChange([], removedTargetIds, doc2.key, doc2);
   } else if ("documentRemove" in change) {
@@ -30168,90 +30090,6 @@ function versionFromListenResponse(change) {
     return SnapshotVersion.min();
   }
   return fromVersion(targetChange.readTime);
-}
-function toMutation(serializer, mutation) {
-  let result;
-  if (mutation instanceof SetMutation) {
-    result = {
-      update: toMutationDocument(serializer, mutation.key, mutation.value)
-    };
-  } else if (mutation instanceof DeleteMutation) {
-    result = { delete: toName(serializer, mutation.key) };
-  } else if (mutation instanceof PatchMutation) {
-    result = {
-      update: toMutationDocument(serializer, mutation.key, mutation.data),
-      updateMask: toDocumentMask(mutation.fieldMask)
-    };
-  } else if (mutation instanceof VerifyMutation) {
-    result = {
-      verify: toName(serializer, mutation.key)
-    };
-  } else {
-    return fail();
-  }
-  if (mutation.fieldTransforms.length > 0) {
-    result.updateTransforms = mutation.fieldTransforms.map((transform) => toFieldTransform(serializer, transform));
-  }
-  if (!mutation.precondition.isNone) {
-    result.currentDocument = toPrecondition(serializer, mutation.precondition);
-  }
-  return result;
-}
-function toPrecondition(serializer, precondition) {
-  if (precondition.updateTime !== void 0) {
-    return {
-      updateTime: toVersion(serializer, precondition.updateTime)
-    };
-  } else if (precondition.exists !== void 0) {
-    return { exists: precondition.exists };
-  } else {
-    return fail();
-  }
-}
-function fromWriteResult(proto, commitTime) {
-  let version6 = proto.updateTime ? fromVersion(proto.updateTime) : fromVersion(commitTime);
-  if (version6.isEqual(SnapshotVersion.min())) {
-    version6 = fromVersion(commitTime);
-  }
-  return new MutationResult(version6, proto.transformResults || []);
-}
-function fromWriteResults(protos2, commitTime) {
-  if (protos2 && protos2.length > 0) {
-    hardAssert(commitTime !== void 0);
-    return protos2.map((proto) => fromWriteResult(proto, commitTime));
-  } else {
-    return [];
-  }
-}
-function toFieldTransform(serializer, fieldTransform) {
-  const transform = fieldTransform.transform;
-  if (transform instanceof ServerTimestampTransform) {
-    return {
-      fieldPath: fieldTransform.field.canonicalString(),
-      setToServerValue: "REQUEST_TIME"
-    };
-  } else if (transform instanceof ArrayUnionTransformOperation) {
-    return {
-      fieldPath: fieldTransform.field.canonicalString(),
-      appendMissingElements: {
-        values: transform.elements
-      }
-    };
-  } else if (transform instanceof ArrayRemoveTransformOperation) {
-    return {
-      fieldPath: fieldTransform.field.canonicalString(),
-      removeAllFromArray: {
-        values: transform.elements
-      }
-    };
-  } else if (transform instanceof NumericIncrementTransformOperation) {
-    return {
-      fieldPath: fieldTransform.field.canonicalString(),
-      increment: transform.operand
-    };
-  } else {
-    throw fail();
-  }
 }
 function toDocumentsTarget(serializer, target) {
   return { documents: [toQueryPath(serializer, target.path)] };
@@ -30553,13 +30391,6 @@ function fromUnaryFilter(filter) {
       return fail();
   }
 }
-function toDocumentMask(fieldMask) {
-  const canonicalFields = [];
-  fieldMask.fields.forEach((field) => canonicalFields.push(field.canonicalString()));
-  return {
-    fieldPaths: canonicalFields
-  };
-}
 function isValidResourceName(path) {
   return path.length >= 4 && path.get(0) === "projects" && path.get(2) === "databases";
 }
@@ -30630,75 +30461,6 @@ async function localStoreHandleUserChange(localStore, user2) {
     });
   });
   return result;
-}
-function localStoreWriteLocally(localStore, mutations) {
-  const localStoreImpl = debugCast(localStore);
-  const localWriteTime = Timestamp.now();
-  const keys = mutations.reduce((keys2, m3) => keys2.add(m3.key), documentKeySet());
-  let overlayedDocuments;
-  let mutationBatch;
-  return localStoreImpl.persistence.runTransaction("Locally write mutations", "readwrite", (txn) => {
-    let remoteDocs = mutableDocumentMap();
-    let docsWithoutRemoteVersion = documentKeySet();
-    return localStoreImpl.remoteDocuments.getEntries(txn, keys).next((docs) => {
-      remoteDocs = docs;
-      remoteDocs.forEach((key2, doc2) => {
-        if (!doc2.isValidDocument()) {
-          docsWithoutRemoteVersion = docsWithoutRemoteVersion.add(key2);
-        }
-      });
-    }).next(() => {
-      return localStoreImpl.localDocuments.getOverlayedDocuments(txn, remoteDocs);
-    }).next((docs) => {
-      overlayedDocuments = docs;
-      const baseMutations = [];
-      for (const mutation of mutations) {
-        const baseValue = mutationExtractBaseValue(mutation, overlayedDocuments.get(mutation.key).overlayedDocument);
-        if (baseValue != null) {
-          baseMutations.push(new PatchMutation(mutation.key, baseValue, extractFieldMask(baseValue.value.mapValue), Precondition.exists(true)));
-        }
-      }
-      return localStoreImpl.mutationQueue.addMutationBatch(txn, localWriteTime, baseMutations, mutations);
-    }).next((batch) => {
-      mutationBatch = batch;
-      const overlays = batch.applyToLocalDocumentSet(overlayedDocuments, docsWithoutRemoteVersion);
-      return localStoreImpl.documentOverlayCache.saveOverlays(txn, batch.batchId, overlays);
-    });
-  }).then(() => ({
-    batchId: mutationBatch.batchId,
-    changes: convertOverlayedDocumentMapToDocumentMap(overlayedDocuments)
-  }));
-}
-function localStoreAcknowledgeBatch(localStore, batchResult) {
-  const localStoreImpl = debugCast(localStore);
-  return localStoreImpl.persistence.runTransaction("Acknowledge batch", "readwrite-primary", (txn) => {
-    const affected = batchResult.batch.keys();
-    const documentBuffer = localStoreImpl.remoteDocuments.newChangeBuffer({
-      trackRemovals: true
-    });
-    return applyWriteToRemoteDocuments(localStoreImpl, txn, batchResult, documentBuffer).next(() => documentBuffer.apply(txn)).next(() => localStoreImpl.mutationQueue.performConsistencyCheck(txn)).next(() => localStoreImpl.documentOverlayCache.removeOverlaysForBatchId(txn, affected, batchResult.batch.batchId)).next(() => localStoreImpl.localDocuments.recalculateAndSaveOverlaysForDocumentKeys(txn, getKeysWithTransformResults(batchResult))).next(() => localStoreImpl.localDocuments.getDocuments(txn, affected));
-  });
-}
-function getKeysWithTransformResults(batchResult) {
-  let result = documentKeySet();
-  for (let i2 = 0; i2 < batchResult.mutationResults.length; ++i2) {
-    const mutationResult = batchResult.mutationResults[i2];
-    if (mutationResult.transformResults.length > 0) {
-      result = result.add(batchResult.batch.mutations[i2].key);
-    }
-  }
-  return result;
-}
-function localStoreRejectBatch(localStore, batchId) {
-  const localStoreImpl = debugCast(localStore);
-  return localStoreImpl.persistence.runTransaction("Reject batch", "readwrite-primary", (txn) => {
-    let affectedKeys;
-    return localStoreImpl.mutationQueue.lookupMutationBatch(txn, batchId).next((batch) => {
-      hardAssert(batch !== null);
-      affectedKeys = batch.keys();
-      return localStoreImpl.mutationQueue.removeMutationBatch(txn, batch);
-    }).next(() => localStoreImpl.mutationQueue.performConsistencyCheck(txn)).next(() => localStoreImpl.documentOverlayCache.removeOverlaysForBatchId(txn, affectedKeys, batchId)).next(() => localStoreImpl.localDocuments.recalculateAndSaveOverlaysForDocumentKeys(txn, affectedKeys)).next(() => localStoreImpl.localDocuments.getDocuments(txn, affectedKeys));
-  });
 }
 function localStoreGetLastRemoteSnapshotVersion(localStore) {
   const localStoreImpl = debugCast(localStore);
@@ -30816,15 +30578,6 @@ async function localStoreNotifyLocalViewChanges(localStore, viewChanges) {
     }
   }
 }
-function localStoreGetNextMutationBatch(localStore, afterBatchId) {
-  const localStoreImpl = debugCast(localStore);
-  return localStoreImpl.persistence.runTransaction("Get next mutation batch", "readonly", (txn) => {
-    if (afterBatchId === void 0) {
-      afterBatchId = BATCHID_UNKNOWN;
-    }
-    return localStoreImpl.mutationQueue.getNextMutationBatchAfterBatchId(txn, afterBatchId);
-  });
-}
 function localStoreAllocateTarget(localStore, target) {
   const localStoreImpl = debugCast(localStore);
   return localStoreImpl.persistence.runTransaction("Allocate target", "readwrite", (txn) => {
@@ -30896,25 +30649,6 @@ function localStoreExecuteQuery(localStore, query2, usePreviousResults) {
     });
   });
 }
-function applyWriteToRemoteDocuments(localStoreImpl, txn, batchResult, documentBuffer) {
-  const batch = batchResult.batch;
-  const docKeys = batch.keys();
-  let promiseChain = PersistencePromise.resolve();
-  docKeys.forEach((docKey) => {
-    promiseChain = promiseChain.next(() => documentBuffer.getEntry(txn, docKey)).next((doc2) => {
-      const ackVersion = batchResult.docVersions.get(docKey);
-      hardAssert(ackVersion !== null);
-      if (doc2.version.compareTo(ackVersion) < 0) {
-        batch.applyToRemoteDocument(doc2, batchResult);
-        if (doc2.isValidDocument()) {
-          doc2.setReadTime(batchResult.commitVersion);
-          documentBuffer.addEntry(doc2);
-        }
-      }
-    });
-  });
-  return promiseChain.next(() => localStoreImpl.mutationQueue.removeMutationBatch(txn, batch));
-}
 function setMaxReadTime(localStoreImpl, collectionGroup, changedDocs) {
   let readTime = SnapshotVersion.min();
   changedDocs.forEach((_2, doc2) => {
@@ -30968,11 +30702,6 @@ function newSerializer(databaseId) {
 }
 function newDatastore(authCredentials, appCheckCredentials, connection, serializer) {
   return new DatastoreImpl(authCredentials, appCheckCredentials, connection, serializer);
-}
-function newPersistentWriteStream(datastore, queue, listener) {
-  const datastoreImpl = debugCast(datastore);
-  datastoreImpl.verifyInitialized();
-  return new PersistentWriteStream(queue, datastoreImpl.connection, datastoreImpl.authCredentials, datastoreImpl.appCheckCredentials, datastoreImpl.serializer, listener);
 }
 function newPersistentWatchStream(datastore, queue, listener) {
   const datastoreImpl = debugCast(datastore);
@@ -31117,9 +30846,6 @@ async function disableNetworkUntilRecovery(remoteStoreImpl, e2, op) {
     throw e2;
   }
 }
-function executeWithRecovery(remoteStoreImpl, op) {
-  return op().catch((e2) => disableNetworkUntilRecovery(remoteStoreImpl, e2, op));
-}
 function raiseWatchSnapshot(remoteStoreImpl, snapshotVersion) {
   const remoteEvent = remoteStoreImpl.watchChangeAggregator.createRemoteEvent(snapshotVersion);
   remoteEvent.targetChanges.forEach((change, targetId) => {
@@ -31150,77 +30876,6 @@ async function handleTargetError(remoteStoreImpl, watchChange) {
       remoteStoreImpl.listenTargets.delete(targetId);
       remoteStoreImpl.watchChangeAggregator.removeTarget(targetId);
     }
-  }
-}
-async function fillWritePipeline(remoteStore) {
-  const remoteStoreImpl = debugCast(remoteStore);
-  const writeStream = ensureWriteStream(remoteStoreImpl);
-  let lastBatchIdRetrieved = remoteStoreImpl.writePipeline.length > 0 ? remoteStoreImpl.writePipeline[remoteStoreImpl.writePipeline.length - 1].batchId : BATCHID_UNKNOWN;
-  while (canAddToWritePipeline(remoteStoreImpl)) {
-    try {
-      const batch = await localStoreGetNextMutationBatch(remoteStoreImpl.localStore, lastBatchIdRetrieved);
-      if (batch === null) {
-        if (remoteStoreImpl.writePipeline.length === 0) {
-          writeStream.markIdle();
-        }
-        break;
-      } else {
-        lastBatchIdRetrieved = batch.batchId;
-        addToWritePipeline(remoteStoreImpl, batch);
-      }
-    } catch (e2) {
-      await disableNetworkUntilRecovery(remoteStoreImpl, e2);
-    }
-  }
-  if (shouldStartWriteStream(remoteStoreImpl)) {
-    startWriteStream(remoteStoreImpl);
-  }
-}
-function canAddToWritePipeline(remoteStoreImpl) {
-  return canUseNetwork(remoteStoreImpl) && remoteStoreImpl.writePipeline.length < MAX_PENDING_WRITES;
-}
-function addToWritePipeline(remoteStoreImpl, batch) {
-  remoteStoreImpl.writePipeline.push(batch);
-  const writeStream = ensureWriteStream(remoteStoreImpl);
-  if (writeStream.isOpen() && writeStream.handshakeComplete) {
-    writeStream.writeMutations(batch.mutations);
-  }
-}
-function shouldStartWriteStream(remoteStoreImpl) {
-  return canUseNetwork(remoteStoreImpl) && !ensureWriteStream(remoteStoreImpl).isStarted() && remoteStoreImpl.writePipeline.length > 0;
-}
-function startWriteStream(remoteStoreImpl) {
-  ensureWriteStream(remoteStoreImpl).start();
-}
-async function onWriteStreamOpen(remoteStoreImpl) {
-  ensureWriteStream(remoteStoreImpl).writeHandshake();
-}
-async function onWriteHandshakeComplete(remoteStoreImpl) {
-  const writeStream = ensureWriteStream(remoteStoreImpl);
-  for (const batch of remoteStoreImpl.writePipeline) {
-    writeStream.writeMutations(batch.mutations);
-  }
-}
-async function onMutationResult(remoteStoreImpl, commitVersion, results) {
-  const batch = remoteStoreImpl.writePipeline.shift();
-  const success = MutationBatchResult.from(batch, commitVersion, results);
-  await executeWithRecovery(remoteStoreImpl, () => remoteStoreImpl.remoteSyncer.applySuccessfulWrite(success));
-  await fillWritePipeline(remoteStoreImpl);
-}
-async function onWriteStreamClose(remoteStoreImpl, error2) {
-  if (error2 && ensureWriteStream(remoteStoreImpl).handshakeComplete) {
-    await handleWriteError(remoteStoreImpl, error2);
-  }
-  if (shouldStartWriteStream(remoteStoreImpl)) {
-    startWriteStream(remoteStoreImpl);
-  }
-}
-async function handleWriteError(remoteStoreImpl, error2) {
-  if (isPermanentWriteError(error2.code)) {
-    const batch = remoteStoreImpl.writePipeline.shift();
-    ensureWriteStream(remoteStoreImpl).inhibitBackoff();
-    await executeWithRecovery(remoteStoreImpl, () => remoteStoreImpl.remoteSyncer.rejectFailedWrite(batch.batchId, error2));
-    await fillWritePipeline(remoteStoreImpl);
   }
 }
 async function restartNetwork(remoteStore) {
@@ -31278,29 +30933,6 @@ function ensureWatchStream(remoteStoreImpl) {
     });
   }
   return remoteStoreImpl.watchStream;
-}
-function ensureWriteStream(remoteStoreImpl) {
-  if (!remoteStoreImpl.writeStream) {
-    remoteStoreImpl.writeStream = newPersistentWriteStream(remoteStoreImpl.datastore, remoteStoreImpl.asyncQueue, {
-      onOpen: onWriteStreamOpen.bind(null, remoteStoreImpl),
-      onClose: onWriteStreamClose.bind(null, remoteStoreImpl),
-      onHandshakeComplete: onWriteHandshakeComplete.bind(null, remoteStoreImpl),
-      onMutationResult: onMutationResult.bind(null, remoteStoreImpl)
-    });
-    remoteStoreImpl.onNetworkStatusChange.push(async (enabled) => {
-      if (enabled) {
-        remoteStoreImpl.writeStream.inhibitBackoff();
-        await fillWritePipeline(remoteStoreImpl);
-      } else {
-        await remoteStoreImpl.writeStream.stop();
-        if (remoteStoreImpl.writePipeline.length > 0) {
-          logDebug(LOG_TAG$5, `Stopping write stream with ${remoteStoreImpl.writePipeline.length} pending writes`);
-          remoteStoreImpl.writePipeline = [];
-        }
-      }
-    });
-  }
-  return remoteStoreImpl.writeStream;
 }
 function wrapInUserErrorIfRecoverable(e2, msg) {
   logError(LOG_TAG$4, `${msg}: ${e2}`);
@@ -31492,19 +31124,6 @@ async function syncEngineUnlisten(syncEngine, query2) {
     await localStoreReleaseTarget(syncEngineImpl.localStore, queryView.targetId, true);
   }
 }
-async function syncEngineWrite(syncEngine, batch, userCallback) {
-  const syncEngineImpl = syncEngineEnsureWriteCallbacks(syncEngine);
-  try {
-    const result = await localStoreWriteLocally(syncEngineImpl.localStore, batch);
-    syncEngineImpl.sharedClientState.addPendingMutation(result.batchId);
-    addMutationCallback(syncEngineImpl, result.batchId, userCallback);
-    await syncEngineEmitNewSnapsAndNotifyLocalStore(syncEngineImpl, result.changes);
-    await fillWritePipeline(syncEngineImpl.remoteStore);
-  } catch (e2) {
-    const error2 = wrapInUserErrorIfRecoverable(e2, `Failed to persist write`);
-    userCallback.reject(error2);
-  }
-}
 async function syncEngineApplyRemoteEvent(syncEngine, remoteEvent) {
   const syncEngineImpl = debugCast(syncEngine);
   try {
@@ -31567,37 +31186,6 @@ async function syncEngineRejectListen(syncEngine, targetId, err) {
     await localStoreReleaseTarget(syncEngineImpl.localStore, targetId, false).then(() => removeAndCleanupTarget(syncEngineImpl, targetId, err)).catch(ignoreIfPrimaryLeaseLoss);
   }
 }
-async function syncEngineApplySuccessfulWrite(syncEngine, mutationBatchResult) {
-  const syncEngineImpl = debugCast(syncEngine);
-  const batchId = mutationBatchResult.batch.batchId;
-  try {
-    const changes = await localStoreAcknowledgeBatch(syncEngineImpl.localStore, mutationBatchResult);
-    processUserCallback(syncEngineImpl, batchId, null);
-    triggerPendingWritesCallbacks(syncEngineImpl, batchId);
-    syncEngineImpl.sharedClientState.updateMutationState(batchId, "acknowledged");
-    await syncEngineEmitNewSnapsAndNotifyLocalStore(syncEngineImpl, changes);
-  } catch (error2) {
-    await ignoreIfPrimaryLeaseLoss(error2);
-  }
-}
-async function syncEngineRejectFailedWrite(syncEngine, batchId, error2) {
-  const syncEngineImpl = debugCast(syncEngine);
-  try {
-    const changes = await localStoreRejectBatch(syncEngineImpl.localStore, batchId);
-    processUserCallback(syncEngineImpl, batchId, error2);
-    triggerPendingWritesCallbacks(syncEngineImpl, batchId);
-    syncEngineImpl.sharedClientState.updateMutationState(batchId, "rejected", error2);
-    await syncEngineEmitNewSnapsAndNotifyLocalStore(syncEngineImpl, changes);
-  } catch (error3) {
-    await ignoreIfPrimaryLeaseLoss(error3);
-  }
-}
-function triggerPendingWritesCallbacks(syncEngineImpl, batchId) {
-  (syncEngineImpl.pendingWritesCallbacks.get(batchId) || []).forEach((callback) => {
-    callback.resolve();
-  });
-  syncEngineImpl.pendingWritesCallbacks.delete(batchId);
-}
 function rejectOutstandingPendingWritesCallbacks(syncEngineImpl, errorMessage) {
   syncEngineImpl.pendingWritesCallbacks.forEach((callbacks) => {
     callbacks.forEach((callback) => {
@@ -31605,30 +31193,6 @@ function rejectOutstandingPendingWritesCallbacks(syncEngineImpl, errorMessage) {
     });
   });
   syncEngineImpl.pendingWritesCallbacks.clear();
-}
-function addMutationCallback(syncEngineImpl, batchId, callback) {
-  let newCallbacks = syncEngineImpl.mutationUserCallbacks[syncEngineImpl.currentUser.toKey()];
-  if (!newCallbacks) {
-    newCallbacks = new SortedMap(primitiveComparator);
-  }
-  newCallbacks = newCallbacks.insert(batchId, callback);
-  syncEngineImpl.mutationUserCallbacks[syncEngineImpl.currentUser.toKey()] = newCallbacks;
-}
-function processUserCallback(syncEngine, batchId, error2) {
-  const syncEngineImpl = debugCast(syncEngine);
-  let newCallbacks = syncEngineImpl.mutationUserCallbacks[syncEngineImpl.currentUser.toKey()];
-  if (newCallbacks) {
-    const callback = newCallbacks.get(batchId);
-    if (callback) {
-      if (error2) {
-        callback.reject(error2);
-      } else {
-        callback.resolve();
-      }
-      newCallbacks = newCallbacks.remove(batchId);
-    }
-    syncEngineImpl.mutationUserCallbacks[syncEngineImpl.currentUser.toKey()] = newCallbacks;
-  }
 }
 function removeAndCleanupTarget(syncEngineImpl, targetId, error2 = null) {
   syncEngineImpl.sharedClientState.removeLocalQueryTarget(targetId);
@@ -31772,12 +31336,6 @@ function ensureWatchCallbacks(syncEngine) {
   syncEngineImpl.syncEngineListener.onWatchError = eventManagerOnWatchError.bind(null, syncEngineImpl.eventManager);
   return syncEngineImpl;
 }
-function syncEngineEnsureWriteCallbacks(syncEngine) {
-  const syncEngineImpl = debugCast(syncEngine);
-  syncEngineImpl.remoteStore.remoteSyncer.applySuccessfulWrite = syncEngineApplySuccessfulWrite.bind(null, syncEngineImpl);
-  syncEngineImpl.remoteStore.remoteSyncer.rejectFailedWrite = syncEngineRejectFailedWrite.bind(null, syncEngineImpl);
-  return syncEngineImpl;
-}
 function validateNonEmptyArgument(functionName, argumentName, argument) {
   if (!argument) {
     throw new FirestoreError(Code.INVALID_ARGUMENT, `Function ${functionName}() cannot be called with an empty ${argumentName}.`);
@@ -31894,9 +31452,6 @@ async function ensureOnlineComponents(client) {
   }
   return client.onlineComponents;
 }
-function getSyncEngine(client) {
-  return ensureOnlineComponents(client).then((c3) => c3.syncEngine);
-}
 async function getEventManager(client) {
   const onlineComponentProvider = await ensureOnlineComponents(client);
   const eventManager = onlineComponentProvider.eventManager;
@@ -31917,14 +31472,6 @@ function firestoreClientGetDocumentsViaSnapshotListener(client, query2, options 
   client.asyncQueue.enqueueAndForget(async () => {
     const eventManager = await getEventManager(client);
     return executeQueryViaSnapshotListener(eventManager, client.asyncQueue, query2, options, deferred);
-  });
-  return deferred.promise;
-}
-function firestoreClientWrite(client, mutations) {
-  const deferred = new Deferred2();
-  client.asyncQueue.enqueueAndForget(async () => {
-    const syncEngine = await getSyncEngine(client);
-    return syncEngineWrite(syncEngine, mutations, deferred);
   });
   return deferred.promise;
 }
@@ -32079,34 +31626,6 @@ function newUserDataReader(firestore) {
   const serializer = newSerializer(firestore._databaseId);
   return new UserDataReader(firestore._databaseId, !!settings.ignoreUndefinedProperties, serializer);
 }
-function parseSetData(userDataReader, methodName, targetDoc, input, hasConverter, options = {}) {
-  const context = userDataReader.createContext(options.merge || options.mergeFields ? 2 : 0, methodName, targetDoc, hasConverter);
-  validatePlainObject("Data must be an object, but it was:", context, input);
-  const updateData = parseObject(input, context);
-  let fieldMask;
-  let fieldTransforms;
-  if (options.merge) {
-    fieldMask = new FieldMask(context.fieldMask);
-    fieldTransforms = context.fieldTransforms;
-  } else if (options.mergeFields) {
-    const validatedFieldPaths = [];
-    for (const stringOrFieldPath of options.mergeFields) {
-      const fieldPath = fieldPathFromArgument$1(methodName, stringOrFieldPath, targetDoc);
-      if (!context.contains(fieldPath)) {
-        throw new FirestoreError(Code.INVALID_ARGUMENT, `Field '${fieldPath}' is specified in your field mask but missing from your input data.`);
-      }
-      if (!fieldMaskContains(validatedFieldPaths, fieldPath)) {
-        validatedFieldPaths.push(fieldPath);
-      }
-    }
-    fieldMask = new FieldMask(validatedFieldPaths);
-    fieldTransforms = context.fieldTransforms.filter((transform) => fieldMask.covers(transform.field));
-  } else {
-    fieldMask = null;
-    fieldTransforms = context.fieldTransforms;
-  }
-  return new ParsedSetData(new ObjectValue(updateData), fieldMask, fieldTransforms);
-}
 function parseQueryValue(userDataReader, methodName, input, allowArrays = false) {
   const context = userDataReader.createContext(allowArrays ? 4 : 3, methodName);
   const parsed = parseData(input, context);
@@ -32232,17 +31751,6 @@ function validatePlainObject(message, context, input) {
     }
   }
 }
-function fieldPathFromArgument$1(methodName, path, targetDoc) {
-  path = getModularInstance(path);
-  if (path instanceof FieldPath) {
-    return path._internalPath;
-  } else if (typeof path === "string") {
-    return fieldPathFromDotSeparatedString(methodName, path);
-  } else {
-    const message = "Field path arguments must be of type string or ";
-    throw createError(message, methodName, false, void 0, targetDoc);
-  }
-}
 function fieldPathFromDotSeparatedString(methodName, path, targetDoc) {
   const found = path.search(FIELD_PATH_RESERVED);
   if (found >= 0) {
@@ -32274,9 +31782,6 @@ function createError(reason, methodName, hasConverter, path, targetDoc) {
     description += ")";
   }
   return new FirestoreError(Code.INVALID_ARGUMENT, message + reason + description);
-}
-function fieldMaskContains(haystack, needle) {
-  return haystack.some((v3) => v3.isEqual(needle));
 }
 function fieldPathFromArgument(methodName, arg) {
   if (typeof arg === "string") {
@@ -32488,19 +31993,6 @@ function validateOrderByAndInequalityMatch(baseQuery, inequality, orderBy2) {
     throw new FirestoreError(Code.INVALID_ARGUMENT, `Invalid query. You have a where filter with an inequality (<, <=, !=, not-in, >, or >=) on field '${inequality.toString()}' and so you must also use '${inequality.toString()}' as your first argument to orderBy(), but your first orderBy() is on field '${orderBy2.toString()}' instead.`);
   }
 }
-function applyFirestoreDataConverter(converter, value, options) {
-  let convertedValue;
-  if (converter) {
-    if (options && (options.merge || options.mergeFields)) {
-      convertedValue = converter.toFirestore(value, options);
-    } else {
-      convertedValue = converter.toFirestore(value);
-    }
-  } else {
-    convertedValue = value;
-  }
-  return convertedValue;
-}
 function getDoc(reference) {
   reference = cast(reference, DocumentReference);
   const firestore = cast(reference.firestore, Firestore);
@@ -32515,25 +32007,12 @@ function getDocs(query2) {
   validateHasExplicitOrderByForLimitToLast(query2._query);
   return firestoreClientGetDocumentsViaSnapshotListener(client, query2._query).then((snapshot) => new QuerySnapshot(firestore, userDataWriter, query2, snapshot));
 }
-function setDoc(reference, data, options) {
-  reference = cast(reference, DocumentReference);
-  const firestore = cast(reference.firestore, Firestore);
-  const convertedValue = applyFirestoreDataConverter(reference.converter, data, options);
-  const dataReader = newUserDataReader(firestore);
-  const parsed = parseSetData(dataReader, "setDoc", reference._key, convertedValue, reference.converter !== null, options);
-  const mutation = parsed.toMutation(reference._key, Precondition.none());
-  return executeWrite(firestore, [mutation]);
-}
-function executeWrite(firestore, mutations) {
-  const client = ensureFirestoreConfigured(firestore);
-  return firestoreClientWrite(client, mutations);
-}
 function convertToDocSnapshot(firestore, ref, snapshot) {
   const doc2 = snapshot.docs.get(ref._key);
   const userDataWriter = new ExpUserDataWriter(firestore);
   return new DocumentSnapshot(firestore, userDataWriter, ref._key, doc2, new SnapshotMetadata(snapshot.hasPendingWrites, snapshot.fromCache), ref.converter);
 }
-var import_util6, import_crypto2, grpc, protoLoader, name3, version$12, User, version3, SDK_VERSION2, logClient2, Code, FirestoreError, Deferred2, OAuthToken, EmptyAuthCredentialsProvider, FirebaseAuthCredentialsProvider, FirstPartyToken, FirstPartyAuthCredentialsProvider, AppCheckToken, FirebaseAppCheckTokenProvider, AutoId, MIN_SECONDS, MS_TO_NANOS, Timestamp, SnapshotVersion, DOCUMENT_KEY_NAME, BasePath, ResourcePath, identifierRegExp, FieldPath$1, DocumentKey, INITIAL_LARGEST_BATCH_ID, FieldIndex, IndexOffset, PRIMARY_LEASE_LOST_ERROR_MSG, PersistenceTransaction, PersistencePromise, ListenSequence, DbRemoteDocumentStore$1, DbPrimaryClientStore, DbMutationQueueStore, DbMutationBatchStore, DbDocumentMutationStore, DbRemoteDocumentStore, DbRemoteDocumentGlobalStore, DbTargetStore, DbTargetDocumentStore, DbTargetGlobalStore, DbCollectionParentStore, DbClientMetadataStore, DbBundleStore, DbNamedQueryStore, DbIndexConfigurationStore, DbIndexStateStore, DbIndexEntryStore, DbDocumentOverlayStore, V1_STORES, V3_STORES, V4_STORES, V6_STORES, V8_STORES, V11_STORES, V12_STORES, V13_STORES, V14_STORES, V15_STORES, SortedMap, SortedMapIterator, LLRBNode, LLRBEmptyNode, SortedSet, SortedSetIterator, FieldMask, ByteString, ISO_TIMESTAMP_REG_EXP, SERVER_TIMESTAMP_SENTINEL, TYPE_KEY, PREVIOUS_VALUE_KEY, LOCAL_WRITE_TIME_KEY, DatabaseInfo, DEFAULT_DATABASE_NAME, DatabaseId, BATCHID_UNKNOWN, MAX_VALUE_TYPE, MAX_VALUE, ObjectValue, MutableDocument, TargetImpl, Filter, FieldFilter, KeyFieldFilter, KeyFieldInFilter, KeyFieldNotInFilter, ArrayContainsFilter, InFilter, NotInFilter, ArrayContainsAnyFilter, Bound, OrderBy, QueryImpl, ObjectMap, EMPTY_MUTABLE_DOCUMENT_MAP, EMPTY_DOCUMENT_MAP, EMPTY_DOCUMENT_VERSION_MAP, EMPTY_DOCUMENT_KEY_SET, EMPTY_TARGET_ID_SET, TransformOperation, ServerTimestampTransform, ArrayUnionTransformOperation, ArrayRemoveTransformOperation, NumericIncrementTransformOperation, MutationResult, Precondition, Mutation, SetMutation, PatchMutation, DeleteMutation, VerifyMutation, MutationBatch, MutationBatchResult, Overlay, ExistenceFilter, RpcCode, RemoteEvent, TargetChange, DocumentWatchChange, ExistenceFilterChange, WatchTargetChange, TargetState, LOG_TAG$g, WatchChangeAggregator, DIRECTIONS, OPERATORS, JsonProtoSerializer, TargetData, LocalSerializer, INDEX_TYPE_NULL, INDEX_TYPE_BOOLEAN, INDEX_TYPE_NAN, INDEX_TYPE_NUMBER, INDEX_TYPE_TIMESTAMP, INDEX_TYPE_STRING, INDEX_TYPE_BLOB, INDEX_TYPE_REFERENCE, INDEX_TYPE_GEOPOINT, INDEX_TYPE_ARRAY, INDEX_TYPE_MAP, INDEX_TYPE_REFERENCE_SEGMENT, NOT_TRUNCATED, FirestoreIndexValueWriter, MemoryIndexManager, MemoryCollectionParentIndex, EMPTY_VALUE, OFFSET, TargetIdGenerator, LRU_COLLECTION_DISABLED, LRU_DEFAULT_CACHE_SIZE_BYTES, LruParams, LRU_MINIMUM_CACHE_SIZE_BYTES, INITIAL_GC_DELAY_MS, REGULAR_GC_DELAY_MS, RemoteDocumentChangeBuffer, OverlayedDocument, LocalDocumentsView, MemoryBundleCache, MemoryDocumentOverlayCache, ReferenceSet, DocReference, MemoryMutationQueue, MemoryRemoteDocumentCacheImpl, MemoryRemoteDocumentChangeBuffer, MemoryTargetCache, LOG_TAG$d, MemoryPersistence, MemoryTransaction, MemoryEagerDelegate, MAX_CLIENT_AGE_MS, LOG_TAG$b, RESUME_TOKEN_MAX_AGE_MICROS, LocalStoreImpl, QueryEngine, LocalClientState, MemorySharedClientState, NoopConnectivityMonitor, StreamBridge, grpcVersion, LOG_TAG$9, X_GOOG_API_CLIENT_VALUE, GrpcConnection, nested, protos, protos$1, protoLoaderOptions, LOG_TAG$8, DEFAULT_BACKOFF_INITIAL_DELAY_MS, DEFAULT_BACKOFF_FACTOR, DEFAULT_BACKOFF_MAX_DELAY_MS, ExponentialBackoff, LOG_TAG$7, IDLE_TIMEOUT_MS, HEALTHY_TIMEOUT_MS, PersistentStream, PersistentListenStream, PersistentWriteStream, Datastore, DatastoreImpl, LOG_TAG$6, MAX_WATCH_STREAM_FAILURES, ONLINE_STATE_TIMEOUT_MS, OnlineStateTracker, LOG_TAG$5, MAX_PENDING_WRITES, RemoteStoreImpl, LOG_TAG$4, DelayedOperation, DocumentSet, DocumentChangeSet, ViewSnapshot, QueryListenersInfo, EventManagerImpl, QueryListener, LocalViewChanges, AddedLimboDocument, RemovedLimboDocument, View, LOG_TAG$3, QueryView, LimboResolution, SyncEngineImpl, MemoryOfflineComponentProvider, OnlineComponentProvider, AsyncObserver, LOG_TAG$2, MAX_CONCURRENT_LIMBO_RESOLUTIONS, FirestoreClient, LOG_TAG$1, datastoreInstances, DEFAULT_HOST, DEFAULT_SSL, FirestoreSettingsImpl, Firestore$1, DocumentReference, Query, CollectionReference, LOG_TAG, AsyncQueueImpl, Firestore, FieldPath, Bytes, FieldValue, GeoPoint, RESERVED_FIELD_REGEX, ParsedSetData, ParseContextImpl, UserDataReader, FIELD_PATH_RESERVED, DocumentSnapshot$1, QueryDocumentSnapshot$1, SnapshotMetadata, DocumentSnapshot, QueryDocumentSnapshot, QuerySnapshot, QueryConstraint, QueryFilterConstraint, QueryOrderByConstraint, QueryLimitConstraint, AbstractUserDataWriter, ExpUserDataWriter;
+var import_util6, import_crypto2, grpc, protoLoader, name3, version$12, User, version3, SDK_VERSION2, logClient2, Code, FirestoreError, Deferred2, OAuthToken, EmptyAuthCredentialsProvider, FirebaseAuthCredentialsProvider, FirstPartyToken, FirstPartyAuthCredentialsProvider, AppCheckToken, FirebaseAppCheckTokenProvider, AutoId, MIN_SECONDS, MS_TO_NANOS, Timestamp, SnapshotVersion, DOCUMENT_KEY_NAME, BasePath, ResourcePath, identifierRegExp, FieldPath$1, DocumentKey, INITIAL_LARGEST_BATCH_ID, FieldIndex, IndexOffset, PRIMARY_LEASE_LOST_ERROR_MSG, PersistenceTransaction, PersistencePromise, ListenSequence, DbRemoteDocumentStore$1, DbPrimaryClientStore, DbMutationQueueStore, DbMutationBatchStore, DbDocumentMutationStore, DbRemoteDocumentStore, DbRemoteDocumentGlobalStore, DbTargetStore, DbTargetDocumentStore, DbTargetGlobalStore, DbCollectionParentStore, DbClientMetadataStore, DbBundleStore, DbNamedQueryStore, DbIndexConfigurationStore, DbIndexStateStore, DbIndexEntryStore, DbDocumentOverlayStore, V1_STORES, V3_STORES, V4_STORES, V6_STORES, V8_STORES, V11_STORES, V12_STORES, V13_STORES, V14_STORES, V15_STORES, SortedMap, SortedMapIterator, LLRBNode, LLRBEmptyNode, SortedSet, SortedSetIterator, FieldMask, ByteString, ISO_TIMESTAMP_REG_EXP, SERVER_TIMESTAMP_SENTINEL, TYPE_KEY, PREVIOUS_VALUE_KEY, LOCAL_WRITE_TIME_KEY, DatabaseInfo, DEFAULT_DATABASE_NAME, DatabaseId, BATCHID_UNKNOWN, MAX_VALUE_TYPE, MAX_VALUE, ObjectValue, MutableDocument, TargetImpl, Filter, FieldFilter, KeyFieldFilter, KeyFieldInFilter, KeyFieldNotInFilter, ArrayContainsFilter, InFilter, NotInFilter, ArrayContainsAnyFilter, Bound, OrderBy, QueryImpl, ObjectMap, EMPTY_MUTABLE_DOCUMENT_MAP, EMPTY_DOCUMENT_MAP, EMPTY_DOCUMENT_VERSION_MAP, EMPTY_DOCUMENT_KEY_SET, EMPTY_TARGET_ID_SET, TransformOperation, ServerTimestampTransform, ArrayUnionTransformOperation, ArrayRemoveTransformOperation, NumericIncrementTransformOperation, Precondition, Mutation, SetMutation, PatchMutation, DeleteMutation, MutationBatch, Overlay, ExistenceFilter, RpcCode, RemoteEvent, TargetChange, DocumentWatchChange, ExistenceFilterChange, WatchTargetChange, TargetState, LOG_TAG$g, WatchChangeAggregator, DIRECTIONS, OPERATORS, JsonProtoSerializer, TargetData, LocalSerializer, INDEX_TYPE_NULL, INDEX_TYPE_BOOLEAN, INDEX_TYPE_NAN, INDEX_TYPE_NUMBER, INDEX_TYPE_TIMESTAMP, INDEX_TYPE_STRING, INDEX_TYPE_BLOB, INDEX_TYPE_REFERENCE, INDEX_TYPE_GEOPOINT, INDEX_TYPE_ARRAY, INDEX_TYPE_MAP, INDEX_TYPE_REFERENCE_SEGMENT, NOT_TRUNCATED, FirestoreIndexValueWriter, MemoryIndexManager, MemoryCollectionParentIndex, EMPTY_VALUE, OFFSET, TargetIdGenerator, LRU_COLLECTION_DISABLED, LRU_DEFAULT_CACHE_SIZE_BYTES, LruParams, LRU_MINIMUM_CACHE_SIZE_BYTES, INITIAL_GC_DELAY_MS, REGULAR_GC_DELAY_MS, RemoteDocumentChangeBuffer, OverlayedDocument, LocalDocumentsView, MemoryBundleCache, MemoryDocumentOverlayCache, ReferenceSet, DocReference, MemoryMutationQueue, MemoryRemoteDocumentCacheImpl, MemoryRemoteDocumentChangeBuffer, MemoryTargetCache, LOG_TAG$d, MemoryPersistence, MemoryTransaction, MemoryEagerDelegate, MAX_CLIENT_AGE_MS, LOG_TAG$b, RESUME_TOKEN_MAX_AGE_MICROS, LocalStoreImpl, QueryEngine, LocalClientState, MemorySharedClientState, NoopConnectivityMonitor, StreamBridge, grpcVersion, LOG_TAG$9, X_GOOG_API_CLIENT_VALUE, GrpcConnection, nested, protos, protos$1, protoLoaderOptions, LOG_TAG$8, DEFAULT_BACKOFF_INITIAL_DELAY_MS, DEFAULT_BACKOFF_FACTOR, DEFAULT_BACKOFF_MAX_DELAY_MS, ExponentialBackoff, LOG_TAG$7, IDLE_TIMEOUT_MS, HEALTHY_TIMEOUT_MS, PersistentStream, PersistentListenStream, Datastore, DatastoreImpl, LOG_TAG$6, MAX_WATCH_STREAM_FAILURES, ONLINE_STATE_TIMEOUT_MS, OnlineStateTracker, LOG_TAG$5, RemoteStoreImpl, LOG_TAG$4, DelayedOperation, DocumentSet, DocumentChangeSet, ViewSnapshot, QueryListenersInfo, EventManagerImpl, QueryListener, LocalViewChanges, AddedLimboDocument, RemovedLimboDocument, View, LOG_TAG$3, QueryView, LimboResolution, SyncEngineImpl, MemoryOfflineComponentProvider, OnlineComponentProvider, AsyncObserver, LOG_TAG$2, MAX_CONCURRENT_LIMBO_RESOLUTIONS, FirestoreClient, LOG_TAG$1, datastoreInstances, DEFAULT_HOST, DEFAULT_SSL, FirestoreSettingsImpl, Firestore$1, DocumentReference, Query, CollectionReference, LOG_TAG, AsyncQueueImpl, Firestore, FieldPath, Bytes, FieldValue, GeoPoint, RESERVED_FIELD_REGEX, ParseContextImpl, UserDataReader, FIELD_PATH_RESERVED, DocumentSnapshot$1, QueryDocumentSnapshot$1, SnapshotMetadata, DocumentSnapshot, QueryDocumentSnapshot, QuerySnapshot, QueryConstraint, QueryFilterConstraint, QueryOrderByConstraint, QueryLimitConstraint, AbstractUserDataWriter, ExpUserDataWriter;
 var init_index_node = __esm({
   "node_modules/@firebase/firestore/dist/index.node.mjs"() {
     init_shims();
@@ -33133,8 +32612,8 @@ var init_index_node = __esm({
       static fromPath(path) {
         return new DocumentKey(ResourcePath.fromString(path));
       }
-      static fromName(name6) {
-        return new DocumentKey(ResourcePath.fromString(name6).popFirst(5));
+      static fromName(name7) {
+        return new DocumentKey(ResourcePath.fromString(name7).popFirst(5));
       }
       static empty() {
         return new DocumentKey(ResourcePath.emptyPath());
@@ -34124,10 +33603,10 @@ var init_index_node = __esm({
       }
     };
     MutableDocument = class {
-      constructor(key2, documentType, version6, readTime, data, documentState) {
+      constructor(key2, documentType, version7, readTime, data, documentState) {
         this.key = key2;
         this.documentType = documentType;
-        this.version = version6;
+        this.version = version7;
         this.readTime = readTime;
         this.data = data;
         this.documentState = documentState;
@@ -34135,31 +33614,31 @@ var init_index_node = __esm({
       static newInvalidDocument(documentKey) {
         return new MutableDocument(documentKey, 0, SnapshotVersion.min(), SnapshotVersion.min(), ObjectValue.empty(), 0);
       }
-      static newFoundDocument(documentKey, version6, value) {
-        return new MutableDocument(documentKey, 1, version6, SnapshotVersion.min(), value, 0);
+      static newFoundDocument(documentKey, version7, value) {
+        return new MutableDocument(documentKey, 1, version7, SnapshotVersion.min(), value, 0);
       }
-      static newNoDocument(documentKey, version6) {
-        return new MutableDocument(documentKey, 2, version6, SnapshotVersion.min(), ObjectValue.empty(), 0);
+      static newNoDocument(documentKey, version7) {
+        return new MutableDocument(documentKey, 2, version7, SnapshotVersion.min(), ObjectValue.empty(), 0);
       }
-      static newUnknownDocument(documentKey, version6) {
-        return new MutableDocument(documentKey, 3, version6, SnapshotVersion.min(), ObjectValue.empty(), 2);
+      static newUnknownDocument(documentKey, version7) {
+        return new MutableDocument(documentKey, 3, version7, SnapshotVersion.min(), ObjectValue.empty(), 2);
       }
-      convertToFoundDocument(version6, value) {
-        this.version = version6;
+      convertToFoundDocument(version7, value) {
+        this.version = version7;
         this.documentType = 1;
         this.data = value;
         this.documentState = 0;
         return this;
       }
-      convertToNoDocument(version6) {
-        this.version = version6;
+      convertToNoDocument(version7) {
+        this.version = version7;
         this.documentType = 2;
         this.data = ObjectValue.empty();
         this.documentState = 0;
         return this;
       }
-      convertToUnknownDocument(version6) {
-        this.version = version6;
+      convertToUnknownDocument(version7) {
+        this.version = version7;
         this.documentType = 3;
         this.data = ObjectValue.empty();
         this.documentState = 2;
@@ -34492,12 +33971,6 @@ var init_index_node = __esm({
         this.operand = operand;
       }
     };
-    MutationResult = class {
-      constructor(version6, transformResults) {
-        this.version = version6;
-        this.transformResults = transformResults;
-      }
-    };
     Precondition = class {
       constructor(updateTime, exists) {
         this.updateTime = updateTime;
@@ -34509,8 +33982,8 @@ var init_index_node = __esm({
       static exists(exists) {
         return new Precondition(void 0, exists);
       }
-      static updateTime(version6) {
-        return new Precondition(version6);
+      static updateTime(version7) {
+        return new Precondition(version7);
       }
       get isNone() {
         return this.updateTime === void 0 && this.exists === void 0;
@@ -34554,18 +34027,6 @@ var init_index_node = __esm({
         this.key = key2;
         this.precondition = precondition;
         this.type = 2;
-        this.fieldTransforms = [];
-      }
-      getFieldMask() {
-        return null;
-      }
-    };
-    VerifyMutation = class extends Mutation {
-      constructor(key2, precondition) {
-        super();
-        this.key = key2;
-        this.precondition = precondition;
-        this.type = 3;
         this.fieldTransforms = [];
       }
       getFieldMask() {
@@ -34624,23 +34085,6 @@ var init_index_node = __esm({
       }
       isEqual(other) {
         return this.batchId === other.batchId && arrayEquals(this.mutations, other.mutations, (l, r2) => mutationEquals(l, r2)) && arrayEquals(this.baseMutations, other.baseMutations, (l, r2) => mutationEquals(l, r2));
-      }
-    };
-    MutationBatchResult = class {
-      constructor(batch, commitVersion, mutationResults, docVersions) {
-        this.batch = batch;
-        this.commitVersion = commitVersion;
-        this.mutationResults = mutationResults;
-        this.docVersions = docVersions;
-      }
-      static from(batch, commitVersion, results) {
-        hardAssert(batch.mutations.length === results.length);
-        let versionMap = documentVersionMap();
-        const mutations = batch.mutations;
-        for (let i2 = 0; i2 < mutations.length; i2++) {
-          versionMap = versionMap.insert(mutations[i2].key, results[i2].version);
-        }
-        return new MutationBatchResult(batch, commitVersion, results, versionMap);
       }
     };
     Overlay = class {
@@ -39470,55 +38914,6 @@ var init_index_node = __esm({
         this.sendRequest(request);
       }
     };
-    PersistentWriteStream = class extends PersistentStream {
-      constructor(queue, connection, authCredentials, appCheckCredentials, serializer, listener) {
-        super(queue, "write_stream_connection_backoff", "write_stream_idle", "health_check_timeout", connection, authCredentials, appCheckCredentials, listener);
-        this.serializer = serializer;
-        this.handshakeComplete_ = false;
-      }
-      get handshakeComplete() {
-        return this.handshakeComplete_;
-      }
-      start() {
-        this.handshakeComplete_ = false;
-        this.lastStreamToken = void 0;
-        super.start();
-      }
-      tearDown() {
-        if (this.handshakeComplete_) {
-          this.writeMutations([]);
-        }
-      }
-      startRpc(authToken, appCheckToken) {
-        return this.connection.openStream("Write", authToken, appCheckToken);
-      }
-      onMessage(responseProto) {
-        hardAssert(!!responseProto.streamToken);
-        this.lastStreamToken = responseProto.streamToken;
-        if (!this.handshakeComplete_) {
-          hardAssert(!responseProto.writeResults || responseProto.writeResults.length === 0);
-          this.handshakeComplete_ = true;
-          return this.listener.onHandshakeComplete();
-        } else {
-          this.backoff.reset();
-          const results = fromWriteResults(responseProto.writeResults, responseProto.commitTime);
-          const commitVersion = fromVersion(responseProto.commitTime);
-          return this.listener.onMutationResult(commitVersion, results);
-        }
-      }
-      writeHandshake() {
-        const request = {};
-        request.database = getEncodedDatabaseId(this.serializer);
-        this.sendRequest(request);
-      }
-      writeMutations(mutations) {
-        const request = {
-          streamToken: this.lastStreamToken,
-          writes: mutations.map((mutation) => toMutation(this.serializer, mutation))
-        };
-        this.sendRequest(request);
-      }
-    };
     Datastore = class {
     };
     DatastoreImpl = class extends Datastore {
@@ -39644,7 +39039,6 @@ This typically indicates that your device does not have a healthy Internet conne
       }
     };
     LOG_TAG$5 = "RemoteStore";
-    MAX_PENDING_WRITES = 10;
     RemoteStoreImpl = class {
       constructor(localStore, datastore, asyncQueue, onlineStateHandler, connectivityMonitor) {
         this.localStore = localStore;
@@ -40779,20 +40173,6 @@ This typically indicates that your device does not have a healthy Internet conne
       }
     };
     RESERVED_FIELD_REGEX = /^__.*__$/;
-    ParsedSetData = class {
-      constructor(data, fieldMask, fieldTransforms) {
-        this.data = data;
-        this.fieldMask = fieldMask;
-        this.fieldTransforms = fieldTransforms;
-      }
-      toMutation(key2, precondition) {
-        if (this.fieldMask !== null) {
-          return new PatchMutation(key2, this.data, this.fieldMask, precondition, this.fieldTransforms);
-        } else {
-          return new SetMutation(key2, this.data, precondition, this.fieldTransforms);
-        }
-      }
-    };
     ParseContextImpl = class {
       constructor(settings, databaseId, serializer, ignoreUndefinedProperties, fieldTransforms, fieldMask) {
         this.settings = settings;
@@ -41093,8 +40473,8 @@ This typically indicates that your device does not have a healthy Internet conne
         const normalizedValue = normalizeTimestamp(value);
         return new Timestamp(normalizedValue.seconds, normalizedValue.nanos);
       }
-      convertDocumentKey(name6, expectedDatabaseId) {
-        const resourcePath = ResourcePath.fromString(name6);
+      convertDocumentKey(name7, expectedDatabaseId) {
+        const resourcePath = ResourcePath.fromString(name7);
         hardAssert(isValidResourceName(resourcePath));
         const databaseId = new DatabaseId(resourcePath.get(1), resourcePath.get(3));
         const key2 = new DocumentKey(resourcePath.popFirst(5));
@@ -41112,8 +40492,8 @@ This typically indicates that your device does not have a healthy Internet conne
       convertBytes(bytes) {
         return new Bytes(bytes);
       }
-      convertReference(name6) {
-        const key2 = this.convertDocumentKey(name6, this.firestore._databaseId);
+      convertReference(name7) {
+        const key2 = this.convertDocumentKey(name7, this.firestore._databaseId);
         return new DocumentReference(this.firestore, null, key2);
       }
     };
@@ -41142,10 +40522,10 @@ var init_dist3 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/columns-config-528f8f72.js
-var dev, firebaseConfig, app, db, createError2, getPosts, createPost, getUserRecord, COLUMNS;
-var init_columns_config_528f8f72 = __esm({
-  ".svelte-kit/output/server/chunks/columns-config-528f8f72.js"() {
+// .svelte-kit/output/server/chunks/columns-config-64162f16.js
+var dev, firebaseConfig, app, db, createError2, getPosts, getUserRecord, COLUMNS;
+var init_columns_config_64162f16 = __esm({
+  ".svelte-kit/output/server/chunks/columns-config-64162f16.js"() {
     init_shims();
     init_dist2();
     init_dist3();
@@ -41192,16 +40572,6 @@ var init_columns_config_528f8f72 = __esm({
       } catch (error2) {
         createError2(error2, "DBService:getBulletins");
         return [];
-      }
-    };
-    createPost = async (item) => {
-      try {
-        const docRef = doc(collection(db, "Posts"));
-        item.id = docRef.id;
-        await setDoc(docRef, item);
-        return item;
-      } catch (error2) {
-        createError2(error2, "DBService:createPost");
       }
     };
     getUserRecord = async (uid) => {
@@ -44957,25 +44327,25 @@ var require_Notification = __commonJS({
       NotificationKind2["ERROR"] = "E";
       NotificationKind2["COMPLETE"] = "C";
     })(NotificationKind = exports2.NotificationKind || (exports2.NotificationKind = {}));
-    var Notification = function() {
-      function Notification2(kind, value, error2) {
+    var Notification2 = function() {
+      function Notification3(kind, value, error2) {
         this.kind = kind;
         this.value = value;
         this.error = error2;
         this.hasValue = kind === "N";
       }
-      Notification2.prototype.observe = function(observer) {
+      Notification3.prototype.observe = function(observer) {
         return observeNotification(this, observer);
       };
-      Notification2.prototype.do = function(nextHandler, errorHandler, completeHandler) {
+      Notification3.prototype.do = function(nextHandler, errorHandler, completeHandler) {
         var _a = this, kind = _a.kind, value = _a.value, error2 = _a.error;
         return kind === "N" ? nextHandler === null || nextHandler === void 0 ? void 0 : nextHandler(value) : kind === "E" ? errorHandler === null || errorHandler === void 0 ? void 0 : errorHandler(error2) : completeHandler === null || completeHandler === void 0 ? void 0 : completeHandler();
       };
-      Notification2.prototype.accept = function(nextOrObserver, error2, complete) {
+      Notification3.prototype.accept = function(nextOrObserver, error2, complete) {
         var _a;
         return isFunction_1.isFunction((_a = nextOrObserver) === null || _a === void 0 ? void 0 : _a.next) ? this.observe(nextOrObserver) : this.do(nextOrObserver, error2, complete);
       };
-      Notification2.prototype.toObservable = function() {
+      Notification3.prototype.toObservable = function() {
         var _a = this, kind = _a.kind, value = _a.value, error2 = _a.error;
         var result = kind === "N" ? of_1.of(value) : kind === "E" ? throwError_1.throwError(function() {
           return error2;
@@ -44985,19 +44355,19 @@ var require_Notification = __commonJS({
         }
         return result;
       };
-      Notification2.createNext = function(value) {
-        return new Notification2("N", value);
+      Notification3.createNext = function(value) {
+        return new Notification3("N", value);
       };
-      Notification2.createError = function(err) {
-        return new Notification2("E", void 0, err);
+      Notification3.createError = function(err) {
+        return new Notification3("E", void 0, err);
       };
-      Notification2.createComplete = function() {
-        return Notification2.completeNotification;
+      Notification3.createComplete = function() {
+        return Notification3.completeNotification;
       };
-      Notification2.completeNotification = new Notification2("C");
-      return Notification2;
+      Notification3.completeNotification = new Notification3("C");
+      return Notification3;
     }();
-    exports2.Notification = Notification;
+    exports2.Notification = Notification2;
     function observeNotification(notification, observer) {
       var _a, _b, _c;
       var _d = notification, kind = _d.kind, value = _d.value, error2 = _d.error;
@@ -51179,8 +50549,8 @@ var require_chroma = __commonJS({
       };
       var classToType = {};
       for (var i$1 = 0, list$1 = ["Boolean", "Number", "String", "Function", "Array", "Date", "RegExp", "Undefined", "Null"]; i$1 < list$1.length; i$1 += 1) {
-        var name6 = list$1[i$1];
-        classToType["[object " + name6 + "]"] = name6.toLowerCase();
+        var name7 = list$1[i$1];
+        classToType["[object " + name7 + "]"] = name7.toLowerCase();
       }
       var type$p = function(obj) {
         return classToType[Object.prototype.toString.call(obj)] || "object";
@@ -52500,12 +51870,12 @@ var require_chroma = __commonJS({
         }
         return hex;
       };
-      input$5.format.named = function(name7) {
-        name7 = name7.toLowerCase();
-        if (w3cx11[name7]) {
-          return hex2rgb(w3cx11[name7]);
+      input$5.format.named = function(name8) {
+        name8 = name8.toLowerCase();
+        if (w3cx11[name8]) {
+          return hex2rgb(w3cx11[name8]);
         }
-        throw new Error("unknown color name: " + name7);
+        throw new Error("unknown color name: " + name8);
       };
       input$5.autodetect.push({
         p: 5,
@@ -54193,7 +53563,7 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/font-d2ce8847.js
+// .svelte-kit/output/server/chunks/font-84cfe3d4.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -54236,11 +53606,11 @@ function writable2(value, start2 = noop2) {
   return { set, update, subscribe: subscribe2 };
 }
 var import_rxjs, import_chroma_js, subscriber_queue2, _lang, EventService, events, _count, _fontGroups, _fontSizes, pallette, current, themes, auth, user, userSignedIn, Font;
-var init_font_d2ce8847 = __esm({
-  ".svelte-kit/output/server/chunks/font-d2ce8847.js"() {
+var init_font_84cfe3d4 = __esm({
+  ".svelte-kit/output/server/chunks/font-84cfe3d4.js"() {
     init_shims();
     init_dist();
-    init_columns_config_528f8f72();
+    init_columns_config_64162f16();
     import_rxjs = __toESM(require_cjs(), 1);
     init_index_b1adb880();
     import_chroma_js = __toESM(require_chroma(), 1);
@@ -54377,6 +53747,395 @@ var init_font_d2ce8847 = __esm({
       $$unsubscribe__lang();
       return `<span style="${"font-size: " + escape(rootFontSize) + "px"}"><span style="${"font-family: " + escape(font) + "; font-size: " + escape(remSize) + "em"}">${slots.default ? slots.default({}) : ``}</span></span>`;
     });
+  }
+});
+
+// node_modules/@firebase/functions/dist/esm-node/index.node.esm.js
+function mapValues(o, f5) {
+  const result = {};
+  for (const key2 in o) {
+    if (o.hasOwnProperty(key2)) {
+      result[key2] = f5(o[key2]);
+    }
+  }
+  return result;
+}
+function encode2(data) {
+  if (data == null) {
+    return null;
+  }
+  if (data instanceof Number) {
+    data = data.valueOf();
+  }
+  if (typeof data === "number" && isFinite(data)) {
+    return data;
+  }
+  if (data === true || data === false) {
+    return data;
+  }
+  if (Object.prototype.toString.call(data) === "[object String]") {
+    return data;
+  }
+  if (data instanceof Date) {
+    return data.toISOString();
+  }
+  if (Array.isArray(data)) {
+    return data.map((x3) => encode2(x3));
+  }
+  if (typeof data === "function" || typeof data === "object") {
+    return mapValues(data, (x3) => encode2(x3));
+  }
+  throw new Error("Data cannot be encoded in JSON: " + data);
+}
+function decode2(json) {
+  if (json == null) {
+    return json;
+  }
+  if (json["@type"]) {
+    switch (json["@type"]) {
+      case LONG_TYPE:
+      case UNSIGNED_LONG_TYPE: {
+        const value = Number(json["value"]);
+        if (isNaN(value)) {
+          throw new Error("Data cannot be decoded from JSON: " + json);
+        }
+        return value;
+      }
+      default: {
+        throw new Error("Data cannot be decoded from JSON: " + json);
+      }
+    }
+  }
+  if (Array.isArray(json)) {
+    return json.map((x3) => decode2(x3));
+  }
+  if (typeof json === "function" || typeof json === "object") {
+    return mapValues(json, (x3) => decode2(x3));
+  }
+  return json;
+}
+function codeForHTTPStatus(status) {
+  if (status >= 200 && status < 300) {
+    return "ok";
+  }
+  switch (status) {
+    case 0:
+      return "internal";
+    case 400:
+      return "invalid-argument";
+    case 401:
+      return "unauthenticated";
+    case 403:
+      return "permission-denied";
+    case 404:
+      return "not-found";
+    case 409:
+      return "aborted";
+    case 429:
+      return "resource-exhausted";
+    case 499:
+      return "cancelled";
+    case 500:
+      return "internal";
+    case 501:
+      return "unimplemented";
+    case 503:
+      return "unavailable";
+    case 504:
+      return "deadline-exceeded";
+  }
+  return "unknown";
+}
+function _errorForResponse(status, bodyJSON) {
+  let code = codeForHTTPStatus(status);
+  let description = code;
+  let details = void 0;
+  try {
+    const errorJSON = bodyJSON && bodyJSON.error;
+    if (errorJSON) {
+      const status2 = errorJSON.status;
+      if (typeof status2 === "string") {
+        if (!errorCodeMap[status2]) {
+          return new FunctionsError("internal", "internal");
+        }
+        code = errorCodeMap[status2];
+        description = status2;
+      }
+      const message = errorJSON.message;
+      if (typeof message === "string") {
+        description = message;
+      }
+      details = errorJSON.details;
+      if (details !== void 0) {
+        details = decode2(details);
+      }
+    }
+  } catch (e2) {
+  }
+  if (code === "ok") {
+    return null;
+  }
+  return new FunctionsError(code, description, details);
+}
+function failAfter(millis) {
+  let timer = null;
+  return {
+    promise: new Promise((_2, reject) => {
+      timer = setTimeout(() => {
+        reject(new FunctionsError("deadline-exceeded", "deadline-exceeded"));
+      }, millis);
+    }),
+    cancel: () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+    }
+  };
+}
+function httpsCallable$1(functionsInstance, name7, options) {
+  return (data) => {
+    return call(functionsInstance, name7, data, options || {});
+  };
+}
+async function postJSON(url, body, headers, fetchImpl2) {
+  headers["Content-Type"] = "application/json";
+  let response;
+  try {
+    response = await fetchImpl2(url, {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers
+    });
+  } catch (e2) {
+    return {
+      status: 0,
+      json: null
+    };
+  }
+  let json = null;
+  try {
+    json = await response.json();
+  } catch (e2) {
+  }
+  return {
+    status: response.status,
+    json
+  };
+}
+function call(functionsInstance, name7, data, options) {
+  const url = functionsInstance._url(name7);
+  return callAtURL(functionsInstance, url, data, options);
+}
+async function callAtURL(functionsInstance, url, data, options) {
+  data = encode2(data);
+  const body = { data };
+  const headers = {};
+  const context = await functionsInstance.contextProvider.getContext();
+  if (context.authToken) {
+    headers["Authorization"] = "Bearer " + context.authToken;
+  }
+  if (context.messagingToken) {
+    headers["Firebase-Instance-ID-Token"] = context.messagingToken;
+  }
+  if (context.appCheckToken !== null) {
+    headers["X-Firebase-AppCheck"] = context.appCheckToken;
+  }
+  const timeout = options.timeout || 7e4;
+  const failAfterHandle = failAfter(timeout);
+  const response = await Promise.race([
+    postJSON(url, body, headers, functionsInstance.fetchImpl),
+    failAfterHandle.promise,
+    functionsInstance.cancelAllRequests
+  ]);
+  failAfterHandle.cancel();
+  if (!response) {
+    throw new FunctionsError("cancelled", "Firebase Functions instance was deleted.");
+  }
+  const error2 = _errorForResponse(response.status, response.json);
+  if (error2) {
+    throw error2;
+  }
+  if (!response.json) {
+    throw new FunctionsError("internal", "Response is not valid JSON object.");
+  }
+  let responseData = response.json.data;
+  if (typeof responseData === "undefined") {
+    responseData = response.json.result;
+  }
+  if (typeof responseData === "undefined") {
+    throw new FunctionsError("internal", "Response is missing data field.");
+  }
+  const decodedData = decode2(responseData);
+  return { data: decodedData };
+}
+function registerFunctions(fetchImpl2, variant) {
+  const factory2 = (container, { instanceIdentifier: regionOrCustomDomain }) => {
+    const app2 = container.getProvider("app").getImmediate();
+    const authProvider = container.getProvider(AUTH_INTERNAL_NAME);
+    const messagingProvider = container.getProvider(MESSAGING_INTERNAL_NAME);
+    const appCheckProvider = container.getProvider(APP_CHECK_INTERNAL_NAME);
+    return new FunctionsService(app2, authProvider, messagingProvider, appCheckProvider, regionOrCustomDomain, fetchImpl2);
+  };
+  _registerComponent(new Component(FUNCTIONS_TYPE, factory2, "PUBLIC").setMultipleInstances(true));
+  registerVersion(name5, version5, variant);
+  registerVersion(name5, version5, "esm2017");
+}
+function getFunctions(app2 = getApp(), regionOrCustomDomain = DEFAULT_REGION) {
+  const functionsProvider = _getProvider(getModularInstance(app2), FUNCTIONS_TYPE);
+  const functionsInstance = functionsProvider.getImmediate({
+    identifier: regionOrCustomDomain
+  });
+  return functionsInstance;
+}
+function httpsCallable(functionsInstance, name7, options) {
+  return httpsCallable$1(getModularInstance(functionsInstance), name7, options);
+}
+var import_node_fetch2, LONG_TYPE, UNSIGNED_LONG_TYPE, FUNCTIONS_TYPE, errorCodeMap, FunctionsError, ContextProvider, DEFAULT_REGION, FunctionsService, name5, version5, AUTH_INTERNAL_NAME, APP_CHECK_INTERNAL_NAME, MESSAGING_INTERNAL_NAME;
+var init_index_node_esm2 = __esm({
+  "node_modules/@firebase/functions/dist/esm-node/index.node.esm.js"() {
+    init_shims();
+    init_index_esm20173();
+    init_index_node_esm();
+    init_index_esm2017();
+    import_node_fetch2 = __toESM(require_lib2(), 1);
+    LONG_TYPE = "type.googleapis.com/google.protobuf.Int64Value";
+    UNSIGNED_LONG_TYPE = "type.googleapis.com/google.protobuf.UInt64Value";
+    FUNCTIONS_TYPE = "functions";
+    errorCodeMap = {
+      OK: "ok",
+      CANCELLED: "cancelled",
+      UNKNOWN: "unknown",
+      INVALID_ARGUMENT: "invalid-argument",
+      DEADLINE_EXCEEDED: "deadline-exceeded",
+      NOT_FOUND: "not-found",
+      ALREADY_EXISTS: "already-exists",
+      PERMISSION_DENIED: "permission-denied",
+      UNAUTHENTICATED: "unauthenticated",
+      RESOURCE_EXHAUSTED: "resource-exhausted",
+      FAILED_PRECONDITION: "failed-precondition",
+      ABORTED: "aborted",
+      OUT_OF_RANGE: "out-of-range",
+      UNIMPLEMENTED: "unimplemented",
+      INTERNAL: "internal",
+      UNAVAILABLE: "unavailable",
+      DATA_LOSS: "data-loss"
+    };
+    FunctionsError = class extends FirebaseError {
+      constructor(code, message, details) {
+        super(`${FUNCTIONS_TYPE}/${code}`, message || "");
+        this.details = details;
+      }
+    };
+    ContextProvider = class {
+      constructor(authProvider, messagingProvider, appCheckProvider) {
+        this.auth = null;
+        this.messaging = null;
+        this.appCheck = null;
+        this.auth = authProvider.getImmediate({ optional: true });
+        this.messaging = messagingProvider.getImmediate({
+          optional: true
+        });
+        if (!this.auth) {
+          authProvider.get().then((auth2) => this.auth = auth2, () => {
+          });
+        }
+        if (!this.messaging) {
+          messagingProvider.get().then((messaging) => this.messaging = messaging, () => {
+          });
+        }
+        if (!this.appCheck) {
+          appCheckProvider.get().then((appCheck) => this.appCheck = appCheck, () => {
+          });
+        }
+      }
+      async getAuthToken() {
+        if (!this.auth) {
+          return void 0;
+        }
+        try {
+          const token = await this.auth.getToken();
+          return token === null || token === void 0 ? void 0 : token.accessToken;
+        } catch (e2) {
+          return void 0;
+        }
+      }
+      async getMessagingToken() {
+        if (!this.messaging || !("Notification" in self) || Notification.permission !== "granted") {
+          return void 0;
+        }
+        try {
+          return await this.messaging.getToken();
+        } catch (e2) {
+          return void 0;
+        }
+      }
+      async getAppCheckToken() {
+        if (this.appCheck) {
+          const result = await this.appCheck.getToken();
+          if (result.error) {
+            return null;
+          }
+          return result.token;
+        }
+        return null;
+      }
+      async getContext() {
+        const authToken = await this.getAuthToken();
+        const messagingToken = await this.getMessagingToken();
+        const appCheckToken = await this.getAppCheckToken();
+        return { authToken, messagingToken, appCheckToken };
+      }
+    };
+    DEFAULT_REGION = "us-central1";
+    FunctionsService = class {
+      constructor(app2, authProvider, messagingProvider, appCheckProvider, regionOrCustomDomain = DEFAULT_REGION, fetchImpl2) {
+        this.app = app2;
+        this.fetchImpl = fetchImpl2;
+        this.emulatorOrigin = null;
+        this.contextProvider = new ContextProvider(authProvider, messagingProvider, appCheckProvider);
+        this.cancelAllRequests = new Promise((resolve2) => {
+          this.deleteService = () => {
+            return Promise.resolve(resolve2());
+          };
+        });
+        try {
+          const url = new URL(regionOrCustomDomain);
+          this.customDomain = url.origin;
+          this.region = DEFAULT_REGION;
+        } catch (e2) {
+          this.customDomain = null;
+          this.region = regionOrCustomDomain;
+        }
+      }
+      _delete() {
+        return this.deleteService();
+      }
+      _url(name7) {
+        const projectId = this.app.options.projectId;
+        if (this.emulatorOrigin !== null) {
+          const origin = this.emulatorOrigin;
+          return `${origin}/${projectId}/${this.region}/${name7}`;
+        }
+        if (this.customDomain !== null) {
+          return `${this.customDomain}/${name7}`;
+        }
+        return `https://${this.region}-${projectId}.cloudfunctions.net/${name7}`;
+      }
+    };
+    name5 = "@firebase/functions";
+    version5 = "0.8.3";
+    AUTH_INTERNAL_NAME = "auth-internal";
+    APP_CHECK_INTERNAL_NAME = "app-check-internal";
+    MESSAGING_INTERNAL_NAME = "messaging-internal";
+    registerFunctions(import_node_fetch2.default, "node");
+  }
+});
+
+// node_modules/firebase/functions/dist/index.mjs
+var init_dist4 = __esm({
+  "node_modules/firebase/functions/dist/index.mjs"() {
+    init_shims();
+    init_index_node_esm2();
   }
 });
 
@@ -54526,10 +54285,10 @@ var require_dist2 = __commonJS({
         return _possibleConstructorReturn(this, result);
       };
     }
-    function _possibleConstructorReturn(self2, call) {
-      if (call && (_typeof(call) === "object" || typeof call === "function")) {
-        return call;
-      } else if (call !== void 0) {
+    function _possibleConstructorReturn(self2, call2) {
+      if (call2 && (_typeof(call2) === "object" || typeof call2 === "function")) {
+        return call2;
+      } else if (call2 !== void 0) {
         throw new TypeError("Derived constructors may only return object or undefined");
       }
       return _assertThisInitialized(self2);
@@ -55816,10 +55575,10 @@ var require_dist2 = __commonJS({
         value: function toString() {
           if (this.type.spec.toDebugString)
             return this.type.spec.toDebugString(this);
-          var name6 = this.type.name;
+          var name7 = this.type.name;
           if (this.content.size)
-            name6 += "(" + this.content.toStringInner() + ")";
-          return wrapMarks(this.marks, name6);
+            name7 += "(" + this.content.toStringInner() + ")";
+          return wrapMarks(this.marks, name7);
         }
       }, {
         key: "contentMatchAt",
@@ -56265,18 +56024,18 @@ var require_dist2 = __commonJS({
         expr
       };
     }
-    function resolveName(stream, name6) {
-      var types2 = stream.nodeTypes, type = types2[name6];
+    function resolveName(stream, name7) {
+      var types2 = stream.nodeTypes, type = types2[name7];
       if (type)
         return [type];
       var result = [];
       for (var typeName in types2) {
         var _type = types2[typeName];
-        if (_type.groups.indexOf(name6) > -1)
+        if (_type.groups.indexOf(name7) > -1)
           result.push(_type);
       }
       if (result.length == 0)
-        stream.err("No node type or group '" + name6 + "' found");
+        stream.err("No node type or group '" + name7 + "' found");
       return result;
     }
     function parseExprAtom(stream) {
@@ -56454,31 +56213,31 @@ var require_dist2 = __commonJS({
     }
     function _computeAttrs(attrs, value) {
       var built = /* @__PURE__ */ Object.create(null);
-      for (var name6 in attrs) {
-        var given = value && value[name6];
+      for (var name7 in attrs) {
+        var given = value && value[name7];
         if (given === void 0) {
-          var attr = attrs[name6];
+          var attr = attrs[name7];
           if (attr.hasDefault)
             given = attr["default"];
           else
-            throw new RangeError("No value supplied for attribute " + name6);
+            throw new RangeError("No value supplied for attribute " + name7);
         }
-        built[name6] = given;
+        built[name7] = given;
       }
       return built;
     }
     function initAttrs(attrs) {
       var result = /* @__PURE__ */ Object.create(null);
       if (attrs)
-        for (var name6 in attrs) {
-          result[name6] = new Attribute(attrs[name6]);
+        for (var name7 in attrs) {
+          result[name7] = new Attribute(attrs[name7]);
         }
       return result;
     }
     var NodeType = function() {
-      function NodeType2(name6, schema, spec) {
+      function NodeType2(name7, schema, spec) {
         _classCallCheck(this, NodeType2);
-        this.name = name6;
+        this.name = name7;
         this.schema = schema;
         this.spec = spec;
         this.markSet = null;
@@ -56487,8 +56246,8 @@ var require_dist2 = __commonJS({
         this.defaultAttrs = defaultAttrs(this.attrs);
         this.contentMatch = null;
         this.inlineContent = null;
-        this.isBlock = !(spec.inline || name6 == "text");
-        this.isText = name6 == "text";
+        this.isBlock = !(spec.inline || name7 == "text");
+        this.isText = name7 == "text";
       }
       _createClass(NodeType2, [{
         key: "isInline",
@@ -56626,8 +56385,8 @@ var require_dist2 = __commonJS({
         key: "compile",
         value: function compile(nodes, schema) {
           var result = /* @__PURE__ */ Object.create(null);
-          nodes.forEach(function(name6, spec) {
-            return result[name6] = new NodeType2(name6, schema, spec);
+          nodes.forEach(function(name7, spec) {
+            return result[name7] = new NodeType2(name7, schema, spec);
           });
           var topType = schema.spec.topNode || "doc";
           if (!result[topType])
@@ -56657,9 +56416,9 @@ var require_dist2 = __commonJS({
       return Attribute2;
     }();
     var MarkType = function() {
-      function MarkType2(name6, rank, schema, spec) {
+      function MarkType2(name7, rank, schema, spec) {
         _classCallCheck(this, MarkType2);
-        this.name = name6;
+        this.name = name7;
         this.rank = rank;
         this.schema = schema;
         this.spec = spec;
@@ -56704,8 +56463,8 @@ var require_dist2 = __commonJS({
         key: "compile",
         value: function compile(marks, schema) {
           var result = /* @__PURE__ */ Object.create(null), rank = 0;
-          marks.forEach(function(name6, spec) {
-            return result[name6] = new MarkType2(name6, rank++, schema, spec);
+          marks.forEach(function(name7, spec) {
+            return result[name7] = new MarkType2(name7, rank++, schema, spec);
           });
           return result;
         }
@@ -56780,10 +56539,10 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "nodeType",
-        value: function nodeType(name6) {
-          var found2 = this.nodes[name6];
+        value: function nodeType(name7) {
+          var found2 = this.nodes[name7];
           if (!found2)
-            throw new RangeError("Unknown node type: " + name6);
+            throw new RangeError("Unknown node type: " + name7);
           return found2;
         }
       }]);
@@ -56792,13 +56551,13 @@ var require_dist2 = __commonJS({
     function gatherMarks(schema, marks) {
       var found2 = [];
       for (var i2 = 0; i2 < marks.length; i2++) {
-        var name6 = marks[i2], mark = schema.marks[name6], ok = mark;
+        var name7 = marks[i2], mark = schema.marks[name7], ok = mark;
         if (mark) {
           found2.push(mark);
         } else {
           for (var prop in schema.marks) {
             var _mark = schema.marks[prop];
-            if (name6 == "_" || _mark.spec.group && _mark.spec.group.split(" ").indexOf(name6) > -1)
+            if (name7 == "_" || _mark.spec.group && _mark.spec.group.split(" ").indexOf(name7) > -1)
               found2.push(ok = _mark);
           }
         }
@@ -56889,16 +56648,16 @@ var require_dist2 = __commonJS({
             }
             result.splice(i2, 0, rule);
           }
-          var _loop2 = function _loop22(name7) {
-            var rules = schema.marks[name7].spec.parseDOM;
+          var _loop2 = function _loop22(name8) {
+            var rules = schema.marks[name8].spec.parseDOM;
             if (rules)
               rules.forEach(function(rule) {
                 insert(rule = copy(rule));
-                rule.mark = name7;
+                rule.mark = name8;
               });
           };
-          for (var name6 in schema.marks) {
-            _loop2(name6);
+          for (var name7 in schema.marks) {
+            _loop2(name7);
           }
           var _loop3 = function _loop32(_name2) {
             var rules = schema.nodes[_name2].spec.parseDOM;
@@ -57131,11 +56890,11 @@ var require_dist2 = __commonJS({
       }, {
         key: "addElement",
         value: function addElement(dom, matchAfter) {
-          var name6 = dom.nodeName.toLowerCase(), ruleID;
-          if (listTags.hasOwnProperty(name6) && this.parser.normalizeLists)
+          var name7 = dom.nodeName.toLowerCase(), ruleID;
+          if (listTags.hasOwnProperty(name7) && this.parser.normalizeLists)
             normalizeList(dom);
           var rule = this.options.ruleFromNode && this.options.ruleFromNode(dom) || (ruleID = this.parser.matchTag(dom, this, matchAfter));
-          if (rule ? rule.ignore : ignoreTags.hasOwnProperty(name6)) {
+          if (rule ? rule.ignore : ignoreTags.hasOwnProperty(name7)) {
             this.findInside(dom);
             this.ignoreFallback(dom);
           } else if (!rule || rule.skip || rule.closeParent) {
@@ -57144,7 +56903,7 @@ var require_dist2 = __commonJS({
             else if (rule && rule.skip.nodeType)
               dom = rule.skip;
             var sync, top = this.top, oldNeedsBlock = this.needsBlock;
-            if (blockTags.hasOwnProperty(name6)) {
+            if (blockTags.hasOwnProperty(name7)) {
               sync = true;
               if (!top.type)
                 this.needsBlock = true;
@@ -57444,8 +57203,8 @@ var require_dist2 = __commonJS({
               if (deflt && deflt.isTextblock && deflt.defaultAttrs)
                 return deflt;
             }
-          for (var name6 in this.parser.schema.nodes) {
-            var type = this.parser.schema.nodes[name6];
+          for (var name7 in this.parser.schema.nodes) {
+            var type = this.parser.schema.nodes[name7];
             if (type.isTextblock && type.defaultAttrs)
               return type;
           }
@@ -57481,13 +57240,13 @@ var require_dist2 = __commonJS({
     }();
     function normalizeList(dom) {
       for (var child = dom.firstChild, prevItem = null; child; child = child.nextSibling) {
-        var name6 = child.nodeType == 1 ? child.nodeName.toLowerCase() : null;
-        if (name6 && listTags.hasOwnProperty(name6) && prevItem) {
+        var name7 = child.nodeType == 1 ? child.nodeName.toLowerCase() : null;
+        if (name7 && listTags.hasOwnProperty(name7) && prevItem) {
           prevItem.appendChild(child);
           child = prevItem;
-        } else if (name6 == "li") {
+        } else if (name7 == "li") {
           prevItem = child;
-        } else if (name6) {
+        } else if (name7) {
           prevItem = null;
         }
       }
@@ -57511,8 +57270,8 @@ var require_dist2 = __commonJS({
     }
     function markMayApply(markType, nodeType) {
       var nodes = nodeType.schema.nodes;
-      var _loop4 = function _loop42(name7) {
-        var parent2 = nodes[name7];
+      var _loop4 = function _loop42(name8) {
+        var parent2 = nodes[name8];
         if (!parent2.allowsMarkType(markType))
           return "continue";
         var seen = [], scan = function scan2(match) {
@@ -57530,8 +57289,8 @@ var require_dist2 = __commonJS({
             v: true
           };
       };
-      for (var name6 in nodes) {
-        var _ret = _loop4(name6);
+      for (var name7 in nodes) {
+        var _ret = _loop4(name7);
         if (_ret === "continue")
           continue;
         if (_typeof(_ret) === "object")
@@ -57646,13 +57405,13 @@ var require_dist2 = __commonJS({
           var attrs = structure[1], start2 = 1;
           if (attrs && _typeof(attrs) == "object" && attrs.nodeType == null && !Array.isArray(attrs)) {
             start2 = 2;
-            for (var name6 in attrs) {
-              if (attrs[name6] != null) {
-                var _space = name6.indexOf(" ");
+            for (var name7 in attrs) {
+              if (attrs[name7] != null) {
+                var _space = name7.indexOf(" ");
                 if (_space > 0)
-                  dom.setAttributeNS(name6.slice(0, _space), name6.slice(_space + 1), attrs[name6]);
+                  dom.setAttributeNS(name7.slice(0, _space), name7.slice(_space + 1), attrs[name7]);
                 else
-                  dom.setAttribute(name6, attrs[name6]);
+                  dom.setAttribute(name7, attrs[name7]);
               }
             }
           }
@@ -57705,10 +57464,10 @@ var require_dist2 = __commonJS({
     }();
     function gatherToDOM(obj) {
       var result = {};
-      for (var name6 in obj) {
-        var toDOM = obj[name6].spec.toDOM;
+      for (var name7 in obj) {
+        var toDOM = obj[name7].spec.toDOM;
         if (toDOM)
-          result[name6] = toDOM;
+          result[name7] = toDOM;
       }
       return result;
     }
@@ -57813,10 +57572,10 @@ var require_dist3 = __commonJS({
         return _possibleConstructorReturn(this, result);
       };
     }
-    function _possibleConstructorReturn(self2, call) {
-      if (call && (_typeof(call) === "object" || typeof call === "function")) {
-        return call;
-      } else if (call !== void 0) {
+    function _possibleConstructorReturn(self2, call2) {
+      if (call2 && (_typeof(call2) === "object" || typeof call2 === "function")) {
+        return call2;
+      } else if (call2 !== void 0) {
         throw new TypeError("Derived constructors may only return object or undefined");
       }
       return _assertThisInitialized(self2);
@@ -59517,10 +59276,10 @@ var require_dist4 = __commonJS({
         return _possibleConstructorReturn(this, result);
       };
     }
-    function _possibleConstructorReturn(self2, call) {
-      if (call && (_typeof(call) === "object" || typeof call === "function")) {
-        return call;
-      } else if (call !== void 0) {
+    function _possibleConstructorReturn(self2, call2) {
+      if (call2 && (_typeof(call2) === "object" || typeof call2 === "function")) {
+        return call2;
+      } else if (call2 !== void 0) {
         throw new TypeError("Derived constructors may only return object or undefined");
       }
       return _assertThisInitialized(self2);
@@ -60196,9 +59955,9 @@ var require_dist4 = __commonJS({
     function bind(f5, self2) {
       return !self2 || !f5 ? f5 : f5.bind(self2);
     }
-    var FieldDesc = _createClass(function FieldDesc2(name6, desc, self2) {
+    var FieldDesc = _createClass(function FieldDesc2(name7, desc, self2) {
       _classCallCheck(this, FieldDesc2);
-      this.name = name6;
+      this.name = name7;
       this.init = bind(desc.init, self2);
       this.apply = bind(desc.apply, self2);
     });
@@ -60352,8 +60111,8 @@ var require_dist4 = __commonJS({
           var $config = new Configuration(this.schema, config.plugins);
           var fields = $config.fields, instance = new EditorState2($config);
           for (var i2 = 0; i2 < fields.length; i2++) {
-            var name6 = fields[i2].name;
-            instance[name6] = this.hasOwnProperty(name6) ? this[name6] : fields[i2].init(config, instance);
+            var name7 = fields[i2].name;
+            instance[name7] = this.hasOwnProperty(name7) ? this[name7] : fields[i2].init(config, instance);
           }
           return instance;
         }
@@ -60451,17 +60210,17 @@ var require_dist4 = __commonJS({
       return Plugin2;
     }();
     var keys = /* @__PURE__ */ Object.create(null);
-    function createKey(name6) {
-      if (name6 in keys)
-        return name6 + "$" + ++keys[name6];
-      keys[name6] = 0;
-      return name6 + "$";
+    function createKey(name7) {
+      if (name7 in keys)
+        return name7 + "$" + ++keys[name7];
+      keys[name7] = 0;
+      return name7 + "$";
     }
     var PluginKey = function() {
       function PluginKey2() {
-        var name6 = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "key";
+        var name7 = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "key";
         _classCallCheck(this, PluginKey2);
-        this.key = createKey(name6);
+        this.key = createKey(name7);
       }
       _createClass(PluginKey2, [{
         key: "get",
@@ -60555,10 +60314,10 @@ var require_dist5 = __commonJS({
         return _possibleConstructorReturn(this, result);
       };
     }
-    function _possibleConstructorReturn(self2, call) {
-      if (call && (_typeof(call) === "object" || typeof call === "function")) {
-        return call;
-      } else if (call !== void 0) {
+    function _possibleConstructorReturn(self2, call2) {
+      if (call2 && (_typeof(call2) === "object" || typeof call2 === "function")) {
+        return call2;
+      } else if (call2 !== void 0) {
         throw new TypeError("Derived constructors may only return object or undefined");
       }
       return _assertThisInitialized(self2);
@@ -62292,18 +62051,18 @@ var require_dist5 = __commonJS({
           continue;
         if (attrs.nodeName)
           result.push(top = new OuterDecoLevel(attrs.nodeName));
-        for (var name6 in attrs) {
-          var val = attrs[name6];
+        for (var name7 in attrs) {
+          var val = attrs[name7];
           if (val == null)
             continue;
           if (needsWrap && result.length == 1)
             result.push(top = new OuterDecoLevel(node.isInline ? "span" : "div"));
-          if (name6 == "class")
+          if (name7 == "class")
             top["class"] = (top["class"] ? top["class"] + " " : "") + val;
-          else if (name6 == "style")
+          else if (name7 == "style")
             top.style = (top.style ? top.style + ";" : "") + val;
-          else if (name6 != "nodeName")
-            top[name6] = val;
+          else if (name7 != "nodeName")
+            top[name7] = val;
         }
       }
       return result;
@@ -62331,9 +62090,9 @@ var require_dist5 = __commonJS({
       return curDOM;
     }
     function patchAttributes(dom, prev, cur) {
-      for (var name6 in prev) {
-        if (name6 != "class" && name6 != "style" && name6 != "nodeName" && !(name6 in cur))
-          dom.removeAttribute(name6);
+      for (var name7 in prev) {
+        if (name7 != "class" && name7 != "style" && name7 != "nodeName" && !(name7 in cur))
+          dom.removeAttribute(name7);
       }
       for (var _name in cur) {
         if (_name != "class" && _name != "style" && _name != "nodeName" && cur[_name] != prev[_name])
@@ -65447,8 +65206,8 @@ var require_dist5 = __commonJS({
           if (this._props.state != this.state) {
             var prev = this._props;
             this._props = {};
-            for (var name6 in prev) {
-              this._props[name6] = prev[name6];
+            for (var name7 in prev) {
+              this._props[name7] = prev[name7];
             }
             this._props.state = this.state;
           }
@@ -65470,8 +65229,8 @@ var require_dist5 = __commonJS({
         key: "setProps",
         value: function setProps(props) {
           var updated2 = {};
-          for (var name6 in this._props) {
-            updated2[name6] = this._props[name6];
+          for (var name7 in this._props) {
+            updated2[name7] = this._props[name7];
           }
           updated2.state = this.state;
           for (var _name2 in props) {
@@ -65914,20 +65673,20 @@ var require_w3c_keyname = __commonJS({
     var code;
     function keyName(event) {
       var ignoreKey = brokenModifierNames && (event.ctrlKey || event.altKey || event.metaKey) || (safari || ie2) && event.shiftKey && event.key && event.key.length == 1 || event.key == "Unidentified";
-      var name6 = !ignoreKey && event.key || (event.shiftKey ? shift : base2)[event.keyCode] || event.key || "Unidentified";
-      if (name6 == "Esc")
-        name6 = "Escape";
-      if (name6 == "Del")
-        name6 = "Delete";
-      if (name6 == "Left")
-        name6 = "ArrowLeft";
-      if (name6 == "Up")
-        name6 = "ArrowUp";
-      if (name6 == "Right")
-        name6 = "ArrowRight";
-      if (name6 == "Down")
-        name6 = "ArrowDown";
-      return name6;
+      var name7 = !ignoreKey && event.key || (event.shiftKey ? shift : base2)[event.keyCode] || event.key || "Unidentified";
+      if (name7 == "Esc")
+        name7 = "Escape";
+      if (name7 == "Del")
+        name7 = "Delete";
+      if (name7 == "Left")
+        name7 = "ArrowLeft";
+      if (name7 == "Up")
+        name7 = "ArrowUp";
+      if (name7 == "Right")
+        name7 = "ArrowRight";
+      if (name7 == "Down")
+        name7 = "ArrowDown";
+      return name7;
     }
     exports2.base = base2;
     exports2.keyName = keyName;
@@ -65946,8 +65705,8 @@ var require_dist6 = __commonJS({
     var w3cKeyname = require_w3c_keyname();
     var prosemirrorState = require_dist4();
     var mac = typeof navigator != "undefined" ? /Mac|iP(hone|[oa]d)/.test(navigator.platform) : false;
-    function normalizeKeyName(name6) {
-      var parts = name6.split(/-(?!$)/), result = parts[parts.length - 1];
+    function normalizeKeyName(name7) {
+      var parts = name7.split(/-(?!$)/), result = parts[parts.length - 1];
       if (result == "Space")
         result = " ";
       var alt, ctrl, shift, meta;
@@ -65986,16 +65745,16 @@ var require_dist6 = __commonJS({
       }
       return copy;
     }
-    function modifiers(name6, event, shift) {
+    function modifiers(name7, event, shift) {
       if (event.altKey)
-        name6 = "Alt-" + name6;
+        name7 = "Alt-" + name7;
       if (event.ctrlKey)
-        name6 = "Ctrl-" + name6;
+        name7 = "Ctrl-" + name7;
       if (event.metaKey)
-        name6 = "Meta-" + name6;
+        name7 = "Meta-" + name7;
       if (shift !== false && event.shiftKey)
-        name6 = "Shift-" + name6;
-      return name6;
+        name7 = "Shift-" + name7;
+      return name7;
     }
     function keymap(bindings) {
       return new prosemirrorState.Plugin({
@@ -66007,16 +65766,16 @@ var require_dist6 = __commonJS({
     function keydownHandler(bindings) {
       var map = normalize2(bindings);
       return function(view, event) {
-        var name6 = w3cKeyname.keyName(event), isChar = name6.length == 1 && name6 != " ", baseName;
-        var direct = map[modifiers(name6, event, !isChar)];
+        var name7 = w3cKeyname.keyName(event), isChar = name7.length == 1 && name7 != " ", baseName;
+        var direct = map[modifiers(name7, event, !isChar)];
         if (direct && direct(view.state, view.dispatch, view))
           return true;
-        if (isChar && (event.shiftKey || event.altKey || event.metaKey || name6.charCodeAt(0) > 127) && (baseName = w3cKeyname.base[event.keyCode]) && baseName != name6) {
+        if (isChar && (event.shiftKey || event.altKey || event.metaKey || name7.charCodeAt(0) > 127) && (baseName = w3cKeyname.base[event.keyCode]) && baseName != name7) {
           var fromCode = map[modifiers(baseName, event, true)];
           if (fromCode && fromCode(view.state, view.dispatch, view))
             return true;
         } else if (isChar && event.shiftKey) {
-          var withShift = map[modifiers(name6, event, true)];
+          var withShift = map[modifiers(name7, event, true)];
           if (withShift && withShift(view.state, view.dispatch, view))
             return true;
         }
@@ -66958,7 +66717,7 @@ var require_tiptap_core_cjs = __commonJS({
         const { view } = editor;
         const { tr } = state;
         const props = this.buildProps(tr);
-        return Object.fromEntries(Object.entries(rawCommands).map(([name6, command2]) => {
+        return Object.fromEntries(Object.entries(rawCommands).map(([name7, command2]) => {
           const method = (...args) => {
             const callback = command2(...args)(props);
             if (!tr.getMeta("preventDispatch") && !this.hasCustomState) {
@@ -66966,7 +66725,7 @@ var require_tiptap_core_cjs = __commonJS({
             }
             return callback;
           };
-          return [name6, method];
+          return [name7, method];
         }));
       }
       get chain() {
@@ -66987,14 +66746,14 @@ var require_tiptap_core_cjs = __commonJS({
           }
           return callbacks.every((callback) => callback === true);
         };
-        const chain = __spreadProps(__spreadValues({}, Object.fromEntries(Object.entries(rawCommands).map(([name6, command2]) => {
+        const chain = __spreadProps(__spreadValues({}, Object.fromEntries(Object.entries(rawCommands).map(([name7, command2]) => {
           const chainedCommand = (...args) => {
             const props = this.buildProps(tr, shouldDispatch);
             const callback = command2(...args)(props);
             callbacks.push(callback);
             return chain;
           };
-          return [name6, chainedCommand];
+          return [name7, chainedCommand];
         }))), {
           run: run3
         });
@@ -67005,8 +66764,8 @@ var require_tiptap_core_cjs = __commonJS({
         const dispatch = void 0;
         const tr = startTr || state.tr;
         const props = this.buildProps(tr, dispatch);
-        const formattedCommands = Object.fromEntries(Object.entries(rawCommands).map(([name6, command2]) => {
-          return [name6, (...args) => command2(...args)(__spreadProps(__spreadValues({}, props), { dispatch }))];
+        const formattedCommands = Object.fromEntries(Object.entries(rawCommands).map(([name7, command2]) => {
+          return [name7, (...args) => command2(...args)(__spreadProps(__spreadValues({}, props), { dispatch }))];
         }));
         return __spreadProps(__spreadValues({}, formattedCommands), {
           chain: () => this.createChain(tr, dispatch)
@@ -67030,8 +66789,8 @@ var require_tiptap_core_cjs = __commonJS({
           chain: () => this.createChain(tr),
           can: () => this.createCan(tr),
           get commands() {
-            return Object.fromEntries(Object.entries(rawCommands).map(([name6, command2]) => {
-              return [name6, (...args) => command2(...args)(props)];
+            return Object.fromEntries(Object.entries(rawCommands).map(([name7, command2]) => {
+              return [name7, (...args) => command2(...args)(props)];
             }));
           }
         };
@@ -67118,10 +66877,10 @@ var require_tiptap_core_cjs = __commonJS({
         const globalAttributes = addGlobalAttributes();
         globalAttributes.forEach((globalAttribute) => {
           globalAttribute.types.forEach((type) => {
-            Object.entries(globalAttribute.attributes).forEach(([name6, attribute]) => {
+            Object.entries(globalAttribute.attributes).forEach(([name7, attribute]) => {
               extensionAttributes.push({
                 type,
-                name: name6,
+                name: name7,
                 attribute: __spreadValues(__spreadValues({}, defaultAttribute), attribute)
               });
             });
@@ -67139,14 +66898,14 @@ var require_tiptap_core_cjs = __commonJS({
           return;
         }
         const attributes = addAttributes();
-        Object.entries(attributes).forEach(([name6, attribute]) => {
+        Object.entries(attributes).forEach(([name7, attribute]) => {
           const mergedAttr = __spreadValues(__spreadValues({}, defaultAttribute), attribute);
           if (attribute.isRequired && attribute.default === void 0) {
             delete mergedAttr.default;
           }
           extensionAttributes.push({
             type: extension.name,
-            name: name6,
+            name: name7,
             attribute: mergedAttr
           });
         });
@@ -67343,14 +67102,14 @@ var require_tiptap_core_cjs = __commonJS({
         marks
       });
     }
-    function getSchemaTypeByName(name6, schema) {
-      return schema.nodes[name6] || schema.marks[name6] || null;
+    function getSchemaTypeByName(name7, schema) {
+      return schema.nodes[name7] || schema.marks[name7] || null;
     }
     function isExtensionRulesEnabled(extension, enabled) {
       if (Array.isArray(enabled)) {
         return enabled.some((enabledExtension) => {
-          const name6 = typeof enabledExtension === "string" ? enabledExtension : enabledExtension.name;
-          return name6 === extension.name;
+          const name7 = typeof enabledExtension === "string" ? enabledExtension : enabledExtension.name;
+          return name7 === extension.name;
         });
       }
       return enabled;
@@ -67970,7 +67729,7 @@ var require_tiptap_core_cjs = __commonJS({
       return text;
     }
     function getTextSerializersFromSchema(schema) {
-      return Object.fromEntries(Object.entries(schema.nodes).filter(([, node]) => node.spec.toText).map(([name6, node]) => [name6, node.spec.toText]));
+      return Object.fromEntries(Object.entries(schema.nodes).filter(([, node]) => node.spec.toText).map(([name7, node]) => [name7, node.spec.toText]));
     }
     var ClipboardTextSerializer = Extension.create({
       name: "clipboardTextSerializer",
@@ -68351,8 +68110,8 @@ var require_tiptap_core_cjs = __commonJS({
     function isMacOS() {
       return typeof navigator !== "undefined" ? /Mac/.test(navigator.platform) : false;
     }
-    function normalizeKeyName(name6) {
-      const parts = name6.split(/-(?!$)/);
+    function normalizeKeyName(name7) {
+      const parts = name7.split(/-(?!$)/);
       let result = parts[parts.length - 1];
       if (result === "Space") {
         result = " ";
@@ -68395,8 +68154,8 @@ var require_tiptap_core_cjs = __commonJS({
       }
       return result;
     }
-    var keyboardShortcut = (name6) => ({ editor, view, tr, dispatch }) => {
-      const keys = normalizeKeyName(name6).split(/-(?!$)/);
+    var keyboardShortcut = (name7) => ({ editor, view, tr, dispatch }) => {
+      const keys = normalizeKeyName(name7).split(/-(?!$)/);
       const key2 = keys.find((item) => !["Alt", "Ctrl", "Meta", "Shift"].includes(item));
       const event = new KeyboardEvent("keydown", {
         key: key2 === "Space" ? " " : key2,
@@ -68465,11 +68224,11 @@ var require_tiptap_core_cjs = __commonJS({
     var newlineInCode = () => ({ state, dispatch }) => {
       return prosemirrorCommands.newlineInCode(state, dispatch);
     };
-    function getSchemaTypeNameByName(name6, schema) {
-      if (schema.nodes[name6]) {
+    function getSchemaTypeNameByName(name7, schema) {
+      if (schema.nodes[name7]) {
         return "node";
       }
-      if (schema.marks[name6]) {
+      if (schema.marks[name7]) {
         return "mark";
       }
       return null;
@@ -68652,9 +68411,9 @@ var require_tiptap_core_cjs = __commonJS({
       return prosemirrorSchemaList.sinkListItem(type)(state, dispatch);
     };
     function getSplittedAttributes(extensionAttributes, typeName, attributes) {
-      return Object.fromEntries(Object.entries(attributes).filter(([name6]) => {
+      return Object.fromEntries(Object.entries(attributes).filter(([name7]) => {
         const extensionAttribute = extensionAttributes.find((item) => {
-          return item.type === typeName && item.name === name6;
+          return item.type === typeName && item.name === name7;
         });
         if (!extensionAttribute) {
           return false;
@@ -68807,9 +68566,9 @@ var require_tiptap_core_cjs = __commonJS({
     function findParentNode(predicate) {
       return (selection) => findParentNodeClosestToPos(selection.$from, predicate);
     }
-    function isList(name6, extensions2) {
+    function isList(name7, extensions2) {
       const { nodeExtensions } = splitExtensions(extensions2);
-      const extension = nodeExtensions.find((item) => item.name === name6);
+      const extension = nodeExtensions.find((item) => item.name === name7);
       if (!extension) {
         return false;
       }
@@ -69319,16 +69078,16 @@ var require_tiptap_core_cjs = __commonJS({
       };
       return getTextBetween(node, range, options);
     }
-    function isActive(state, name6, attributes = {}) {
-      if (!name6) {
+    function isActive(state, name7, attributes = {}) {
+      if (!name7) {
         return isNodeActive(state, null, attributes) || isMarkActive(state, null, attributes);
       }
-      const schemaType = getSchemaTypeNameByName(name6, state.schema);
+      const schemaType = getSchemaTypeNameByName(name7, state.schema);
       if (schemaType === "node") {
-        return isNodeActive(state, name6, attributes);
+        return isNodeActive(state, name7, attributes);
       }
       if (schemaType === "mark") {
-        return isMarkActive(state, name6, attributes);
+        return isMarkActive(state, name7, attributes);
       }
       return false;
     }
@@ -69524,9 +69283,9 @@ img.ProseMirror-separator {
         if (this.isDestroyed) {
           return;
         }
-        const name6 = typeof nameOrPluginKey === "string" ? `${nameOrPluginKey}$` : nameOrPluginKey.key;
+        const name7 = typeof nameOrPluginKey === "string" ? `${nameOrPluginKey}$` : nameOrPluginKey.key;
         const state = this.state.reconfigure({
-          plugins: this.state.plugins.filter((plugin) => !plugin.key.startsWith(name6))
+          plugins: this.state.plugins.filter((plugin) => !plugin.key.startsWith(name7))
         });
         this.view.updateState(state);
       }
@@ -69629,9 +69388,9 @@ img.ProseMirror-separator {
         return getAttributes(this.state, nameOrType);
       }
       isActive(nameOrAttributes, attributesOrUndefined) {
-        const name6 = typeof nameOrAttributes === "string" ? nameOrAttributes : null;
+        const name7 = typeof nameOrAttributes === "string" ? nameOrAttributes : null;
         const attributes = typeof nameOrAttributes === "string" ? attributesOrUndefined : nameOrAttributes;
-        return isActive(this.state, name6, attributes);
+        return isActive(this.state, name7, attributes);
       }
       getJSON() {
         return this.state.doc.toJSON();
@@ -70981,13 +70740,13 @@ var require_dist9 = __commonJS({
         this.width = options.width || 1;
         this.color = options.color || "black";
         this["class"] = options["class"];
-        this.handlers = ["dragover", "dragend", "drop", "dragleave"].map(function(name6) {
+        this.handlers = ["dragover", "dragend", "drop", "dragleave"].map(function(name7) {
           var handler = function handler2(e2) {
-            _this[name6](e2);
+            _this[name7](e2);
           };
-          editorView.dom.addEventListener(name6, handler);
+          editorView.dom.addEventListener(name7, handler);
           return {
-            name: name6,
+            name: name7,
             handler
           };
         });
@@ -70997,8 +70756,8 @@ var require_dist9 = __commonJS({
         value: function destroy() {
           var _this2 = this;
           this.handlers.forEach(function(_ref) {
-            var name6 = _ref.name, handler = _ref.handler;
-            return _this2.editorView.dom.removeEventListener(name6, handler);
+            var name7 = _ref.name, handler = _ref.handler;
+            return _this2.editorView.dom.removeEventListener(name7, handler);
           });
         }
       }, {
@@ -71365,8 +71124,8 @@ function invalidArgument(message) {
 function appDeleted() {
   return new StorageError("app-deleted", "The Firebase app was deleted.");
 }
-function invalidRootOperation(name6) {
-  return new StorageError("invalid-root-operation", "The operation '" + name6 + "' cannot be performed on a root reference, create a non-root reference using child, such as .child('file.png').");
+function invalidRootOperation(name7) {
+  return new StorageError("invalid-root-operation", "The operation '" + name7 + "' cannot be performed on a root reference, create a non-root reference using child, such as .child('file.png').");
 }
 function start(f5, callback, timeout) {
   let waitSeconds = 1;
@@ -71467,11 +71226,11 @@ function validateNumber(argument, minValue, maxValue, value) {
   }
 }
 function makeQueryString(params) {
-  const encode2 = encodeURIComponent;
+  const encode3 = encodeURIComponent;
   let queryPart = "?";
   for (const key2 in params) {
     if (params.hasOwnProperty(key2)) {
-      const nextPart = encode2(key2) + "=" + encode2(params[key2]);
+      const nextPart = encode3(key2) + "=" + encode3(params[key2]);
       queryPart = queryPart + nextPart + "&";
     }
   }
@@ -71548,15 +71307,15 @@ function factory(container, { instanceIdentifier: url }) {
 }
 function registerStorage() {
   _registerComponent(new Component(STORAGE_TYPE, factory, "PUBLIC").setMultipleInstances(true));
-  registerVersion(name5, version5);
+  registerVersion(name6, version6);
 }
-var import_node_fetch2, DEFAULT_HOST2, CONFIG_STORAGE_BUCKET_KEY, DEFAULT_MAX_OPERATION_RETRY_TIME, DEFAULT_MAX_UPLOAD_RETRY_TIME, StorageError, Location, FailRequest, ErrorCode, NetworkRequest, RequestEndStatus, RESUMABLE_UPLOAD_CHUNK_SIZE, Reference, FirebaseStorageImpl, name5, version5, STORAGE_TYPE;
-var init_index_node_esm2 = __esm({
+var import_node_fetch3, DEFAULT_HOST2, CONFIG_STORAGE_BUCKET_KEY, DEFAULT_MAX_OPERATION_RETRY_TIME, DEFAULT_MAX_UPLOAD_RETRY_TIME, StorageError, Location, FailRequest, ErrorCode, NetworkRequest, RequestEndStatus, RESUMABLE_UPLOAD_CHUNK_SIZE, Reference, FirebaseStorageImpl, name6, version6, STORAGE_TYPE;
+var init_index_node_esm3 = __esm({
   "node_modules/@firebase/storage/dist/node-esm/index.node.esm.js"() {
     init_shims();
     init_index_esm20173();
     init_index_node_esm();
-    import_node_fetch2 = __toESM(require_lib2(), 1);
+    import_node_fetch3 = __toESM(require_lib2(), 1);
     init_index_esm2017();
     DEFAULT_HOST2 = "firebasestorage.googleapis.com";
     CONFIG_STORAGE_BUCKET_KEY = "storageBucket";
@@ -71597,12 +71356,12 @@ ${this.customData.serverResponse}`;
         return this.path.length === 0;
       }
       fullServerUrl() {
-        const encode2 = encodeURIComponent;
-        return "/b/" + encode2(this.bucket) + "/o/" + encode2(this.path);
+        const encode3 = encodeURIComponent;
+        return "/b/" + encode3(this.bucket) + "/o/" + encode3(this.path);
       }
       bucketOnlyServerUrl() {
-        const encode2 = encodeURIComponent;
-        return "/b/" + encode2(this.bucket) + "/o";
+        const encode3 = encodeURIComponent;
+        return "/b/" + encode3(this.bucket) + "/o";
       }
       static makeFromBucketSpec(bucketString, host) {
         let bucketLocation;
@@ -71631,10 +71390,10 @@ ${this.customData.serverResponse}`;
         function httpModify(loc) {
           loc.path_ = decodeURIComponent(loc.path);
         }
-        const version6 = "v[A-Za-z0-9_]+";
+        const version7 = "v[A-Za-z0-9_]+";
         const firebaseStorageHost = host.replace(/[.]/g, "\\.");
         const firebaseStoragePath = "(/([^?#]*).*)?$";
-        const firebaseStorageRegExp = new RegExp(`^https?://${firebaseStorageHost}/${version6}/b/${bucketDomain}/o${firebaseStoragePath}`, "i");
+        const firebaseStorageRegExp = new RegExp(`^https?://${firebaseStorageHost}/${version7}/b/${bucketDomain}/o${firebaseStoragePath}`, "i");
         const firebaseStorageIndices = { bucket: 1, path: 3 };
         const cloudStorageHost = host === DEFAULT_HOST2 ? "(?:storage.googleapis.com|storage.cloud.google.com)" : host;
         const cloudStoragePath = "([^?#]*)";
@@ -71857,9 +71616,9 @@ ${this.customData.serverResponse}`;
         const location = new Location(this._location.bucket, newPath);
         return new Reference(this._service, location);
       }
-      _throwIfRoot(name6) {
+      _throwIfRoot(name7) {
         if (this._location.path === "") {
-          throw invalidRootOperation(name6);
+          throw invalidRootOperation(name7);
         }
       }
     };
@@ -71959,18 +71718,18 @@ ${this.customData.serverResponse}`;
         return this._makeRequest(requestInfo, requestFactory, authToken, appCheckToken).getPromise();
       }
     };
-    name5 = "@firebase/storage";
-    version5 = "0.9.8";
+    name6 = "@firebase/storage";
+    version6 = "0.9.8";
     STORAGE_TYPE = "storage";
     registerStorage();
   }
 });
 
 // node_modules/firebase/storage/dist/index.mjs
-var init_dist4 = __esm({
+var init_dist5 = __esm({
   "node_modules/firebase/storage/dist/index.mjs"() {
     init_shims();
-    init_index_node_esm2();
+    init_index_node_esm3();
   }
 });
 
@@ -71979,13 +71738,14 @@ var layout_svelte_exports = {};
 __export(layout_svelte_exports, {
   default: () => _layout
 });
-var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_chroma_js2, __defProp3, __defProps3, __getOwnPropDescs3, __getOwnPropSymbols3, __hasOwnProp3, __propIsEnum3, __defNormalProp3, __spreadValues3, __spreadProps3, strings, css$6, Button, css$5, Login, css$4, Text_input, css$3, Tiptap_editor, css$2, Html_input, css$1, Form, css, _layout;
+var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_chroma_js2, __defProp3, __defProps3, __getOwnPropDescs3, __getOwnPropSymbols3, __hasOwnProp3, __propIsEnum3, __defNormalProp3, __spreadValues3, __spreadProps3, strings, css$6, Button, css$5, Login, functions, createPost, css$4, Text_input, css$3, Tiptap_editor, css$2, Html_input, css$1, Form, css, _layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_b1adb880();
-    init_font_d2ce8847();
-    init_columns_config_528f8f72();
+    init_font_84cfe3d4();
+    init_columns_config_64162f16();
+    init_dist4();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
     import_extension_bold = __toESM(require_tiptap_extension_bold_cjs(), 1);
     import_extension_italic = __toESM(require_tiptap_extension_italic_cjs(), 1);
@@ -72000,7 +71760,7 @@ var init_layout_svelte = __esm({
     import_extension_heading = __toESM(require_tiptap_extension_heading_cjs(), 1);
     import_extension_placeholder = __toESM(require_tiptap_extension_placeholder_cjs(), 1);
     init_dist();
-    init_dist4();
+    init_dist5();
     import_chroma_js2 = __toESM(require_chroma(), 1);
     init_dist2();
     init_dist3();
@@ -72118,6 +71878,10 @@ var init_layout_svelte = __esm({
                 facebook
             </div></div></div></div>` : ``}`;
     });
+    functions = getFunctions(app);
+    createPost = async (post) => {
+      return httpsCallable(functions, "addpost")(post);
+    };
     css$4 = {
       code: ".text-input.svelte-13bmwpw{width:90%}input.svelte-13bmwpw{height:var(--s45px);width:100%;border-radius:var(--s5px);padding:var(--s10px);border:var(--s1px) solid var(--button);font-size:1rem;font-family:inherit;margin-bottom:var(--s18px)}span.svelte-13bmwpw{color:red}.error.svelte-13bmwpw{border-width:2px;border-color:#c02e46}",
       map: null
@@ -72232,6 +71996,10 @@ var init_layout_svelte = __esm({
         fieldConfig.name = f5;
         return fieldConfig;
       });
+      const fieldTypes = {};
+      fieldConfigs.map((c3) => {
+        fieldTypes["_" + c3.name] = c3.type;
+      });
       let error2 = Array(fields.length).fill(false);
       const COMPONENTS = { text: Text_input, html: Html_input };
       const submitDocument = async () => {
@@ -72247,15 +72015,13 @@ var init_layout_svelte = __esm({
           }
         });
         let user2 = userSignedIn();
-        let document2 = await createPost(__spreadProps3(__spreadValues3({}, data), {
+        await createPost(__spreadProps3(__spreadValues3(__spreadValues3({}, data), fieldTypes), {
           createdOn: new Date().getTime(),
           createdBy: user2.uid,
           createdByName: user2.name,
           verified: false,
-          svelte: true,
           type: COLUMNS[columnIndex].type
         }));
-        events.emit("add-to-column", { index: columnIndex, data: document2 });
         showForm = false;
       };
       $$result.css.add(css$1);
@@ -72309,8 +72075,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-3550091b.js";
-    js = ["pages/__layout.svelte-3550091b.js", "chunks/index-5dfc59f7.js", "chunks/index-1961809a.js", "chunks/index-33a2271e.js"];
+    entry = "pages/__layout.svelte-f11e599b.js";
+    js = ["pages/__layout.svelte-f11e599b.js", "chunks/index-5dfc59f7.js", "chunks/index-121bbbe8.js", "chunks/index-33a2271e.js"];
     css2 = ["assets/pages/__layout.svelte-41775ef3.css"];
   }
 });
@@ -72987,7 +72753,7 @@ var require_lib3 = __commonJS({
       level: "all",
       numeric: "decimal"
     };
-    function encode2(text, _a) {
+    function encode3(text, _a) {
       var _b = _a === void 0 ? defaultEncodeOptions : _a, _c = _b.mode, mode = _c === void 0 ? "specialChars" : _c, _d = _b.numeric, numeric = _d === void 0 ? "decimal" : _d, _e = _b.level, level = _e === void 0 ? "all" : _e;
       if (!text) {
         return "";
@@ -73022,7 +72788,7 @@ var require_lib3 = __commonJS({
       }
       return _c;
     }
-    exports2.encode = encode2;
+    exports2.encode = encode3;
     var defaultDecodeOptions = {
       scope: "body",
       level: "all"
@@ -73076,7 +72842,7 @@ var require_lib3 = __commonJS({
       return _b;
     }
     exports2.decodeEntity = decodeEntity;
-    function decode2(text, _a) {
+    function decode3(text, _a) {
       var decodeSecondChar_1 = _a === void 0 ? defaultDecodeOptions : _a, decodeCode_1 = decodeSecondChar_1.level, level = decodeCode_1 === void 0 ? "all" : decodeCode_1, _b = decodeSecondChar_1.scope, scope = _b === void 0 ? level === "xml" ? "strict" : "body" : _b;
       if (!text) {
         return "";
@@ -73123,7 +72889,7 @@ var require_lib3 = __commonJS({
       }
       return replaceResult_1;
     }
-    exports2.decode = decode2;
+    exports2.decode = decode3;
   }
 });
 
@@ -74514,8 +74280,8 @@ var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
     init_index_b1adb880();
-    init_columns_config_528f8f72();
-    init_font_d2ce8847();
+    init_columns_config_64162f16();
+    init_font_84cfe3d4();
     init_string_strip_html_esm();
     init_dist2();
     init_dist3();
@@ -74749,9 +74515,6 @@ var init_index_svelte = __esm({
       $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
       const COMPONENTS = { bulletin: Bulletin };
       let { columnData } = $$props;
-      events.register("add-to-column").subscribe((event) => {
-        columnData[event.index].pop(event.data);
-      });
       const _count22 = COLUMNS.length;
       let columnsElement;
       const vScroll = Array(_count22).fill(15);
@@ -74838,8 +74601,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-d4be45c9.js";
-    js3 = ["pages/index.svelte-d4be45c9.js", "chunks/index-5dfc59f7.js", "chunks/index-1961809a.js", "chunks/index-33a2271e.js"];
+    entry3 = "pages/index.svelte-53c23897.js";
+    js3 = ["pages/index.svelte-53c23897.js", "chunks/index-5dfc59f7.js", "chunks/index-121bbbe8.js", "chunks/index-33a2271e.js"];
     css5 = ["assets/pages/index.svelte-ef176f30.css"];
   }
 });
@@ -74853,7 +74616,7 @@ var get;
 var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
-    init_columns_config_528f8f72();
+    init_columns_config_64162f16();
     init_dist2();
     init_dist3();
     get = async () => {
@@ -75219,8 +74982,8 @@ function devalue(value) {
     var params_1 = [];
     var statements_1 = [];
     var values_1 = [];
-    names.forEach(function(name6, thing) {
-      params_1.push(name6);
+    names.forEach(function(name7, thing) {
+      params_1.push(name7);
       if (isPrimitive(thing)) {
         values_1.push(stringifyPrimitive(thing));
         return;
@@ -75241,18 +75004,18 @@ function devalue(value) {
         case "Array":
           values_1.push("Array(" + thing.length + ")");
           thing.forEach(function(v3, i2) {
-            statements_1.push(name6 + "[" + i2 + "]=" + stringify(v3));
+            statements_1.push(name7 + "[" + i2 + "]=" + stringify(v3));
           });
           break;
         case "Set":
           values_1.push("new Set");
-          statements_1.push(name6 + "." + Array.from(thing).map(function(v3) {
+          statements_1.push(name7 + "." + Array.from(thing).map(function(v3) {
             return "add(" + stringify(v3) + ")";
           }).join("."));
           break;
         case "Map":
           values_1.push("new Map");
-          statements_1.push(name6 + "." + Array.from(thing).map(function(_a) {
+          statements_1.push(name7 + "." + Array.from(thing).map(function(_a) {
             var k = _a[0], v3 = _a[1];
             return "set(" + stringify(k) + ", " + stringify(v3) + ")";
           }).join("."));
@@ -75260,7 +75023,7 @@ function devalue(value) {
         default:
           values_1.push(Object.getPrototypeOf(thing) === null ? "Object.create(null)" : "{}");
           Object.keys(thing).forEach(function(key2) {
-            statements_1.push("" + name6 + safeProp(key2) + "=" + stringify(thing[key2]));
+            statements_1.push("" + name7 + safeProp(key2) + "=" + stringify(thing[key2]));
           });
       }
     });
@@ -75271,12 +75034,12 @@ function devalue(value) {
   }
 }
 function getName(num) {
-  var name6 = "";
+  var name7 = "";
   do {
-    name6 = chars$1[num % chars$1.length] + name6;
+    name7 = chars$1[num % chars$1.length] + name7;
     num = ~~(num / chars$1.length) - 1;
   } while (num >= 0);
-  return reserved.test(name6) ? name6 + "_" : name6;
+  return reserved.test(name7) ? name7 + "_" : name7;
 }
 function isPrimitive(thing) {
   return Object(thing) !== thing;
@@ -75879,8 +75642,8 @@ function serialize_error(error2) {
     return null;
   let serialized = try_serialize(error2);
   if (!serialized) {
-    const { name: name6, message, stack } = error2;
-    serialized = try_serialize(__spreadProps2(__spreadValues2({}, error2), { name: name6, message, stack }));
+    const { name: name7, message, stack } = error2;
+    serialized = try_serialize(__spreadProps2(__spreadValues2({}, error2), { name: name7, message, stack }));
   }
   if (!serialized) {
     serialized = "{}";
@@ -75923,20 +75686,20 @@ function parse$1(str, options) {
   }
   return obj;
 }
-function serialize(name6, val, options) {
+function serialize(name7, val, options) {
   var opt = options || {};
   var enc = opt.encode || encode;
   if (typeof enc !== "function") {
     throw new TypeError("option encode is invalid");
   }
-  if (!fieldContentRegExp.test(name6)) {
+  if (!fieldContentRegExp.test(name7)) {
     throw new TypeError("argument name is invalid");
   }
   var value = enc(val);
   if (value && !fieldContentRegExp.test(value)) {
     throw new TypeError("argument val is invalid");
   }
-  var str = name6 + "=" + value;
+  var str = name7 + "=" + value;
   if (opt.maxAge != null) {
     var maxAge = opt.maxAge - 0;
     if (isNaN(maxAge) || !isFinite(maxAge)) {
@@ -76015,9 +75778,9 @@ function encode(val) {
 function isDate(val) {
   return __toString.call(val) === "[object Date]" || val instanceof Date;
 }
-function tryDecode(str, decode2) {
+function tryDecode(str, decode22) {
   try {
-    return decode2(str);
+    return decode22(str);
   } catch (e2) {
     return str;
   }
@@ -76034,7 +75797,7 @@ function isNonEmptyString(str) {
 function parseString(setCookieValue, options) {
   var parts = setCookieValue.split(";").filter(isNonEmptyString);
   var nameValue = parts.shift().split("=");
-  var name6 = nameValue.shift();
+  var name7 = nameValue.shift();
   var value = nameValue.join("=");
   options = options ? Object.assign({}, defaultParseOptions, options) : defaultParseOptions;
   try {
@@ -76043,7 +75806,7 @@ function parseString(setCookieValue, options) {
     console.error("set-cookie-parser encountered an error while decoding a cookie with value '" + value + "'. Set options.decodeValues to false to disable this feature.", e2);
   }
   var cookie = {
-    name: name6,
+    name: name7,
     value
   };
   parts.forEach(function(part) {
@@ -76363,7 +76126,7 @@ async function load_node({
                 continue;
               combined_cookies[cookie2.name] = cookie2.value;
             }
-            const cookie = Object.entries(combined_cookies).map(([name6, value]) => `${name6}=${value}`).join("; ");
+            const cookie = Object.entries(combined_cookies).map(([name7, value]) => `${name7}=${value}`).join("; ");
             if (cookie) {
               opts.headers.set("cookie", cookie);
             }
@@ -76488,8 +76251,8 @@ async function load_node({
     stuff: loaded.stuff || stuff,
     fetched,
     set_cookie_headers: new_cookies.map((new_cookie) => {
-      const _a = new_cookie, { name: name6, value } = _a, options2 = __objRest2(_a, ["name", "value"]);
-      return serialize_1(name6, value, options2);
+      const _a = new_cookie, { name: name7, value } = _a, options2 = __objRest2(_a, ["name", "value"]);
+      return serialize_1(name7, value, options2);
     }),
     uses_credentials
   };
@@ -76872,7 +76635,7 @@ function negotiate(accept, types2) {
 function exec(match, names, types2, matchers) {
   const params = {};
   for (let i2 = 0; i2 < names.length; i2 += 1) {
-    const name6 = names[i2];
+    const name7 = names[i2];
     const type = types2[i2];
     const value = match[i2 + 1] || "";
     if (type) {
@@ -76882,7 +76645,7 @@ function exec(match, names, types2, matchers) {
       if (!matcher(value))
         return;
     }
-    params[name6] = value;
+    params[name7] = value;
   }
   return params;
 }
@@ -77194,7 +76957,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png"]),
   mimeTypes: { ".png": "image/png" },
   _: {
-    entry: { "file": "start-e1a76c76.js", "js": ["start-e1a76c76.js", "chunks/index-5dfc59f7.js", "chunks/index-33a2271e.js"], "css": [] },
+    entry: { "file": "start-a284d7f7.js", "js": ["start-a284d7f7.js", "chunks/index-5dfc59f7.js", "chunks/index-33a2271e.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

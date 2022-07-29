@@ -16,7 +16,10 @@ import { app } from './firebase';
 
 const db = getFirestore(app);
 
-export const createError = async (error, caller) => {
+// NOTE: properties exposed from services (export) are prepended with
+// a _ so that they can easily be distinguished from component properties
+
+export const _createError = async (error, caller) => {
     try {
         if(dev) {
             console.error(caller, error);
@@ -36,7 +39,7 @@ export const createError = async (error, caller) => {
     }
 }
 
-export const getPosts = async (type) => {
+export const _getPosts = async (type) => {
     try {
         const c = collection(db, 'Posts');
         const q = query(c, orderBy("createdOn", "desc"), where("type", "==", type), limit(10));
@@ -55,33 +58,7 @@ export const getPosts = async (type) => {
     }
 }
 
-export const createPost = async (item) => {
-    try {
-        const docRef = doc(collection(db, 'Posts'));
-        item.id = docRef.id;
-        await setDoc(docRef, item);
-        return item;
-    } catch (error) {
-        createError(error, 'DBService:createPost');
-    }
-}
-
-export const addPhoto = async (item) => {
-    try {
-        const docRef = doc(collection(db, 'Images'));
-        await setDoc(
-            docRef,
-            {
-                ...item,
-                id: docRef.id
-            }
-        );
-    } catch (error) {
-        createError(error, 'DBService:addPhoto');
-    }
-}
-
-export const createUserRecord = async (user) => {
+export const _createUserRecord = async (user) => {
     try {
         const docRef = doc(collection(db, 'Users'), user.uid);
         // as convention, the id of the document is added to 
@@ -94,7 +71,7 @@ export const createUserRecord = async (user) => {
     }
 }
 
-export const getUserRecord = async (uid) => {
+export const _getUserRecord = async (uid) => {
     try {
         const docRef = doc(collection(db, 'Users'), uid);
         return (await getDoc(docRef)).data();

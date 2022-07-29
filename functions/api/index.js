@@ -1,20 +1,18 @@
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
-admin.initializeApp();
-const { logger } = require("firebase-functions");
 const { Translate } = require('@google-cloud/translate').v2;
 const { Firestore, FieldValue } = require('@google-cloud/firestore');
-const nodemailer = require('nodemailer');
+const functions = require('firebase-functions');
+const { logger } = require("firebase-functions");
+const admin = require('firebase-admin');
+admin.initializeApp();
 
 const firestore = new Firestore();
 const translate = new Translate();
 
 async function translateData(data) {
-    if (!htmlTranslateProperties) htmlTranslateProperties = [];
     const translatedData = {};
     var promises = [];
     for (let key of Object.keys(data)) {
-        if(key.startsWith('_')) return;
+        if(key.startsWith('_')) continue;
         let tempData = [];
         if (data['_' + key] == 'text') {
             promises.push(translate.translate(data[key], 'si')
@@ -56,16 +54,15 @@ async function translateData(data) {
 
 exports.addpost = functions.https.onCall(async (data, context) => {
     logger.info('Input data :', data);
-    const dev = !!data.dev;
 
     if (!context.auth) {
-        throw new HttpsError("failed-precondition", "The function must be " +
-            "called while authenticated.");
+        throw new HttpsError('failed-precondition', 'The function must be ' +
+            'called while authenticated.');
     }
 
     const translatedData = await translateData(data);
-
     logger.info('Translated data :', translatedData);
+
     // Enter new data into the document.
     let document = firestore.collection('Posts').doc();
     translatedData.id = document.id;

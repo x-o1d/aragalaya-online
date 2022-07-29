@@ -1,13 +1,12 @@
-import COLUMNS from '$lib/config/columns-config'
-import { events }from '$lib/services/events';
+import { COLUMNS, COLUMN_COUNT } from '$lib/config/columns-config'
+import { _emitEvent }from '$lib/services/events';
 
-const _count = COLUMNS.length;
 
 // *** START: vertical scroll handler
 
 // last scroll time is maintained to scale down and hide the
 // scroll bar after the scroll bar has been idle for 500ms
-let lastScrollTime = Array(_count).fill(0);
+let lastScrollTime = Array(COLUMN_COUNT).fill(0);
 
 export const handleVerticalScroll = (event, columnIndex, vScrollAnimation) => {
     const height = Array.from(event.target.childNodes).reduce((p, c) => {
@@ -21,7 +20,8 @@ export const handleVerticalScroll = (event, columnIndex, vScrollAnimation) => {
         / scrollTopMax
         * event.target.scrollTop
         + 15;
-    events.emit('update-vscroll', { index: columnIndex, value: verticalScrollValue});
+        
+    _emitEvent('update-vscroll', { index: columnIndex, value: verticalScrollValue});
     
     // sets the visibility and size animation of the column
     // scroll bar
@@ -85,7 +85,7 @@ export const handleHorizontalScroll = (event, hScrollIndex, setHorizontalScroll)
 
         // increment or decrement the hScrollIndex value based on the scroll direction
         if(direction < 0) {
-            if(hScrollIndex.value < (_count - Math.ceil(window.innerWidth / columnWidth))) {
+            if(hScrollIndex.value < (COLUMN_COUNT - Math.ceil(window.innerWidth / columnWidth))) {
                 hScrollIndex.value++;
             }
         }
@@ -99,7 +99,7 @@ export const handleHorizontalScroll = (event, hScrollIndex, setHorizontalScroll)
 
         // if remaining space to the right is less than the width of a column
         // scroll to the absolute edge
-        const remainingSpace = (_count * columnWidth + 15)
+        const remainingSpace = (COLUMN_COUNT * columnWidth + 15)
             - hScrollIndex.value * columnWidth
             - window.innerWidth;
         if(remainingSpace < columnWidth) {

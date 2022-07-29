@@ -1,14 +1,14 @@
 <script>
-    import COLUMNS from '$lib/config/columns-config'
+    import { COLUMNS, COLUMN_COUNT }from '$lib/config/columns-config'
     
     import { tweened } from "svelte/motion";
     import { quartOut, backInOut } from 'svelte/easing';
-    import { onMount } from 'svelte';
+    import { onMount, onDestroy } from 'svelte';
     
-    import { events } from '$lib/services/events';
+    import { _registerEvent, _emitEvent } from '$lib/services/events';
     import { _lang } from '$lib/services/store';
-    import { userSignedIn } from '$lib/services/auth';
-    import { themes, current } from '$lib/services/theme';
+    import { _userSignedIn } from '$lib/services/auth';
+    import { _themes, _current } from '$lib/services/theme';
 
     import { handleHorizontalScroll, handleVerticalScroll } from '$lib/utils/scroll';
 
@@ -27,14 +27,6 @@
     }
 
     export let columnData;
-    events.register('add-to-column').subscribe(event => {
-        columnData[event.index].pop(event.data);
-    })
-
-
-    // columns count:
-    // based on the column configuration is specified in '$lib/config/columns.js'
-    const _count = COLUMNS.length;
 
     // the DOM element that contains all the columns
     // this element is moves left and right to produce the
@@ -50,21 +42,25 @@
     // array that holds the vertical scroll positions of 
     // each indidual column
     // initial value is set to 15px to align with the edge of the card
-    const vScroll = Array(_count).fill(15);
+    const vScroll = Array(COLUMN_COUNT).fill(15);
     // above value is updated by the update-vscroll event triggered by the
     // handleVerticalScroll() method
     // NOTE:: updating the value with an event ensures that the value remains
     // reactive, there might be a better way to do it
-    events.register('update-vscroll').subscribe(v => {
+    const vScrollEvent = _registerEvent('update-vscroll').subscribe(v => {
         vScroll[v.index] = v.value;
     });
+    // clear subscription
+    onDestroy(() => {
+        vScrollEvent.unsubscribe();
+    })
 
     // column scroll bar visibility and size animation
-    const vScrollAnimation = Array(_count).fill(0).map(_ => tweened(0, {
+    const vScrollAnimation = Array(COLUMN_COUNT).fill(0).map(_ => tweened(0, {
         duration: 350,
         easing: quartOut
     }));
-    const _vScrollAnimation = Array(_count).fill(0);
+    const _vScrollAnimation = Array(COLUMN_COUNT).fill(0);
 
     // horizontal scroll index:
     // index of the left most column in view
@@ -92,22 +88,22 @@
     }
 
     // header bounce animation on navigation click
-    const bounceAnimation = Array(_count).fill(1).map(_ => tweened(0, {
+    const bounceAnimation = Array(COLUMN_COUNT).fill(1).map(_ => tweened(0, {
         duration: 350,
         easing: backInOut
     }));
-    const _bounceAnimation = Array(_count).fill(1);
+    const _bounceAnimation = Array(COLUMN_COUNT).fill(1);
 
     // hook that listens to to navigation click events
-    events.register('nav-click').subscribe((index) => {
+    _registerEvent('nav-click').subscribe((index) => {
         const _width = 500/window.devicePixelRatio;
-        const maxLeft = (_count - Math.floor(window.innerWidth/_width))
+        const maxLeft = (COLUMN_COUNT - Math.floor(window.innerWidth/_width))
         if(index < maxLeft) {
             hScrollIndex.value = index;
             setHorizontalScroll(_width * index);
         } else {
             hScrollIndex.value = maxLeft;
-            const remainingSpace = (_count*_width + 15)
+            const remainingSpace = (COLUMN_COUNT*_width + 15)
                 - hScrollIndex.value * _width
                 - window.innerWidth;
             hScrollIndex.value--;
@@ -129,17 +125,17 @@
         hScroll.subscribe(v => (columnsElement.scrollLeft = v));
         
         // set _bounceAnimation[index] to follow 
-        // bounceAnimation[index] tween
-        // _bounceAnimation is used for the bounce effect of the
-        // column headers
+        // bounceAnimation[index] tween 
+        // _bounceAnimation is used for the bounce effect of the 
+        // column headers 
         bounceAnimation.map((t, _i) => {
             t.subscribe(v => (_bounceAnimation[_i] = v));
         })
 
         // set _vScrollAnimation[index] to follow 
-        // vScrollAnimation[index] tween
-        // _vScrollAnimation[index] is used for the vertical scroll
-        // bar visibility and size animation
+        // vScrollAnimation[index] tween 
+        // _vScrollAnimation[index] is used for the vertical scroll 
+        // bar visibility and size animation 
         vScrollAnimation.map((t, _i) => {
             t.subscribe(v => {
                 _vScrollAnimation[_i] = v;
@@ -147,9 +143,10 @@
         })
     });
 
+    // header + icon click event
     const addDocument = (event, index) => {
         if(userSignedIn()) {
-            events.emit('add-document', {columnIndex: index});
+            events.emit('show-add-document-form', {columnIndex: index});
         } else {
             events.emit('show-hide-login', true);
         }
@@ -159,7 +156,7 @@
 
 <div 
     class="columns"
-    style="--background: {themes[$current].background}"
+    style="--background: {_themes[$_current].columnBackground}"
     bind:this={columnsElement}
     on:wheel|stopPropagation={(e) => {
         handleHorizontalScroll(e, hScrollIndex, setHorizontalScroll)
@@ -167,7 +164,7 @@
 	<ul>
         <li 
             class="spacer"
-            style="--background: {themes[$current].columns[0]}">
+            style="--background: {_themes[$_current].columns[0]}">
         </li>
         {#each COLUMNS as column, _i}
         <li>
@@ -175,9 +172,9 @@
                 <div style="background-color: #e6e6e6;">
                     <div 
                         class="header _clickable"
-                        on:click={() => events.emit('nav-click', _i)}
+                        on:click={() => _emitEvent('nav-click', _i)}
                         style="
-                            background-color: {themes[$current].columns[_i+1]};
+                            background-color: {_themes[$_current].columns[_i+1]};
                             top: {_bounceAnimation[_i]}px">
                         <div>
                             <i class="{column.icon}"></i>
@@ -227,7 +224,7 @@
         {/each}
         <li 
             class="spacer"
-            style="--background: {themes[$current].columns[_count - 1]}">
+            style="--background: {_themes[$_current].columns[COLUMN_COUNT - 1]}">
         </li>
 	</ul>
 </div>

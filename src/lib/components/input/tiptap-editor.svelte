@@ -1,6 +1,9 @@
 <script>
+    import { onMount, onDestroy } from 'svelte';
+
     // TipTap editor imports
     // TODO: add url
+    import { Editor } from '@tiptap/core';
     import Text from '@tiptap/extension-text';
     import Bold from '@tiptap/extension-bold';
     import Italic from '@tiptap/extension-italic';
@@ -15,10 +18,8 @@
     import Heading from '@tiptap/extension-heading';
     import Placeholder from '@tiptap/extension-placeholder';
 
+    import { _getFileURL, _uploadToImages } from '$lib/services/storage';
     import { _lang } from '$lib/services/store';
-    import { onMount, onDestroy } from 'svelte';
-    import { Editor } from '@tiptap/core';
-    import { getFileURL, uploadToImages } from '$lib/services/storage';
 
     import Progress from '$lib/components/util/progress.svelte';
 
@@ -76,14 +77,13 @@
 
     const addImage = async (event) => {
         editorDisabled = true;
-        const imageRef = await uploadToImages(event.target.files[0]);
-        if(!Array.isArray(data[config.field + '_images'])) {
-            data[config.field + '_images'] = [];
+        const imageRef = await _uploadToImages(event.target.files[0]);
+        if(!Array.isArray(data[config.name + '_images'])) {
+            data[config.name + '_images'] = [];
         }
-        data[config.field + '_images'].push(imageRef);
-        let tempUrl = await getFileURL(imageRef.url);
+        data[config.name + '_images'].push(imageRef);
         editor.chain().focus().setImage({ 
-            src: await getFileURL(imageRef.url), 
+            src: await _getFileURL(imageRef.url), 
             title: imageRef.url
         }).run();
         editorDisabled = false;
@@ -193,6 +193,7 @@
     }
     button {
         background: white;
+        font-size: 13px;
         border: var(--s1px) solid var(--button);
         border-radius: var(--s3px);
     }

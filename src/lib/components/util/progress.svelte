@@ -1,7 +1,7 @@
 <script>
     export let move = 4;
     export let length = 3;
-    export let delay = 500;
+    export let delay = 300;
 
     let position = 0;
     let direction = false;

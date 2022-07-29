@@ -15,8 +15,9 @@
 //   we should see if there's a better solution.
 //   https://github.com/sveltejs/svelte/issues/6702
 ///////////////////
-export default [
+export const COLUMNS = [
     {
+        // START - column properties
         title: [
             'දැන්වීම් පුවරුව', 
             'Bulletin board', 
@@ -25,6 +26,8 @@ export default [
         icon: 'fa-solid fa-file-lines',
         height: '200px',
         type: 'bulletin',
+        // END - column properties
+        // START - input form field properties
         data: {
             title: {
                 type: 'text',
@@ -50,6 +53,8 @@ export default [
                 required: true,
             }
         },
+        // END - input form field properties
+        // START - input form properties
         dataFormTitle: [
             'දැන්වීමක් ඇතුල් කරන්න',
             'Create a bulletin',
@@ -59,7 +64,13 @@ export default [
             'ඇතුල් කරන්න',
             'create',
             'உருவாக்க'
+        ],
+        cancelButton: [
+            'අවලංගු කරන්න',
+            'cancel',
+            'ரத்து செய்'
         ]
+        // END - input form properties
     },
     {
         title: [
@@ -122,3 +133,5 @@ export default [
         type: 'photo'
     }
 ];
+
+export const COLUMN_COUNT = COLUMNS.length;

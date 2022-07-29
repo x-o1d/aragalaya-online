@@ -1,9 +1,12 @@
+import { COLUMN_COUNT } from '$lib/config/columns-config';
+
 import chroma from "chroma-js";
-import COLUMNS from '$lib/config/columns-config';
 import { writable } from 'svelte/store';
+
 import { _lang } from '$lib/services/store';
 
-const _count = COLUMNS.length;
+// NOTE: properties exposed from services (export) are prepended with
+// an _ so that they can easily be distinguished from component properties
 
 // ** style configuration
 
@@ -50,50 +53,54 @@ export const _fontSizes = [
 
 // each element in the pallette specifies a set of colors to be used in
 // a theme
-const pallette = [
-    {
-        colors: ['#9A031A', '#e26413', '#fb8b24', '#0f4C5C', '#5f0f41'],
-        dark: '#4c4452'
-    }, {
-        colors: ['#E63A46', '#e12f7d', '#bf47af', '#7f63d1', '#0076dc'],
-        dark: '#63A23F'
-    }, {
-        colors: ['#274654', '#299d8f', '#e9c46a', '#f4a261', '#e76f51'],
-        dark: '#4c4452'
-    }, {
-        colors: ['#E96491', '#bd629f', '#8b629f', '#5d5e90', '#3c5576'],
-        dark: '#83982B'
-    }, {
-        colors: ['#fffe00', '#85e757', '#00c484', '#009b95', '#007184'],
-        dark: '#2CDEC0'
-    }, {
-        colors: ['#6f3cb1', '#ca369c', '#ff537c', '#ff885f', '#ffc154'],
-        dark: '#4992CE'
-    }
+const pallettes = [
+    ['#9A031A', '#e26413', '#fb8b24', '#0f4C5C', '#5f0f41'],
+    ['#E63A46', '#e12f7d', '#bf47af', '#7f63d1', '#0076dc'],
+    ['#274654', '#299d8f', '#e9c46a', '#f4a261', '#e76f51'],
+    ['#E96491', '#bd629f', '#8b629f', '#5d5e90', '#3c5576'],
+    ['#fffe00', '#85e757', '#00c484', '#009b95', '#007184'],
+    ['#6f3cb1', '#ca369c', '#ff537c', '#ff885f', '#ffc154'],
 ];
 
 // ** END - style configuration
 
-export const current = writable(2); // current theme
+// _current variable holds the current theme index
+export const _current = writable(2); 
 
-export const themes = pallette.map((_, i) => {
+// themes contains a theme object per pallette item
+// it constructs various color options based on the colors
+// colors specified in the pallette
+// the current theme object can be referred inside components using
+// import { _themes, _current } from '$lib/services/theme';
+// let currentTheme = themes[$current];
+export const _themes = pallettes.map((pallette, i) => { 
 
-    let columns = chroma.scale(_.colors).mode('lch')
-                        .colors(_count + 2, 'hex');
-    const nav = columns.map((c, _i) => {
-        return chroma(c).luminance(0.3).hex();
+    // convert the pallette colors to an lch scale
+    // to get (n+2) number of equispaced colors, where
+    // n = number of columns
+    // the additional two colors are for the padding at
+    // the start and end of columns
+    let columns = chroma.scale(pallette).mode('lch')
+        .colors(COLUMN_COUNT + 2, 'hex');
+
+    // navigation bar is black, in order for the icons 
+    // to maintain contrast the column colors are reduced to 
+    // 30% luminance 
+    let navigation = columns.map((c, _i) => {
+        return chroma(c).luminance(0.3).hex()
     });
-    const header = chroma.scale(['black', 'white'])
-        (0.86).hex();
-    const background = chroma.scale(['black', 'white'])
-        (0.92).hex();
-    const button = nav[0];
+
+    // header background color
+    let headerBackground = chroma.scale(['black', 'white'])(0.86).hex();
+
+    // column backgoundcolor
+    let columnBackground = chroma.scale(['black', 'white'])(0.92).hex();
+
+    // default button color
+    let defaultButton =  navigation[0];
+
+    // cancel button color
+    let cancelButton =  navigation[1];
     
-    return {
-        columns,
-        nav,
-        header,
-        background,
-        button
-    }
+    return { columns, navigation, headerBackground, columnBackground, defaultButton, cancelButton };
 });

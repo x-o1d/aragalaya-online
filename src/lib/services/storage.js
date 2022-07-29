@@ -5,7 +5,10 @@ import { app } from './firebase'
 
 const storage = getStorage(app);
 
-export const uploadToImages = async (file) => {
+// NOTE: properties exposed from services (export) are prepended with
+// a _ so that they can easily be distinguished from component properties
+
+export const _uploadToImages = async (file) => {
     let user = getAuth().currentUser;
     if(user) {
         let name = uuid();
@@ -26,7 +29,7 @@ export const uploadToImages = async (file) => {
     }
 }
 
-export const uploadToProposals = async (file) => {
+export const _uploadToProposals = async (file) => {
     let user = getAuth().currentUser;
 
     if(user) {
@@ -48,6 +51,6 @@ export const uploadToProposals = async (file) => {
     }
 }
 
-export const getFileURL = async (url) => {
+export const _getFileURL = async (url) => {
     return getDownloadURL(ref(storage, url));
 }
