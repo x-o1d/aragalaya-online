@@ -7,7 +7,7 @@
     export let limit;
     export let preview;
 
-    let text, cropped;
+    let text, croppedText, croppedFlag;
 
     // reactive code block $: {}
     // https://svelte.dev/docs#component-format-script-3-$-marks-a-statement-as-reactive
@@ -19,9 +19,10 @@
     // svelte documentation is not clear about this use case
     // TODO:: raise bug with svelte
     $: {
-        text = stripHtml(data[$_lang]).result.substring(0, limit);
-        cropped = text.length > preview;
-        if(cropped) text += '...';
+        text = stripHtml(data[$_lang]).result;
+        croppedText = text.substring(0, limit);
+        croppedFlag = text.length > limit;
+        if(croppedFlag) text += '...';
     }
     
 </script>
@@ -30,8 +31,8 @@
     {#if !preview}
         {@html data[$_lang]}
     {:else}
-        {text}
-        {#if cropped}
+        {croppedText}
+        {#if croppedFlag}
         <span style='font-weight:bold; text-decoration:underline'>
             {_strings['read_more'][$_lang]}
         </span>
