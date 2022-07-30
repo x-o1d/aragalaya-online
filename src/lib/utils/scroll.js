@@ -1,14 +1,13 @@
 import { COLUMN_COUNT } from '$lib/config/columns-config'
 import { _emitEvent }from '$lib/services/events';
 
-
 // *** START: vertical scroll handler
 
 // last scroll time is maintained to scale down and hide the
 // scroll bar after the scroll bar has been idle for 500ms
 let lastScrollTime = Array(COLUMN_COUNT).fill(0);
 
-export const handleVerticalScroll = (event, columnIndex, vScrollAnimation) => {
+export const __handleVerticalScroll = (event, columnIndex, vScrollAnimation) => {
     const height = Array.from(event.target.childNodes).reduce((p, c) => {
         return p + c.offsetHeight;
     }, 0);
@@ -50,7 +49,7 @@ let deltaXIndex = 0;
 // ignore horizontal scroll events for debouncing
 let ignore = false;
 
-export const handleHorizontalScroll = (event, hScrollIndex, setHorizontalScroll) => {
+export const __handleHorizontalScroll = (event, hScrollIndex, setHorizontalScroll) => {
 
     const columnWidth = 500/window.devicePixelRatio;
 

@@ -4,7 +4,7 @@
     import { onDestroy } from 'svelte';
 
     import { _lang } from '$lib/services/store';
-    import { _registerEvent } from '$lib/services/events'
+    import { _emitEvent, _registerEvent } from '$lib/services/events'
     import { _createPost } from '$lib/services/functions';
     import { _userSignedIn } from '$lib/services/auth';
 
@@ -72,7 +72,11 @@
         if(errors.some(e => e)) return;
 
         let user = _userSignedIn();
-        await _createPost({
+
+        // _createPost calls an api endpoint in the backend to
+        // translate the data and put it in the db
+        // the translated data is returned
+        const createdPost = await _createPost({
             ...data,
             ...fieldTypes,
             createdOn: (new Date()).getTime(),
@@ -81,6 +85,13 @@
             verified: false,
             type: COLUMNS[columnIndex].type,
         });
+
+        // this event adds the created data to the relavant column
+        _emitEvent('new-column-data', {
+            columnIndex,
+            postData: createdPost.data
+        });
+
         showForm = false;
     }
 

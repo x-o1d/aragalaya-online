@@ -16,13 +16,6 @@
     const userReady = _registerEvent('user-ready');
 	$: user = $userReady;
 
-    // // TODO: try automatic subscriptions
-	// const userReadyEvent =_registerEvent('user-ready').subscribe(() => (userReady = true));
-    // // clear subscription
-    // onDestroy(() => {
-    //     userReadyEvent.unsubscribe();
-    // })
-
 	// set all the theme variables as css variables
     // refer theme.js comments
     const setThemeProps = (object, styleName) => {

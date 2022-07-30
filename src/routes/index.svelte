@@ -1,31 +1,52 @@
 <script>
+    // config
     import { COLUMNS, COLUMN_COUNT }from '$lib/config/columns-config'
     
+    // npm modules
     import { tweened } from "svelte/motion";
     import { quartOut, backInOut } from 'svelte/easing';
     import { onMount, onDestroy } from 'svelte';
     
+    // services
     import { _registerEvent, _emitEvent } from '$lib/services/events';
     import { _lang } from '$lib/services/store';
     import { _userSignedIn } from '$lib/services/auth';
     import { _themes } from '$lib/services/theme';
+    import { _getPost } from '$lib/services/database';
 
-    import { handleHorizontalScroll, handleVerticalScroll } from '$lib/utils/scroll';
+    // helpers
+    import { __handleHorizontalScroll, __handleVerticalScroll } from '$lib/utils/scroll';
 
+    // components
+    import Progress from '$lib/components/util/progress.svelte';
     import Font from '$lib/components/display/font.svelte';
     import Card from '$lib/components/util/card.svelte';
-    import bulletin from './_components/posts/bulletin.svelte';
+    import Bulletin from './_components/posts/bulletin.svelte';
     
     // the component of the card to be loaded for a particular column
-    // [columnType]: component
+    // data.type = component'
     // refer: comments in columns.js config file
     // NOTE:: if a component is not specified for a column type it will load an
     // empty card
-    export const COMPONENTS = {
-        bulletin: bulletin,
+    const COMPONENTS = {
+        bulletin: Bulletin,
     }
 
+    // column data, this is populated by the page endpoint (./index.js)
+    // using the page endpoint allows the data to be fetched in the backend
+    // itself for SSR
     export let columnData;
+
+    // when new data is added by a form it's inserted to the column
+    // by this listener
+    const newColumnDataEvent = _registerEvent('new-column-data').subscribe(async (event) => {
+        console.log(event);
+        columnData[event.columnIndex].unshift(event.postData);
+        // trigger template update
+        columnData = columnData;
+    })
+    // clear subscription
+    onDestroy(() => newColumnDataEvent.unsubscribe());
 
     // the DOM element that contains all the columns
     // this element is moves left and right to produce the
@@ -157,7 +178,7 @@
     class="columns"
     bind:this={columnsElement}
     on:wheel|stopPropagation={(e) => {
-        handleHorizontalScroll(e, hScrollIndex, setHorizontalScroll)
+        __handleHorizontalScroll(e, hScrollIndex, setHorizontalScroll)
     }}>
 	<ul>
         <li 
@@ -195,7 +216,7 @@
                 </div>
                 <div 
                     class="cards"
-                    on:scroll|stopPropagation={(e) => handleVerticalScroll(e, _i, vScrollAnimation)}>
+                    on:scroll|stopPropagation={(e) => __handleVerticalScroll(e, _i, vScrollAnimation)}>
                     {#each columnData[_i] as item, _i}
                     <div class="card_c">
                         {#if item}

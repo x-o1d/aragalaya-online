@@ -59,6 +59,15 @@ export const _getPosts = async (type) => {
     }
 }
 
+export const _getPost = async (id) => {
+    try {
+        const docRef = doc(collection(db, 'Posts'), id);
+        return (await getDoc(docRef)).data();
+    } catch (error) {
+        _createError(error, 'DBService:getPost');
+    }
+}
+
 export const _createUserRecord = async (user) => {
     try {
         const docRef = doc(collection(db, 'Users'), user.uid);
