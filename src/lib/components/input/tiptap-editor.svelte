@@ -115,7 +115,7 @@
     hidden
     type="file"
     class="file-upload"
-    accept="image/x-png,image/gif,image/jpeg"
+    accept="image/*"
     on:change={(e) => addImage(e)}
     bind:this={imageSelector}>
 <!-- the hidden input element for triggerring the file selection dialog -->
