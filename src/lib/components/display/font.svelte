@@ -6,7 +6,7 @@
 
     export let group;
     export let remSize;
-    export let inline;
+    export let inline = false;
 
     // devicePixelRatio correction
     let devicePixelRatio = 1;

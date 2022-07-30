@@ -1,5 +1,6 @@
+import { app } from '$lib/config/firebase-config';
+
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app } from '$lib/services/firebase';
 
 const functions = getFunctions(app);
 

@@ -1,3 +1,5 @@
+import { app } from '$lib/config/firebase-config';
+
 import { 
     FacebookAuthProvider, 
     signInWithPopup, 
@@ -8,7 +10,6 @@ import {
     getAuth,
     onAuthStateChanged
 } from "firebase/auth";
-import { app } from './firebase';
 
 import { _createUserRecord, _getUserRecord, _createError } from '$lib/services/database';
 import { _emitEvent } from '$lib/services/events';

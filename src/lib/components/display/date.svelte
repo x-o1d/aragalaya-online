@@ -3,7 +3,7 @@
     import _strings from './date-strings';
 
     export let date;
-    export let inline;
+    export let inline = false;
 
     const MONTH_NAMES = [
         ['ජනවාරි', 'January', 'ஜனவரி'],

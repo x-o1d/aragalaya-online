@@ -38,7 +38,7 @@ export const COLUMNS = [
                     'தலைப்பு'
                 ],
                 required: true,
-                validate: (val) => {
+                validate: (val) => { // mock custom validation function
                     return !val;
                 }
             },

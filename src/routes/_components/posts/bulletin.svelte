@@ -12,7 +12,7 @@
     
 </script>
 
-<Card>
+<Card slideInTop={data._slideInTop}>
     <div 
         class='_clickable'
         on:click={() => (minimized = !minimized)}>
@@ -46,7 +46,6 @@
                     limit={100}
                     preview={minimized}/>
             </Font>
-            
         </div>
     </div>
 </Card>

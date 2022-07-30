@@ -2,8 +2,6 @@ import { COLUMN_COUNT } from '$lib/config/columns-config';
 
 import chroma from "chroma-js";
 
-import { _lang } from '$lib/services/store';
-
 // NOTE: properties exposed from services (export) are prepended with
 // an _ so that they can easily be distinguished from component properties
 
@@ -37,7 +35,6 @@ export const _fontGroups = [
     ]
 ];
 
-
 // different fonts for the three languages doesn't always 
 // have the same perceived height for the same pixel value.
 // each value in a row sets a relative size for a language within a group.
@@ -64,6 +61,25 @@ const pallettes = [
     ['#6f3cb1', '#ca369c', '#ff537c', '#ff885f', '#ffc154'],
 ];
 
+// width of a column in the layout in a desktop browser
+// in mobile it would revert to 100% viewport width
+export const _columnWidth = 500;
+
+// column header height
+export const _headerHeight = 50;
+
+// column header font color
+export const _headerFontColor = '#ffffff'
+
+// seperation of the cards in columns:
+// this property sets the perceived seperation of cards in the column layout
+// in a desktop browser in pixels.
+// NOTE:: in a mobile browser it should be half because only a single
+// column is visible
+export const _cardSeperation = 12;
+
+
+
 // ** END - style configuration
 
 // _themes contains a theme object per pallette item.
@@ -85,27 +101,37 @@ export const _themes = pallettes.map((pallette, i) => {
     // n = number of columns
     // the additional two colors are for the padding at
     // the start and end of columns
-    let columns = chroma.scale(pallette).mode('lch')
+    const columns = chroma.scale(pallette).mode('lch')
         .colors(COLUMN_COUNT + 2, 'hex');
 
     // navigation bar is black, in order for the icons 
     // to maintain contrast the column colors are reduced to 
     // 30% luminance 
-    let navigation = columns.map((c, _i) => {
+    const navigation = columns.map((c, _i) => {
         return chroma(c).luminance(0.3).hex()
     });
 
     // header background color
-    let headerBackground = chroma.scale(['black', 'white'])(0.86).hex();
+    const headerBackground = chroma.scale(['black', 'white'])(0.86).hex();
 
     // column backgoundcolor
-    let columnBackground = chroma.scale(['black', 'white'])(0.92).hex();
+    const columnBackground = chroma.scale(['black', 'white'])(0.92).hex();
 
     // default button color
-    let defaultButton =  navigation[0];
+    const defaultButton =  navigation[0];
 
     // cancel button color
-    let cancelButton =  navigation[1];
+    const cancelButton =  navigation[1];
+
+    // below is used for setting column and card padding/margins
+    // to achieve the perceived card seperation
+    const cardSeperation = _cardSeperation + 'px';
+    const cardSeperationHalf = _cardSeperation/2 + 'px';
+
+    const columnWidth = _columnWidth + 'px';
+    const headerHeight = _headerHeight + 'px';
+    const headerFontColor = _headerFontColor;
     
-    return { columns, navigation, headerBackground, columnBackground, defaultButton, cancelButton };
+    return { columns, navigation, headerBackground, columnBackground, defaultButton, 
+        cancelButton, cardSeperation, cardSeperationHalf, columnWidth, headerHeight, headerFontColor };
 });

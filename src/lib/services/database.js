@@ -1,4 +1,7 @@
+import { app } from '$lib/config/firebase-config';
+
 import { 
+    getFirestore,
     where, 
     getDocs, 
     collection, 
@@ -9,12 +12,11 @@ import {
     setDoc, 
     arrayUnion,
     getDoc
- } from "firebase/firestore";
-import { getFirestore } from "firebase/firestore";
-import { dev } from '$app/env';
-import { app } from './firebase';
+} from "firebase/firestore";
 
 const db = getFirestore(app);
+
+import { dev } from '$app/env';
 
 // NOTE: properties exposed from services (export) are prepended with
 // a _ so that they can easily be distinguished from component properties
@@ -36,7 +38,7 @@ export const _createError = async (error, caller) => {
         }
         
     } catch (error) {
-        console.log(`Couldn't save error:`, error);
+        console.log(`couldn't save error:`, error);
     }
 }
 

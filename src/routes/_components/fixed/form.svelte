@@ -89,7 +89,9 @@
         // this event adds the created data to the relavant column
         _emitEvent('new-column-data', {
             columnIndex,
-            postData: createdPost.data
+            postData: {
+                ...createdPost.data
+            }
         });
 
         showForm = false;

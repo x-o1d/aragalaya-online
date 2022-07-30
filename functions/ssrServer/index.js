@@ -54361,7 +54361,7 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/index-2d82b168.js
+// .svelte-kit/output/server/chunks/index-72be5ad7.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -54512,8 +54512,8 @@ function tweened(value, defaults = {}) {
   };
 }
 var import_rxjs, import_chroma_js, subscriber_queue2, _lang, events, _emitEvent, _registerEvent, _fontGroups, _fontSizes, pallettes, _themes, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, Font;
-var init_index_2d82b168 = __esm({
-  ".svelte-kit/output/server/chunks/index-2d82b168.js"() {
+var init_index_72be5ad7 = __esm({
+  ".svelte-kit/output/server/chunks/index-72be5ad7.js"() {
     init_shims();
     init_dist();
     init_columns_config_b1b6babc();
@@ -73711,7 +73711,7 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_cd57f8af();
-    init_index_2d82b168();
+    init_index_72be5ad7();
     init_columns_config_b1b6babc();
     init_dist4();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
@@ -74100,13 +74100,14 @@ var init_layout_svelte = __esm({
         if (errors.some((e2) => e2))
           return;
         let user2 = _userSignedIn();
-        await _createPost(__spreadProps3(__spreadValues3(__spreadValues3({}, data), fieldTypes), {
+        const createdPost = await _createPost(__spreadProps3(__spreadValues3(__spreadValues3({}, data), fieldTypes), {
           createdOn: new Date().getTime(),
           createdBy: user2.uid,
           createdByName: user2.name,
           verified: false,
           type: COLUMNS[columnIndex].type
         }));
+        _emitEvent("new-column-data", { columnIndex, postData: createdPost.data });
         showForm = false;
       };
       const cancelDocument = async () => {
@@ -74260,9 +74261,9 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-786cfb7e.js";
-    js = ["pages/__layout.svelte-786cfb7e.js", "chunks/index-7670d703.js", "chunks/index-e1f867fb.js", "chunks/index-564f7e1c.js"];
-    css2 = ["assets/pages/__layout.svelte-345a864c.css"];
+    entry = "pages/__layout.svelte-99ec3268.js";
+    js = ["pages/__layout.svelte-99ec3268.js", "chunks/index-7670d703.js", "chunks/index-7954895e.js", "chunks/index-564f7e1c.js"];
+    css2 = ["assets/pages/__layout.svelte-44225233.css", "assets/index-65b90337.css"];
   }
 });
 
@@ -76361,7 +76362,7 @@ var init_index_svelte = __esm({
     init_shims();
     init_index_cd57f8af();
     init_columns_config_b1b6babc();
-    init_index_2d82b168();
+    init_index_72be5ad7();
     init_string_strip_html_esm();
     init_dist2();
     init_dist3();
@@ -76612,6 +76613,12 @@ var init_index_svelte = __esm({
       $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
       const COMPONENTS = { bulletin: Bulletin };
       let { columnData } = $$props;
+      const newColumnDataEvent = _registerEvent("new-column-data").subscribe(async (event) => {
+        console.log(event);
+        columnData[event.columnIndex].unshift(event.postData);
+        columnData = columnData;
+      });
+      onDestroy(() => newColumnDataEvent.unsubscribe());
       let columnsElement;
       const vScroll = Array(COLUMN_COUNT).fill(15);
       const vScrollEvent = _registerEvent("update-vscroll").subscribe((v3) => {
@@ -76647,8 +76654,6 @@ var init_index_svelte = __esm({
           bounceAnimation[index4].set(0);
         }, 350);
       });
-      if ($$props.COMPONENTS === void 0 && $$bindings.COMPONENTS && COMPONENTS !== void 0)
-        $$bindings.COMPONENTS(COMPONENTS);
       if ($$props.columnData === void 0 && $$bindings.columnData && columnData !== void 0)
         $$bindings.columnData(columnData);
       $$result.css.add(css4);
@@ -76700,9 +76705,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-6f325460.js";
-    js3 = ["pages/index.svelte-6f325460.js", "chunks/index-7670d703.js", "chunks/index-e1f867fb.js", "chunks/index-564f7e1c.js"];
-    css5 = ["assets/pages/index.svelte-21586433.css"];
+    entry3 = "pages/index.svelte-a63eff70.js";
+    js3 = ["pages/index.svelte-a63eff70.js", "chunks/index-7670d703.js", "chunks/index-7954895e.js", "chunks/index-564f7e1c.js"];
+    css5 = ["assets/pages/index.svelte-21586433.css", "assets/index-65b90337.css"];
   }
 });
 
@@ -79043,7 +79048,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-fe26596a.js", "js": ["start-fe26596a.js", "chunks/index-7670d703.js", "chunks/index-564f7e1c.js"], "css": [] },
+    entry: { "file": "start-6072ff5b.js", "js": ["start-6072ff5b.js", "chunks/index-7670d703.js", "chunks/index-564f7e1c.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

@@ -1,7 +1,10 @@
-import { getAuth } from "firebase/auth";
+import { app } from '$lib/config/firebase-config'
+
 import { ref, uploadBytes, getDownloadURL, getStorage } from "firebase/storage";
 import { v4 as uuid } from 'uuid';
-import { app } from './firebase'
+
+import { _createError } from '$lib/services/database';
+import { _userSignedIn } from '$lib/services/auth';
 
 const storage = getStorage(app);
 
@@ -9,8 +12,10 @@ const storage = getStorage(app);
 // a _ so that they can easily be distinguished from component properties
 
 export const _uploadToImages = async (file) => {
-    let user = getAuth().currentUser;
-    if(user) {
+    try {
+        let user = _userSignedIn();
+        if(!user) throw ('user not signed in');
+
         let name = uuid();
         const storageRef = ref(storage, 'images/'+ name);
 
@@ -20,41 +25,19 @@ export const _uploadToImages = async (file) => {
             url: '/images/'+ name,
             name: file.name,
             createdBy: user.uid,
-            createdByName: user.name || '',
+            createdByName: user.name,
             createdOn: (new Date()).getTime()
         }
-    } else {
-        console.log('image upload failed: user not signed in');
-        return undefined;
-    }
-}
-
-export const _uploadToProposals = async (file) => {
-    let user = getAuth().currentUser;
-
-    if(user) {
-        let name = uuid();
-        const storageRef = ref(storage, 'proposals/'+ name);
-
-        await uploadBytes(storageRef, file);
-
-        return {
-            url: '/proposals/'+ name,
-            name: file.name,
-            createdBy: user.uid,
-            createdByName: user.name || '',
-            createdOn: (new Date()).getTime()
-        };
-    } else {
-        console.log('file upload failed: user not signed in');
-        return undefined;
-    }
+    } catch (error) {
+        _createError(error, 'storageService::_uploadToImages');
+    }    
 }
 
 export const _uploadToDocuments = async (file) => {
-    let user = getAuth().currentUser;
+    try {
+        let user = _userSignedIn();
+        if(!user) throw ('user not signed in');
 
-    if(user) {
         let name = uuid();
         const storageRef = ref(storage, 'documents/'+ name);
 
@@ -64,15 +47,18 @@ export const _uploadToDocuments = async (file) => {
             url: '/documents/'+ name,
             name: file.name,
             createdBy: user.uid,
-            createdByName: user.name || '',
+            createdByName: user.name,
             createdOn: (new Date()).getTime()
-        };
-    } else {
-        console.log('file upload failed: user not signed in');
-        return undefined;
+        }
+    } catch (error) {
+        _createError(error, 'storageService::_uploadToDocuments');
     }
 }
 
 export const _getFileURL = async (url) => {
-    return getDownloadURL(ref(storage, url));
+    try {
+        return getDownloadURL(ref(storage, url));
+    } catch (error) {
+        _createError(error, 'storageService::_getFileURL');
+    }   
 }

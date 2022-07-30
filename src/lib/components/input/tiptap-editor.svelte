@@ -37,8 +37,6 @@
     let editorDisabled = false;
   
     onMount(() => {
-        
-
         editor = new Editor({
             element: element,
             extensions: [

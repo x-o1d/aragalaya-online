@@ -18,9 +18,8 @@
     import { __handleHorizontalScroll, __handleVerticalScroll } from '$lib/utils/scroll';
 
     // components
-    import Progress from '$lib/components/util/progress.svelte';
     import Font from '$lib/components/display/font.svelte';
-    import Card from '$lib/components/util/card.svelte';
+    import Empty from './_components/posts/empty.svelte';
     import Bulletin from './_components/posts/bulletin.svelte';
     
     // the component of the card to be loaded for a particular column
@@ -28,8 +27,9 @@
     // refer: comments in columns.js config file
     // NOTE:: if a component is not specified for a column type it will load an
     // empty card
-    const COMPONENTS = {
+    export const COMPONENTS = {
         bulletin: Bulletin,
+        empty: Empty
     }
 
     // column data, this is populated by the page endpoint (./index.js)
@@ -40,8 +40,9 @@
     // when new data is added by a form it's inserted to the column
     // by this listener
     const newColumnDataEvent = _registerEvent('new-column-data').subscribe(async (event) => {
-        console.log(event);
-        columnData[event.columnIndex].unshift(event.postData);
+        const data = event.postData;
+        data._slideInTop = true;
+        columnData[event.columnIndex].unshift(data);
         // trigger template update
         columnData = columnData;
     })
@@ -217,17 +218,11 @@
                 <div 
                     class="cards"
                     on:scroll|stopPropagation={(e) => __handleVerticalScroll(e, _i, vScrollAnimation)}>
-                    {#each columnData[_i] as item, _i}
-                    <div class="card_c">
-                        {#if item}
+                    {#each columnData[_i] as item, _i (item.id)}
+                    <div class="card_container">
                         <svelte:component 
-                            this={COMPONENTS[column.type]}
+                            this={COMPONENTS[column.type] || Empty}
                             data={item}/>
-                        {:else}
-                        <Card>
-                            <div style="height: {column.height};"></div>
-                        </Card>
-                        {/if}
                     </div>
                     {/each}
                 </div>
@@ -263,16 +258,12 @@
 		display: inline-flex;
 	}
 	.columns {
-        --column-width: var(--s500px);
-        --header-height: var(--s50px);
-        --color: white;
-        --padding: var(--s6px);
         overflow: hidden;
         background-color: var(--theme-columnbackground);
     }
     .column {
         position: relative;
-        width: var(--column-width);
+        width: var(--theme-columnwidth);
         height: calc(100vh - var(--s50px));
     }
     .header {
@@ -281,8 +272,8 @@
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        height: var(--header-height);
-        color: var(--color);
+        height: var(--theme-headerheight);
+        color: var(--theme-headerfontcolor);
         padding: 0 var(--s15px) 0 var(--s10px);
         font-weight: bold;
         z-index: 2;
@@ -320,24 +311,24 @@
         overflow-x: hidden;
         -ms-overflow-style: none;
         scrollbar-width: none;
-        padding: var(--padding) 0;
+        padding: var(--theme-cardseperationhalf) 0;
     }
     .cards::-webkit-scrollbar {
         display: none;
         /* for Chrome, Safari, and Opera */
     }
-    .card_c {
-        padding: var(--padding);
+    .card_container {
+        padding: var(--theme-cardseperationhalf);
     }
     .spacer {
-        width: var(--padding);
+        width: var(--theme-cardseperationhalf);
         height: calc(100vh - var(--s50px));
     }
     .spacer::after {
         display: block;
         content: '';
-        height: var(--header-height);
-        width: var(--padding);
+        height: var(--theme-headerheight);
+        width: var(--theme-cardseperationhalf);
         background-color: var(--background);
     }
     .scrollbar {

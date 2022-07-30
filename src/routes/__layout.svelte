@@ -1,15 +1,17 @@
 <script>
+    // npm modules
 	import { onMount, onDestroy } from 'svelte';
 
+    // services
 	import { _lang } from '$lib/services/store';
 	import { _registerEvent, _emitEvent } from '$lib/services/events';
-	import { _themes, _fontGroups, _fontSizes } from '$lib/services/theme';
     import { _setUserTheme } from '$lib/services/database';
+    import { _themes, _fontGroups, _fontSizes } from '$lib/services/theme';
 
+    // components
 	import Login from './_components/fixed/login.svelte';
 	import Form from './_components/fixed/form.svelte';
 	import Nav from './_components/fixed/nav.svelte'
-
 	import ThemeSelector from '$lib/components/util/theme-selector.svelte';
 
     // listen to if the user is signed in
@@ -21,8 +23,8 @@
     const setThemeProps = (object, styleName) => {
         Object.keys(object).map(prop => {
             const newStyleName = styleName + '-' + prop.toLowerCase();
-            if(typeof object[prop] == 'string') {
-                document.documentElement.style.setProperty(newStyleName, object[prop]);
+            if(typeof object[prop] != 'object') {
+               document.documentElement.style.setProperty(newStyleName, object[prop]);
             } else {
                 setThemeProps(object[prop], newStyleName);
             }
@@ -36,7 +38,6 @@
     const themeChangedEvent = _registerEvent('theme-changed').subscribe(value => {
         setThemeProps(_themes[value], '--theme');
         if(user) {
-            console.log(user);
             _setUserTheme(user, value);
         }
     })
@@ -121,19 +122,23 @@
 </main>
 
 <style>
-
 	:global(html) {
 		font-family: 'Roboto', sans-serif;
 	}
-
 	:global(body) {
 		margin: 0;
 		overflow: hidden;
 	}
-
 	:global(*) {
 		box-sizing: border-box;
 	}
+    :global(._clickable:hover) {
+		cursor: pointer;
+	}
+    /* applies to paragraph elements added by the tiptap-editor */
+    :global(p) {
+        margin: 0px;
+    }
 
 	/*inline lists */
 	ul {
@@ -146,15 +151,6 @@
 	li {
 		display: inline-flex;
 	}
-
-	:global(._clickable:hover) {
-		cursor: pointer;
-	}
-
-	/* applies to paragraph elements added by content-editables */
-    :global(p) {
-        margin: 0px;
-    }
 
 	/* nav bar */
 	.header {
