@@ -41294,10 +41294,10 @@ var init_dist3 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/columns-config-33db9e1d.js
-var dev, firebaseConfig, app, db, _createError2, _getPosts, _createUserRecord, _getUserRecord, COLUMNS, COLUMN_COUNT;
-var init_columns_config_33db9e1d = __esm({
-  ".svelte-kit/output/server/chunks/columns-config-33db9e1d.js"() {
+// .svelte-kit/output/server/chunks/columns-config-b1b6babc.js
+var dev, firebaseConfig, app, db, _createError2, _getPosts, _createUserRecord, _setUserTheme, _getUserRecord, COLUMNS, COLUMN_COUNT;
+var init_columns_config_b1b6babc = __esm({
+  ".svelte-kit/output/server/chunks/columns-config-b1b6babc.js"() {
     init_shims();
     init_dist2();
     init_dist3();
@@ -41353,6 +41353,15 @@ var init_columns_config_33db9e1d = __esm({
         user2.id = user2.uid;
         await setDoc(docRef, user2);
         return { user: user2 };
+      } catch (error2) {
+        _createError2(error2, "DBService:createUserRecord");
+      }
+    };
+    _setUserTheme = async (user2, theme) => {
+      try {
+        const docRef = doc(collection(db, "Users"), user2.uid);
+        const result = await updateDoc(docRef, { theme });
+        return result;
       } catch (error2) {
         _createError2(error2, "DBService:createUserRecord");
       }
@@ -54352,7 +54361,7 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/index-1bbb55a2.js
+// .svelte-kit/output/server/chunks/index-88237394.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -54503,11 +54512,11 @@ function tweened(value, defaults = {}) {
   };
 }
 var import_rxjs, import_chroma_js, subscriber_queue2, _lang, events, _emitEvent, _registerEvent, _fontGroups, _fontSizes, pallettes, _themes, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, Font;
-var init_index_1bbb55a2 = __esm({
-  ".svelte-kit/output/server/chunks/index-1bbb55a2.js"() {
+var init_index_88237394 = __esm({
+  ".svelte-kit/output/server/chunks/index-88237394.js"() {
     init_shims();
     init_dist();
-    init_columns_config_33db9e1d();
+    init_columns_config_b1b6babc();
     import_rxjs = __toESM(require_cjs(), 1);
     init_index_cd57f8af();
     import_chroma_js = __toESM(require_chroma(), 1);
@@ -54583,22 +54592,18 @@ var init_index_1bbb55a2 = __esm({
     });
     auth = getAuth2(app);
     onAuthStateChanged(auth, async (authUser) => {
+      console.log(authUser);
       if (authUser) {
-        if (authUser.reloadUserInfo.passwordHash === "UkVEQUNURUQ=") {
-          console.log("user has not set a password: mock account");
-          user = null;
+        if (user && user.uid != authUser.uid || !user) {
+          user = await _getUserRecord(authUser.uid);
+        }
+        if (!user) {
+          _createError2({
+            error: "invalid-user",
+            authUser
+          }, "authService::onAuthStateChanged");
         } else {
-          if (user && user.uid != authUser.uid) {
-            user = await _getUserRecord(authUser.uid);
-          }
-          if (!user) {
-            _createError2({
-              error: "invalid-user",
-              authUser
-            }, "authService::onAuthStateChanged");
-          } else {
-            _emitEvent("user-ready", user);
-          }
+          _emitEvent("user-ready", user);
         }
       } else {
         console.log("user not signed in");
@@ -66193,14 +66198,14 @@ var require_dist5 = __commonJS({
           updateCursorWrapper(this);
           var innerDeco = viewDecorations(this), outerDeco = computeDocDeco(this);
           var scroll = reconfigured ? "reset" : state.scrollToSelection > prev.scrollToSelection ? "to selection" : "preserve";
-          var updateDoc = redraw || !this.docView.matchesNode(state.doc, outerDeco, innerDeco);
-          if (updateDoc || !state.selection.eq(prev.selection))
+          var updateDoc2 = redraw || !this.docView.matchesNode(state.doc, outerDeco, innerDeco);
+          if (updateDoc2 || !state.selection.eq(prev.selection))
             updateSel = true;
           var oldScrollPos = scroll == "preserve" && updateSel && this.dom.style.overflowAnchor == null && storeScrollPos(this);
           if (updateSel) {
             this.domObserver.stop();
-            var forceSelUpdate = updateDoc && (ie2 || chrome2) && !this.composing && !prev.selection.empty && !state.selection.empty && selectionContextChanged(prev.selection, state.selection);
-            if (updateDoc) {
+            var forceSelUpdate = updateDoc2 && (ie2 || chrome2) && !this.composing && !prev.selection.empty && !state.selection.empty && selectionContextChanged(prev.selection, state.selection);
+            if (updateDoc2) {
               var chromeKludge = chrome2 ? this.trackWrites = this.domSelection().focusNode : null;
               if (redraw || !this.docView.update(state.doc, outerDeco, innerDeco, this)) {
                 this.docView.updateOuterDeco([]);
@@ -72671,8 +72676,8 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_cd57f8af();
-    init_index_1bbb55a2();
-    init_columns_config_33db9e1d();
+    init_index_88237394();
+    init_columns_config_b1b6babc();
     init_dist4();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
     import_extension_bold = __toESM(require_tiptap_extension_bold_cjs(), 1);
@@ -72779,7 +72784,6 @@ var init_layout_svelte = __esm({
       let { disabled } = $$props;
       let { config } = $$props;
       let { data } = $$props;
-      let { onchange } = $$props;
       let { error: error2 } = $$props;
       if ($$props.disabled === void 0 && $$bindings.disabled && disabled !== void 0)
         $$bindings.disabled(disabled);
@@ -72787,13 +72791,12 @@ var init_layout_svelte = __esm({
         $$bindings.config(config);
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      if ($$props.onchange === void 0 && $$bindings.onchange && onchange !== void 0)
-        $$bindings.onchange(onchange);
       if ($$props.error === void 0 && $$bindings.error && error2 !== void 0)
         $$bindings.error(error2);
       $$result.css.add(css$7);
       $$unsubscribe__lang();
-      return `<div class="${"text-input svelte-1keabnd"}">${config.type !== "password" ? `<input type="${"text"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["svelte-1keabnd", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>` : `<input type="${"password"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["svelte-1keabnd", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>`}
+      return `<div class="${"text-input svelte-1keabnd"}">
+    ${config.type !== "password" ? `<input type="${"text"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["svelte-1keabnd", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>` : `<input type="${"password"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["svelte-1keabnd", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>`}
     
     ${typeof error2 === "string" ? `<span class="${"svelte-1keabnd"}">${validate_component(Font, "Font").$$render($$result, { group: 0, remSize: 0.8 }, {}, {
         default: () => {
@@ -73171,10 +73174,12 @@ var init_layout_svelte = __esm({
       };
       const themeChangedEvent = _registerEvent("theme-changed").subscribe((value) => {
         setThemeProps(_themes[value], "--theme");
+        if (user2) {
+          console.log(user2);
+          _setUserTheme(user2, value);
+        }
       });
-      onDestroy(() => {
-        themeChangedEvent.unsubscribe();
-      });
+      onDestroy(() => themeChangedEvent.unsubscribe());
       $$result.css.add(css);
       user2 = $userReady;
       $$unsubscribe_userReady();
@@ -73218,8 +73223,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-63e9feed.js";
-    js = ["pages/__layout.svelte-63e9feed.js", "chunks/index-7670d703.js", "chunks/index-be4a0379.js", "chunks/index-564f7e1c.js"];
+    entry = "pages/__layout.svelte-6abd0c8d.js";
+    js = ["pages/__layout.svelte-6abd0c8d.js", "chunks/index-7670d703.js", "chunks/index-110062e8.js", "chunks/index-564f7e1c.js"];
     css2 = ["assets/pages/__layout.svelte-345a864c.css"];
   }
 });
@@ -75318,8 +75323,8 @@ var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
     init_index_cd57f8af();
-    init_columns_config_33db9e1d();
-    init_index_1bbb55a2();
+    init_columns_config_b1b6babc();
+    init_index_88237394();
     init_string_strip_html_esm();
     init_dist2();
     init_dist3();
@@ -75658,8 +75663,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-a659fda6.js";
-    js3 = ["pages/index.svelte-a659fda6.js", "chunks/index-7670d703.js", "chunks/index-be4a0379.js", "chunks/index-564f7e1c.js"];
+    entry3 = "pages/index.svelte-2b11f140.js";
+    js3 = ["pages/index.svelte-2b11f140.js", "chunks/index-7670d703.js", "chunks/index-110062e8.js", "chunks/index-564f7e1c.js"];
     css5 = ["assets/pages/index.svelte-21586433.css"];
   }
 });
@@ -75673,7 +75678,7 @@ var get;
 var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
-    init_columns_config_33db9e1d();
+    init_columns_config_b1b6babc();
     init_dist2();
     init_dist3();
     get = async () => {
@@ -78001,7 +78006,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-5e2c9461.js", "js": ["start-5e2c9461.js", "chunks/index-7670d703.js", "chunks/index-564f7e1c.js"], "css": [] },
+    entry: { "file": "start-f4f6bbb1.js", "js": ["start-f4f6bbb1.js", "chunks/index-7670d703.js", "chunks/index-564f7e1c.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

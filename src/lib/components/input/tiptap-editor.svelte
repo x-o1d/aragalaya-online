@@ -17,8 +17,9 @@
     import Paragraph from '@tiptap/extension-paragraph';
     import Heading from '@tiptap/extension-heading';
     import Placeholder from '@tiptap/extension-placeholder';
+    import Link from '@tiptap/extension-link';
 
-    import { _getFileURL, _uploadToImages } from '$lib/services/storage';
+    import { _getFileURL, _uploadToImages, _uploadToDocuments } from '$lib/services/storage';
     import { _lang } from '$lib/services/store';
 
     import Progress from '$lib/components/util/progress.svelte';
@@ -32,6 +33,7 @@
     let element;
     let editor;
     let fileSelector;
+    let imageSelector;
     let editorDisabled = false;
   
     onMount(() => {
@@ -50,12 +52,9 @@
                 BulletList, 
                 OrderedList, 
                 ListItem,
-                Image.extend({
-                    renderHTML({ HTMLAttributes }) {
-                        return ['div', HTMLAttributes, 0]
-                    },
-                }),
+                Image,
                 Dropcursor,
+                Link,
                 Placeholder.configure({
                     placeholder: placeholder[$_lang],
                 })
@@ -64,9 +63,6 @@
             onTransaction: () => {
                 // force re-render so `editor.isActive` works as expected
                 editor = editor;
-                if(element.innerHTML.includes('is-empty')) {
-                    console.log(editor.getHTML());
-                }
                 data[config.name] = element.innerHTML.includes('is-empty')?
                     '': editor.getHTML();
             },
@@ -80,6 +76,10 @@
     })
 
     const selectImage = () => {
+        imageSelector.click();
+    }
+
+    const selectFile = () => {
         fileSelector.click();
     }
 
@@ -96,15 +96,34 @@
         }).run();
         editorDisabled = false;
     }
+
+    const addFile = async (event) => {
+        editorDisabled = true;
+        const docRef = await _uploadToDocuments(event.target.files[0]);
+        if(!Array.isArray(data[config.name + '_files'])) {
+            data[config.name + '_files'] = [];
+        }
+        data[config.name + '_files'].push(docRef);
+        editor.commands.insertContent(`<a href="${await _getFileURL(docRef.url)}">DOWNLOAD:: ${docRef.name}</a>`)
+        editorDisabled = false;
+    }
 </script>
   
 {#if editor}
-<!-- the hidden input element for triggerring the file selection box -->
+<!-- the hidden input element for triggerring the image selection dialog -->
 <input
     hidden
     type="file"
     class="file-upload"
+    accept="image/x-png,image/gif,image/jpeg"
     on:change={(e) => addImage(e)}
+    bind:this={imageSelector}>
+<!-- the hidden input element for triggerring the file selection dialog -->
+<input
+    hidden
+    type="file"
+    class="file-upload"
+    on:change={(e) => addFile(e)}
     bind:this={fileSelector}>
 <!-- toolbar items -->
 <button
@@ -152,6 +171,10 @@
 <button
     on:click={selectImage}>
     <i class="fa-solid fa-image"></i>
+</button>
+<button
+    on:click={selectFile}>
+    <i class="fa-solid fa-file"></i>
 </button>
 {/if}
   

@@ -35,6 +35,7 @@
 	"dependencies": {
 		"@tiptap/core": "^2.0.0-beta.182",
 		"@tiptap/extension-image": "^2.0.0-beta.30",
+		"@tiptap/extension-link": "^2.0.0-beta.43",
 		"@tiptap/extension-placeholder": "^2.0.0-beta.53",
 		"@tiptap/starter-kit": "^2.0.0-beta.191",
 		"@types/chroma-js": "^2.1.3",

@@ -51,6 +51,28 @@ export const _uploadToProposals = async (file) => {
     }
 }
 
+export const _uploadToDocuments = async (file) => {
+    let user = getAuth().currentUser;
+
+    if(user) {
+        let name = uuid();
+        const storageRef = ref(storage, 'documents/'+ name);
+
+        await uploadBytes(storageRef, file);
+
+        return {
+            url: '/documents/'+ name,
+            name: file.name,
+            createdBy: user.uid,
+            createdByName: user.name || '',
+            createdOn: (new Date()).getTime()
+        };
+    } else {
+        console.log('file upload failed: user not signed in');
+        return undefined;
+    }
+}
+
 export const _getFileURL = async (url) => {
     return getDownloadURL(ref(storage, url));
 }

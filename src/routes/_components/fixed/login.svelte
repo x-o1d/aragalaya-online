@@ -194,6 +194,7 @@
                     type: 'password',
                 }}/>
             {/if}
+            <!-- change onclick to a standard on:click event dispatcher -->
             <Button
                 onclick={continueEmailSignin}
                 text={_strings['continue']}/>

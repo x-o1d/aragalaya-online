@@ -19,7 +19,6 @@ const auth = getAuth(app);
 let user;
 
 onAuthStateChanged(auth, async (authUser) => {
-    console.log(authUser);
     if (authUser) {
         if((user && (user.uid != authUser.uid)) || !user) {
             user = await _getUserRecord(authUser.uid);

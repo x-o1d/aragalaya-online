@@ -4,6 +4,7 @@
 
     let buttonProgress;
     
+    // TODO:: change onclick to a standard on:click event dispatcher
     export let onclick;
     export let text;
     export let cancel;
