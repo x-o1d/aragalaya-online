@@ -5,6 +5,7 @@
     export let videoId;
     export let style = '';
 
+    console.log(videoId);
 	onMount(() => {
 		const executeOnApi = () => {
 			if (window.YTapiReady) {
@@ -16,8 +17,8 @@
 						playsinline: 1
 					},
 					events: {
-						onReady: () => console.log('on ready'),
-						onStateChange: () => console.log('on state change')
+						onReady: () => {},
+						onStateChange: () => {}
 					}
 				});
 			} else {

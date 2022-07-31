@@ -10,5 +10,7 @@ const functions = getFunctions(app);
 // --
 
 export const _createPost = async (post) => {
+    console.log(post);
+    return;
     return httpsCallable(functions, 'addpost')(post);
 }

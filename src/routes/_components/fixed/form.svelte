@@ -42,7 +42,7 @@
     // ex: _title-translated: true
     const fieldTranslated = {};
     $: fieldTranslatedArray = fieldConfigs.map(c => {
-        fieldTranslated['_' + c.name + '-translated'] = c.translated;
+        fieldTranslated['_' + c.name + '-translate'] = c.translate;
     });
 
     // create a field type property to be sent to the backend
@@ -68,7 +68,9 @@
             if(config.required) {
                 if(!data[config.name] || 
                     (data[config.name] && !(data[config.name].trim())))
-                return true;
+                {
+                    return true;
+                }
             }
             if(config.validate) {
                 return config.validate(data[config.name]);
@@ -79,6 +81,12 @@
         
         if(errors.some(e => e)) return;
 
+        fieldConfigs.map(config => {
+            if(config.process) {
+                data[config.name] = config.process(data[config.name]);
+            }
+        });
+        
         let user = _userSignedIn();
 
         // _createPost calls an api endpoint in the backend to
