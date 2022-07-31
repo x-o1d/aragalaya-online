@@ -1,15 +1,16 @@
 <script>
 	import { onMount } from 'svelte';
-    import { _columnWidth, _cardSeperation } from '$lib/services/theme';
+    import { _columnWidth, _cardseparation } from '$lib/services/theme';
 
     export let videoId;
+    export let style = '';
 
 	onMount(() => {
 		const executeOnApi = () => {
 			if (window.YTapiReady) {
 				const player = new YT.Player('player-' + videoId, {
 					height: '300',
-					width: (_columnWidth - _cardSeperation - 20).toString(),
+					width: (_columnWidth - _cardseparation - 20).toString(),
 					videoId: videoId,
 					playerVars: {
 						playsinline: 1
@@ -27,17 +28,17 @@
 	});
 </script>
 
-<div class="youtube">
+<div 
+    class="youtube"
+    style={style}>
 	<div id="player-{videoId}" />
 </div>
 
 <style>
     .youtube {
-        border-radius: 3px;
+        border-radius: var(--s3px);
         overflow: hidden;
-        height: 300px;
-    }
-    :global(iframe) {
-        
+        height: var(--s300px);
+        width: 100%;
     }
 </style>

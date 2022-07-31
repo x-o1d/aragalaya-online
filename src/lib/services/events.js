@@ -4,9 +4,10 @@ import { Subject } from 'rxjs';
 
 let events = [];
 
-// NOTE: properties exposed from services (export) are prepended with
-// a _ so that they can easily be distinguished from component properties
-
+// --
+// properties exposed from services (export const xx) are prepended with
+// an underscore (_) so that they can easily be distinguished from component properties.
+// --
 
 // triggeres an event with the tag name and value which will be received
 // by all listeners created with _registerEvent

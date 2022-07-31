@@ -19,6 +19,8 @@ const auth = getAuth(app);
 // holds the user record for the session
 let user;
 
+// listens to auth state changes and updates the local user 
+// record
 onAuthStateChanged(auth, async (authUser) => {
     if (authUser) {
         if((user && (user.uid != authUser.uid)) || !user) {
@@ -37,8 +39,10 @@ onAuthStateChanged(auth, async (authUser) => {
     }
 });
 
-// NOTE: properties exposed from services (export) are prepended with
-// an _ so that they can easily be distinguished from component properties
+// --
+// properties exposed from services (export const xx) are prepended with
+// an underscore (_) so that they can easily be distinguished from component properties.
+// --
 
 // checks if a user is signed in and returns the user object if so
 export const _userSignedIn = () => {

@@ -1,13 +1,18 @@
+<!-- Card component sets the boundary for all post components
+--->
 <script>
     import { tweened } from "svelte/motion";
-    import { quartOut, backInOut } from 'svelte/easing';
+    import { backInOut } from 'svelte/easing';
     import { onMount } from "svelte";
 
+    // setting slideInTop prop to true would cause it to animate 
+    // as sliding from top when initialized.
     export let slideInTop = false;
+    // delay sets the time to start the animation from component 
+    // initialization
     export let delay = 500;
 
     let duration = 2000;
-
     const slideIn = tweened(-20, {
         duration: duration,
         easing: backInOut
@@ -18,7 +23,7 @@
             setTimeout(() => {
                 slideIn.set(450);
                 // set slideInTop to false after the animation is done
-                // so that mex-height get's reset to non
+                // so that mex-height get's reset to 'none'
                 setTimeout(() => (slideInTop = false), duration);
             }, delay);
         }
@@ -37,7 +42,7 @@
 
 <style>
     .card-container {
-        padding: var(--theme-cardseperationhalf)
+        padding: var(--theme-cardseparationhalf);
     }
     .card {
         max-height: -20px;

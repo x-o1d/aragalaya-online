@@ -8,8 +8,10 @@ import { _userSignedIn } from '$lib/services/auth';
 
 const storage = getStorage(app);
 
-// NOTE: properties exposed from services (export) are prepended with
-// a _ so that they can easily be distinguished from component properties
+// --
+// properties exposed from services (export const xx) are prepended with
+// an underscore (_) so that they can easily be distinguished from component properties.
+// --
 
 export const _uploadToImages = async (file) => {
     try {

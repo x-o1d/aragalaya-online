@@ -1,6 +1,11 @@
+<!-- this component creates the index route, or the initial route
+---- which is loaded when the app starts.
+---- it creates a multiple column layout which can be configured
+---- in src/lib/config/column-config.js
+--->
 <script>
     // config
-    import { COLUMNS, COLUMN_COUNT }from '$lib/config/columns-config'
+    import { COLUMNS, COLUMN_COUNT }from '$lib/config/column-config'
     
     // npm modules
     import { tweened } from "svelte/motion";
@@ -18,9 +23,11 @@
     import { __handleHorizontalScroll, __handleVerticalScroll } from '$lib/utils/scroll';
 
     // components
+    import Nav from './_components/fixed/nav.svelte'
     import Font from '$lib/components/display/font.svelte';
     import Empty from './_components/posts/empty.svelte';
     import Bulletin from './_components/posts/bulletin.svelte';
+    import News from './_components/posts/news.svelte';
     
     // the component of the card to be loaded for a particular column
     // data.type = component'
@@ -29,6 +36,7 @@
     // empty card
     export const COMPONENTS = {
         bulletin: Bulletin,
+        newsx: News,
         empty: Empty
     }
 
@@ -175,6 +183,9 @@
 
 </script>
 
+<!-- Nav is the navigation bar component which is a fixed overlay-->
+<Nav/>
+
 <div 
     class="columns"
     bind:this={columnsElement}
@@ -200,8 +211,8 @@
                             <i class="{column.icon}"></i>
                             <span>
                                 <Font 
-                                    group={2}
-                                    remSize={1}>
+                                    font={2}
+                                    size={0.95}>
                                     {column.title[$_lang]}
                                 </Font>
                             </span>
@@ -219,7 +230,8 @@
                     class="cards"
                     on:scroll|stopPropagation={(e) => __handleVerticalScroll(e, _i, vScrollAnimation)}>
                     {#each columnData[_i] as item, _i (item.id)}
-                    <div class="card_container">
+
+                    <div>
                         <svelte:component 
                             this={COMPONENTS[column.type] || Empty}
                             data={item}/>
@@ -311,24 +323,21 @@
         overflow-x: hidden;
         -ms-overflow-style: none;
         scrollbar-width: none;
-        padding: var(--theme-cardseperationhalf) 0;
+        padding: var(--theme-cardseparationhalf) 0;
     }
     .cards::-webkit-scrollbar {
         display: none;
         /* for Chrome, Safari, and Opera */
     }
-    .card_container {
-        padding: var(--theme-cardseperationhalf);
-    }
     .spacer {
-        width: var(--theme-cardseperationhalf);
+        width: var(--theme-cardseparationhalf);
         height: calc(100vh - var(--s50px));
     }
     .spacer::after {
         display: block;
         content: '';
         height: var(--theme-headerheight);
-        width: var(--theme-cardseperationhalf);
+        width: var(--theme-cardseparationhalf);
         background-color: var(--background);
     }
     .scrollbar {

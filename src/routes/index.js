@@ -1,7 +1,7 @@
 import { _getPosts } from '$lib/services/database';
-import { COLUMNS } from '$lib/config/columns-config';
+import { COLUMNS } from '$lib/config/column-config';
 
-const IMPLEMENTED_TYPES = ['bulletin'];
+const IMPLEMENTED_TYPES = ['bulletin', 'newsx'];
 
 export const get = async () => {
     const columnData = [];

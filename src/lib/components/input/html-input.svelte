@@ -18,7 +18,7 @@
     <!-- if error is a string show the error -->
     {#if typeof error === 'string'}
     <span>
-        <Font group={3} remSize={1}>
+        <Font font={3} size={1}>
             {error}
         </Font>
     </span>

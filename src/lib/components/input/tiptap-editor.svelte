@@ -178,8 +178,8 @@
   
 <div class='editor-container'>
     <Font
-        group={3}
-        remSize={0.8}>
+        font={3}
+        size={0.8}>
         <div 
         class={error? 'editable error': 'editable'}
         bind:this={element}/>

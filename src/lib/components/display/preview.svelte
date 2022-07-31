@@ -1,15 +1,31 @@
+<!-- Preview component crops content if the content length 
+---- exceeds the specified limit.
+---- if the provides content has images the preview becomes
+---- the cropped text + the first image 
+----
+---- PROPS:
+---- content = string, text or html content
+---- limit = number, the number of characters displayed before being cropped
+---- preview = boolean, true: content cropped at limit, falst: full content displated
+----
+---- USAGE: 
+---- <Preview
+----    content={data.description}
+----    limit={100}
+----    preview={true}/>
+--->
 <script>
     import { _lang } from '$lib/services/store';
     import { stripHtml } from  'string-strip-html';
     import _strings from './preview-strings';
     
-    export let data;
+    export let content;
     export let limit;
     export let preview;
 
     let text, croppedText, croppedFlag;
     
-    let images = data[0].match(/src="([\w\W]+?)"/g);
+    let images = content[0].match(/src="([\w\W]+?)"/g);
     if(images) {
         images = images.map((src, _i) => {
             return src.replace('src="', '')
@@ -17,7 +33,6 @@
                     .replace('&amp;', '&')
         });
     }
-    
     
     // reactive declaration $:
     // https://svelte.dev/docs#component-format-script-3-$-marks-a-statement-as-reactive
@@ -28,7 +43,7 @@
     // text is no longer reactive without the reactive declatration.
     // svelte documentation is not clear about this use case
     // TODO:: update svelte docs
-    $: text = stripHtml(data[$_lang]).result;
+    $: text = stripHtml(content[$_lang]).result;
     $: croppedText = text.substring(0, limit);
     $: croppedFlag = (text.length > limit) || images;
     $: croppedText += croppedFlag? '...' : '';
@@ -37,7 +52,7 @@
 
 <div>
     {#if !preview}
-        {@html data[$_lang]}
+        {@html content[$_lang]}
     {:else}
         {croppedText}
         {#if croppedFlag}
@@ -66,7 +81,6 @@
 
         margin-top: 5px;
     }
-
     :global(.description img) {
         width: 100%;
         border-radius: 3px;

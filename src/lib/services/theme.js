@@ -1,11 +1,13 @@
-import { COLUMN_COUNT } from '$lib/config/columns-config';
+import { COLUMN_COUNT } from '$lib/config/column-config';
 
 import chroma from "chroma-js";
 
-// NOTE: properties exposed from services (export) are prepended with
-// an _ so that they can easily be distinguished from component properties
+// --
+// properties exposed from services (export const xx) are prepended with
+// an underscore (_) so that they can easily be distinguished from component properties.
+// --
 
-// ** style configuration
+// START: style configuration
 
 // a font group is a set of fonts in all three languages which can be used
 // for a particular text with the <Font> component
@@ -71,16 +73,14 @@ export const _headerHeight = 50;
 // column header font color
 export const _headerFontColor = '#ffffff'
 
-// seperation of the cards in columns:
-// this property sets the perceived seperation of cards in the column layout
+// separation of the cards in columns:
+// this property sets the perceived separation of cards in the column layout
 // in a desktop browser in pixels.
 // NOTE:: in a mobile browser it should be half because only a single
 // column is visible
-export const _cardSeperation = 12;
+export const _cardseparation = 12;
 
-
-
-// ** END - style configuration
+// END: - style configuration
 
 // _themes contains a theme object per pallette item.
 // it constructs various color options based on the
@@ -124,14 +124,14 @@ export const _themes = pallettes.map((pallette, i) => {
     const cancelButton =  navigation[1];
 
     // below is used for setting column and card padding/margins
-    // to achieve the perceived card seperation
-    const cardSeperation = _cardSeperation + 'px';
-    const cardSeperationHalf = _cardSeperation/2 + 'px';
+    // to achieve the perceived card separation
+    const cardseparation = _cardseparation + 'px';
+    const cardseparationHalf = _cardseparation/2 + 'px';
 
     const columnWidth = _columnWidth + 'px';
     const headerHeight = _headerHeight + 'px';
     const headerFontColor = _headerFontColor;
     
     return { columns, navigation, headerBackground, columnBackground, defaultButton, 
-        cancelButton, cardSeperation, cardSeperationHalf, columnWidth, headerHeight, headerFontColor };
+        cancelButton, cardseparation, cardseparationHalf, columnWidth, headerHeight, headerFontColor };
 });

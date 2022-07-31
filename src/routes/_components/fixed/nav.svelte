@@ -3,7 +3,7 @@
     import { tweened } from "svelte/motion";
     import { circIn, quartOut } from "svelte/easing";
 
-    import { COLUMNS, COLUMN_COUNT } from '$lib/config/columns-config';
+    import { COLUMNS, COLUMN_COUNT } from '$lib/config/column-config';
     
     import { _emitEvent, _registerEvent } from '$lib/services/events';
     import { _lang } from '$lib/services/store';
@@ -90,8 +90,8 @@
                 bottom: {(70*(COLUMN_COUNT+1-_i)+5)/devicePixelRatio}px">
             <div class="title">
                 <Font
-                    group={0}
-                    remSize={0.75}>
+                    font={0}
+                    size={0.75}>
                     {column.title[$_lang]}
                 </Font>
             </div>

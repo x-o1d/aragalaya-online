@@ -14,24 +14,26 @@ async function translateData(data) {
     for (let key of Object.keys(data)) {
         if(key.startsWith('_')) continue;
         let tempData = [];
-        if (data['_' + key] == 'text') {
-            promises.push(translate.translate(data[key], 'si')
-                .then(res => { tempData[0] = res[0] }));
-            promises.push(translate.translate(data[key], 'en')
-                .then(res => { tempData[1] = res[0] }));
-            promises.push(translate.translate(data[key], 'ta')
-                .then(res => { tempData[2] = res[0] }));
-            tempData[3] = data[key];
-            translatedData[key] = tempData;
-        } else if (data['_' + key] == 'html') {
-            promises.push(translate.translate(data[key], { to: 'si', format: 'html' })
-                .then(res => { tempData[0] = res[0] }));
-            promises.push(translate.translate(data[key], { to: 'en', format: 'html' })
-                .then(res => { tempData[1] = res[0] }));
-            promises.push(translate.translate(data[key], { to: 'ta', format: 'html' })
-                .then(res => { tempData[2] = res[0] }));
-            tempData[3] = data[key];
-            translatedData[key] = tempData;
+        if(data['_' + key + '-translate'] == true) {
+            if (data['_' + key + '-type'] == 'html') {
+                promises.push(translate.translate(data[key], { to: 'si', format: 'html' })
+                    .then(res => { tempData[0] = res[0] }));
+                promises.push(translate.translate(data[key], { to: 'en', format: 'html' })
+                    .then(res => { tempData[1] = res[0] }));
+                promises.push(translate.translate(data[key], { to: 'ta', format: 'html' })
+                    .then(res => { tempData[2] = res[0] }));
+                tempData[3] = data[key];
+                translatedData[key] = tempData;
+            } else {
+                promises.push(translate.translate(data[key], 'si')
+                    .then(res => { tempData[0] = res[0] }));
+                promises.push(translate.translate(data[key], 'en')
+                    .then(res => { tempData[1] = res[0] }));
+                promises.push(translate.translate(data[key], 'ta')
+                    .then(res => { tempData[2] = res[0] }));
+                tempData[3] = data[key];
+                translatedData[key] = tempData;
+            }
         } else {
             translatedData[key] = data[key];
         }
@@ -40,7 +42,7 @@ async function translateData(data) {
 
     // add machine translated flag
     Object.keys(translatedData).map(key => {
-        if (data['_' + key] == 'text' || data['_' + key] == 'html') {
+        if (data['_' + key + '-translate'] == true) {
             translatedData[key + '_MT'] = [
                 (translatedData[key][0] != translatedData[key][3]),
                 (translatedData[key][1] != translatedData[key][3]),

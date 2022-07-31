@@ -1,5 +1,5 @@
 <script>
-    import { COLUMNS } from '$lib/config/columns-config';
+    import { COLUMNS } from '$lib/config/column-config';
 
     import { onDestroy } from 'svelte';
 
@@ -30,23 +30,31 @@
 
     // get the input field data for the selected column from the column data 
     // property of column-config.js
-    const fields = Object.keys(COLUMNS[columnIndex].data);
-    const fieldConfigs = fields.map(f => {
+    $: fields = Object.keys(COLUMNS[columnIndex].data);
+    $: fieldConfigs = fields.map(f => {
         let fieldConfig = COLUMNS[columnIndex].data[f];
         fieldConfig.name = f;
         return fieldConfig;
     });
 
+    // create a field translated property to be sent to the backend
+    // the api will use this to determine if the field needs to be translated
+    // ex: _title-translated: true
+    const fieldTranslated = {};
+    $: fieldTranslatedArray = fieldConfigs.map(c => {
+        fieldTranslated['_' + c.name + '-translated'] = c.translated;
+    });
+
     // create a field type property to be sent to the backend
     // the api will use this to determine if the field needs to be translated
-    // ex: _title: 'text'
+    // ex: _title-type: 'text'
     const fieldTypes = {};
-    fieldConfigs.map(c => {
-        fieldTypes['_' + c.name] = c.type;
+    $: fieldTypesArray = fieldConfigs.map(c => {
+        fieldTypes['_' + c.name + '-type'] = c.type;
     });
 
     // error flags for each field
-    let errors = Array(fields.length).fill(false);
+    $: errors = Array(fields.length).fill(false);
 
     // map field types to input components
     const COMPONENTS = {
@@ -75,10 +83,14 @@
 
         // _createPost calls an api endpoint in the backend to
         // translate the data and put it in the db
-        // the translated data is returned
+        // the translated data is returned.
+        // fieldType and fieldTranslated properties are appended 
+        // to the request data, this information is used by the translations
+        // api (html data is handled differently)
         const createdPost = await _createPost({
             ...data,
             ...fieldTypes,
+            ...fieldTranslated,
             createdOn: (new Date()).getTime(),
             createdBy: user.uid,
             createdByName: user.name,

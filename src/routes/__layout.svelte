@@ -11,7 +11,6 @@
     // components
 	import Login from './_components/fixed/login.svelte';
 	import Form from './_components/fixed/form.svelte';
-	import Nav from './_components/fixed/nav.svelte'
 	import ThemeSelector from '$lib/components/util/theme-selector.svelte';
 
     // listen to if the user is signed in
@@ -80,7 +79,6 @@
 <!-- they are shown and hidden using the events service -->
 <Login/>
 <Form/>
-<Nav/>
 
 <div 
 	class="header">

@@ -1,4 +1,4 @@
-import { COLUMN_COUNT } from '$lib/config/columns-config'
+import { COLUMN_COUNT } from '$lib/config/column-config'
 import { _emitEvent }from '$lib/services/events';
 
 // *** START: vertical scroll handler
