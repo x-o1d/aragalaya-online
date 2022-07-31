@@ -10,20 +10,17 @@ export const get = async () => {
         // get data for the column
         if(IMPLEMENTED_TYPES.includes(column.type)) {
             data = await _getPosts(column.type);
-        }
-
-        // if the column type does not have data
-        // fill it with empty objects with an id field.
-        // id is neccessary since the #each block is
-        // keyed on the id.
-        // mock: true, ensures that an empty card is rendered
-        if(!data || (data && !data.length)) {
+        } else {
+            // if the column type is not implemented
+            // fill it with empty objects with an id field.
+            // id is neccessary since the #each block is
+            // keyed on the id.
+            // mock: true, ensures that an empty card is rendered
             data = Array(10).fill(true).map((_, i) => {
                 return {id: i, type: 'empty', height: column.height};
             });
         }
-        
-        columnData.push(data);
+        columnData.push(data || []);
     }
     return {
         status: 200,

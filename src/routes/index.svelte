@@ -230,7 +230,6 @@
                     class="cards"
                     on:scroll|stopPropagation={(e) => __handleVerticalScroll(e, _i, vScrollAnimation)}>
                     {#each columnData[_i] as item, _i (item.id)}
-
                     <div>
                         <svelte:component 
                             this={COMPONENTS[column.type] || Empty}
@@ -338,7 +337,7 @@
         content: '';
         height: var(--theme-headerheight);
         width: var(--theme-cardseparationhalf);
-        background-color: var(--background);
+        background-color: var(--theme-columnbackground);
     }
     .scrollbar {
         position: absolute;

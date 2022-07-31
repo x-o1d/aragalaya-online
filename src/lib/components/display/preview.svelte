@@ -23,16 +23,20 @@
     export let limit;
     export let preview;
 
+    if(!content) throw ('content not defined: preview.svelte')
+    // get the language string if content is a translated array
+    $: contentString = Array.isArray(content)? content[$_lang]: content;
+
     let text, croppedText, croppedFlag;
     
-    let images = content[0].match(/src="([\w\W]+?)"/g);
-    if(images) {
-        images = images.map((src, _i) => {
+    $: images = contentString.match(/src="([\w\W]+?)"/g);
+
+    $: images = images && 
+        images.map((src, _i) => {
             return src.replace('src="', '')
-                    .replace('"','')
-                    .replace('&amp;', '&')
-        });
-    }
+                        .replace('"','')
+                        .replace('&amp;', '&')
+            });
     
     // reactive declaration $:
     // https://svelte.dev/docs#component-format-script-3-$-marks-a-statement-as-reactive
@@ -43,7 +47,7 @@
     // text is no longer reactive without the reactive declatration.
     // svelte documentation is not clear about this use case
     // TODO:: update svelte docs
-    $: text = stripHtml(content[$_lang]).result;
+    $: text = stripHtml(contentString).result;
     $: croppedText = text.substring(0, limit);
     $: croppedFlag = (text.length > limit) || images;
     $: croppedText += croppedFlag? '...' : '';
@@ -52,7 +56,7 @@
 
 <div>
     {#if !preview}
-        {@html content[$_lang]}
+        {@html contentString}
     {:else}
         {croppedText}
         {#if croppedFlag}
