@@ -1,0 +1,73 @@
+[debug] [2022-08-01T17:54:01.624Z] ----------------------------------------------------------------------
+[debug] [2022-08-01T17:54:01.625Z] Command:       /home/malith/.nvm/versions/node/v18.6.0/bin/node /home/malith/.nvm/versions/node/v18.6.0/bin/firebase deploy
+[debug] [2022-08-01T17:54:01.626Z] CLI Version:   11.4.0
+[debug] [2022-08-01T17:54:01.626Z] Platform:      linux
+[debug] [2022-08-01T17:54:01.626Z] Node Version:  v18.6.0
+[debug] [2022-08-01T17:54:01.626Z] Time:          Mon Aug 01 2022 23:24:01 GMT+0530 (India Standard Time)
+[debug] [2022-08-01T17:54:01.626Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-08-01T17:54:01.667Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-08-01T17:54:01.668Z] > authorizing via signed-in user (malithyapa@gmail.com)
+[debug] [2022-08-01T17:54:01.668Z] [iam] checking project aragalaya-online for permissions ["cloudconfig.configs.get","cloudconfig.configs.update","cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2022-08-01T17:54:01.669Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/aragalaya-online:testIamPermissions [none]
+[debug] [2022-08-01T17:54:01.669Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/aragalaya-online:testIamPermissions x-goog-quota-user=projects/aragalaya-online
+[debug] [2022-08-01T17:54:01.669Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/aragalaya-online:testIamPermissions {"permissions":["cloudconfig.configs.get","cloudconfig.configs.update","cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2022-08-01T17:54:03.726Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/aragalaya-online:testIamPermissions 200
+[debug] [2022-08-01T17:54:03.726Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/aragalaya-online:testIamPermissions {"permissions":["cloudconfig.configs.get","cloudconfig.configs.update","cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2022-08-01T17:54:03.727Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/aragalaya-online/serviceAccounts/aragalaya-online@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2022-08-01T17:54:03.727Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/aragalaya-online/serviceAccounts/aragalaya-online@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2022-08-01T17:54:05.643Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/aragalaya-online/serviceAccounts/aragalaya-online@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2022-08-01T17:54:05.644Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/aragalaya-online/serviceAccounts/aragalaya-online@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2022-08-01T17:54:05.646Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/aragalaya-online [none]
+[debug] [2022-08-01T17:54:07.221Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/aragalaya-online 200
+[debug] [2022-08-01T17:54:07.221Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/aragalaya-online {"projectId":"aragalaya-online","projectNumber":"15533282305","displayName":"aragalaya online","name":"projects/aragalaya-online","resources":{"hostingSite":"aragalaya-online","storageBucket":"aragalaya-online.appspot.com","locationId":"asia-south1"},"state":"ACTIVE","etag":"1_f0c7e26b-8771-46ff-911a-062475abd7cc"}
+[info] 
+[info] === Deploying to 'aragalaya-online'...
+[info] 
+[info] i  deploying storage, firestore, functions, hosting, remoteconfig 
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] ✔  functions: Finished running predeploy script. 
+[debug] [2022-08-01T17:54:07.839Z] >>> [apiv2][query] GET https://appengine.googleapis.com/v1/apps/aragalaya-online [none]
+[debug] [2022-08-01T17:54:09.566Z] <<< [apiv2][status] GET https://appengine.googleapis.com/v1/apps/aragalaya-online 200
+[debug] [2022-08-01T17:54:09.566Z] <<< [apiv2][body] GET https://appengine.googleapis.com/v1/apps/aragalaya-online {"name":"apps/aragalaya-online","id":"aragalaya-online","authDomain":"gmail.com","locationId":"asia-south1","codeBucket":"staging.aragalaya-online.appspot.com","servingStatus":"SERVING","defaultHostname":"aragalaya-online.el.r.appspot.com","defaultBucket":"aragalaya-online.appspot.com","serviceAccount":"aragalaya-online@appspot.gserviceaccount.com","gcrDomain":"asia.gcr.io","databaseType":"CLOUD_FIRESTORE","featureSettings":{"splitHealthChecks":true,"useContainerOptimizedOs":true}}
+[info] i  firebase.storage: checking storage.rules for compilation errors... 
+[debug] [2022-08-01T17:54:09.569Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/aragalaya-online:test [none]
+[debug] [2022-08-01T17:54:09.569Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/aragalaya-online:test [omitted]
+[debug] [2022-08-01T17:54:11.002Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/aragalaya-online:test 200
+[debug] [2022-08-01T17:54:11.002Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/aragalaya-online:test {}
+[info] ✔  firebase.storage: rules file storage.rules compiled successfully 
+[info] i  firestore: reading indexes from firestore.indexes.json... 
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2022-08-01T17:54:11.004Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/aragalaya-online:test [none]
+[debug] [2022-08-01T17:54:11.004Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/aragalaya-online:test [omitted]
+[debug] [2022-08-01T17:54:12.241Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/aragalaya-online:test 200
+[debug] [2022-08-01T17:54:12.241Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/aragalaya-online:test {}
+[info] ✔  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2022-08-01T17:54:12.244Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/aragalaya-online [none]
+[debug] [2022-08-01T17:54:13.400Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/aragalaya-online 200
+[debug] [2022-08-01T17:54:13.400Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/aragalaya-online {"projectId":"aragalaya-online","projectNumber":"15533282305","displayName":"aragalaya online","name":"projects/aragalaya-online","resources":{"hostingSite":"aragalaya-online","storageBucket":"aragalaya-online.appspot.com","locationId":"asia-south1"},"state":"ACTIVE","etag":"1_f0c7e26b-8771-46ff-911a-062475abd7cc"}
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2022-08-01T17:54:13.401Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/aragalaya-online/services/cloudfunctions.googleapis.com [none]
+[debug] [2022-08-01T17:54:13.402Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/aragalaya-online/services/runtimeconfig.googleapis.com [none]
+[debug] [2022-08-01T17:54:13.403Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/aragalaya-online/services/cloudbuild.googleapis.com [none]
+[debug] [2022-08-01T17:54:13.403Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/aragalaya-online/services/artifactregistry.googleapis.com [none]
+[debug] [2022-08-01T17:54:15.666Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/aragalaya-online/services/runtimeconfig.googleapis.com 200
+[debug] [2022-08-01T17:54:15.666Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/aragalaya-online/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2022-08-01T17:54:15.670Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/aragalaya-online/services/cloudfunctions.googleapis.com 200
+[debug] [2022-08-01T17:54:15.670Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/aragalaya-online/services/cloudfunctions.googleapis.com [omitted]
+[info] ✔  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2022-08-01T17:54:15.835Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/aragalaya-online/services/cloudbuild.googleapis.com 200
+[debug] [2022-08-01T17:54:15.836Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/aragalaya-online/services/cloudbuild.googleapis.com [omitted]
+[info] ✔  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2022-08-01T17:54:15.838Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/aragalaya-online/services/artifactregistry.googleapis.com 200
+[debug] [2022-08-01T17:54:15.838Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/aragalaya-online/services/artifactregistry.googleapis.com [omitted]
+[info] ✔  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2022-08-01T17:54:15.839Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/aragalaya-online/adminSdkConfig [none]
+[debug] [2022-08-01T17:54:17.001Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/aragalaya-online/adminSdkConfig 200
+[debug] [2022-08-01T17:54:17.001Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/aragalaya-online/adminSdkConfig {"projectId":"aragalaya-online","storageBucket":"aragalaya-online.appspot.com","locationId":"asia-south1"}
+[debug] [2022-08-01T17:54:17.002Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/aragalaya-online/configs [none]
+[debug] [2022-08-01T17:54:18.409Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/aragalaya-online/configs 200
+[debug] [2022-08-01T17:54:18.410Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/aragalaya-online/configs {}
+[info] i  functions: preparing codebase default for deployment 

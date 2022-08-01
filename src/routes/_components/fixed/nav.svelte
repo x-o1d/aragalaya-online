@@ -34,10 +34,14 @@
         scrollPosition.set(v/(COLUMN_COUNT * 500)*(COLUMN_COUNT * 70));
     });
 
+    // nav bar hidden flag
     let hidden = false;
-    let namesHidden = false;
-    let showNames = true;
+    // nav item names hidden flag
+    let showNames = false;
 
+    // temporarily hide names until transition is complete
+    let namesHidden = false;
+    
     function showHide() {
         if(hidden) {
             height.set((COLUMN_COUNT + 1) * 70);

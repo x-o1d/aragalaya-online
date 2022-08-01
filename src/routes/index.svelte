@@ -334,7 +334,7 @@
         content: '';
         height: var(--config-columnheaderheight);
         width: var(--config-cardseparationhalf);
-        background-color: var(--theme-columnbackground);
+        background-color: var(--background);
     }
     .scrollbar {
         position: absolute;

@@ -9954,15 +9954,15 @@ var require_client_interceptors = __commonJS({
       const parent2 = (_b = options.parent) !== null && _b !== void 0 ? _b : null;
       const propagateFlags = options.propagate_flags;
       const credentials2 = options.credentials;
-      const call = channel.createCall(path, deadline, host, parent2, propagateFlags);
+      const call2 = channel.createCall(path, deadline, host, parent2, propagateFlags);
       if (credentials2) {
-        call.setCredentials(credentials2);
+        call2.setCredentials(credentials2);
       }
-      return call;
+      return call2;
     }
     var BaseInterceptingCall = class {
-      constructor(call, methodDefinition) {
-        this.call = call;
+      constructor(call2, methodDefinition) {
+        this.call = call2;
         this.methodDefinition = methodDefinition;
       }
       cancelWithStatus(status, details) {
@@ -10028,8 +10028,8 @@ var require_client_interceptors = __commonJS({
       }
     };
     var BaseUnaryInterceptingCall = class extends BaseInterceptingCall {
-      constructor(call, methodDefinition) {
-        super(call, methodDefinition);
+      constructor(call2, methodDefinition) {
+        super(call2, methodDefinition);
       }
       start(metadata, listener) {
         var _a, _b;
@@ -10057,11 +10057,11 @@ var require_client_interceptors = __commonJS({
     var BaseStreamingInterceptingCall = class extends BaseInterceptingCall {
     };
     function getBottomInterceptingCall(channel, options, methodDefinition) {
-      const call = getCall(channel, methodDefinition.path, options);
+      const call2 = getCall(channel, methodDefinition.path, options);
       if (methodDefinition.responseStream) {
-        return new BaseStreamingInterceptingCall(call, methodDefinition);
+        return new BaseStreamingInterceptingCall(call2, methodDefinition);
       } else {
-        return new BaseUnaryInterceptingCall(call, methodDefinition);
+        return new BaseUnaryInterceptingCall(call2, methodDefinition);
       }
     }
     function getInterceptingCall(interceptorArgs, methodDefinition, options, channel) {
@@ -10208,20 +10208,20 @@ var require_client = __commonJS({
           callInterceptors: (_a = callProperties.callOptions.interceptors) !== null && _a !== void 0 ? _a : [],
           callInterceptorProviders: (_b = callProperties.callOptions.interceptor_providers) !== null && _b !== void 0 ? _b : []
         };
-        const call = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
-        emitter.call = call;
+        const call2 = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
+        emitter.call = call2;
         if (callProperties.callOptions.credentials) {
-          call.setCredentials(callProperties.callOptions.credentials);
+          call2.setCredentials(callProperties.callOptions.credentials);
         }
         let responseMessage = null;
         let receivedStatus = false;
-        call.start(callProperties.metadata, {
+        call2.start(callProperties.metadata, {
           onReceiveMetadata: (metadata2) => {
             emitter.emit("metadata", metadata2);
           },
           onReceiveMessage(message) {
             if (responseMessage !== null) {
-              call.cancelWithStatus(constants_1.Status.INTERNAL, "Too many responses received");
+              call2.cancelWithStatus(constants_1.Status.INTERNAL, "Too many responses received");
             }
             responseMessage = message;
           },
@@ -10246,8 +10246,8 @@ var require_client = __commonJS({
             emitter.emit("status", status);
           }
         });
-        call.sendMessage(argument);
-        call.halfClose();
+        call2.sendMessage(argument);
+        call2.halfClose();
         return emitter;
       }
       makeClientStreamRequest(method, serialize2, deserialize, metadata, options, callback) {
@@ -10278,20 +10278,20 @@ var require_client = __commonJS({
           callInterceptors: (_a = callProperties.callOptions.interceptors) !== null && _a !== void 0 ? _a : [],
           callInterceptorProviders: (_b = callProperties.callOptions.interceptor_providers) !== null && _b !== void 0 ? _b : []
         };
-        const call = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
-        emitter.call = call;
+        const call2 = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
+        emitter.call = call2;
         if (callProperties.callOptions.credentials) {
-          call.setCredentials(callProperties.callOptions.credentials);
+          call2.setCredentials(callProperties.callOptions.credentials);
         }
         let responseMessage = null;
         let receivedStatus = false;
-        call.start(callProperties.metadata, {
+        call2.start(callProperties.metadata, {
           onReceiveMetadata: (metadata2) => {
             emitter.emit("metadata", metadata2);
           },
           onReceiveMessage(message) {
             if (responseMessage !== null) {
-              call.cancelWithStatus(constants_1.Status.INTERNAL, "Too many responses received");
+              call2.cancelWithStatus(constants_1.Status.INTERNAL, "Too many responses received");
             }
             responseMessage = message;
           },
@@ -10366,13 +10366,13 @@ var require_client = __commonJS({
           callInterceptors: (_a = callProperties.callOptions.interceptors) !== null && _a !== void 0 ? _a : [],
           callInterceptorProviders: (_b = callProperties.callOptions.interceptor_providers) !== null && _b !== void 0 ? _b : []
         };
-        const call = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
-        stream.call = call;
+        const call2 = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
+        stream.call = call2;
         if (callProperties.callOptions.credentials) {
-          call.setCredentials(callProperties.callOptions.credentials);
+          call2.setCredentials(callProperties.callOptions.credentials);
         }
         let receivedStatus = false;
-        call.start(callProperties.metadata, {
+        call2.start(callProperties.metadata, {
           onReceiveMetadata(metadata2) {
             stream.emit("metadata", metadata2);
           },
@@ -10391,8 +10391,8 @@ var require_client = __commonJS({
             stream.emit("status", status);
           }
         });
-        call.sendMessage(argument);
-        call.halfClose();
+        call2.sendMessage(argument);
+        call2.halfClose();
         return stream;
       }
       makeBidiStreamRequest(method, serialize2, deserialize, metadata, options) {
@@ -10422,13 +10422,13 @@ var require_client = __commonJS({
           callInterceptors: (_a = callProperties.callOptions.interceptors) !== null && _a !== void 0 ? _a : [],
           callInterceptorProviders: (_b = callProperties.callOptions.interceptor_providers) !== null && _b !== void 0 ? _b : []
         };
-        const call = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
-        stream.call = call;
+        const call2 = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
+        stream.call = call2;
         if (callProperties.callOptions.credentials) {
-          call.setCredentials(callProperties.callOptions.credentials);
+          call2.setCredentials(callProperties.callOptions.credentials);
         }
         let receivedStatus = false;
-        call.start(callProperties.metadata, {
+        call2.start(callProperties.metadata, {
           onReceiveMetadata(metadata2) {
             stream.emit("metadata", metadata2);
           },
@@ -10982,7 +10982,7 @@ var require_base64 = __commonJS({
     for (i2 = 0; i2 < 64; )
       s64[b64[i2] = i2 < 26 ? i2 + 65 : i2 < 52 ? i2 + 71 : i2 < 62 ? i2 - 4 : i2 - 59 | 43] = i2++;
     var i2;
-    base643.encode = function encode2(buffer, start2, end) {
+    base643.encode = function encode3(buffer, start2, end) {
       var parts = null, chunk = [];
       var i3 = 0, j = 0, t2;
       while (start2 < end) {
@@ -11023,7 +11023,7 @@ var require_base64 = __commonJS({
       return String.fromCharCode.apply(String, chunk.slice(0, i3));
     };
     var invalidEncoding = "invalid encoding";
-    base643.decode = function decode2(string, buffer, offset) {
+    base643.decode = function decode3(string, buffer, offset) {
       var start2 = offset;
       var j = 0, t2;
       for (var i3 = 0; i3 < string.length; ) {
@@ -13190,13 +13190,13 @@ var require_message = __commonJS({
     Message.create = function create(properties) {
       return this.$type.create(properties);
     };
-    Message.encode = function encode2(message, writer) {
+    Message.encode = function encode3(message, writer) {
       return this.$type.encode(message, writer);
     };
     Message.encodeDelimited = function encodeDelimited(message, writer) {
       return this.$type.encodeDelimited(message, writer);
     };
-    Message.decode = function decode2(reader) {
+    Message.decode = function decode3(reader) {
       return this.$type.decode(reader);
     };
     Message.decodeDelimited = function decodeDelimited(reader) {
@@ -18556,8 +18556,8 @@ var require_channelz = __commonJS({
         subchannel_ref: resolvedInfo.children.subchannels.map((ref) => subchannelRefToMessage(ref))
       };
     }
-    function GetChannel(call, callback) {
-      const channelId = Number.parseInt(call.request.channel_id);
+    function GetChannel(call2, callback) {
+      const channelId = Number.parseInt(call2.request.channel_id);
       const channelEntry = channels[channelId];
       if (channelEntry === void 0) {
         callback({
@@ -18568,10 +18568,10 @@ var require_channelz = __commonJS({
       }
       callback(null, { channel: getChannelMessage(channelEntry) });
     }
-    function GetTopChannels(call, callback) {
-      const maxResults = Number.parseInt(call.request.max_results);
+    function GetTopChannels(call2, callback) {
+      const maxResults = Number.parseInt(call2.request.max_results);
       const resultList = [];
-      let i2 = Number.parseInt(call.request.start_channel_id);
+      let i2 = Number.parseInt(call2.request.start_channel_id);
       for (; i2 < channels.length; i2++) {
         const channelEntry = channels[i2];
         if (channelEntry === void 0) {
@@ -18601,8 +18601,8 @@ var require_channelz = __commonJS({
         listen_socket: resolvedInfo.listenerChildren.sockets.map((ref) => socketRefToMessage(ref))
       };
     }
-    function GetServer(call, callback) {
-      const serverId = Number.parseInt(call.request.server_id);
+    function GetServer(call2, callback) {
+      const serverId = Number.parseInt(call2.request.server_id);
       const serverEntry = servers[serverId];
       if (serverEntry === void 0) {
         callback({
@@ -18613,10 +18613,10 @@ var require_channelz = __commonJS({
       }
       callback(null, { server: getServerMessage(serverEntry) });
     }
-    function GetServers(call, callback) {
-      const maxResults = Number.parseInt(call.request.max_results);
+    function GetServers(call2, callback) {
+      const maxResults = Number.parseInt(call2.request.max_results);
       const resultList = [];
-      let i2 = Number.parseInt(call.request.start_server_id);
+      let i2 = Number.parseInt(call2.request.start_server_id);
       for (; i2 < servers.length; i2++) {
         const serverEntry = servers[i2];
         if (serverEntry === void 0) {
@@ -18632,8 +18632,8 @@ var require_channelz = __commonJS({
         end: i2 >= servers.length
       });
     }
-    function GetSubchannel(call, callback) {
-      const subchannelId = Number.parseInt(call.request.subchannel_id);
+    function GetSubchannel(call2, callback) {
+      const subchannelId = Number.parseInt(call2.request.subchannel_id);
       const subchannelEntry = subchannels[subchannelId];
       if (subchannelEntry === void 0) {
         callback({
@@ -18677,9 +18677,9 @@ var require_channelz = __commonJS({
         };
       }
     }
-    function GetSocket(call, callback) {
+    function GetSocket(call2, callback) {
       var _a, _b, _c, _d, _e;
-      const socketId = Number.parseInt(call.request.socket_id);
+      const socketId = Number.parseInt(call2.request.socket_id);
       const socketEntry = sockets[socketId];
       if (socketEntry === void 0) {
         callback({
@@ -18722,8 +18722,8 @@ var require_channelz = __commonJS({
       };
       callback(null, { socket: socketMessage });
     }
-    function GetServerSockets(call, callback) {
-      const serverId = Number.parseInt(call.request.server_id);
+    function GetServerSockets(call2, callback) {
+      const serverId = Number.parseInt(call2.request.server_id);
       const serverEntry = servers[serverId];
       if (serverEntry === void 0) {
         callback({
@@ -18732,8 +18732,8 @@ var require_channelz = __commonJS({
         });
         return;
       }
-      const startId = Number.parseInt(call.request.start_socket_id);
-      const maxResults = Number.parseInt(call.request.max_results);
+      const startId = Number.parseInt(call2.request.start_socket_id);
+      const maxResults = Number.parseInt(call2.request.max_results);
       const resolvedInfo = serverEntry.getInfo();
       const allSockets = resolvedInfo.sessionChildren.sockets.sort((ref1, ref2) => ref1.id - ref2.id);
       const resultList = [];
@@ -20511,9 +20511,9 @@ var require_server_call = __commonJS({
       waitForTrailers: true
     };
     var ServerUnaryCallImpl = class extends events_1.EventEmitter {
-      constructor(call, metadata, request) {
+      constructor(call2, metadata, request) {
         super();
-        this.call = call;
+        this.call = call2;
         this.metadata = metadata;
         this.request = request;
         this.cancelled = false;
@@ -20531,9 +20531,9 @@ var require_server_call = __commonJS({
     };
     exports2.ServerUnaryCallImpl = ServerUnaryCallImpl;
     var ServerReadableStreamImpl = class extends stream_1.Readable {
-      constructor(call, metadata, deserialize, encoding) {
+      constructor(call2, metadata, deserialize, encoding) {
         super({ objectMode: true });
-        this.call = call;
+        this.call = call2;
         this.metadata = metadata;
         this.deserialize = deserialize;
         this.cancelled = false;
@@ -20558,9 +20558,9 @@ var require_server_call = __commonJS({
     };
     exports2.ServerReadableStreamImpl = ServerReadableStreamImpl;
     var ServerWritableStreamImpl = class extends stream_1.Writable {
-      constructor(call, metadata, serialize2, request) {
+      constructor(call2, metadata, serialize2, request) {
         super({ objectMode: true });
-        this.call = call;
+        this.call = call2;
         this.metadata = metadata;
         this.serialize = serialize2;
         this.request = request;
@@ -20611,9 +20611,9 @@ var require_server_call = __commonJS({
     };
     exports2.ServerWritableStreamImpl = ServerWritableStreamImpl;
     var ServerDuplexStreamImpl = class extends stream_1.Duplex {
-      constructor(call, metadata, serialize2, deserialize, encoding) {
+      constructor(call2, metadata, serialize2, deserialize, encoding) {
         super({ objectMode: true });
-        this.call = call;
+        this.call = call2;
         this.metadata = metadata;
         this.serialize = serialize2;
         this.deserialize = deserialize;
@@ -20895,10 +20895,10 @@ var require_server_call = __commonJS({
       resume() {
         this.stream.resume();
       }
-      setupSurfaceCall(call) {
+      setupSurfaceCall(call2) {
         this.once("cancelled", (reason) => {
-          call.cancelled = true;
-          call.emit("cancelled", reason);
+          call2.cancelled = true;
+          call2.emit("cancelled", reason);
         });
       }
       setupReadable(readable2, encoding) {
@@ -21011,12 +21011,12 @@ var require_server_call = __commonJS({
       }
     };
     exports2.Http2ServerCallStream = Http2ServerCallStream;
-    function handleExpiredDeadline(call) {
+    function handleExpiredDeadline(call2) {
       const err = new Error("Deadline exceeded");
       err.code = constants_1.Status.DEADLINE_EXCEEDED;
-      call.sendError(err);
-      call.cancelled = true;
-      call.emit("cancelled", "deadline");
+      call2.sendError(err);
+      call2.cancelled = true;
+      call2.emit("cancelled", "deadline");
     }
   }
 });
@@ -21123,20 +21123,20 @@ var require_server = __commonJS({
       const unimplementedStatusResponse = getUnimplementedStatusResponse(methodName);
       switch (handlerType) {
         case "unary":
-          return (call, callback) => {
+          return (call2, callback) => {
             callback(unimplementedStatusResponse, null);
           };
         case "clientStream":
-          return (call, callback) => {
+          return (call2, callback) => {
             callback(unimplementedStatusResponse, null);
           };
         case "serverStream":
-          return (call) => {
-            call.emit("error", unimplementedStatusResponse);
+          return (call2) => {
+            call2.emit("error", unimplementedStatusResponse);
           };
         case "bidi":
-          return (call) => {
-            call.emit("error", unimplementedStatusResponse);
+          return (call2) => {
+            call2.emit("error", unimplementedStatusResponse);
           };
         default:
           throw new Error(`Invalid handlerType ${handlerType}`);
@@ -21610,7 +21610,7 @@ var require_server = __commonJS({
             }
             return;
           }
-          let call = null;
+          let call2 = null;
           try {
             const path = headers[http2.constants.HTTP2_HEADER_PATH];
             const serverAddress = http2Server.address();
@@ -21628,8 +21628,8 @@ var require_server = __commonJS({
               this.trace("No handler registered for method " + path + ". Sending UNIMPLEMENTED status.");
               throw getUnimplementedStatusResponse(path);
             }
-            call = new server_call_1.Http2ServerCallStream(stream, handler, this.options);
-            call.once("callEnd", (code) => {
+            call2 = new server_call_1.Http2ServerCallStream(stream, handler, this.options);
+            call2.once("callEnd", (code) => {
               if (code === constants_1.Status.OK) {
                 this.callTracker.addCallSucceeded();
               } else {
@@ -21637,44 +21637,44 @@ var require_server = __commonJS({
               }
             });
             if (this.channelzEnabled && channelzSessionInfo) {
-              call.once("streamEnd", (success) => {
+              call2.once("streamEnd", (success) => {
                 if (success) {
                   channelzSessionInfo.streamTracker.addCallSucceeded();
                 } else {
                   channelzSessionInfo.streamTracker.addCallFailed();
                 }
               });
-              call.on("sendMessage", () => {
+              call2.on("sendMessage", () => {
                 channelzSessionInfo.messagesSent += 1;
                 channelzSessionInfo.lastMessageSentTimestamp = new Date();
               });
-              call.on("receiveMessage", () => {
+              call2.on("receiveMessage", () => {
                 channelzSessionInfo.messagesReceived += 1;
                 channelzSessionInfo.lastMessageReceivedTimestamp = new Date();
               });
             }
-            const metadata = call.receiveMetadata(headers);
+            const metadata = call2.receiveMetadata(headers);
             const encoding = (_a = metadata.get("grpc-encoding")[0]) !== null && _a !== void 0 ? _a : "identity";
             metadata.remove("grpc-encoding");
             switch (handler.type) {
               case "unary":
-                handleUnary(call, handler, metadata, encoding);
+                handleUnary(call2, handler, metadata, encoding);
                 break;
               case "clientStream":
-                handleClientStreaming(call, handler, metadata, encoding);
+                handleClientStreaming(call2, handler, metadata, encoding);
                 break;
               case "serverStream":
-                handleServerStreaming(call, handler, metadata, encoding);
+                handleServerStreaming(call2, handler, metadata, encoding);
                 break;
               case "bidi":
-                handleBidiStreaming(call, handler, metadata, encoding);
+                handleBidiStreaming(call2, handler, metadata, encoding);
                 break;
               default:
                 throw new Error(`Unknown handler type: ${handler.type}`);
             }
           } catch (err) {
-            if (!call) {
-              call = new server_call_1.Http2ServerCallStream(stream, null, this.options);
+            if (!call2) {
+              call2 = new server_call_1.Http2ServerCallStream(stream, null, this.options);
               if (this.channelzEnabled) {
                 this.callTracker.addCallFailed();
                 channelzSessionInfo === null || channelzSessionInfo === void 0 ? void 0 : channelzSessionInfo.streamTracker.addCallFailed();
@@ -21683,7 +21683,7 @@ var require_server = __commonJS({
             if (err.code === void 0) {
               err.code = constants_1.Status.INTERNAL;
             }
-            call.sendError(err);
+            call2.sendError(err);
           }
         });
         http2Server.on("session", (session) => {
@@ -21720,39 +21720,39 @@ var require_server = __commonJS({
       }
     };
     exports2.Server = Server2;
-    async function handleUnary(call, handler, metadata, encoding) {
-      const request = await call.receiveUnaryMessage(encoding);
-      if (request === void 0 || call.cancelled) {
+    async function handleUnary(call2, handler, metadata, encoding) {
+      const request = await call2.receiveUnaryMessage(encoding);
+      if (request === void 0 || call2.cancelled) {
         return;
       }
-      const emitter = new server_call_1.ServerUnaryCallImpl(call, metadata, request);
+      const emitter = new server_call_1.ServerUnaryCallImpl(call2, metadata, request);
       handler.func(emitter, (err, value, trailer, flags) => {
-        call.sendUnaryMessage(err, value, trailer, flags);
+        call2.sendUnaryMessage(err, value, trailer, flags);
       });
     }
-    function handleClientStreaming(call, handler, metadata, encoding) {
-      const stream = new server_call_1.ServerReadableStreamImpl(call, metadata, handler.deserialize, encoding);
+    function handleClientStreaming(call2, handler, metadata, encoding) {
+      const stream = new server_call_1.ServerReadableStreamImpl(call2, metadata, handler.deserialize, encoding);
       function respond2(err, value, trailer, flags) {
         stream.destroy();
-        call.sendUnaryMessage(err, value, trailer, flags);
+        call2.sendUnaryMessage(err, value, trailer, flags);
       }
-      if (call.cancelled) {
+      if (call2.cancelled) {
         return;
       }
       stream.on("error", respond2);
       handler.func(stream, respond2);
     }
-    async function handleServerStreaming(call, handler, metadata, encoding) {
-      const request = await call.receiveUnaryMessage(encoding);
-      if (request === void 0 || call.cancelled) {
+    async function handleServerStreaming(call2, handler, metadata, encoding) {
+      const request = await call2.receiveUnaryMessage(encoding);
+      if (request === void 0 || call2.cancelled) {
         return;
       }
-      const stream = new server_call_1.ServerWritableStreamImpl(call, metadata, handler.serialize, request);
+      const stream = new server_call_1.ServerWritableStreamImpl(call2, metadata, handler.serialize, request);
       handler.func(stream);
     }
-    function handleBidiStreaming(call, handler, metadata, encoding) {
-      const stream = new server_call_1.ServerDuplexStreamImpl(call, metadata, handler.serialize, handler.deserialize, encoding);
-      if (call.cancelled) {
+    function handleBidiStreaming(call2, handler, metadata, encoding) {
+      const stream = new server_call_1.ServerDuplexStreamImpl(call2, metadata, handler.serialize, handler.deserialize, encoding);
+      if (call2.cancelled) {
         return;
       }
       handler.func(stream);
@@ -54671,6 +54671,223 @@ var init_font_1e4cc472 = __esm({
 });
 
 // node_modules/@firebase/functions/dist/esm-node/index.node.esm.js
+function mapValues(o, f5) {
+  const result = {};
+  for (const key2 in o) {
+    if (o.hasOwnProperty(key2)) {
+      result[key2] = f5(o[key2]);
+    }
+  }
+  return result;
+}
+function encode2(data) {
+  if (data == null) {
+    return null;
+  }
+  if (data instanceof Number) {
+    data = data.valueOf();
+  }
+  if (typeof data === "number" && isFinite(data)) {
+    return data;
+  }
+  if (data === true || data === false) {
+    return data;
+  }
+  if (Object.prototype.toString.call(data) === "[object String]") {
+    return data;
+  }
+  if (data instanceof Date) {
+    return data.toISOString();
+  }
+  if (Array.isArray(data)) {
+    return data.map((x3) => encode2(x3));
+  }
+  if (typeof data === "function" || typeof data === "object") {
+    return mapValues(data, (x3) => encode2(x3));
+  }
+  throw new Error("Data cannot be encoded in JSON: " + data);
+}
+function decode2(json) {
+  if (json == null) {
+    return json;
+  }
+  if (json["@type"]) {
+    switch (json["@type"]) {
+      case LONG_TYPE:
+      case UNSIGNED_LONG_TYPE: {
+        const value = Number(json["value"]);
+        if (isNaN(value)) {
+          throw new Error("Data cannot be decoded from JSON: " + json);
+        }
+        return value;
+      }
+      default: {
+        throw new Error("Data cannot be decoded from JSON: " + json);
+      }
+    }
+  }
+  if (Array.isArray(json)) {
+    return json.map((x3) => decode2(x3));
+  }
+  if (typeof json === "function" || typeof json === "object") {
+    return mapValues(json, (x3) => decode2(x3));
+  }
+  return json;
+}
+function codeForHTTPStatus(status) {
+  if (status >= 200 && status < 300) {
+    return "ok";
+  }
+  switch (status) {
+    case 0:
+      return "internal";
+    case 400:
+      return "invalid-argument";
+    case 401:
+      return "unauthenticated";
+    case 403:
+      return "permission-denied";
+    case 404:
+      return "not-found";
+    case 409:
+      return "aborted";
+    case 429:
+      return "resource-exhausted";
+    case 499:
+      return "cancelled";
+    case 500:
+      return "internal";
+    case 501:
+      return "unimplemented";
+    case 503:
+      return "unavailable";
+    case 504:
+      return "deadline-exceeded";
+  }
+  return "unknown";
+}
+function _errorForResponse(status, bodyJSON) {
+  let code = codeForHTTPStatus(status);
+  let description = code;
+  let details = void 0;
+  try {
+    const errorJSON = bodyJSON && bodyJSON.error;
+    if (errorJSON) {
+      const status2 = errorJSON.status;
+      if (typeof status2 === "string") {
+        if (!errorCodeMap[status2]) {
+          return new FunctionsError("internal", "internal");
+        }
+        code = errorCodeMap[status2];
+        description = status2;
+      }
+      const message = errorJSON.message;
+      if (typeof message === "string") {
+        description = message;
+      }
+      details = errorJSON.details;
+      if (details !== void 0) {
+        details = decode2(details);
+      }
+    }
+  } catch (e2) {
+  }
+  if (code === "ok") {
+    return null;
+  }
+  return new FunctionsError(code, description, details);
+}
+function failAfter(millis) {
+  let timer = null;
+  return {
+    promise: new Promise((_2, reject) => {
+      timer = setTimeout(() => {
+        reject(new FunctionsError("deadline-exceeded", "deadline-exceeded"));
+      }, millis);
+    }),
+    cancel: () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+    }
+  };
+}
+function httpsCallable$1(functionsInstance, name7, options) {
+  return (data) => {
+    return call(functionsInstance, name7, data, options || {});
+  };
+}
+async function postJSON(url, body, headers, fetchImpl2) {
+  headers["Content-Type"] = "application/json";
+  let response;
+  try {
+    response = await fetchImpl2(url, {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers
+    });
+  } catch (e2) {
+    return {
+      status: 0,
+      json: null
+    };
+  }
+  let json = null;
+  try {
+    json = await response.json();
+  } catch (e2) {
+  }
+  return {
+    status: response.status,
+    json
+  };
+}
+function call(functionsInstance, name7, data, options) {
+  const url = functionsInstance._url(name7);
+  return callAtURL(functionsInstance, url, data, options);
+}
+async function callAtURL(functionsInstance, url, data, options) {
+  data = encode2(data);
+  const body = { data };
+  const headers = {};
+  const context = await functionsInstance.contextProvider.getContext();
+  if (context.authToken) {
+    headers["Authorization"] = "Bearer " + context.authToken;
+  }
+  if (context.messagingToken) {
+    headers["Firebase-Instance-ID-Token"] = context.messagingToken;
+  }
+  if (context.appCheckToken !== null) {
+    headers["X-Firebase-AppCheck"] = context.appCheckToken;
+  }
+  const timeout = options.timeout || 7e4;
+  const failAfterHandle = failAfter(timeout);
+  const response = await Promise.race([
+    postJSON(url, body, headers, functionsInstance.fetchImpl),
+    failAfterHandle.promise,
+    functionsInstance.cancelAllRequests
+  ]);
+  failAfterHandle.cancel();
+  if (!response) {
+    throw new FunctionsError("cancelled", "Firebase Functions instance was deleted.");
+  }
+  const error2 = _errorForResponse(response.status, response.json);
+  if (error2) {
+    throw error2;
+  }
+  if (!response.json) {
+    throw new FunctionsError("internal", "Response is not valid JSON object.");
+  }
+  let responseData = response.json.data;
+  if (typeof responseData === "undefined") {
+    responseData = response.json.result;
+  }
+  if (typeof responseData === "undefined") {
+    throw new FunctionsError("internal", "Response is missing data field.");
+  }
+  const decodedData = decode2(responseData);
+  return { data: decodedData };
+}
 function registerFunctions(fetchImpl2, variant) {
   const factory2 = (container, { instanceIdentifier: regionOrCustomDomain }) => {
     const app2 = container.getProvider("app").getImmediate();
@@ -54690,7 +54907,10 @@ function getFunctions(app2 = getApp(), regionOrCustomDomain = DEFAULT_REGION) {
   });
   return functionsInstance;
 }
-var import_node_fetch2, FUNCTIONS_TYPE, ContextProvider, DEFAULT_REGION, FunctionsService, name5, version5, AUTH_INTERNAL_NAME, APP_CHECK_INTERNAL_NAME, MESSAGING_INTERNAL_NAME;
+function httpsCallable(functionsInstance, name7, options) {
+  return httpsCallable$1(getModularInstance(functionsInstance), name7, options);
+}
+var import_node_fetch2, LONG_TYPE, UNSIGNED_LONG_TYPE, FUNCTIONS_TYPE, errorCodeMap, FunctionsError, ContextProvider, DEFAULT_REGION, FunctionsService, name5, version5, AUTH_INTERNAL_NAME, APP_CHECK_INTERNAL_NAME, MESSAGING_INTERNAL_NAME;
 var init_index_node_esm2 = __esm({
   "node_modules/@firebase/functions/dist/esm-node/index.node.esm.js"() {
     init_shims();
@@ -54698,7 +54918,34 @@ var init_index_node_esm2 = __esm({
     init_index_node_esm();
     init_index_esm2017();
     import_node_fetch2 = __toESM(require_lib2(), 1);
+    LONG_TYPE = "type.googleapis.com/google.protobuf.Int64Value";
+    UNSIGNED_LONG_TYPE = "type.googleapis.com/google.protobuf.UInt64Value";
     FUNCTIONS_TYPE = "functions";
+    errorCodeMap = {
+      OK: "ok",
+      CANCELLED: "cancelled",
+      UNKNOWN: "unknown",
+      INVALID_ARGUMENT: "invalid-argument",
+      DEADLINE_EXCEEDED: "deadline-exceeded",
+      NOT_FOUND: "not-found",
+      ALREADY_EXISTS: "already-exists",
+      PERMISSION_DENIED: "permission-denied",
+      UNAUTHENTICATED: "unauthenticated",
+      RESOURCE_EXHAUSTED: "resource-exhausted",
+      FAILED_PRECONDITION: "failed-precondition",
+      ABORTED: "aborted",
+      OUT_OF_RANGE: "out-of-range",
+      UNIMPLEMENTED: "unimplemented",
+      INTERNAL: "internal",
+      UNAVAILABLE: "unavailable",
+      DATA_LOSS: "data-loss"
+    };
+    FunctionsError = class extends FirebaseError {
+      constructor(code, message, details) {
+        super(`${FUNCTIONS_TYPE}/${code}`, message || "");
+        this.details = details;
+      }
+    };
     ContextProvider = class {
       constructor(authProvider, messagingProvider, appCheckProvider) {
         this.auth = null;
@@ -54958,10 +55205,10 @@ var require_dist2 = __commonJS({
         return _possibleConstructorReturn(this, result);
       };
     }
-    function _possibleConstructorReturn(self2, call) {
-      if (call && (_typeof(call) === "object" || typeof call === "function")) {
-        return call;
-      } else if (call !== void 0) {
+    function _possibleConstructorReturn(self2, call2) {
+      if (call2 && (_typeof(call2) === "object" || typeof call2 === "function")) {
+        return call2;
+      } else if (call2 !== void 0) {
         throw new TypeError("Derived constructors may only return object or undefined");
       }
       return _assertThisInitialized(self2);
@@ -58245,10 +58492,10 @@ var require_dist3 = __commonJS({
         return _possibleConstructorReturn(this, result);
       };
     }
-    function _possibleConstructorReturn(self2, call) {
-      if (call && (_typeof(call) === "object" || typeof call === "function")) {
-        return call;
-      } else if (call !== void 0) {
+    function _possibleConstructorReturn(self2, call2) {
+      if (call2 && (_typeof(call2) === "object" || typeof call2 === "function")) {
+        return call2;
+      } else if (call2 !== void 0) {
         throw new TypeError("Derived constructors may only return object or undefined");
       }
       return _assertThisInitialized(self2);
@@ -59949,10 +60196,10 @@ var require_dist4 = __commonJS({
         return _possibleConstructorReturn(this, result);
       };
     }
-    function _possibleConstructorReturn(self2, call) {
-      if (call && (_typeof(call) === "object" || typeof call === "function")) {
-        return call;
-      } else if (call !== void 0) {
+    function _possibleConstructorReturn(self2, call2) {
+      if (call2 && (_typeof(call2) === "object" || typeof call2 === "function")) {
+        return call2;
+      } else if (call2 !== void 0) {
         throw new TypeError("Derived constructors may only return object or undefined");
       }
       return _assertThisInitialized(self2);
@@ -60987,10 +61234,10 @@ var require_dist5 = __commonJS({
         return _possibleConstructorReturn(this, result);
       };
     }
-    function _possibleConstructorReturn(self2, call) {
-      if (call && (_typeof(call) === "object" || typeof call === "function")) {
-        return call;
-      } else if (call !== void 0) {
+    function _possibleConstructorReturn(self2, call2) {
+      if (call2 && (_typeof(call2) === "object" || typeof call2 === "function")) {
+        return call2;
+      } else if (call2 !== void 0) {
         throw new TypeError("Derived constructors may only return object or undefined");
       }
       return _assertThisInitialized(self2);
@@ -72935,11 +73182,11 @@ function validateNumber(argument, minValue, maxValue, value) {
   }
 }
 function makeQueryString(params) {
-  const encode2 = encodeURIComponent;
+  const encode3 = encodeURIComponent;
   let queryPart = "?";
   for (const key2 in params) {
     if (params.hasOwnProperty(key2)) {
-      const nextPart = encode2(key2) + "=" + encode2(params[key2]);
+      const nextPart = encode3(key2) + "=" + encode3(params[key2]);
       queryPart = queryPart + nextPart + "&";
     }
   }
@@ -73065,12 +73312,12 @@ ${this.customData.serverResponse}`;
         return this.path.length === 0;
       }
       fullServerUrl() {
-        const encode2 = encodeURIComponent;
-        return "/b/" + encode2(this.bucket) + "/o/" + encode2(this.path);
+        const encode3 = encodeURIComponent;
+        return "/b/" + encode3(this.bucket) + "/o/" + encode3(this.path);
       }
       bucketOnlyServerUrl() {
-        const encode2 = encodeURIComponent;
-        return "/b/" + encode2(this.bucket) + "/o";
+        const encode3 = encodeURIComponent;
+        return "/b/" + encode3(this.bucket) + "/o";
       }
       static makeFromBucketSpec(bucketString, host) {
         let bucketLocation;
@@ -73447,7 +73694,7 @@ var layout_svelte_exports = {};
 __export(layout_svelte_exports, {
   default: () => _layout
 });
-var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_extension_link, import_chroma_js2, __defProp3, __defProps3, __getOwnPropDescs3, __getOwnPropSymbols3, __hasOwnProp3, __propIsEnum3, __defNormalProp3, __spreadValues3, __spreadProps3, strings, css$7, Button, css$6, Text_input, css$5, Login, _createPost, css$4, Tiptap_editor, css$3, Html_input, css$2, Form, css$1, currentTheme, Theme_selector, css, _layout;
+var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_extension_link, import_chroma_js2, __defProp3, __defProps3, __getOwnPropDescs3, __getOwnPropSymbols3, __hasOwnProp3, __propIsEnum3, __defNormalProp3, __spreadValues3, __spreadProps3, strings, css$7, Button, css$6, Text_input, css$5, Login, functions, _createPost, css$4, Tiptap_editor, css$3, Html_input, css$2, Form, css$1, currentTheme, Theme_selector, css, _layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
@@ -73730,10 +73977,9 @@ var init_layout_svelte = __esm({
                 facebook
             </div></div></div></div>` : ``}`;
     });
-    getFunctions(app);
+    functions = getFunctions(app);
     _createPost = async (post) => {
-      console.log(post);
-      return;
+      return httpsCallable(functions, "addpost")(post);
     };
     getStorage(app);
     css$4 = {
@@ -73851,6 +74097,7 @@ var init_layout_svelte = __esm({
           verified: false,
           type: COLUMNS[columnIndex].type
         }));
+        console.log("createdPost".createdPost);
         _emitEvent("new-column-data", {
           columnIndex,
           postData: __spreadValues3({}, createdPost.data)
@@ -73980,8 +74227,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-51211f5a.js";
-    js = ["pages/__layout.svelte-51211f5a.js", "chunks/index-f708efea.js", "chunks/theme-311b21fd.js", "chunks/index-02da5586.js", "chunks/font-643135d6.js"];
+    entry = "pages/__layout.svelte-17984587.js";
+    js = ["pages/__layout.svelte-17984587.js", "chunks/index-f708efea.js", "chunks/theme-311b21fd.js", "chunks/index-02da5586.js", "chunks/font-dc996ce3.js"];
     css2 = ["assets/pages/__layout.svelte-38fb2130.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css"];
   }
 });
@@ -74658,7 +74905,7 @@ var require_lib3 = __commonJS({
       level: "all",
       numeric: "decimal"
     };
-    function encode2(text, _a) {
+    function encode3(text, _a) {
       var _b = _a === void 0 ? defaultEncodeOptions : _a, _c = _b.mode, mode = _c === void 0 ? "specialChars" : _c, _d = _b.numeric, numeric = _d === void 0 ? "decimal" : _d, _e = _b.level, level = _e === void 0 ? "all" : _e;
       if (!text) {
         return "";
@@ -74693,7 +74940,7 @@ var require_lib3 = __commonJS({
       }
       return _c;
     }
-    exports2.encode = encode2;
+    exports2.encode = encode3;
     var defaultDecodeOptions = {
       scope: "body",
       level: "all"
@@ -74747,7 +74994,7 @@ var require_lib3 = __commonJS({
       return _b;
     }
     exports2.decodeEntity = decodeEntity;
-    function decode2(text, _a) {
+    function decode3(text, _a) {
       var decodeSecondChar_1 = _a === void 0 ? defaultDecodeOptions : _a, decodeCode_1 = decodeSecondChar_1.level, level = decodeCode_1 === void 0 ? "all" : decodeCode_1, _b = decodeSecondChar_1.scope, scope = _b === void 0 ? level === "xml" ? "strict" : "body" : _b;
       if (!text) {
         return "";
@@ -74794,7 +75041,7 @@ var require_lib3 = __commonJS({
       }
       return replaceResult_1;
     }
-    exports2.decode = decode2;
+    exports2.decode = decode3;
   }
 });
 
@@ -76070,7 +76317,7 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/preview-386fdc3c.js
+// .svelte-kit/output/server/chunks/preview-1af201f7.js
 function backInOut(t2) {
   const s3 = 1.70158 * 1.525;
   if ((t2 *= 2) < 1)
@@ -76180,8 +76427,8 @@ function tweened(value, defaults = {}) {
   };
 }
 var css$12, duration, Card, strings2, css4, Preview;
-var init_preview_386fdc3c = __esm({
-  ".svelte-kit/output/server/chunks/preview-386fdc3c.js"() {
+var init_preview_1af201f7 = __esm({
+  ".svelte-kit/output/server/chunks/preview-1af201f7.js"() {
     init_shims();
     init_index_a845b91b();
     init_theme_8c394673();
@@ -76219,7 +76466,7 @@ var init_preview_386fdc3c = __esm({
       ]
     };
     css4 = {
-      code: ".preview-image.svelte-y1mj89{background-image:var(--url);background-color:#cccccc;height:200px;width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;margin-top:5px}.description img{width:100%;border-radius:3px}",
+      code: ".preview-image.svelte-15ofqcy{background-image:var(--url);background-color:#cccccc;height:200px;width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;margin-top:5px}.preview img{margin:var(--s5px) 0;width:100%;border-radius:3px}",
       map: null
     };
     Preview = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -76253,9 +76500,9 @@ var init_preview_386fdc3c = __esm({
       return `
 
 
-<div>${!preview ? `<!-- HTML_TAG_START -->${contentString}<!-- HTML_TAG_END -->` : `${escape(croppedText)}
+<div class="${"preview"}">${!preview ? `<!-- HTML_TAG_START -->${contentString}<!-- HTML_TAG_END -->` : `${escape(croppedText)}
         ${croppedFlag ? `<span style="${"font-weight:bold; text-decoration:underline"}">${escape(strings2["read_more"][$_lang])}</span>
-            ${images ? `<div class="${"preview-image svelte-y1mj89"}" style="${"--url: url(" + escape(images[0]) + ")"}"></div>` : ``}` : ``}`}
+            ${images ? `<div class="${"preview-image svelte-15ofqcy"}" style="${"--url: url(" + escape(images[0]) + ")"}"></div>` : ``}` : ``}`}
 </div>`;
     });
   }
@@ -76272,7 +76519,7 @@ var init_index_svelte = __esm({
     init_shims();
     init_index_a845b91b();
     init_column_config_31e21418();
-    init_preview_386fdc3c();
+    init_preview_1af201f7();
     init_font_1e4cc472();
     init_theme_8c394673();
     init_database_0269ec9b();
@@ -76501,7 +76748,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
         ${validate_component(Font, "Font").$$render($$result, {
             font: 0,
             size: 0.75,
-            color: "\n                rgb(100, 99, 99);\n                padding: 0 0 var(--s5px) 0;"
+            color: "\n                rgb(100, 99, 99);\n                margin-bottom: var(--s5px);"
           }, {}, {
             default: () => {
               return `${validate_component(Timestamp2, "Timestamp").$$render($$result, { time: data.createdOn }, {}, {})}`;
@@ -76521,7 +76768,8 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
         ${validate_component(Font, "Font").$$render($$result, {
             font: 3,
             size: 0.75,
-            color: "rgb(55, 55, 55);"
+            color: "rgb(55, 55, 55);",
+            style: "margin-bottom: var(--s7px);"
           }, {}, {
             default: () => {
               return `${escape(data.createdByName)}`;
@@ -76724,9 +76972,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-1367a931.js";
-    js3 = ["pages/index.svelte-1367a931.js", "chunks/index-f708efea.js", "chunks/theme-311b21fd.js", "chunks/index-02da5586.js", "chunks/preview-0e14ac1f.js", "chunks/font-643135d6.js"];
-    css6 = ["assets/pages/index.svelte-a63df8a2.css", "assets/preview-24a70b0e.css"];
+    entry3 = "pages/index.svelte-3a32eb47.js";
+    js3 = ["pages/index.svelte-3a32eb47.js", "chunks/index-f708efea.js", "chunks/theme-311b21fd.js", "chunks/index-02da5586.js", "chunks/preview-011cd7d8.js", "chunks/font-dc996ce3.js"];
+    css6 = ["assets/pages/index.svelte-a63df8a2.css", "assets/preview-1fdb80d4.css"];
   }
 });
 
@@ -76740,7 +76988,7 @@ var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_a845b91b();
-    init_preview_386fdc3c();
+    init_preview_1af201f7();
     init_theme_8c394673();
     init_string_strip_html_esm();
     init_column_config_31e21418();
@@ -76817,9 +77065,9 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 3;
-    entry4 = "pages/post_preview.svelte-e6689276.js";
-    js4 = ["pages/post_preview.svelte-e6689276.js", "chunks/index-f708efea.js", "chunks/preview-0e14ac1f.js", "chunks/index-02da5586.js", "chunks/theme-311b21fd.js"];
-    css8 = ["assets/pages/post_preview.svelte-31ce9f42.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css", "assets/preview-24a70b0e.css"];
+    entry4 = "pages/post_preview.svelte-f7b53c97.js";
+    js4 = ["pages/post_preview.svelte-f7b53c97.js", "chunks/index-f708efea.js", "chunks/preview-011cd7d8.js", "chunks/index-02da5586.js", "chunks/theme-311b21fd.js"];
+    css8 = ["assets/pages/post_preview.svelte-31ce9f42.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css", "assets/preview-1fdb80d4.css"];
   }
 });
 
@@ -77987,9 +78235,9 @@ function encode(val) {
 function isDate(val) {
   return __toString.call(val) === "[object Date]" || val instanceof Date;
 }
-function tryDecode(str, decode2) {
+function tryDecode(str, decode22) {
   try {
-    return decode2(str);
+    return decode22(str);
   } catch (e2) {
     return str;
   }
@@ -79184,7 +79432,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-16a82e95.js", "js": ["start-16a82e95.js", "chunks/index-f708efea.js", "chunks/index-02da5586.js"], "css": [] },
+    entry: { "file": "start-bb9783d9.js", "js": ["start-bb9783d9.js", "chunks/index-f708efea.js", "chunks/index-02da5586.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
