@@ -9954,15 +9954,15 @@ var require_client_interceptors = __commonJS({
       const parent2 = (_b = options.parent) !== null && _b !== void 0 ? _b : null;
       const propagateFlags = options.propagate_flags;
       const credentials2 = options.credentials;
-      const call2 = channel.createCall(path, deadline, host, parent2, propagateFlags);
+      const call = channel.createCall(path, deadline, host, parent2, propagateFlags);
       if (credentials2) {
-        call2.setCredentials(credentials2);
+        call.setCredentials(credentials2);
       }
-      return call2;
+      return call;
     }
     var BaseInterceptingCall = class {
-      constructor(call2, methodDefinition) {
-        this.call = call2;
+      constructor(call, methodDefinition) {
+        this.call = call;
         this.methodDefinition = methodDefinition;
       }
       cancelWithStatus(status, details) {
@@ -10028,8 +10028,8 @@ var require_client_interceptors = __commonJS({
       }
     };
     var BaseUnaryInterceptingCall = class extends BaseInterceptingCall {
-      constructor(call2, methodDefinition) {
-        super(call2, methodDefinition);
+      constructor(call, methodDefinition) {
+        super(call, methodDefinition);
       }
       start(metadata, listener) {
         var _a, _b;
@@ -10057,11 +10057,11 @@ var require_client_interceptors = __commonJS({
     var BaseStreamingInterceptingCall = class extends BaseInterceptingCall {
     };
     function getBottomInterceptingCall(channel, options, methodDefinition) {
-      const call2 = getCall(channel, methodDefinition.path, options);
+      const call = getCall(channel, methodDefinition.path, options);
       if (methodDefinition.responseStream) {
-        return new BaseStreamingInterceptingCall(call2, methodDefinition);
+        return new BaseStreamingInterceptingCall(call, methodDefinition);
       } else {
-        return new BaseUnaryInterceptingCall(call2, methodDefinition);
+        return new BaseUnaryInterceptingCall(call, methodDefinition);
       }
     }
     function getInterceptingCall(interceptorArgs, methodDefinition, options, channel) {
@@ -10208,20 +10208,20 @@ var require_client = __commonJS({
           callInterceptors: (_a = callProperties.callOptions.interceptors) !== null && _a !== void 0 ? _a : [],
           callInterceptorProviders: (_b = callProperties.callOptions.interceptor_providers) !== null && _b !== void 0 ? _b : []
         };
-        const call2 = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
-        emitter.call = call2;
+        const call = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
+        emitter.call = call;
         if (callProperties.callOptions.credentials) {
-          call2.setCredentials(callProperties.callOptions.credentials);
+          call.setCredentials(callProperties.callOptions.credentials);
         }
         let responseMessage = null;
         let receivedStatus = false;
-        call2.start(callProperties.metadata, {
+        call.start(callProperties.metadata, {
           onReceiveMetadata: (metadata2) => {
             emitter.emit("metadata", metadata2);
           },
           onReceiveMessage(message) {
             if (responseMessage !== null) {
-              call2.cancelWithStatus(constants_1.Status.INTERNAL, "Too many responses received");
+              call.cancelWithStatus(constants_1.Status.INTERNAL, "Too many responses received");
             }
             responseMessage = message;
           },
@@ -10246,8 +10246,8 @@ var require_client = __commonJS({
             emitter.emit("status", status);
           }
         });
-        call2.sendMessage(argument);
-        call2.halfClose();
+        call.sendMessage(argument);
+        call.halfClose();
         return emitter;
       }
       makeClientStreamRequest(method, serialize2, deserialize, metadata, options, callback) {
@@ -10278,20 +10278,20 @@ var require_client = __commonJS({
           callInterceptors: (_a = callProperties.callOptions.interceptors) !== null && _a !== void 0 ? _a : [],
           callInterceptorProviders: (_b = callProperties.callOptions.interceptor_providers) !== null && _b !== void 0 ? _b : []
         };
-        const call2 = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
-        emitter.call = call2;
+        const call = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
+        emitter.call = call;
         if (callProperties.callOptions.credentials) {
-          call2.setCredentials(callProperties.callOptions.credentials);
+          call.setCredentials(callProperties.callOptions.credentials);
         }
         let responseMessage = null;
         let receivedStatus = false;
-        call2.start(callProperties.metadata, {
+        call.start(callProperties.metadata, {
           onReceiveMetadata: (metadata2) => {
             emitter.emit("metadata", metadata2);
           },
           onReceiveMessage(message) {
             if (responseMessage !== null) {
-              call2.cancelWithStatus(constants_1.Status.INTERNAL, "Too many responses received");
+              call.cancelWithStatus(constants_1.Status.INTERNAL, "Too many responses received");
             }
             responseMessage = message;
           },
@@ -10366,13 +10366,13 @@ var require_client = __commonJS({
           callInterceptors: (_a = callProperties.callOptions.interceptors) !== null && _a !== void 0 ? _a : [],
           callInterceptorProviders: (_b = callProperties.callOptions.interceptor_providers) !== null && _b !== void 0 ? _b : []
         };
-        const call2 = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
-        stream.call = call2;
+        const call = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
+        stream.call = call;
         if (callProperties.callOptions.credentials) {
-          call2.setCredentials(callProperties.callOptions.credentials);
+          call.setCredentials(callProperties.callOptions.credentials);
         }
         let receivedStatus = false;
-        call2.start(callProperties.metadata, {
+        call.start(callProperties.metadata, {
           onReceiveMetadata(metadata2) {
             stream.emit("metadata", metadata2);
           },
@@ -10391,8 +10391,8 @@ var require_client = __commonJS({
             stream.emit("status", status);
           }
         });
-        call2.sendMessage(argument);
-        call2.halfClose();
+        call.sendMessage(argument);
+        call.halfClose();
         return stream;
       }
       makeBidiStreamRequest(method, serialize2, deserialize, metadata, options) {
@@ -10422,13 +10422,13 @@ var require_client = __commonJS({
           callInterceptors: (_a = callProperties.callOptions.interceptors) !== null && _a !== void 0 ? _a : [],
           callInterceptorProviders: (_b = callProperties.callOptions.interceptor_providers) !== null && _b !== void 0 ? _b : []
         };
-        const call2 = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
-        stream.call = call2;
+        const call = client_interceptors_1.getInterceptingCall(interceptorArgs, callProperties.methodDefinition, callProperties.callOptions, callProperties.channel);
+        stream.call = call;
         if (callProperties.callOptions.credentials) {
-          call2.setCredentials(callProperties.callOptions.credentials);
+          call.setCredentials(callProperties.callOptions.credentials);
         }
         let receivedStatus = false;
-        call2.start(callProperties.metadata, {
+        call.start(callProperties.metadata, {
           onReceiveMetadata(metadata2) {
             stream.emit("metadata", metadata2);
           },
@@ -10982,7 +10982,7 @@ var require_base64 = __commonJS({
     for (i2 = 0; i2 < 64; )
       s64[b64[i2] = i2 < 26 ? i2 + 65 : i2 < 52 ? i2 + 71 : i2 < 62 ? i2 - 4 : i2 - 59 | 43] = i2++;
     var i2;
-    base643.encode = function encode3(buffer, start2, end) {
+    base643.encode = function encode2(buffer, start2, end) {
       var parts = null, chunk = [];
       var i3 = 0, j = 0, t2;
       while (start2 < end) {
@@ -11023,7 +11023,7 @@ var require_base64 = __commonJS({
       return String.fromCharCode.apply(String, chunk.slice(0, i3));
     };
     var invalidEncoding = "invalid encoding";
-    base643.decode = function decode3(string, buffer, offset) {
+    base643.decode = function decode2(string, buffer, offset) {
       var start2 = offset;
       var j = 0, t2;
       for (var i3 = 0; i3 < string.length; ) {
@@ -13190,13 +13190,13 @@ var require_message = __commonJS({
     Message.create = function create(properties) {
       return this.$type.create(properties);
     };
-    Message.encode = function encode3(message, writer) {
+    Message.encode = function encode2(message, writer) {
       return this.$type.encode(message, writer);
     };
     Message.encodeDelimited = function encodeDelimited(message, writer) {
       return this.$type.encodeDelimited(message, writer);
     };
-    Message.decode = function decode3(reader) {
+    Message.decode = function decode2(reader) {
       return this.$type.decode(reader);
     };
     Message.decodeDelimited = function decodeDelimited(reader) {
@@ -18556,8 +18556,8 @@ var require_channelz = __commonJS({
         subchannel_ref: resolvedInfo.children.subchannels.map((ref) => subchannelRefToMessage(ref))
       };
     }
-    function GetChannel(call2, callback) {
-      const channelId = Number.parseInt(call2.request.channel_id);
+    function GetChannel(call, callback) {
+      const channelId = Number.parseInt(call.request.channel_id);
       const channelEntry = channels[channelId];
       if (channelEntry === void 0) {
         callback({
@@ -18568,10 +18568,10 @@ var require_channelz = __commonJS({
       }
       callback(null, { channel: getChannelMessage(channelEntry) });
     }
-    function GetTopChannels(call2, callback) {
-      const maxResults = Number.parseInt(call2.request.max_results);
+    function GetTopChannels(call, callback) {
+      const maxResults = Number.parseInt(call.request.max_results);
       const resultList = [];
-      let i2 = Number.parseInt(call2.request.start_channel_id);
+      let i2 = Number.parseInt(call.request.start_channel_id);
       for (; i2 < channels.length; i2++) {
         const channelEntry = channels[i2];
         if (channelEntry === void 0) {
@@ -18601,8 +18601,8 @@ var require_channelz = __commonJS({
         listen_socket: resolvedInfo.listenerChildren.sockets.map((ref) => socketRefToMessage(ref))
       };
     }
-    function GetServer(call2, callback) {
-      const serverId = Number.parseInt(call2.request.server_id);
+    function GetServer(call, callback) {
+      const serverId = Number.parseInt(call.request.server_id);
       const serverEntry = servers[serverId];
       if (serverEntry === void 0) {
         callback({
@@ -18613,10 +18613,10 @@ var require_channelz = __commonJS({
       }
       callback(null, { server: getServerMessage(serverEntry) });
     }
-    function GetServers(call2, callback) {
-      const maxResults = Number.parseInt(call2.request.max_results);
+    function GetServers(call, callback) {
+      const maxResults = Number.parseInt(call.request.max_results);
       const resultList = [];
-      let i2 = Number.parseInt(call2.request.start_server_id);
+      let i2 = Number.parseInt(call.request.start_server_id);
       for (; i2 < servers.length; i2++) {
         const serverEntry = servers[i2];
         if (serverEntry === void 0) {
@@ -18632,8 +18632,8 @@ var require_channelz = __commonJS({
         end: i2 >= servers.length
       });
     }
-    function GetSubchannel(call2, callback) {
-      const subchannelId = Number.parseInt(call2.request.subchannel_id);
+    function GetSubchannel(call, callback) {
+      const subchannelId = Number.parseInt(call.request.subchannel_id);
       const subchannelEntry = subchannels[subchannelId];
       if (subchannelEntry === void 0) {
         callback({
@@ -18677,9 +18677,9 @@ var require_channelz = __commonJS({
         };
       }
     }
-    function GetSocket(call2, callback) {
+    function GetSocket(call, callback) {
       var _a, _b, _c, _d, _e;
-      const socketId = Number.parseInt(call2.request.socket_id);
+      const socketId = Number.parseInt(call.request.socket_id);
       const socketEntry = sockets[socketId];
       if (socketEntry === void 0) {
         callback({
@@ -18722,8 +18722,8 @@ var require_channelz = __commonJS({
       };
       callback(null, { socket: socketMessage });
     }
-    function GetServerSockets(call2, callback) {
-      const serverId = Number.parseInt(call2.request.server_id);
+    function GetServerSockets(call, callback) {
+      const serverId = Number.parseInt(call.request.server_id);
       const serverEntry = servers[serverId];
       if (serverEntry === void 0) {
         callback({
@@ -18732,8 +18732,8 @@ var require_channelz = __commonJS({
         });
         return;
       }
-      const startId = Number.parseInt(call2.request.start_socket_id);
-      const maxResults = Number.parseInt(call2.request.max_results);
+      const startId = Number.parseInt(call.request.start_socket_id);
+      const maxResults = Number.parseInt(call.request.max_results);
       const resolvedInfo = serverEntry.getInfo();
       const allSockets = resolvedInfo.sessionChildren.sockets.sort((ref1, ref2) => ref1.id - ref2.id);
       const resultList = [];
@@ -20511,9 +20511,9 @@ var require_server_call = __commonJS({
       waitForTrailers: true
     };
     var ServerUnaryCallImpl = class extends events_1.EventEmitter {
-      constructor(call2, metadata, request) {
+      constructor(call, metadata, request) {
         super();
-        this.call = call2;
+        this.call = call;
         this.metadata = metadata;
         this.request = request;
         this.cancelled = false;
@@ -20531,9 +20531,9 @@ var require_server_call = __commonJS({
     };
     exports2.ServerUnaryCallImpl = ServerUnaryCallImpl;
     var ServerReadableStreamImpl = class extends stream_1.Readable {
-      constructor(call2, metadata, deserialize, encoding) {
+      constructor(call, metadata, deserialize, encoding) {
         super({ objectMode: true });
-        this.call = call2;
+        this.call = call;
         this.metadata = metadata;
         this.deserialize = deserialize;
         this.cancelled = false;
@@ -20558,9 +20558,9 @@ var require_server_call = __commonJS({
     };
     exports2.ServerReadableStreamImpl = ServerReadableStreamImpl;
     var ServerWritableStreamImpl = class extends stream_1.Writable {
-      constructor(call2, metadata, serialize2, request) {
+      constructor(call, metadata, serialize2, request) {
         super({ objectMode: true });
-        this.call = call2;
+        this.call = call;
         this.metadata = metadata;
         this.serialize = serialize2;
         this.request = request;
@@ -20611,9 +20611,9 @@ var require_server_call = __commonJS({
     };
     exports2.ServerWritableStreamImpl = ServerWritableStreamImpl;
     var ServerDuplexStreamImpl = class extends stream_1.Duplex {
-      constructor(call2, metadata, serialize2, deserialize, encoding) {
+      constructor(call, metadata, serialize2, deserialize, encoding) {
         super({ objectMode: true });
-        this.call = call2;
+        this.call = call;
         this.metadata = metadata;
         this.serialize = serialize2;
         this.deserialize = deserialize;
@@ -20895,10 +20895,10 @@ var require_server_call = __commonJS({
       resume() {
         this.stream.resume();
       }
-      setupSurfaceCall(call2) {
+      setupSurfaceCall(call) {
         this.once("cancelled", (reason) => {
-          call2.cancelled = true;
-          call2.emit("cancelled", reason);
+          call.cancelled = true;
+          call.emit("cancelled", reason);
         });
       }
       setupReadable(readable2, encoding) {
@@ -21011,12 +21011,12 @@ var require_server_call = __commonJS({
       }
     };
     exports2.Http2ServerCallStream = Http2ServerCallStream;
-    function handleExpiredDeadline(call2) {
+    function handleExpiredDeadline(call) {
       const err = new Error("Deadline exceeded");
       err.code = constants_1.Status.DEADLINE_EXCEEDED;
-      call2.sendError(err);
-      call2.cancelled = true;
-      call2.emit("cancelled", "deadline");
+      call.sendError(err);
+      call.cancelled = true;
+      call.emit("cancelled", "deadline");
     }
   }
 });
@@ -21123,20 +21123,20 @@ var require_server = __commonJS({
       const unimplementedStatusResponse = getUnimplementedStatusResponse(methodName);
       switch (handlerType) {
         case "unary":
-          return (call2, callback) => {
+          return (call, callback) => {
             callback(unimplementedStatusResponse, null);
           };
         case "clientStream":
-          return (call2, callback) => {
+          return (call, callback) => {
             callback(unimplementedStatusResponse, null);
           };
         case "serverStream":
-          return (call2) => {
-            call2.emit("error", unimplementedStatusResponse);
+          return (call) => {
+            call.emit("error", unimplementedStatusResponse);
           };
         case "bidi":
-          return (call2) => {
-            call2.emit("error", unimplementedStatusResponse);
+          return (call) => {
+            call.emit("error", unimplementedStatusResponse);
           };
         default:
           throw new Error(`Invalid handlerType ${handlerType}`);
@@ -21610,7 +21610,7 @@ var require_server = __commonJS({
             }
             return;
           }
-          let call2 = null;
+          let call = null;
           try {
             const path = headers[http2.constants.HTTP2_HEADER_PATH];
             const serverAddress = http2Server.address();
@@ -21628,8 +21628,8 @@ var require_server = __commonJS({
               this.trace("No handler registered for method " + path + ". Sending UNIMPLEMENTED status.");
               throw getUnimplementedStatusResponse(path);
             }
-            call2 = new server_call_1.Http2ServerCallStream(stream, handler, this.options);
-            call2.once("callEnd", (code) => {
+            call = new server_call_1.Http2ServerCallStream(stream, handler, this.options);
+            call.once("callEnd", (code) => {
               if (code === constants_1.Status.OK) {
                 this.callTracker.addCallSucceeded();
               } else {
@@ -21637,44 +21637,44 @@ var require_server = __commonJS({
               }
             });
             if (this.channelzEnabled && channelzSessionInfo) {
-              call2.once("streamEnd", (success) => {
+              call.once("streamEnd", (success) => {
                 if (success) {
                   channelzSessionInfo.streamTracker.addCallSucceeded();
                 } else {
                   channelzSessionInfo.streamTracker.addCallFailed();
                 }
               });
-              call2.on("sendMessage", () => {
+              call.on("sendMessage", () => {
                 channelzSessionInfo.messagesSent += 1;
                 channelzSessionInfo.lastMessageSentTimestamp = new Date();
               });
-              call2.on("receiveMessage", () => {
+              call.on("receiveMessage", () => {
                 channelzSessionInfo.messagesReceived += 1;
                 channelzSessionInfo.lastMessageReceivedTimestamp = new Date();
               });
             }
-            const metadata = call2.receiveMetadata(headers);
+            const metadata = call.receiveMetadata(headers);
             const encoding = (_a = metadata.get("grpc-encoding")[0]) !== null && _a !== void 0 ? _a : "identity";
             metadata.remove("grpc-encoding");
             switch (handler.type) {
               case "unary":
-                handleUnary(call2, handler, metadata, encoding);
+                handleUnary(call, handler, metadata, encoding);
                 break;
               case "clientStream":
-                handleClientStreaming(call2, handler, metadata, encoding);
+                handleClientStreaming(call, handler, metadata, encoding);
                 break;
               case "serverStream":
-                handleServerStreaming(call2, handler, metadata, encoding);
+                handleServerStreaming(call, handler, metadata, encoding);
                 break;
               case "bidi":
-                handleBidiStreaming(call2, handler, metadata, encoding);
+                handleBidiStreaming(call, handler, metadata, encoding);
                 break;
               default:
                 throw new Error(`Unknown handler type: ${handler.type}`);
             }
           } catch (err) {
-            if (!call2) {
-              call2 = new server_call_1.Http2ServerCallStream(stream, null, this.options);
+            if (!call) {
+              call = new server_call_1.Http2ServerCallStream(stream, null, this.options);
               if (this.channelzEnabled) {
                 this.callTracker.addCallFailed();
                 channelzSessionInfo === null || channelzSessionInfo === void 0 ? void 0 : channelzSessionInfo.streamTracker.addCallFailed();
@@ -21683,7 +21683,7 @@ var require_server = __commonJS({
             if (err.code === void 0) {
               err.code = constants_1.Status.INTERNAL;
             }
-            call2.sendError(err);
+            call.sendError(err);
           }
         });
         http2Server.on("session", (session) => {
@@ -21720,39 +21720,39 @@ var require_server = __commonJS({
       }
     };
     exports2.Server = Server2;
-    async function handleUnary(call2, handler, metadata, encoding) {
-      const request = await call2.receiveUnaryMessage(encoding);
-      if (request === void 0 || call2.cancelled) {
+    async function handleUnary(call, handler, metadata, encoding) {
+      const request = await call.receiveUnaryMessage(encoding);
+      if (request === void 0 || call.cancelled) {
         return;
       }
-      const emitter = new server_call_1.ServerUnaryCallImpl(call2, metadata, request);
+      const emitter = new server_call_1.ServerUnaryCallImpl(call, metadata, request);
       handler.func(emitter, (err, value, trailer, flags) => {
-        call2.sendUnaryMessage(err, value, trailer, flags);
+        call.sendUnaryMessage(err, value, trailer, flags);
       });
     }
-    function handleClientStreaming(call2, handler, metadata, encoding) {
-      const stream = new server_call_1.ServerReadableStreamImpl(call2, metadata, handler.deserialize, encoding);
+    function handleClientStreaming(call, handler, metadata, encoding) {
+      const stream = new server_call_1.ServerReadableStreamImpl(call, metadata, handler.deserialize, encoding);
       function respond2(err, value, trailer, flags) {
         stream.destroy();
-        call2.sendUnaryMessage(err, value, trailer, flags);
+        call.sendUnaryMessage(err, value, trailer, flags);
       }
-      if (call2.cancelled) {
+      if (call.cancelled) {
         return;
       }
       stream.on("error", respond2);
       handler.func(stream, respond2);
     }
-    async function handleServerStreaming(call2, handler, metadata, encoding) {
-      const request = await call2.receiveUnaryMessage(encoding);
-      if (request === void 0 || call2.cancelled) {
+    async function handleServerStreaming(call, handler, metadata, encoding) {
+      const request = await call.receiveUnaryMessage(encoding);
+      if (request === void 0 || call.cancelled) {
         return;
       }
-      const stream = new server_call_1.ServerWritableStreamImpl(call2, metadata, handler.serialize, request);
+      const stream = new server_call_1.ServerWritableStreamImpl(call, metadata, handler.serialize, request);
       handler.func(stream);
     }
-    function handleBidiStreaming(call2, handler, metadata, encoding) {
-      const stream = new server_call_1.ServerDuplexStreamImpl(call2, metadata, handler.serialize, handler.deserialize, encoding);
-      if (call2.cancelled) {
+    function handleBidiStreaming(call, handler, metadata, encoding) {
+      const stream = new server_call_1.ServerDuplexStreamImpl(call, metadata, handler.serialize, handler.deserialize, encoding);
+      if (call.cancelled) {
         return;
       }
       handler.func(stream);
@@ -51201,111 +51201,10 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/auth-93793546.js
-var import_rxjs, events, _emitEvent, _registerEvent, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword;
-var init_auth_93793546 = __esm({
-  ".svelte-kit/output/server/chunks/auth-93793546.js"() {
-    init_shims();
-    init_database_0269ec9b();
-    init_dist3();
-    import_rxjs = __toESM(require_cjs(), 1);
-    events = [];
-    _emitEvent = (tag, value) => {
-      let event = events.find((event2) => tag == event2.tag);
-      if (event) {
-        event.emitter.next(value);
-      }
-    };
-    _registerEvent = (tag) => {
-      let subject;
-      let event = events.find((event2) => tag == event2.tag);
-      if (event) {
-        subject = event.emitter;
-      } else {
-        subject = new import_rxjs.Subject();
-        events.push({
-          tag,
-          emitter: subject
-        });
-      }
-      return subject;
-    };
-    auth = getAuth2(app);
-    onAuthStateChanged(auth, async (authUser) => {
-      if (authUser) {
-        if (user && user.uid != authUser.uid || !user) {
-          user = await _getUserRecord(authUser.uid);
-        }
-        if (!user) {
-          _createError({
-            error: "invalid-user",
-            authUser
-          }, "authService::onAuthStateChanged");
-        } else {
-          _emitEvent("user-ready", user);
-        }
-      } else {
-        console.log("user not signed in");
-      }
-    });
-    _userSignedIn = () => {
-      let authUser = getAuth2().currentUser;
-      return authUser && user && authUser.uid == user.uid && user;
-    };
-    _emailSignup = (email, password) => new Promise(async (resolve2) => {
-      try {
-        const result = await createUserWithEmailAndPassword(auth, email, password);
-        const authUser = result.user;
-        if (authUser) {
-          await sendEmailVerification(authUser);
-          resolve2({ authUser });
-        }
-      } catch (error2) {
-        if (error2.code == "auth/email-already-in-use") {
-          resolve2(error2);
-          return;
-        }
-        _createError(error2, "authService::_emailSignup");
-      }
-    });
-    _emailSignin = (email, password) => new Promise(async (resolve2) => {
-      try {
-        let result = await signInWithEmailAndPassword(auth, email, password);
-        if (!(user && (user.uid && result.user.uid))) {
-          user = await _getUserRecord(result.user.uid);
-        }
-        resolve2({ user });
-      } catch (error2) {
-        if (error2.code == "auth/wrong-password") {
-          resolve2(error2);
-          return;
-        }
-        _createError(error2, "authService::_emailSignin");
-      }
-    });
-    _changePassword = (newPassword, name7, email) => new Promise(async (resolve2) => {
-      try {
-        let authUser = getAuth2().currentUser;
-        user = await _createUserRecord({
-          name: name7,
-          email,
-          uid: authUser.uid,
-          language: 0,
-          theme: 0
-        });
-        let result = await updatePassword(authUser, newPassword);
-        resolve2(result);
-      } catch (error2) {
-        _createError(error2);
-      }
-    });
-  }
-});
-
-// .svelte-kit/output/server/chunks/column-config-33e897a9.js
+// .svelte-kit/output/server/chunks/column-config-31e21418.js
 var COLUMNS, COLUMN_COUNT;
-var init_column_config_33e897a9 = __esm({
-  ".svelte-kit/output/server/chunks/column-config-33e897a9.js"() {
+var init_column_config_31e21418 = __esm({
+  ".svelte-kit/output/server/chunks/column-config-31e21418.js"() {
     init_shims();
     COLUMNS = [
       {
@@ -51327,10 +51226,7 @@ var init_column_config_33e897a9 = __esm({
               "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
             ],
             required: true,
-            translate: true,
-            validate: (val) => {
-              return !val;
-            }
+            translate: true
           },
           description: {
             type: "html",
@@ -51372,7 +51268,7 @@ var init_column_config_33e897a9 = __esm({
         data: {
           videoId: {
             type: "text",
-            maxlength: 10,
+            maxlength: 100,
             placeholder: [
               "https://www.youtube.com/watch?v=ueYFyWW8e5I",
               "https://www.youtube.com/watch?v=ueYFyWW8e5I",
@@ -51380,7 +51276,14 @@ var init_column_config_33e897a9 = __esm({
             ],
             required: true,
             validate: (val) => {
-              return !val;
+              var videoIdRegexp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
+              let result = videoIdRegexp.exec(val);
+              return !result[1];
+            },
+            process: (val) => {
+              var videoIdRegexp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
+              let result = videoIdRegexp.exec(val);
+              return result[1];
             }
           },
           title: {
@@ -54524,7 +54427,7 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/font-d8b9d5e8.js
+// .svelte-kit/output/server/chunks/theme-8c394673.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -54566,12 +54469,12 @@ function writable2(value, start2 = noop2) {
   }
   return { set, update, subscribe: subscribe2 };
 }
-var import_chroma_js, subscriber_queue2, _lang, _fontGroups, _fontSizes, pallettes, _columnWidth, _headerHeight, _headerFontColor, _cardseparation, _themes, Font;
-var init_font_d8b9d5e8 = __esm({
-  ".svelte-kit/output/server/chunks/font-d8b9d5e8.js"() {
+var import_chroma_js, subscriber_queue2, _lang, _fontGroups, _fontSizes, pallettes, _headerFontColor, _themes;
+var init_theme_8c394673 = __esm({
+  ".svelte-kit/output/server/chunks/theme-8c394673.js"() {
     init_shims();
     init_index_a845b91b();
-    init_column_config_33e897a9();
+    init_column_config_31e21418();
     import_chroma_js = __toESM(require_chroma(), 1);
     subscriber_queue2 = [];
     _lang = writable2(0);
@@ -54611,23 +54514,16 @@ var init_font_d8b9d5e8 = __esm({
       ["#fffe00", "#85e757", "#00c484", "#009b95", "#007184"],
       ["#6f3cb1", "#ca369c", "#ff537c", "#ff885f", "#ffc154"]
     ];
-    _columnWidth = 500;
-    _headerHeight = 50;
     _headerFontColor = "#ffffff";
-    _cardseparation = 12;
     _themes = pallettes.map((pallette, i2) => {
       const columns = import_chroma_js.default.scale(pallette).mode("lch").colors(COLUMN_COUNT + 2, "hex");
       const navigation = columns.map((c3, _i) => {
         return (0, import_chroma_js.default)(c3).luminance(0.3).hex();
       });
-      const headerBackground = import_chroma_js.default.scale(["black", "white"])(0.86).hex();
+      const headerBackground = "white";
       const columnBackground = import_chroma_js.default.scale(["black", "white"])(0.92).hex();
       const defaultButton = navigation[0];
       const cancelButton = navigation[1];
-      const cardseparation = _cardseparation + "px";
-      const cardseparationHalf = _cardseparation / 2 + "px";
-      const columnWidth = _columnWidth + "px";
-      const headerHeight = _headerHeight + "px";
       const headerFontColor = _headerFontColor;
       return {
         columns,
@@ -54636,12 +54532,111 @@ var init_font_d8b9d5e8 = __esm({
         columnBackground,
         defaultButton,
         cancelButton,
-        cardseparation,
-        cardseparationHalf,
-        columnWidth,
-        headerHeight,
         headerFontColor
       };
+    });
+  }
+});
+
+// .svelte-kit/output/server/chunks/font-1e4cc472.js
+var import_rxjs, events, _emitEvent, _registerEvent, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, Font;
+var init_font_1e4cc472 = __esm({
+  ".svelte-kit/output/server/chunks/font-1e4cc472.js"() {
+    init_shims();
+    init_database_0269ec9b();
+    init_dist3();
+    import_rxjs = __toESM(require_cjs(), 1);
+    init_index_a845b91b();
+    init_theme_8c394673();
+    events = [];
+    _emitEvent = (tag, value) => {
+      let event = events.find((event2) => tag == event2.tag);
+      if (event) {
+        event.emitter.next(value);
+      }
+    };
+    _registerEvent = (tag) => {
+      let subject;
+      let event = events.find((event2) => tag == event2.tag);
+      if (event) {
+        subject = event.emitter;
+      } else {
+        subject = new import_rxjs.Subject();
+        events.push({
+          tag,
+          emitter: subject
+        });
+      }
+      return subject;
+    };
+    auth = getAuth2(app);
+    onAuthStateChanged(auth, async (authUser) => {
+      if (authUser) {
+        if (user && user.uid != authUser.uid || !user) {
+          user = await _getUserRecord(authUser.uid);
+        }
+        if (!user) {
+          _createError({
+            error: "invalid-user",
+            authUser
+          }, "authService::onAuthStateChanged");
+        } else {
+          _emitEvent("user-ready", user);
+        }
+      } else {
+        console.log("user not signed in");
+      }
+    });
+    _userSignedIn = () => {
+      let authUser = getAuth2().currentUser;
+      return authUser && user && authUser.uid == user.uid && user;
+    };
+    _emailSignup = (email, password) => new Promise(async (resolve2) => {
+      try {
+        const result = await createUserWithEmailAndPassword(auth, email, password);
+        const authUser = result.user;
+        if (authUser) {
+          await sendEmailVerification(authUser);
+          resolve2({ authUser });
+        }
+      } catch (error2) {
+        if (error2.code == "auth/email-already-in-use") {
+          resolve2(error2);
+          return;
+        }
+        _createError(error2, "authService::_emailSignup");
+      }
+    });
+    _emailSignin = (email, password) => new Promise(async (resolve2) => {
+      try {
+        let result = await signInWithEmailAndPassword(auth, email, password);
+        if (!(user && (user.uid && result.user.uid))) {
+          user = await _getUserRecord(result.user.uid);
+        }
+        resolve2({ user });
+      } catch (error2) {
+        if (error2.code == "auth/wrong-password") {
+          resolve2(error2);
+          return;
+        }
+        _createError(error2, "authService::_emailSignin");
+      }
+    });
+    _changePassword = (newPassword, name7, email) => new Promise(async (resolve2) => {
+      try {
+        let authUser = getAuth2().currentUser;
+        user = await _createUserRecord({
+          name: name7,
+          email,
+          uid: authUser.uid,
+          language: 0,
+          theme: 0
+        });
+        let result = await updatePassword(authUser, newPassword);
+        resolve2(result);
+      } catch (error2) {
+        _createError(error2);
+      }
     });
     Font = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let fontSize;
@@ -54676,223 +54671,6 @@ var init_font_d8b9d5e8 = __esm({
 });
 
 // node_modules/@firebase/functions/dist/esm-node/index.node.esm.js
-function mapValues(o, f5) {
-  const result = {};
-  for (const key2 in o) {
-    if (o.hasOwnProperty(key2)) {
-      result[key2] = f5(o[key2]);
-    }
-  }
-  return result;
-}
-function encode2(data) {
-  if (data == null) {
-    return null;
-  }
-  if (data instanceof Number) {
-    data = data.valueOf();
-  }
-  if (typeof data === "number" && isFinite(data)) {
-    return data;
-  }
-  if (data === true || data === false) {
-    return data;
-  }
-  if (Object.prototype.toString.call(data) === "[object String]") {
-    return data;
-  }
-  if (data instanceof Date) {
-    return data.toISOString();
-  }
-  if (Array.isArray(data)) {
-    return data.map((x3) => encode2(x3));
-  }
-  if (typeof data === "function" || typeof data === "object") {
-    return mapValues(data, (x3) => encode2(x3));
-  }
-  throw new Error("Data cannot be encoded in JSON: " + data);
-}
-function decode2(json) {
-  if (json == null) {
-    return json;
-  }
-  if (json["@type"]) {
-    switch (json["@type"]) {
-      case LONG_TYPE:
-      case UNSIGNED_LONG_TYPE: {
-        const value = Number(json["value"]);
-        if (isNaN(value)) {
-          throw new Error("Data cannot be decoded from JSON: " + json);
-        }
-        return value;
-      }
-      default: {
-        throw new Error("Data cannot be decoded from JSON: " + json);
-      }
-    }
-  }
-  if (Array.isArray(json)) {
-    return json.map((x3) => decode2(x3));
-  }
-  if (typeof json === "function" || typeof json === "object") {
-    return mapValues(json, (x3) => decode2(x3));
-  }
-  return json;
-}
-function codeForHTTPStatus(status) {
-  if (status >= 200 && status < 300) {
-    return "ok";
-  }
-  switch (status) {
-    case 0:
-      return "internal";
-    case 400:
-      return "invalid-argument";
-    case 401:
-      return "unauthenticated";
-    case 403:
-      return "permission-denied";
-    case 404:
-      return "not-found";
-    case 409:
-      return "aborted";
-    case 429:
-      return "resource-exhausted";
-    case 499:
-      return "cancelled";
-    case 500:
-      return "internal";
-    case 501:
-      return "unimplemented";
-    case 503:
-      return "unavailable";
-    case 504:
-      return "deadline-exceeded";
-  }
-  return "unknown";
-}
-function _errorForResponse(status, bodyJSON) {
-  let code = codeForHTTPStatus(status);
-  let description = code;
-  let details = void 0;
-  try {
-    const errorJSON = bodyJSON && bodyJSON.error;
-    if (errorJSON) {
-      const status2 = errorJSON.status;
-      if (typeof status2 === "string") {
-        if (!errorCodeMap[status2]) {
-          return new FunctionsError("internal", "internal");
-        }
-        code = errorCodeMap[status2];
-        description = status2;
-      }
-      const message = errorJSON.message;
-      if (typeof message === "string") {
-        description = message;
-      }
-      details = errorJSON.details;
-      if (details !== void 0) {
-        details = decode2(details);
-      }
-    }
-  } catch (e2) {
-  }
-  if (code === "ok") {
-    return null;
-  }
-  return new FunctionsError(code, description, details);
-}
-function failAfter(millis) {
-  let timer = null;
-  return {
-    promise: new Promise((_2, reject) => {
-      timer = setTimeout(() => {
-        reject(new FunctionsError("deadline-exceeded", "deadline-exceeded"));
-      }, millis);
-    }),
-    cancel: () => {
-      if (timer) {
-        clearTimeout(timer);
-      }
-    }
-  };
-}
-function httpsCallable$1(functionsInstance, name7, options) {
-  return (data) => {
-    return call(functionsInstance, name7, data, options || {});
-  };
-}
-async function postJSON(url, body, headers, fetchImpl2) {
-  headers["Content-Type"] = "application/json";
-  let response;
-  try {
-    response = await fetchImpl2(url, {
-      method: "POST",
-      body: JSON.stringify(body),
-      headers
-    });
-  } catch (e2) {
-    return {
-      status: 0,
-      json: null
-    };
-  }
-  let json = null;
-  try {
-    json = await response.json();
-  } catch (e2) {
-  }
-  return {
-    status: response.status,
-    json
-  };
-}
-function call(functionsInstance, name7, data, options) {
-  const url = functionsInstance._url(name7);
-  return callAtURL(functionsInstance, url, data, options);
-}
-async function callAtURL(functionsInstance, url, data, options) {
-  data = encode2(data);
-  const body = { data };
-  const headers = {};
-  const context = await functionsInstance.contextProvider.getContext();
-  if (context.authToken) {
-    headers["Authorization"] = "Bearer " + context.authToken;
-  }
-  if (context.messagingToken) {
-    headers["Firebase-Instance-ID-Token"] = context.messagingToken;
-  }
-  if (context.appCheckToken !== null) {
-    headers["X-Firebase-AppCheck"] = context.appCheckToken;
-  }
-  const timeout = options.timeout || 7e4;
-  const failAfterHandle = failAfter(timeout);
-  const response = await Promise.race([
-    postJSON(url, body, headers, functionsInstance.fetchImpl),
-    failAfterHandle.promise,
-    functionsInstance.cancelAllRequests
-  ]);
-  failAfterHandle.cancel();
-  if (!response) {
-    throw new FunctionsError("cancelled", "Firebase Functions instance was deleted.");
-  }
-  const error2 = _errorForResponse(response.status, response.json);
-  if (error2) {
-    throw error2;
-  }
-  if (!response.json) {
-    throw new FunctionsError("internal", "Response is not valid JSON object.");
-  }
-  let responseData = response.json.data;
-  if (typeof responseData === "undefined") {
-    responseData = response.json.result;
-  }
-  if (typeof responseData === "undefined") {
-    throw new FunctionsError("internal", "Response is missing data field.");
-  }
-  const decodedData = decode2(responseData);
-  return { data: decodedData };
-}
 function registerFunctions(fetchImpl2, variant) {
   const factory2 = (container, { instanceIdentifier: regionOrCustomDomain }) => {
     const app2 = container.getProvider("app").getImmediate();
@@ -54912,10 +54690,7 @@ function getFunctions(app2 = getApp(), regionOrCustomDomain = DEFAULT_REGION) {
   });
   return functionsInstance;
 }
-function httpsCallable(functionsInstance, name7, options) {
-  return httpsCallable$1(getModularInstance(functionsInstance), name7, options);
-}
-var import_node_fetch2, LONG_TYPE, UNSIGNED_LONG_TYPE, FUNCTIONS_TYPE, errorCodeMap, FunctionsError, ContextProvider, DEFAULT_REGION, FunctionsService, name5, version5, AUTH_INTERNAL_NAME, APP_CHECK_INTERNAL_NAME, MESSAGING_INTERNAL_NAME;
+var import_node_fetch2, FUNCTIONS_TYPE, ContextProvider, DEFAULT_REGION, FunctionsService, name5, version5, AUTH_INTERNAL_NAME, APP_CHECK_INTERNAL_NAME, MESSAGING_INTERNAL_NAME;
 var init_index_node_esm2 = __esm({
   "node_modules/@firebase/functions/dist/esm-node/index.node.esm.js"() {
     init_shims();
@@ -54923,34 +54698,7 @@ var init_index_node_esm2 = __esm({
     init_index_node_esm();
     init_index_esm2017();
     import_node_fetch2 = __toESM(require_lib2(), 1);
-    LONG_TYPE = "type.googleapis.com/google.protobuf.Int64Value";
-    UNSIGNED_LONG_TYPE = "type.googleapis.com/google.protobuf.UInt64Value";
     FUNCTIONS_TYPE = "functions";
-    errorCodeMap = {
-      OK: "ok",
-      CANCELLED: "cancelled",
-      UNKNOWN: "unknown",
-      INVALID_ARGUMENT: "invalid-argument",
-      DEADLINE_EXCEEDED: "deadline-exceeded",
-      NOT_FOUND: "not-found",
-      ALREADY_EXISTS: "already-exists",
-      PERMISSION_DENIED: "permission-denied",
-      UNAUTHENTICATED: "unauthenticated",
-      RESOURCE_EXHAUSTED: "resource-exhausted",
-      FAILED_PRECONDITION: "failed-precondition",
-      ABORTED: "aborted",
-      OUT_OF_RANGE: "out-of-range",
-      UNIMPLEMENTED: "unimplemented",
-      INTERNAL: "internal",
-      UNAVAILABLE: "unavailable",
-      DATA_LOSS: "data-loss"
-    };
-    FunctionsError = class extends FirebaseError {
-      constructor(code, message, details) {
-        super(`${FUNCTIONS_TYPE}/${code}`, message || "");
-        this.details = details;
-      }
-    };
     ContextProvider = class {
       constructor(authProvider, messagingProvider, appCheckProvider) {
         this.auth = null;
@@ -55210,10 +54958,10 @@ var require_dist2 = __commonJS({
         return _possibleConstructorReturn(this, result);
       };
     }
-    function _possibleConstructorReturn(self2, call2) {
-      if (call2 && (_typeof(call2) === "object" || typeof call2 === "function")) {
-        return call2;
-      } else if (call2 !== void 0) {
+    function _possibleConstructorReturn(self2, call) {
+      if (call && (_typeof(call) === "object" || typeof call === "function")) {
+        return call;
+      } else if (call !== void 0) {
         throw new TypeError("Derived constructors may only return object or undefined");
       }
       return _assertThisInitialized(self2);
@@ -58497,10 +58245,10 @@ var require_dist3 = __commonJS({
         return _possibleConstructorReturn(this, result);
       };
     }
-    function _possibleConstructorReturn(self2, call2) {
-      if (call2 && (_typeof(call2) === "object" || typeof call2 === "function")) {
-        return call2;
-      } else if (call2 !== void 0) {
+    function _possibleConstructorReturn(self2, call) {
+      if (call && (_typeof(call) === "object" || typeof call === "function")) {
+        return call;
+      } else if (call !== void 0) {
         throw new TypeError("Derived constructors may only return object or undefined");
       }
       return _assertThisInitialized(self2);
@@ -60201,10 +59949,10 @@ var require_dist4 = __commonJS({
         return _possibleConstructorReturn(this, result);
       };
     }
-    function _possibleConstructorReturn(self2, call2) {
-      if (call2 && (_typeof(call2) === "object" || typeof call2 === "function")) {
-        return call2;
-      } else if (call2 !== void 0) {
+    function _possibleConstructorReturn(self2, call) {
+      if (call && (_typeof(call) === "object" || typeof call === "function")) {
+        return call;
+      } else if (call !== void 0) {
         throw new TypeError("Derived constructors may only return object or undefined");
       }
       return _assertThisInitialized(self2);
@@ -61239,10 +60987,10 @@ var require_dist5 = __commonJS({
         return _possibleConstructorReturn(this, result);
       };
     }
-    function _possibleConstructorReturn(self2, call2) {
-      if (call2 && (_typeof(call2) === "object" || typeof call2 === "function")) {
-        return call2;
-      } else if (call2 !== void 0) {
+    function _possibleConstructorReturn(self2, call) {
+      if (call && (_typeof(call) === "object" || typeof call === "function")) {
+        return call;
+      } else if (call !== void 0) {
         throw new TypeError("Derived constructors may only return object or undefined");
       }
       return _assertThisInitialized(self2);
@@ -73187,11 +72935,11 @@ function validateNumber(argument, minValue, maxValue, value) {
   }
 }
 function makeQueryString(params) {
-  const encode3 = encodeURIComponent;
+  const encode2 = encodeURIComponent;
   let queryPart = "?";
   for (const key2 in params) {
     if (params.hasOwnProperty(key2)) {
-      const nextPart = encode3(key2) + "=" + encode3(params[key2]);
+      const nextPart = encode2(key2) + "=" + encode2(params[key2]);
       queryPart = queryPart + nextPart + "&";
     }
   }
@@ -73317,12 +73065,12 @@ ${this.customData.serverResponse}`;
         return this.path.length === 0;
       }
       fullServerUrl() {
-        const encode3 = encodeURIComponent;
-        return "/b/" + encode3(this.bucket) + "/o/" + encode3(this.path);
+        const encode2 = encodeURIComponent;
+        return "/b/" + encode2(this.bucket) + "/o/" + encode2(this.path);
       }
       bucketOnlyServerUrl() {
-        const encode3 = encodeURIComponent;
-        return "/b/" + encode3(this.bucket) + "/o";
+        const encode2 = encodeURIComponent;
+        return "/b/" + encode2(this.bucket) + "/o";
       }
       static makeFromBucketSpec(bucketString, host) {
         let bucketLocation;
@@ -73699,15 +73447,15 @@ var layout_svelte_exports = {};
 __export(layout_svelte_exports, {
   default: () => _layout
 });
-var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_extension_link, import_chroma_js2, __defProp3, __defProps3, __getOwnPropDescs3, __getOwnPropSymbols3, __hasOwnProp3, __propIsEnum3, __defNormalProp3, __spreadValues3, __spreadProps3, strings, css$7, Button, css$6, Text_input, css$5, Login, functions, _createPost, css$4, Tiptap_editor, css$3, Html_input, css$2, Form, css$1, currentTheme, Theme_selector, css, _layout;
+var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_extension_link, import_chroma_js2, __defProp3, __defProps3, __getOwnPropDescs3, __getOwnPropSymbols3, __hasOwnProp3, __propIsEnum3, __defNormalProp3, __spreadValues3, __spreadProps3, strings, css$7, Button, css$6, Text_input, css$5, Login, _createPost, css$4, Tiptap_editor, css$3, Html_input, css$2, Form, css$1, currentTheme, Theme_selector, css, _layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_a845b91b();
-    init_auth_93793546();
+    init_font_1e4cc472();
     init_database_0269ec9b();
-    init_font_d8b9d5e8();
-    init_column_config_33e897a9();
+    init_theme_8c394673();
+    init_column_config_31e21418();
     init_dist4();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
     import_extension_bold = __toESM(require_tiptap_extension_bold_cjs(), 1);
@@ -73982,9 +73730,10 @@ var init_layout_svelte = __esm({
                 facebook
             </div></div></div></div>` : ``}`;
     });
-    functions = getFunctions(app);
+    getFunctions(app);
     _createPost = async (post) => {
-      return httpsCallable(functions, "addpost")(post);
+      console.log(post);
+      return;
     };
     getStorage(app);
     css$4 = {
@@ -74077,8 +73826,9 @@ var init_layout_svelte = __esm({
       const submitDocument = async () => {
         errors = fieldConfigs.map((config) => {
           if (config.required) {
-            if (!data[config.name] || data[config.name] && !data[config.name].trim())
+            if (!data[config.name] || data[config.name] && !data[config.name].trim()) {
               return true;
+            }
           }
           if (config.validate) {
             return config.validate(data[config.name]);
@@ -74088,6 +73838,11 @@ var init_layout_svelte = __esm({
         });
         if (errors.some((e2) => e2))
           return;
+        fieldConfigs.map((config) => {
+          if (config.process) {
+            data[config.name] = config.process(data[config.name]);
+          }
+        });
         let user2 = _userSignedIn();
         const createdPost = await _createPost(__spreadProps3(__spreadValues3(__spreadValues3(__spreadValues3({}, data), fieldTypes), fieldTranslated), {
           createdOn: new Date().getTime(),
@@ -74114,7 +73869,7 @@ var init_layout_svelte = __esm({
         return fieldConfig;
       });
       fieldConfigs.map((c3) => {
-        fieldTranslated["_" + c3.name + "-translated"] = c3.translated;
+        fieldTranslated["_" + c3.name + "-translate"] = c3.translate;
       });
       fieldConfigs.map((c3) => {
         fieldTypes["_" + c3.name + "-type"] = c3.type;
@@ -74156,7 +73911,7 @@ var init_layout_svelte = __esm({
 </span>`;
     });
     css = {
-      code: "html{font-family:'Roboto', sans-serif}body{margin:0;overflow:hidden}*{box-sizing:border-box}._clickable:hover{cursor:pointer}p{margin:0px}ul.svelte-eq6fun.svelte-eq6fun{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.svelte-eq6fun.svelte-eq6fun{display:inline-flex}.header.svelte-eq6fun.svelte-eq6fun{--text:rgb(163, 47, 47);--shadow-height:0.5rem;--shadow-gradient:linear-gradient(\n			to bottom,\n			rgba(0, 0, 0, 0.3) 0%,\n			rgba(0, 0, 0, 0.1) 30%,\n			transparent 100%\n		);height:var(--s50px);display:flex;align-items:center;justify-content:space-between;width:100vw;margin:0;font-family:var(--font);transition:transform 0.2s;user-select:none;padding:0;background-color:var(--theme-header-background)}.logo.svelte-eq6fun.svelte-eq6fun{display:flex;padding:var(--s10px) var(--s7px);align-items:baseline;padding-bottom:var(--s10px)}.aragalaya.svelte-eq6fun.svelte-eq6fun{display:inline-block;font-size:var(--s36px);line-height:var(--s28px);font-weight:bold;font-family:'Gemunu Libre', sans-serif}.online.svelte-eq6fun.svelte-eq6fun{display:inline-block;font-size:var(--s18px);font-family:'Roboto', sans-serif}.header-right.svelte-eq6fun li.svelte-eq6fun{font-size:var(--s14px);line-height:var(--s14px);padding:0 var(--s5px);font-family:'Roboto', sans-serif}.header-right.svelte-eq6fun.svelte-eq6fun:last-child{margin-right:var(--s5px)}.login.svelte-eq6fun.svelte-eq6fun{margin-left:var(--s30px)}.fa-solid.svelte-eq6fun.svelte-eq6fun{font-size:var(--s21px);margin-right:var(--s5px)}.fa-user-nurse.svelte-eq6fun.svelte-eq6fun{color:green}.header-right.svelte-eq6fun li.svelte-eq6fun{cursor:pointer}main.svelte-eq6fun.svelte-eq6fun{position:relative;margin:0 auto;overflow:hiden}",
+      code: "html{font-family:'Roboto', sans-serif}body{margin:0;overflow:hidden}*{box-sizing:border-box}._clickable:hover{cursor:pointer}p{margin:0px}ul.svelte-jhevan.svelte-jhevan{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.svelte-jhevan.svelte-jhevan{display:inline-flex}.header.svelte-jhevan.svelte-jhevan{--text:rgb(163, 47, 47);--shadow-height:0.5rem;--shadow-gradient:linear-gradient(\n			to bottom,\n			rgba(0, 0, 0, 0.3) 0%,\n			rgba(0, 0, 0, 0.1) 30%,\n			transparent 100%\n		);height:var(--config-layoutheaderheight);display:flex;align-items:center;justify-content:space-between;width:100vw;margin:0;font-family:var(--font);transition:transform 0.2s;user-select:none;padding:0;background-color:var(--theme-headerbackground)}.logo.svelte-jhevan.svelte-jhevan{display:flex;padding:var(--s10px) var(--s7px);align-items:baseline;padding-bottom:var(--s10px)}.aragalaya.svelte-jhevan.svelte-jhevan{display:inline-block;font-size:var(--s36px);line-height:var(--s28px);font-weight:bold;font-family:'Gemunu Libre', sans-serif}.online.svelte-jhevan.svelte-jhevan{display:inline-block;font-size:var(--s18px);font-family:'Roboto', sans-serif}.header-right.svelte-jhevan li.svelte-jhevan{font-size:var(--s14px);line-height:var(--s14px);padding:0 var(--s5px);font-family:'Roboto', sans-serif}.header-right.svelte-jhevan.svelte-jhevan:last-child{margin-right:var(--s5px)}.login.svelte-jhevan.svelte-jhevan{margin-left:var(--s30px)}.fa-solid.svelte-jhevan.svelte-jhevan{font-size:var(--s21px);margin-right:var(--s5px)}.fa-user-nurse.svelte-jhevan.svelte-jhevan{color:green}.header-right.svelte-jhevan li.svelte-jhevan{cursor:pointer}main.svelte-jhevan.svelte-jhevan{position:relative;margin:0 auto;overflow:hiden}",
       map: null
     };
     _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -74168,7 +73923,9 @@ var init_layout_svelte = __esm({
         Object.keys(object).map((prop) => {
           const newStyleName = styleName + "-" + prop.toLowerCase();
           if (typeof object[prop] != "object") {
-            document.documentElement.style.setProperty(newStyleName, object[prop]);
+            if (typeof object[prop] == "string") {
+              document.documentElement.style.setProperty(newStyleName, object[prop]);
+            }
           } else {
             setThemeProps(object[prop], newStyleName);
           }
@@ -74189,20 +73946,20 @@ var init_layout_svelte = __esm({
 ${validate_component(Login, "Login").$$render($$result, {}, {}, {})}
 ${validate_component(Form, "Form").$$render($$result, {}, {}, {})}
 
-<div class="${"header svelte-eq6fun"}"><div class="${"logo svelte-eq6fun"}"><div class="${"aragalaya svelte-eq6fun"}">\u0D85\u0DBB\u0D9C\u0DBD\u0DBA
+<div class="${"header svelte-jhevan"}"><div class="${"logo svelte-jhevan"}"><div class="${"aragalaya svelte-jhevan"}">\u0D85\u0DBB\u0D9C\u0DBD\u0DBA
 		</div>
-		<div class="${"online svelte-eq6fun"}">.online
+		<div class="${"online svelte-jhevan"}">.online
 		</div></div>
-	<ul class="${"header-right svelte-eq6fun"}"><li class="${"svelte-eq6fun"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
+	<ul class="${"header-right svelte-jhevan"}"><li class="${"svelte-jhevan"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
 		</li>
-		<li class="${"svelte-eq6fun"}">English 
+		<li class="${"svelte-jhevan"}">English 
 		</li>
-		<li class="${"svelte-eq6fun"}">\u0BA4\u0BAE\u0BBF\u0BB4\u0BCD 
+		<li class="${"svelte-jhevan"}">\u0BA4\u0BAE\u0BBF\u0BB4\u0BCD 
 		</li>
-		<li class="${"login svelte-eq6fun"}">${!user2 ? `<i class="${"fa-solid fa-user-astronaut svelte-eq6fun"}"></i>` : `<i class="${"fa-solid fa-user-nurse svelte-eq6fun"}"></i>`}</li>
-		<li class="${"svelte-eq6fun"}">${validate_component(Theme_selector, "ThemeSelector").$$render($$result, {}, {}, {})}</li></ul></div>
+		<li class="${"login svelte-jhevan"}">${!user2 ? `<i class="${"fa-solid fa-user-astronaut svelte-jhevan"}"></i>` : `<i class="${"fa-solid fa-user-nurse svelte-jhevan"}"></i>`}</li>
+		<li class="${"svelte-jhevan"}">${validate_component(Theme_selector, "ThemeSelector").$$render($$result, {}, {}, {})}</li></ul></div>
 
-<main id="${"main"}" class="${"svelte-eq6fun"}">${slots.default ? slots.default({}) : ``}
+<main id="${"main"}" class="${"svelte-jhevan"}">${slots.default ? slots.default({}) : ``}
 </main>`;
     });
   }
@@ -74223,9 +73980,9 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-e9ce1ed0.js";
-    js = ["pages/__layout.svelte-e9ce1ed0.js", "chunks/index-f708efea.js", "chunks/font-60bb3b1a.js", "chunks/index-02da5586.js", "chunks/auth-647bc921.js"];
-    css2 = ["assets/pages/__layout.svelte-0c767fc4.css"];
+    entry = "pages/__layout.svelte-51211f5a.js";
+    js = ["pages/__layout.svelte-51211f5a.js", "chunks/index-f708efea.js", "chunks/theme-311b21fd.js", "chunks/index-02da5586.js", "chunks/font-643135d6.js"];
+    css2 = ["assets/pages/__layout.svelte-38fb2130.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css"];
   }
 });
 
@@ -74901,7 +74658,7 @@ var require_lib3 = __commonJS({
       level: "all",
       numeric: "decimal"
     };
-    function encode3(text, _a) {
+    function encode2(text, _a) {
       var _b = _a === void 0 ? defaultEncodeOptions : _a, _c = _b.mode, mode = _c === void 0 ? "specialChars" : _c, _d = _b.numeric, numeric = _d === void 0 ? "decimal" : _d, _e = _b.level, level = _e === void 0 ? "all" : _e;
       if (!text) {
         return "";
@@ -74936,7 +74693,7 @@ var require_lib3 = __commonJS({
       }
       return _c;
     }
-    exports2.encode = encode3;
+    exports2.encode = encode2;
     var defaultDecodeOptions = {
       scope: "body",
       level: "all"
@@ -74990,7 +74747,7 @@ var require_lib3 = __commonJS({
       return _b;
     }
     exports2.decodeEntity = decodeEntity;
-    function decode3(text, _a) {
+    function decode2(text, _a) {
       var decodeSecondChar_1 = _a === void 0 ? defaultDecodeOptions : _a, decodeCode_1 = decodeSecondChar_1.level, level = decodeCode_1 === void 0 ? "all" : decodeCode_1, _b = decodeSecondChar_1.scope, scope = _b === void 0 ? level === "xml" ? "strict" : "body" : _b;
       if (!text) {
         return "";
@@ -75037,7 +74794,7 @@ var require_lib3 = __commonJS({
       }
       return replaceResult_1;
     }
-    exports2.decode = decode3;
+    exports2.decode = decode2;
   }
 });
 
@@ -76313,7 +76070,7 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/news-96026a86.js
+// .svelte-kit/output/server/chunks/preview-386fdc3c.js
 function backInOut(t2) {
   const s3 = 1.70158 * 1.525;
   if ((t2 *= 2) < 1)
@@ -76422,15 +76179,15 @@ function tweened(value, defaults = {}) {
     subscribe: store.subscribe
   };
 }
-var css$22, duration, Card, strings$1, Timestamp2, strings2, css$12, Preview, css4, Youtube, News;
-var init_news_96026a86 = __esm({
-  ".svelte-kit/output/server/chunks/news-96026a86.js"() {
+var css$12, duration, Card, strings2, css4, Preview;
+var init_preview_386fdc3c = __esm({
+  ".svelte-kit/output/server/chunks/preview-386fdc3c.js"() {
     init_shims();
     init_index_a845b91b();
-    init_font_d8b9d5e8();
+    init_theme_8c394673();
     init_string_strip_html_esm();
-    css$22 = {
-      code: ".card-container.svelte-p2l7co{padding:var(--theme-cardseparationhalf)}.card.svelte-p2l7co{max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--s10px);overflow:hidden}",
+    css$12 = {
+      code: ".card-container.svelte-ei8n1t{padding:var(--config-cardseparationhalf)}.card.svelte-ei8n1t{max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--s10px);overflow:hidden}",
       map: null
     };
     duration = 2e3;
@@ -76445,16 +76202,148 @@ var init_news_96026a86 = __esm({
         $$bindings.slideInTop(slideInTop);
       if ($$props.delay === void 0 && $$bindings.delay && delay !== void 0)
         $$bindings.delay(delay);
-      $$result.css.add(css$22);
+      $$result.css.add(css$12);
       maxHeight = slideInTop ? $slideIn + "px" : "none";
       $$unsubscribe_slideIn();
       return `
 
 
-<div class="${"card-container svelte-p2l7co"}"><div class="${"card svelte-p2l7co"}" style="${"max-height: " + escape(maxHeight)}">${slots.default ? slots.default({}) : ``}</div>
+<div class="${"card-container svelte-ei8n1t"}"><div class="${"card svelte-ei8n1t"}" style="${"max-height: " + escape(maxHeight)}">${slots.default ? slots.default({}) : ``}</div>
 </div>`;
     });
-    strings$1 = {
+    strings2 = {
+      read_more: [
+        "\u0DC0\u0DD0\u0DA9\u0DD2\u0DAF\u0DD4\u0DBB \u0D9A\u0DD2\u0DBA\u0DC0\u0DB1\u0DCA\u0DB1",
+        "read more",
+        "\u0BAE\u0BC7\u0BB2\u0BC1\u0BAE\u0BCD \u0BAA\u0B9F\u0BBF\u0B95\u0BCD\u0B95"
+      ]
+    };
+    css4 = {
+      code: ".preview-image.svelte-y1mj89{background-image:var(--url);background-color:#cccccc;height:200px;width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;margin-top:5px}.description img{width:100%;border-radius:3px}",
+      map: null
+    };
+    Preview = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let contentString;
+      let images;
+      let $_lang, $$unsubscribe__lang;
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let { content } = $$props;
+      let { limit: limit2 } = $$props;
+      let { preview } = $$props;
+      if (!content)
+        throw "content not defined: preview.svelte";
+      let text, croppedText, croppedFlag;
+      if ($$props.content === void 0 && $$bindings.content && content !== void 0)
+        $$bindings.content(content);
+      if ($$props.limit === void 0 && $$bindings.limit && limit2 !== void 0)
+        $$bindings.limit(limit2);
+      if ($$props.preview === void 0 && $$bindings.preview && preview !== void 0)
+        $$bindings.preview(preview);
+      $$result.css.add(css4);
+      contentString = Array.isArray(content) ? content[$_lang] : content;
+      images = contentString.match(/src="([\w\W]+?)"/g);
+      images = images && images.map((src, _i) => {
+        return src.replace('src="', "").replace('"', "").replace("&amp;", "&");
+      });
+      text = ue(contentString).result;
+      croppedText = text.substring(0, limit2);
+      croppedFlag = text.length > limit2 || images;
+      croppedText += croppedFlag ? "..." : "";
+      $$unsubscribe__lang();
+      return `
+
+
+<div>${!preview ? `<!-- HTML_TAG_START -->${contentString}<!-- HTML_TAG_END -->` : `${escape(croppedText)}
+        ${croppedFlag ? `<span style="${"font-weight:bold; text-decoration:underline"}">${escape(strings2["read_more"][$_lang])}</span>
+            ${images ? `<div class="${"preview-image svelte-y1mj89"}" style="${"--url: url(" + escape(images[0]) + ")"}"></div>` : ``}` : ``}`}
+</div>`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/index.svelte.js
+var index_svelte_exports = {};
+__export(index_svelte_exports, {
+  default: () => Routes
+});
+var import_chroma_js3, css$32, Nav, css$22, Empty, strings3, Timestamp2, Bulletin, css$13, Youtube, News, css5, Routes;
+var init_index_svelte = __esm({
+  ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
+    init_shims();
+    init_index_a845b91b();
+    init_column_config_31e21418();
+    init_preview_386fdc3c();
+    init_font_1e4cc472();
+    init_theme_8c394673();
+    init_database_0269ec9b();
+    init_string_strip_html_esm();
+    init_dist3();
+    import_chroma_js3 = __toESM(require_chroma(), 1);
+    init_dist();
+    init_dist2();
+    Array(COLUMN_COUNT).fill(0);
+    css$32 = {
+      code: ".navigation.svelte-1akofx{position:fixed;right:var(--s5px);bottom:var(--s5px);z-index:100;display:flex;align-items:center;flex-direction:column;background-color:black;border-radius:var(--s3px)}.animated.svelte-1akofx{position:relative}.icons.svelte-1akofx{position:relative;overflow:hidden}.icon.svelte-1akofx{position:relative;width:var(--s70px);height:var(--s70px);display:flex;align-items:center;justify-content:center;color:var(--nav-buttons);font-size:var(--s22px)}.toggle.svelte-1akofx{color:white}.show-hide.svelte-1akofx{background-color:black;z-index:1;color:white;border-radius:var(--s3px)}.scroll.svelte-1akofx{position:absolute;right:0;width:var(--s4px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s3px)}.title_c.svelte-1akofx{position:fixed}.title.svelte-1akofx{font-weight:bold;color:rgb(85, 85, 85);padding:var(--s0px) var(--s5px);background-color:white}",
+      map: null
+    };
+    Nav = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $height, $$unsubscribe_height;
+      let $scrollPosition, $$unsubscribe_scrollPosition;
+      let $_lang, $$unsubscribe__lang;
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      const height = tweened((COLUMN_COUNT + 1) * 70, { duration: 350, easing: circIn });
+      $$unsubscribe_height = subscribe(height, (value) => $height = value);
+      let scrollBarHeight = 0;
+      let devicePixelRatio = 1;
+      const scrollPosition = tweened(0, { duration: 350, easing: quartOut });
+      $$unsubscribe_scrollPosition = subscribe(scrollPosition, (value) => $scrollPosition = value);
+      _registerEvent("h-scroll").subscribe((v3) => {
+        scrollPosition.set(v3 / (COLUMN_COUNT * 500) * (COLUMN_COUNT * 70));
+      });
+      $$result.css.add(css$32);
+      $$unsubscribe_height();
+      $$unsubscribe_scrollPosition();
+      $$unsubscribe__lang();
+      return `<div class="${"navigation svelte-1akofx"}"><div class="${"animated svelte-1akofx"}"><div class="${"icons svelte-1akofx"}" style="${"max-height: " + escape($height) + "px"}">${each(COLUMNS, (column, _i) => {
+        return `<div style="${"color: var(--theme-navigation-" + escape(_i) + ")"}" class="${"icon _clickable svelte-1akofx"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-1akofx"}"></i>
+                </div>`;
+      })}
+            <div class="${"toggle icon _clickable svelte-1akofx"}">${`<i class="${"fa-solid fa-toggle-on"}"></i>`}</div>
+            <div class="${"scroll svelte-1akofx"}" style="${"height: " + escape(scrollBarHeight) + "px; top: " + escape($scrollPosition) + "px;"}"></div></div>
+        ${`${each(COLUMNS, (column, _i) => {
+        return `<div class="${"title_c _clickable svelte-1akofx"}" style="${"right: " + escape(75 / devicePixelRatio) + "px; bottom: " + escape((70 * (COLUMN_COUNT + 1 - _i) + 5) / devicePixelRatio) + "px"}"><div class="${"title svelte-1akofx"}">${validate_component(Font, "Font").$$render($$result, { font: 1, size: 1 }, {}, {
+          default: () => {
+            return `${escape(column.title[$_lang])}
+                `;
+          }
+        })}</div>
+        </div>`;
+      })}`}</div>
+    
+    <div class="${"icon show-hide _clickable svelte-1akofx"}">${`<i class="${"fa-solid fa-angles-down"}"></i>`}</div>
+</div>`;
+    });
+    css$22 = {
+      code: ".empty-space.svelte-899snu{width:100%}",
+      map: null
+    };
+    Empty = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let { data } = $$props;
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+        $$bindings.data(data);
+      $$result.css.add(css$22);
+      return `
+
+
+${validate_component(Card, "Card").$$render($$result, {}, {}, {
+        default: () => {
+          return `
+	<div class="${"empty-space svelte-899snu"}" style="${"height: " + escape(data.height)}"></div>
+	`;
+        }
+      })}`;
+    });
+    strings3 = {
       yesterday: [
         "\u0D8A\u0DBA\u0DDA",
         "yesterday",
@@ -76552,17 +76441,17 @@ var init_news_96026a86 = __esm({
         const isYesterday = yesterday.toDateString() === date.toDateString();
         const isThisYear = today.getFullYear() === date.getFullYear();
         if (seconds < 5) {
-          return strings$1["now"][language];
+          return strings3["now"][language];
         } else if (seconds < 60) {
-          return strings$1["secondsAgo"][language].replace("*seconds*", seconds.toString());
+          return strings3["secondsAgo"][language].replace("*seconds*", seconds.toString());
         } else if (seconds < 90) {
-          return strings$1["minuteAgo"][language];
+          return strings3["minuteAgo"][language];
         } else if (minutes < 60) {
-          return strings$1["minutesAgo"][language].replace("*minutes*", minutes.toString());
+          return strings3["minutesAgo"][language].replace("*minutes*", minutes.toString());
         } else if (isToday) {
-          return getFormattedDate(date, strings$1["today"][language]);
+          return getFormattedDate(date, strings3["today"][language]);
         } else if (isYesterday) {
-          return getFormattedDate(date, strings$1["yesterday"][language]);
+          return getFormattedDate(date, strings3["yesterday"][language]);
         } else if (isThisYear) {
           return getFormattedDate(date, false, true);
         }
@@ -76596,205 +76485,6 @@ var init_news_96026a86 = __esm({
       if ($$props.inline === void 0 && $$bindings.inline && inline !== void 0)
         $$bindings.inline(inline);
       return `<div class="${"timestamp"}" style="${"display: " + escape(inline ? "inline-block" : "block")}">${escape(timeAgoString)}</div>`;
-    });
-    strings2 = {
-      read_more: [
-        "\u0DC0\u0DD0\u0DA9\u0DD2\u0DAF\u0DD4\u0DBB \u0D9A\u0DD2\u0DBA\u0DC0\u0DB1\u0DCA\u0DB1",
-        "read more",
-        "\u0BAE\u0BC7\u0BB2\u0BC1\u0BAE\u0BCD \u0BAA\u0B9F\u0BBF\u0B95\u0BCD\u0B95"
-      ]
-    };
-    css$12 = {
-      code: ".preview-image.svelte-y1mj89{background-image:var(--url);background-color:#cccccc;height:200px;width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;margin-top:5px}.description img{width:100%;border-radius:3px}",
-      map: null
-    };
-    Preview = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let contentString;
-      let images;
-      let $_lang, $$unsubscribe__lang;
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
-      let { content } = $$props;
-      let { limit: limit2 } = $$props;
-      let { preview } = $$props;
-      if (!content)
-        throw "content not defined: preview.svelte";
-      let text, croppedText, croppedFlag;
-      if ($$props.content === void 0 && $$bindings.content && content !== void 0)
-        $$bindings.content(content);
-      if ($$props.limit === void 0 && $$bindings.limit && limit2 !== void 0)
-        $$bindings.limit(limit2);
-      if ($$props.preview === void 0 && $$bindings.preview && preview !== void 0)
-        $$bindings.preview(preview);
-      $$result.css.add(css$12);
-      contentString = Array.isArray(content) ? content[$_lang] : content;
-      images = contentString.match(/src="([\w\W]+?)"/g);
-      images = images && images.map((src, _i) => {
-        return src.replace('src="', "").replace('"', "").replace("&amp;", "&");
-      });
-      text = ue(contentString).result;
-      croppedText = text.substring(0, limit2);
-      croppedFlag = text.length > limit2 || images;
-      croppedText += croppedFlag ? "..." : "";
-      $$unsubscribe__lang();
-      return `
-
-
-<div>${!preview ? `<!-- HTML_TAG_START -->${contentString}<!-- HTML_TAG_END -->` : `${escape(croppedText)}
-        ${croppedFlag ? `<span style="${"font-weight:bold; text-decoration:underline"}">${escape(strings2["read_more"][$_lang])}</span>
-            ${images ? `<div class="${"preview-image svelte-y1mj89"}" style="${"--url: url(" + escape(images[0]) + ")"}"></div>` : ``}` : ``}`}
-</div>`;
-    });
-    css4 = {
-      code: ".youtube.svelte-zmhqls{border-radius:var(--s3px);overflow:hidden;height:var(--s300px);width:100%}",
-      map: null
-    };
-    Youtube = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let { videoId } = $$props;
-      let { style = "" } = $$props;
-      if ($$props.videoId === void 0 && $$bindings.videoId && videoId !== void 0)
-        $$bindings.videoId(videoId);
-      if ($$props.style === void 0 && $$bindings.style && style !== void 0)
-        $$bindings.style(style);
-      $$result.css.add(css4);
-      return `<div class="${"youtube svelte-zmhqls"}"${add_attribute("style", style, 0)}><div id="${"player-" + escape(videoId)}"></div>
-</div>`;
-    });
-    News = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang, $$unsubscribe__lang;
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
-      let { data } = $$props;
-      let minimized = true;
-      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
-        $$bindings.data(data);
-      $$unsubscribe__lang();
-      return `${validate_component(Card, "Card").$$render($$result, {}, {}, {
-        default: () => {
-          return `
-    ${validate_component(Font, "Font").$$render($$result, {
-            font: 0,
-            size: 0.75,
-            color: "\n            rgb(100, 99, 99);\n            margin-bottom: var(--s7px);"
-          }, {}, {
-            default: () => {
-              return `${validate_component(Timestamp2, "Timestamp").$$render($$result, { time: data.createdOn }, {}, {})}`;
-            }
-          })}
-    
-    ${validate_component(Youtube, "Youtube").$$render($$result, {
-            videoId: data.videoId,
-            style: "margin-bottom: var(--s7px);"
-          }, {}, {})}
-    
-    ${validate_component(Font, "Font").$$render($$result, {
-            font: 1,
-            size: 1.25,
-            style: "\n            font-weight: bold;\n            margin-bottom: var(--s3px);"
-          }, {}, {
-            default: () => {
-              return `${escape(data.title[$_lang])}`;
-            }
-          })}
-    
-    ${validate_component(Font, "Font").$$render($$result, {
-            font: 0,
-            size: 0.8,
-            color: "rgb(57, 56, 56);"
-          }, {}, {
-            default: () => {
-              return `${validate_component(Preview, "Preview").$$render($$result, {
-                content: data.shortDescription,
-                limit: 100,
-                preview: minimized
-              }, {}, {})}`;
-            }
-          })}`;
-        }
-      })}`;
-    });
-  }
-});
-
-// .svelte-kit/output/server/entries/pages/index.svelte.js
-var index_svelte_exports = {};
-__export(index_svelte_exports, {
-  default: () => Routes
-});
-var import_chroma_js3, css$23, Nav, css$13, Empty, Bulletin, css5, Routes;
-var init_index_svelte = __esm({
-  ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
-    init_shims();
-    init_index_a845b91b();
-    init_column_config_33e897a9();
-    init_news_96026a86();
-    init_auth_93793546();
-    init_font_d8b9d5e8();
-    init_database_0269ec9b();
-    init_string_strip_html_esm();
-    init_dist3();
-    import_chroma_js3 = __toESM(require_chroma(), 1);
-    init_dist();
-    init_dist2();
-    Array(COLUMN_COUNT).fill(0);
-    css$23 = {
-      code: ".navigation.svelte-1akofx{position:fixed;right:var(--s5px);bottom:var(--s5px);z-index:100;display:flex;align-items:center;flex-direction:column;background-color:black;border-radius:var(--s3px)}.animated.svelte-1akofx{position:relative}.icons.svelte-1akofx{position:relative;overflow:hidden}.icon.svelte-1akofx{position:relative;width:var(--s70px);height:var(--s70px);display:flex;align-items:center;justify-content:center;color:var(--nav-buttons);font-size:var(--s22px)}.toggle.svelte-1akofx{color:white}.show-hide.svelte-1akofx{background-color:black;z-index:1;color:white;border-radius:var(--s3px)}.scroll.svelte-1akofx{position:absolute;right:0;width:var(--s4px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s3px)}.title_c.svelte-1akofx{position:fixed}.title.svelte-1akofx{font-weight:bold;color:rgb(85, 85, 85);padding:var(--s0px) var(--s5px);background-color:white}",
-      map: null
-    };
-    Nav = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $height, $$unsubscribe_height;
-      let $scrollPosition, $$unsubscribe_scrollPosition;
-      let $_lang, $$unsubscribe__lang;
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
-      const height = tweened((COLUMN_COUNT + 1) * 70, { duration: 350, easing: circIn });
-      $$unsubscribe_height = subscribe(height, (value) => $height = value);
-      let scrollBarHeight = 0;
-      let devicePixelRatio = 1;
-      const scrollPosition = tweened(0, { duration: 350, easing: quartOut });
-      $$unsubscribe_scrollPosition = subscribe(scrollPosition, (value) => $scrollPosition = value);
-      _registerEvent("h-scroll").subscribe((v3) => {
-        scrollPosition.set(v3 / (COLUMN_COUNT * 500) * (COLUMN_COUNT * 70));
-      });
-      $$result.css.add(css$23);
-      $$unsubscribe_height();
-      $$unsubscribe_scrollPosition();
-      $$unsubscribe__lang();
-      return `<div class="${"navigation svelte-1akofx"}"><div class="${"animated svelte-1akofx"}"><div class="${"icons svelte-1akofx"}" style="${"max-height: " + escape($height) + "px"}">${each(COLUMNS, (column, _i) => {
-        return `<div style="${"color: var(--theme-navigation-" + escape(_i) + ")"}" class="${"icon _clickable svelte-1akofx"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-1akofx"}"></i>
-                </div>`;
-      })}
-            <div class="${"toggle icon _clickable svelte-1akofx"}">${`<i class="${"fa-solid fa-toggle-on"}"></i>`}</div>
-            <div class="${"scroll svelte-1akofx"}" style="${"height: " + escape(scrollBarHeight) + "px; top: " + escape($scrollPosition) + "px;"}"></div></div>
-        ${`${each(COLUMNS, (column, _i) => {
-        return `<div class="${"title_c _clickable svelte-1akofx"}" style="${"right: " + escape(75 / devicePixelRatio) + "px; bottom: " + escape((70 * (COLUMN_COUNT + 1 - _i) + 5) / devicePixelRatio) + "px"}"><div class="${"title svelte-1akofx"}">${validate_component(Font, "Font").$$render($$result, { font: 0, size: 0.75 }, {}, {
-          default: () => {
-            return `${escape(column.title[$_lang])}
-                `;
-          }
-        })}</div>
-        </div>`;
-      })}`}</div>
-    
-    <div class="${"icon show-hide _clickable svelte-1akofx"}">${`<i class="${"fa-solid fa-angles-down"}"></i>`}</div>
-</div>`;
-    });
-    css$13 = {
-      code: ".empty-space.svelte-899snu{width:100%}",
-      map: null
-    };
-    Empty = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let { data } = $$props;
-      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
-        $$bindings.data(data);
-      $$result.css.add(css$13);
-      return `
-
-
-${validate_component(Card, "Card").$$render($$result, {}, {}, {
-        default: () => {
-          return `
-	<div class="${"empty-space svelte-899snu"}" style="${"height: " + escape(data.height)}"></div>
-	`;
-        }
-      })}`;
     });
     Bulletin = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $_lang, $$unsubscribe__lang;
@@ -76854,8 +76544,75 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
         }
       })}`;
     });
+    css$13 = {
+      code: ".youtube.svelte-zmhqls{border-radius:var(--s3px);overflow:hidden;height:var(--s300px);width:100%}",
+      map: null
+    };
+    Youtube = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let { videoId } = $$props;
+      let { style = "" } = $$props;
+      if ($$props.videoId === void 0 && $$bindings.videoId && videoId !== void 0)
+        $$bindings.videoId(videoId);
+      if ($$props.style === void 0 && $$bindings.style && style !== void 0)
+        $$bindings.style(style);
+      $$result.css.add(css$13);
+      return `<div class="${"youtube svelte-zmhqls"}"${add_attribute("style", style, 0)}><div id="${"player-" + escape(videoId)}"></div>
+</div>`;
+    });
+    News = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $_lang, $$unsubscribe__lang;
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let { data } = $$props;
+      let minimized = true;
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+        $$bindings.data(data);
+      $$unsubscribe__lang();
+      return `${validate_component(Card, "Card").$$render($$result, {}, {}, {
+        default: () => {
+          return `
+    ${validate_component(Font, "Font").$$render($$result, {
+            font: 0,
+            size: 0.75,
+            color: "\n            rgb(100, 99, 99);\n            margin-bottom: var(--s7px);"
+          }, {}, {
+            default: () => {
+              return `${validate_component(Timestamp2, "Timestamp").$$render($$result, { time: data.createdOn }, {}, {})}`;
+            }
+          })}
+    
+    ${validate_component(Youtube, "Youtube").$$render($$result, {
+            videoId: data.videoId,
+            style: "margin-bottom: var(--s7px);"
+          }, {}, {})}
+    
+    ${validate_component(Font, "Font").$$render($$result, {
+            font: 1,
+            size: 1.25,
+            style: "\n            font-weight: bold;\n            margin-bottom: var(--s3px);"
+          }, {}, {
+            default: () => {
+              return `${escape(data.title[$_lang])}`;
+            }
+          })}
+    
+    ${validate_component(Font, "Font").$$render($$result, {
+            font: 0,
+            size: 0.8,
+            color: "rgb(57, 56, 56);"
+          }, {}, {
+            default: () => {
+              return `${validate_component(Preview, "Preview").$$render($$result, {
+                content: data.shortDescription,
+                limit: 100,
+                preview: minimized
+              }, {}, {})}`;
+            }
+          })}`;
+        }
+      })}`;
+    });
     css5 = {
-      code: "ul.svelte-hko9fw.svelte-hko9fw{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.svelte-hko9fw.svelte-hko9fw{display:inline-flex}.columns.svelte-hko9fw.svelte-hko9fw{overflow:hidden;background-color:var(--theme-columnbackground)}.column.svelte-hko9fw.svelte-hko9fw{position:relative;width:var(--theme-columnwidth);height:calc(100vh - var(--s50px))}.header.svelte-hko9fw.svelte-hko9fw{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;height:var(--theme-headerheight);color:var(--theme-headerfontcolor);padding:0 var(--s15px) 0 var(--s10px);font-weight:bold;z-index:2}.header.svelte-hko9fw div.svelte-hko9fw{display:flex;align-items:center;height:100%}.header.svelte-hko9fw.svelte-hko9fw:first-child{font-size:var(--s24px)}.header.svelte-hko9fw span.svelte-hko9fw{text-shadow:0px 0px 3px #1b1b1b, 0 0 8px #525252;margin-left:var(--s10px)}.icon-button.svelte-hko9fw.svelte-hko9fw{display:inline-flex;align-items:center;justify-content:center;width:35px;height:35px;font-size:var(--s17px)}.cards.svelte-hko9fw.svelte-hko9fw{position:relative;width:100%;height:calc(100vh - var(--s100px));overflow-y:scroll;overflow-x:hidden;-ms-overflow-style:none;scrollbar-width:none;padding:var(--theme-cardseparationhalf) 0}.cards.svelte-hko9fw.svelte-hko9fw::-webkit-scrollbar{display:none}.spacer.svelte-hko9fw.svelte-hko9fw{width:var(--theme-cardseparationhalf);height:calc(100vh - var(--s50px))}.spacer.svelte-hko9fw.svelte-hko9fw::after{display:block;content:'';height:var(--theme-headerheight);width:var(--theme-cardseparationhalf);background-color:var(--theme-columnbackground)}.scrollbar.svelte-hko9fw.svelte-hko9fw{position:absolute;top:var(--s50px);right:0}.scroll.svelte-hko9fw.svelte-hko9fw{position:absolute;overflow:hidden;top:var(--s20px);right:var(--s-3_75px);width:var(--s7_5px);border-radius:var(--s7_5px);opacity:0.5;background-color:rgba(0,0,0,0.4)}",
+      code: "ul.svelte-1wbq8pa.svelte-1wbq8pa{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.svelte-1wbq8pa.svelte-1wbq8pa{display:inline-flex}.columns.svelte-1wbq8pa.svelte-1wbq8pa{overflow:hidden;background-color:var(--theme-columnbackground)}.column.svelte-1wbq8pa.svelte-1wbq8pa{position:relative;width:var(--config-columnwidth);height:calc(100vh - var(--config-columnheaderheight))}.header.svelte-1wbq8pa.svelte-1wbq8pa{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;height:var(--config-columnheaderheight);color:var(--theme-headerfontcolor);padding:0 var(--s15px) 0 var(--s10px);font-weight:bold;z-index:2}.header.svelte-1wbq8pa div.svelte-1wbq8pa{display:flex;align-items:center;height:100%}.header.svelte-1wbq8pa.svelte-1wbq8pa:first-child{font-size:var(--s24px)}.icon-button.svelte-1wbq8pa.svelte-1wbq8pa{display:inline-flex;align-items:center;justify-content:center;width:35px;height:35px;font-size:var(--s17px)}.cards.svelte-1wbq8pa.svelte-1wbq8pa{position:relative;width:100%;height:calc(100vh - var(--s100px));overflow-y:scroll;overflow-x:hidden;-ms-overflow-style:none;scrollbar-width:none;padding:var(--config-cardseparationhalf) 0}.cards.svelte-1wbq8pa.svelte-1wbq8pa::-webkit-scrollbar{display:none}.spacer.svelte-1wbq8pa.svelte-1wbq8pa{width:var(--theme-cardseparationhalf);height:calc(100vh - var(--config-columnheaderheight))}.spacer.svelte-1wbq8pa.svelte-1wbq8pa::after{display:block;content:'';height:var(--config-columnheaderheight);width:var(--config-cardseparationhalf);background-color:var(--theme-columnbackground)}.scrollbar.svelte-1wbq8pa.svelte-1wbq8pa{position:absolute;top:var(--config-columnheaderheight);right:0}.scroll.svelte-1wbq8pa.svelte-1wbq8pa{position:absolute;overflow:hidden;top:var(--s20px);right:var(--s-3_75px);width:var(--s7_5px);border-radius:var(--s7_5px);opacity:0.5;background-color:rgba(0,0,0,0.4)}",
       map: null
     };
     Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -76921,28 +76678,32 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
 
 ${validate_component(Nav, "Nav").$$render($$result, {}, {}, {})}
 
-<div class="${"columns svelte-hko9fw"}"${add_attribute("this", columnsElement, 0)}><ul class="${"svelte-hko9fw"}"><li class="${"spacer svelte-hko9fw"}" style="${"--background: var(--theme-columns-0);"}"></li>
+<div class="${"columns svelte-1wbq8pa"}"${add_attribute("this", columnsElement, 0)}><ul class="${"svelte-1wbq8pa"}"><li class="${"spacer svelte-1wbq8pa"}" style="${"--background: var(--theme-columns-0);"}"></li>
         ${each(COLUMNS, (column, _i) => {
-        return `<li class="${"svelte-hko9fw"}"><div class="${"column svelte-hko9fw"}"><div style="${"background-color: #e6e6e6;"}"><div class="${"header _clickable svelte-hko9fw"}" style="${"background-color: var(--theme-columns-" + escape(_i + 1) + "); top: " + escape(_bounceAnimation[_i]) + "px"}"><div class="${"svelte-hko9fw"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-hko9fw"}"></i>
-                            <span class="${"svelte-hko9fw"}">${validate_component(Font, "Font").$$render($$result, { font: 2, size: 0.95 }, {}, {
+        return `<li class="${"svelte-1wbq8pa"}"><div class="${"column svelte-1wbq8pa"}"><div style="${"background-color: #e6e6e6;"}"><div class="${"header _clickable svelte-1wbq8pa"}" style="${"background-color: var(--theme-columns-" + escape(_i + 1) + "); top: " + escape(_bounceAnimation[_i]) + "px"}"><div class="${"svelte-1wbq8pa"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-1wbq8pa"}"></i>
+                            ${validate_component(Font, "Font").$$render($$result, {
+          inline: true,
+          font: 2,
+          size: 0.95,
+          style: "\n                                    text-shadow: 0px 0px 3px #1b1b1b, 0 0 8px #525252;\n                                    margin-left: var(--s10px);"
+        }, {}, {
           default: () => {
             return `${escape(column.title[$_lang])}
-                                `;
+                            `;
           }
-        })}
-                            </span></div>
-                        <div class="${"svelte-hko9fw"}"><div class="${"icon-button svelte-hko9fw"}"><i class="${"fa-solid fa-add"}"></i>
+        })}</div>
+                        <div class="${"svelte-1wbq8pa"}"><div class="${"icon-button svelte-1wbq8pa"}"><i class="${"fa-solid fa-add"}"></i>
                             </div></div>
                     </div></div>
-                <div class="${"cards svelte-hko9fw"}">${each(columnData[_i], (item, _i2) => {
+                <div class="${"cards svelte-1wbq8pa"}">${each(columnData[_i], (item, _i2) => {
           return `<div>${validate_component(COMPONENTS[column.type] || Empty || missing_component, "svelte:component").$$render($$result, { data: item }, {}, {})}
                     </div>`;
         })}</div>
-                <div class="${"scrollbar svelte-hko9fw"}"><div class="${"scroll svelte-hko9fw"}" style="${"top: " + escape(vScroll[_i]) + "px; opacity: " + escape(_vScrollAnimation[_i]) + "; height: " + escape(_vScrollAnimation[_i] * 25) + "px"}"></div>
+                <div class="${"scrollbar svelte-1wbq8pa"}"><div class="${"scroll svelte-1wbq8pa"}" style="${"top: " + escape(vScroll[_i]) + "px; opacity: " + escape(_vScrollAnimation[_i]) + "; height: " + escape(_vScrollAnimation[_i] * 25) + "px"}"></div>
                 </div></div>
         </li>`;
       })}
-        <li class="${"spacer svelte-hko9fw"}" style="${"--background: var(--theme-columns-" + escape(COLUMN_COUNT - 1) + ");"}"></li></ul>
+        <li class="${"spacer svelte-1wbq8pa"}" style="${"--background: var(--theme-columns-" + escape(COLUMN_COUNT - 1) + ");"}"></li></ul>
 </div>`;
     });
   }
@@ -76963,9 +76724,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-6ddc3b42.js";
-    js3 = ["pages/index.svelte-6ddc3b42.js", "chunks/index-f708efea.js", "chunks/font-60bb3b1a.js", "chunks/index-02da5586.js", "chunks/news-46cce564.js", "chunks/auth-647bc921.js"];
-    css6 = ["assets/pages/index.svelte-8e2ce0af.css", "assets/news-016b1673.css"];
+    entry3 = "pages/index.svelte-1367a931.js";
+    js3 = ["pages/index.svelte-1367a931.js", "chunks/index-f708efea.js", "chunks/theme-311b21fd.js", "chunks/index-02da5586.js", "chunks/preview-0e14ac1f.js", "chunks/font-643135d6.js"];
+    css6 = ["assets/pages/index.svelte-a63df8a2.css", "assets/preview-24a70b0e.css"];
   }
 });
 
@@ -76974,18 +76735,45 @@ var post_preview_svelte_exports = {};
 __export(post_preview_svelte_exports, {
   default: () => Post_preview
 });
-var import_chroma_js4, css7, Post_preview;
+var import_chroma_js4, css$14, Proposals, css7, Post_preview;
 var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_a845b91b();
-    init_news_96026a86();
-    init_font_d8b9d5e8();
-    init_column_config_33e897a9();
-    import_chroma_js4 = __toESM(require_chroma(), 1);
+    init_preview_386fdc3c();
+    init_theme_8c394673();
     init_string_strip_html_esm();
+    init_column_config_31e21418();
+    import_chroma_js4 = __toESM(require_chroma(), 1);
+    css$14 = {
+      code: ".proposals.svelte-vf5qjd{width:100%}",
+      map: null
+    };
+    Proposals = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let { data } = $$props;
+      let minimized = false;
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+        $$bindings.data(data);
+      $$result.css.add(css$14);
+      return `
+
+
+<div class="${"proposals svelte-vf5qjd"}">${validate_component(Card, "Card").$$render($$result, {}, {}, {
+        default: () => {
+          return `
+            <div class="${"_clickable"}">${validate_component(Preview, "Preview").$$render($$result, {
+            content: data.title,
+            limit: 10,
+            preview: minimized
+          }, {}, {})}</div>
+            
+        `;
+        }
+      })}
+</div>`;
+    });
     css7 = {
-      code: ".preview.svelte-1mljyud{display:flex;justify-content:center;background-color:var(--theme-columnbackground);width:100%;height:100vh}.column-container.svelte-1mljyud{padding:var(--theme-cardseparationhalf);height:100%}.column.svelte-1mljyud{display:flex;align-items:center;justify-content:center;flex-direction:column;width:var(--theme-columnwidth);height:100%;padding:0 var(--theme-cardseparationhalf)}",
+      code: ".preview.svelte-46emn9{display:flex;justify-content:center;background-color:var(--theme-columnbackground);width:100%;height:100vh}.column-container.svelte-46emn9{padding:var(--theme-cardseparationhalf);height:100%}.column.svelte-46emn9{display:flex;align-items:center;justify-content:center;flex-direction:column;width:var(--theme-columnwidth);height:100%;padding:0 var(--theme-cardseparationhalf)}",
       map: null
     };
     Post_preview = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -76994,13 +76782,10 @@ var init_post_preview_svelte = __esm({
           createdOn: new Date().getTime(),
           createdBy: 123,
           createdByName: "malith",
-          type: "newsx",
-          videoId: "ueYFyWW8e5I",
-          title: ["\u0D87\u0DBA \u0DB6\u0DDC\u0DC4\u0DDD \u0DAF\u0DD4\u0DBB\u0DBA\u0DD2", "Too far she is", "\u0B85\u0BB5\u0BB3\u0BCD \u0BB5\u0BC6\u0B95\u0BC1 \u0BA4\u0BCA\u0BB2\u0BC8\u0BB5\u0BBF\u0BB2\u0BCD \u0B87\u0BB0\u0BC1\u0B95\u0BCD\u0B95\u0BBF\u0BB1\u0BBE\u0BB3\u0BCD"],
-          shortDescription: [
-            "\u0D86\u0DAF\u0DBB\u0DBA\u0DDA \u0DAF\u0DDA\u0DC0\u0DAD\u0DCF\u0DC0\u0DD2\u0DBA\u0D9C\u0DDA \u0DAD\u0DDA\u0DB8\u0DCF \u0D9C\u0DD3\u0DAD\u0DBA",
-            "the theme song of the goddess of love",
-            "\u0B95\u0BBE\u0BA4\u0BB2\u0BCD \u0BA4\u0BC6\u0BAF\u0BCD\u0BB5\u0BA4\u0BCD\u0BA4\u0BBF\u0BA9\u0BCD \u0BA4\u0BC0\u0BAE\u0BCD \u0BAA\u0BBE\u0B9F\u0BB2\u0BCD"
+          title: [
+            "\u0DBA\u0DDD\u0DA2\u0DB1\u0DCF\u0DC0\u0D9A\u0DCA \u0D91\u0D9A\u0DAD\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+            "add a proposal asfsadfasdfsdfffffffffffffffffffffffffffffffffffffffffffffff",
+            "\u0B92\u0BB0\u0BC1 \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0BA4\u0BCD\u0BA4\u0BC8\u0B9A\u0BCD \u0B9A\u0BC7\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
           ]
         }
       ];
@@ -77008,9 +76793,9 @@ var init_post_preview_svelte = __esm({
       return `
 
 
-<div class="${"preview svelte-1mljyud"}"><div class="${"column-container svelte-1mljyud"}"><div class="${"column svelte-1mljyud"}">${each(mockColumnData, (data) => {
+<div class="${"preview svelte-46emn9"}"><div class="${"column-container svelte-46emn9"}"><div class="${"column svelte-46emn9"}">${each(mockColumnData, (data) => {
         return `
-            ${validate_component(News || missing_component, "svelte:component").$$render($$result, { data }, {}, {})}`;
+            ${validate_component(Proposals || missing_component, "svelte:component").$$render($$result, { data }, {}, {})}`;
       })}</div></div>
 </div>`;
     });
@@ -77032,9 +76817,9 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 3;
-    entry4 = "pages/post_preview.svelte-e6be8f13.js";
-    js4 = ["pages/post_preview.svelte-e6be8f13.js", "chunks/index-f708efea.js", "chunks/news-46cce564.js", "chunks/font-60bb3b1a.js", "chunks/index-02da5586.js"];
-    css8 = ["assets/pages/post_preview.svelte-80fe9c8e.css", "assets/news-016b1673.css"];
+    entry4 = "pages/post_preview.svelte-e6689276.js";
+    js4 = ["pages/post_preview.svelte-e6689276.js", "chunks/index-f708efea.js", "chunks/preview-0e14ac1f.js", "chunks/index-02da5586.js", "chunks/theme-311b21fd.js"];
+    css8 = ["assets/pages/post_preview.svelte-31ce9f42.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css", "assets/preview-24a70b0e.css"];
   }
 });
 
@@ -77048,7 +76833,7 @@ var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
     init_database_0269ec9b();
-    init_column_config_33e897a9();
+    init_column_config_31e21418();
     init_dist();
     init_dist2();
     IMPLEMENTED_TYPES = ["bulletin", "newsx"];
@@ -78202,9 +77987,9 @@ function encode(val) {
 function isDate(val) {
   return __toString.call(val) === "[object Date]" || val instanceof Date;
 }
-function tryDecode(str, decode22) {
+function tryDecode(str, decode2) {
   try {
-    return decode22(str);
+    return decode2(str);
   } catch (e2) {
     return str;
   }
@@ -79399,7 +79184,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-884c0d21.js", "js": ["start-884c0d21.js", "chunks/index-f708efea.js", "chunks/index-02da5586.js"], "css": [] },
+    entry: { "file": "start-16a82e95.js", "js": ["start-16a82e95.js", "chunks/index-f708efea.js", "chunks/index-02da5586.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

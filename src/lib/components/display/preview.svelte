@@ -57,7 +57,7 @@
     
 </script>
 
-<div>
+<div class="preview">
     {#if !preview}
         {@html contentString}
     {:else}
@@ -88,7 +88,8 @@
 
         margin-top: 5px;
     }
-    :global(.description img) {
+    :global(.preview img) {
+        margin: var(--s5px) 0;
         width: 100%;
         border-radius: 3px;
     }

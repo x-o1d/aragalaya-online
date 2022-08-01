@@ -28,7 +28,7 @@
             size={0.75}
             color="
                 rgb(100, 99, 99);
-                padding: 0 0 var(--s5px) 0;">
+                margin-bottom: var(--s5px);">
             <Timestamp time={data.createdOn}/>
         </Font>
         <!-- title -->
@@ -43,7 +43,8 @@
         <Font 
             font={3}
             size={0.75}
-            color="rgb(55, 55, 55);">
+            color="rgb(55, 55, 55);"
+            style="margin-bottom: var(--s7px);">
             {data.createdByName}
         </Font>
         <!-- description -->

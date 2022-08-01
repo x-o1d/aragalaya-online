@@ -10,7 +10,7 @@
 		const executeOnApi = () => {
 			if (window.YTapiReady) {
 				const player = new YT.Player('player-' + videoId, {
-					height: '300',
+					height: '250',
 					width: (sizeConfig.columnWidth - sizeConfig.cardSeparation - 20).toString(),
 					videoId: videoId,
 					playerVars: {

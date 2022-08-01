@@ -105,7 +105,7 @@
             verified: false,
             type: COLUMNS[columnIndex].type,
         });
-
+        console.log('createdPost'. createdPost);
         // this event adds the created data to the relavant column
         _emitEvent('new-column-data', {
             columnIndex,
