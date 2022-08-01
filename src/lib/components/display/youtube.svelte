@@ -1,17 +1,17 @@
 <script>
 	import { onMount } from 'svelte';
-    import { _columnWidth, _cardseparation } from '$lib/services/theme';
+    import { _getSizeConfig } from '$lib/config/size-config';
 
     export let videoId;
     export let style = '';
 
-    console.log(videoId);
 	onMount(() => {
+        const sizeConfig = _getSizeConfig();
 		const executeOnApi = () => {
 			if (window.YTapiReady) {
 				const player = new YT.Player('player-' + videoId, {
 					height: '300',
-					width: (_columnWidth - _cardseparation - 20).toString(),
+					width: (sizeConfig.columnWidth - sizeConfig.cardSeparation - 20).toString(),
 					videoId: videoId,
 					playerVars: {
 						playsinline: 1

@@ -9,10 +9,13 @@
 ---- preview = boolean, true: content cropped at limit, falst: full content displated
 ----
 ---- USAGE: 
----- <Preview
-----    content={data.description}
-----    limit={100}
-----    preview={true}/>
+
+<Preview
+    content={data.description}
+    limit={100}
+    preview={true}/>
+    
+----
 --->
 <script>
     import { _lang } from '$lib/services/store';

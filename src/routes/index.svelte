@@ -209,13 +209,15 @@
                             top: {_bounceAnimation[_i]}px">
                         <div>
                             <i class="{column.icon}"></i>
-                            <span>
-                                <Font 
-                                    font={2}
-                                    size={0.95}>
-                                    {column.title[$_lang]}
-                                </Font>
-                            </span>
+                            <Font 
+                                inline
+                                font={2}
+                                size={0.95}
+                                style="
+                                    text-shadow: 0px 0px 3px #1b1b1b, 0 0 8px #525252;
+                                    margin-left: var(--s10px);">
+                                {column.title[$_lang]}
+                            </Font>
                         </div>
                         <div>
                             <div 
@@ -274,8 +276,8 @@
     }
     .column {
         position: relative;
-        width: var(--theme-columnwidth);
-        height: calc(100vh - var(--s50px));
+        width: var(--config-columnwidth);
+        height: calc(100vh - var(--config-columnheaderheight));
     }
     .header {
         position: relative;
@@ -283,7 +285,7 @@
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        height: var(--theme-headerheight);
+        height: var(--config-columnheaderheight);
         color: var(--theme-headerfontcolor);
         padding: 0 var(--s15px) 0 var(--s10px);
         font-weight: bold;
@@ -297,10 +299,6 @@
     .header:first-child {
 		font-size: var(--s24px);
     }
-    .header span {
-        text-shadow: 0px 0px 3px #1b1b1b, 0 0 8px #525252;
-        margin-left: var(--s10px);
-    }
     .icon-button {
         display: inline-flex;
         align-items: center;
@@ -312,7 +310,6 @@
         font-size: var(--s17px);
     }
 
-
     /* cards */
     .cards {
         position: relative;
@@ -322,7 +319,7 @@
         overflow-x: hidden;
         -ms-overflow-style: none;
         scrollbar-width: none;
-        padding: var(--theme-cardseparationhalf) 0;
+        padding: var(--config-cardseparationhalf) 0;
     }
     .cards::-webkit-scrollbar {
         display: none;
@@ -330,18 +327,18 @@
     }
     .spacer {
         width: var(--theme-cardseparationhalf);
-        height: calc(100vh - var(--s50px));
+        height: calc(100vh - var(--config-columnheaderheight));
     }
     .spacer::after {
         display: block;
         content: '';
-        height: var(--theme-headerheight);
-        width: var(--theme-cardseparationhalf);
+        height: var(--config-columnheaderheight);
+        width: var(--config-cardseparationhalf);
         background-color: var(--theme-columnbackground);
     }
     .scrollbar {
         position: absolute;
-        top: var(--s50px);
+        top: var(--config-columnheaderheight);
         right: 0;
     }
     .scroll {

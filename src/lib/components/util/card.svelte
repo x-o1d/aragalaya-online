@@ -42,7 +42,7 @@
 
 <style>
     .card-container {
-        padding: var(--theme-cardseparationhalf);
+        padding: var(--config-cardseparationhalf);
     }
     .card {
         max-height: -20px;

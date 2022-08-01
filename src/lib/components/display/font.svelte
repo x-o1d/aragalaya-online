@@ -24,6 +24,7 @@
 <script>
     import { onMount } from 'svelte';
 
+    // TODO:: needs documentation
     import { _lang } from '$lib/services/store';
     import { _fontGroups, _fontSizes } from '$lib/services/theme';
 

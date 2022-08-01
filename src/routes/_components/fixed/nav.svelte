@@ -90,8 +90,8 @@
                 bottom: {(70*(COLUMN_COUNT+1-_i)+5)/devicePixelRatio}px">
             <div class="title">
                 <Font
-                    font={0}
-                    size={0.75}>
+                    font={1}
+                    size={1}>
                     {column.title[$_lang]}
                 </Font>
             </div>

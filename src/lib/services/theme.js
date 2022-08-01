@@ -63,22 +63,8 @@ const pallettes = [
     ['#6f3cb1', '#ca369c', '#ff537c', '#ff885f', '#ffc154'],
 ];
 
-// width of a column in the layout in a desktop browser
-// in mobile it would revert to 100% viewport width
-export const _columnWidth = 500;
-
-// column header height
-export const _headerHeight = 50;
-
 // column header font color
-export const _headerFontColor = '#ffffff'
-
-// separation of the cards in columns:
-// this property sets the perceived separation of cards in the column layout
-// in a desktop browser in pixels.
-// NOTE:: in a mobile browser it should be half because only a single
-// column is visible
-export const _cardseparation = 12;
+const _headerFontColor = '#ffffff'
 
 // END: - style configuration
 
@@ -112,7 +98,7 @@ export const _themes = pallettes.map((pallette, i) => {
     });
 
     // header background color
-    const headerBackground = chroma.scale(['black', 'white'])(0.86).hex();
+    const headerBackground = 'white';
 
     // column backgoundcolor
     const columnBackground = chroma.scale(['black', 'white'])(0.92).hex();
@@ -123,15 +109,10 @@ export const _themes = pallettes.map((pallette, i) => {
     // cancel button color
     const cancelButton =  navigation[1];
 
-    // below is used for setting column and card padding/margins
-    // to achieve the perceived card separation
-    const cardseparation = _cardseparation + 'px';
-    const cardseparationHalf = _cardseparation/2 + 'px';
-
-    const columnWidth = _columnWidth + 'px';
-    const headerHeight = _headerHeight + 'px';
+    // column header font color
+    // currently not theme specific
     const headerFontColor = _headerFontColor;
     
     return { columns, navigation, headerBackground, columnBackground, defaultButton, 
-        cancelButton, cardseparation, cardseparationHalf, columnWidth, headerHeight, headerFontColor };
+        cancelButton, headerFontColor };
 });

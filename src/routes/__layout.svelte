@@ -7,7 +7,8 @@
 	import { _registerEvent, _emitEvent } from '$lib/services/events';
     import { _setUserTheme } from '$lib/services/database';
     import { _themes, _fontGroups, _fontSizes } from '$lib/services/theme';
-
+    import { _getSizeConfig } from '$lib/config/size-config';
+    
     // components
 	import Login from './_components/fixed/login.svelte';
 	import Form from './_components/fixed/form.svelte';
@@ -23,7 +24,9 @@
         Object.keys(object).map(prop => {
             const newStyleName = styleName + '-' + prop.toLowerCase();
             if(typeof object[prop] != 'object') {
-               document.documentElement.style.setProperty(newStyleName, object[prop]);
+                if(typeof object[prop] == 'string') {
+                    document.documentElement.style.setProperty(newStyleName, object[prop]);
+                }
             } else {
                 setThemeProps(object[prop], newStyleName);
             }
@@ -42,6 +45,17 @@
     })
     // clear subscription
     onDestroy(() => themeChangedEvent.unsubscribe());
+
+    // set all size configuration values as css variables
+    const setSizeProps = (object, styleName) => {
+        Object.keys(object).map(prop => {
+            const newStyleName = styleName + '-' + prop.toLowerCase();
+            document.documentElement.style.setProperty(newStyleName, object[prop] + 'px');
+        })
+    }
+    onMount(() => {
+        setSizeProps(_getSizeConfig(), '--config');
+	})
 
 	// in css throughout the app var(--s(n)px) values are automatically 
 	// scaled as per the device pixel ratio.
@@ -160,7 +174,7 @@
 			rgba(0, 0, 0, 0.1) 30%,
 			transparent 100%
 		);
-		height: var(--s50px);
+		height: var(--config-layoutheaderheight);
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -170,7 +184,7 @@
 		transition: transform 0.2s;
 		user-select: none;
 		padding: 0;
-        background-color: var(--theme-header-background);
+        background-color: var(--theme-headerbackground);
 	}
 
 	.logo {
