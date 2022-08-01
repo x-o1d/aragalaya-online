@@ -67,10 +67,13 @@
             {_strings['read_more'][$_lang]}
         </span>
             {#if images}
-            <div 
-                class="preview-image"
-                style="--url: url({images[0]})">
-            </div>
+            <div class="preview-container">
+                <div 
+                    class="preview-image"
+                    style="--url: url({images[0]})">
+                </div>
+                <div class="preview-overlay"></div>
+            </div>  
             {/if}
         {/if}
     {/if}
@@ -78,19 +81,35 @@
 
 <style>
     .preview-image {
-        background-image: var(--url); /* The image used */
-        background-color: #cccccc; /* Used if the image is unavailable */
-        height: var(--config-previewheight); /* You must set a specified height */
+        background-image: var(--url);
+        background-color: #7b7b7b; 
+        height: var(--theme-previewheight);
         width: 100%;
-        background-position: center; /* Center the image */
-        background-repeat: no-repeat; /* Do not repeat the image */
-        background-size: cover; /* Resize the background image to cover the entire container */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
 
         margin-top: 5px;
+    }
+    .preview-container {
+        position: relative;
+    }
+    .preview-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        height: var(--theme-previewheight); 
+        width: 100%;
+        
+        background-color: black;
+        opacity: var(--theme-previewopacity);
+        border-radius: 3px;
     }
     :global(.preview img) {
         margin: var(--s5px) 0;
         width: 100%;
         border-radius: 3px;
     }
+    
 </style>

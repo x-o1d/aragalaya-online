@@ -7,7 +7,7 @@ import chroma from "chroma-js";
 // an underscore (_) so that they can easily be distinguished from component properties.
 // --
 
-// START: style configuration
+// START: color configuration
 
 // a font group is a set of fonts in all three languages which can be used
 // for a particular text with the <Font> component
@@ -66,7 +66,9 @@ const pallettes = [
 // column header font color
 const _headerFontColor = '#ffffff'
 
-// END: - style configuration
+const _previewOpacity = '0.4';
+
+// END: - color configuration
 
 // _themes contains a theme object per pallette item.
 // it constructs various color options based on the
@@ -112,7 +114,57 @@ export const _themes = pallettes.map((pallette, i) => {
     // column header font color
     // currently not theme specific
     const headerFontColor = _headerFontColor;
+
+    const previewOpacity = _previewOpacity;
     
     return { columns, navigation, headerBackground, columnBackground, defaultButton, 
-        cancelButton, headerFontColor };
+        cancelButton, headerFontColor, previewOpacity };
 });
+
+// START: size configuration
+
+// layout header height
+const layoutHeaderHeight = 50
+
+// width of a column in the layout in a desktop browser
+// in mobile it would revert to 100% viewport width
+const columnWidth = 500;
+
+// column header height
+const columnHeaderHeight = 50;
+
+// separation of the cards in columns:
+// this property sets the perceived separation of cards in the column layout
+// in a desktop browser in pixels.s
+// NOTE:: in a mobile browser it should be half because only a single
+// column is visible
+const cardSeparation = 12;
+
+// padding inside a card
+const cardPadding = 10;
+
+// previewHeight (maintain 16:9 aspect ratio)
+const previewHeight = (columnWidth-cardSeparation-cardPadding*2)*9/16;
+
+export const _getSizeConfig = () => {
+    
+    // NOTE:: make sure _getSizeConfig is called from inside an onMount() hook
+    // window isn't available for SSR
+    let devicePixelRatio = window? window.devicePixelRatio: 1;
+
+    // these parameters are automatically added as css variables in __layout.svelte
+    // ex: --theme-layoutheaderheight
+    return {
+        layoutHeaderHeight: layoutHeaderHeight/devicePixelRatio,
+        columnWidth: columnWidth/devicePixelRatio,
+        columnHeaderHeight: columnHeaderHeight/devicePixelRatio,
+        cardSeparation: cardSeparation/devicePixelRatio,
+        // card seperation half is added because it is typically used as a padding
+        // to achieve the specified card seperation
+        cardSeparationHalf: cardSeparation/2/devicePixelRatio,
+        cardPadding: cardPadding/devicePixelRatio,
+        previewHeight: previewHeight/devicePixelRatio,
+    }
+}
+
+// END: size configuration

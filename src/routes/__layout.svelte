@@ -6,8 +6,7 @@
 	import { _lang } from '$lib/services/store';
 	import { _registerEvent, _emitEvent } from '$lib/services/events';
     import { _setUserTheme } from '$lib/services/database';
-    import { _themes, _fontGroups, _fontSizes } from '$lib/services/theme';
-    import { _getSizeConfig } from '$lib/config/size-config';
+    import { _themes, _fontGroups, _fontSizes, _getSizeConfig } from '$lib/services/theme';
     
     // components
 	import Login from './_components/fixed/login.svelte';
@@ -54,7 +53,7 @@
         })
     }
     onMount(() => {
-        setSizeProps(_getSizeConfig(), '--config');
+        setSizeProps(_getSizeConfig(), '--theme');
 	})
 
 	// in css throughout the app var(--s(n)px) values are automatically 
@@ -174,7 +173,7 @@
 			rgba(0, 0, 0, 0.1) 30%,
 			transparent 100%
 		);
-		height: var(--config-layoutheaderheight);
+		height: var(--theme-layoutheaderheight);
 		display: flex;
 		align-items: center;
 		justify-content: space-between;

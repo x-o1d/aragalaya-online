@@ -276,8 +276,8 @@
     }
     .column {
         position: relative;
-        width: var(--config-columnwidth);
-        height: calc(100vh - var(--config-columnheaderheight));
+        width: var(--theme-columnwidth);
+        height: calc(100vh - var(--theme-columnheaderheight));
     }
     .header {
         position: relative;
@@ -285,7 +285,7 @@
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        height: var(--config-columnheaderheight);
+        height: var(--theme-columnheaderheight);
         color: var(--theme-headerfontcolor);
         padding: 0 var(--s15px) 0 var(--s10px);
         font-weight: bold;
@@ -319,7 +319,7 @@
         overflow-x: hidden;
         -ms-overflow-style: none;
         scrollbar-width: none;
-        padding: var(--config-cardseparationhalf) 0;
+        padding: var(--theme-cardseparationhalf) 0;
     }
     .cards::-webkit-scrollbar {
         display: none;
@@ -327,18 +327,18 @@
     }
     .spacer {
         width: var(--theme-cardseparationhalf);
-        height: calc(100vh - var(--config-columnheaderheight));
+        height: calc(100vh - var(--theme-columnheaderheight));
     }
     .spacer::after {
         display: block;
         content: '';
-        height: var(--config-columnheaderheight);
-        width: var(--config-cardseparationhalf);
+        height: var(--theme-columnheaderheight);
+        width: var(--theme-cardseparationhalf);
         background-color: var(--background);
     }
     .scrollbar {
         position: absolute;
-        top: var(--config-columnheaderheight);
+        top: var(--theme-columnheaderheight);
         right: 0;
     }
     .scroll {

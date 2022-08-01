@@ -42,14 +42,14 @@
 
 <style>
     .card-container {
-        padding: var(--config-cardseparationhalf);
+        padding: var(--theme-cardseparationhalf);
     }
     .card {
         max-height: -20px;
         width: 100%;
         border-radius: var(--s3px);
         background-color: white;
-        padding: var(--config-cardpadding);
+        padding: var(--theme-cardpadding);
         overflow: hidden;
     }
 </style>
