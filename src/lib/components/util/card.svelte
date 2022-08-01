@@ -49,7 +49,7 @@
         width: 100%;
         border-radius: var(--s3px);
         background-color: white;
-        padding: var(--s10px);
+        padding: var(--config-cardpadding);
         overflow: hidden;
     }
 </style>

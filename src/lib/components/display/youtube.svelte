@@ -10,8 +10,11 @@
 		const executeOnApi = () => {
 			if (window.YTapiReady) {
 				const player = new YT.Player('player-' + videoId, {
-					height: '250',
-					width: (sizeConfig.columnWidth - sizeConfig.cardSeparation - 20).toString(),
+					height: sizeConfig.previewHeight.toString(),
+					width: (sizeConfig.columnWidth
+                            - sizeConfig.cardSeparation 
+                            - sizeConfig.cardPadding*2
+                            ).toString(),
 					videoId: videoId,
 					playerVars: {
 						playsinline: 1
@@ -39,7 +42,7 @@
     .youtube {
         border-radius: var(--s3px);
         overflow: hidden;
-        height: var(--s300px);
+        height: var(--config-previewheight);
         width: 100%;
     }
 </style>

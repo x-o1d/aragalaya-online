@@ -80,7 +80,7 @@
     .preview-image {
         background-image: var(--url); /* The image used */
         background-color: #cccccc; /* Used if the image is unavailable */
-        height: 200px; /* You must set a specified height */
+        height: var(--config-previewheight); /* You must set a specified height */
         width: 100%;
         background-position: center; /* Center the image */
         background-repeat: no-repeat; /* Do not repeat the image */

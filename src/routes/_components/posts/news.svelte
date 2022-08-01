@@ -38,7 +38,7 @@
     <!-- short description -->
     <Font
         font={0}
-        size={0.8}
+        size={0.9}
         color="rgb(57, 56, 56);">
         <Preview
             content={data.shortDescription}

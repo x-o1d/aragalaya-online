@@ -73797,7 +73797,11 @@ var init_layout_svelte = __esm({
         $$bindings.cancel(cancel);
       $$result.css.add(css$7);
       $$unsubscribe__lang();
-      return `<div class="${["button svelte-8zngsj", cancel ? "cancel" : ""].join(" ").trim()}">${`${escape(text[$_lang])}`}
+      return `<div class="${["button svelte-8zngsj", cancel ? "cancel" : ""].join(" ").trim()}">${`${validate_component(Font, "Font").$$render($$result, { font: 0, size: 1 }, {}, {
+        default: () => {
+          return `${escape(text[$_lang])}`;
+        }
+      })}`}
 </div>`;
     });
     css$6 = {
@@ -73821,18 +73825,22 @@ var init_layout_svelte = __esm({
         $$bindings.error(error2);
       $$result.css.add(css$6);
       $$unsubscribe__lang();
-      return `<div class="${"text-input svelte-1keabnd"}">
-    ${config.type !== "password" ? `<input type="${"text"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["svelte-1keabnd", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>` : `<input type="${"password"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["svelte-1keabnd", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>`}
-    
-    ${typeof error2 === "string" ? `<span class="${"svelte-1keabnd"}">${validate_component(Font, "Font").$$render($$result, { group: 0, remSize: 0.8 }, {}, {
+      return `<div class="${"text-input svelte-1keabnd"}">${validate_component(Font, "Font").$$render($$result, { font: 0, size: 1 }, {}, {
         default: () => {
-          return `${escape(error2)}`;
+          return `
+        ${config.type !== "password" ? `<input type="${"text"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["svelte-1keabnd", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>` : `<input type="${"password"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["svelte-1keabnd", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>`}
+        
+        ${typeof error2 === "string" ? `<span class="${"svelte-1keabnd"}">${validate_component(Font, "Font").$$render($$result, { group: 0, remSize: 0.8 }, {}, {
+            default: () => {
+              return `${escape(error2)}`;
+            }
+          })}</span>` : ``}`;
         }
-      })}</span>` : ``}
+      })}
 </div>`;
     });
     css$5 = {
-      code: ".overlay.svelte-m0p4w7{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;width:100vw;height:100vh;background-color:rgba(0,0,0,0.9)}.overlay.svelte-m0p4w7:hover{cursor:ne-resize}.login_c.svelte-m0p4w7{width:var(--s340px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c;cursor:auto}.login.svelte-m0p4w7{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s20px);width:100%;height:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}span.svelte-m0p4w7{font-size:1.3rem;font-weight:bold;color:black;margin-bottom:var(--s20px)}.fb-button.svelte-m0p4w7{display:flex;align-items:center;justify-content:center;height:var(--s45px);width:90%;border-radius:var(--s5px);padding:var(--s5px);background-color:var(--button);cursor:pointer;color:white;font-size:1.1rem;font-weight:bold;margin-bottom:var(--s14px);font-family:'Roboto', sans-serif;font-size:var(--s13px);background-color:#0a82ec}.or.svelte-m0p4w7{font-size:1.2rem;color:#5c5c5c;margin-bottom:var(--s14px)}.fa-facebook-square.svelte-m0p4w7{font-size:1.3rem;margin-right:var(--s10px)}",
+      code: ".overlay.svelte-zl2hry{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;width:100vw;height:100vh;background-color:rgba(0,0,0,0.9)}.overlay.svelte-zl2hry:hover{cursor:ne-resize}.login_c.svelte-zl2hry{width:var(--s340px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c;cursor:auto}.login.svelte-zl2hry{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s20px);width:100%;height:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}.fb-button.svelte-zl2hry{display:flex;align-items:center;justify-content:center;height:var(--s45px);width:90%;border-radius:var(--s5px);padding:var(--s5px);background-color:var(--button);cursor:pointer;color:white;font-size:1.1rem;font-weight:bold;margin-bottom:var(--s14px);font-family:'Roboto', sans-serif;font-size:var(--s13px);background-color:#0a82ec}.fa-facebook-square.svelte-zl2hry{font-size:1.3rem;margin-right:var(--s10px)}",
       map: null
     };
     Login = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -73926,7 +73934,15 @@ var init_layout_svelte = __esm({
       };
       $$result.css.add(css$5);
       $$unsubscribe__lang();
-      return `${showLogin ? `<div class="${"overlay svelte-m0p4w7"}"><div class="${"login_c svelte-m0p4w7"}"><div class="${"login svelte-m0p4w7"}"><span class="${"svelte-m0p4w7"}">${escape(strings["enter"][$_lang])}</span>
+      return `${showLogin ? `<div class="${"overlay svelte-zl2hry"}"><div class="${"login_c svelte-zl2hry"}"><div class="${"login svelte-zl2hry"}">${validate_component(Font, "Font").$$render($$result, {
+        font: 2,
+        size: 1.3,
+        style: "margin-bottom: var(--s20px);"
+      }, {}, {
+        default: () => {
+          return `${escape(strings["enter"][$_lang])}`;
+        }
+      })}
             ${validate_component(Text_input, "TextInput").$$render($$result, {
         disabled: signinOrSignup,
         error: emailError,
@@ -73972,8 +73988,17 @@ var init_layout_svelte = __esm({
         onclick: continueEmailSignin,
         text: strings["continue"]
       }, {}, {})}
-            <span class="${"or svelte-m0p4w7"}">${escape(strings["or"][$_lang])}</span>
-            <div class="${"fb-button svelte-m0p4w7"}"><i class="${"fa-brands fa-facebook-square svelte-m0p4w7"}"></i>
+            ${validate_component(Font, "Font").$$render($$result, {
+        font: 0,
+        size: 1,
+        color: "#5c5c5c",
+        style: "\n                    margin-bottom: var(--s14px);"
+      }, {}, {
+        default: () => {
+          return `${escape(strings["or"][$_lang])}`;
+        }
+      })}
+            <div class="${"fb-button svelte-zl2hry"}"><i class="${"fa-brands fa-facebook-square svelte-zl2hry"}"></i>
                 facebook
             </div></div></div></div>` : ``}`;
     });
@@ -74047,7 +74072,7 @@ var init_layout_svelte = __esm({
 </div>`;
     });
     css$2 = {
-      code: ".overlay.svelte-419u74{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;width:100vw;height:100vh;background-color:rgba(0,0,0,0.9)}.form_c.svelte-419u74{width:var(--s500px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c}.form.svelte-419u74{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s20px);width:100%;height:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}span.svelte-419u74{font-size:1.3rem;font-weight:bold;color:black;margin-bottom:var(--s20px)}",
+      code: ".overlay.svelte-1gd3699{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;width:100vw;height:100vh;background-color:rgba(0,0,0,0.9)}.form_c.svelte-1gd3699{width:var(--s500px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c}.form.svelte-1gd3699{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s20px);width:100%;height:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}",
       map: null
     };
     Form = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -74123,7 +74148,17 @@ var init_layout_svelte = __esm({
       });
       errors = Array(fields.length).fill(false);
       $$unsubscribe__lang();
-      return `${showForm ? `<div class="${"overlay svelte-419u74"}"><div class="${"form_c svelte-419u74"}"><div class="${"form svelte-419u74"}"><span class="${"svelte-419u74"}">${escape(COLUMNS[columnIndex].dataFormTitle[$_lang])}</span>
+      return `${showForm ? `<div class="${"overlay svelte-1gd3699"}"><div class="${"form_c svelte-1gd3699"}"><div class="${"form svelte-1gd3699"}">${validate_component(Font, "Font").$$render($$result, {
+        font: 2,
+        size: 1.3,
+        color: "black",
+        style: "\n                    margin-bottom: var(--s20px);"
+      }, {}, {
+        default: () => {
+          return `${escape(COLUMNS[columnIndex].dataFormTitle[$_lang])}`;
+        }
+      })}
+            
             ${each(fields, (field, _i) => {
         return `${validate_component(COMPONENTS[fieldConfigs[_i].type] || missing_component, "svelte:component").$$render($$result, {
           config: fieldConfigs[_i],
@@ -74227,9 +74262,9 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-17984587.js";
-    js = ["pages/__layout.svelte-17984587.js", "chunks/index-f708efea.js", "chunks/theme-311b21fd.js", "chunks/index-02da5586.js", "chunks/font-dc996ce3.js"];
-    css2 = ["assets/pages/__layout.svelte-38fb2130.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css"];
+    entry = "pages/__layout.svelte-8214dbcd.js";
+    js = ["pages/__layout.svelte-8214dbcd.js", "chunks/index-f708efea.js", "chunks/theme-311b21fd.js", "chunks/index-02da5586.js", "chunks/font-dc996ce3.js"];
+    css2 = ["assets/pages/__layout.svelte-cd630bc4.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css"];
   }
 });
 
@@ -76784,7 +76819,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
       })}`;
     });
     css$13 = {
-      code: ".youtube.svelte-zmhqls{border-radius:var(--s3px);overflow:hidden;height:var(--s300px);width:100%}",
+      code: ".youtube.svelte-hscr4e{border-radius:var(--s3px);overflow:hidden;height:var(--s250px);width:100%}",
       map: null
     };
     Youtube = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -76795,7 +76830,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
       if ($$props.style === void 0 && $$bindings.style && style !== void 0)
         $$bindings.style(style);
       $$result.css.add(css$13);
-      return `<div class="${"youtube svelte-zmhqls"}"${add_attribute("style", style, 0)}><div id="${"player-" + escape(videoId)}"></div>
+      return `<div class="${"youtube svelte-hscr4e"}"${add_attribute("style", style, 0)}><div id="${"player-" + escape(videoId)}"></div>
 </div>`;
     });
     News = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -76836,7 +76871,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
     
     ${validate_component(Font, "Font").$$render($$result, {
             font: 0,
-            size: 0.8,
+            size: 0.9,
             color: "rgb(57, 56, 56);"
           }, {}, {
             default: () => {
@@ -76963,9 +76998,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-d58fceb8.js";
-    js3 = ["pages/index.svelte-d58fceb8.js", "chunks/index-f708efea.js", "chunks/theme-311b21fd.js", "chunks/index-02da5586.js", "chunks/preview-011cd7d8.js", "chunks/font-dc996ce3.js"];
-    css6 = ["assets/pages/index.svelte-6de2aada.css", "assets/preview-1fdb80d4.css"];
+    entry3 = "pages/index.svelte-5659a869.js";
+    js3 = ["pages/index.svelte-5659a869.js", "chunks/index-f708efea.js", "chunks/theme-311b21fd.js", "chunks/index-02da5586.js", "chunks/preview-011cd7d8.js", "chunks/font-dc996ce3.js"];
+    css6 = ["assets/pages/index.svelte-54be662d.css", "assets/preview-1fdb80d4.css"];
   }
 });
 
@@ -79423,7 +79458,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-1b2ae0fe.js", "js": ["start-1b2ae0fe.js", "chunks/index-f708efea.js", "chunks/index-02da5586.js"], "css": [] },
+    entry: { "file": "start-095d271e.js", "js": ["start-095d271e.js", "chunks/index-f708efea.js", "chunks/index-02da5586.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

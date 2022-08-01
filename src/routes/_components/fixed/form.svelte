@@ -202,11 +202,5 @@
         border-radius: var(--s15px);
         border: var(--s1px) solid #707070;
     }
-    span {
-        font-size: 1.3rem;
-        font-weight: bold;
-        color: black;
-        margin-bottom: var(--s20px);
-    }
 
 </style>
