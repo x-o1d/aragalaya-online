@@ -1,6 +1,7 @@
 <script>
     import Progress from '$lib/components/util/progress.svelte';
     import { _lang } from '$lib/services/store';
+    import Font from '$lib/components/display/font.svelte';
 
     let buttonProgress;
     
@@ -21,7 +22,11 @@
     {#if buttonProgress}
         <Progress/>
     {:else}
-        {text[$_lang]}
+        <Font
+            font={0}
+            size={1}>
+            {text[$_lang]}
+        </Font>
     {/if}
 </div>
 

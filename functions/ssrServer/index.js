@@ -76536,12 +76536,11 @@ var init_index_svelte = __esm({
     Nav = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $height, $$unsubscribe_height;
       let $scrollPosition, $$unsubscribe_scrollPosition;
-      let $_lang, $$unsubscribe__lang;
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let $$unsubscribe__lang;
+      $$unsubscribe__lang = subscribe(_lang, (value) => value);
       const height = tweened((COLUMN_COUNT + 1) * 70, { duration: 350, easing: circIn });
       $$unsubscribe_height = subscribe(height, (value) => $height = value);
       let scrollBarHeight = 0;
-      let devicePixelRatio = 1;
       const scrollPosition = tweened(0, { duration: 350, easing: quartOut });
       $$unsubscribe_scrollPosition = subscribe(scrollPosition, (value) => $scrollPosition = value);
       _registerEvent("h-scroll").subscribe((v3) => {
@@ -76555,17 +76554,9 @@ var init_index_svelte = __esm({
         return `<div style="${"color: var(--theme-navigation-" + escape(_i) + ")"}" class="${"icon _clickable svelte-1akofx"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-1akofx"}"></i>
                 </div>`;
       })}
-            <div class="${"toggle icon _clickable svelte-1akofx"}">${`<i class="${"fa-solid fa-toggle-on"}"></i>`}</div>
+            <div class="${"toggle icon _clickable svelte-1akofx"}">${`<i class="${"fa-solid fa-toggle-off"}"></i>`}</div>
             <div class="${"scroll svelte-1akofx"}" style="${"height: " + escape(scrollBarHeight) + "px; top: " + escape($scrollPosition) + "px;"}"></div></div>
-        ${`${each(COLUMNS, (column, _i) => {
-        return `<div class="${"title_c _clickable svelte-1akofx"}" style="${"right: " + escape(75 / devicePixelRatio) + "px; bottom: " + escape((70 * (COLUMN_COUNT + 1 - _i) + 5) / devicePixelRatio) + "px"}"><div class="${"title svelte-1akofx"}">${validate_component(Font, "Font").$$render($$result, { font: 1, size: 1 }, {}, {
-          default: () => {
-            return `${escape(column.title[$_lang])}
-                `;
-          }
-        })}</div>
-        </div>`;
-      })}`}</div>
+        ${``}</div>
     
     <div class="${"icon show-hide _clickable svelte-1akofx"}">${`<i class="${"fa-solid fa-angles-down"}"></i>`}</div>
 </div>`;
@@ -76860,7 +76851,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
       })}`;
     });
     css5 = {
-      code: "ul.svelte-1wbq8pa.svelte-1wbq8pa{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.svelte-1wbq8pa.svelte-1wbq8pa{display:inline-flex}.columns.svelte-1wbq8pa.svelte-1wbq8pa{overflow:hidden;background-color:var(--theme-columnbackground)}.column.svelte-1wbq8pa.svelte-1wbq8pa{position:relative;width:var(--config-columnwidth);height:calc(100vh - var(--config-columnheaderheight))}.header.svelte-1wbq8pa.svelte-1wbq8pa{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;height:var(--config-columnheaderheight);color:var(--theme-headerfontcolor);padding:0 var(--s15px) 0 var(--s10px);font-weight:bold;z-index:2}.header.svelte-1wbq8pa div.svelte-1wbq8pa{display:flex;align-items:center;height:100%}.header.svelte-1wbq8pa.svelte-1wbq8pa:first-child{font-size:var(--s24px)}.icon-button.svelte-1wbq8pa.svelte-1wbq8pa{display:inline-flex;align-items:center;justify-content:center;width:35px;height:35px;font-size:var(--s17px)}.cards.svelte-1wbq8pa.svelte-1wbq8pa{position:relative;width:100%;height:calc(100vh - var(--s100px));overflow-y:scroll;overflow-x:hidden;-ms-overflow-style:none;scrollbar-width:none;padding:var(--config-cardseparationhalf) 0}.cards.svelte-1wbq8pa.svelte-1wbq8pa::-webkit-scrollbar{display:none}.spacer.svelte-1wbq8pa.svelte-1wbq8pa{width:var(--theme-cardseparationhalf);height:calc(100vh - var(--config-columnheaderheight))}.spacer.svelte-1wbq8pa.svelte-1wbq8pa::after{display:block;content:'';height:var(--config-columnheaderheight);width:var(--config-cardseparationhalf);background-color:var(--theme-columnbackground)}.scrollbar.svelte-1wbq8pa.svelte-1wbq8pa{position:absolute;top:var(--config-columnheaderheight);right:0}.scroll.svelte-1wbq8pa.svelte-1wbq8pa{position:absolute;overflow:hidden;top:var(--s20px);right:var(--s-3_75px);width:var(--s7_5px);border-radius:var(--s7_5px);opacity:0.5;background-color:rgba(0,0,0,0.4)}",
+      code: "ul.svelte-wjzhzo.svelte-wjzhzo{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.svelte-wjzhzo.svelte-wjzhzo{display:inline-flex}.columns.svelte-wjzhzo.svelte-wjzhzo{overflow:hidden;background-color:var(--theme-columnbackground)}.column.svelte-wjzhzo.svelte-wjzhzo{position:relative;width:var(--config-columnwidth);height:calc(100vh - var(--config-columnheaderheight))}.header.svelte-wjzhzo.svelte-wjzhzo{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;height:var(--config-columnheaderheight);color:var(--theme-headerfontcolor);padding:0 var(--s15px) 0 var(--s10px);font-weight:bold;z-index:2}.header.svelte-wjzhzo div.svelte-wjzhzo{display:flex;align-items:center;height:100%}.header.svelte-wjzhzo.svelte-wjzhzo:first-child{font-size:var(--s24px)}.icon-button.svelte-wjzhzo.svelte-wjzhzo{display:inline-flex;align-items:center;justify-content:center;width:35px;height:35px;font-size:var(--s17px)}.cards.svelte-wjzhzo.svelte-wjzhzo{position:relative;width:100%;height:calc(100vh - var(--s100px));overflow-y:scroll;overflow-x:hidden;-ms-overflow-style:none;scrollbar-width:none;padding:var(--config-cardseparationhalf) 0}.cards.svelte-wjzhzo.svelte-wjzhzo::-webkit-scrollbar{display:none}.spacer.svelte-wjzhzo.svelte-wjzhzo{width:var(--theme-cardseparationhalf);height:calc(100vh - var(--config-columnheaderheight))}.spacer.svelte-wjzhzo.svelte-wjzhzo::after{display:block;content:'';height:var(--config-columnheaderheight);width:var(--config-cardseparationhalf);background-color:var(--background)}.scrollbar.svelte-wjzhzo.svelte-wjzhzo{position:absolute;top:var(--config-columnheaderheight);right:0}.scroll.svelte-wjzhzo.svelte-wjzhzo{position:absolute;overflow:hidden;top:var(--s20px);right:var(--s-3_75px);width:var(--s7_5px);border-radius:var(--s7_5px);opacity:0.5;background-color:rgba(0,0,0,0.4)}",
       map: null
     };
     Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -76926,9 +76917,9 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
 
 ${validate_component(Nav, "Nav").$$render($$result, {}, {}, {})}
 
-<div class="${"columns svelte-1wbq8pa"}"${add_attribute("this", columnsElement, 0)}><ul class="${"svelte-1wbq8pa"}"><li class="${"spacer svelte-1wbq8pa"}" style="${"--background: var(--theme-columns-0);"}"></li>
+<div class="${"columns svelte-wjzhzo"}"${add_attribute("this", columnsElement, 0)}><ul class="${"svelte-wjzhzo"}"><li class="${"spacer svelte-wjzhzo"}" style="${"--background: var(--theme-columns-0);"}"></li>
         ${each(COLUMNS, (column, _i) => {
-        return `<li class="${"svelte-1wbq8pa"}"><div class="${"column svelte-1wbq8pa"}"><div style="${"background-color: #e6e6e6;"}"><div class="${"header _clickable svelte-1wbq8pa"}" style="${"background-color: var(--theme-columns-" + escape(_i + 1) + "); top: " + escape(_bounceAnimation[_i]) + "px"}"><div class="${"svelte-1wbq8pa"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-1wbq8pa"}"></i>
+        return `<li class="${"svelte-wjzhzo"}"><div class="${"column svelte-wjzhzo"}"><div style="${"background-color: #e6e6e6;"}"><div class="${"header _clickable svelte-wjzhzo"}" style="${"background-color: var(--theme-columns-" + escape(_i + 1) + "); top: " + escape(_bounceAnimation[_i]) + "px"}"><div class="${"svelte-wjzhzo"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-wjzhzo"}"></i>
                             ${validate_component(Font, "Font").$$render($$result, {
           inline: true,
           font: 2,
@@ -76940,18 +76931,18 @@ ${validate_component(Nav, "Nav").$$render($$result, {}, {}, {})}
                             `;
           }
         })}</div>
-                        <div class="${"svelte-1wbq8pa"}"><div class="${"icon-button svelte-1wbq8pa"}"><i class="${"fa-solid fa-add"}"></i>
+                        <div class="${"svelte-wjzhzo"}"><div class="${"icon-button svelte-wjzhzo"}"><i class="${"fa-solid fa-add"}"></i>
                             </div></div>
                     </div></div>
-                <div class="${"cards svelte-1wbq8pa"}">${each(columnData[_i], (item, _i2) => {
+                <div class="${"cards svelte-wjzhzo"}">${each(columnData[_i], (item, _i2) => {
           return `<div>${validate_component(COMPONENTS[column.type] || Empty || missing_component, "svelte:component").$$render($$result, { data: item }, {}, {})}
                     </div>`;
         })}</div>
-                <div class="${"scrollbar svelte-1wbq8pa"}"><div class="${"scroll svelte-1wbq8pa"}" style="${"top: " + escape(vScroll[_i]) + "px; opacity: " + escape(_vScrollAnimation[_i]) + "; height: " + escape(_vScrollAnimation[_i] * 25) + "px"}"></div>
+                <div class="${"scrollbar svelte-wjzhzo"}"><div class="${"scroll svelte-wjzhzo"}" style="${"top: " + escape(vScroll[_i]) + "px; opacity: " + escape(_vScrollAnimation[_i]) + "; height: " + escape(_vScrollAnimation[_i] * 25) + "px"}"></div>
                 </div></div>
         </li>`;
       })}
-        <li class="${"spacer svelte-1wbq8pa"}" style="${"--background: var(--theme-columns-" + escape(COLUMN_COUNT - 1) + ");"}"></li></ul>
+        <li class="${"spacer svelte-wjzhzo"}" style="${"--background: var(--theme-columns-" + escape(COLUMN_COUNT - 1) + ");"}"></li></ul>
 </div>`;
     });
   }
@@ -76972,9 +76963,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-3a32eb47.js";
-    js3 = ["pages/index.svelte-3a32eb47.js", "chunks/index-f708efea.js", "chunks/theme-311b21fd.js", "chunks/index-02da5586.js", "chunks/preview-011cd7d8.js", "chunks/font-dc996ce3.js"];
-    css6 = ["assets/pages/index.svelte-a63df8a2.css", "assets/preview-1fdb80d4.css"];
+    entry3 = "pages/index.svelte-d58fceb8.js";
+    js3 = ["pages/index.svelte-d58fceb8.js", "chunks/index-f708efea.js", "chunks/theme-311b21fd.js", "chunks/index-02da5586.js", "chunks/preview-011cd7d8.js", "chunks/font-dc996ce3.js"];
+    css6 = ["assets/pages/index.svelte-6de2aada.css", "assets/preview-1fdb80d4.css"];
   }
 });
 
@@ -79432,7 +79423,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-bb9783d9.js", "js": ["start-bb9783d9.js", "chunks/index-f708efea.js", "chunks/index-02da5586.js"], "css": [] },
+    entry: { "file": "start-1b2ae0fe.js", "js": ["start-1b2ae0fe.js", "chunks/index-f708efea.js", "chunks/index-02da5586.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

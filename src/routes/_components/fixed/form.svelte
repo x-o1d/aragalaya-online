@@ -11,6 +11,7 @@
     import TextInput from '$lib/components/input/text-input.svelte';
     import HtmlInput from '$lib/components/input/html-input.svelte';
     import Button from '$lib/components/input/button.svelte';
+    import Font from '$lib/components/display/font.svelte';
     
     let showForm = false;
     let columnIndex = 0;
@@ -134,7 +135,15 @@
     }}>
     <div class="form_c">
         <div class="form">
-            <span>{COLUMNS[columnIndex].dataFormTitle[$_lang]}</span>
+            <Font
+                font={2}
+                size={1.3}
+                color="black"
+                style="
+                    margin-bottom: var(--s20px);">
+                {COLUMNS[columnIndex].dataFormTitle[$_lang]}
+            </Font>
+            
             {#each fields as field, _i}
                 <svelte:component 
                     this={COMPONENTS[fieldConfigs[_i].type]}

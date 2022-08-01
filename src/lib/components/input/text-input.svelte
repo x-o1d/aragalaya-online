@@ -11,36 +11,40 @@
 </script>
 
 <div class="text-input">
-    <!-- type='password' cannot be dynamically sey -->
-    {#if config.type !== 'password'}
-    <input 
-        type="text"
-        class:error={error}
-        disabled={disabled}
-        placeholder={config.placeholder[$_lang]}
-        maxlength={config.maxlength}
-        autocomplete={config.autocomplete}
-        on:change={() => (error = false)}
-        bind:value={data[config.name]}/>
-    {:else}
-    <input 
-        type="password"
-        class:error={error}
-        disabled={disabled}
-        placeholder={config.placeholder[$_lang]}
-        maxlength={config.maxlength}
-        autocomplete={config.autocomplete}
-        on:change={() => (error = false)}
-        bind:value={data[config.name]}/>
-    {/if}
-    <!-- if error is a string show the error -->
-    {#if typeof error === 'string'}
-    <span>
-        <Font group={0} remSize={0.8}>
-            {error}
-        </Font>
-    </span>
-    {/if}
+    <Font
+        font={0}
+        size={1}>
+        <!-- type='password' cannot be dynamically set -->
+        {#if config.type !== 'password'}
+        <input 
+            type="text"
+            class:error={error}
+            disabled={disabled}
+            placeholder={config.placeholder[$_lang]}
+            maxlength={config.maxlength}
+            autocomplete={config.autocomplete}
+            on:change={() => (error = false)}
+            bind:value={data[config.name]}/>
+        {:else}
+        <input 
+            type="password"
+            class:error={error}
+            disabled={disabled}
+            placeholder={config.placeholder[$_lang]}
+            maxlength={config.maxlength}
+            autocomplete={config.autocomplete}
+            on:change={() => (error = false)}
+            bind:value={data[config.name]}/>
+        {/if}
+        <!-- if error is a string show the error -->
+        {#if typeof error === 'string'}
+        <span>
+            <Font group={0} remSize={0.8}>
+                {error}
+            </Font>
+        </span>
+        {/if}
+    </Font>
 </div>
 
 <style>

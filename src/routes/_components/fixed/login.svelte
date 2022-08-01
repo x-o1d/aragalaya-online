@@ -11,6 +11,7 @@
     import Button from '$lib/components/input/button.svelte';
     import TextInput from '$lib/components/input/text-input.svelte';
     import { _createError } from '$lib/services/database';
+    import Font from '$lib/components/display/font.svelte';
 
     let showLogin = false;
     let user = {};
@@ -150,7 +151,12 @@
     on:click|self={closeLogin}>
     <div class="login_c">
         <div class="login">
-            <span>{_strings['enter'][$_lang]}</span>
+            <Font
+                font={2}
+                size={1.3}
+                style="margin-bottom: var(--s20px);">
+                {_strings['enter'][$_lang]}
+            </Font>
             <TextInput
                 disabled={signinOrSignup}
                 error={emailError}
@@ -198,7 +204,14 @@
             <Button
                 onclick={continueEmailSignin}
                 text={_strings['continue']}/>
-            <span class="or">{_strings['or'][$_lang]}</span>
+            <Font
+                font={0}
+                size={1}
+                color="#5c5c5c"
+                style="
+                    margin-bottom: var(--s14px);">
+                {_strings['or'][$_lang]}
+            </Font>
             <div 
                 class="fb-button"
                 on:click={() => _facebookSignin()}>
@@ -253,12 +266,6 @@
         border-radius: var(--s15px);
         border: var(--s1px) solid #707070;
     }
-    span {
-        font-size: 1.3rem;
-        font-weight: bold;
-        color: black;
-        margin-bottom: var(--s20px);
-    }
     .fb-button {
         display: flex;
         align-items: center;
@@ -280,11 +287,6 @@
         font-family: 'Roboto', sans-serif;
         font-size: var(--s13px);
         background-color: #0a82ec;
-    }
-    .or {
-        font-size: 1.2rem;
-        color: #5c5c5c;
-        margin-bottom: var(--s14px);
     }
     .fa-facebook-square {
         font-size: 1.3rem;
