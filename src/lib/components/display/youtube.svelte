@@ -42,6 +42,7 @@
 
 <div 
     class="youtube"
+    class:youtube-preview={preview}
     style={style}>
 	<div id="player-{videoId}" />
     {#if preview}
@@ -61,6 +62,9 @@
         overflow: hidden;
         height: var(--theme-previewheight);
         width: 100%;
+    }
+    .youtube-preview {
+        filter: grayscale(0.6);
     }
     .youtube-overlay {
         position: absolute;

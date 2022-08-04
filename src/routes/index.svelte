@@ -16,7 +16,7 @@
     import { _registerEvent, _emitEvent } from '$lib/services/events';
     import { _lang } from '$lib/services/store';
     import { _userSignedIn } from '$lib/services/auth';
-    import { _themes } from '$lib/services/theme';
+    import { _themes, _isMobile, _getSizeConfig } from '$lib/services/theme';
     import { _getPost } from '$lib/services/database';
 
     // helpers
@@ -125,18 +125,19 @@
 
     // hook that listens to to navigation click events
     _registerEvent('nav-click').subscribe((index) => {
-        const _width = 500/window.devicePixelRatio;
-        const maxLeft = (COLUMN_COUNT - Math.floor(window.innerWidth/_width))
+        const sizeConfig = _getSizeConfig();
+        const maxLeft = (COLUMN_COUNT - Math.floor(window.innerWidth/sizeConfig.columnWidth))
         if(index < maxLeft) {
             hScrollIndex.value = index;
-            setHorizontalScroll(_width * index);
+            setHorizontalScroll(sizeConfig.columnWidth * index);
         } else {
             hScrollIndex.value = maxLeft;
             const remainingSpace = (COLUMN_COUNT*_width + 15)
-                - hScrollIndex.value * _width
+                - hScrollIndex.value * sizeConfig.columnWidth
                 - window.innerWidth;
             hScrollIndex.value--;
-            setHorizontalScroll(_width*maxLeft + remainingSpace);
+            setHorizontalScroll(sizeConfig.columnWidth * maxLeft 
+                + remainingSpace);
         }
 
         bounceAnimation[index].set(8);
@@ -193,14 +194,17 @@
         __handleHorizontalScroll(e, hScrollIndex, setHorizontalScroll)
     }}>
 	<ul>
+        {#if !$_isMobile}
         <li 
             class="spacer"
             style="--background: var(--theme-columns-0);">
         </li>
+        {/if}
         {#each COLUMNS as column, _i}
         <li>
             <div class="column">
-                <div style="background-color: #e6e6e6;">
+                <!-- column header -->
+                <div style="background-color: var(--theme-headerbackground);">
                     <div 
                         class="header _clickable"
                         on:click={() => _emitEvent('nav-click', _i)}
@@ -228,6 +232,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- column cards -->
                 <div 
                     class="cards"
                     on:scroll|stopPropagation={(e) => __handleVerticalScroll(e, _i, vScrollAnimation)}>
@@ -251,10 +256,12 @@
             </div>
         </li>
         {/each}
+        {#if !$_isMobile}
         <li 
             class="spacer"
             style="--background: var(--theme-columns-{COLUMN_COUNT-1});">
         </li>
+        {/if}
 	</ul>
 </div>
 

@@ -6,13 +6,26 @@
     import Preview from '$lib/components/display/preview.svelte';
     import Card from '$lib/components/util/card.svelte';
 
+    import { _emitEvent } from '$lib/services/events';
+
     export let data;
 
     let minimized = true;
+
+    const togglePreview = () => {
+        minimized = !minimized;
+        if(!minimized) {
+            _emitEvent('focus-card', data.id);
+        } else {
+            _emitEvent('focus-card', false);
+        }
+    }
     
 </script>
 
-<Card slideInTop={data._slideInTop}>
+<Card 
+    slideInTop={data._slideInTop}
+    id={data.id}>
     <!-- adding the _clickable  class makes the cursor
     ---- into a pointer to indicate that the content is
     ---- clickable. 
@@ -21,7 +34,7 @@
     ---- cropped/full states -->
     <div 
         class='_clickable'
-        on:click={() => (minimized = !minimized)}>
+        on:click={togglePreview}>
         <!-- timestamp -->
         <Font
             font={0}
@@ -54,7 +67,7 @@
             color="rgb(57, 56, 56);">
             <Preview
                 content={data.description}
-                limit={100}
+                limit={60}
                 preview={minimized}/>
         </Font>
     </div>

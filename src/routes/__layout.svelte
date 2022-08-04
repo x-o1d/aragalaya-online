@@ -48,12 +48,20 @@
     // set all size configuration values as css variables
     const setSizeProps = (object, styleName) => {
         Object.keys(object).map(prop => {
-            const newStyleName = styleName + '-' + prop.toLowerCase();
-            document.documentElement.style.setProperty(newStyleName, object[prop] + 'px');
+            if(typeof object[prop] == 'number') {
+                const newStyleName = styleName + '-' + prop.toLowerCase();
+                document.documentElement.style.setProperty(newStyleName, object[prop] + 'px');
+            }
         })
     }
     onMount(() => {
+        // set size variables in css
         setSizeProps(_getSizeConfig(), '--theme');
+        // reset style variables in css if screen size is changed
+        addEventListener('resize', (event) => {
+            console.log('window size changed');
+            setSizeProps(_getSizeConfig(), '--theme');
+        });
 	})
 
 	// in css throughout the app var(--s(n)px) values are automatically 

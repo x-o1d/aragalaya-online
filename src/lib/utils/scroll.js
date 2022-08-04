@@ -1,5 +1,7 @@
 import { COLUMN_COUNT } from '$lib/config/column-config'
-import { _emitEvent }from '$lib/services/events';
+
+import { _emitEvent } from '$lib/services/events';
+import { _getSizeConfig } from '$lib/services/theme';
 
 // *** START: vertical scroll handler
 
@@ -51,8 +53,7 @@ let ignore = false;
 
 export const __handleHorizontalScroll = (event, hScrollIndex, setHorizontalScroll) => {
 
-    const columnWidth = 500/window.devicePixelRatio;
-
+    const sizeConfig = _getSizeConfig();
     // save wheel/touch event deltaX value in a window
     // deltaXWindow always contains the most recent deltaX values 
     // emitted
@@ -84,7 +85,7 @@ export const __handleHorizontalScroll = (event, hScrollIndex, setHorizontalScrol
 
         // increment or decrement the hScrollIndex value based on the scroll direction
         if(direction < 0) {
-            if(hScrollIndex.value < (COLUMN_COUNT - Math.ceil(window.innerWidth / columnWidth))) {
+            if(hScrollIndex.value < (COLUMN_COUNT - Math.ceil(window.innerWidth / sizeConfig.columnWidth))) {
                 hScrollIndex.value++;
             }
         }
@@ -94,14 +95,14 @@ export const __handleHorizontalScroll = (event, hScrollIndex, setHorizontalScrol
             }
         }
 
-        let scrollTo = hScrollIndex.value * columnWidth;
+        let scrollTo = hScrollIndex.value * sizeConfig.columnWidth;
 
         // if remaining space to the right is less than the width of a column
         // scroll to the absolute edge
-        const remainingSpace = (COLUMN_COUNT * columnWidth + 15)
-            - hScrollIndex.value * columnWidth
+        const remainingSpace = (COLUMN_COUNT * sizeConfig.columnWidth + 15)
+            - hScrollIndex.value * sizeConfig.columnWidth
             - window.innerWidth;
-        if(remainingSpace < columnWidth) {
+        if(remainingSpace < sizeConfig.columnWidth) {
             scrollTo += remainingSpace;
         }
 

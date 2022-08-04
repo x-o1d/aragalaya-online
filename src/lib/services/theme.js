@@ -1,11 +1,14 @@
 import { COLUMN_COUNT } from '$lib/config/column-config';
 
 import chroma from "chroma-js";
+import { writable } from 'svelte/store';
 
 // --
 // properties exposed from services (export const xx) are prepended with
 // an underscore (_) so that they can easily be distinguished from component properties.
 // --
+
+export const _isMobile = writable(false);
 
 // START: color configuration
 
@@ -66,7 +69,7 @@ const pallettes = [
 // column header font color
 const _headerFontColor = '#ffffff'
 
-const _previewOpacity = '0.4';
+const _previewOpacity = '0.3';
 
 // END: - color configuration
 
@@ -105,6 +108,9 @@ export const _themes = pallettes.map((pallette, i) => {
     // column backgoundcolor
     const columnBackground = chroma.scale(['black', 'white'])(0.92).hex();
 
+    // alternate column background color
+    const columnBackgroundAlternate = chroma.scale(['black', 'white'])(0.86).hex();
+
     // default button color
     const defaultButton =  navigation[0];
 
@@ -117,8 +123,8 @@ export const _themes = pallettes.map((pallette, i) => {
 
     const previewOpacity = _previewOpacity;
     
-    return { columns, navigation, headerBackground, columnBackground, defaultButton, 
-        cancelButton, headerFontColor, previewOpacity };
+    return { columns, navigation, headerBackground, columnBackground, columnBackgroundAlternate,
+        defaultButton, cancelButton, headerFontColor, previewOpacity };
 });
 
 // START: size configuration
@@ -143,27 +149,48 @@ const cardSeparation = 12;
 // padding inside a card
 const cardPadding = 10;
 
+// navigation button size
+const navSize = 70;
+
 // previewHeight (maintain 16:9 aspect ratio)
 const previewHeight = (columnWidth-cardSeparation-cardPadding*2)*9/16;
 
+// NOTE:: make sure _getSizeConfig is called from inside an onMount() hook
+// window isn't available for SSR
 export const _getSizeConfig = () => {
     
-    // NOTE:: make sure _getSizeConfig is called from inside an onMount() hook
-    // window isn't available for SSR
+    
     let devicePixelRatio = window? window.devicePixelRatio: 1;
+
+    // initialize temporary variables for sizes that are scaled for mobile
+    let _columnWidth = columnWidth;
+    let _previewHeight = previewHeight;
+    let _navSize = navSize;
+
+    // scale sizes for mobile screens if screen width is smaller than 600px
+    if(window && (window.innerWidth < 600)) {
+        // set the _isMobile store to true
+        _isMobile.set(true);
+
+        _columnWidth = window.innerWidth;
+        _previewHeight = (_columnWidth-cardSeparation-cardPadding*2)*9/16;
+        _navSize = 50;
+    }
 
     // these parameters are automatically added as css variables in __layout.svelte
     // ex: --theme-layoutheaderheight
     return {
         layoutHeaderHeight: layoutHeaderHeight/devicePixelRatio,
-        columnWidth: columnWidth/devicePixelRatio,
+        columnWidth: _columnWidth/devicePixelRatio,
         columnHeaderHeight: columnHeaderHeight/devicePixelRatio,
         cardSeparation: cardSeparation/devicePixelRatio,
         // card seperation half is added because it is typically used as a padding
         // to achieve the specified card seperation
         cardSeparationHalf: cardSeparation/2/devicePixelRatio,
         cardPadding: cardPadding/devicePixelRatio,
-        previewHeight: previewHeight/devicePixelRatio,
+        previewHeight: _previewHeight/devicePixelRatio,
+        navSize: _navSize/devicePixelRatio,
+        navIconSize: _navSize/3/devicePixelRatio,
     }
 }
 

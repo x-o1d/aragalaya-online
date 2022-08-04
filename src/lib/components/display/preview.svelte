@@ -90,6 +90,8 @@
         background-size: cover;
 
         margin-top: 5px;
+
+        filter: grayscale(0.6);
     }
     .preview-container {
         position: relative;

@@ -1,12 +1,13 @@
 <script>
+    import { COLUMNS, COLUMN_COUNT } from '$lib/config/column-config';
+
     import { onMount } from 'svelte';
     import { tweened } from "svelte/motion";
     import { circIn, quartOut } from "svelte/easing";
-
-    import { COLUMNS, COLUMN_COUNT } from '$lib/config/column-config';
     
     import { _emitEvent, _registerEvent } from '$lib/services/events';
     import { _lang } from '$lib/services/store';
+    import { _getSizeConfig } from '$lib/services/theme';
 
     import Font from '$lib/components/display/font.svelte';
 
@@ -20,8 +21,8 @@
     let devicePixelRatio = 1;
 
     onMount(() => {
-        scrollBarHeight = (COLUMN_COUNT * 70) / 
-            (COLUMN_COUNT * 500) * window.innerWidth;
+        scrollBarHeight = (COLUMN_COUNT * _getSizeConfig().navSize) / 
+            (COLUMN_COUNT * _getSizeConfig().columnWidth) * window.innerWidth;
         devicePixelRatio = window.devicePixelRatio;
     })
     
@@ -31,7 +32,7 @@
     });
 
     const hScrollEvent = _registerEvent('h-scroll').subscribe(v => {
-        scrollPosition.set(v/(COLUMN_COUNT * 500)*(COLUMN_COUNT * 70));
+        scrollPosition.set(v/(COLUMN_COUNT * _getSizeConfig().columnWidth)*(COLUMN_COUNT * _getSizeConfig().navSize));
     });
 
     // nav bar hidden flag
@@ -44,7 +45,7 @@
     
     function showHide() {
         if(hidden) {
-            height.set((COLUMN_COUNT + 1) * 70);
+            height.set((COLUMN_COUNT + 1) * _getSizeConfig().navSize);
             setTimeout(() => namesHidden = false, 350);
         } else {
             height.set(0);
@@ -137,14 +138,14 @@
     }
     .icon {
         position: relative;
-        width: var(--s70px);
-        height: var(--s70px);
+        width: var(--theme-navsize);
+        height: var(--theme-navsize);
 
         display: flex;
         align-items: center;
         justify-content: center;
         color: var(--nav-buttons);
-        font-size: var(--s22px);
+        font-size: var(--theme-naviconsize);
     }
     .toggle {
         color: white;
