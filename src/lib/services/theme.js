@@ -158,9 +158,9 @@ const previewHeight = (columnWidth-cardSeparation-cardPadding*2)*9/16;
 // NOTE:: make sure _getSizeConfig is called from inside an onMount() hook
 // window isn't available for SSR
 export const _getSizeConfig = () => {
-    
-    
-    let devicePixelRatio = window? window.devicePixelRatio: 1;
+
+    let devicePixelRatio = (window && window.innerWidth > 600)
+        ? window.devicePixelRatio: 1;
 
     // initialize temporary variables for sizes that are scaled for mobile
     let _columnWidth = columnWidth;

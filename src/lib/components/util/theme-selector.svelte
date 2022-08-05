@@ -1,12 +1,27 @@
 <script>
+    // npm modules
+	import { onMount, onDestroy } from 'svelte';
+
+    // services
     import { _themes } from '$lib/services/theme';
     import { _registerEvent, _emitEvent } from '$lib/services/events';
 
     let themeSelect;
     let themePanel;
+
     let currentTheme = 0;
 
     let showPanel = false;
+
+    // listen to global click events and hide the theme options
+    const globalClickEvent = _registerEvent('global-click').subscribe((event) => {
+        // if the source isn't the theme button hide the theme options
+        if(event.srcElement.id != 'theme-button') {
+            showPanel = false;
+        }
+    });
+    // clear subscription
+    onDestroy(() => globalClickEvent.unsubscribe());
 
     const togglePanel = () => {
         if(!showPanel) {
@@ -21,11 +36,12 @@
 
     const selectTheme = (index) => {
         _emitEvent('theme-changed', index);
-        showPanel = false;
+        currentTheme = index;
     }
 </script>
 
 <div 
+    id="theme-button"
     bind:this={themeSelect}
     on:click={togglePanel}
     style="
@@ -57,7 +73,7 @@
 <style>
     span {
         position: fixed;
-        z-index: 1000;
+        z-index: 10;
     }
     div {
         width: var(--s30px);

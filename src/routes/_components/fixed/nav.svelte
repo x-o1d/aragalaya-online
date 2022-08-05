@@ -1,13 +1,13 @@
 <script>
     import { COLUMNS, COLUMN_COUNT } from '$lib/config/column-config';
 
-    import { onMount } from 'svelte';
+    import { onDestroy, onMount } from 'svelte';
     import { tweened } from "svelte/motion";
     import { circIn, quartOut } from "svelte/easing";
     
     import { _emitEvent, _registerEvent } from '$lib/services/events';
     import { _lang } from '$lib/services/store';
-    import { _getSizeConfig } from '$lib/services/theme';
+    import { _getSizeConfig, _isMobile } from '$lib/services/theme';
 
     import Font from '$lib/components/display/font.svelte';
 
@@ -31,9 +31,23 @@
         easing: quartOut
     });
 
+    // subscribe to the horizontal scroll event
     const hScrollEvent = _registerEvent('h-scroll').subscribe(v => {
         scrollPosition.set(v/(COLUMN_COUNT * _getSizeConfig().columnWidth)*(COLUMN_COUNT * _getSizeConfig().navSize));
     });
+    // clear subscription
+    onDestroy(() => hScrollEvent.unsubscribe());
+
+    // subscribe to the vertical-scroll event
+    const vScrollEvent = _registerEvent('update-vscroll').subscribe(v => {
+        if($_isMobile) {
+            if(!hidden) {
+                showHide();
+            }
+        }
+    });
+    // clear subscription
+    onDestroy(() => vScrollEvent.unsubscribe());
 
     // nav bar hidden flag
     let hidden = false;
@@ -127,7 +141,7 @@
         align-items: center;
         flex-direction: column;
         background-color: black;
-        border-radius: var(--s3px);
+        border-radius: var(--s6px);
     }
     .animated {
         position: relative;
@@ -154,7 +168,7 @@
         background-color: black;
         z-index: 1;
         color: white;
-        border-radius: var(--s3px);
+        border-radius: var(--s6px);
     }
     .scroll {
         position: absolute;
@@ -167,7 +181,7 @@
             var(--theme-columns-2) 50%,
             var(--theme-columns-4) 75%, 
             var(--theme-columns-6) 100%);
-        border-radius: var(--s3px);
+        border-radius: var(--s6px);
     }
 
 

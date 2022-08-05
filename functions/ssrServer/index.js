@@ -54427,7 +54427,7 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/theme-10d66321.js
+// .svelte-kit/output/server/chunks/theme-2fc9ca27.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -54469,15 +54469,16 @@ function writable2(value, start2 = noop2) {
   }
   return { set, update, subscribe: subscribe2 };
 }
-var import_chroma_js, subscriber_queue2, _lang, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes;
-var init_theme_10d66321 = __esm({
-  ".svelte-kit/output/server/chunks/theme-10d66321.js"() {
+var import_chroma_js, subscriber_queue2, _lang, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, _getSizeConfig;
+var init_theme_2fc9ca27 = __esm({
+  ".svelte-kit/output/server/chunks/theme-2fc9ca27.js"() {
     init_shims();
-    init_index_a845b91b();
     init_column_config_31e21418();
     import_chroma_js = __toESM(require_chroma(), 1);
+    init_index_a845b91b();
     subscriber_queue2 = [];
     _lang = writable2(0);
+    _isMobile = writable2(false);
     _fontGroups = [
       [
         "'Abhaya Libre', serif",
@@ -54515,7 +54516,7 @@ var init_theme_10d66321 = __esm({
       ["#6f3cb1", "#ca369c", "#ff537c", "#ff885f", "#ffc154"]
     ];
     _headerFontColor = "#ffffff";
-    _previewOpacity = "0.4";
+    _previewOpacity = "0.3";
     _themes = pallettes.map((pallette, i2) => {
       const columns = import_chroma_js.default.scale(pallette).mode("lch").colors(COLUMN_COUNT + 2, "hex");
       const navigation = columns.map((c3, _i) => {
@@ -54523,6 +54524,7 @@ var init_theme_10d66321 = __esm({
       });
       const headerBackground = "white";
       const columnBackground = import_chroma_js.default.scale(["black", "white"])(0.92).hex();
+      const columnBackgroundAlternate = import_chroma_js.default.scale(["black", "white"])(0.86).hex();
       const defaultButton = navigation[0];
       const cancelButton = navigation[1];
       const headerFontColor = _headerFontColor;
@@ -54532,25 +54534,56 @@ var init_theme_10d66321 = __esm({
         navigation,
         headerBackground,
         columnBackground,
+        columnBackgroundAlternate,
         defaultButton,
         cancelButton,
         headerFontColor,
         previewOpacity
       };
     });
+    layoutHeaderHeight = 50;
+    columnWidth = 500;
+    columnHeaderHeight = 50;
+    cardSeparation = 12;
+    cardPadding = 10;
+    navSize = 70;
+    previewHeight = (columnWidth - cardSeparation - cardPadding * 2) * 9 / 16;
+    _getSizeConfig = () => {
+      let devicePixelRatio = window && window.innerWidth > 600 ? window.devicePixelRatio : 1;
+      let _columnWidth = columnWidth;
+      let _previewHeight = previewHeight;
+      let _navSize = navSize;
+      if (window && window.innerWidth < 600) {
+        _isMobile.set(true);
+        _columnWidth = window.innerWidth;
+        _previewHeight = (_columnWidth - cardSeparation - cardPadding * 2) * 9 / 16;
+        _navSize = 50;
+      }
+      return {
+        layoutHeaderHeight: layoutHeaderHeight / devicePixelRatio,
+        columnWidth: _columnWidth / devicePixelRatio,
+        columnHeaderHeight: columnHeaderHeight / devicePixelRatio,
+        cardSeparation: cardSeparation / devicePixelRatio,
+        cardSeparationHalf: cardSeparation / 2 / devicePixelRatio,
+        cardPadding: cardPadding / devicePixelRatio,
+        previewHeight: _previewHeight / devicePixelRatio,
+        navSize: _navSize / devicePixelRatio,
+        navIconSize: _navSize / 3 / devicePixelRatio
+      };
+    };
   }
 });
 
-// .svelte-kit/output/server/chunks/font-a683a726.js
+// .svelte-kit/output/server/chunks/font-0642df22.js
 var import_rxjs, events, _emitEvent, _registerEvent, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, Font;
-var init_font_a683a726 = __esm({
-  ".svelte-kit/output/server/chunks/font-a683a726.js"() {
+var init_font_0642df22 = __esm({
+  ".svelte-kit/output/server/chunks/font-0642df22.js"() {
     init_shims();
     init_database_0269ec9b();
     init_dist3();
     import_rxjs = __toESM(require_cjs(), 1);
     init_index_a845b91b();
-    init_theme_10d66321();
+    init_theme_2fc9ca27();
     events = [];
     _emitEvent = (tag, value) => {
       let event = events.find((event2) => tag == event2.tag);
@@ -73702,9 +73735,9 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_a845b91b();
-    init_font_a683a726();
+    init_font_0642df22();
     init_database_0269ec9b();
-    init_theme_10d66321();
+    init_theme_2fc9ca27();
     init_column_config_31e21418();
     init_dist4();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
@@ -74202,6 +74235,8 @@ var init_layout_svelte = __esm({
     _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let user2;
       let $userReady, $$unsubscribe_userReady;
+      let $_isMobile, $$unsubscribe__isMobile;
+      $$unsubscribe__isMobile = subscribe(_isMobile, (value) => $_isMobile = value);
       const userReady = _registerEvent("user-ready");
       $$unsubscribe_userReady = subscribe(userReady, (value) => $userReady = value);
       const setThemeProps = (object, styleName) => {
@@ -74226,6 +74261,7 @@ var init_layout_svelte = __esm({
       $$result.css.add(css);
       user2 = $userReady;
       $$unsubscribe_userReady();
+      $$unsubscribe__isMobile();
       return `
 
 ${validate_component(Login, "Login").$$render($$result, {}, {}, {})}
@@ -74235,12 +74271,12 @@ ${validate_component(Form, "Form").$$render($$result, {}, {}, {})}
 		</div>
 		<div class="${"online svelte-1spjsu2"}">.online
 		</div></div>
-	<ul class="${"header-right svelte-1spjsu2"}"><li class="${"svelte-1spjsu2"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
+	<ul class="${"header-right svelte-1spjsu2"}">${!$_isMobile ? `<li class="${"svelte-1spjsu2"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
 		</li>
 		<li class="${"svelte-1spjsu2"}">English 
 		</li>
 		<li class="${"svelte-1spjsu2"}">\u0BA4\u0BAE\u0BBF\u0BB4\u0BCD 
-		</li>
+		</li>` : ``}
 		<li class="${"login svelte-1spjsu2"}">${!user2 ? `<i class="${"fa-solid fa-user-astronaut svelte-1spjsu2"}"></i>` : `<i class="${"fa-solid fa-user-nurse svelte-1spjsu2"}"></i>`}</li>
 		<li class="${"svelte-1spjsu2"}">${validate_component(Theme_selector, "ThemeSelector").$$render($$result, {}, {}, {})}</li></ul></div>
 
@@ -74265,8 +74301,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-77b9b404.js";
-    js = ["pages/__layout.svelte-77b9b404.js", "chunks/index-f708efea.js", "chunks/theme-19dfe71c.js", "chunks/index-02da5586.js", "chunks/font-61e80aa3.js"];
+    entry = "pages/__layout.svelte-f1e9da00.js";
+    js = ["pages/__layout.svelte-f1e9da00.js", "chunks/index-f708efea.js", "chunks/theme-048251d2.js", "chunks/index-02da5586.js", "chunks/font-9fdaf0de.js"];
     css2 = ["assets/pages/__layout.svelte-c32b7a57.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css"];
   }
 });
@@ -76355,7 +76391,7 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/preview-f7aeb09b.js
+// .svelte-kit/output/server/chunks/preview-cdd0da7e.js
 function backInOut(t2) {
   const s3 = 1.70158 * 1.525;
   if ((t2 *= 2) < 1)
@@ -76465,24 +76501,27 @@ function tweened(value, defaults = {}) {
   };
 }
 var css$12, duration, Card, strings2, css4, Preview;
-var init_preview_f7aeb09b = __esm({
-  ".svelte-kit/output/server/chunks/preview-f7aeb09b.js"() {
+var init_preview_cdd0da7e = __esm({
+  ".svelte-kit/output/server/chunks/preview-cdd0da7e.js"() {
     init_shims();
     init_index_a845b91b();
-    init_theme_10d66321();
+    init_theme_2fc9ca27();
     init_string_strip_html_esm();
     css$12 = {
-      code: ".card-container.svelte-1oqda53{padding:var(--theme-cardseparationhalf)}.card.svelte-1oqda53{max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}",
+      code: ".card-container.svelte-15adwsw{padding:var(--theme-cardseparationhalf)}.card.svelte-15adwsw{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.card-blur.svelte-15adwsw{filter:grayscale(1)}.card-blur-2.svelte-15adwsw{filter:blur(0.7px)}",
       map: null
     };
     duration = 2e3;
     Card = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let maxHeight;
       let $slideIn, $$unsubscribe_slideIn;
+      let { id } = $$props;
       let { slideInTop = false } = $$props;
       let { delay = 500 } = $$props;
       const slideIn = tweened(-20, { duration, easing: backInOut });
       $$unsubscribe_slideIn = subscribe(slideIn, (value) => $slideIn = value);
+      if ($$props.id === void 0 && $$bindings.id && id !== void 0)
+        $$bindings.id(id);
       if ($$props.slideInTop === void 0 && $$bindings.slideInTop && slideInTop !== void 0)
         $$bindings.slideInTop(slideInTop);
       if ($$props.delay === void 0 && $$bindings.delay && delay !== void 0)
@@ -76493,7 +76532,7 @@ var init_preview_f7aeb09b = __esm({
       return `
 
 
-<div class="${"card-container svelte-1oqda53"}"><div class="${"card svelte-1oqda53"}" style="${"max-height: " + escape(maxHeight)}">${slots.default ? slots.default({}) : ``}</div>
+<div class="${"card-container svelte-15adwsw"}"><div class="${["svelte-15adwsw", ""].join(" ").trim()}"><div class="${["card svelte-15adwsw", ""].join(" ").trim()}" style="${"max-height: " + escape(maxHeight)}">${slots.default ? slots.default({}) : ``}</div></div>
 </div>`;
     });
     strings2 = {
@@ -76504,7 +76543,7 @@ var init_preview_f7aeb09b = __esm({
       ]
     };
     css4 = {
-      code: ".preview-image.svelte-5v1am8{background-image:var(--url);background-color:#7b7b7b;height:var(--theme-previewheight);width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;margin-top:5px}.preview-container.svelte-5v1am8{position:relative}.preview-overlay.svelte-5v1am8{position:absolute;top:0;left:0;height:var(--theme-previewheight);width:100%;background-color:black;opacity:var(--theme-previewopacity);border-radius:3px}.preview img{margin:var(--s5px) 0;width:100%;border-radius:3px}",
+      code: ".preview-image.svelte-joq1tf{background-image:var(--url);background-color:#7b7b7b;height:var(--theme-previewheight);width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;margin-top:5px;filter:grayscale(0.6)}.preview-container.svelte-joq1tf{position:relative}.preview-overlay.svelte-joq1tf{position:absolute;top:0;left:0;height:var(--theme-previewheight);width:100%;background-color:black;opacity:var(--theme-previewopacity);border-radius:3px}.preview img{margin:var(--s5px) 0;width:100%;border-radius:3px}",
       map: null
     };
     Preview = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -76540,8 +76579,8 @@ var init_preview_f7aeb09b = __esm({
 
 <div class="${"preview"}">${!preview ? `<!-- HTML_TAG_START -->${contentString}<!-- HTML_TAG_END -->` : `${escape(croppedText)}
         ${croppedFlag ? `<span style="${"font-weight:bold; text-decoration:underline"}">${escape(strings2["read_more"][$_lang])}</span>
-            ${images ? `<div class="${"preview-container svelte-5v1am8"}"><div class="${"preview-image svelte-5v1am8"}" style="${"--url: url(" + escape(images[0]) + ")"}"></div>
-                <div class="${"preview-overlay svelte-5v1am8"}"></div></div>` : ``}` : ``}`}
+            ${images ? `<div class="${"preview-container svelte-joq1tf"}"><div class="${"preview-image svelte-joq1tf"}" style="${"--url: url(" + escape(images[0]) + ")"}"></div>
+                <div class="${"preview-overlay svelte-joq1tf"}"></div></div>` : ``}` : ``}`}
 </div>`;
     });
   }
@@ -76558,9 +76597,9 @@ var init_index_svelte = __esm({
     init_shims();
     init_index_a845b91b();
     init_column_config_31e21418();
-    init_preview_f7aeb09b();
-    init_font_a683a726();
-    init_theme_10d66321();
+    init_preview_cdd0da7e();
+    init_font_0642df22();
+    init_theme_2fc9ca27();
     init_database_0269ec9b();
     init_string_strip_html_esm();
     init_dist3();
@@ -76569,7 +76608,7 @@ var init_index_svelte = __esm({
     init_dist2();
     Array(COLUMN_COUNT).fill(0);
     css$32 = {
-      code: ".navigation.svelte-1akofx{position:fixed;right:var(--s5px);bottom:var(--s5px);z-index:100;display:flex;align-items:center;flex-direction:column;background-color:black;border-radius:var(--s3px)}.animated.svelte-1akofx{position:relative}.icons.svelte-1akofx{position:relative;overflow:hidden}.icon.svelte-1akofx{position:relative;width:var(--s70px);height:var(--s70px);display:flex;align-items:center;justify-content:center;color:var(--nav-buttons);font-size:var(--s22px)}.toggle.svelte-1akofx{color:white}.show-hide.svelte-1akofx{background-color:black;z-index:1;color:white;border-radius:var(--s3px)}.scroll.svelte-1akofx{position:absolute;right:0;width:var(--s4px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s3px)}.title_c.svelte-1akofx{position:fixed}.title.svelte-1akofx{font-weight:bold;color:rgb(85, 85, 85);padding:var(--s0px) var(--s5px);background-color:white}",
+      code: ".navigation.svelte-1580s1t{position:fixed;right:var(--s5px);bottom:var(--s5px);z-index:100;display:flex;align-items:center;flex-direction:column;background-color:black;border-radius:var(--s3px)}.animated.svelte-1580s1t{position:relative}.icons.svelte-1580s1t{position:relative;overflow:hidden}.icon.svelte-1580s1t{position:relative;width:var(--theme-navsize);height:var(--theme-navsize);display:flex;align-items:center;justify-content:center;color:var(--nav-buttons);font-size:var(--theme-naviconsize)}.toggle.svelte-1580s1t{color:white}.show-hide.svelte-1580s1t{background-color:black;z-index:1;color:white;border-radius:var(--s3px)}.scroll.svelte-1580s1t{position:absolute;right:0;width:var(--s4px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s3px)}.title_c.svelte-1580s1t{position:fixed}.title.svelte-1580s1t{font-weight:bold;color:rgb(85, 85, 85);padding:var(--s0px) var(--s5px);background-color:white}",
       map: null
     };
     Nav = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -76583,21 +76622,21 @@ var init_index_svelte = __esm({
       const scrollPosition = tweened(0, { duration: 350, easing: quartOut });
       $$unsubscribe_scrollPosition = subscribe(scrollPosition, (value) => $scrollPosition = value);
       _registerEvent("h-scroll").subscribe((v3) => {
-        scrollPosition.set(v3 / (COLUMN_COUNT * 500) * (COLUMN_COUNT * 70));
+        scrollPosition.set(v3 / (COLUMN_COUNT * _getSizeConfig().columnWidth) * (COLUMN_COUNT * _getSizeConfig().navSize));
       });
       $$result.css.add(css$32);
       $$unsubscribe_height();
       $$unsubscribe_scrollPosition();
       $$unsubscribe__lang();
-      return `<div class="${"navigation svelte-1akofx"}"><div class="${"animated svelte-1akofx"}"><div class="${"icons svelte-1akofx"}" style="${"max-height: " + escape($height) + "px"}">${each(COLUMNS, (column, _i) => {
-        return `<div style="${"color: var(--theme-navigation-" + escape(_i) + ")"}" class="${"icon _clickable svelte-1akofx"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-1akofx"}"></i>
+      return `<div class="${"navigation svelte-1580s1t"}"><div class="${"animated svelte-1580s1t"}"><div class="${"icons svelte-1580s1t"}" style="${"max-height: " + escape($height) + "px"}">${each(COLUMNS, (column, _i) => {
+        return `<div style="${"color: var(--theme-navigation-" + escape(_i) + ")"}" class="${"icon _clickable svelte-1580s1t"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-1580s1t"}"></i>
                 </div>`;
       })}
-            <div class="${"toggle icon _clickable svelte-1akofx"}">${`<i class="${"fa-solid fa-toggle-off"}"></i>`}</div>
-            <div class="${"scroll svelte-1akofx"}" style="${"height: " + escape(scrollBarHeight) + "px; top: " + escape($scrollPosition) + "px;"}"></div></div>
+            <div class="${"toggle icon _clickable svelte-1580s1t"}">${`<i class="${"fa-solid fa-toggle-off"}"></i>`}</div>
+            <div class="${"scroll svelte-1580s1t"}" style="${"height: " + escape(scrollBarHeight) + "px; top: " + escape($scrollPosition) + "px;"}"></div></div>
         ${``}</div>
     
-    <div class="${"icon show-hide _clickable svelte-1akofx"}">${`<i class="${"fa-solid fa-angles-down"}"></i>`}</div>
+    <div class="${"icon show-hide _clickable svelte-1580s1t"}">${`<i class="${"fa-solid fa-angles-down"}"></i>`}</div>
 </div>`;
     });
     css$22 = {
@@ -76612,7 +76651,10 @@ var init_index_svelte = __esm({
       return `
 
 
-${validate_component(Card, "Card").$$render($$result, {}, {}, {
+${validate_component(Card, "Card").$$render($$result, {
+        slideInTop: data._slideInTop,
+        focused: data.id
+      }, {}, {
         default: () => {
           return `
 	<div class="${"empty-space svelte-899snu"}" style="${"height: " + escape(data.height)}"></div>
@@ -76771,7 +76813,10 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
       $$unsubscribe__lang();
-      return `${validate_component(Card, "Card").$$render($$result, { slideInTop: data._slideInTop }, {}, {
+      return `${validate_component(Card, "Card").$$render($$result, {
+        slideInTop: data._slideInTop,
+        id: data.id
+      }, {}, {
         default: () => {
           return `
     <div class="${"_clickable"}">
@@ -76814,7 +76859,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
             default: () => {
               return `${validate_component(Preview, "Preview").$$render($$result, {
                 content: data.description,
-                limit: 100,
+                limit: 60,
                 preview: minimized
               }, {}, {})}`;
             }
@@ -76823,7 +76868,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
       })}`;
     });
     css$13 = {
-      code: ".youtube.svelte-1ihu1sg{position:relative;border-radius:var(--s3px);overflow:hidden;height:var(--theme-previewheight);width:100%}.youtube-overlay.svelte-1ihu1sg{position:absolute;top:0;left:0;height:var(--theme-previewheight);width:100%;background-color:black;opacity:var(--theme-previewopacity);border-radius:3px}",
+      code: ".youtube.svelte-1oarfdn{position:relative;border-radius:var(--s3px);overflow:hidden;height:var(--theme-previewheight);width:100%}.youtube-preview.svelte-1oarfdn{filter:grayscale(0.6)}.youtube-overlay.svelte-1oarfdn{position:absolute;top:0;left:0;height:var(--theme-previewheight);width:100%;background-color:black;opacity:var(--theme-previewopacity);border-radius:3px}",
       map: null
     };
     Youtube = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -76834,8 +76879,8 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
       if ($$props.style === void 0 && $$bindings.style && style !== void 0)
         $$bindings.style(style);
       $$result.css.add(css$13);
-      return `<div class="${"youtube svelte-1ihu1sg"}"${add_attribute("style", style, 0)}><div id="${"player-" + escape(videoId)}"></div>
-    ${`<div class="${"youtube-overlay svelte-1ihu1sg"}"></div>`}
+      return `<div class="${["youtube svelte-1oarfdn", "youtube-preview"].join(" ").trim()}"${add_attribute("style", style, 0)}><div id="${"player-" + escape(videoId)}"></div>
+    ${`<div class="${"youtube-overlay svelte-1oarfdn"}"></div>`}
 </div>`;
     });
     News = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -76846,35 +76891,38 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
       $$unsubscribe__lang();
-      return `${validate_component(Card, "Card").$$render($$result, {}, {}, {
+      return `${validate_component(Card, "Card").$$render($$result, {
+        slideInTop: data._slideInTop,
+        focused: data.id
+      }, {}, {
         default: () => {
-          return `
-    ${validate_component(Font, "Font").$$render($$result, {
+          return `<div>
+        ${validate_component(Font, "Font").$$render($$result, {
             font: 0,
             size: 0.75,
-            color: "\n            rgb(100, 99, 99);\n            margin-bottom: var(--s7px);"
+            color: "\n                rgb(100, 99, 99);\n                margin-bottom: var(--s7px);"
           }, {}, {
             default: () => {
               return `${validate_component(Timestamp2, "Timestamp").$$render($$result, { time: data.createdOn }, {}, {})}`;
             }
           })}
-    
-    ${validate_component(Youtube, "Youtube").$$render($$result, {
+        
+        ${validate_component(Youtube, "Youtube").$$render($$result, {
             videoId: data.videoId,
             style: "margin-bottom: var(--s7px);"
           }, {}, {})}
-    
-    ${validate_component(Font, "Font").$$render($$result, {
+        
+        ${validate_component(Font, "Font").$$render($$result, {
             font: 1,
             size: 1.25,
-            style: "\n            font-weight: bold;\n            margin-bottom: var(--s3px);"
+            style: "\n                font-weight: bold;\n                margin-bottom: var(--s3px);"
           }, {}, {
             default: () => {
               return `${escape(data.title[$_lang])}`;
             }
           })}
-    
-    ${validate_component(Font, "Font").$$render($$result, {
+        
+        ${validate_component(Font, "Font").$$render($$result, {
             font: 0,
             size: 0.9,
             color: "rgb(57, 56, 56);"
@@ -76886,7 +76934,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
                 preview: minimized
               }, {}, {})}`;
             }
-          })}`;
+          })}</div>`;
         }
       })}`;
     });
@@ -76895,7 +76943,9 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
       map: null
     };
     Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $_isMobile, $$unsubscribe__isMobile;
       let $_lang, $$unsubscribe__lang;
+      $$unsubscribe__isMobile = subscribe(_isMobile, (value) => $_isMobile = value);
       $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
       const COMPONENTS = {
         bulletin: Bulletin,
@@ -76929,16 +76979,16 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
       const bounceAnimation = Array(COLUMN_COUNT).fill(1).map((_2) => tweened(0, { duration: 350, easing: backInOut }));
       const _bounceAnimation = Array(COLUMN_COUNT).fill(1);
       _registerEvent("nav-click").subscribe((index5) => {
-        const _width = 500 / window.devicePixelRatio;
-        const maxLeft = COLUMN_COUNT - Math.floor(window.innerWidth / _width);
+        const sizeConfig = _getSizeConfig();
+        const maxLeft = COLUMN_COUNT - Math.floor(window.innerWidth / sizeConfig.columnWidth);
         if (index5 < maxLeft) {
           hScrollIndex.value = index5;
-          setHorizontalScroll(_width * index5);
+          setHorizontalScroll(sizeConfig.columnWidth * index5);
         } else {
           hScrollIndex.value = maxLeft;
-          const remainingSpace = COLUMN_COUNT * _width + 15 - hScrollIndex.value * _width - window.innerWidth;
+          const remainingSpace = COLUMN_COUNT * _width + 15 - hScrollIndex.value * sizeConfig.columnWidth - window.innerWidth;
           hScrollIndex.value--;
-          setHorizontalScroll(_width * maxLeft + remainingSpace);
+          setHorizontalScroll(sizeConfig.columnWidth * maxLeft + remainingSpace);
         }
         bounceAnimation[index5].set(8);
         setTimeout(() => {
@@ -76950,6 +77000,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
       if ($$props.columnData === void 0 && $$bindings.columnData && columnData !== void 0)
         $$bindings.columnData(columnData);
       $$result.css.add(css5);
+      $$unsubscribe__isMobile();
       $$unsubscribe__lang();
       return `
 
@@ -76957,9 +77008,10 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
 
 ${validate_component(Nav, "Nav").$$render($$result, {}, {}, {})}
 
-<div class="${"columns svelte-fhbvnk"}"${add_attribute("this", columnsElement, 0)}><ul class="${"svelte-fhbvnk"}"><li class="${"spacer svelte-fhbvnk"}" style="${"--background: var(--theme-columns-0);"}"></li>
+<div class="${"columns svelte-fhbvnk"}"${add_attribute("this", columnsElement, 0)}><ul class="${"svelte-fhbvnk"}">${!$_isMobile ? `<li class="${"spacer svelte-fhbvnk"}" style="${"--background: var(--theme-columns-0);"}"></li>` : ``}
         ${each(COLUMNS, (column, _i) => {
-        return `<li class="${"svelte-fhbvnk"}"><div class="${"column svelte-fhbvnk"}"><div style="${"background-color: #e6e6e6;"}"><div class="${"header _clickable svelte-fhbvnk"}" style="${"background-color: var(--theme-columns-" + escape(_i + 1) + "); top: " + escape(_bounceAnimation[_i]) + "px"}"><div class="${"svelte-fhbvnk"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-fhbvnk"}"></i>
+        return `<li class="${"svelte-fhbvnk"}"><div class="${"column svelte-fhbvnk"}">
+                <div style="${"background-color: var(--theme-headerbackground);"}"><div class="${"header _clickable svelte-fhbvnk"}" style="${"background-color: var(--theme-columns-" + escape(_i + 1) + "); top: " + escape(_bounceAnimation[_i]) + "px"}"><div class="${"svelte-fhbvnk"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-fhbvnk"}"></i>
                             ${validate_component(Font, "Font").$$render($$result, {
           inline: true,
           font: 2,
@@ -76974,6 +77026,7 @@ ${validate_component(Nav, "Nav").$$render($$result, {}, {}, {})}
                         <div class="${"svelte-fhbvnk"}"><div class="${"icon-button svelte-fhbvnk"}"><i class="${"fa-solid fa-add"}"></i>
                             </div></div>
                     </div></div>
+                
                 <div class="${"cards svelte-fhbvnk"}">${each(columnData[_i], (item, _i2) => {
           return `<div>${validate_component(COMPONENTS[column.type] || Empty || missing_component, "svelte:component").$$render($$result, { data: item }, {}, {})}
                     </div>`;
@@ -76982,7 +77035,7 @@ ${validate_component(Nav, "Nav").$$render($$result, {}, {}, {})}
                 </div></div>
         </li>`;
       })}
-        <li class="${"spacer svelte-fhbvnk"}" style="${"--background: var(--theme-columns-" + escape(COLUMN_COUNT - 1) + ");"}"></li></ul>
+        ${!$_isMobile ? `<li class="${"spacer svelte-fhbvnk"}" style="${"--background: var(--theme-columns-" + escape(COLUMN_COUNT - 1) + ");"}"></li>` : ``}</ul>
 </div>`;
     });
   }
@@ -77003,9 +77056,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-f6b1f494.js";
-    js3 = ["pages/index.svelte-f6b1f494.js", "chunks/index-f708efea.js", "chunks/theme-19dfe71c.js", "chunks/index-02da5586.js", "chunks/preview-b840d791.js", "chunks/font-61e80aa3.js"];
-    css6 = ["assets/pages/index.svelte-9fcb09a4.css", "assets/preview-acdf9dfe.css"];
+    entry3 = "pages/index.svelte-61ca09d6.js";
+    js3 = ["pages/index.svelte-61ca09d6.js", "chunks/index-f708efea.js", "chunks/theme-048251d2.js", "chunks/index-02da5586.js", "chunks/preview-ceb10887.js", "chunks/font-9fdaf0de.js"];
+    css6 = ["assets/pages/index.svelte-55c53efc.css", "assets/preview-9d689602.css"];
   }
 });
 
@@ -77019,8 +77072,8 @@ var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_a845b91b();
-    init_preview_f7aeb09b();
-    init_theme_10d66321();
+    init_preview_cdd0da7e();
+    init_theme_2fc9ca27();
     init_string_strip_html_esm();
     init_column_config_31e21418();
     import_chroma_js4 = __toESM(require_chroma(), 1);
@@ -77096,9 +77149,9 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 3;
-    entry4 = "pages/post_preview.svelte-03068552.js";
-    js4 = ["pages/post_preview.svelte-03068552.js", "chunks/index-f708efea.js", "chunks/preview-b840d791.js", "chunks/index-02da5586.js", "chunks/theme-19dfe71c.js"];
-    css8 = ["assets/pages/post_preview.svelte-31ce9f42.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css", "assets/preview-acdf9dfe.css"];
+    entry4 = "pages/post_preview.svelte-6906809c.js";
+    js4 = ["pages/post_preview.svelte-6906809c.js", "chunks/index-f708efea.js", "chunks/preview-ceb10887.js", "chunks/index-02da5586.js", "chunks/theme-048251d2.js"];
+    css8 = ["assets/pages/post_preview.svelte-31ce9f42.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css", "assets/preview-9d689602.css"];
   }
 });
 
@@ -79463,7 +79516,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-73769a9e.js", "js": ["start-73769a9e.js", "chunks/index-f708efea.js", "chunks/index-02da5586.js"], "css": [] },
+    entry: { "file": "start-a025ef7c.js", "js": ["start-a025ef7c.js", "chunks/index-f708efea.js", "chunks/index-02da5586.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

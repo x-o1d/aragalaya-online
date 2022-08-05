@@ -20,7 +20,7 @@
     import { _getPost } from '$lib/services/database';
 
     // helpers
-    import { __handleHorizontalScroll, __handleVerticalScroll } from '$lib/utils/scroll';
+    import { __handleHorizontalScroll, __handleTouchMove, __handleTouchStart, __handleVerticalScroll } from '$lib/utils/scroll';
 
     // components
     import Nav from './_components/fixed/nav.svelte'
@@ -132,7 +132,7 @@
             setHorizontalScroll(sizeConfig.columnWidth * index);
         } else {
             hScrollIndex.value = maxLeft;
-            const remainingSpace = (COLUMN_COUNT*_width + 15)
+            const remainingSpace = (COLUMN_COUNT * sizeConfig.columnWidth + 15)
                 - hScrollIndex.value * sizeConfig.columnWidth
                 - window.innerWidth;
             hScrollIndex.value--;
@@ -191,7 +191,11 @@
     class="columns"
     bind:this={columnsElement}
     on:wheel|stopPropagation={(e) => {
-        __handleHorizontalScroll(e, hScrollIndex, setHorizontalScroll)
+        __handleHorizontalScroll(e, hScrollIndex, setHorizontalScroll);
+    }}
+    on:touchstart={__handleTouchStart}
+    on:touchmove={(e) => {
+        __handleTouchMove(e, hScrollIndex, setHorizontalScroll);
     }}>
 	<ul>
         {#if !$_isMobile}

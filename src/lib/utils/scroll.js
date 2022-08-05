@@ -51,6 +51,17 @@ let deltaXIndex = 0;
 // ignore horizontal scroll events for debouncing
 let ignore = false;
 
+let touchStartX = null;
+
+export const __handleTouchStart = (event) => {
+    touchStartX = event.touches[0].pageX;
+}
+
+export const __handleTouchMove = (event, hScrollIndex, setHorizontalScroll) => {
+    let deltaX = event.touches[0].pageX - touchStartX;
+    __handleHorizontalScroll({wheelDeltaX: deltaX}, hScrollIndex, setHorizontalScroll);
+}
+
 export const __handleHorizontalScroll = (event, hScrollIndex, setHorizontalScroll) => {
 
     const sizeConfig = _getSizeConfig();

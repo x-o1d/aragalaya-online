@@ -37,7 +37,10 @@
     // devicePixelRatio correction
     let devicePixelRatio = 1;
     // SSR protection, window not available for SSR
-    onMount(() => (devicePixelRatio = window.devicePixelRatio));
+    onMount(() => {
+        devicePixelRatio = (window && window.innerWidth > 600)
+            ? window.devicePixelRatio: 1;
+    });
 
     // reactive declaration ($:) is neccesary to maintain reactivity
     // when there is an automatically subscribed variable in the 

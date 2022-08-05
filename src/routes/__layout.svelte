@@ -6,7 +6,7 @@
 	import { _lang } from '$lib/services/store';
 	import { _registerEvent, _emitEvent } from '$lib/services/events';
     import { _setUserTheme } from '$lib/services/database';
-    import { _themes, _fontGroups, _fontSizes, _getSizeConfig } from '$lib/services/theme';
+    import { _themes, _fontGroups, _fontSizes, _getSizeConfig, _isMobile } from '$lib/services/theme';
     
     // components
 	import Login from './_components/fixed/login.svelte';
@@ -35,6 +35,7 @@
 	onMount(() => {
         setThemeProps(_themes[0], '--theme');
 	})
+    
     // set theme color properties on theme change
     const themeChangedEvent = _registerEvent('theme-changed').subscribe(value => {
         setThemeProps(_themes[value], '--theme');
@@ -82,18 +83,43 @@
 	// NOTE: mobile browser behavior not tested
 	// NOTE: performance cost not measured, so far so good
 	onMount(() => {
-		document.documentElement.style
-			.setProperty('--pixel-ratio', window.devicePixelRatio);
+        const MAX_SPX = 500;
+        const MIN_SPX = -50;
+
+        let devicePixelRatio = (window && window.innerWidth > 600)
+            ? window.devicePixelRatio: 1
 			
-		const pixelValues = Array(512*4).fill(0).map((_, _i) => (_i/4-10));
+		const pixelValues = Array((MAX_SPX-MIN_SPX)*4+1).fill(0).map((_, _i) => (_i/4+MIN_SPX));
 		pixelValues.map(p => {
 			const absP = Math.abs(p);
 			const cssVar = '--s' + ((p<0)? '-': '') +
 					String(absP).replace('.','_') + 'px';
-			const cssVal = p/window.devicePixelRatio + 'px';
+			const cssVal = p/devicePixelRatio + 'px';
 			document.documentElement.style.setProperty(cssVar, cssVal);
 		})
 	});
+
+    // setup a global click event listener to capture any events that are not
+    // blocked by stopPropogation
+    onMount(() => {
+        document.addEventListener("click", (event) => {
+            _emitEvent('global-click', event);
+        });
+    })
+
+    // language select selection flag for mobile
+    let showLanguageSelect = false;
+
+    // listen to global click events and hide the language option
+    const globalClickEvent = _registerEvent('global-click').subscribe((event) => {
+        // if the source isn't the language button hide the language options
+        if((event.target.id != 'language-button') && (event.target.parentElement.id != 'language-button')) {
+            showLanguageSelect = false;
+        }
+    });
+    // clear subscription
+    onDestroy(() => globalClickEvent.unsubscribe());
+
 </script>
 
 <!-- Login, Form and Nav are fixed overlay components -->
@@ -112,6 +138,7 @@
 		</div>
 	</div>
 	<ul class="header-right">
+        {#if !$_isMobile}
 		<li on:click={() => _lang.set(0)}> 
 			සිංහල 
 		</li>
@@ -121,6 +148,7 @@
 		<li on:click={() => _lang.set(2)}> 
 			தமிழ் 
 		</li>
+        {/if}
 		<li 
 			on:click={() => _emitEvent('show-hide-login', true)}
 			class="login">
@@ -130,6 +158,38 @@
             <i class="fa-solid fa-user-nurse"></i>
 			{/if}
 		</li>
+        {#if $_isMobile}
+        <li>
+            <div class="language-select">
+                <div 
+                    class="language-button"
+                    id="language-button"
+                    on:click={() => showLanguageSelect = !showLanguageSelect}>
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+                {#if showLanguageSelect}
+                <div class="languages">
+                    <div on:click={() => {
+                            _lang.set(0);
+                        }}> 
+                        සිංහල 
+                    </div>
+                    <div on:click={() => {
+                            _lang.set(1);
+                        }}> 
+                        English 
+                    </div>
+                    <div on:click={() => {
+                            _lang.set(2);
+                        }}> 
+                        தமிழ் 
+                    </div>
+                </div>
+                {/if}
+            </div>
+            
+        </li>
+        {/if}
 		<li>
 			<ThemeSelector/>
 		</li>
@@ -225,7 +285,7 @@
 	.login {
 		margin-left: var(--s30px);
 	}
-	.fa-solid {
+	.login .fa-solid {
 		font-size: var(--s21px);
 		margin-right: var(--s5px);
 	}
@@ -235,6 +295,40 @@
 	.header-right li {
 		cursor: pointer;
 	}
+
+    .language-select {
+        position: relative;
+    }
+    .language-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: var(--s30px);
+        height: var(--s30px);
+        background: white;
+        color: black;
+        font-size: 18px;
+        border-radius: var(--s3px);
+        border: 0.0520vw solid black;
+        cursor: pointer;
+    }
+    .languages {
+        position: absolute;
+        top: var(--s35px);
+        right: var(--s-22_5px);
+
+        z-index: 10;
+        width: var(--s80px);
+
+        border-radius: var(--s3px);
+        border: 0.0520vw solid black;
+    }
+    .languages > div {
+        padding: var(--s5px);
+        background-color: white;
+        text-align: center;
+    }
 
 	/* route viewport */
 	main {
