@@ -54427,7 +54427,7 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/theme-2fc9ca27.js
+// .svelte-kit/output/server/chunks/theme-3d0701f6.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -54469,15 +54469,18 @@ function writable2(value, start2 = noop2) {
   }
   return { set, update, subscribe: subscribe2 };
 }
-var import_chroma_js, subscriber_queue2, _lang, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, _getSizeConfig;
-var init_theme_2fc9ca27 = __esm({
-  ".svelte-kit/output/server/chunks/theme-2fc9ca27.js"() {
+var import_chroma_js, subscriber_queue2, _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, _getSizeConfig;
+var init_theme_3d0701f6 = __esm({
+  ".svelte-kit/output/server/chunks/theme-3d0701f6.js"() {
     init_shims();
     init_column_config_31e21418();
     import_chroma_js = __toESM(require_chroma(), 1);
     init_index_a845b91b();
     subscriber_queue2 = [];
     _lang = writable2(0);
+    _themeColorsReady = writable2(false);
+    _themeSizesReady = writable2(false);
+    _scaledPixelsReady = writable2(false);
     _isMobile = writable2(false);
     _fontGroups = [
       [
@@ -54574,16 +54577,16 @@ var init_theme_2fc9ca27 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/font-0642df22.js
+// .svelte-kit/output/server/chunks/font-9727e464.js
 var import_rxjs, events, _emitEvent, _registerEvent, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, Font;
-var init_font_0642df22 = __esm({
-  ".svelte-kit/output/server/chunks/font-0642df22.js"() {
+var init_font_9727e464 = __esm({
+  ".svelte-kit/output/server/chunks/font-9727e464.js"() {
     init_shims();
     init_database_0269ec9b();
     init_dist3();
     import_rxjs = __toESM(require_cjs(), 1);
     init_index_a845b91b();
-    init_theme_2fc9ca27();
+    init_theme_3d0701f6();
     events = [];
     _emitEvent = (tag, value) => {
       let event = events.find((event2) => tag == event2.tag);
@@ -73730,14 +73733,14 @@ var layout_svelte_exports = {};
 __export(layout_svelte_exports, {
   default: () => _layout
 });
-var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_extension_link, import_chroma_js2, __defProp3, __defProps3, __getOwnPropDescs3, __getOwnPropSymbols3, __hasOwnProp3, __propIsEnum3, __defNormalProp3, __spreadValues3, __spreadProps3, strings, css$7, Button, css$6, Text_input, css$5, Login, functions, _createPost, css$4, Tiptap_editor, css$3, Html_input, css$2, Form, css$1, Theme_selector, css, _layout;
+var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_extension_link, import_chroma_js2, __defProp3, __defProps3, __getOwnPropDescs3, __getOwnPropSymbols3, __hasOwnProp3, __propIsEnum3, __defNormalProp3, __spreadValues3, __spreadProps3, strings, css$9, Button, css$8, Text_input, css$7, Login, functions, _createPost, css$6, Tiptap_editor, css$5, Html_input, css$4, Form, css$3, Theme_selector, css$2, Preloading_indicator, Logo, css$1, Loader, css, _layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_a845b91b();
-    init_font_0642df22();
+    init_font_9727e464();
     init_database_0269ec9b();
-    init_theme_2fc9ca27();
+    init_theme_3d0701f6();
     init_column_config_31e21418();
     init_dist4();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
@@ -73815,7 +73818,7 @@ var init_layout_svelte = __esm({
         "\u0B85\u0BB2\u0BCD\u0BB2\u0BA4\u0BC1"
       ]
     };
-    css$7 = {
+    css$9 = {
       code: ".button.svelte-8zngsj{display:flex;align-items:center;justify-content:center;height:var(--s45px);width:90%;border-radius:var(--s5px);padding:var(--s5px);cursor:pointer;color:white;font-size:1.1rem;font-weight:bold;margin-bottom:var(--s14px);background-color:var(--theme-defaultbutton)}.cancel.svelte-8zngsj{background-color:var(--theme-cancelbutton)}",
       map: null
     };
@@ -73831,7 +73834,7 @@ var init_layout_svelte = __esm({
         $$bindings.text(text);
       if ($$props.cancel === void 0 && $$bindings.cancel && cancel !== void 0)
         $$bindings.cancel(cancel);
-      $$result.css.add(css$7);
+      $$result.css.add(css$9);
       $$unsubscribe__lang();
       return `<div class="${["button svelte-8zngsj", cancel ? "cancel" : ""].join(" ").trim()}">${`${validate_component(Font, "Font").$$render($$result, { font: 0, size: 1 }, {}, {
         default: () => {
@@ -73840,7 +73843,7 @@ var init_layout_svelte = __esm({
       })}`}
 </div>`;
     });
-    css$6 = {
+    css$8 = {
       code: ".text-input.svelte-1keabnd{width:90%;margin-bottom:var(--s18px)}input.svelte-1keabnd{height:var(--s45px);width:100%;border-radius:var(--s5px);padding:var(--s10px);border:var(--s1px) solid var(--theme-defaultbutton);font-size:1rem;margin-bottom:3px}span.svelte-1keabnd{color:red}.error.svelte-1keabnd{border-width:2px;border-color:#c02e46}",
       map: null
     };
@@ -73859,7 +73862,7 @@ var init_layout_svelte = __esm({
         $$bindings.data(data);
       if ($$props.error === void 0 && $$bindings.error && error2 !== void 0)
         $$bindings.error(error2);
-      $$result.css.add(css$6);
+      $$result.css.add(css$8);
       $$unsubscribe__lang();
       return `<div class="${"text-input svelte-1keabnd"}">${validate_component(Font, "Font").$$render($$result, { font: 0, size: 1 }, {}, {
         default: () => {
@@ -73875,7 +73878,7 @@ var init_layout_svelte = __esm({
       })}
 </div>`;
     });
-    css$5 = {
+    css$7 = {
       code: ".overlay.svelte-zl2hry{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;width:100vw;height:100vh;background-color:rgba(0,0,0,0.9)}.overlay.svelte-zl2hry:hover{cursor:ne-resize}.login_c.svelte-zl2hry{width:var(--s340px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c;cursor:auto}.login.svelte-zl2hry{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s20px);width:100%;height:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}.fb-button.svelte-zl2hry{display:flex;align-items:center;justify-content:center;height:var(--s45px);width:90%;border-radius:var(--s5px);padding:var(--s5px);background-color:var(--button);cursor:pointer;color:white;font-size:1.1rem;font-weight:bold;margin-bottom:var(--s14px);font-family:'Roboto', sans-serif;font-size:var(--s13px);background-color:#0a82ec}.fa-facebook-square.svelte-zl2hry{font-size:1.3rem;margin-right:var(--s10px)}",
       map: null
     };
@@ -73968,7 +73971,7 @@ var init_layout_svelte = __esm({
         repeatPasswordError = false;
         signinOrSignup = 0;
       };
-      $$result.css.add(css$5);
+      $$result.css.add(css$7);
       $$unsubscribe__lang();
       return `${showLogin ? `<div class="${"overlay svelte-zl2hry"}"><div class="${"login_c svelte-zl2hry"}"><div class="${"login svelte-zl2hry"}">${validate_component(Font, "Font").$$render($$result, {
         font: 2,
@@ -74043,7 +74046,7 @@ var init_layout_svelte = __esm({
       return httpsCallable(functions, "addpost")(post);
     };
     getStorage(app);
-    css$4 = {
+    css$6 = {
       code: ".editor-container.svelte-1e8yveh{position:relative}.editor-mask.svelte-1e8yveh{display:flex;align-items:center;justify-content:center;position:absolute;top:0;left:0;height:100%;width:100%;color:white;background-color:black;font-size:1.5rem;opacity:0.7;border-radius:var(--s5px);z-index:10000}.editable > .ProseMirror{min-height:var(--s300px);max-height:80vh;overflow-y:auto;border-radius:var(--s5px);background-color:white;border:var(--s1px) solid var(--button);padding:var(--s10px)}.error > .ProseMirror{border:var(--s2px) solid #c02e46}button.svelte-1e8yveh{background:white;font-size:13px;border:var(--s1px) solid var(--theme-defaultbutton);padding:var(--s3px);border-radius:var(--s3px)}button.active.svelte-1e8yveh{background:black;color:white}.ProseMirror img{max-width:100%}h2{margin:var(--s10px) 0px}.ProseMirror p.is-editor-empty:first-child::before{content:attr(data-placeholder);float:left;color:#a3a3a3;pointer-events:none;height:0}",
       map: null
     };
@@ -74065,7 +74068,7 @@ var init_layout_svelte = __esm({
         $$bindings.config(config);
       if ($$props.error === void 0 && $$bindings.error && error2 !== void 0)
         $$bindings.error(error2);
-      $$result.css.add(css$4);
+      $$result.css.add(css$6);
       $$unsubscribe__lang();
       return `${``}
   
@@ -74078,7 +74081,7 @@ var init_layout_svelte = __esm({
     ${``}
 </div>`;
     });
-    css$3 = {
+    css$5 = {
       code: ".html-input.svelte-1hiixgc{width:90%;margin-bottom:var(--s18px)}span.svelte-1hiixgc{color:red}",
       map: null
     };
@@ -74092,7 +74095,7 @@ var init_layout_svelte = __esm({
         $$bindings.data(data);
       if ($$props.error === void 0 && $$bindings.error && error2 !== void 0)
         $$bindings.error(error2);
-      $$result.css.add(css$3);
+      $$result.css.add(css$5);
       return `<div class="${"html-input svelte-1hiixgc"}">${validate_component(Tiptap_editor, "TipTap").$$render($$result, {
         placeholder: config.placeholder,
         config,
@@ -74107,7 +74110,7 @@ var init_layout_svelte = __esm({
       })}</span>` : ``}
 </div>`;
     });
-    css$2 = {
+    css$4 = {
       code: ".overlay.svelte-1gd3699{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;width:100vw;height:100vh;background-color:rgba(0,0,0,0.9)}.form_c.svelte-1gd3699{width:var(--s500px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c}.form.svelte-1gd3699{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s20px);width:100%;height:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}",
       map: null
     };
@@ -74169,7 +74172,7 @@ var init_layout_svelte = __esm({
         data = {};
         showForm = false;
       };
-      $$result.css.add(css$2);
+      $$result.css.add(css$4);
       fields = Object.keys(COLUMNS[columnIndex].data);
       fieldConfigs = fields.map((f5) => {
         let fieldConfig = COLUMNS[columnIndex].data[f5];
@@ -74212,7 +74215,7 @@ var init_layout_svelte = __esm({
         text: COLUMNS[columnIndex].cancelButton
       }, {}, {})}</div></div></div>` : ``}`;
     });
-    css$1 = {
+    css$3 = {
       code: "span.svelte-1bxewj4.svelte-1bxewj4{position:fixed;z-index:10}div.svelte-1bxewj4.svelte-1bxewj4{width:var(--s30px);height:var(--s30px);background:var(--theme-1);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-1) 25%, \n            var(--theme-2) 50%,\n            var(--theme-3) 75%, \n            var(--theme-4) 100%);border-radius:var(--s3px);border:0.0520vw solid black;cursor:pointer}span.svelte-1bxewj4 div.svelte-1bxewj4{margin-bottom:var(--s5px)}",
       map: null
     };
@@ -74227,13 +74230,43 @@ var init_layout_svelte = __esm({
         }
       });
       onDestroy(() => globalClickEvent.unsubscribe());
-      $$result.css.add(css$1);
+      $$result.css.add(css$3);
       return `<div id="${"theme-button"}" style="${"--theme-1: var(--theme-columns-0); --theme-2: var(--theme-columns-2); --theme-3: var(--theme-columns-4); --theme-4: var(--theme-columns-6);"}" class="${"svelte-1bxewj4"}"${add_attribute("this", themeSelect, 0)}></div>
 
 <span style="${"display: " + escape(showPanel ? "block" : "none") + ";"}" class="${"svelte-1bxewj4"}"${add_attribute("this", themePanel, 0)}>${each(_themes, (theme, _i) => {
         return `${_i != currentTheme ? `<div style="${"--theme-1: " + escape(theme.columns[0]) + "; --theme-2: " + escape(theme.columns[2]) + "; --theme-3: " + escape(theme.columns[4]) + "; --theme-4: " + escape(theme.columns[6]) + ";"}" class="${"svelte-1bxewj4"}"></div>` : ``}`;
       })}
 </span>`;
+    });
+    css$2 = {
+      code: ".progress-container.svelte-19xacwh{position:absolute;top:0;left:0;width:100%;height:4px;z-index:999}.progress.svelte-19xacwh{position:absolute;left:0;top:0;height:100%;background-color:green;transition:width 0.4s}.fade.svelte-19xacwh{position:fixed;width:100%;height:100%;background-color:rgba(255, 255, 255, 0.3);pointer-events:none;z-index:998;animation:svelte-19xacwh-fade 0.4s}@keyframes svelte-19xacwh-fade{from{opacity:0}to{opacity:1}}",
+      map: null
+    };
+    Preloading_indicator = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let p2 = 0.1;
+      $$result.css.add(css$2);
+      return `${`<div class="${"progress-container svelte-19xacwh"}"><div class="${"progress svelte-19xacwh"}" style="${"inline-size: " + escape(p2 * 100) + "%"}"></div></div>`}
+
+${``}`;
+    });
+    Logo = "data:image/png;base64,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";
+    css$1 = {
+      code: ".loader.svelte-hx79vl{position:fixed;top:0;left:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background-color:white}.title.svelte-hx79vl{padding:10px}.progress-bar.svelte-hx79vl{position:relative;width:90%}",
+      map: null
+    };
+    Loader = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $$unsubscribe__scaledPixelsReady;
+      let $$unsubscribe__themeSizesReady;
+      let $$unsubscribe__themeColorsReady;
+      $$unsubscribe__scaledPixelsReady = subscribe(_scaledPixelsReady, (value) => value);
+      $$unsubscribe__themeSizesReady = subscribe(_themeSizesReady, (value) => value);
+      $$unsubscribe__themeColorsReady = subscribe(_themeColorsReady, (value) => value);
+      $$result.css.add(css$1);
+      $$unsubscribe__scaledPixelsReady();
+      $$unsubscribe__themeSizesReady();
+      $$unsubscribe__themeColorsReady();
+      return `${`<div class="${"loader svelte-hx79vl"}"><div class="${"title svelte-hx79vl"}"><img${add_attribute("src", Logo, 0)} alt="${"\u0D85\u0DBB\u0D9C\u0DBD\u0DBA.online"}"></div>
+    <div class="${"progress-bar svelte-hx79vl"}">${validate_component(Preloading_indicator, "PreloadingIndicator").$$render($$result, {}, {}, {})}</div></div>`}`;
     });
     css = {
       code: "html{font-family:'Roboto', sans-serif}body{margin:0;overflow:hidden}*{box-sizing:border-box}._clickable:hover{cursor:pointer}p{margin:0px}ul.svelte-4ktl3y.svelte-4ktl3y{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.svelte-4ktl3y.svelte-4ktl3y{display:inline-flex}.header.svelte-4ktl3y.svelte-4ktl3y{--text:rgb(163, 47, 47);--shadow-height:0.5rem;--shadow-gradient:linear-gradient(\n			to bottom,\n			rgba(0, 0, 0, 0.3) 0%,\n			rgba(0, 0, 0, 0.1) 30%,\n			transparent 100%\n		);height:var(--theme-layoutheaderheight);display:flex;align-items:center;justify-content:space-between;width:100vw;margin:0;font-family:var(--font);transition:transform 0.2s;user-select:none;padding:0;background-color:var(--theme-headerbackground)}.logo.svelte-4ktl3y.svelte-4ktl3y{display:flex;padding:var(--s10px) var(--s7px);align-items:baseline;padding-bottom:var(--s10px)}.aragalaya.svelte-4ktl3y.svelte-4ktl3y{display:inline-block;font-size:var(--s36px);line-height:var(--s28px);font-weight:bold;font-family:'Gemunu Libre', sans-serif}.online.svelte-4ktl3y.svelte-4ktl3y{display:inline-block;font-size:var(--s18px);font-family:'Roboto', sans-serif}.header-right.svelte-4ktl3y li.svelte-4ktl3y{font-size:var(--s14px);line-height:var(--s14px);padding:0 var(--s5px);font-family:'Roboto', sans-serif}.header-right.svelte-4ktl3y.svelte-4ktl3y:last-child{margin-right:var(--s5px)}.login.svelte-4ktl3y.svelte-4ktl3y{margin-left:var(--s30px)}.login.svelte-4ktl3y .fa-solid.svelte-4ktl3y{font-size:var(--s21px);margin-right:var(--s5px)}.fa-user-nurse.svelte-4ktl3y.svelte-4ktl3y{color:green}.header-right.svelte-4ktl3y li.svelte-4ktl3y{cursor:pointer}.language-select.svelte-4ktl3y.svelte-4ktl3y{position:relative}.language-button.svelte-4ktl3y.svelte-4ktl3y{display:flex;align-items:center;justify-content:center;width:var(--s30px);height:var(--s30px);background:white;color:black;font-size:18px;border-radius:var(--s3px);border:0.0520vw solid black;cursor:pointer}.languages.svelte-4ktl3y.svelte-4ktl3y{position:absolute;top:var(--s35px);right:var(--s-22_5px);z-index:10;width:var(--s80px);border-radius:var(--s3px);border:0.0520vw solid black}.languages.svelte-4ktl3y>div.svelte-4ktl3y{padding:var(--s5px);background-color:white;text-align:center}main.svelte-4ktl3y.svelte-4ktl3y{position:relative;margin:0 auto;overflow:hiden}",
@@ -74246,7 +74279,7 @@ var init_layout_svelte = __esm({
       $$unsubscribe__isMobile = subscribe(_isMobile, (value) => $_isMobile = value);
       const userReady = _registerEvent("user-ready");
       $$unsubscribe_userReady = subscribe(userReady, (value) => $userReady = value);
-      const setThemeProps = (object, styleName) => {
+      const setThemeColors = (object, styleName) => {
         Object.keys(object).map((prop) => {
           const newStyleName = styleName + "-" + prop.toLowerCase();
           if (typeof object[prop] != "object") {
@@ -74254,12 +74287,12 @@ var init_layout_svelte = __esm({
               document.documentElement.style.setProperty(newStyleName, object[prop]);
             }
           } else {
-            setThemeProps(object[prop], newStyleName);
+            setThemeColors(object[prop], newStyleName);
           }
         });
       };
       const themeChangedEvent = _registerEvent("theme-changed").subscribe((value) => {
-        setThemeProps(_themes[value], "--theme");
+        setThemeColors(_themes[value], "--theme");
         if (user2) {
           _setUserTheme(user2, value);
         }
@@ -74278,6 +74311,7 @@ var init_layout_svelte = __esm({
       $$unsubscribe__isMobile();
       return `
 
+${validate_component(Loader, "Loader").$$render($$result, {}, {}, {})}
 ${validate_component(Login, "Login").$$render($$result, {}, {}, {})}
 ${validate_component(Form, "Form").$$render($$result, {}, {}, {})}
 
@@ -74322,9 +74356,9 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-44f09fdb.js";
-    js = ["pages/__layout.svelte-44f09fdb.js", "chunks/index-f708efea.js", "chunks/theme-048251d2.js", "chunks/index-02da5586.js", "chunks/font-9fdaf0de.js"];
-    css2 = ["assets/pages/__layout.svelte-7d968f11.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css"];
+    entry = "pages/__layout.svelte-70c6273a.js";
+    js = ["pages/__layout.svelte-70c6273a.js", "chunks/index-2687a976.js", "chunks/theme-8dedc08f.js", "chunks/index-f5cd5584.js", "chunks/font-7917219a.js"];
+    css2 = ["assets/pages/__layout.svelte-0a35148c.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css"];
   }
 });
 
@@ -74376,8 +74410,8 @@ var init__2 = __esm({
     init_shims();
     init_error_svelte();
     index2 = 1;
-    entry2 = "error.svelte-3c459f34.js";
-    js2 = ["error.svelte-3c459f34.js", "chunks/index-f708efea.js"];
+    entry2 = "error.svelte-53f43be4.js";
+    js2 = ["error.svelte-53f43be4.js", "chunks/index-2687a976.js"];
     css3 = [];
   }
 });
@@ -76412,7 +76446,7 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/preview-cdd0da7e.js
+// .svelte-kit/output/server/chunks/preview-122f79b3.js
 function backInOut(t2) {
   const s3 = 1.70158 * 1.525;
   if ((t2 *= 2) < 1)
@@ -76522,11 +76556,11 @@ function tweened(value, defaults = {}) {
   };
 }
 var css$12, duration, Card, strings2, css4, Preview;
-var init_preview_cdd0da7e = __esm({
-  ".svelte-kit/output/server/chunks/preview-cdd0da7e.js"() {
+var init_preview_122f79b3 = __esm({
+  ".svelte-kit/output/server/chunks/preview-122f79b3.js"() {
     init_shims();
     init_index_a845b91b();
-    init_theme_2fc9ca27();
+    init_theme_3d0701f6();
     init_string_strip_html_esm();
     css$12 = {
       code: ".card-container.svelte-15adwsw{padding:var(--theme-cardseparationhalf)}.card.svelte-15adwsw{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.card-blur.svelte-15adwsw{filter:grayscale(1)}.card-blur-2.svelte-15adwsw{filter:blur(0.7px)}",
@@ -76618,9 +76652,9 @@ var init_index_svelte = __esm({
     init_shims();
     init_index_a845b91b();
     init_column_config_31e21418();
-    init_preview_cdd0da7e();
-    init_font_0642df22();
-    init_theme_2fc9ca27();
+    init_preview_122f79b3();
+    init_font_9727e464();
+    init_theme_3d0701f6();
     init_database_0269ec9b();
     init_string_strip_html_esm();
     init_dist3();
@@ -77101,8 +77135,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-49af5234.js";
-    js3 = ["pages/index.svelte-49af5234.js", "chunks/index-f708efea.js", "chunks/theme-048251d2.js", "chunks/index-02da5586.js", "chunks/preview-ceb10887.js", "chunks/font-9fdaf0de.js"];
+    entry3 = "pages/index.svelte-ffc599b8.js";
+    js3 = ["pages/index.svelte-ffc599b8.js", "chunks/index-2687a976.js", "chunks/theme-8dedc08f.js", "chunks/index-f5cd5584.js", "chunks/preview-5c7eb524.js", "chunks/font-7917219a.js"];
     css6 = ["assets/pages/index.svelte-5a45a4e7.css", "assets/preview-9d689602.css"];
   }
 });
@@ -77117,8 +77151,8 @@ var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_a845b91b();
-    init_preview_cdd0da7e();
-    init_theme_2fc9ca27();
+    init_preview_122f79b3();
+    init_theme_3d0701f6();
     init_string_strip_html_esm();
     init_column_config_31e21418();
     import_chroma_js4 = __toESM(require_chroma(), 1);
@@ -77194,8 +77228,8 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 3;
-    entry4 = "pages/post_preview.svelte-6906809c.js";
-    js4 = ["pages/post_preview.svelte-6906809c.js", "chunks/index-f708efea.js", "chunks/preview-ceb10887.js", "chunks/index-02da5586.js", "chunks/theme-048251d2.js"];
+    entry4 = "pages/post_preview.svelte-45251312.js";
+    js4 = ["pages/post_preview.svelte-45251312.js", "chunks/index-2687a976.js", "chunks/preview-5c7eb524.js", "chunks/index-f5cd5584.js", "chunks/theme-8dedc08f.js"];
     css8 = ["assets/pages/post_preview.svelte-31ce9f42.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css", "assets/preview-9d689602.css"];
   }
 });
@@ -79561,7 +79595,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-e0be2f88.js", "js": ["start-e0be2f88.js", "chunks/index-f708efea.js", "chunks/index-02da5586.js"], "css": [] },
+    entry: { "file": "start-5844c4d4.js", "js": ["start-5844c4d4.js", "chunks/index-2687a976.js", "chunks/index-f5cd5584.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

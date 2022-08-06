@@ -50,8 +50,10 @@
                 // if scaled pixel value css variables have been set
                 $_scaledPixelsReady
             ) {
-                loadingComplete = true;
-                clearInterval(checkLoadedInterval);
+                setTimeout(() => {
+                    loadingComplete = true;
+                    clearInterval(checkLoadedInterval);
+                }, 200);
             }
         }, 800);
     });
