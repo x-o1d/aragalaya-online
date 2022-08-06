@@ -54427,7 +54427,7 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/theme-3d0701f6.js
+// .svelte-kit/output/server/chunks/theme-85f89b32.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -54470,8 +54470,8 @@ function writable2(value, start2 = noop2) {
   return { set, update, subscribe: subscribe2 };
 }
 var import_chroma_js, subscriber_queue2, _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, _getSizeConfig;
-var init_theme_3d0701f6 = __esm({
-  ".svelte-kit/output/server/chunks/theme-3d0701f6.js"() {
+var init_theme_85f89b32 = __esm({
+  ".svelte-kit/output/server/chunks/theme-85f89b32.js"() {
     init_shims();
     init_column_config_31e21418();
     import_chroma_js = __toESM(require_chroma(), 1);
@@ -54549,7 +54549,7 @@ var init_theme_3d0701f6 = __esm({
     columnHeaderHeight = 50;
     cardSeparation = 12;
     cardPadding = 10;
-    navSize = 70;
+    navSize = 60;
     previewHeight = (columnWidth - cardSeparation - cardPadding * 2) * 9 / 16;
     _getSizeConfig = () => {
       let devicePixelRatio = window && window.innerWidth > 600 ? window.devicePixelRatio : 1;
@@ -54577,16 +54577,16 @@ var init_theme_3d0701f6 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/font-9727e464.js
+// .svelte-kit/output/server/chunks/font-d293c44f.js
 var import_rxjs, events, _emitEvent, _registerEvent, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, Font;
-var init_font_9727e464 = __esm({
-  ".svelte-kit/output/server/chunks/font-9727e464.js"() {
+var init_font_d293c44f = __esm({
+  ".svelte-kit/output/server/chunks/font-d293c44f.js"() {
     init_shims();
     init_database_0269ec9b();
     init_dist3();
     import_rxjs = __toESM(require_cjs(), 1);
     init_index_a845b91b();
-    init_theme_3d0701f6();
+    init_theme_85f89b32();
     events = [];
     _emitEvent = (tag, value) => {
       let event = events.find((event2) => tag == event2.tag);
@@ -73738,9 +73738,9 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_a845b91b();
-    init_font_9727e464();
+    init_font_d293c44f();
     init_database_0269ec9b();
-    init_theme_3d0701f6();
+    init_theme_85f89b32();
     init_column_config_31e21418();
     init_dist4();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
@@ -74356,8 +74356,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-e8beb2a0.js";
-    js = ["pages/__layout.svelte-e8beb2a0.js", "chunks/index-2687a976.js", "chunks/theme-8dedc08f.js", "chunks/index-f5cd5584.js", "chunks/font-7917219a.js"];
+    entry = "pages/__layout.svelte-0503d6ab.js";
+    js = ["pages/__layout.svelte-0503d6ab.js", "chunks/index-2687a976.js", "chunks/theme-68fe9860.js", "chunks/index-f5cd5584.js", "chunks/font-a86038ec.js"];
     css2 = ["assets/pages/__layout.svelte-0a35148c.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css"];
   }
 });
@@ -76446,7 +76446,7 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/preview-122f79b3.js
+// .svelte-kit/output/server/chunks/preview-43d13513.js
 function backInOut(t2) {
   const s3 = 1.70158 * 1.525;
   if ((t2 *= 2) < 1)
@@ -76556,11 +76556,11 @@ function tweened(value, defaults = {}) {
   };
 }
 var css$12, duration, Card, strings2, css4, Preview;
-var init_preview_122f79b3 = __esm({
-  ".svelte-kit/output/server/chunks/preview-122f79b3.js"() {
+var init_preview_43d13513 = __esm({
+  ".svelte-kit/output/server/chunks/preview-43d13513.js"() {
     init_shims();
     init_index_a845b91b();
-    init_theme_3d0701f6();
+    init_theme_85f89b32();
     init_string_strip_html_esm();
     css$12 = {
       code: ".card-container.svelte-15adwsw{padding:var(--theme-cardseparationhalf)}.card.svelte-15adwsw{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.card-blur.svelte-15adwsw{filter:grayscale(1)}.card-blur-2.svelte-15adwsw{filter:blur(0.7px)}",
@@ -76652,9 +76652,9 @@ var init_index_svelte = __esm({
     init_shims();
     init_index_a845b91b();
     init_column_config_31e21418();
-    init_preview_122f79b3();
-    init_font_9727e464();
-    init_theme_3d0701f6();
+    init_preview_43d13513();
+    init_font_d293c44f();
+    init_theme_85f89b32();
     init_database_0269ec9b();
     init_string_strip_html_esm();
     init_dist3();
@@ -76709,7 +76709,7 @@ var init_index_svelte = __esm({
         return `<div style="${"color: var(--theme-navigation-" + escape(_i) + ")"}" class="${"icon _clickable svelte-dte8xm"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-dte8xm"}"></i>
                 </div>`;
       })}
-            <div class="${"toggle icon _clickable svelte-dte8xm"}">${`<i class="${"fa-solid fa-toggle-off"}"></i>`}</div>
+            
             <div class="${"scroll svelte-dte8xm"}" style="${"height: " + escape(scrollBarHeight) + "px; top: " + escape($scrollPosition) + "px;"}"></div></div>
         ${``}</div>
     
@@ -77135,8 +77135,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-008bbb58.js";
-    js3 = ["pages/index.svelte-008bbb58.js", "chunks/index-2687a976.js", "chunks/theme-8dedc08f.js", "chunks/index-f5cd5584.js", "chunks/preview-5c7eb524.js", "chunks/font-7917219a.js"];
+    entry3 = "pages/index.svelte-8f71b906.js";
+    js3 = ["pages/index.svelte-8f71b906.js", "chunks/index-2687a976.js", "chunks/theme-68fe9860.js", "chunks/index-f5cd5584.js", "chunks/preview-7a9f088f.js", "chunks/font-a86038ec.js"];
     css6 = ["assets/pages/index.svelte-5a45a4e7.css", "assets/preview-9d689602.css"];
   }
 });
@@ -77151,8 +77151,8 @@ var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_a845b91b();
-    init_preview_122f79b3();
-    init_theme_3d0701f6();
+    init_preview_43d13513();
+    init_theme_85f89b32();
     init_string_strip_html_esm();
     init_column_config_31e21418();
     import_chroma_js4 = __toESM(require_chroma(), 1);
@@ -77228,8 +77228,8 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 3;
-    entry4 = "pages/post_preview.svelte-45251312.js";
-    js4 = ["pages/post_preview.svelte-45251312.js", "chunks/index-2687a976.js", "chunks/preview-5c7eb524.js", "chunks/index-f5cd5584.js", "chunks/theme-8dedc08f.js"];
+    entry4 = "pages/post_preview.svelte-264af2d5.js";
+    js4 = ["pages/post_preview.svelte-264af2d5.js", "chunks/index-2687a976.js", "chunks/preview-7a9f088f.js", "chunks/index-f5cd5584.js", "chunks/theme-68fe9860.js"];
     css8 = ["assets/pages/post_preview.svelte-31ce9f42.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css", "assets/preview-9d689602.css"];
   }
 });
@@ -79595,7 +79595,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-14a605c5.js", "js": ["start-14a605c5.js", "chunks/index-2687a976.js", "chunks/index-f5cd5584.js"], "css": [] },
+    entry: { "file": "start-3a52bc95.js", "js": ["start-3a52bc95.js", "chunks/index-2687a976.js", "chunks/index-f5cd5584.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

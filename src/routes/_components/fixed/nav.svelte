@@ -175,10 +175,10 @@
         background: var(--theme-columns-0);
         background: radial-gradient(
             circle at bottom right, 
-            var(--theme-columns-0) 25%, 
-            var(--theme-columns-2) 50%,
-            var(--theme-columns-4) 75%, 
-            var(--theme-columns-6) 100%);
+            var(--theme-columns-7) 25%, 
+            var(--theme-columns-5) 50%,
+            var(--theme-columns-3) 75%, 
+            var(--theme-columns-1) 100%);
         border-radius: var(--s6px);
     }
 
