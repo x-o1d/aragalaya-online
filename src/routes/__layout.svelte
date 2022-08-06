@@ -3,7 +3,7 @@
 	import { onMount, onDestroy } from 'svelte';
 
     // services
-	import { _lang } from '$lib/services/store';
+	import { _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady } from '$lib/services/store';
 	import { _registerEvent, _emitEvent } from '$lib/services/events';
     import { _setUserTheme } from '$lib/services/database';
     import { _themes, _fontGroups, _fontSizes, _getSizeConfig, _isMobile } from '$lib/services/theme';
@@ -12,6 +12,7 @@
 	import Login from './_components/fixed/login.svelte';
 	import Form from './_components/fixed/form.svelte';
 	import ThemeSelector from '$lib/components/util/theme-selector.svelte';
+    import Loader from './_components/fixed/loader.svelte';
 
     // listen to if the user is signed in
     const userReady = _registerEvent('user-ready');
@@ -19,7 +20,7 @@
 
 	// set all the theme variables as css variables
     // refer theme.js comments
-    const setThemeProps = (object, styleName) => {
+    const setThemeColors = (object, styleName) => {
         Object.keys(object).map(prop => {
             const newStyleName = styleName + '-' + prop.toLowerCase();
             if(typeof object[prop] != 'object') {
@@ -27,18 +28,21 @@
                     document.documentElement.style.setProperty(newStyleName, object[prop]);
                 }
             } else {
-                setThemeProps(object[prop], newStyleName);
+                setThemeColors(object[prop], newStyleName);
             }
         })
     }
     // set default theme color properties
 	onMount(() => {
-        setThemeProps(_themes[0], '--theme');
+        setThemeColors(_themes[0], '--theme');
+        // let the Loader component know that theme color variables have
+        // been set
+        _themeColorsReady.set(true);
 	})
-    
+
     // set theme color properties on theme change
     const themeChangedEvent = _registerEvent('theme-changed').subscribe(value => {
-        setThemeProps(_themes[value], '--theme');
+        setThemeColors(_themes[value], '--theme');
         if(user) {
             _setUserTheme(user, value);
         }
@@ -47,7 +51,7 @@
     onDestroy(() => themeChangedEvent.unsubscribe());
 
     // set all size configuration values as css variables
-    const setSizeProps = (object, styleName) => {
+    const setThemeSizes = (object, styleName) => {
         Object.keys(object).map(prop => {
             if(typeof object[prop] == 'number') {
                 const newStyleName = styleName + '-' + prop.toLowerCase();
@@ -57,11 +61,13 @@
     }
     onMount(() => {
         // set size variables in css
-        setSizeProps(_getSizeConfig(), '--theme');
+        setThemeSizes(_getSizeConfig(), '--theme');
+        // let the Loader component know that theme size variables have
+        // been set
+        _themeSizesReady.set(true);
         // reset style variables in css if screen size is changed
         addEventListener('resize', (event) => {
-            console.log('window size changed');
-            setSizeProps(_getSizeConfig(), '--theme');
+            setThemeSizes(_getSizeConfig(), '--theme');
         });
 	})
 
@@ -97,6 +103,9 @@
 			const cssVal = p/devicePixelRatio + 'px';
 			document.documentElement.style.setProperty(cssVar, cssVal);
 		})
+        // let the Loader component know that scaled pixel variables have
+        // been set
+        _scaledPixelsReady.set(true);
 	});
 
     // setup a global click event listener to capture any events that are not
@@ -122,8 +131,9 @@
 
 </script>
 
-<!-- Login, Form and Nav are fixed overlay components -->
+<!-- Loader, Login and Form are fixed overlay components -->
 <!-- they are shown and hidden using the events service -->
+<Loader/>
 <Login/>
 <Form/>
 

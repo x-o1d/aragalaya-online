@@ -1,8 +1,8 @@
 <script>
 	import { onMount } from 'svelte';
 
-	let p = 0;
-	let visible = false;
+	let p = 0.1;
+	let visible = true;
 
 	onMount(() => {
 		function next() {
@@ -42,7 +42,7 @@
 		left: 0;
 		top: 0;
 		height: 100%;
-		background-color: var(--prime);
+		background-color: green;
 		transition: width 0.4s;
 	}
 

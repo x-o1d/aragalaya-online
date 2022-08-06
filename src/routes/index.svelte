@@ -140,10 +140,13 @@
                 + remainingSpace);
         }
 
-        bounceAnimation[index].set(8);
-        setTimeout(() => {
-            bounceAnimation[index].set(0);
-        }, 350);
+        // trigger the column header bounce animation on desktop browsers
+        if(!$_isMobile) {
+            bounceAnimation[index].set(8);
+            setTimeout(() => {
+                bounceAnimation[index].set(0);
+            }, 350);
+        }
     });
 
     // NOTE:: sunscriptions in this onMount function can potentially be

@@ -73730,7 +73730,7 @@ var layout_svelte_exports = {};
 __export(layout_svelte_exports, {
   default: () => _layout
 });
-var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_extension_link, import_chroma_js2, __defProp3, __defProps3, __getOwnPropDescs3, __getOwnPropSymbols3, __hasOwnProp3, __propIsEnum3, __defNormalProp3, __spreadValues3, __spreadProps3, strings, css$7, Button, css$6, Text_input, css$5, Login, functions, _createPost, css$4, Tiptap_editor, css$3, Html_input, css$2, Form, css$1, currentTheme, Theme_selector, css, _layout;
+var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_extension_link, import_chroma_js2, __defProp3, __defProps3, __getOwnPropDescs3, __getOwnPropSymbols3, __hasOwnProp3, __propIsEnum3, __defNormalProp3, __spreadValues3, __spreadProps3, strings, css$7, Button, css$6, Text_input, css$5, Login, functions, _createPost, css$4, Tiptap_editor, css$3, Html_input, css$2, Form, css$1, Theme_selector, css, _layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
@@ -74213,23 +74213,30 @@ var init_layout_svelte = __esm({
       }, {}, {})}</div></div></div>` : ``}`;
     });
     css$1 = {
-      code: "span.svelte-1aywa0g.svelte-1aywa0g{position:fixed;z-index:1000}div.svelte-1aywa0g.svelte-1aywa0g{width:var(--s30px);height:var(--s30px);background:var(--theme-1);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-1) 25%, \n            var(--theme-2) 50%,\n            var(--theme-3) 75%, \n            var(--theme-4) 100%);border-radius:var(--s3px);border:0.0520vw solid black;cursor:pointer}span.svelte-1aywa0g div.svelte-1aywa0g{margin-bottom:var(--s5px)}",
+      code: "span.svelte-1bxewj4.svelte-1bxewj4{position:fixed;z-index:10}div.svelte-1bxewj4.svelte-1bxewj4{width:var(--s30px);height:var(--s30px);background:var(--theme-1);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-1) 25%, \n            var(--theme-2) 50%,\n            var(--theme-3) 75%, \n            var(--theme-4) 100%);border-radius:var(--s3px);border:0.0520vw solid black;cursor:pointer}span.svelte-1bxewj4 div.svelte-1bxewj4{margin-bottom:var(--s5px)}",
       map: null
     };
-    currentTheme = 0;
     Theme_selector = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let themeSelect;
       let themePanel;
+      let currentTheme = 0;
+      let showPanel = false;
+      const globalClickEvent = _registerEvent("global-click").subscribe((event) => {
+        if (event.srcElement.id != "theme-button") {
+          showPanel = false;
+        }
+      });
+      onDestroy(() => globalClickEvent.unsubscribe());
       $$result.css.add(css$1);
-      return `<div style="${"--theme-1: var(--theme-columns-0); --theme-2: var(--theme-columns-2); --theme-3: var(--theme-columns-4); --theme-4: var(--theme-columns-6);"}" class="${"svelte-1aywa0g"}"${add_attribute("this", themeSelect, 0)}></div>
+      return `<div id="${"theme-button"}" style="${"--theme-1: var(--theme-columns-0); --theme-2: var(--theme-columns-2); --theme-3: var(--theme-columns-4); --theme-4: var(--theme-columns-6);"}" class="${"svelte-1bxewj4"}"${add_attribute("this", themeSelect, 0)}></div>
 
-<span style="${"display: " + escape("none") + ";"}" class="${"svelte-1aywa0g"}"${add_attribute("this", themePanel, 0)}>${each(_themes, (theme, _i) => {
-        return `${_i != currentTheme ? `<div style="${"--theme-1: " + escape(theme.columns[0]) + "; --theme-2: " + escape(theme.columns[2]) + "; --theme-3: " + escape(theme.columns[4]) + "; --theme-4: " + escape(theme.columns[6]) + ";"}" class="${"svelte-1aywa0g"}"></div>` : ``}`;
+<span style="${"display: " + escape(showPanel ? "block" : "none") + ";"}" class="${"svelte-1bxewj4"}"${add_attribute("this", themePanel, 0)}>${each(_themes, (theme, _i) => {
+        return `${_i != currentTheme ? `<div style="${"--theme-1: " + escape(theme.columns[0]) + "; --theme-2: " + escape(theme.columns[2]) + "; --theme-3: " + escape(theme.columns[4]) + "; --theme-4: " + escape(theme.columns[6]) + ";"}" class="${"svelte-1bxewj4"}"></div>` : ``}`;
       })}
 </span>`;
     });
     css = {
-      code: "html{font-family:'Roboto', sans-serif}body{margin:0;overflow:hidden}*{box-sizing:border-box}._clickable:hover{cursor:pointer}p{margin:0px}ul.svelte-1spjsu2.svelte-1spjsu2{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.svelte-1spjsu2.svelte-1spjsu2{display:inline-flex}.header.svelte-1spjsu2.svelte-1spjsu2{--text:rgb(163, 47, 47);--shadow-height:0.5rem;--shadow-gradient:linear-gradient(\n			to bottom,\n			rgba(0, 0, 0, 0.3) 0%,\n			rgba(0, 0, 0, 0.1) 30%,\n			transparent 100%\n		);height:var(--theme-layoutheaderheight);display:flex;align-items:center;justify-content:space-between;width:100vw;margin:0;font-family:var(--font);transition:transform 0.2s;user-select:none;padding:0;background-color:var(--theme-headerbackground)}.logo.svelte-1spjsu2.svelte-1spjsu2{display:flex;padding:var(--s10px) var(--s7px);align-items:baseline;padding-bottom:var(--s10px)}.aragalaya.svelte-1spjsu2.svelte-1spjsu2{display:inline-block;font-size:var(--s36px);line-height:var(--s28px);font-weight:bold;font-family:'Gemunu Libre', sans-serif}.online.svelte-1spjsu2.svelte-1spjsu2{display:inline-block;font-size:var(--s18px);font-family:'Roboto', sans-serif}.header-right.svelte-1spjsu2 li.svelte-1spjsu2{font-size:var(--s14px);line-height:var(--s14px);padding:0 var(--s5px);font-family:'Roboto', sans-serif}.header-right.svelte-1spjsu2.svelte-1spjsu2:last-child{margin-right:var(--s5px)}.login.svelte-1spjsu2.svelte-1spjsu2{margin-left:var(--s30px)}.fa-solid.svelte-1spjsu2.svelte-1spjsu2{font-size:var(--s21px);margin-right:var(--s5px)}.fa-user-nurse.svelte-1spjsu2.svelte-1spjsu2{color:green}.header-right.svelte-1spjsu2 li.svelte-1spjsu2{cursor:pointer}main.svelte-1spjsu2.svelte-1spjsu2{position:relative;margin:0 auto;overflow:hiden}",
+      code: "html{font-family:'Roboto', sans-serif}body{margin:0;overflow:hidden}*{box-sizing:border-box}._clickable:hover{cursor:pointer}p{margin:0px}ul.svelte-4ktl3y.svelte-4ktl3y{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.svelte-4ktl3y.svelte-4ktl3y{display:inline-flex}.header.svelte-4ktl3y.svelte-4ktl3y{--text:rgb(163, 47, 47);--shadow-height:0.5rem;--shadow-gradient:linear-gradient(\n			to bottom,\n			rgba(0, 0, 0, 0.3) 0%,\n			rgba(0, 0, 0, 0.1) 30%,\n			transparent 100%\n		);height:var(--theme-layoutheaderheight);display:flex;align-items:center;justify-content:space-between;width:100vw;margin:0;font-family:var(--font);transition:transform 0.2s;user-select:none;padding:0;background-color:var(--theme-headerbackground)}.logo.svelte-4ktl3y.svelte-4ktl3y{display:flex;padding:var(--s10px) var(--s7px);align-items:baseline;padding-bottom:var(--s10px)}.aragalaya.svelte-4ktl3y.svelte-4ktl3y{display:inline-block;font-size:var(--s36px);line-height:var(--s28px);font-weight:bold;font-family:'Gemunu Libre', sans-serif}.online.svelte-4ktl3y.svelte-4ktl3y{display:inline-block;font-size:var(--s18px);font-family:'Roboto', sans-serif}.header-right.svelte-4ktl3y li.svelte-4ktl3y{font-size:var(--s14px);line-height:var(--s14px);padding:0 var(--s5px);font-family:'Roboto', sans-serif}.header-right.svelte-4ktl3y.svelte-4ktl3y:last-child{margin-right:var(--s5px)}.login.svelte-4ktl3y.svelte-4ktl3y{margin-left:var(--s30px)}.login.svelte-4ktl3y .fa-solid.svelte-4ktl3y{font-size:var(--s21px);margin-right:var(--s5px)}.fa-user-nurse.svelte-4ktl3y.svelte-4ktl3y{color:green}.header-right.svelte-4ktl3y li.svelte-4ktl3y{cursor:pointer}.language-select.svelte-4ktl3y.svelte-4ktl3y{position:relative}.language-button.svelte-4ktl3y.svelte-4ktl3y{display:flex;align-items:center;justify-content:center;width:var(--s30px);height:var(--s30px);background:white;color:black;font-size:18px;border-radius:var(--s3px);border:0.0520vw solid black;cursor:pointer}.languages.svelte-4ktl3y.svelte-4ktl3y{position:absolute;top:var(--s35px);right:var(--s-22_5px);z-index:10;width:var(--s80px);border-radius:var(--s3px);border:0.0520vw solid black}.languages.svelte-4ktl3y>div.svelte-4ktl3y{padding:var(--s5px);background-color:white;text-align:center}main.svelte-4ktl3y.svelte-4ktl3y{position:relative;margin:0 auto;overflow:hiden}",
       map: null
     };
     _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -74258,6 +74265,13 @@ var init_layout_svelte = __esm({
         }
       });
       onDestroy(() => themeChangedEvent.unsubscribe());
+      let showLanguageSelect = false;
+      const globalClickEvent = _registerEvent("global-click").subscribe((event) => {
+        if (event.target.id != "language-button" && event.target.parentElement.id != "language-button") {
+          showLanguageSelect = false;
+        }
+      });
+      onDestroy(() => globalClickEvent.unsubscribe());
       $$result.css.add(css);
       user2 = $userReady;
       $$unsubscribe_userReady();
@@ -74267,20 +74281,27 @@ var init_layout_svelte = __esm({
 ${validate_component(Login, "Login").$$render($$result, {}, {}, {})}
 ${validate_component(Form, "Form").$$render($$result, {}, {}, {})}
 
-<div class="${"header svelte-1spjsu2"}"><div class="${"logo svelte-1spjsu2"}"><div class="${"aragalaya svelte-1spjsu2"}">\u0D85\u0DBB\u0D9C\u0DBD\u0DBA
+<div class="${"header svelte-4ktl3y"}"><div class="${"logo svelte-4ktl3y"}"><div class="${"aragalaya svelte-4ktl3y"}">\u0D85\u0DBB\u0D9C\u0DBD\u0DBA
 		</div>
-		<div class="${"online svelte-1spjsu2"}">.online
+		<div class="${"online svelte-4ktl3y"}">.online
 		</div></div>
-	<ul class="${"header-right svelte-1spjsu2"}">${!$_isMobile ? `<li class="${"svelte-1spjsu2"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
+	<ul class="${"header-right svelte-4ktl3y"}">${!$_isMobile ? `<li class="${"svelte-4ktl3y"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
 		</li>
-		<li class="${"svelte-1spjsu2"}">English 
+		<li class="${"svelte-4ktl3y"}">English 
 		</li>
-		<li class="${"svelte-1spjsu2"}">\u0BA4\u0BAE\u0BBF\u0BB4\u0BCD 
+		<li class="${"svelte-4ktl3y"}">\u0BA4\u0BAE\u0BBF\u0BB4\u0BCD 
 		</li>` : ``}
-		<li class="${"login svelte-1spjsu2"}">${!user2 ? `<i class="${"fa-solid fa-user-astronaut svelte-1spjsu2"}"></i>` : `<i class="${"fa-solid fa-user-nurse svelte-1spjsu2"}"></i>`}</li>
-		<li class="${"svelte-1spjsu2"}">${validate_component(Theme_selector, "ThemeSelector").$$render($$result, {}, {}, {})}</li></ul></div>
+		<li class="${"login svelte-4ktl3y"}">${!user2 ? `<i class="${"fa-solid fa-user-astronaut svelte-4ktl3y"}"></i>` : `<i class="${"fa-solid fa-user-nurse svelte-4ktl3y"}"></i>`}</li>
+        ${$_isMobile ? `<li class="${"svelte-4ktl3y"}"><div class="${"language-select svelte-4ktl3y"}"><div class="${"language-button svelte-4ktl3y"}" id="${"language-button"}"><i class="${"fa-solid fa-globe"}"></i></div>
+                ${showLanguageSelect ? `<div class="${"languages svelte-4ktl3y"}"><div class="${"svelte-4ktl3y"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
+                    </div>
+                    <div class="${"svelte-4ktl3y"}">English 
+                    </div>
+                    <div class="${"svelte-4ktl3y"}">\u0BA4\u0BAE\u0BBF\u0BB4\u0BCD 
+                    </div></div>` : ``}</div></li>` : ``}
+		<li class="${"svelte-4ktl3y"}">${validate_component(Theme_selector, "ThemeSelector").$$render($$result, {}, {}, {})}</li></ul></div>
 
-<main id="${"main"}" class="${"svelte-1spjsu2"}">${slots.default ? slots.default({}) : ``}
+<main id="${"main"}" class="${"svelte-4ktl3y"}">${slots.default ? slots.default({}) : ``}
 </main>`;
     });
   }
@@ -74301,9 +74322,9 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-f1e9da00.js";
-    js = ["pages/__layout.svelte-f1e9da00.js", "chunks/index-f708efea.js", "chunks/theme-048251d2.js", "chunks/index-02da5586.js", "chunks/font-9fdaf0de.js"];
-    css2 = ["assets/pages/__layout.svelte-c32b7a57.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css"];
+    entry = "pages/__layout.svelte-44f09fdb.js";
+    js = ["pages/__layout.svelte-44f09fdb.js", "chunks/index-f708efea.js", "chunks/theme-048251d2.js", "chunks/index-02da5586.js", "chunks/font-9fdaf0de.js"];
+    css2 = ["assets/pages/__layout.svelte-7d968f11.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css"];
   }
 });
 
@@ -76608,35 +76629,57 @@ var init_index_svelte = __esm({
     init_dist2();
     Array(COLUMN_COUNT).fill(0);
     css$32 = {
-      code: ".navigation.svelte-1580s1t{position:fixed;right:var(--s5px);bottom:var(--s5px);z-index:100;display:flex;align-items:center;flex-direction:column;background-color:black;border-radius:var(--s3px)}.animated.svelte-1580s1t{position:relative}.icons.svelte-1580s1t{position:relative;overflow:hidden}.icon.svelte-1580s1t{position:relative;width:var(--theme-navsize);height:var(--theme-navsize);display:flex;align-items:center;justify-content:center;color:var(--nav-buttons);font-size:var(--theme-naviconsize)}.toggle.svelte-1580s1t{color:white}.show-hide.svelte-1580s1t{background-color:black;z-index:1;color:white;border-radius:var(--s3px)}.scroll.svelte-1580s1t{position:absolute;right:0;width:var(--s4px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s3px)}.title_c.svelte-1580s1t{position:fixed}.title.svelte-1580s1t{font-weight:bold;color:rgb(85, 85, 85);padding:var(--s0px) var(--s5px);background-color:white}",
+      code: ".navigation.svelte-dte8xm{position:fixed;right:var(--s5px);bottom:var(--s5px);z-index:100;display:flex;align-items:center;flex-direction:column;background-color:black;border-radius:var(--s6px)}.animated.svelte-dte8xm{position:relative}.icons.svelte-dte8xm{position:relative;overflow:hidden}.icon.svelte-dte8xm{position:relative;width:var(--theme-navsize);height:var(--theme-navsize);display:flex;align-items:center;justify-content:center;color:var(--nav-buttons);font-size:var(--theme-naviconsize)}.toggle.svelte-dte8xm{color:white}.show-hide.svelte-dte8xm{background-color:black;z-index:1;color:white;border-radius:var(--s6px)}.scroll.svelte-dte8xm{position:absolute;right:0;width:var(--s4px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s6px)}.title_c.svelte-dte8xm{position:fixed}.title.svelte-dte8xm{font-weight:bold;color:rgb(85, 85, 85);padding:var(--s0px) var(--s5px);background-color:white}",
       map: null
     };
     Nav = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $_isMobile, $$unsubscribe__isMobile;
       let $height, $$unsubscribe_height;
       let $scrollPosition, $$unsubscribe_scrollPosition;
       let $$unsubscribe__lang;
+      $$unsubscribe__isMobile = subscribe(_isMobile, (value) => $_isMobile = value);
       $$unsubscribe__lang = subscribe(_lang, (value) => value);
       const height = tweened((COLUMN_COUNT + 1) * 70, { duration: 350, easing: circIn });
       $$unsubscribe_height = subscribe(height, (value) => $height = value);
       let scrollBarHeight = 0;
       const scrollPosition = tweened(0, { duration: 350, easing: quartOut });
       $$unsubscribe_scrollPosition = subscribe(scrollPosition, (value) => $scrollPosition = value);
-      _registerEvent("h-scroll").subscribe((v3) => {
+      const hScrollEvent = _registerEvent("h-scroll").subscribe((v3) => {
         scrollPosition.set(v3 / (COLUMN_COUNT * _getSizeConfig().columnWidth) * (COLUMN_COUNT * _getSizeConfig().navSize));
       });
+      onDestroy(() => hScrollEvent.unsubscribe());
+      const vScrollEvent = _registerEvent("update-vscroll").subscribe((v3) => {
+        if ($_isMobile) {
+          if (!hidden) {
+            showHide();
+          }
+        }
+      });
+      onDestroy(() => vScrollEvent.unsubscribe());
+      let hidden = false;
+      function showHide() {
+        if (hidden) {
+          height.set((COLUMN_COUNT + 1) * _getSizeConfig().navSize);
+          setTimeout(() => false, 350);
+        } else {
+          height.set(0);
+        }
+        hidden = !hidden;
+      }
       $$result.css.add(css$32);
+      $$unsubscribe__isMobile();
       $$unsubscribe_height();
       $$unsubscribe_scrollPosition();
       $$unsubscribe__lang();
-      return `<div class="${"navigation svelte-1580s1t"}"><div class="${"animated svelte-1580s1t"}"><div class="${"icons svelte-1580s1t"}" style="${"max-height: " + escape($height) + "px"}">${each(COLUMNS, (column, _i) => {
-        return `<div style="${"color: var(--theme-navigation-" + escape(_i) + ")"}" class="${"icon _clickable svelte-1580s1t"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-1580s1t"}"></i>
+      return `<div class="${"navigation svelte-dte8xm"}"><div class="${"animated svelte-dte8xm"}"><div class="${"icons svelte-dte8xm"}" style="${"max-height: " + escape($height) + "px"}">${each(COLUMNS, (column, _i) => {
+        return `<div style="${"color: var(--theme-navigation-" + escape(_i) + ")"}" class="${"icon _clickable svelte-dte8xm"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-dte8xm"}"></i>
                 </div>`;
       })}
-            <div class="${"toggle icon _clickable svelte-1580s1t"}">${`<i class="${"fa-solid fa-toggle-off"}"></i>`}</div>
-            <div class="${"scroll svelte-1580s1t"}" style="${"height: " + escape(scrollBarHeight) + "px; top: " + escape($scrollPosition) + "px;"}"></div></div>
+            <div class="${"toggle icon _clickable svelte-dte8xm"}">${`<i class="${"fa-solid fa-toggle-off"}"></i>`}</div>
+            <div class="${"scroll svelte-dte8xm"}" style="${"height: " + escape(scrollBarHeight) + "px; top: " + escape($scrollPosition) + "px;"}"></div></div>
         ${``}</div>
     
-    <div class="${"icon show-hide _clickable svelte-1580s1t"}">${`<i class="${"fa-solid fa-angles-down"}"></i>`}</div>
+    <div class="${"icon show-hide _clickable svelte-dte8xm"}">${!hidden ? `<i class="${"fa-solid fa-angles-down"}"></i>` : `<i class="${"fa-solid fa-angles-up"}"></i>`}</div>
 </div>`;
     });
     css$22 = {
@@ -76986,14 +77029,16 @@ ${validate_component(Card, "Card").$$render($$result, {
           setHorizontalScroll(sizeConfig.columnWidth * index5);
         } else {
           hScrollIndex.value = maxLeft;
-          const remainingSpace = COLUMN_COUNT * _width + 15 - hScrollIndex.value * sizeConfig.columnWidth - window.innerWidth;
+          const remainingSpace = COLUMN_COUNT * sizeConfig.columnWidth + 15 - hScrollIndex.value * sizeConfig.columnWidth - window.innerWidth;
           hScrollIndex.value--;
           setHorizontalScroll(sizeConfig.columnWidth * maxLeft + remainingSpace);
         }
-        bounceAnimation[index5].set(8);
-        setTimeout(() => {
-          bounceAnimation[index5].set(0);
-        }, 350);
+        if (!$_isMobile) {
+          bounceAnimation[index5].set(8);
+          setTimeout(() => {
+            bounceAnimation[index5].set(0);
+          }, 350);
+        }
       });
       if ($$props.COMPONENTS === void 0 && $$bindings.COMPONENTS && COMPONENTS !== void 0)
         $$bindings.COMPONENTS(COMPONENTS);
@@ -77056,9 +77101,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-61ca09d6.js";
-    js3 = ["pages/index.svelte-61ca09d6.js", "chunks/index-f708efea.js", "chunks/theme-048251d2.js", "chunks/index-02da5586.js", "chunks/preview-ceb10887.js", "chunks/font-9fdaf0de.js"];
-    css6 = ["assets/pages/index.svelte-55c53efc.css", "assets/preview-9d689602.css"];
+    entry3 = "pages/index.svelte-49af5234.js";
+    js3 = ["pages/index.svelte-49af5234.js", "chunks/index-f708efea.js", "chunks/theme-048251d2.js", "chunks/index-02da5586.js", "chunks/preview-ceb10887.js", "chunks/font-9fdaf0de.js"];
+    css6 = ["assets/pages/index.svelte-5a45a4e7.css", "assets/preview-9d689602.css"];
   }
 });
 
@@ -79516,7 +79561,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-a025ef7c.js", "js": ["start-a025ef7c.js", "chunks/index-f708efea.js", "chunks/index-02da5586.js"], "css": [] },
+    entry: { "file": "start-e0be2f88.js", "js": ["start-e0be2f88.js", "chunks/index-f708efea.js", "chunks/index-02da5586.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
