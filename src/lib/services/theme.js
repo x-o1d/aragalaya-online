@@ -150,7 +150,7 @@ const cardSeparation = 12;
 const cardPadding = 10;
 
 // navigation button size
-const navSize = 70;
+const navSize = 60;
 
 // previewHeight (maintain 16:9 aspect ratio)
 const previewHeight = (columnWidth-cardSeparation-cardPadding*2)*9/16;

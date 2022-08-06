@@ -18,8 +18,6 @@
 
     let scrollBarHeight = 0;
 
-    let devicePixelRatio = 1;
-
     onMount(() => {
         scrollBarHeight = (COLUMN_COUNT * _getSizeConfig().navSize) / 
             (COLUMN_COUNT * _getSizeConfig().columnWidth) * window.innerWidth;
@@ -83,7 +81,7 @@
                     <i class={column.icon}/>
                 </div>
             {/each}
-            <div 
+            <!-- <div 
                 class="toggle icon _clickable" 
                 on:click={() => showNames = !showNames}>
                 {#if !showNames}
@@ -91,7 +89,7 @@
                 {:else}
                     <i class="fa-solid fa-toggle-on"/>
                 {/if}
-            </div>
+            </div> -->
             <div 
                 class="scroll"
                 style="
@@ -105,8 +103,8 @@
             on:click={() => showNames = !showNames}
             class="title_c _clickable"
             style="
-                right: {75/devicePixelRatio}px;
-                bottom: {(70*(COLUMN_COUNT+1-_i)+5)/devicePixelRatio}px">
+                right: {(_getSizeConfig().navSize+5)}px;
+                bottom: {(_getSizeConfig().navSize*(COLUMN_COUNT+1-_i)+5)}px">
             <div class="title">
                 <Font
                     font={1}
