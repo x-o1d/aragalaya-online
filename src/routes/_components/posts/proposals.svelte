@@ -5,10 +5,8 @@
     // the Card component defines the boundary of any post.
     // it can also be used to provide transition animations on post creation/deletion
 	import Card from '$lib/components/util/card.svelte';
-    import Font from '$lib/components/display/font.svelte';
 
     import { _lang } from '$lib/services/store';
-    import Progress from '$lib/components/util/progress.svelte';
     import Preview from '$lib/components/display/preview.svelte';
 
     // --

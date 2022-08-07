@@ -18,9 +18,7 @@
 
 </script>
 
-<Card
-    slideInTop={data._slideInTop}
-    id={data.id}>
+<Card>
 	<!-- START: post content -->
 	<div 
         class="empty-space"

@@ -144,8 +144,5 @@
         width: 100%;
         border-radius: 3px;
     }
-    .view-original {
-        font-family: 'Roboto', sans-serif;
-    }
     
 </style>

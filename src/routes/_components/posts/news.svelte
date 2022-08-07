@@ -16,9 +16,7 @@
     
 </script>
 
-<Card
-    slideInTop={data._slideInTop}
-    id={data.id}>
+<Card>
     <!-- timestamp -->
     <Font
         font={0}
