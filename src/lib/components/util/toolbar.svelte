@@ -49,7 +49,9 @@ EXAMPLE:
             </a>
         </div>
         <div class="icon _clickable">
-            <i class="fa-brands fa-twitter"></i>
+            <a href="/twitter_share/?post={data.id}" target="_blank">
+                <i class="fa-brands fa-twitter"></i>
+            </a>
         </div>
     </div>
     <div class="toolbar-right">
