@@ -87,9 +87,11 @@
         if(!Array.isArray(data[config.name + '_images'])) {
             data[config.name + '_images'] = [];
         }
+        const imageUrl = await _getFileURL(imageRef.url);
+        imageRef.href = imageUrl;
         data[config.name + '_images'].push(imageRef);
         editor.chain().focus().setImage({ 
-            src: await _getFileURL(imageRef.url), 
+            src: imageUrl, 
             title: imageRef.url
         }).run();
         editorDisabled = false;

@@ -5,6 +5,8 @@
 
     export let data;
 
+    let showPost = true;
+
     export const COMPONENTS = {
         bulletin: Bulletin,
         newsx: News,
@@ -12,13 +14,17 @@
     }
 </script>
 
-<div class="post">
+{#if showPost}
+<div 
+    class="post"
+    on:click|self={() => showPost = false}>
     <div class="post-container">
         <svelte:component 
             this={COMPONENTS[data.type]}
             data={data}/>
     </div>
 </div>
+{/if}
 
 <style>
     .post {

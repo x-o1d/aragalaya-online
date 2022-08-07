@@ -18,6 +18,7 @@
     import { _userSignedIn } from '$lib/services/auth';
     import { _themes, _isMobile, _getSizeConfig } from '$lib/services/theme';
     import { _getPost } from '$lib/services/database';
+    import { _getFileURL } from '$lib/services/storage';
 
     // helpers
     import { __handleHorizontalScroll, __handleTouchMove, __handleTouchStart, __handleVerticalScroll } from '$lib/utils/scroll';
@@ -50,6 +51,35 @@
     // available in this prop, this is populated by the page endpoint (./index.js)
     export let postData;
 
+    // default values for the opengraph meta tags
+    // these will be added to the page in SSR
+    let title = 'aragalaya.online';
+    let url = 'https://aragalaya-online.web.app';
+    let description = 'The online portal for the aragalaya movement in Sri Lanka';
+    let type = 'website';
+    let image = 'https://firebasestorage.googleapis.com/v0/b/aragalaya-online.appspot.com/o/aragalaya-image.jpeg?alt=media&token=46171892-7f2f-49bb-8424-65ca7411271e';
+    
+    // if the url is for a specific post (?post=<post_id>) opengraph meta tags will be populated
+    // with the data from that post.
+    // since these are added to the page in SSR search engines will be able to index
+    // each post seperately.
+    // also post links shared on social media whatsapp/facebook will be able to render
+    // the post content properly in their previews.
+    if(postData) {
+        title = postData.title[0];
+        url = 'https://aragalaya-online.web.app/?post=' + postData.id;
+        description = (postData.description && postData.description[0]) 
+                        || (postData.shortDescription && postData.shortDescription[0]);
+        type = 'article';
+        let images = [];
+        Object.keys(postData).map(key => {
+            if(key.includes('_images')) {
+                images.push(...postData[key]);
+            }
+        })
+        if(images[0].href) image = images[0].href;
+    }
+    
     // when new data is added by a form it's inserted to the column
     // by this listener
     const newColumnDataEvent = _eventListener('new-column-data').subscribe(async (event) => {
@@ -192,9 +222,18 @@
 
 </script>
 
-<!-- Nav is the navigation bar component which is a fixed overlay-->
-<Nav/>
+<svelte:head>
+    <title>{title}</title>
+    <!-- meta og tags for site crawlers and shareable content -->
+    <meta property="og:url"         content="{url}"/>
+    <meta property="og:type"        content="{type}"/>
+    <meta property="og:title"       content="{title}"/>
+    <meta property="og:description" content="{description}"/>
+    <meta property="og:image"       content="{image}"/>
+</svelte:head>
 
+<!-- Nav is the navigation bar component which is a fixed overlay-->
+<Nav/>  
 
 <div 
     class="columns"
