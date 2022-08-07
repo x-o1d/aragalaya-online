@@ -10,16 +10,19 @@ EXAMPLE:
         on:viewOriginal={e => data._viewOriginal = e.detail}/>
 --->
 <script>
+    // npm modules
     import { createEventDispatcher } from 'svelte';
-
+    
+    // services
     import { _lang } from '$lib/services/store';
     import _strings from './mt-strings';
 
+    // components
     import Font from '$lib/components/display/font.svelte';
 
-    export let data;
-
     const dispatch = createEventDispatcher();
+
+    export let data;
 
     let objectProps = Object.keys(data);
     let objectFields = objectProps.filter(prop => prop.includes('_MT'));

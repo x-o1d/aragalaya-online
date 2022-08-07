@@ -18,16 +18,25 @@
 ----
 --->
 <script>
-    import { _lang } from '$lib/services/store';
+    // npm modules
+    import { createEventDispatcher } from 'svelte';
     import { stripHtml } from  'string-strip-html';
+
+    // services
+    import { _lang } from '$lib/services/store';
     import _strings from './preview-strings';
 
+    // components
     import Content from '$lib/components/display/content.svelte';
-    
+
+    // component props
     export let data;
     export let contentField;
     export let limit;
-    export let preview;
+    export let expanded;
+
+    // event dispatcher
+    const dispatch = createEventDispatcher();
 
     if(!data[contentField] == undefined) {
         console.log(`data.${contentField} not defined, data type: ${data.type} data id: ${data.id}`);
@@ -68,29 +77,36 @@
     $: croppedFlag = (text.length > limit) || images;
     $: croppedText += croppedFlag? '...' : '';
     
+    const expandPreview = () => {
+        dispatch('expandPost', true);
+    }
 </script>
 
 <div class="preview">
-    {#if !preview}
+    {#if expanded}
         <Content 
             data={data}
             contentField={contentField}/>
     {:else}
-        {croppedText}
-        {#if croppedFlag}
-        <span style='font-weight:bold; text-decoration:underline'>
-            {_strings['read_more'][$_lang]}
-        </span>
-            {#if images}
-            <div class="preview-container">
-                <div 
-                    class="preview-image"
-                    style="--url: url({images[0]})">
-                </div>
-                <div class="preview-overlay"></div>
-            </div>  
+        <div 
+            class="_clickable"
+            on:click={expandPreview}>
+            {croppedText}
+            {#if croppedFlag}
+            <span style='font-weight:bold; text-decoration:underline'>
+                {_strings['read_more'][$_lang]}
+            </span>
+                {#if images}
+                <div class="preview-container">
+                    <div 
+                        class="preview-image"
+                        style="--url: url({images[0]})">
+                    </div>
+                    <div class="preview-overlay"></div>
+                </div>  
+                {/if}
             {/if}
-        {/if}
+        </div>
     {/if}
 </div>
 
@@ -124,7 +140,7 @@
         border-radius: 3px;
     }
     :global(.preview img) {
-        margin: var(--s5px) 0;
+        margin: var(--s10px) 0;
         width: 100%;
         border-radius: 3px;
     }

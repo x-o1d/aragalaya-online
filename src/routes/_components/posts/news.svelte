@@ -13,8 +13,6 @@
     import { _emitEvent } from "$lib/services/events";
 
     export let data;
-
-    let minimized = true;
     
 </script>
 
@@ -54,13 +52,15 @@
             data={data}
             contentField={'shortDescription'}
             limit={100}
-            preview={minimized}
-            on:click={() => (minimized = !minimized)}/>
+            expanded={data._expanded}
+            on:expandPost={() => data._expanded = true}/>
     </Font>
     <!-- machine translated indication -->
     <MT data={data}
         on:viewOriginal={e => data._viewOriginal = e.detail}/>
     <!-- post toolbar -->
-    <Toolbar/>
+    <Toolbar 
+        data={data}
+        on:toggleExpanded={(e) => data._expanded = e.detail}/>
 </Card>
 

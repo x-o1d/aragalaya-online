@@ -48,27 +48,18 @@
         style="margin-bottom: var(--s7px);">
         {data.createdByName}
     </Font>
-    <!-- description
-    ---- adding the _clickable  class makes the cursor
-    ---- into a pointer to indicate that the content is
-    ---- clickable. 
-    ---- the on:click event toggles the minimized flag
-    ---- which toggles the Preview component between the 
-    ---- cropped/full states -->
-    <div 
-        class="_clickable"
-        on:click={() => minimized = !minimized}>
-        <Font
-            font={0}
-            size={0.9}
-            color="rgb(57, 56, 56);">
-            <Preview
-                data={data}
-                contentField={'description'}
-                limit={60}
-                preview={minimized}/>
-        </Font>
-    </div>
+    <!-- description -->
+    <Font
+        font={0}
+        size={0.9}
+        color="rgb(57, 56, 56);">
+        <Preview
+            data={data}
+            contentField={'description'}
+            limit={60}
+            expanded={data._expanded}
+            on:expandPost={() => data._expanded = true}/>
+    </Font>
     <!-- machine translated indication
     ---- the _viewOriginal property of data has to be updated
     ---- from the viewOriginal event so that svelte can reactively
@@ -77,7 +68,9 @@
     <MT data={data}
         on:viewOriginal={e => data._viewOriginal = e.detail}/>
     <!-- post toolbar -->
-    <Toolbar/>
+    <Toolbar 
+        data={data}
+        on:toggleExpanded={(e) => data._expanded = e.detail}/>
 </Card>
 
 

@@ -74288,7 +74288,7 @@ ${``}`;
     <div class="${"progress-bar svelte-hx79vl"}">${validate_component(Preloading_indicator, "PreloadingIndicator").$$render($$result, {}, {}, {})}</div></div>`}`;
     });
     css = {
-      code: "html{font-family:'Roboto', sans-serif}body{margin:0;overflow:hidden}*{box-sizing:border-box}._clickable:hover{cursor:pointer}p{margin:0px}ul.svelte-4ktl3y.svelte-4ktl3y{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.svelte-4ktl3y.svelte-4ktl3y{display:inline-flex}.header.svelte-4ktl3y.svelte-4ktl3y{--text:rgb(163, 47, 47);--shadow-height:0.5rem;--shadow-gradient:linear-gradient(\n			to bottom,\n			rgba(0, 0, 0, 0.3) 0%,\n			rgba(0, 0, 0, 0.1) 30%,\n			transparent 100%\n		);height:var(--theme-layoutheaderheight);display:flex;align-items:center;justify-content:space-between;width:100vw;margin:0;font-family:var(--font);transition:transform 0.2s;user-select:none;padding:0;background-color:var(--theme-headerbackground)}.logo.svelte-4ktl3y.svelte-4ktl3y{display:flex;padding:var(--s10px) var(--s7px);align-items:baseline;padding-bottom:var(--s10px)}.aragalaya.svelte-4ktl3y.svelte-4ktl3y{display:inline-block;font-size:var(--s36px);line-height:var(--s28px);font-weight:bold;font-family:'Gemunu Libre', sans-serif}.online.svelte-4ktl3y.svelte-4ktl3y{display:inline-block;font-size:var(--s18px);font-family:'Roboto', sans-serif}.header-right.svelte-4ktl3y li.svelte-4ktl3y{font-size:var(--s14px);line-height:var(--s14px);padding:0 var(--s5px);font-family:'Roboto', sans-serif}.header-right.svelte-4ktl3y.svelte-4ktl3y:last-child{margin-right:var(--s5px)}.login.svelte-4ktl3y.svelte-4ktl3y{margin-left:var(--s30px)}.login.svelte-4ktl3y .fa-solid.svelte-4ktl3y{font-size:var(--s21px);margin-right:var(--s5px)}.fa-user-nurse.svelte-4ktl3y.svelte-4ktl3y{color:green}.header-right.svelte-4ktl3y li.svelte-4ktl3y{cursor:pointer}.language-select.svelte-4ktl3y.svelte-4ktl3y{position:relative}.language-button.svelte-4ktl3y.svelte-4ktl3y{display:flex;align-items:center;justify-content:center;width:var(--s30px);height:var(--s30px);background:white;color:black;font-size:18px;border-radius:var(--s3px);border:0.0520vw solid black;cursor:pointer}.languages.svelte-4ktl3y.svelte-4ktl3y{position:absolute;top:var(--s35px);right:var(--s-22_5px);z-index:10;width:var(--s80px);border-radius:var(--s3px);border:0.0520vw solid black}.languages.svelte-4ktl3y>div.svelte-4ktl3y{padding:var(--s5px);background-color:white;text-align:center}main.svelte-4ktl3y.svelte-4ktl3y{position:relative;margin:0 auto;overflow:hiden}",
+      code: "html{font-family:'Roboto', sans-serif}body{margin:0;overflow:hidden}*{box-sizing:border-box}._clickable:hover{cursor:pointer}p{margin:0px}ul.svelte-1vevsna.svelte-1vevsna{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.svelte-1vevsna.svelte-1vevsna{display:inline-flex}.header.svelte-1vevsna.svelte-1vevsna{--text:rgb(163, 47, 47);--shadow-height:0.5rem;--shadow-gradient:linear-gradient(\n			to bottom,\n			rgba(0, 0, 0, 0.3) 0%,\n			rgba(0, 0, 0, 0.1) 30%,\n			transparent 100%\n		);height:var(--theme-layoutheaderheight);display:flex;align-items:center;justify-content:space-between;width:100vw;margin:0;font-family:var(--font);transition:transform 0.2s;user-select:none;padding:0;background-color:var(--theme-headerbackground)}.logo.svelte-1vevsna.svelte-1vevsna{display:flex;padding:var(--s10px) var(--s7px);align-items:baseline;padding-bottom:var(--s10px)}.aragalaya.svelte-1vevsna.svelte-1vevsna{display:inline-block;font-size:var(--s36px);line-height:var(--s28px);font-weight:bold;font-family:'Gemunu Libre', sans-serif}.online.svelte-1vevsna.svelte-1vevsna{display:inline-block;font-size:var(--s18px);font-family:'Roboto', sans-serif}.header-right.svelte-1vevsna li.svelte-1vevsna{font-size:var(--s14px);line-height:var(--s14px);padding:0 var(--s5px);font-family:'Roboto', sans-serif}.header-right.svelte-1vevsna.svelte-1vevsna:last-child{margin-right:var(--s5px)}.login.svelte-1vevsna.svelte-1vevsna{margin-left:var(--s30px)}.login.svelte-1vevsna .fa-solid.svelte-1vevsna{font-size:var(--s21px);margin-right:var(--s5px)}.fa-user-nurse.svelte-1vevsna.svelte-1vevsna{color:green}.header-right.svelte-1vevsna li.svelte-1vevsna{cursor:pointer}.language-select.svelte-1vevsna.svelte-1vevsna{position:relative}.language-button.svelte-1vevsna.svelte-1vevsna{display:flex;align-items:center;justify-content:center;width:var(--s30px);height:var(--s30px);background:white;color:black;font-size:18px;border-radius:var(--s3px);border:0.0520vw solid black;cursor:pointer}.languages.svelte-1vevsna.svelte-1vevsna{position:absolute;top:var(--s35px);right:var(--s-22_5px);z-index:10;width:var(--s80px);border-radius:var(--s3px);border:0.0520vw solid black}.languages.svelte-1vevsna>div.svelte-1vevsna{padding:var(--s10px);background-color:white;text-align:center}main.svelte-1vevsna.svelte-1vevsna{position:relative;margin:0 auto;overflow:hiden}",
       map: null
     };
     _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -74334,27 +74334,27 @@ ${validate_component(Loader, "Loader").$$render($$result, {}, {}, {})}
 ${validate_component(Login, "Login").$$render($$result, {}, {}, {})}
 ${validate_component(Form, "Form").$$render($$result, {}, {}, {})}
 
-<div class="${"header svelte-4ktl3y"}"><div class="${"logo svelte-4ktl3y"}"><div class="${"aragalaya svelte-4ktl3y"}">\u0D85\u0DBB\u0D9C\u0DBD\u0DBA
+<div class="${"header svelte-1vevsna"}"><div class="${"logo svelte-1vevsna"}"><div class="${"aragalaya svelte-1vevsna"}">\u0D85\u0DBB\u0D9C\u0DBD\u0DBA
 		</div>
-		<div class="${"online svelte-4ktl3y"}">.online
+		<div class="${"online svelte-1vevsna"}">.online
 		</div></div>
-	<ul class="${"header-right svelte-4ktl3y"}">${!$_isMobile ? `<li class="${"svelte-4ktl3y"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
+	<ul class="${"header-right svelte-1vevsna"}">${!$_isMobile ? `<li class="${"svelte-1vevsna"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
 		</li>
-		<li class="${"svelte-4ktl3y"}">English 
+		<li class="${"svelte-1vevsna"}">English 
 		</li>
-		<li class="${"svelte-4ktl3y"}">\u0BA4\u0BAE\u0BBF\u0BB4\u0BCD 
+		<li class="${"svelte-1vevsna"}">\u0BA4\u0BAE\u0BBF\u0BB4\u0BCD 
 		</li>` : ``}
-		<li class="${"login svelte-4ktl3y"}">${!user2 ? `<i class="${"fa-solid fa-user-astronaut svelte-4ktl3y"}"></i>` : `<i class="${"fa-solid fa-user-nurse svelte-4ktl3y"}"></i>`}</li>
-        ${$_isMobile ? `<li class="${"svelte-4ktl3y"}"><div class="${"language-select svelte-4ktl3y"}"><div class="${"language-button svelte-4ktl3y"}" id="${"language-button"}"><i class="${"fa-solid fa-globe"}"></i></div>
-                ${showLanguageSelect ? `<div class="${"languages svelte-4ktl3y"}"><div class="${"svelte-4ktl3y"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
+		<li class="${"login svelte-1vevsna"}">${!user2 ? `<i class="${"fa-solid fa-user-astronaut svelte-1vevsna"}"></i>` : `<i class="${"fa-solid fa-user-nurse svelte-1vevsna"}"></i>`}</li>
+        ${$_isMobile ? `<li class="${"svelte-1vevsna"}"><div class="${"language-select svelte-1vevsna"}"><div class="${"language-button svelte-1vevsna"}" id="${"language-button"}"><i class="${"fa-solid fa-globe"}"></i></div>
+                ${showLanguageSelect ? `<div class="${"languages svelte-1vevsna"}"><div class="${"svelte-1vevsna"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
                     </div>
-                    <div class="${"svelte-4ktl3y"}">English 
+                    <div class="${"svelte-1vevsna"}">English 
                     </div>
-                    <div class="${"svelte-4ktl3y"}">\u0BA4\u0BAE\u0BBF\u0BB4\u0BCD 
+                    <div class="${"svelte-1vevsna"}">\u0BA4\u0BAE\u0BBF\u0BB4\u0BCD 
                     </div></div>` : ``}</div></li>` : ``}
-		<li class="${"svelte-4ktl3y"}">${validate_component(Theme_selector, "ThemeSelector").$$render($$result, {}, {}, {})}</li></ul></div>
+		<li class="${"svelte-1vevsna"}">${validate_component(Theme_selector, "ThemeSelector").$$render($$result, {}, {}, {})}</li></ul></div>
 
-<main id="${"main"}" class="${"svelte-4ktl3y"}">${slots.default ? slots.default({}) : ``}
+<main id="${"main"}" class="${"svelte-1vevsna"}">${slots.default ? slots.default({}) : ``}
 </main>`;
     });
   }
@@ -74375,9 +74375,9 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-901c834a.js";
-    js = ["pages/__layout.svelte-901c834a.js", "chunks/index-2dc92fbf.js", "chunks/theme-c24ebdd5.js", "chunks/index-03925709.js", "chunks/font-de3c3308.js"];
-    css2 = ["assets/pages/__layout.svelte-0a35148c.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css"];
+    entry = "pages/__layout.svelte-fe11ed29.js";
+    js = ["pages/__layout.svelte-fe11ed29.js", "chunks/index-2dc92fbf.js", "chunks/theme-c24ebdd5.js", "chunks/index-03925709.js", "chunks/font-de3c3308.js"];
+    css2 = ["assets/pages/__layout.svelte-ef87a8c7.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css"];
   }
 });
 
@@ -76465,7 +76465,7 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/preview-79233f8a.js
+// .svelte-kit/output/server/chunks/preview-a776d53b.js
 function backInOut(t2) {
   const s3 = 1.70158 * 1.525;
   if ((t2 *= 2) < 1)
@@ -76575,8 +76575,8 @@ function tweened(value, defaults = {}) {
   };
 }
 var css$12, duration, Card, strings2, Content, css4, Preview;
-var init_preview_79233f8a = __esm({
-  ".svelte-kit/output/server/chunks/preview-79233f8a.js"() {
+var init_preview_a776d53b = __esm({
+  ".svelte-kit/output/server/chunks/preview-a776d53b.js"() {
     init_shims();
     init_index_4aa555f5();
     init_theme_9925ab8b();
@@ -76629,7 +76629,8 @@ var init_preview_79233f8a = __esm({
       return `
 
 
-<div><!-- HTML_TAG_START -->${data[contentField][data._viewOriginal ? 3 : $_lang]}<!-- HTML_TAG_END -->  
+<div>
+    <!-- HTML_TAG_START -->${data[contentField][data._viewOriginal ? 3 : $_lang]}<!-- HTML_TAG_END -->  
 </div>`;
     });
     css4 = {
@@ -76687,13 +76688,13 @@ var index_svelte_exports = {};
 __export(index_svelte_exports, {
   default: () => Routes
 });
-var import_chroma_js3, css$42, Nav, css$32, Empty, strings$1, Timestamp2, strings3, css$22, Mt, Bulletin, css$13, Youtube, News, css5, Routes;
+var import_chroma_js3, css$52, Nav, css$42, Empty, strings$2, Timestamp2, strings$1, css$32, Mt, strings3, css$22, Toolbar, Bulletin, css$13, Youtube, News, css5, Routes;
 var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
     init_index_4aa555f5();
     init_column_config_31e21418();
-    init_preview_79233f8a();
+    init_preview_a776d53b();
     init_font_26c4bb73();
     init_theme_9925ab8b();
     init_database_0269ec9b();
@@ -76703,7 +76704,7 @@ var init_index_svelte = __esm({
     init_dist();
     init_dist2();
     Array(COLUMN_COUNT).fill(0);
-    css$42 = {
+    css$52 = {
       code: ".navigation.svelte-1vfjdoa{position:fixed;right:var(--s5px);bottom:var(--s5px);z-index:100;display:flex;align-items:center;flex-direction:column;background-color:black;border-radius:var(--s6px)}.animated.svelte-1vfjdoa{position:relative}.icons.svelte-1vfjdoa{position:relative;overflow:hidden}.icon.svelte-1vfjdoa{position:relative;width:var(--theme-navsize);height:var(--theme-navsize);display:flex;align-items:center;justify-content:center;color:var(--nav-buttons);font-size:var(--theme-naviconsize)}.toggle.svelte-1vfjdoa{color:white}.show-hide.svelte-1vfjdoa{background-color:black;z-index:1;color:white;border-radius:var(--s6px)}.scroll.svelte-1vfjdoa{position:absolute;right:0;width:var(--s4px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-columns-7) 25%, \n            var(--theme-columns-5) 50%,\n            var(--theme-columns-3) 75%, \n            var(--theme-columns-1) 100%);border-radius:var(--s6px)}.title_c.svelte-1vfjdoa{position:fixed}.title.svelte-1vfjdoa{font-weight:bold;color:rgb(85, 85, 85);padding:var(--s0px) var(--s5px);background-color:white}",
       map: null
     };
@@ -76741,7 +76742,7 @@ var init_index_svelte = __esm({
         }
         hidden = !hidden;
       }
-      $$result.css.add(css$42);
+      $$result.css.add(css$52);
       $$unsubscribe__isMobile();
       $$unsubscribe_height();
       $$unsubscribe_scrollPosition();
@@ -76757,7 +76758,7 @@ var init_index_svelte = __esm({
     <div class="${"icon show-hide _clickable svelte-1vfjdoa"}">${!hidden ? `<i class="${"fa-solid fa-angles-down"}"></i>` : `<i class="${"fa-solid fa-angles-up"}"></i>`}</div>
 </div>`;
     });
-    css$32 = {
+    css$42 = {
       code: ".empty-space.svelte-899snu{width:100%}",
       map: null
     };
@@ -76765,7 +76766,7 @@ var init_index_svelte = __esm({
       let { data } = $$props;
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      $$result.css.add(css$32);
+      $$result.css.add(css$42);
       return `
 
 
@@ -76780,7 +76781,7 @@ ${validate_component(Card, "Card").$$render($$result, {
         }
       })}`;
     });
-    strings$1 = {
+    strings$2 = {
       yesterday: [
         "\u0D8A\u0DBA\u0DDA",
         "yesterday",
@@ -76878,17 +76879,17 @@ ${validate_component(Card, "Card").$$render($$result, {
         const isYesterday = yesterday.toDateString() === date.toDateString();
         const isThisYear = today.getFullYear() === date.getFullYear();
         if (seconds < 5) {
-          return strings$1["now"][language];
+          return strings$2["now"][language];
         } else if (seconds < 60) {
-          return strings$1["secondsAgo"][language].replace("*seconds*", seconds.toString());
+          return strings$2["secondsAgo"][language].replace("*seconds*", seconds.toString());
         } else if (seconds < 90) {
-          return strings$1["minuteAgo"][language];
+          return strings$2["minuteAgo"][language];
         } else if (minutes < 60) {
-          return strings$1["minutesAgo"][language].replace("*minutes*", minutes.toString());
+          return strings$2["minutesAgo"][language].replace("*minutes*", minutes.toString());
         } else if (isToday) {
-          return getFormattedDate(date, strings$1["today"][language]);
+          return getFormattedDate(date, strings$2["today"][language]);
         } else if (isYesterday) {
-          return getFormattedDate(date, strings$1["yesterday"][language]);
+          return getFormattedDate(date, strings$2["yesterday"][language]);
         } else if (isThisYear) {
           return getFormattedDate(date, false, true);
         }
@@ -76923,7 +76924,7 @@ ${validate_component(Card, "Card").$$render($$result, {
         $$bindings.inline(inline);
       return `<div class="${"timestamp"}" style="${"display: " + escape(inline ? "inline-block" : "block")}">${escape(timeAgoString)}</div>`;
     });
-    strings3 = {
+    strings$1 = {
       machine_translated: [
         "\u0DC3\u0DCA\u0DC0\u0DBA\u0D82\u0D9A\u0DCA\u200D\u0DBB\u0DD3\u0DBA \u0DB4\u0DBB\u0DD2\u0DC0\u0DBB\u0DCA\u0DAD\u0DB1\u0DBA\u0D9A\u0DD2, \u0DB8\u0DD4\u0DBD\u0DCA \u0DB4\u0DD2\u0DA7\u0DB4\u0DAD \u0DB6\u0DBD\u0DB1\u0DCA\u0DB1.",
         "automatic translation, view original.",
@@ -76935,7 +76936,7 @@ ${validate_component(Card, "Card").$$render($$result, {
         "\u0B85\u0B9A\u0BB2\u0BCD \u0B89\u0BB0\u0BC8, \u0BAE\u0BCA\u0BB4\u0BBF\u0BAA\u0BC6\u0BAF\u0BB0\u0BCD\u0BAA\u0BCD\u0BAA\u0BC1 \u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95"
       ]
     };
-    css$22 = {
+    css$32 = {
       code: ".machine-translated.svelte-2shrv7{padding:var(--s5px) 0;cursor:pointer}.fa-solid.svelte-2shrv7{font-size:var(--s11px)}",
       map: null
     };
@@ -76949,7 +76950,7 @@ ${validate_component(Card, "Card").$$render($$result, {
       let objectFields = objectProps.filter((prop) => prop.includes("_MT"));
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      $$result.css.add(css$22);
+      $$result.css.add(css$32);
       machineTranslated = objectFields.some((key2) => data[key2][$_lang]);
       $$unsubscribe__lang();
       return `
@@ -76961,9 +76962,44 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
         style: "text-decoration: underline;"
       }, {}, {
         default: () => {
-          return `${`<i class="${"fa-solid fa-globe svelte-2shrv7"}"></i> ${escape(strings3["machine_translated"][$_lang])}`}`;
+          return `${`<i class="${"fa-solid fa-globe svelte-2shrv7"}"></i> ${escape(strings$1["machine_translated"][$_lang])}`}`;
         }
       })}</div>` : ``}`;
+    });
+    strings3 = {
+      verified: [
+        "\u0DAD\u0DC4\u0DC0\u0DD4\u0DBB\u0DD4 \u0D9A\u0DBB \u0D87\u0DAD",
+        "verified post",
+        "\u0B9A\u0BB0\u0BBF\u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BCD\u0B9F\u0BA4\u0BC1"
+      ]
+    };
+    css$22 = {
+      code: ".toolbar.svelte-wwhp0c{display:flex;align-items:center;justify-content:space-between;margin-top:var(--s10px)}.toolbar-left.svelte-wwhp0c{display:inline-flex}.toolbar-right.svelte-wwhp0c{display:inline-flex;align-items:center}.icon.svelte-wwhp0c{display:inline-flex;align-items:center;justify-content:center;width:var(--s20px);height:var(--s20px);margin-right:var(--s5px);font-size:var(--s13px);background-color:rgb(226, 230, 230);border-radius:3px}.verified.svelte-wwhp0c{background-color:#85e757;color:white;margin-right:0}.fa-facebook.svelte-wwhp0c{color:#165baf}.fa-twitter.svelte-wwhp0c{color:#1da1f2}",
+      map: null
+    };
+    Toolbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $_lang, $$unsubscribe__lang;
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      $$result.css.add(css$22);
+      $$unsubscribe__lang();
+      return `
+
+
+<div class="${"toolbar svelte-wwhp0c"}"><div class="${"toolbar-left svelte-wwhp0c"}"><div class="${"icon _clickable svelte-wwhp0c"}"><i class="${"fa-solid fa-up-down"}"></i></div>
+        <div class="${"icon _clickable svelte-wwhp0c"}"><i class="${"fa-solid fa-up-right-and-down-left-from-center"}"></i></div>
+        <div class="${"icon _clickable svelte-wwhp0c"}"><i class="${"fa-brands fa-facebook svelte-wwhp0c"}"></i></div>
+        <div class="${"icon _clickable svelte-wwhp0c"}"><i class="${"fa-brands fa-twitter svelte-wwhp0c"}"></i></div></div>
+    <div class="${"toolbar-right svelte-wwhp0c"}">${validate_component(Font, "Font").$$render($$result, {
+        font: 0,
+        size: 0.75,
+        style: "margin-right: var(--s5px);"
+      }, {}, {
+        default: () => {
+          return `${escape(strings3["verified"][$_lang])}`;
+        }
+      })}
+        <div class="${"icon verified svelte-wwhp0c"}"><i class="${"fa-solid fa-check"}"></i></div></div>
+</div>`;
     });
     Bulletin = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { data } = $$props;
@@ -77022,7 +77058,9 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
             }
           })}</div>
     
-    ${validate_component(Mt, "MT").$$render($$result, { data }, {}, {})}`;
+    ${validate_component(Mt, "MT").$$render($$result, { data }, {}, {})}
+    
+    ${validate_component(Toolbar, "Toolbar").$$render($$result, {}, {}, {})}`;
         }
       })}`;
     });
@@ -77052,33 +77090,33 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
         id: data.id
       }, {}, {
         default: () => {
-          return `<div>
-        ${validate_component(Font, "Font").$$render($$result, {
+          return `
+    ${validate_component(Font, "Font").$$render($$result, {
             font: 0,
             size: 0.75,
-            color: "\n                rgb(100, 99, 99);\n                margin-bottom: var(--s7px);"
+            color: "\n            rgb(100, 99, 99);\n            margin-bottom: var(--s7px);"
           }, {}, {
             default: () => {
               return `${validate_component(Timestamp2, "Timestamp").$$render($$result, { time: data.createdOn }, {}, {})}`;
             }
           })}
-        
-        ${validate_component(Youtube, "Youtube").$$render($$result, {
+    
+    ${validate_component(Youtube, "Youtube").$$render($$result, {
             videoId: data.videoId,
             style: "margin-bottom: var(--s7px);"
           }, {}, {})}
-        
-        ${validate_component(Font, "Font").$$render($$result, {
+    
+    ${validate_component(Font, "Font").$$render($$result, {
             font: 1,
             size: 1.25,
-            style: "\n                font-weight: bold;\n                margin-bottom: var(--s3px);"
+            style: "\n            font-weight: bold;\n            margin-bottom: var(--s3px);"
           }, {}, {
             default: () => {
               return `${validate_component(Content, "Content").$$render($$result, { data, contentField: "title" }, {}, {})}`;
             }
           })}
-        
-        ${validate_component(Font, "Font").$$render($$result, {
+    
+    ${validate_component(Font, "Font").$$render($$result, {
             font: 0,
             size: 0.9,
             color: "rgb(57, 56, 56);"
@@ -77092,8 +77130,10 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
               }, {}, {})}`;
             }
           })}
-        
-        ${validate_component(Mt, "MT").$$render($$result, { data }, {}, {})}</div>`;
+    
+    ${validate_component(Mt, "MT").$$render($$result, { data }, {}, {})}
+    
+    ${validate_component(Toolbar, "Toolbar").$$render($$result, {}, {}, {})}`;
         }
       })}`;
     });
@@ -77217,9 +77257,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-d19b3c04.js";
-    js3 = ["pages/index.svelte-d19b3c04.js", "chunks/index-2dc92fbf.js", "chunks/theme-c24ebdd5.js", "chunks/index-03925709.js", "chunks/preview-03bf94e4.js", "chunks/font-de3c3308.js"];
-    css6 = ["assets/pages/index.svelte-b3b74ac6.css", "assets/preview-8793ffb4.css"];
+    entry3 = "pages/index.svelte-a6fa2206.js";
+    js3 = ["pages/index.svelte-a6fa2206.js", "chunks/index-2dc92fbf.js", "chunks/theme-c24ebdd5.js", "chunks/index-03925709.js", "chunks/preview-27068d6a.js", "chunks/font-de3c3308.js"];
+    css6 = ["assets/pages/index.svelte-4311206c.css", "assets/preview-8793ffb4.css"];
   }
 });
 
@@ -77233,7 +77273,7 @@ var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_4aa555f5();
-    init_preview_79233f8a();
+    init_preview_a776d53b();
     init_theme_9925ab8b();
     init_string_strip_html_esm();
     init_column_config_31e21418();
@@ -77311,8 +77351,8 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 3;
-    entry4 = "pages/post_preview.svelte-b537734d.js";
-    js4 = ["pages/post_preview.svelte-b537734d.js", "chunks/index-2dc92fbf.js", "chunks/preview-03bf94e4.js", "chunks/index-03925709.js", "chunks/theme-c24ebdd5.js"];
+    entry4 = "pages/post_preview.svelte-c360902a.js";
+    js4 = ["pages/post_preview.svelte-c360902a.js", "chunks/index-2dc92fbf.js", "chunks/preview-27068d6a.js", "chunks/index-03925709.js", "chunks/theme-c24ebdd5.js"];
     css8 = ["assets/pages/post_preview.svelte-31ce9f42.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css", "assets/preview-8793ffb4.css"];
   }
 });
@@ -79678,7 +79718,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-9a4b1421.js", "js": ["start-9a4b1421.js", "chunks/index-2dc92fbf.js", "chunks/index-03925709.js"], "css": [] },
+    entry: { "file": "start-447a02a3.js", "js": ["start-447a02a3.js", "chunks/index-2dc92fbf.js", "chunks/index-03925709.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

@@ -6,15 +6,33 @@
 ---- - verified/not verified indication
 --->
 <script>
+    // npm modules
+    import { createEventDispatcher } from 'svelte';
+
+    // services
     import { _lang } from '$lib/services/store';
     import _strings from './toolbar-strings';
 
+    // components
     import Font from '$lib/components/display/font.svelte';
+
+    // component props
+    export let data;
+
+    // event dispatcher
+    const dispatch = createEventDispatcher();
+
+    const toggleExpanded = () => {
+        dispatch('toggleExpanded', !data._expanded)
+    }
 </script>
 
 <div class="toolbar">
     <div class="toolbar-left">
-        <div class="icon _clickable">
+        <div 
+            class="icon _clickable"
+            class:on={data._expanded}
+            on:click={toggleExpanded}>
             <i class="fa-solid fa-up-down"></i>
         </div>
         <div class="icon _clickable">
@@ -67,6 +85,10 @@
         font-size: var(--s13px);
         background-color: rgb(226, 230, 230);
         border-radius: 3px;
+    }
+    .on {
+        background-color: rgb(124, 124, 124);
+        color: white;
     }
     .verified {
         background-color: #85e757;
