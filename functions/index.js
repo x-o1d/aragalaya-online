@@ -12,3 +12,4 @@ exports.ssrServer = functions.region('us-central1').https.onRequest(async (reque
 });
 
 exports.addpost = require('./api/index').addpost;
+

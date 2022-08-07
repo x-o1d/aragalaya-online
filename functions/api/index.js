@@ -1,12 +1,41 @@
 const { Translate } = require('@google-cloud/translate').v2;
 const { Firestore, FieldValue } = require('@google-cloud/firestore');
 const functions = require('firebase-functions');
+const {google} = require('googleapis');
 const { logger } = require("firebase-functions");
 const admin = require('firebase-admin');
+const service = google.youtube('v3');
 admin.initializeApp();
 
 const firestore = new Firestore();
 const translate = new Translate();
+
+// fetch the thumbnail for any videoId properties in data
+// so that it can be specified in og:image tag for video post
+// social shares
+async function getThumbnail(data) {
+    for (let key of Object.keys(data)) {
+        if(key == 'videoId') {
+            let thumbnail = await new Promise((resolve) => {
+                service.videos.list({
+                    auth: 'AIzaSyCAf9rP6dYf9aC1Zk6hGkmbZmY_K5Ml0co',
+                    part: 'snippet',
+                    id: data[key],
+                }, function(err, response) {
+                    if(!err && response.data.items[0]) {
+                        resolve(response.data.items[0].snippet.thumbnails.standard);
+                    } else {
+                        resolve(undefined);
+                    }
+                });
+            });
+            if(thumbnail) {
+                data[key + '_images'] = [{href: thumbnail.url}];
+            }
+        }
+    }
+    return data;
+}
 
 async function translateData(data) {
     const translatedData = {};
@@ -62,7 +91,8 @@ exports.addpost = functions.https.onCall(async (data, context) => {
             'called while authenticated.');
     }
 
-    const translatedData = await translateData(data);
+    let translatedData = await translateData(data);
+    translatedData = await getThumbnail(translatedData);
     logger.info('Translated data :', translatedData);
 
     // Enter new data into the document.
@@ -72,3 +102,4 @@ exports.addpost = functions.https.onCall(async (data, context) => {
 
     return translatedData;
 });
+

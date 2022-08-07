@@ -77328,8 +77328,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    entry3 = "pages/index.svelte-ae68a0d9.js";
-    js3 = ["pages/index.svelte-ae68a0d9.js", "chunks/index-c6bcf044.js", "chunks/theme-c0486153.js", "chunks/index-08fcd1e9.js", "chunks/preview-ac599a5b.js", "chunks/storage-ab6fba9e.js"];
+    entry3 = "pages/index.svelte-3dfff4ed.js";
+    js3 = ["pages/index.svelte-3dfff4ed.js", "chunks/index-c6bcf044.js", "chunks/theme-c0486153.js", "chunks/index-08fcd1e9.js", "chunks/preview-ac599a5b.js", "chunks/storage-ab6fba9e.js"];
     css6 = ["assets/pages/index.svelte-ff08113a.css", "assets/preview-8a8829f8.css"];
   }
 });
@@ -79935,7 +79935,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-7c6eb321.js", "js": ["start-7c6eb321.js", "chunks/index-c6bcf044.js", "chunks/index-08fcd1e9.js"], "css": [] },
+    entry: { "file": "start-3d0f612b.js", "js": ["start-3d0f612b.js", "chunks/index-c6bcf044.js", "chunks/index-08fcd1e9.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
