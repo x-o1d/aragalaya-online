@@ -1,14 +1,16 @@
 <script>
+    // services
     import { _lang } from '$lib/services/store';
-    
+    import { _emitEvent } from '$lib/services/events';
+
+    // components
     import Timestamp from '$lib/components/display/timestamp.svelte';
     import Font from '$lib/components/display/font.svelte';
     import Preview from '$lib/components/display/preview.svelte';
     import Card from '$lib/components/util/card.svelte';
     import Content from '$lib/components/display/content.svelte';
     import MT from '$lib/components/util/mt.svelte';
-
-    import { _emitEvent } from '$lib/services/events';
+    import Toolbar from '$lib/components/util/toolbar.svelte';
 
     export let data;
 
@@ -74,6 +76,8 @@
     --->
     <MT data={data}
         on:viewOriginal={e => data._viewOriginal = e.detail}/>
+    <!-- post toolbar -->
+    <Toolbar/>
 </Card>
 
 

@@ -335,7 +335,7 @@
         border: 0.0520vw solid black;
     }
     .languages > div {
-        padding: var(--s5px);
+        padding: var(--s10px);
         background-color: white;
         text-align: center;
     }
