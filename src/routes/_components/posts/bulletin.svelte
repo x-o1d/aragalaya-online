@@ -67,7 +67,11 @@
                 preview={minimized}/>
         </Font>
     </div>
-    <!-- machine translated indication -->
+    <!-- machine translated indication
+    ---- the _viewOriginal property of data has to be updated
+    ---- from the viewOriginal event so that svelte can reactively
+    ---- update the content of other components
+    --->
     <MT data={data}
         on:viewOriginal={e => data._viewOriginal = e.detail}/>
 </Card>

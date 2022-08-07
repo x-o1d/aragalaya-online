@@ -4,6 +4,10 @@
 ---- the _viewOriginal property of the data object will be set to true. which will be
 ---- used by the Content and Preview components to view the text in original 
 ---- language.
+---- only the below snippet has to be added to the post component.
+EXAMPLE:
+<MT data={data}
+        on:viewOriginal={e => data._viewOriginal = e.detail}/>
 --->
 <script>
     import { createEventDispatcher } from 'svelte';
