@@ -4,6 +4,11 @@
 ---- - share to facebook
 ---- - share to twitter
 ---- - verified/not verified indication
+---- below snippet has to be added to a post to add the toolbar to a post
+EXAMPLE:
+<Toolbar 
+    data={data}
+    on:toggleExpanded={(e) => data._expanded = e.detail}/>
 --->
 <script>
     // npm modules

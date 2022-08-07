@@ -28,6 +28,7 @@
     import Empty from './_components/posts/empty.svelte';
     import Bulletin from './_components/posts/bulletin.svelte';
     import News from './_components/posts/news.svelte';
+    import Post from './_components/fixed/post.svelte';
     
     // the component of the card to be loaded for a particular column
     // data.type = component'
@@ -44,6 +45,10 @@
     // using the page endpoint allows the data to be fetched in the backend
     // itself for SSR
     export let columnData;
+
+    // if a postId was specified in the url, the data for that post will be
+    // available in this prop, this is populated by the page endpoint (./index.js)
+    export let postData;
 
     // when new data is added by a form it's inserted to the column
     // by this listener
@@ -190,6 +195,7 @@
 <!-- Nav is the navigation bar component which is a fixed overlay-->
 <Nav/>
 
+
 <div 
     class="columns"
     bind:this={columnsElement}
@@ -200,6 +206,10 @@
     on:touchmove={(e) => {
         __handleTouchMove(e, hScrollIndex, setHorizontalScroll);
     }}>
+    <!-- Post displays a single post as an overlay -->
+    {#if postData}
+    <Post data={postData}/>
+    {/if}
 	<ul>
         {#if !$_isMobile}
         <li 
@@ -285,6 +295,7 @@
 		display: inline-flex;
 	}
 	.columns {
+        position: relative;
         overflow: hidden;
         background-color: var(--theme-columnbackground);
     }

@@ -1,9 +1,18 @@
-import { _getPosts } from '$lib/services/database';
+import { _getPost, _getPosts } from '$lib/services/database';
 import { COLUMNS } from '$lib/config/column-config';
 
 const IMPLEMENTED_TYPES = ['bulletin', 'newsx'];
 
-export const get = async () => {
+export const get = async ({ url }) => {
+    let postData;
+    // if a post id is specified in the url (?post=<post_id>)
+    // fetch the post data in SSR
+    // index.svelte route will automatically display the post data in
+    // an overlay
+    if(url.search.includes('=')) {
+        let postId = url.search.split('=')[1];
+        postData = await _getPost(postId);
+    }
     const columnData = [];
     for(let column of COLUMNS) {
         let data;
@@ -26,7 +35,8 @@ export const get = async () => {
         status: 200,
         headers: {},
         body: { 
-            columnData
+            columnData,
+            postData
         }
     };
 }
