@@ -11,6 +11,7 @@
     import { tweened } from "svelte/motion";
     import { quartOut, backInOut } from 'svelte/easing';
     import { onMount, onDestroy } from 'svelte';
+    import { stripHtml } from  'string-strip-html';
     
     // services
     import { _eventListener, _emitEvent } from '$lib/services/events';
@@ -68,8 +69,8 @@
     if(postData) {
         title = postData.title[0];
         url = 'https://aragalaya-online.web.app/?post=' + postData.id;
-        description = (postData.description && postData.description[0]) 
-                        || (postData.shortDescription && postData.shortDescription[0]);
+        description = stripHtml((postData.description && postData.description[0]) 
+                        || (postData.shortDescription && postData.shortDescription[0])).result;
         type = 'article';
         let images = [];
         Object.keys(postData).map(key => {
@@ -79,7 +80,7 @@
         })
         if(images[0].href) image = images[0].href;
     }
-    
+
     // when new data is added by a form it's inserted to the column
     // by this listener
     const newColumnDataEvent = _eventListener('new-column-data').subscribe(async (event) => {
