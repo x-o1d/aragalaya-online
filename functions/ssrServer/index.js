@@ -77001,7 +77001,7 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
 
 
 <div class="${"toolbar svelte-cnj9mu"}"><div class="${"toolbar-left svelte-cnj9mu"}"><div class="${["icon _clickable svelte-cnj9mu", data._expanded ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-down"}"></i></div>
-        <div class="${"icon _clickable svelte-cnj9mu"}"><i class="${"fa-solid fa-up-right-and-down-left-from-center"}"></i></div>
+        <div class="${["icon _clickable svelte-cnj9mu", data._singlePostView ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-right-and-down-left-from-center"}"></i></div>
         <div class="${"icon _clickable svelte-cnj9mu"}"><a href="${"/facebook_share/?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-facebook svelte-cnj9mu"}"></i></a></div>
         <div class="${"icon _clickable svelte-cnj9mu"}"><a href="${"/twitter_share/?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-twitter svelte-cnj9mu"}"></i></a></div></div>
     <div class="${"toolbar-right svelte-cnj9mu"}">${validate_component(Font, "Font").$$render($$result, {
@@ -77187,6 +77187,8 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
       let { postData } = $$props;
       const showPostEvent = _eventListener("show-post").subscribe((data) => {
         window.history.pushState("", "", `/?post=${data.id}`);
+        data._expanded = true;
+        data._singlePostView = true;
         postData = data;
       });
       onDestroy(() => showPostEvent.unsubscribe());
@@ -77326,8 +77328,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    entry3 = "pages/index.svelte-f6e24d3a.js";
-    js3 = ["pages/index.svelte-f6e24d3a.js", "chunks/index-c6bcf044.js", "chunks/theme-c0486153.js", "chunks/index-08fcd1e9.js", "chunks/preview-ac599a5b.js", "chunks/storage-ab6fba9e.js"];
+    entry3 = "pages/index.svelte-ae68a0d9.js";
+    js3 = ["pages/index.svelte-ae68a0d9.js", "chunks/index-c6bcf044.js", "chunks/theme-c0486153.js", "chunks/index-08fcd1e9.js", "chunks/preview-ac599a5b.js", "chunks/storage-ab6fba9e.js"];
     css6 = ["assets/pages/index.svelte-ff08113a.css", "assets/preview-8a8829f8.css"];
   }
 });
@@ -79933,7 +79935,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-ac8900bd.js", "js": ["start-ac8900bd.js", "chunks/index-c6bcf044.js", "chunks/index-08fcd1e9.js"], "css": [] },
+    entry: { "file": "start-7c6eb321.js", "js": ["start-7c6eb321.js", "chunks/index-c6bcf044.js", "chunks/index-08fcd1e9.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

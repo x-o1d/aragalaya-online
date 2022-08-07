@@ -35,9 +35,9 @@ EXAMPLE:
     const toggleSinglePostView = () => {
         if(data._singlePostView) {
             data._singlePostView = false;
-            data._expanded = true;
             _emitEvent('hide-post');
         } else {
+            dispatch('toggleExpanded', true)
             _emitEvent('show-post', data)
         }
     }
