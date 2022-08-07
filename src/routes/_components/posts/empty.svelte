@@ -20,7 +20,7 @@
 
 <Card
     slideInTop={data._slideInTop}
-    focused={data.id}>
+    id={data.id}>
 	<!-- START: post content -->
 	<div 
         class="empty-space"

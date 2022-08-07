@@ -4,7 +4,7 @@
 
     // services
 	import { _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady } from '$lib/services/store';
-	import { _registerEvent, _emitEvent } from '$lib/services/events';
+	import { _eventListener, _emitEvent } from '$lib/services/events';
     import { _setUserTheme } from '$lib/services/database';
     import { _themes, _fontGroups, _fontSizes, _getSizeConfig, _isMobile } from '$lib/services/theme';
     
@@ -15,7 +15,7 @@
     import Loader from './_components/fixed/loader.svelte';
 
     // listen to if the user is signed in
-    const userReady = _registerEvent('user-ready');
+    const userReady = _eventListener('user-ready');
 	$: user = $userReady;
 
 	// set all the theme variables as css variables
@@ -41,7 +41,7 @@
 	})
 
     // set theme color properties on theme change
-    const themeChangedEvent = _registerEvent('theme-changed').subscribe(value => {
+    const themeChangedEvent = _eventListener('theme-changed').subscribe(value => {
         setThemeColors(_themes[value], '--theme');
         if(user) {
             _setUserTheme(user, value);
@@ -120,7 +120,7 @@
     let showLanguageSelect = false;
 
     // listen to global click events and hide the language option
-    const globalClickEvent = _registerEvent('global-click').subscribe((event) => {
+    const globalClickEvent = _eventListener('global-click').subscribe((event) => {
         // if the source isn't the language button hide the language options
         if((event.target.id != 'language-button') && (event.target.parentElement.id != 'language-button')) {
             showLanguageSelect = false;

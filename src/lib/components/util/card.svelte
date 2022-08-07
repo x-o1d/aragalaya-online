@@ -5,9 +5,9 @@
     import { backInOut } from 'svelte/easing';
     import { onMount, onDestroy } from "svelte";
 
-    import { _registerEvent, _emitEvent } from '$lib/services/events'
+    import { _eventListener, _emitEvent } from '$lib/services/events'
 
-    export let id;
+    export let id = undefined;
     // setting slideInTop prop to true would cause it to animate 
     // as sliding from top when initialized.
     export let slideInTop = false;

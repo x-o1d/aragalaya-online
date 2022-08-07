@@ -76663,7 +76663,7 @@ var init_index_svelte = __esm({
     init_dist2();
     Array(COLUMN_COUNT).fill(0);
     css$32 = {
-      code: ".navigation.svelte-dte8xm{position:fixed;right:var(--s5px);bottom:var(--s5px);z-index:100;display:flex;align-items:center;flex-direction:column;background-color:black;border-radius:var(--s6px)}.animated.svelte-dte8xm{position:relative}.icons.svelte-dte8xm{position:relative;overflow:hidden}.icon.svelte-dte8xm{position:relative;width:var(--theme-navsize);height:var(--theme-navsize);display:flex;align-items:center;justify-content:center;color:var(--nav-buttons);font-size:var(--theme-naviconsize)}.toggle.svelte-dte8xm{color:white}.show-hide.svelte-dte8xm{background-color:black;z-index:1;color:white;border-radius:var(--s6px)}.scroll.svelte-dte8xm{position:absolute;right:0;width:var(--s4px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s6px)}.title_c.svelte-dte8xm{position:fixed}.title.svelte-dte8xm{font-weight:bold;color:rgb(85, 85, 85);padding:var(--s0px) var(--s5px);background-color:white}",
+      code: ".navigation.svelte-1vfjdoa{position:fixed;right:var(--s5px);bottom:var(--s5px);z-index:100;display:flex;align-items:center;flex-direction:column;background-color:black;border-radius:var(--s6px)}.animated.svelte-1vfjdoa{position:relative}.icons.svelte-1vfjdoa{position:relative;overflow:hidden}.icon.svelte-1vfjdoa{position:relative;width:var(--theme-navsize);height:var(--theme-navsize);display:flex;align-items:center;justify-content:center;color:var(--nav-buttons);font-size:var(--theme-naviconsize)}.toggle.svelte-1vfjdoa{color:white}.show-hide.svelte-1vfjdoa{background-color:black;z-index:1;color:white;border-radius:var(--s6px)}.scroll.svelte-1vfjdoa{position:absolute;right:0;width:var(--s4px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-columns-7) 25%, \n            var(--theme-columns-5) 50%,\n            var(--theme-columns-3) 75%, \n            var(--theme-columns-1) 100%);border-radius:var(--s6px)}.title_c.svelte-1vfjdoa{position:fixed}.title.svelte-1vfjdoa{font-weight:bold;color:rgb(85, 85, 85);padding:var(--s0px) var(--s5px);background-color:white}",
       map: null
     };
     Nav = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -76705,15 +76705,15 @@ var init_index_svelte = __esm({
       $$unsubscribe_height();
       $$unsubscribe_scrollPosition();
       $$unsubscribe__lang();
-      return `<div class="${"navigation svelte-dte8xm"}"><div class="${"animated svelte-dte8xm"}"><div class="${"icons svelte-dte8xm"}" style="${"max-height: " + escape($height) + "px"}">${each(COLUMNS, (column, _i) => {
-        return `<div style="${"color: var(--theme-navigation-" + escape(_i) + ")"}" class="${"icon _clickable svelte-dte8xm"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-dte8xm"}"></i>
+      return `<div class="${"navigation svelte-1vfjdoa"}"><div class="${"animated svelte-1vfjdoa"}"><div class="${"icons svelte-1vfjdoa"}" style="${"max-height: " + escape($height) + "px"}">${each(COLUMNS, (column, _i) => {
+        return `<div style="${"color: var(--theme-navigation-" + escape(_i) + ")"}" class="${"icon _clickable svelte-1vfjdoa"}"><i class="${escape(null_to_empty(column.icon)) + " svelte-1vfjdoa"}"></i>
                 </div>`;
       })}
             
-            <div class="${"scroll svelte-dte8xm"}" style="${"height: " + escape(scrollBarHeight) + "px; top: " + escape($scrollPosition) + "px;"}"></div></div>
+            <div class="${"scroll svelte-1vfjdoa"}" style="${"height: " + escape(scrollBarHeight) + "px; top: " + escape($scrollPosition) + "px;"}"></div></div>
         ${``}</div>
     
-    <div class="${"icon show-hide _clickable svelte-dte8xm"}">${!hidden ? `<i class="${"fa-solid fa-angles-down"}"></i>` : `<i class="${"fa-solid fa-angles-up"}"></i>`}</div>
+    <div class="${"icon show-hide _clickable svelte-1vfjdoa"}">${!hidden ? `<i class="${"fa-solid fa-angles-down"}"></i>` : `<i class="${"fa-solid fa-angles-up"}"></i>`}</div>
 </div>`;
     });
     css$22 = {
@@ -77135,9 +77135,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-8f71b906.js";
-    js3 = ["pages/index.svelte-8f71b906.js", "chunks/index-2687a976.js", "chunks/theme-68fe9860.js", "chunks/index-f5cd5584.js", "chunks/preview-7a9f088f.js", "chunks/font-a86038ec.js"];
-    css6 = ["assets/pages/index.svelte-5a45a4e7.css", "assets/preview-9d689602.css"];
+    entry3 = "pages/index.svelte-ad139795.js";
+    js3 = ["pages/index.svelte-ad139795.js", "chunks/index-2687a976.js", "chunks/theme-68fe9860.js", "chunks/index-f5cd5584.js", "chunks/preview-7a9f088f.js", "chunks/font-a86038ec.js"];
+    css6 = ["assets/pages/index.svelte-342bb337.css", "assets/preview-9d689602.css"];
   }
 });
 
@@ -79595,7 +79595,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-3a52bc95.js", "js": ["start-3a52bc95.js", "chunks/index-2687a976.js", "chunks/index-f5cd5584.js"], "css": [] },
+    entry: { "file": "start-2c8ee54c.js", "js": ["start-2c8ee54c.js", "chunks/index-2687a976.js", "chunks/index-f5cd5584.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

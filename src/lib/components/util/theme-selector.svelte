@@ -4,7 +4,7 @@
 
     // services
     import { _themes } from '$lib/services/theme';
-    import { _registerEvent, _emitEvent } from '$lib/services/events';
+    import { _eventListener, _emitEvent } from '$lib/services/events';
 
     let themeSelect;
     let themePanel;
@@ -14,7 +14,7 @@
     let showPanel = false;
 
     // listen to global click events and hide the theme options
-    const globalClickEvent = _registerEvent('global-click').subscribe((event) => {
+    const globalClickEvent = _eventListener('global-click').subscribe((event) => {
         // if the source isn't the theme button hide the theme options
         if(event.srcElement.id != 'theme-button') {
             showPanel = false;

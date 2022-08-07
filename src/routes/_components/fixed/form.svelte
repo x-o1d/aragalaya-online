@@ -4,7 +4,7 @@
     import { onDestroy } from 'svelte';
 
     import { _lang } from '$lib/services/store';
-    import { _emitEvent, _registerEvent } from '$lib/services/events'
+    import { _emitEvent, _eventListener } from '$lib/services/events'
     import { _createPost } from '$lib/services/functions';
     import { _userSignedIn } from '$lib/services/auth';
 
@@ -20,7 +20,7 @@
     // listen to the add document event and display the form in an overlay
     // add-document event is triggered by clicking on a + icon in the column 
     // headers
-    const addDocumentEvent = _registerEvent('show-add-document-form').subscribe(event => {
+    const addDocumentEvent = _eventListener('show-add-document-form').subscribe(event => {
         columnIndex = event.columnIndex;
         showForm = true;
     });

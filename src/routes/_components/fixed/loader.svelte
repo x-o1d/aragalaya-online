@@ -2,7 +2,7 @@
     // npm modules
     import { onMount } from "svelte";
     // services
-    import { _registerEvent } from "$lib/services/events";
+    import { _eventListener } from "$lib/services/events";
     import { _themeColorsReady, _themeSizesReady, _scaledPixelsReady } from "$lib/services/store";
     // components
     import PreloadingIndicator from "$lib/components/util/preloading-indicator.svelte";
@@ -10,6 +10,7 @@
 
     // css loaded variables
     let fontsLoaded = false;
+    let normalizeCssLoaded = false;
     let faV4FontFaceLoaded = false;
     let faV5FontFaceLoaded = false;
     let faV4ShimsLoaded = false;
@@ -22,8 +23,11 @@
         const checkLoadedInterval = setInterval(() => {
             var ss = document.styleSheets;
             for(var i = 0, max = ss.length; i < max; i++) {
-                if(ss[i].href == "https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@600&family=Mukta+Malar:wght@300;400&family=Noto+Sans+Sinhala:wght@300;400&family=Open+Sans:wght@300;400&family=Abhaya+Libre:wght@400;500&family=Hind+Madurai:wght@300;600&family=Noto+Serif+Sinhala:wght@300;600&family=Nunito:wght@400;500&family=Pavanam&family=Source+Sans+Pro:wght@300;600&family=Roboto&display=swap") {
+                if(ss[i].href && ss[i].href.includes('fonts.googleapis.com/css')) {
                     fontsLoaded = true;
+                }
+                if(ss[i].href && ss[i].href.includes('normalize.css')) {
+                    normalizeCssLoaded = true;
                 }
                 if(ss[i].ownerNode.id == 'fa-v4-font-face') {
                     faV4FontFaceLoaded = true;

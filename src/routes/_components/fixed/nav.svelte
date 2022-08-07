@@ -5,7 +5,7 @@
     import { tweened } from "svelte/motion";
     import { circIn, quartOut } from "svelte/easing";
     
-    import { _emitEvent, _registerEvent } from '$lib/services/events';
+    import { _emitEvent, _eventListener } from '$lib/services/events';
     import { _lang } from '$lib/services/store';
     import { _getSizeConfig, _isMobile } from '$lib/services/theme';
 
@@ -30,14 +30,14 @@
     });
 
     // subscribe to the horizontal scroll event
-    const hScrollEvent = _registerEvent('h-scroll').subscribe(v => {
+    const hScrollEvent = _eventListener('h-scroll').subscribe(v => {
         scrollPosition.set(v/(COLUMN_COUNT * _getSizeConfig().columnWidth)*(COLUMN_COUNT * _getSizeConfig().navSize));
     });
     // clear subscription
     onDestroy(() => hScrollEvent.unsubscribe());
 
     // subscribe to the vertical-scroll event
-    const vScrollEvent = _registerEvent('update-vscroll').subscribe(v => {
+    const vScrollEvent = _eventListener('update-vscroll').subscribe(v => {
         if($_isMobile) {
             if(!hidden) {
                 showHide();

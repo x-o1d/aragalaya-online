@@ -6,6 +6,8 @@
     import Font from "$lib/components/display/font.svelte";
     import Timestamp from "$lib/components/display/timestamp.svelte";
     import Preview from "$lib/components/display/preview.svelte";
+    import Content from '$lib/components/display/content.svelte';
+    import MT from '$lib/components/util/mt.svelte';
 
     import { _emitEvent } from "$lib/services/events";
 
@@ -17,7 +19,7 @@
 
 <Card
     slideInTop={data._slideInTop}
-    focused={data.id}>
+    id={data.id}>
     <div on:click={() => _emitEvent('focus-card', false)}>
         <!-- timestamp -->
         <Font
@@ -39,7 +41,9 @@
             style="
                 font-weight: bold;
                 margin-bottom: var(--s3px);">
-            {data.title[$_lang]}
+            <Content
+                data={data}
+                contentField={'title'}/>
         </Font>
         <!-- short description -->
         <Font
@@ -47,11 +51,15 @@
             size={0.9}
             color="rgb(57, 56, 56);">
             <Preview
-                content={data.shortDescription}
+                data={data}
+                contentField={'shortDescription'}
                 limit={100}
                 preview={minimized}
                 on:click={() => (minimized = !minimized)}/>
         </Font>
+        <!-- machine translated indication -->
+        <MT data={data}
+            on:viewOriginal={e => data._viewOriginal = e.detail}/>
     </div>
     
 </Card>

@@ -36,7 +36,8 @@
                     minimized = !minimized;
                 }}>
                 <Preview
-                    content={data.title}
+                    data={data}
+                    contentField={'title'}
                     limit={10}
                     preview={minimized}>
                 </Preview>

@@ -2,7 +2,7 @@
     import { onDestroy } from 'svelte';
 
     import { _themes } from '$lib/services/theme';
-    import { _registerEvent, _emitEvent } from '$lib/services/events';
+    import { _eventListener, _emitEvent } from '$lib/services/events';
     import { _lang } from '$lib/services/store';
     import { _facebookSignin, _emailSignup, _emailSignin, _changePassword } from '$lib/services/auth';
 
@@ -21,7 +21,7 @@
 
     // show or hide the login overlay on show-hide-login events
     // TODO:: try automatic subscribe
-    const showHideEvent =_registerEvent('show-hide-login').subscribe((v) => {
+    const showHideEvent =_eventListener('show-hide-login').subscribe((v) => {
         showLogin = v;
     })
     // clear subscription

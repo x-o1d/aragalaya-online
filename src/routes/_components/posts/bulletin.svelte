@@ -5,72 +5,71 @@
     import Font from '$lib/components/display/font.svelte';
     import Preview from '$lib/components/display/preview.svelte';
     import Card from '$lib/components/util/card.svelte';
+    import Content from '$lib/components/display/content.svelte';
+    import MT from '$lib/components/util/mt.svelte';
 
     import { _emitEvent } from '$lib/services/events';
 
     export let data;
 
     let minimized = true;
-
-    const togglePreview = () => {
-        minimized = !minimized;
-        if(!minimized) {
-            _emitEvent('focus-card', data.id);
-        } else {
-            _emitEvent('focus-card', false);
-        }
-    }
     
 </script>
 
 <Card 
     slideInTop={data._slideInTop}
     id={data.id}>
-    <!-- adding the _clickable  class makes the cursor
+    <!-- timestamp -->
+    <Font
+        font={0}
+        size={0.75}
+        color="
+            rgb(100, 99, 99);
+            margin-bottom: var(--s5px);">
+        <Timestamp time={data.createdOn}/>
+    </Font>
+    <!-- title -->
+    <Font 
+        font={1}
+        size={1.25}
+        style="
+            font-weight: bold;">
+        <Content
+            data={data}
+            contentField={'title'}/>
+    </Font>
+    <!-- author -->
+    <Font 
+        font={3}
+        size={0.75}
+        color="rgb(55, 55, 55);"
+        style="margin-bottom: var(--s7px);">
+        {data.createdByName}
+    </Font>
+    <!-- description
+    ---- adding the _clickable  class makes the cursor
     ---- into a pointer to indicate that the content is
     ---- clickable. 
     ---- the on:click event toggles the minimized flag
     ---- which toggles the Preview component between the 
     ---- cropped/full states -->
     <div 
-        class='_clickable'
-        on:click={togglePreview}>
-        <!-- timestamp -->
-        <Font
-            font={0}
-            size={0.75}
-            color="
-                rgb(100, 99, 99);
-                margin-bottom: var(--s5px);">
-            <Timestamp time={data.createdOn}/>
-        </Font>
-        <!-- title -->
-        <Font 
-            font={1}
-            size={1.25}
-            style="
-                font-weight: bold;">
-            {data.title[$_lang]}
-        </Font>
-        <!-- author -->
-        <Font 
-            font={3}
-            size={0.75}
-            color="rgb(55, 55, 55);"
-            style="margin-bottom: var(--s7px);">
-            {data.createdByName}
-        </Font>
-        <!-- description -->
+        class="_clickable"
+        on:click={() => minimized = !minimized}>
         <Font
             font={0}
             size={0.9}
             color="rgb(57, 56, 56);">
             <Preview
-                content={data.description}
+                data={data}
+                contentField={'description'}
                 limit={60}
                 preview={minimized}/>
         </Font>
     </div>
+    <!-- machine translated indication -->
+    <MT data={data}
+        on:viewOriginal={e => data._viewOriginal = e.detail}/>
 </Card>
 
 

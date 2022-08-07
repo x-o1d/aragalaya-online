@@ -14,7 +14,7 @@ export const _isMobile = writable(false);
 
 // a font group is a set of fonts in all three languages which can be used
 // for a particular text with the <Font> component
-// ex: <Font group={0} remSize={1}>text</Font>
+// ex: <Font font={0} remSize={1}>text</Font>
 // any text that doesn't use a <Font> component will automatically use the
 // first font group
 export const _fontGroups = [

@@ -21,14 +21,23 @@
     import { _lang } from '$lib/services/store';
     import { stripHtml } from  'string-strip-html';
     import _strings from './preview-strings';
+
+    import Content from '$lib/components/display/content.svelte';
     
-    export let content;
+    export let data;
+    export let contentField;
     export let limit;
     export let preview;
 
-    if(!content) throw ('content not defined: preview.svelte')
+    if(!data[contentField] == undefined) {
+        console.log(`data.${contentField} not defined, data type: ${data.type} data id: ${data.id}`);
+        data[contentField] = '';
+    }
+
+    let content =  data[contentField];
+
     // get the language string if content is a translated array
-    $: contentString = Array.isArray(content)? content[$_lang]: content;
+    $: contentString = Array.isArray(content)? content[data._viewOriginal? 3: $_lang]: content;
 
     let text, croppedText, croppedFlag;
     
@@ -59,7 +68,9 @@
 
 <div class="preview">
     {#if !preview}
-        {@html contentString}
+        <Content 
+            data={data}
+            contentField={contentField}/>
     {:else}
         {croppedText}
         {#if croppedFlag}
@@ -112,6 +123,9 @@
         margin: var(--s5px) 0;
         width: 100%;
         border-radius: 3px;
+    }
+    .view-original {
+        font-family: 'Roboto', sans-serif;
     }
     
 </style>

@@ -13,7 +13,7 @@
     import { onMount, onDestroy } from 'svelte';
     
     // services
-    import { _registerEvent, _emitEvent } from '$lib/services/events';
+    import { _eventListener, _emitEvent } from '$lib/services/events';
     import { _lang } from '$lib/services/store';
     import { _userSignedIn } from '$lib/services/auth';
     import { _themes, _isMobile, _getSizeConfig } from '$lib/services/theme';
@@ -47,7 +47,7 @@
 
     // when new data is added by a form it's inserted to the column
     // by this listener
-    const newColumnDataEvent = _registerEvent('new-column-data').subscribe(async (event) => {
+    const newColumnDataEvent = _eventListener('new-column-data').subscribe(async (event) => {
         const data = event.postData;
         data._slideInTop = true;
         columnData[event.columnIndex].unshift(data);
@@ -76,7 +76,7 @@
     // handleVerticalScroll() method
     // NOTE:: updating the value with an event ensures that the value remains
     // reactive, there might be a better way to do it
-    const vScrollEvent = _registerEvent('update-vscroll').subscribe(v => {
+    const vScrollEvent = _eventListener('update-vscroll').subscribe(v => {
         vScroll[v.index] = v.value;
     });
     // clear subscription
@@ -124,7 +124,7 @@
     const _bounceAnimation = Array(COLUMN_COUNT).fill(1);
 
     // hook that listens to to navigation click events
-    _registerEvent('nav-click').subscribe((index) => {
+    _eventListener('nav-click').subscribe((index) => {
         const sizeConfig = _getSizeConfig();
         const maxLeft = (COLUMN_COUNT - Math.floor(window.innerWidth/sizeConfig.columnWidth))
         if(index < maxLeft) {
