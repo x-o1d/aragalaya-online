@@ -14,6 +14,11 @@
 </script>
 
 <div>
+    <!-- the MT component sets the _viewOriginal prop of the data object
+    ---- to true when view original is clicked.
+    ---- the third index of translated data contains the original untranslated
+    ---- text
+    --->
     {@html data[contentField][data._viewOriginal? 3: $_lang]}  
 </div>
 

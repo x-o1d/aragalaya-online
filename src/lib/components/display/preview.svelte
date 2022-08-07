@@ -37,6 +37,10 @@
     let content =  data[contentField];
 
     // get the language string if content is a translated array
+    // the MT component sets the _viewOriginal prop of the data object
+    // to true when view original is clicked.
+    // the third index of translated data contains the original untranslated
+    // text
     $: contentString = Array.isArray(content)? content[data._viewOriginal? 3: $_lang]: content;
 
     let text, croppedText, croppedFlag;

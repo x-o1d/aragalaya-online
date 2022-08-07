@@ -5480,7 +5480,7 @@ var init_shims = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/index-a845b91b.js
+// .svelte-kit/output/server/chunks/index-4aa555f5.js
 function noop2() {
 }
 function assign(tar, src) {
@@ -5533,6 +5533,11 @@ function loop(callback) {
     }
   };
 }
+function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
+  const e2 = document.createEvent("CustomEvent");
+  e2.initCustomEvent(type, bubbles, cancelable, detail);
+  return e2;
+}
 function set_current_component(component) {
   current_component = component;
 }
@@ -5543,6 +5548,20 @@ function get_current_component() {
 }
 function onDestroy(fn) {
   get_current_component().$$.on_destroy.push(fn);
+}
+function createEventDispatcher() {
+  const component = get_current_component();
+  return (type, detail, { cancelable = false } = {}) => {
+    const callbacks = component.$$.callbacks[type];
+    if (callbacks) {
+      const event = custom_event(type, detail, { cancelable });
+      callbacks.slice().forEach((fn) => {
+        fn.call(component, event);
+      });
+      return !event.defaultPrevented;
+    }
+    return true;
+  };
 }
 function setContext(key2, context) {
   get_current_component().$$.context.set(key2, context);
@@ -5610,8 +5629,8 @@ function add_attribute(name7, value, boolean) {
   return ` ${name7}${assignment}`;
 }
 var identity, is_client, now, raf, tasks, current_component, escaped, missing_component, on_destroy;
-var init_index_a845b91b = __esm({
-  ".svelte-kit/output/server/chunks/index-a845b91b.js"() {
+var init_index_4aa555f5 = __esm({
+  ".svelte-kit/output/server/chunks/index-4aa555f5.js"() {
     init_shims();
     identity = (x3) => x3;
     is_client = typeof window !== "undefined";
@@ -54427,7 +54446,7 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/theme-85f89b32.js
+// .svelte-kit/output/server/chunks/theme-9925ab8b.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -54470,12 +54489,12 @@ function writable2(value, start2 = noop2) {
   return { set, update, subscribe: subscribe2 };
 }
 var import_chroma_js, subscriber_queue2, _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, _getSizeConfig;
-var init_theme_85f89b32 = __esm({
-  ".svelte-kit/output/server/chunks/theme-85f89b32.js"() {
+var init_theme_9925ab8b = __esm({
+  ".svelte-kit/output/server/chunks/theme-9925ab8b.js"() {
     init_shims();
     init_column_config_31e21418();
     import_chroma_js = __toESM(require_chroma(), 1);
-    init_index_a845b91b();
+    init_index_4aa555f5();
     subscriber_queue2 = [];
     _lang = writable2(0);
     _themeColorsReady = writable2(false);
@@ -54577,16 +54596,16 @@ var init_theme_85f89b32 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/font-d293c44f.js
-var import_rxjs, events, _emitEvent, _registerEvent, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, Font;
-var init_font_d293c44f = __esm({
-  ".svelte-kit/output/server/chunks/font-d293c44f.js"() {
+// .svelte-kit/output/server/chunks/font-26c4bb73.js
+var import_rxjs, events, _emitEvent, _eventListener, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, Font;
+var init_font_26c4bb73 = __esm({
+  ".svelte-kit/output/server/chunks/font-26c4bb73.js"() {
     init_shims();
     init_database_0269ec9b();
     init_dist3();
     import_rxjs = __toESM(require_cjs(), 1);
-    init_index_a845b91b();
-    init_theme_85f89b32();
+    init_index_4aa555f5();
+    init_theme_9925ab8b();
     events = [];
     _emitEvent = (tag, value) => {
       let event = events.find((event2) => tag == event2.tag);
@@ -54594,7 +54613,7 @@ var init_font_d293c44f = __esm({
         event.emitter.next(value);
       }
     };
-    _registerEvent = (tag) => {
+    _eventListener = (tag) => {
       let subject;
       let event = events.find((event2) => tag == event2.tag);
       if (event) {
@@ -73737,10 +73756,10 @@ var import_extension_text, import_extension_bold, import_extension_italic, impor
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
-    init_index_a845b91b();
-    init_font_d293c44f();
+    init_index_4aa555f5();
+    init_font_26c4bb73();
     init_database_0269ec9b();
-    init_theme_85f89b32();
+    init_theme_9925ab8b();
     init_column_config_31e21418();
     init_dist4();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
@@ -73869,7 +73888,7 @@ var init_layout_svelte = __esm({
           return `
         ${config.type !== "password" ? `<input type="${"text"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["svelte-1keabnd", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>` : `<input type="${"password"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["svelte-1keabnd", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>`}
         
-        ${typeof error2 === "string" ? `<span class="${"svelte-1keabnd"}">${validate_component(Font, "Font").$$render($$result, { group: 0, remSize: 0.8 }, {}, {
+        ${typeof error2 === "string" ? `<span class="${"svelte-1keabnd"}">${validate_component(Font, "Font").$$render($$result, { font: 0, remSize: 0.8 }, {}, {
             default: () => {
               return `${escape(error2)}`;
             }
@@ -73889,7 +73908,7 @@ var init_layout_svelte = __esm({
       let user2 = {};
       let emailError, nameError, passwordError, repeatPasswordError;
       let signinOrSignup = 0;
-      const showHideEvent = _registerEvent("show-hide-login").subscribe((v3) => {
+      const showHideEvent = _eventListener("show-hide-login").subscribe((v3) => {
         showLogin = v3;
       });
       onDestroy(() => {
@@ -74123,7 +74142,7 @@ var init_layout_svelte = __esm({
       let showForm = false;
       let columnIndex = 0;
       let data = {};
-      const addDocumentEvent = _registerEvent("show-add-document-form").subscribe((event) => {
+      const addDocumentEvent = _eventListener("show-add-document-form").subscribe((event) => {
         columnIndex = event.columnIndex;
         showForm = true;
       });
@@ -74224,7 +74243,7 @@ var init_layout_svelte = __esm({
       let themePanel;
       let currentTheme = 0;
       let showPanel = false;
-      const globalClickEvent = _registerEvent("global-click").subscribe((event) => {
+      const globalClickEvent = _eventListener("global-click").subscribe((event) => {
         if (event.srcElement.id != "theme-button") {
           showPanel = false;
         }
@@ -74277,7 +74296,7 @@ ${``}`;
       let $userReady, $$unsubscribe_userReady;
       let $_isMobile, $$unsubscribe__isMobile;
       $$unsubscribe__isMobile = subscribe(_isMobile, (value) => $_isMobile = value);
-      const userReady = _registerEvent("user-ready");
+      const userReady = _eventListener("user-ready");
       $$unsubscribe_userReady = subscribe(userReady, (value) => $userReady = value);
       const setThemeColors = (object, styleName) => {
         Object.keys(object).map((prop) => {
@@ -74291,7 +74310,7 @@ ${``}`;
           }
         });
       };
-      const themeChangedEvent = _registerEvent("theme-changed").subscribe((value) => {
+      const themeChangedEvent = _eventListener("theme-changed").subscribe((value) => {
         setThemeColors(_themes[value], "--theme");
         if (user2) {
           _setUserTheme(user2, value);
@@ -74299,7 +74318,7 @@ ${``}`;
       });
       onDestroy(() => themeChangedEvent.unsubscribe());
       let showLanguageSelect = false;
-      const globalClickEvent = _registerEvent("global-click").subscribe((event) => {
+      const globalClickEvent = _eventListener("global-click").subscribe((event) => {
         if (event.target.id != "language-button" && event.target.parentElement.id != "language-button") {
           showLanguageSelect = false;
         }
@@ -74356,8 +74375,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-0503d6ab.js";
-    js = ["pages/__layout.svelte-0503d6ab.js", "chunks/index-2687a976.js", "chunks/theme-68fe9860.js", "chunks/index-f5cd5584.js", "chunks/font-a86038ec.js"];
+    entry = "pages/__layout.svelte-901c834a.js";
+    js = ["pages/__layout.svelte-901c834a.js", "chunks/index-2dc92fbf.js", "chunks/theme-c24ebdd5.js", "chunks/index-03925709.js", "chunks/font-de3c3308.js"];
     css2 = ["assets/pages/__layout.svelte-0a35148c.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css"];
   }
 });
@@ -74375,7 +74394,7 @@ var Error2;
 var init_error_svelte = __esm({
   ".svelte-kit/output/server/entries/fallbacks/error.svelte.js"() {
     init_shims();
-    init_index_a845b91b();
+    init_index_4aa555f5();
     Error2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { status } = $$props;
       let { error: error2 } = $$props;
@@ -74410,8 +74429,8 @@ var init__2 = __esm({
     init_shims();
     init_error_svelte();
     index2 = 1;
-    entry2 = "error.svelte-53f43be4.js";
-    js2 = ["error.svelte-53f43be4.js", "chunks/index-2687a976.js"];
+    entry2 = "error.svelte-efc48f54.js";
+    js2 = ["error.svelte-efc48f54.js", "chunks/index-2dc92fbf.js"];
     css3 = [];
   }
 });
@@ -76446,7 +76465,7 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/preview-43d13513.js
+// .svelte-kit/output/server/chunks/preview-79233f8a.js
 function backInOut(t2) {
   const s3 = 1.70158 * 1.525;
   if ((t2 *= 2) < 1)
@@ -76555,12 +76574,12 @@ function tweened(value, defaults = {}) {
     subscribe: store.subscribe
   };
 }
-var css$12, duration, Card, strings2, css4, Preview;
-var init_preview_43d13513 = __esm({
-  ".svelte-kit/output/server/chunks/preview-43d13513.js"() {
+var css$12, duration, Card, strings2, Content, css4, Preview;
+var init_preview_79233f8a = __esm({
+  ".svelte-kit/output/server/chunks/preview-79233f8a.js"() {
     init_shims();
-    init_index_a845b91b();
-    init_theme_85f89b32();
+    init_index_4aa555f5();
+    init_theme_9925ab8b();
     init_string_strip_html_esm();
     css$12 = {
       code: ".card-container.svelte-15adwsw{padding:var(--theme-cardseparationhalf)}.card.svelte-15adwsw{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.card-blur.svelte-15adwsw{filter:grayscale(1)}.card-blur-2.svelte-15adwsw{filter:blur(0.7px)}",
@@ -76570,7 +76589,7 @@ var init_preview_43d13513 = __esm({
     Card = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let maxHeight;
       let $slideIn, $$unsubscribe_slideIn;
-      let { id } = $$props;
+      let { id = void 0 } = $$props;
       let { slideInTop = false } = $$props;
       let { delay = 500 } = $$props;
       const slideIn = tweened(-20, { duration, easing: backInOut });
@@ -76597,8 +76616,24 @@ var init_preview_43d13513 = __esm({
         "\u0BAE\u0BC7\u0BB2\u0BC1\u0BAE\u0BCD \u0BAA\u0B9F\u0BBF\u0B95\u0BCD\u0B95"
       ]
     };
+    Content = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $_lang, $$unsubscribe__lang;
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let { data } = $$props;
+      let { contentField } = $$props;
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+        $$bindings.data(data);
+      if ($$props.contentField === void 0 && $$bindings.contentField && contentField !== void 0)
+        $$bindings.contentField(contentField);
+      $$unsubscribe__lang();
+      return `
+
+
+<div><!-- HTML_TAG_START -->${data[contentField][data._viewOriginal ? 3 : $_lang]}<!-- HTML_TAG_END -->  
+</div>`;
+    });
     css4 = {
-      code: ".preview-image.svelte-joq1tf{background-image:var(--url);background-color:#7b7b7b;height:var(--theme-previewheight);width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;margin-top:5px;filter:grayscale(0.6)}.preview-container.svelte-joq1tf{position:relative}.preview-overlay.svelte-joq1tf{position:absolute;top:0;left:0;height:var(--theme-previewheight);width:100%;background-color:black;opacity:var(--theme-previewopacity);border-radius:3px}.preview img{margin:var(--s5px) 0;width:100%;border-radius:3px}",
+      code: ".preview-image.svelte-6cp6dv{background-image:var(--url);background-color:#7b7b7b;height:var(--theme-previewheight);width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;margin-top:5px;filter:grayscale(0.6)}.preview-container.svelte-6cp6dv{position:relative}.preview-overlay.svelte-6cp6dv{position:absolute;top:0;left:0;height:var(--theme-previewheight);width:100%;background-color:black;opacity:var(--theme-previewopacity);border-radius:3px}.preview img{margin:var(--s5px) 0;width:100%;border-radius:3px}",
       map: null
     };
     Preview = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -76606,20 +76641,26 @@ var init_preview_43d13513 = __esm({
       let images;
       let $_lang, $$unsubscribe__lang;
       $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
-      let { content } = $$props;
+      let { data } = $$props;
+      let { contentField } = $$props;
       let { limit: limit2 } = $$props;
       let { preview } = $$props;
-      if (!content)
-        throw "content not defined: preview.svelte";
+      if (!data[contentField] == void 0) {
+        console.log(`data.${contentField} not defined, data type: ${data.type} data id: ${data.id}`);
+        data[contentField] = "";
+      }
+      let content = data[contentField];
       let text, croppedText, croppedFlag;
-      if ($$props.content === void 0 && $$bindings.content && content !== void 0)
-        $$bindings.content(content);
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+        $$bindings.data(data);
+      if ($$props.contentField === void 0 && $$bindings.contentField && contentField !== void 0)
+        $$bindings.contentField(contentField);
       if ($$props.limit === void 0 && $$bindings.limit && limit2 !== void 0)
         $$bindings.limit(limit2);
       if ($$props.preview === void 0 && $$bindings.preview && preview !== void 0)
         $$bindings.preview(preview);
       $$result.css.add(css4);
-      contentString = Array.isArray(content) ? content[$_lang] : content;
+      contentString = Array.isArray(content) ? content[data._viewOriginal ? 3 : $_lang] : content;
       images = contentString.match(/src="([\w\W]+?)"/g);
       images = images && images.map((src, _i) => {
         return src.replace('src="', "").replace('"', "").replace("&amp;", "&");
@@ -76632,10 +76673,10 @@ var init_preview_43d13513 = __esm({
       return `
 
 
-<div class="${"preview"}">${!preview ? `<!-- HTML_TAG_START -->${contentString}<!-- HTML_TAG_END -->` : `${escape(croppedText)}
+<div class="${"preview"}">${!preview ? `${validate_component(Content, "Content").$$render($$result, { data, contentField }, {}, {})}` : `${escape(croppedText)}
         ${croppedFlag ? `<span style="${"font-weight:bold; text-decoration:underline"}">${escape(strings2["read_more"][$_lang])}</span>
-            ${images ? `<div class="${"preview-container svelte-joq1tf"}"><div class="${"preview-image svelte-joq1tf"}" style="${"--url: url(" + escape(images[0]) + ")"}"></div>
-                <div class="${"preview-overlay svelte-joq1tf"}"></div></div>` : ``}` : ``}`}
+            ${images ? `<div class="${"preview-container svelte-6cp6dv"}"><div class="${"preview-image svelte-6cp6dv"}" style="${"--url: url(" + escape(images[0]) + ")"}"></div>
+                <div class="${"preview-overlay svelte-6cp6dv"}"></div></div>` : ``}` : ``}`}
 </div>`;
     });
   }
@@ -76646,15 +76687,15 @@ var index_svelte_exports = {};
 __export(index_svelte_exports, {
   default: () => Routes
 });
-var import_chroma_js3, css$32, Nav, css$22, Empty, strings3, Timestamp2, Bulletin, css$13, Youtube, News, css5, Routes;
+var import_chroma_js3, css$42, Nav, css$32, Empty, strings$1, Timestamp2, strings3, css$22, Mt, Bulletin, css$13, Youtube, News, css5, Routes;
 var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
-    init_index_a845b91b();
+    init_index_4aa555f5();
     init_column_config_31e21418();
-    init_preview_43d13513();
-    init_font_d293c44f();
-    init_theme_85f89b32();
+    init_preview_79233f8a();
+    init_font_26c4bb73();
+    init_theme_9925ab8b();
     init_database_0269ec9b();
     init_string_strip_html_esm();
     init_dist3();
@@ -76662,7 +76703,7 @@ var init_index_svelte = __esm({
     init_dist();
     init_dist2();
     Array(COLUMN_COUNT).fill(0);
-    css$32 = {
+    css$42 = {
       code: ".navigation.svelte-1vfjdoa{position:fixed;right:var(--s5px);bottom:var(--s5px);z-index:100;display:flex;align-items:center;flex-direction:column;background-color:black;border-radius:var(--s6px)}.animated.svelte-1vfjdoa{position:relative}.icons.svelte-1vfjdoa{position:relative;overflow:hidden}.icon.svelte-1vfjdoa{position:relative;width:var(--theme-navsize);height:var(--theme-navsize);display:flex;align-items:center;justify-content:center;color:var(--nav-buttons);font-size:var(--theme-naviconsize)}.toggle.svelte-1vfjdoa{color:white}.show-hide.svelte-1vfjdoa{background-color:black;z-index:1;color:white;border-radius:var(--s6px)}.scroll.svelte-1vfjdoa{position:absolute;right:0;width:var(--s4px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-columns-7) 25%, \n            var(--theme-columns-5) 50%,\n            var(--theme-columns-3) 75%, \n            var(--theme-columns-1) 100%);border-radius:var(--s6px)}.title_c.svelte-1vfjdoa{position:fixed}.title.svelte-1vfjdoa{font-weight:bold;color:rgb(85, 85, 85);padding:var(--s0px) var(--s5px);background-color:white}",
       map: null
     };
@@ -76678,11 +76719,11 @@ var init_index_svelte = __esm({
       let scrollBarHeight = 0;
       const scrollPosition = tweened(0, { duration: 350, easing: quartOut });
       $$unsubscribe_scrollPosition = subscribe(scrollPosition, (value) => $scrollPosition = value);
-      const hScrollEvent = _registerEvent("h-scroll").subscribe((v3) => {
+      const hScrollEvent = _eventListener("h-scroll").subscribe((v3) => {
         scrollPosition.set(v3 / (COLUMN_COUNT * _getSizeConfig().columnWidth) * (COLUMN_COUNT * _getSizeConfig().navSize));
       });
       onDestroy(() => hScrollEvent.unsubscribe());
-      const vScrollEvent = _registerEvent("update-vscroll").subscribe((v3) => {
+      const vScrollEvent = _eventListener("update-vscroll").subscribe((v3) => {
         if ($_isMobile) {
           if (!hidden) {
             showHide();
@@ -76700,7 +76741,7 @@ var init_index_svelte = __esm({
         }
         hidden = !hidden;
       }
-      $$result.css.add(css$32);
+      $$result.css.add(css$42);
       $$unsubscribe__isMobile();
       $$unsubscribe_height();
       $$unsubscribe_scrollPosition();
@@ -76716,7 +76757,7 @@ var init_index_svelte = __esm({
     <div class="${"icon show-hide _clickable svelte-1vfjdoa"}">${!hidden ? `<i class="${"fa-solid fa-angles-down"}"></i>` : `<i class="${"fa-solid fa-angles-up"}"></i>`}</div>
 </div>`;
     });
-    css$22 = {
+    css$32 = {
       code: ".empty-space.svelte-899snu{width:100%}",
       map: null
     };
@@ -76724,13 +76765,13 @@ var init_index_svelte = __esm({
       let { data } = $$props;
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      $$result.css.add(css$22);
+      $$result.css.add(css$32);
       return `
 
 
 ${validate_component(Card, "Card").$$render($$result, {
         slideInTop: data._slideInTop,
-        focused: data.id
+        id: data.id
       }, {}, {
         default: () => {
           return `
@@ -76739,7 +76780,7 @@ ${validate_component(Card, "Card").$$render($$result, {
         }
       })}`;
     });
-    strings3 = {
+    strings$1 = {
       yesterday: [
         "\u0D8A\u0DBA\u0DDA",
         "yesterday",
@@ -76837,17 +76878,17 @@ ${validate_component(Card, "Card").$$render($$result, {
         const isYesterday = yesterday.toDateString() === date.toDateString();
         const isThisYear = today.getFullYear() === date.getFullYear();
         if (seconds < 5) {
-          return strings3["now"][language];
+          return strings$1["now"][language];
         } else if (seconds < 60) {
-          return strings3["secondsAgo"][language].replace("*seconds*", seconds.toString());
+          return strings$1["secondsAgo"][language].replace("*seconds*", seconds.toString());
         } else if (seconds < 90) {
-          return strings3["minuteAgo"][language];
+          return strings$1["minuteAgo"][language];
         } else if (minutes < 60) {
-          return strings3["minutesAgo"][language].replace("*minutes*", minutes.toString());
+          return strings$1["minutesAgo"][language].replace("*minutes*", minutes.toString());
         } else if (isToday) {
-          return getFormattedDate(date, strings3["today"][language]);
+          return getFormattedDate(date, strings$1["today"][language]);
         } else if (isYesterday) {
-          return getFormattedDate(date, strings3["yesterday"][language]);
+          return getFormattedDate(date, strings$1["yesterday"][language]);
         } else if (isThisYear) {
           return getFormattedDate(date, false, true);
         }
@@ -76882,42 +76923,80 @@ ${validate_component(Card, "Card").$$render($$result, {
         $$bindings.inline(inline);
       return `<div class="${"timestamp"}" style="${"display: " + escape(inline ? "inline-block" : "block")}">${escape(timeAgoString)}</div>`;
     });
-    Bulletin = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+    strings3 = {
+      machine_translated: [
+        "\u0DC3\u0DCA\u0DC0\u0DBA\u0D82\u0D9A\u0DCA\u200D\u0DBB\u0DD3\u0DBA \u0DB4\u0DBB\u0DD2\u0DC0\u0DBB\u0DCA\u0DAD\u0DB1\u0DBA\u0D9A\u0DD2, \u0DB8\u0DD4\u0DBD\u0DCA \u0DB4\u0DD2\u0DA7\u0DB4\u0DAD \u0DB6\u0DBD\u0DB1\u0DCA\u0DB1.",
+        "automatic translation, view original.",
+        "\u0BA4\u0BBE\u0BA9\u0BBF\u0BAF\u0B99\u0BCD\u0B95\u0BBF \u0BAE\u0BCA\u0BB4\u0BBF\u0BAA\u0BC6\u0BAF\u0BB0\u0BCD\u0BAA\u0BCD\u0BAA\u0BC1, \u0B85\u0B9A\u0BB2\u0BCD \u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95."
+      ],
+      original_text: [
+        "\u0DB8\u0DD4\u0DBD\u0DCA \u0DB4\u0DD2\u0DA7\u0DB4\u0DAD, \u0DB4\u0DBB\u0DD2\u0DC0\u0DBB\u0DCA\u0DAD\u0DB1\u0DBA \u0DB6\u0DBD\u0DB1\u0DCA\u0DB1.",
+        "original text, view translation.",
+        "\u0B85\u0B9A\u0BB2\u0BCD \u0B89\u0BB0\u0BC8, \u0BAE\u0BCA\u0BB4\u0BBF\u0BAA\u0BC6\u0BAF\u0BB0\u0BCD\u0BAA\u0BCD\u0BAA\u0BC1 \u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95"
+      ]
+    };
+    css$22 = {
+      code: ".machine-translated.svelte-2shrv7{padding:var(--s5px) 0;cursor:pointer}.fa-solid.svelte-2shrv7{font-size:var(--s11px)}",
+      map: null
+    };
+    Mt = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let machineTranslated;
       let $_lang, $$unsubscribe__lang;
       $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let { data } = $$props;
+      createEventDispatcher();
+      let objectProps = Object.keys(data);
+      let objectFields = objectProps.filter((prop) => prop.includes("_MT"));
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+        $$bindings.data(data);
+      $$result.css.add(css$22);
+      machineTranslated = objectFields.some((key2) => data[key2][$_lang]);
+      $$unsubscribe__lang();
+      return `
+
+
+${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${validate_component(Font, "Font").$$render($$result, {
+        font: 0,
+        size: 0.75,
+        style: "text-decoration: underline;"
+      }, {}, {
+        default: () => {
+          return `${`<i class="${"fa-solid fa-globe svelte-2shrv7"}"></i> ${escape(strings3["machine_translated"][$_lang])}`}`;
+        }
+      })}</div>` : ``}`;
+    });
+    Bulletin = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { data } = $$props;
       let minimized = true;
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      $$unsubscribe__lang();
       return `${validate_component(Card, "Card").$$render($$result, {
         slideInTop: data._slideInTop,
         id: data.id
       }, {}, {
         default: () => {
           return `
-    <div class="${"_clickable"}">
-        ${validate_component(Font, "Font").$$render($$result, {
+    ${validate_component(Font, "Font").$$render($$result, {
             font: 0,
             size: 0.75,
-            color: "\n                rgb(100, 99, 99);\n                margin-bottom: var(--s5px);"
+            color: "\n            rgb(100, 99, 99);\n            margin-bottom: var(--s5px);"
           }, {}, {
             default: () => {
               return `${validate_component(Timestamp2, "Timestamp").$$render($$result, { time: data.createdOn }, {}, {})}`;
             }
           })}
-        
-        ${validate_component(Font, "Font").$$render($$result, {
+    
+    ${validate_component(Font, "Font").$$render($$result, {
             font: 1,
             size: 1.25,
-            style: "\n                font-weight: bold;"
+            style: "\n            font-weight: bold;"
           }, {}, {
             default: () => {
-              return `${escape(data.title[$_lang])}`;
+              return `${validate_component(Content, "Content").$$render($$result, { data, contentField: "title" }, {}, {})}`;
             }
           })}
-        
-        ${validate_component(Font, "Font").$$render($$result, {
+    
+    ${validate_component(Font, "Font").$$render($$result, {
             font: 3,
             size: 0.75,
             color: "rgb(55, 55, 55);",
@@ -76927,20 +77006,23 @@ ${validate_component(Card, "Card").$$render($$result, {
               return `${escape(data.createdByName)}`;
             }
           })}
-        
-        ${validate_component(Font, "Font").$$render($$result, {
+    
+    <div class="${"_clickable"}">${validate_component(Font, "Font").$$render($$result, {
             font: 0,
             size: 0.9,
             color: "rgb(57, 56, 56);"
           }, {}, {
             default: () => {
               return `${validate_component(Preview, "Preview").$$render($$result, {
-                content: data.description,
+                data,
+                contentField: "description",
                 limit: 60,
                 preview: minimized
               }, {}, {})}`;
             }
-          })}</div>`;
+          })}</div>
+    
+    ${validate_component(Mt, "MT").$$render($$result, { data }, {}, {})}`;
         }
       })}`;
     });
@@ -76961,16 +77043,13 @@ ${validate_component(Card, "Card").$$render($$result, {
 </div>`;
     });
     News = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang, $$unsubscribe__lang;
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
       let { data } = $$props;
       let minimized = true;
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      $$unsubscribe__lang();
       return `${validate_component(Card, "Card").$$render($$result, {
         slideInTop: data._slideInTop,
-        focused: data.id
+        id: data.id
       }, {}, {
         default: () => {
           return `<div>
@@ -76995,7 +77074,7 @@ ${validate_component(Card, "Card").$$render($$result, {
             style: "\n                font-weight: bold;\n                margin-bottom: var(--s3px);"
           }, {}, {
             default: () => {
-              return `${escape(data.title[$_lang])}`;
+              return `${validate_component(Content, "Content").$$render($$result, { data, contentField: "title" }, {}, {})}`;
             }
           })}
         
@@ -77006,12 +77085,15 @@ ${validate_component(Card, "Card").$$render($$result, {
           }, {}, {
             default: () => {
               return `${validate_component(Preview, "Preview").$$render($$result, {
-                content: data.shortDescription,
+                data,
+                contentField: "shortDescription",
                 limit: 100,
                 preview: minimized
               }, {}, {})}`;
             }
-          })}</div>`;
+          })}
+        
+        ${validate_component(Mt, "MT").$$render($$result, { data }, {}, {})}</div>`;
         }
       })}`;
     });
@@ -77030,7 +77112,7 @@ ${validate_component(Card, "Card").$$render($$result, {
         empty: Empty
       };
       let { columnData } = $$props;
-      const newColumnDataEvent = _registerEvent("new-column-data").subscribe(async (event) => {
+      const newColumnDataEvent = _eventListener("new-column-data").subscribe(async (event) => {
         const data = event.postData;
         data._slideInTop = true;
         columnData[event.columnIndex].unshift(data);
@@ -77039,7 +77121,7 @@ ${validate_component(Card, "Card").$$render($$result, {
       onDestroy(() => newColumnDataEvent.unsubscribe());
       let columnsElement;
       const vScroll = Array(COLUMN_COUNT).fill(15);
-      const vScrollEvent = _registerEvent("update-vscroll").subscribe((v3) => {
+      const vScrollEvent = _eventListener("update-vscroll").subscribe((v3) => {
         vScroll[v3.index] = v3.value;
       });
       onDestroy(() => {
@@ -77055,7 +77137,7 @@ ${validate_component(Card, "Card").$$render($$result, {
       };
       const bounceAnimation = Array(COLUMN_COUNT).fill(1).map((_2) => tweened(0, { duration: 350, easing: backInOut }));
       const _bounceAnimation = Array(COLUMN_COUNT).fill(1);
-      _registerEvent("nav-click").subscribe((index5) => {
+      _eventListener("nav-click").subscribe((index5) => {
         const sizeConfig = _getSizeConfig();
         const maxLeft = COLUMN_COUNT - Math.floor(window.innerWidth / sizeConfig.columnWidth);
         if (index5 < maxLeft) {
@@ -77135,9 +77217,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-ad139795.js";
-    js3 = ["pages/index.svelte-ad139795.js", "chunks/index-2687a976.js", "chunks/theme-68fe9860.js", "chunks/index-f5cd5584.js", "chunks/preview-7a9f088f.js", "chunks/font-a86038ec.js"];
-    css6 = ["assets/pages/index.svelte-342bb337.css", "assets/preview-9d689602.css"];
+    entry3 = "pages/index.svelte-d19b3c04.js";
+    js3 = ["pages/index.svelte-d19b3c04.js", "chunks/index-2dc92fbf.js", "chunks/theme-c24ebdd5.js", "chunks/index-03925709.js", "chunks/preview-03bf94e4.js", "chunks/font-de3c3308.js"];
+    css6 = ["assets/pages/index.svelte-b3b74ac6.css", "assets/preview-8793ffb4.css"];
   }
 });
 
@@ -77150,9 +77232,9 @@ var import_chroma_js4, css$14, Proposals, css7, Post_preview;
 var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
-    init_index_a845b91b();
-    init_preview_43d13513();
-    init_theme_85f89b32();
+    init_index_4aa555f5();
+    init_preview_79233f8a();
+    init_theme_9925ab8b();
     init_string_strip_html_esm();
     init_column_config_31e21418();
     import_chroma_js4 = __toESM(require_chroma(), 1);
@@ -77173,7 +77255,8 @@ var init_post_preview_svelte = __esm({
         default: () => {
           return `
             <div class="${"_clickable"}">${validate_component(Preview, "Preview").$$render($$result, {
-            content: data.title,
+            data,
+            contentField: "title",
             limit: 10,
             preview: minimized
           }, {}, {})}</div>
@@ -77228,9 +77311,9 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 3;
-    entry4 = "pages/post_preview.svelte-264af2d5.js";
-    js4 = ["pages/post_preview.svelte-264af2d5.js", "chunks/index-2687a976.js", "chunks/preview-7a9f088f.js", "chunks/index-f5cd5584.js", "chunks/theme-68fe9860.js"];
-    css8 = ["assets/pages/post_preview.svelte-31ce9f42.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css", "assets/preview-9d689602.css"];
+    entry4 = "pages/post_preview.svelte-b537734d.js";
+    js4 = ["pages/post_preview.svelte-b537734d.js", "chunks/index-2dc92fbf.js", "chunks/preview-03bf94e4.js", "chunks/index-03925709.js", "chunks/theme-c24ebdd5.js"];
+    css8 = ["assets/pages/post_preview.svelte-31ce9f42.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css", "assets/preview-8793ffb4.css"];
   }
 });
 
@@ -77282,7 +77365,7 @@ init_shims();
 
 // .svelte-kit/output/server/index.js
 init_shims();
-init_index_a845b91b();
+init_index_4aa555f5();
 var __defProp2 = Object.defineProperty;
 var __defProps2 = Object.defineProperties;
 var __getOwnPropDescs2 = Object.getOwnPropertyDescriptors;
@@ -79595,7 +79678,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-2c8ee54c.js", "js": ["start-2c8ee54c.js", "chunks/index-2687a976.js", "chunks/index-f5cd5584.js"], "css": [] },
+    entry: { "file": "start-9a4b1421.js", "js": ["start-9a4b1421.js", "chunks/index-2dc92fbf.js", "chunks/index-03925709.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
