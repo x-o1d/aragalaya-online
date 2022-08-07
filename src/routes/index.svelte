@@ -52,6 +52,24 @@
     // available in this prop, this is populated by the page endpoint (./index.js)
     export let postData;
 
+    // triggered by the Toolbar component when show post button is clicked
+    // this assigns the post data 
+    const showPostEvent = _eventListener('show-post').subscribe((data) => {
+        window.history.pushState("", "", `/?post=${data.id}`);
+        postData = data;
+    });
+    // clear subscriptions
+    onDestroy(() => showPostEvent.unsubscribe());
+
+    // triggered by the Post component when it's exited
+    // this clears the postData therefore hiding the post component
+    const hidePostEvent = _eventListener('hide-post').subscribe(() => {
+        window.history.pushState("", "", '/');
+        postData = undefined;
+    });
+    // clear subscriptions
+    onDestroy(() => hidePostEvent.unsubscribe());
+
     // default values for the opengraph meta tags
     // these will be added to the page in SSR
     let title = 'aragalaya.online';
@@ -79,7 +97,7 @@
                 images.push(...postData[key]);
             }
         })
-        if(images[0].href) image = images[0].href;
+        if(images[0] && images[0].href) image = images[0].href;
     }
 
     // when new data is added by a form it's inserted to the column

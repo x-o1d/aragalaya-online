@@ -17,6 +17,7 @@ EXAMPLE:
     // services
     import { _lang } from '$lib/services/store';
     import _strings from './toolbar-strings';
+    import { _emitEvent } from '$lib/services/events';
 
     // components
     import Font from '$lib/components/display/font.svelte';
@@ -40,7 +41,9 @@ EXAMPLE:
             on:click={toggleExpanded}>
             <i class="fa-solid fa-up-down"></i>
         </div>
-        <div class="icon _clickable">
+        <div 
+            class="icon _clickable"
+            on:click={() => _emitEvent('show-post', data)}>
             <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
         </div>
         <div class="icon _clickable">

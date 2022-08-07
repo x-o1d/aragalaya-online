@@ -205,7 +205,7 @@ var init_multipart_parser = __esm({
         let i2 = 0;
         const length_ = data.length;
         let previousIndex = this.index;
-        let { lookbehind, boundary, boundaryChars, index: index6, state, flags } = this;
+        let { lookbehind, boundary, boundaryChars, index: index7, state, flags } = this;
         const boundaryLength = this.boundary.length;
         const boundaryEnd = boundaryLength - 1;
         const bufferLength = data.length;
@@ -239,20 +239,20 @@ var init_multipart_parser = __esm({
           c3 = data[i2];
           switch (state) {
             case S.START_BOUNDARY:
-              if (index6 === boundary.length - 2) {
+              if (index7 === boundary.length - 2) {
                 if (c3 === HYPHEN) {
                   flags |= F.LAST_BOUNDARY;
                 } else if (c3 !== CR) {
                   return;
                 }
-                index6++;
+                index7++;
                 break;
-              } else if (index6 - 1 === boundary.length - 2) {
+              } else if (index7 - 1 === boundary.length - 2) {
                 if (flags & F.LAST_BOUNDARY && c3 === HYPHEN) {
                   state = S.END;
                   flags = 0;
                 } else if (!(flags & F.LAST_BOUNDARY) && c3 === LF) {
-                  index6 = 0;
+                  index7 = 0;
                   callback("onPartBegin");
                   state = S.HEADER_FIELD_START;
                 } else {
@@ -260,29 +260,29 @@ var init_multipart_parser = __esm({
                 }
                 break;
               }
-              if (c3 !== boundary[index6 + 2]) {
-                index6 = -2;
+              if (c3 !== boundary[index7 + 2]) {
+                index7 = -2;
               }
-              if (c3 === boundary[index6 + 2]) {
-                index6++;
+              if (c3 === boundary[index7 + 2]) {
+                index7++;
               }
               break;
             case S.HEADER_FIELD_START:
               state = S.HEADER_FIELD;
               mark("onHeaderField");
-              index6 = 0;
+              index7 = 0;
             case S.HEADER_FIELD:
               if (c3 === CR) {
                 clear("onHeaderField");
                 state = S.HEADERS_ALMOST_DONE;
                 break;
               }
-              index6++;
+              index7++;
               if (c3 === HYPHEN) {
                 break;
               }
               if (c3 === COLON) {
-                if (index6 === 1) {
+                if (index7 === 1) {
                   return;
                 }
                 dataCallback("onHeaderField", true);
@@ -324,8 +324,8 @@ var init_multipart_parser = __esm({
               state = S.PART_DATA;
               mark("onPartData");
             case S.PART_DATA:
-              previousIndex = index6;
-              if (index6 === 0) {
+              previousIndex = index7;
+              if (index7 === 0) {
                 i2 += boundaryEnd;
                 while (i2 < bufferLength && !(data[i2] in boundaryChars)) {
                   i2 += boundaryLength;
@@ -333,27 +333,27 @@ var init_multipart_parser = __esm({
                 i2 -= boundaryEnd;
                 c3 = data[i2];
               }
-              if (index6 < boundary.length) {
-                if (boundary[index6] === c3) {
-                  if (index6 === 0) {
+              if (index7 < boundary.length) {
+                if (boundary[index7] === c3) {
+                  if (index7 === 0) {
                     dataCallback("onPartData", true);
                   }
-                  index6++;
+                  index7++;
                 } else {
-                  index6 = 0;
+                  index7 = 0;
                 }
-              } else if (index6 === boundary.length) {
-                index6++;
+              } else if (index7 === boundary.length) {
+                index7++;
                 if (c3 === CR) {
                   flags |= F.PART_BOUNDARY;
                 } else if (c3 === HYPHEN) {
                   flags |= F.LAST_BOUNDARY;
                 } else {
-                  index6 = 0;
+                  index7 = 0;
                 }
-              } else if (index6 - 1 === boundary.length) {
+              } else if (index7 - 1 === boundary.length) {
                 if (flags & F.PART_BOUNDARY) {
-                  index6 = 0;
+                  index7 = 0;
                   if (c3 === LF) {
                     flags &= ~F.PART_BOUNDARY;
                     callback("onPartEnd");
@@ -367,14 +367,14 @@ var init_multipart_parser = __esm({
                     state = S.END;
                     flags = 0;
                   } else {
-                    index6 = 0;
+                    index7 = 0;
                   }
                 } else {
-                  index6 = 0;
+                  index7 = 0;
                 }
               }
-              if (index6 > 0) {
-                lookbehind[index6 - 1] = c3;
+              if (index7 > 0) {
+                lookbehind[index7 - 1] = c3;
               } else if (previousIndex > 0) {
                 const _lookbehind = new Uint8Array(lookbehind.buffer, lookbehind.byteOffset, lookbehind.byteLength);
                 callback("onPartData", 0, previousIndex, _lookbehind);
@@ -392,7 +392,7 @@ var init_multipart_parser = __esm({
         dataCallback("onHeaderField");
         dataCallback("onHeaderValue");
         dataCallback("onPartData");
-        this.index = index6;
+        this.index = index7;
         this.state = state;
         this.flags = flags;
       }
@@ -530,9 +530,9 @@ async function consumeBody(data) {
   }
 }
 function fromRawHeaders(headers = []) {
-  return new Headers2(headers.reduce((result, value, index6, array2) => {
-    if (index6 % 2 === 0) {
-      result.push(array2.slice(index6, index6 + 2));
+  return new Headers2(headers.reduce((result, value, index7, array2) => {
+    if (index7 % 2 === 0) {
+      result.push(array2.slice(index7, index7 + 2));
     }
     return result;
   }, []).filter(([name7, value]) => {
@@ -1647,10 +1647,10 @@ var init_polyfills = __esm({
           [PullSteps](readRequest) {
             const stream = this._controlledReadableByteStream;
             if (this._queueTotalSize > 0) {
-              const entry6 = this._queue.shift();
-              this._queueTotalSize -= entry6.byteLength;
+              const entry7 = this._queue.shift();
+              this._queueTotalSize -= entry7.byteLength;
               ReadableByteStreamControllerHandleQueueDrain(this);
-              const view = new Uint8Array(entry6.buffer, entry6.byteOffset, entry6.byteLength);
+              const view = new Uint8Array(entry7.buffer, entry7.byteOffset, entry7.byteLength);
               readRequest._chunkSteps(view);
               return;
             }
@@ -5613,7 +5613,7 @@ function create_ssr_component(fn) {
       return {
         html,
         css: {
-          code: Array.from(result.css).map((css11) => css11.code).join("\n"),
+          code: Array.from(result.css).map((css13) => css13.code).join("\n"),
           map: null
         },
         head: result.title + result.head
@@ -6191,16 +6191,16 @@ var require_chroma = __commonJS({
       var RE_HSL = /^hsl\(\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*\)$/;
       var RE_HSLA = /^hsla\(\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*,\s*([01]|[01]?\.\d+)\)$/;
       var round$4 = Math.round;
-      var css2rgb$1 = function(css11) {
-        css11 = css11.toLowerCase().trim();
+      var css2rgb$1 = function(css13) {
+        css13 = css13.toLowerCase().trim();
         var m3;
         if (input$f.format.named) {
           try {
-            return input$f.format.named(css11);
+            return input$f.format.named(css13);
           } catch (e2) {
           }
         }
-        if (m3 = css11.match(RE_RGB)) {
+        if (m3 = css13.match(RE_RGB)) {
           var rgb2 = m3.slice(1, 4);
           for (var i3 = 0; i3 < 3; i3++) {
             rgb2[i3] = +rgb2[i3];
@@ -6208,14 +6208,14 @@ var require_chroma = __commonJS({
           rgb2[3] = 1;
           return rgb2;
         }
-        if (m3 = css11.match(RE_RGBA)) {
+        if (m3 = css13.match(RE_RGBA)) {
           var rgb$1 = m3.slice(1, 5);
           for (var i$12 = 0; i$12 < 4; i$12++) {
             rgb$1[i$12] = +rgb$1[i$12];
           }
           return rgb$1;
         }
-        if (m3 = css11.match(RE_RGB_PCT)) {
+        if (m3 = css13.match(RE_RGB_PCT)) {
           var rgb$2 = m3.slice(1, 4);
           for (var i$2 = 0; i$2 < 3; i$2++) {
             rgb$2[i$2] = round$4(rgb$2[i$2] * 2.55);
@@ -6223,7 +6223,7 @@ var require_chroma = __commonJS({
           rgb$2[3] = 1;
           return rgb$2;
         }
-        if (m3 = css11.match(RE_RGBA_PCT)) {
+        if (m3 = css13.match(RE_RGBA_PCT)) {
           var rgb$3 = m3.slice(1, 5);
           for (var i$3 = 0; i$3 < 3; i$3++) {
             rgb$3[i$3] = round$4(rgb$3[i$3] * 2.55);
@@ -6231,7 +6231,7 @@ var require_chroma = __commonJS({
           rgb$3[3] = +rgb$3[3];
           return rgb$3;
         }
-        if (m3 = css11.match(RE_HSL)) {
+        if (m3 = css13.match(RE_HSL)) {
           var hsl2 = m3.slice(1, 4);
           hsl2[1] *= 0.01;
           hsl2[2] *= 0.01;
@@ -6239,7 +6239,7 @@ var require_chroma = __commonJS({
           rgb$4[3] = 1;
           return rgb$4;
         }
-        if (m3 = css11.match(RE_HSLA)) {
+        if (m3 = css13.match(RE_HSLA)) {
           var hsl$1 = m3.slice(1, 4);
           hsl$1[1] *= 0.01;
           hsl$1[2] *= 0.01;
@@ -10938,7 +10938,7 @@ var require_call_credentials = __commonJS({
           return true;
         }
         if (other instanceof ComposedCallCredentials) {
-          return this.creds.every((value, index6) => value._equals(other.creds[index6]));
+          return this.creds.every((value, index7) => value._equals(other.creds[index7]));
         } else {
           return false;
         }
@@ -14200,12 +14200,12 @@ var require_lodash = __commonJS({
     var freeSelf = typeof self == "object" && self && self.Object === Object && self;
     var root = freeGlobal || freeSelf || Function("return this")();
     function arrayReduce(array2, iteratee, accumulator, initAccum) {
-      var index6 = -1, length = array2 ? array2.length : 0;
+      var index7 = -1, length = array2 ? array2.length : 0;
       if (initAccum && length) {
-        accumulator = array2[++index6];
+        accumulator = array2[++index7];
       }
-      while (++index6 < length) {
-        accumulator = iteratee(accumulator, array2[index6], index6, array2);
+      while (++index7 < length) {
+        accumulator = iteratee(accumulator, array2[index7], index7, array2);
       }
       return accumulator;
     }
@@ -14242,7 +14242,7 @@ var require_lodash = __commonJS({
     var symbolProto = Symbol2 ? Symbol2.prototype : void 0;
     var symbolToString = symbolProto ? symbolProto.toString : void 0;
     function baseSlice(array2, start2, end) {
-      var index6 = -1, length = array2.length;
+      var index7 = -1, length = array2.length;
       if (start2 < 0) {
         start2 = -start2 > length ? 0 : length + start2;
       }
@@ -14253,8 +14253,8 @@ var require_lodash = __commonJS({
       length = start2 > end ? 0 : end - start2 >>> 0;
       start2 >>>= 0;
       var result = Array(length);
-      while (++index6 < length) {
-        result[index6] = array2[index6 + start2];
+      while (++index7 < length) {
+        result[index7] = array2[index7 + start2];
       }
       return result;
     }
@@ -14296,9 +14296,9 @@ var require_lodash = __commonJS({
     function toString(value) {
       return value == null ? "" : baseToString(value);
     }
-    var camelCase = createCompounder(function(result, word, index6) {
+    var camelCase = createCompounder(function(result, word, index7) {
       word = word.toLowerCase();
-      return result + (index6 ? capitalize(word) : word);
+      return result + (index7 ? capitalize(word) : word);
     });
     function capitalize(string) {
       return upperFirst(toString(string).toLowerCase());
@@ -14327,9 +14327,9 @@ var require_aspromise = __commonJS({
     init_shims();
     module2.exports = asPromise;
     function asPromise(fn, ctx) {
-      var params = new Array(arguments.length - 1), offset = 0, index6 = 2, pending = true;
-      while (index6 < arguments.length)
-        params[offset++] = arguments[index6++];
+      var params = new Array(arguments.length - 1), offset = 0, index7 = 2, pending = true;
+      while (index7 < arguments.length)
+        params[offset++] = arguments[index7++];
       return new Promise(function executor(resolve2, reject) {
         params[offset] = function callback(err) {
           if (pending) {
@@ -16101,13 +16101,13 @@ var require_oneof = __commonJS({
     OneOf.prototype.remove = function remove(field) {
       if (!(field instanceof Field))
         throw TypeError("field must be a Field");
-      var index6 = this.fieldsArray.indexOf(field);
-      if (index6 < 0)
+      var index7 = this.fieldsArray.indexOf(field);
+      if (index7 < 0)
         throw Error(field + " is not a member of " + this);
-      this.fieldsArray.splice(index6, 1);
-      index6 = this.oneof.indexOf(field.name);
-      if (index6 > -1)
-        this.oneof.splice(index6, 1);
+      this.fieldsArray.splice(index7, 1);
+      index7 = this.oneof.indexOf(field.name);
+      if (index7 > -1)
+        this.oneof.splice(index7, 1);
       field.partOf = null;
       return this;
     };
@@ -16130,9 +16130,9 @@ var require_oneof = __commonJS({
       ReflectionObject.prototype.onRemove.call(this, parent2);
     };
     OneOf.d = function decorateOneOf() {
-      var fieldNames = new Array(arguments.length), index6 = 0;
-      while (index6 < arguments.length)
-        fieldNames[index6] = arguments[index6++];
+      var fieldNames = new Array(arguments.length), index7 = 0;
+      while (index7 < arguments.length)
+        fieldNames[index7] = arguments[index7++];
       return function oneOfDecorator(prototype, oneofName) {
         util.decorateType(prototype.constructor).add(new OneOf(oneofName, fieldNames));
         Object.defineProperty(prototype, oneofName, {
@@ -16218,7 +16218,7 @@ var require_namespace = __commonJS({
       }
       return this;
     };
-    Namespace.prototype.get = function get3(name7) {
+    Namespace.prototype.get = function get4(name7) {
       return this.nested && this.nested[name7] || null;
     };
     Namespace.prototype.getEnum = function getEnum(name7) {
@@ -16526,7 +16526,7 @@ var require_service2 = __commonJS({
       service._methodsArray = null;
       return service;
     }
-    Service.prototype.get = function get3(name7) {
+    Service.prototype.get = function get4(name7) {
       return this.methods[name7] || Namespace.prototype.get.call(this, name7);
     };
     Service.prototype.resolveAll = function resolveAll() {
@@ -16941,20 +16941,20 @@ var require_converter = __commonJS({
       }
       var hasKs2 = false;
       for (i2 = 0; i2 < fields.length; ++i2) {
-        var field = fields[i2], index6 = mtype._fieldsArray.indexOf(field), prop = util.safeProp(field.name);
+        var field = fields[i2], index7 = mtype._fieldsArray.indexOf(field), prop = util.safeProp(field.name);
         if (field.map) {
           if (!hasKs2) {
             hasKs2 = true;
             gen("var ks2");
           }
           gen("if(m%s&&(ks2=Object.keys(m%s)).length){", prop, prop)("d%s={}", prop)("for(var j=0;j<ks2.length;++j){");
-          genValuePartial_toObject(gen, field, index6, prop + "[ks2[j]]")("}");
+          genValuePartial_toObject(gen, field, index7, prop + "[ks2[j]]")("}");
         } else if (field.repeated) {
           gen("if(m%s&&m%s.length){", prop, prop)("d%s=[]", prop)("for(var j=0;j<m%s.length;++j){", prop);
-          genValuePartial_toObject(gen, field, index6, prop + "[j]")("}");
+          genValuePartial_toObject(gen, field, index7, prop + "[j]")("}");
         } else {
           gen("if(m%s!=null&&m.hasOwnProperty(%j)){", prop, field.name);
-          genValuePartial_toObject(gen, field, index6, prop);
+          genValuePartial_toObject(gen, field, index7, prop);
           if (field.partOf)
             gen("if(o.oneofs)")("d%s=%j", util.safeProp(field.partOf.name), field.name);
         }
@@ -17178,7 +17178,7 @@ var require_type = __commonJS({
         oneofs[i2++].resolve();
       return Namespace.prototype.resolveAll.call(this);
     };
-    Type.prototype.get = function get3(name7) {
+    Type.prototype.get = function get4(name7) {
       return this.fields[name7] || this.oneofs && this.oneofs[name7] || this.nested && this.nested[name7] || null;
     };
     Type.prototype.add = function add(object) {
@@ -17494,9 +17494,9 @@ var require_root = __commonJS({
             object.extensionField.parent.remove(object.extensionField);
             object.extensionField = null;
           } else {
-            var index6 = this.deferred.indexOf(object);
-            if (index6 > -1)
-              this.deferred.splice(index6, 1);
+            var index7 = this.deferred.indexOf(object);
+            if (index7 > -1)
+              this.deferred.splice(index7, 1);
           }
         }
       } else if (object instanceof Enum) {
@@ -17532,17 +17532,17 @@ var require_util = __commonJS({
     util.fs = util.inquire("fs");
     util.toArray = function toArray(object) {
       if (object) {
-        var keys = Object.keys(object), array2 = new Array(keys.length), index6 = 0;
-        while (index6 < keys.length)
-          array2[index6] = object[keys[index6++]];
+        var keys = Object.keys(object), array2 = new Array(keys.length), index7 = 0;
+        while (index7 < keys.length)
+          array2[index7] = object[keys[index7++]];
         return array2;
       }
       return [];
     };
     util.toObject = function toObject(array2) {
-      var object = {}, index6 = 0;
-      while (index6 < array2.length) {
-        var key2 = array2[index6++], val = array2[index6++];
+      var object = {}, index7 = 0;
+      while (index7 < array2.length) {
+        var key2 = array2[index7++], val = array2[index7++];
         if (val !== void 0)
           object[key2] = val;
       }
@@ -17852,12 +17852,12 @@ var require_encoder = __commonJS({
       var i2, ref;
       var fields = mtype.fieldsArray.slice().sort(util.compareFieldsById);
       for (var i2 = 0; i2 < fields.length; ++i2) {
-        var field = fields[i2].resolve(), index6 = mtype._fieldsArray.indexOf(field), type = field.resolvedType instanceof Enum ? "int32" : field.type, wireType = types2.basic[type];
+        var field = fields[i2].resolve(), index7 = mtype._fieldsArray.indexOf(field), type = field.resolvedType instanceof Enum ? "int32" : field.type, wireType = types2.basic[type];
         ref = "m" + util.safeProp(field.name);
         if (field.map) {
           gen("if(%s!=null&&Object.hasOwnProperty.call(m,%j)){", ref, field.name)("for(var ks=Object.keys(%s),i=0;i<ks.length;++i){", ref)("w.uint32(%i).fork().uint32(%i).%s(ks[i])", (field.id << 3 | 2) >>> 0, 8 | types2.mapKey[field.keyType], field.keyType);
           if (wireType === void 0)
-            gen("types[%i].encode(%s[ks[i]],w.uint32(18).fork()).ldelim().ldelim()", index6, ref);
+            gen("types[%i].encode(%s[ks[i]],w.uint32(18).fork()).ldelim().ldelim()", index7, ref);
           else
             gen(".uint32(%i).%s(%s[ks[i]]).ldelim()", 16 | wireType, type, ref);
           gen("}")("}");
@@ -17868,7 +17868,7 @@ var require_encoder = __commonJS({
           } else {
             gen("for(var i=0;i<%s.length;++i)", ref);
             if (wireType === void 0)
-              genTypePartial(gen, field, index6, ref + "[i]");
+              genTypePartial(gen, field, index7, ref + "[i]");
             else
               gen("w.uint32(%i).%s(%s[i])", (field.id << 3 | wireType) >>> 0, type, ref);
           }
@@ -17877,7 +17877,7 @@ var require_encoder = __commonJS({
           if (field.optional)
             gen("if(%s!=null&&Object.hasOwnProperty.call(m,%j))", ref, field.name);
           if (wireType === void 0)
-            genTypePartial(gen, field, index6, ref);
+            genTypePartial(gen, field, index7, ref);
           else
             gen("w.uint32(%i).%s(%s)", (field.id << 3 | wireType) >>> 0, type, ref);
         }
@@ -18957,7 +18957,7 @@ var require_common = __commonJS({
         }
       }
     });
-    common.get = function get3(file) {
+    common.get = function get4(file) {
       return common[file] || null;
     };
   }
@@ -25432,9 +25432,9 @@ var require_load_balancer_outlier_detection = __commonJS({
         this.refCount -= 1;
         if (this.refCount <= 0) {
           if (this.mapEntry) {
-            const index6 = this.mapEntry.subchannelWrappers.indexOf(this);
-            if (index6 >= 0) {
-              this.mapEntry.subchannelWrappers.splice(index6, 1);
+            const index7 = this.mapEntry.subchannelWrappers.indexOf(this);
+            if (index7 >= 0) {
+              this.mapEntry.subchannelWrappers.splice(index7, 1);
             }
           }
         }
@@ -26283,11 +26283,11 @@ var require_load_balancer_pick_first = __commonJS({
         if (this.triedAllSubchannels) {
           return;
         }
-        for (const [index6, subchannel] of this.subchannels.entries()) {
-          if (index6 > this.currentSubchannelIndex) {
+        for (const [index7, subchannel] of this.subchannels.entries()) {
+          if (index7 > this.currentSubchannelIndex) {
             const subchannelState = subchannel.getConnectivityState();
             if (subchannelState === connectivity_state_1.ConnectivityState.IDLE || subchannelState === connectivity_state_1.ConnectivityState.CONNECTING) {
-              this.startConnecting(index6);
+              this.startConnecting(index7);
               return;
             }
           }
@@ -26362,10 +26362,10 @@ var require_load_balancer_pick_first = __commonJS({
             return;
           }
         }
-        for (const [index6, subchannel] of this.subchannels.entries()) {
+        for (const [index7, subchannel] of this.subchannels.entries()) {
           const subchannelState = subchannel.getConnectivityState();
           if (subchannelState === connectivity_state_1.ConnectivityState.IDLE || subchannelState === connectivity_state_1.ConnectivityState.CONNECTING) {
-            this.startConnecting(index6);
+            this.startConnecting(index7);
             if (this.currentPick === null) {
               this.updateState(connectivity_state_1.ConnectivityState.CONNECTING, new picker_1.QueuePicker(this));
             }
@@ -26377,7 +26377,7 @@ var require_load_balancer_pick_first = __commonJS({
         }
       }
       updateAddressList(addressList, lbConfig) {
-        if (this.subchannels.length === 0 || !this.latestAddressList.every((value, index6) => addressList[index6] === value)) {
+        if (this.subchannels.length === 0 || !this.latestAddressList.every((value, index7) => addressList[index7] === value)) {
           this.latestAddressList = addressList;
           this.connectToAddressList();
         }
@@ -26498,14 +26498,14 @@ var require_load_balancer_round_robin = __commonJS({
       calculateAndUpdateState() {
         if (this.subchannelStateCounts[connectivity_state_1.ConnectivityState.READY] > 0) {
           const readySubchannels = this.subchannels.filter((subchannel) => subchannel.getConnectivityState() === connectivity_state_1.ConnectivityState.READY);
-          let index6 = 0;
+          let index7 = 0;
           if (this.currentReadyPicker !== null) {
-            index6 = readySubchannels.indexOf(this.currentReadyPicker.peekNextSubchannel());
-            if (index6 < 0) {
-              index6 = 0;
+            index7 = readySubchannels.indexOf(this.currentReadyPicker.peekNextSubchannel());
+            if (index7 < 0) {
+              index7 = 0;
             }
           }
-          this.updateState(connectivity_state_1.ConnectivityState.READY, new RoundRobinPicker(readySubchannels, index6));
+          this.updateState(connectivity_state_1.ConnectivityState.READY, new RoundRobinPicker(readySubchannels, index7));
         } else if (this.subchannelStateCounts[connectivity_state_1.ConnectivityState.CONNECTING] > 0) {
           this.updateState(connectivity_state_1.ConnectivityState.CONNECTING, new picker_1.QueuePicker(this));
         } else if (this.subchannelStateCounts[connectivity_state_1.ConnectivityState.TRANSIENT_FAILURE] > 0) {
@@ -26806,7 +26806,7 @@ function arrayEquals(left, right, comparator) {
   if (left.length !== right.length) {
     return false;
   }
-  return left.every((value, index6) => comparator(value, right[index6]));
+  return left.every((value, index7) => comparator(value, right[index7]));
 }
 function newIndexOffsetSuccessorFromReadTime(readTime, largestBatchId) {
   const successorSeconds = readTime.toTimestamp().seconds;
@@ -30256,8 +30256,8 @@ function parseObject(obj, context) {
 function parseArray(array2, context) {
   const values = [];
   let entryIndex = 0;
-  for (const entry6 of array2) {
-    let parsedEntry = parseData(entry6, context.childContextForArray(entryIndex));
+  for (const entry7 of array2) {
+    let parsedEntry = parseData(entry7, context.childContextForArray(entryIndex));
     if (parsedEntry == null) {
       parsedEntry = { nullValue: "NULL_VALUE" };
     }
@@ -30390,14 +30390,14 @@ function fieldPathFromArgument(methodName, arg) {
 }
 function changesFromSnapshot(querySnapshot, includeMetadataChanges) {
   if (querySnapshot._snapshot.oldDocs.isEmpty()) {
-    let index6 = 0;
+    let index7 = 0;
     return querySnapshot._snapshot.docChanges.map((change) => {
       const doc2 = new QueryDocumentSnapshot(querySnapshot._firestore, querySnapshot._userDataWriter, change.doc.key, change.doc, new SnapshotMetadata(querySnapshot._snapshot.mutatedKeys.has(change.doc.key), querySnapshot._snapshot.fromCache), querySnapshot.query.converter);
       return {
         type: "added",
         doc: doc2,
         oldIndex: -1,
-        newIndex: index6++
+        newIndex: index7++
       };
     });
   } else {
@@ -31075,8 +31075,8 @@ var init_index_node = __esm({
       lastSegment() {
         return this.get(this.length - 1);
       }
-      get(index6) {
-        return this.segments[this.offset + index6];
+      get(index7) {
+        return this.segments[this.offset + index7];
       }
       isEmpty() {
         return this.length === 0;
@@ -33290,10 +33290,10 @@ var init_index_node = __esm({
       getCollectionParents(transaction, collectionId) {
         return PersistencePromise.resolve(this.collectionParentIndex.getEntries(collectionId));
       }
-      addFieldIndex(transaction, index6) {
+      addFieldIndex(transaction, index7) {
         return PersistencePromise.resolve();
       }
-      deleteFieldIndex(transaction, index6) {
+      deleteFieldIndex(transaction, index7) {
         return PersistencePromise.resolve();
       }
       getDocumentsMatchingTarget(transaction, target) {
@@ -33514,9 +33514,9 @@ var init_index_node = __esm({
           const promises = [];
           const iter = documentsByBatchId.getReverseIterator();
           while (iter.hasNext()) {
-            const entry6 = iter.getNext();
-            const batchId = entry6.key;
-            const keys = entry6.value;
+            const entry7 = iter.getNext();
+            const batchId = entry7.key;
+            const keys = entry7.value;
             const overlays = newMutationMap();
             keys.forEach((key2) => {
               if (!processed.has(key2)) {
@@ -33678,8 +33678,8 @@ var init_index_node = __esm({
         const prefix = new DocumentKey(collection2.child(""));
         const iter = this.overlays.getIteratorFrom(prefix);
         while (iter.hasNext()) {
-          const entry6 = iter.getNext();
-          const overlay = entry6.value;
+          const entry7 = iter.getNext();
+          const overlay = entry7.value;
           const key2 = overlay.getKey();
           if (!collection2.isPrefixOf(key2.path)) {
             break;
@@ -33697,8 +33697,8 @@ var init_index_node = __esm({
         let batchIdToOverlays = new SortedMap((key1, key2) => key1 - key2);
         const iter = this.overlays.getIterator();
         while (iter.hasNext()) {
-          const entry6 = iter.getNext();
-          const overlay = entry6.value;
+          const entry7 = iter.getNext();
+          const overlay = entry7.value;
           const key2 = overlay.getKey();
           if (key2.getCollectionGroup() !== collectionGroup) {
             continue;
@@ -33715,8 +33715,8 @@ var init_index_node = __esm({
         const result = newOverlayMap();
         const batchIter = batchIdToOverlays.getIterator();
         while (batchIter.hasNext()) {
-          const entry6 = batchIter.getNext();
-          const overlays = entry6.value;
+          const entry7 = batchIter.getNext();
+          const overlays = entry7.value;
           overlays.forEach((key2, overlay) => result.set(key2, overlay));
           if (result.size() >= count) {
             break;
@@ -33838,8 +33838,8 @@ var init_index_node = __esm({
       getNextMutationBatchAfterBatchId(transaction, batchId) {
         const nextBatchId = batchId + 1;
         const rawIndex = this.indexOfBatchId(nextBatchId);
-        const index6 = rawIndex < 0 ? 0 : rawIndex;
-        return PersistencePromise.resolve(this.mutationQueue.length > index6 ? this.mutationQueue[index6] : null);
+        const index7 = rawIndex < 0 ? 0 : rawIndex;
+        return PersistencePromise.resolve(this.mutationQueue.length > index7 ? this.mutationQueue[index7] : null);
       }
       getHighestUnacknowledgedBatchId() {
         return PersistencePromise.resolve(this.mutationQueue.length === 0 ? BATCHID_UNKNOWN : this.nextBatchId - 1);
@@ -33926,8 +33926,8 @@ var init_index_node = __esm({
         return PersistencePromise.resolve();
       }
       indexOfExistingBatchId(batchId, action) {
-        const index6 = this.indexOfBatchId(batchId);
-        return index6;
+        const index7 = this.indexOfBatchId(batchId);
+        return index7;
       }
       indexOfBatchId(batchId) {
         if (this.mutationQueue.length === 0) {
@@ -33937,11 +33937,11 @@ var init_index_node = __esm({
         return batchId - firstBatchId;
       }
       findMutationBatch(batchId) {
-        const index6 = this.indexOfBatchId(batchId);
-        if (index6 < 0 || index6 >= this.mutationQueue.length) {
+        const index7 = this.indexOfBatchId(batchId);
+        if (index7 < 0 || index7 >= this.mutationQueue.length) {
           return null;
         }
-        const batch = this.mutationQueue[index6];
+        const batch = this.mutationQueue[index7];
         return batch;
       }
     };
@@ -33956,8 +33956,8 @@ var init_index_node = __esm({
       }
       addEntry(transaction, doc2) {
         const key2 = doc2.key;
-        const entry6 = this.docs.get(key2);
-        const previousSize = entry6 ? entry6.size : 0;
+        const entry7 = this.docs.get(key2);
+        const previousSize = entry7 ? entry7.size : 0;
         const currentSize = this.sizer(doc2);
         this.docs = this.docs.insert(key2, {
           document: doc2.mutableCopy(),
@@ -33967,21 +33967,21 @@ var init_index_node = __esm({
         return this.indexManager.addToCollectionParentIndex(transaction, key2.path.popLast());
       }
       removeEntry(documentKey) {
-        const entry6 = this.docs.get(documentKey);
-        if (entry6) {
+        const entry7 = this.docs.get(documentKey);
+        if (entry7) {
           this.docs = this.docs.remove(documentKey);
-          this.size -= entry6.size;
+          this.size -= entry7.size;
         }
       }
       getEntry(transaction, documentKey) {
-        const entry6 = this.docs.get(documentKey);
-        return PersistencePromise.resolve(entry6 ? entry6.document.mutableCopy() : MutableDocument.newInvalidDocument(documentKey));
+        const entry7 = this.docs.get(documentKey);
+        return PersistencePromise.resolve(entry7 ? entry7.document.mutableCopy() : MutableDocument.newInvalidDocument(documentKey));
       }
       getEntries(transaction, documentKeys) {
         let results = mutableDocumentMap();
         documentKeys.forEach((documentKey) => {
-          const entry6 = this.docs.get(documentKey);
-          results = results.insert(documentKey, entry6 ? entry6.document.mutableCopy() : MutableDocument.newInvalidDocument(documentKey));
+          const entry7 = this.docs.get(documentKey);
+          results = results.insert(documentKey, entry7 ? entry7.document.mutableCopy() : MutableDocument.newInvalidDocument(documentKey));
         });
         return PersistencePromise.resolve(results);
       }
@@ -38136,9 +38136,9 @@ This typically indicates that your device does not have a healthy Internet conne
         let needsRefill = false;
         const lastDocInLimit = this.query.limitType === "F" && oldDocumentSet.size === this.query.limit ? oldDocumentSet.last() : null;
         const firstDocInLimit = this.query.limitType === "L" && oldDocumentSet.size === this.query.limit ? oldDocumentSet.first() : null;
-        docChanges.inorderTraversal((key2, entry6) => {
+        docChanges.inorderTraversal((key2, entry7) => {
           const oldDoc = oldDocumentSet.get(key2);
-          const newDoc = queryMatches(this.query, entry6) ? entry6 : null;
+          const newDoc = queryMatches(this.query, entry7) ? entry7 : null;
           const oldDocHadPendingMutations = oldDoc ? this.mutatedKeys.has(oldDoc.key) : false;
           const newDocHasPendingMutations = newDoc ? newDoc.hasLocalMutations || this.mutatedKeys.has(newDoc.key) && newDoc.hasCommittedMutations : false;
           let changeApplied = false;
@@ -38789,8 +38789,8 @@ This typically indicates that your device does not have a healthy Internet conne
         this.timerIdsToSkip.push(timerId);
       }
       removeDelayedOperation(op) {
-        const index6 = this.delayedOperations.indexOf(op);
-        this.delayedOperations.splice(index6, 1);
+        const index7 = this.delayedOperations.indexOf(op);
+        this.delayedOperations.splice(index7, 1);
       }
     };
     Firestore = class extends Firestore$1 {
@@ -38929,7 +38929,7 @@ This typically indicates that your device does not have a healthy Internet conne
         context.validatePath();
         return context;
       }
-      childContextForArray(index6) {
+      childContextForArray(index7) {
         return this.contextWith({ path: void 0, arrayElement: true });
       }
       createError(reason) {
@@ -41698,18 +41698,18 @@ var require_lib2 = __commonJS({
           throw new TypeError("Value of `this` is not a HeadersIterator");
         }
         var _INTERNAL = this[INTERNAL];
-        const target = _INTERNAL.target, kind = _INTERNAL.kind, index6 = _INTERNAL.index;
+        const target = _INTERNAL.target, kind = _INTERNAL.kind, index7 = _INTERNAL.index;
         const values = getHeaders(target, kind);
         const len = values.length;
-        if (index6 >= len) {
+        if (index7 >= len) {
           return {
             value: void 0,
             done: true
           };
         }
-        this[INTERNAL].index = index6 + 1;
+        this[INTERNAL].index = index7 + 1;
         return {
-          value: values[index6],
+          value: values[index7],
           done: false
         };
       }
@@ -42345,19 +42345,19 @@ function parent(path) {
   if (path.length === 0) {
     return null;
   }
-  const index6 = path.lastIndexOf("/");
-  if (index6 === -1) {
+  const index7 = path.lastIndexOf("/");
+  if (index7 === -1) {
     return "";
   }
-  const newPath = path.slice(0, index6);
+  const newPath = path.slice(0, index7);
   return newPath;
 }
 function lastComponent(path) {
-  const index6 = path.lastIndexOf("/", path.length - 2);
-  if (index6 === -1) {
+  const index7 = path.lastIndexOf("/", path.length - 2);
+  if (index7 === -1) {
     return path;
   } else {
-    return path.slice(index6 + 1);
+    return path.slice(index7 + 1);
   }
 }
 function extractBucket(host, config) {
@@ -44522,9 +44522,9 @@ var init_index_a262d8f8 = __esm({
         });
         wrappedCallback.onAbort = onAbort;
         this.queue.push(wrappedCallback);
-        const index6 = this.queue.length - 1;
+        const index7 = this.queue.length - 1;
         return () => {
-          this.queue[index6] = () => Promise.resolve();
+          this.queue[index7] = () => Promise.resolve();
         };
       }
       async runMiddleware(nextUser) {
@@ -45480,8 +45480,8 @@ var require_arrRemove = __commonJS({
     exports2.arrRemove = void 0;
     function arrRemove(arr, item) {
       if (arr) {
-        var index6 = arr.indexOf(item);
-        0 <= index6 && arr.splice(index6, 1);
+        var index7 = arr.indexOf(item);
+        0 <= index7 && arr.splice(index7, 1);
       }
     }
     exports2.arrRemove = arrRemove;
@@ -47964,16 +47964,16 @@ var require_VirtualTimeScheduler = __commonJS({
     exports2.VirtualTimeScheduler = VirtualTimeScheduler;
     var VirtualAction = function(_super) {
       __extends2(VirtualAction2, _super);
-      function VirtualAction2(scheduler, work, index6) {
-        if (index6 === void 0) {
-          index6 = scheduler.index += 1;
+      function VirtualAction2(scheduler, work, index7) {
+        if (index7 === void 0) {
+          index7 = scheduler.index += 1;
         }
         var _this = _super.call(this, scheduler, work) || this;
         _this.scheduler = scheduler;
         _this.work = work;
-        _this.index = index6;
+        _this.index = index7;
         _this.active = true;
-        _this.index = scheduler.index = index6;
+        _this.index = scheduler.index = index7;
         return _this;
       }
       VirtualAction2.prototype.schedule = function(state, delay) {
@@ -49354,9 +49354,9 @@ var require_map = __commonJS({
     var OperatorSubscriber_1 = require_OperatorSubscriber();
     function map(project, thisArg) {
       return lift_1.operate(function(source, subscriber) {
-        var index6 = 0;
+        var index7 = 0;
         source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
-          subscriber.next(project.call(thisArg, value, index6++));
+          subscriber.next(project.call(thisArg, value, index7++));
         }));
       });
     }
@@ -49695,7 +49695,7 @@ var require_mergeInternals = __commonJS({
     function mergeInternals(source, subscriber, project, concurrent, onBeforeNext, expand, innerSubScheduler, additionalFinalizer) {
       var buffer = [];
       var active = 0;
-      var index6 = 0;
+      var index7 = 0;
       var isComplete = false;
       var checkComplete = function() {
         if (isComplete && !buffer.length && !active) {
@@ -49709,7 +49709,7 @@ var require_mergeInternals = __commonJS({
         expand && subscriber.next(value);
         active++;
         var innerComplete = false;
-        innerFrom_1.innerFrom(project(value, index6++)).subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(innerValue) {
+        innerFrom_1.innerFrom(project(value, index7++)).subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(innerValue) {
           onBeforeNext === null || onBeforeNext === void 0 ? void 0 : onBeforeNext(innerValue);
           if (expand) {
             outerNext(innerValue);
@@ -50485,8 +50485,8 @@ var require_not = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.not = void 0;
     function not(pred, thisArg) {
-      return function(value, index6) {
-        return !pred.call(thisArg, value, index6);
+      return function(value, index7) {
+        return !pred.call(thisArg, value, index7);
       };
     }
     exports2.not = not;
@@ -50504,9 +50504,9 @@ var require_filter2 = __commonJS({
     var OperatorSubscriber_1 = require_OperatorSubscriber();
     function filter(predicate, thisArg) {
       return lift_1.operate(function(source, subscriber) {
-        var index6 = 0;
+        var index7 = 0;
         source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
-          return predicate.call(thisArg, value, index6++) && subscriber.next(value);
+          return predicate.call(thisArg, value, index7++) && subscriber.next(value);
         }));
       });
     }
@@ -51208,9 +51208,9 @@ var require_scanInternals = __commonJS({
       return function(source, subscriber) {
         var hasState = hasSeed;
         var state = seed;
-        var index6 = 0;
+        var index7 = 0;
         source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
-          var i2 = index6++;
+          var i2 = index7++;
           state = hasState ? accumulator(state, value, i2) : (hasState = true, value);
           emitOnNext && subscriber.next(state);
         }, emitBeforeComplete && function() {
@@ -51814,8 +51814,8 @@ var require_delayWhen = __commonJS({
           return concat_1.concat(subscriptionDelay.pipe(take_1.take(1), ignoreElements_1.ignoreElements()), source.pipe(delayWhen(delayDurationSelector)));
         };
       }
-      return mergeMap_1.mergeMap(function(value, index6) {
-        return delayDurationSelector(value, index6).pipe(take_1.take(1), mapTo_1.mapTo(value));
+      return mergeMap_1.mergeMap(function(value, index7) {
+        return delayDurationSelector(value, index7).pipe(take_1.take(1), mapTo_1.mapTo(value));
       });
     }
     exports2.delayWhen = delayWhen;
@@ -51990,14 +51990,14 @@ var require_elementAt = __commonJS({
     var throwIfEmpty_1 = require_throwIfEmpty();
     var defaultIfEmpty_1 = require_defaultIfEmpty();
     var take_1 = require_take();
-    function elementAt(index6, defaultValue) {
-      if (index6 < 0) {
+    function elementAt(index7, defaultValue) {
+      if (index7 < 0) {
         throw new ArgumentOutOfRangeError_1.ArgumentOutOfRangeError();
       }
       var hasDefaultValue = arguments.length >= 2;
       return function(source) {
         return source.pipe(filter_1.filter(function(v3, i2) {
-          return i2 === index6;
+          return i2 === index7;
         }), take_1.take(1), hasDefaultValue ? defaultIfEmpty_1.defaultIfEmpty(defaultValue) : throwIfEmpty_1.throwIfEmpty(function() {
           return new ArgumentOutOfRangeError_1.ArgumentOutOfRangeError();
         }));
@@ -52066,9 +52066,9 @@ var require_every = __commonJS({
     var OperatorSubscriber_1 = require_OperatorSubscriber();
     function every(predicate, thisArg) {
       return lift_1.operate(function(source, subscriber) {
-        var index6 = 0;
+        var index7 = 0;
         source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
-          if (!predicate.call(thisArg, value, index6++, source)) {
+          if (!predicate.call(thisArg, value, index7++, source)) {
             subscriber.next(false);
             subscriber.complete();
           }
@@ -52147,7 +52147,7 @@ var require_exhaustMap = __commonJS({
         };
       }
       return lift_1.operate(function(source, subscriber) {
-        var index6 = 0;
+        var index7 = 0;
         var innerSub = null;
         var isComplete = false;
         source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(outerValue) {
@@ -52156,7 +52156,7 @@ var require_exhaustMap = __commonJS({
               innerSub = null;
               isComplete && subscriber.complete();
             });
-            innerFrom_1.innerFrom(project(outerValue, index6++)).subscribe(innerSub);
+            innerFrom_1.innerFrom(project(outerValue, index7++)).subscribe(innerSub);
           }
         }, function() {
           isComplete = true;
@@ -52227,9 +52227,9 @@ var require_find = __commonJS({
     function createFind(predicate, thisArg, emit) {
       var findIndex = emit === "index";
       return function(source, subscriber) {
-        var index6 = 0;
+        var index7 = 0;
         source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
-          var i2 = index6++;
+          var i2 = index7++;
           if (predicate.call(thisArg, value, i2, source)) {
             subscriber.next(findIndex ? i2 : value);
             subscriber.complete();
@@ -52584,8 +52584,8 @@ var require_mergeScan = __commonJS({
       }
       return lift_1.operate(function(source, subscriber) {
         var state = seed;
-        return mergeInternals_1.mergeInternals(source, subscriber, function(value, index6) {
-          return accumulator(state, value, index6);
+        return mergeInternals_1.mergeInternals(source, subscriber, function(value, index7) {
+          return accumulator(state, value, index7);
         }, concurrent, function(value) {
           state = value;
         }, false, void 0, function() {
@@ -53465,10 +53465,10 @@ var require_single = __commonJS({
         var hasValue = false;
         var singleValue;
         var seenValue = false;
-        var index6 = 0;
+        var index7 = 0;
         source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
           seenValue = true;
-          if (!predicate || predicate(value, index6++, source)) {
+          if (!predicate || predicate(value, index7++, source)) {
             hasValue && subscriber.error(new SequenceError_1.SequenceError("Too many matching values"));
             hasValue = true;
             singleValue = value;
@@ -53496,8 +53496,8 @@ var require_skip = __commonJS({
     exports2.skip = void 0;
     var filter_1 = require_filter2();
     function skip(count) {
-      return filter_1.filter(function(_2, index6) {
-        return count <= index6;
+      return filter_1.filter(function(_2, index7) {
+        return count <= index7;
       });
     }
     exports2.skip = skip;
@@ -53523,9 +53523,9 @@ var require_skipLast = __commonJS({
           if (valueIndex < skipCount) {
             ring[valueIndex] = value;
           } else {
-            var index6 = valueIndex % skipCount;
-            var oldValue = ring[index6];
-            ring[index6] = value;
+            var index7 = valueIndex % skipCount;
+            var oldValue = ring[index7];
+            ring[index7] = value;
             subscriber.next(oldValue);
           }
         }));
@@ -53578,9 +53578,9 @@ var require_skipWhile = __commonJS({
     function skipWhile(predicate) {
       return lift_1.operate(function(source, subscriber) {
         var taking = false;
-        var index6 = 0;
+        var index7 = 0;
         source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
-          return (taking || (taking = !predicate(value, index6++))) && subscriber.next(value);
+          return (taking || (taking = !predicate(value, index7++))) && subscriber.next(value);
         }));
       });
     }
@@ -53625,7 +53625,7 @@ var require_switchMap = __commonJS({
     function switchMap(project, resultSelector) {
       return lift_1.operate(function(source, subscriber) {
         var innerSubscriber = null;
-        var index6 = 0;
+        var index7 = 0;
         var isComplete = false;
         var checkComplete = function() {
           return isComplete && !innerSubscriber && subscriber.complete();
@@ -53633,7 +53633,7 @@ var require_switchMap = __commonJS({
         source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
           innerSubscriber === null || innerSubscriber === void 0 ? void 0 : innerSubscriber.unsubscribe();
           var innerIndex = 0;
-          var outerIndex = index6++;
+          var outerIndex = index7++;
           innerFrom_1.innerFrom(project(value, outerIndex)).subscribe(innerSubscriber = OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(innerValue) {
             return subscriber.next(resultSelector ? resultSelector(value, innerValue, outerIndex, innerIndex++) : innerValue);
           }, function() {
@@ -53698,8 +53698,8 @@ var require_switchScan = __commonJS({
     function switchScan(accumulator, seed) {
       return lift_1.operate(function(source, subscriber) {
         var state = seed;
-        switchMap_1.switchMap(function(value, index6) {
-          return accumulator(state, value, index6);
+        switchMap_1.switchMap(function(value, index7) {
+          return accumulator(state, value, index7);
         }, function(_2, innerValue) {
           return state = innerValue, innerValue;
         })(source).subscribe(subscriber);
@@ -53749,9 +53749,9 @@ var require_takeWhile = __commonJS({
         inclusive = false;
       }
       return lift_1.operate(function(source, subscriber) {
-        var index6 = 0;
+        var index7 = 0;
         source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
-          var result = predicate(value, index6++);
+          var result = predicate(value, index7++);
           (result || inclusive) && subscriber.next(value);
           !result && subscriber.complete();
         }));
@@ -56198,13 +56198,13 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "replaceChild",
-        value: function replaceChild(index6, node) {
-          var current = this.content[index6];
+        value: function replaceChild(index7, node) {
+          var current = this.content[index7];
           if (current == node)
             return this;
           var copy2 = this.content.slice();
           var size = this.size + node.nodeSize - current.nodeSize;
-          copy2[index6] = node;
+          copy2[index7] = node;
           return new Fragment2(copy2, size);
         }
       }, {
@@ -56230,31 +56230,31 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "firstChild",
-        get: function get3() {
+        get: function get4() {
           return this.content.length ? this.content[0] : null;
         }
       }, {
         key: "lastChild",
-        get: function get3() {
+        get: function get4() {
           return this.content.length ? this.content[this.content.length - 1] : null;
         }
       }, {
         key: "childCount",
-        get: function get3() {
+        get: function get4() {
           return this.content.length;
         }
       }, {
         key: "child",
-        value: function child(index6) {
-          var found2 = this.content[index6];
+        value: function child(index7) {
+          var found2 = this.content[index7];
           if (!found2)
-            throw new RangeError("Index " + index6 + " out of range for " + this);
+            throw new RangeError("Index " + index7 + " out of range for " + this);
           return found2;
         }
       }, {
         key: "maybeChild",
-        value: function maybeChild(index6) {
-          return this.content[index6] || null;
+        value: function maybeChild(index7) {
+          return this.content[index7] || null;
         }
       }, {
         key: "forEach",
@@ -56364,8 +56364,8 @@ var require_dist2 = __commonJS({
       index: 0,
       offset: 0
     };
-    function retIndex(index6, offset) {
-      found.index = index6;
+    function retIndex(index7, offset) {
+      found.index = index7;
       found.offset = offset;
       return found;
     }
@@ -56525,7 +56525,7 @@ var require_dist2 = __commonJS({
       }
       _createClass(Slice2, [{
         key: "size",
-        get: function get3() {
+        get: function get4() {
           return this.content.size - this.openStart - this.openEnd;
         }
       }, {
@@ -56591,26 +56591,26 @@ var require_dist2 = __commonJS({
     }();
     Slice.empty = new Slice(Fragment.empty, 0, 0);
     function removeRange(content, from, to) {
-      var _content$findIndex = content.findIndex(from), index6 = _content$findIndex.index, offset = _content$findIndex.offset, child = content.maybeChild(index6);
+      var _content$findIndex = content.findIndex(from), index7 = _content$findIndex.index, offset = _content$findIndex.offset, child = content.maybeChild(index7);
       var _content$findIndex2 = content.findIndex(to), indexTo = _content$findIndex2.index, offsetTo = _content$findIndex2.offset;
       if (offset == from || child.isText) {
         if (offsetTo != to && !content.child(indexTo).isText)
           throw new RangeError("Removing non-flat range");
         return content.cut(0, from).append(content.cut(to));
       }
-      if (index6 != indexTo)
+      if (index7 != indexTo)
         throw new RangeError("Removing non-flat range");
-      return content.replaceChild(index6, child.copy(removeRange(child.content, from - offset - 1, to - offset - 1)));
+      return content.replaceChild(index7, child.copy(removeRange(child.content, from - offset - 1, to - offset - 1)));
     }
     function insertInto(content, dist, insert, parent2) {
-      var _content$findIndex3 = content.findIndex(dist), index6 = _content$findIndex3.index, offset = _content$findIndex3.offset, child = content.maybeChild(index6);
+      var _content$findIndex3 = content.findIndex(dist), index7 = _content$findIndex3.index, offset = _content$findIndex3.offset, child = content.maybeChild(index7);
       if (offset == dist || child.isText) {
-        if (parent2 && !parent2.canReplace(index6, index6, insert))
+        if (parent2 && !parent2.canReplace(index7, index7, insert))
           return null;
         return content.cut(0, dist).append(insert).append(content.cut(dist));
       }
       var inner = insertInto(child.content, dist - offset - 1, insert);
-      return inner && content.replaceChild(index6, child.copy(inner));
+      return inner && content.replaceChild(index7, child.copy(inner));
     }
     function _replace($from, $to, slice) {
       if (slice.openStart > $from.depth)
@@ -56620,10 +56620,10 @@ var require_dist2 = __commonJS({
       return replaceOuter($from, $to, slice, 0);
     }
     function replaceOuter($from, $to, slice, depth) {
-      var index6 = $from.index(depth), node = $from.node(depth);
-      if (index6 == $to.index(depth) && depth < $from.depth - slice.openStart) {
+      var index7 = $from.index(depth), node = $from.node(depth);
+      if (index7 == $to.index(depth) && depth < $from.depth - slice.openStart) {
         var inner = replaceOuter($from, $to, slice, depth + 1);
-        return node.copy(node.content.replaceChild(index6, inner));
+        return node.copy(node.content.replaceChild(index7, inner));
       } else if (!slice.content.size) {
         return close(node, replaceTwoWay($from, $to, depth));
       } else if (!slice.openStart && !slice.openEnd && $from.depth == depth && $to.depth == depth) {
@@ -56731,12 +56731,12 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "parent",
-        get: function get3() {
+        get: function get4() {
           return this.node(this.depth);
         }
       }, {
         key: "doc",
-        get: function get3() {
+        get: function get4() {
           return this.node(0);
         }
       }, {
@@ -56746,7 +56746,7 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "index",
-        value: function index6(depth) {
+        value: function index7(depth) {
           return this.path[this.resolveDepth(depth) * 3 + 1];
         }
       }, {
@@ -56785,33 +56785,33 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "textOffset",
-        get: function get3() {
+        get: function get4() {
           return this.pos - this.path[this.path.length - 1];
         }
       }, {
         key: "nodeAfter",
-        get: function get3() {
-          var parent2 = this.parent, index6 = this.index(this.depth);
-          if (index6 == parent2.childCount)
+        get: function get4() {
+          var parent2 = this.parent, index7 = this.index(this.depth);
+          if (index7 == parent2.childCount)
             return null;
-          var dOff = this.pos - this.path[this.path.length - 1], child = parent2.child(index6);
-          return dOff ? parent2.child(index6).cut(dOff) : child;
+          var dOff = this.pos - this.path[this.path.length - 1], child = parent2.child(index7);
+          return dOff ? parent2.child(index7).cut(dOff) : child;
         }
       }, {
         key: "nodeBefore",
-        get: function get3() {
-          var index6 = this.index(this.depth);
+        get: function get4() {
+          var index7 = this.index(this.depth);
           var dOff = this.pos - this.path[this.path.length - 1];
           if (dOff)
-            return this.parent.child(index6).cut(0, dOff);
-          return index6 == 0 ? null : this.parent.child(index6 - 1);
+            return this.parent.child(index7).cut(0, dOff);
+          return index7 == 0 ? null : this.parent.child(index7 - 1);
         }
       }, {
         key: "posAtIndex",
-        value: function posAtIndex(index6, depth) {
+        value: function posAtIndex(index7, depth) {
           depth = this.resolveDepth(depth);
           var node = this.path[depth * 3], pos = depth == 0 ? 0 : this.path[depth * 3 - 1] + 1;
-          for (var i2 = 0; i2 < index6; i2++) {
+          for (var i2 = 0; i2 < index7; i2++) {
             pos += node.child(i2).nodeSize;
           }
           return pos;
@@ -56819,12 +56819,12 @@ var require_dist2 = __commonJS({
       }, {
         key: "marks",
         value: function marks() {
-          var parent2 = this.parent, index6 = this.index();
+          var parent2 = this.parent, index7 = this.index();
           if (parent2.content.size == 0)
             return Mark.none;
           if (this.textOffset)
-            return parent2.child(index6).marks;
-          var main = parent2.maybeChild(index6 - 1), other = parent2.maybeChild(index6);
+            return parent2.child(index7).marks;
+          var main = parent2.maybeChild(index7 - 1), other = parent2.maybeChild(index7);
           if (!main) {
             var tmp = main;
             main = other;
@@ -56904,12 +56904,12 @@ var require_dist2 = __commonJS({
           var path = [];
           var start2 = 0, parentOffset = pos;
           for (var node = doc3; ; ) {
-            var _node$content$findInd = node.content.findIndex(parentOffset), index6 = _node$content$findInd.index, offset = _node$content$findInd.offset;
+            var _node$content$findInd = node.content.findIndex(parentOffset), index7 = _node$content$findInd.index, offset = _node$content$findInd.offset;
             var rem = parentOffset - offset;
-            path.push(node, index6, start2 + offset);
+            path.push(node, index7, start2 + offset);
             if (!rem)
               break;
-            node = node.child(index6);
+            node = node.child(index7);
             if (node.isText)
               break;
             parentOffset = rem - 1;
@@ -56944,27 +56944,27 @@ var require_dist2 = __commonJS({
       }
       _createClass(NodeRange2, [{
         key: "start",
-        get: function get3() {
+        get: function get4() {
           return this.$from.before(this.depth + 1);
         }
       }, {
         key: "end",
-        get: function get3() {
+        get: function get4() {
           return this.$to.after(this.depth + 1);
         }
       }, {
         key: "parent",
-        get: function get3() {
+        get: function get4() {
           return this.$from.node(this.depth);
         }
       }, {
         key: "startIndex",
-        get: function get3() {
+        get: function get4() {
           return this.$from.index(this.depth);
         }
       }, {
         key: "endIndex",
-        get: function get3() {
+        get: function get4() {
           return this.$to.indexAfter(this.depth);
         }
       }]);
@@ -56982,23 +56982,23 @@ var require_dist2 = __commonJS({
       }
       _createClass(Node2, [{
         key: "nodeSize",
-        get: function get3() {
+        get: function get4() {
           return this.isLeaf ? 1 : 2 + this.content.size;
         }
       }, {
         key: "childCount",
-        get: function get3() {
+        get: function get4() {
           return this.content.childCount;
         }
       }, {
         key: "child",
-        value: function child(index6) {
-          return this.content.child(index6);
+        value: function child(index7) {
+          return this.content.child(index7);
         }
       }, {
         key: "maybeChild",
-        value: function maybeChild(index6) {
-          return this.content.maybeChild(index6);
+        value: function maybeChild(index7) {
+          return this.content.maybeChild(index7);
         }
       }, {
         key: "forEach",
@@ -57018,7 +57018,7 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "textContent",
-        get: function get3() {
+        get: function get4() {
           return this.isLeaf && this.type.spec.leafText ? this.type.spec.leafText(this) : this.textBetween(0, this.content.size, "");
         }
       }, {
@@ -57028,12 +57028,12 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "firstChild",
-        get: function get3() {
+        get: function get4() {
           return this.content.firstChild;
         }
       }, {
         key: "lastChild",
-        get: function get3() {
+        get: function get4() {
           return this.content.lastChild;
         }
       }, {
@@ -57094,8 +57094,8 @@ var require_dist2 = __commonJS({
         key: "nodeAt",
         value: function nodeAt(pos) {
           for (var node = this; ; ) {
-            var _node$content$findInd2 = node.content.findIndex(pos), index6 = _node$content$findInd2.index, offset = _node$content$findInd2.offset;
-            node = node.maybeChild(index6);
+            var _node$content$findInd2 = node.content.findIndex(pos), index7 = _node$content$findInd2.index, offset = _node$content$findInd2.offset;
+            node = node.maybeChild(index7);
             if (!node)
               return null;
             if (offset == pos || node.isText)
@@ -57106,10 +57106,10 @@ var require_dist2 = __commonJS({
       }, {
         key: "childAfter",
         value: function childAfter(pos) {
-          var _this$content$findInd = this.content.findIndex(pos), index6 = _this$content$findInd.index, offset = _this$content$findInd.offset;
+          var _this$content$findInd = this.content.findIndex(pos), index7 = _this$content$findInd.index, offset = _this$content$findInd.offset;
           return {
-            node: this.content.maybeChild(index6),
-            index: index6,
+            node: this.content.maybeChild(index7),
+            index: index7,
             offset
           };
         }
@@ -57122,17 +57122,17 @@ var require_dist2 = __commonJS({
               index: 0,
               offset: 0
             };
-          var _this$content$findInd2 = this.content.findIndex(pos), index6 = _this$content$findInd2.index, offset = _this$content$findInd2.offset;
+          var _this$content$findInd2 = this.content.findIndex(pos), index7 = _this$content$findInd2.index, offset = _this$content$findInd2.offset;
           if (offset < pos)
             return {
-              node: this.content.child(index6),
-              index: index6,
+              node: this.content.child(index7),
+              index: index7,
               offset
             };
-          var node = this.content.child(index6 - 1);
+          var node = this.content.child(index7 - 1);
           return {
             node,
-            index: index6 - 1,
+            index: index7 - 1,
             offset: offset - node.nodeSize
           };
         }
@@ -57160,37 +57160,37 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "isBlock",
-        get: function get3() {
+        get: function get4() {
           return this.type.isBlock;
         }
       }, {
         key: "isTextblock",
-        get: function get3() {
+        get: function get4() {
           return this.type.isTextblock;
         }
       }, {
         key: "inlineContent",
-        get: function get3() {
+        get: function get4() {
           return this.type.inlineContent;
         }
       }, {
         key: "isInline",
-        get: function get3() {
+        get: function get4() {
           return this.type.isInline;
         }
       }, {
         key: "isText",
-        get: function get3() {
+        get: function get4() {
           return this.type.isText;
         }
       }, {
         key: "isLeaf",
-        get: function get3() {
+        get: function get4() {
           return this.type.isLeaf;
         }
       }, {
         key: "isAtom",
-        get: function get3() {
+        get: function get4() {
           return this.type.isAtom;
         }
       }, {
@@ -57205,8 +57205,8 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "contentMatchAt",
-        value: function contentMatchAt(index6) {
-          var match = this.type.contentMatch.matchFragment(this.content, 0, index6);
+        value: function contentMatchAt(index7) {
+          var match = this.type.contentMatch.matchFragment(this.content, 0, index7);
           if (!match)
             throw new Error("Called contentMatchAt on a node with invalid content");
           return match;
@@ -57323,7 +57323,7 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "textContent",
-        get: function get3() {
+        get: function get4() {
           return this.text;
         }
       }, {
@@ -57333,7 +57333,7 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "nodeSize",
-        get: function get3() {
+        get: function get4() {
           return this.text.length;
         }
       }, {
@@ -57407,12 +57407,12 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "inlineContent",
-        get: function get3() {
+        get: function get4() {
           return this.next.length && this.next[0].type.isInline;
         }
       }, {
         key: "defaultType",
-        get: function get3() {
+        get: function get4() {
           for (var i2 = 0; i2 < this.next.length; i2++) {
             var type = this.next[i2].type;
             if (!(type.isText || type.hasRequiredAttrs()))
@@ -57500,7 +57500,7 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "edgeCount",
-        get: function get3() {
+        get: function get4() {
           return this.next.length;
         }
       }, {
@@ -57562,7 +57562,7 @@ var require_dist2 = __commonJS({
       }
       _createClass(TokenStream2, [{
         key: "next",
-        get: function get3() {
+        get: function get4() {
           return this.tokens[this.pos];
         }
       }, {
@@ -57874,27 +57874,27 @@ var require_dist2 = __commonJS({
       }
       _createClass(NodeType2, [{
         key: "isInline",
-        get: function get3() {
+        get: function get4() {
           return !this.isBlock;
         }
       }, {
         key: "isTextblock",
-        get: function get3() {
+        get: function get4() {
           return this.isBlock && this.inlineContent;
         }
       }, {
         key: "isLeaf",
-        get: function get3() {
+        get: function get4() {
           return this.contentMatch == ContentMatch.empty;
         }
       }, {
         key: "isAtom",
-        get: function get3() {
+        get: function get4() {
           return this.isLeaf || !!this.spec.atom;
         }
       }, {
         key: "whitespace",
-        get: function get3() {
+        get: function get4() {
           return this.spec.whitespace || (this.spec.code ? "pre" : "normal");
         }
       }, {
@@ -58032,7 +58032,7 @@ var require_dist2 = __commonJS({
       }
       _createClass(Attribute2, [{
         key: "isRequired",
-        get: function get3() {
+        get: function get4() {
           return !this.hasDefault;
         }
       }]);
@@ -58462,7 +58462,7 @@ var require_dist2 = __commonJS({
       }
       _createClass(ParseContext2, [{
         key: "top",
-        get: function get3() {
+        get: function get4() {
           return this.nodes[this.open];
         }
       }, {
@@ -58621,12 +58621,12 @@ var require_dist2 = __commonJS({
       }, {
         key: "addAll",
         value: function addAll(parent2, startIndex, endIndex) {
-          var index6 = startIndex || 0;
-          for (var dom = startIndex ? parent2.childNodes[startIndex] : parent2.firstChild, end = endIndex == null ? null : parent2.childNodes[endIndex]; dom != end; dom = dom.nextSibling, ++index6) {
-            this.findAtPoint(parent2, index6);
+          var index7 = startIndex || 0;
+          for (var dom = startIndex ? parent2.childNodes[startIndex] : parent2.firstChild, end = endIndex == null ? null : parent2.childNodes[endIndex]; dom != end; dom = dom.nextSibling, ++index7) {
+            this.findAtPoint(parent2, index7);
             this.addDOM(dom);
           }
-          this.findAtPoint(parent2, index6);
+          this.findAtPoint(parent2, index7);
         }
       }, {
         key: "findPlace",
@@ -58732,7 +58732,7 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "currentPos",
-        get: function get3() {
+        get: function get4() {
           this.closeExtra();
           var pos = 0;
           for (var i2 = this.open; i2 >= 0; i2--) {
@@ -59259,8 +59259,8 @@ var require_dist3 = __commonJS({
     var prosemirrorModel = require_dist2();
     var lower16 = 65535;
     var factor16 = Math.pow(2, 16);
-    function makeRecover(index6, offset) {
-      return index6 + offset * factor16;
+    function makeRecover(index7, offset) {
+      return index7 + offset * factor16;
     }
     function recoverIndex(value) {
       return value & lower16;
@@ -59281,22 +59281,22 @@ var require_dist3 = __commonJS({
       }
       _createClass(MapResult2, [{
         key: "deleted",
-        get: function get3() {
+        get: function get4() {
           return (this.delInfo & DEL_SIDE) > 0;
         }
       }, {
         key: "deletedBefore",
-        get: function get3() {
+        get: function get4() {
           return (this.delInfo & (DEL_BEFORE | DEL_ACROSS)) > 0;
         }
       }, {
         key: "deletedAfter",
-        get: function get3() {
+        get: function get4() {
           return (this.delInfo & (DEL_AFTER | DEL_ACROSS)) > 0;
         }
       }, {
         key: "deletedAcross",
-        get: function get3() {
+        get: function get4() {
           return (this.delInfo & DEL_ACROSS) > 0;
         }
       }]);
@@ -59314,12 +59314,12 @@ var require_dist3 = __commonJS({
       _createClass(StepMap2, [{
         key: "recover",
         value: function recover(value) {
-          var diff = 0, index6 = recoverIndex(value);
+          var diff = 0, index7 = recoverIndex(value);
           if (!this.inverted)
-            for (var i2 = 0; i2 < index6; i2++) {
+            for (var i2 = 0; i2 < index7; i2++) {
               diff += this.ranges[i2 * 3 + 2] - this.ranges[i2 * 3 + 1];
             }
-          return this.ranges[index6 * 3] + diff + recoverOffset(value);
+          return this.ranges[index7 * 3] + diff + recoverOffset(value);
         }
       }, {
         key: "mapResult",
@@ -59360,14 +59360,14 @@ var require_dist3 = __commonJS({
       }, {
         key: "touches",
         value: function touches(pos, recover) {
-          var diff = 0, index6 = recoverIndex(recover);
+          var diff = 0, index7 = recoverIndex(recover);
           var oldIndex = this.inverted ? 2 : 1, newIndex = this.inverted ? 1 : 2;
           for (var i2 = 0; i2 < this.ranges.length; i2 += 3) {
             var start2 = this.ranges[i2] - (this.inverted ? diff : 0);
             if (start2 > pos)
               break;
             var oldSize = this.ranges[i2 + oldIndex], end = start2 + oldSize;
-            if (pos <= end && i2 == index6 * 3)
+            if (pos <= end && i2 == index7 * 3)
               return true;
             diff += this.ranges[i2 + newIndex] - oldSize;
           }
@@ -60005,10 +60005,10 @@ var require_dist3 = __commonJS({
       var content = parent2.content.cutByIndex(range.startIndex, range.endIndex);
       for (var depth = range.depth; ; --depth) {
         var node = range.$from.node(depth);
-        var index6 = range.$from.index(depth), endIndex = range.$to.indexAfter(depth);
-        if (depth < range.depth && node.canReplace(index6, endIndex, content))
+        var index7 = range.$from.index(depth), endIndex = range.$to.indexAfter(depth);
+        if (depth < range.depth && node.canReplace(index7, endIndex, content))
           return depth;
-        if (depth == 0 || node.type.spec.isolating || !canCut(node, index6, endIndex))
+        if (depth == 0 || node.type.spec.isolating || !canCut(node, index7, endIndex))
           break;
       }
       return null;
@@ -60108,8 +60108,8 @@ var require_dist3 = __commonJS({
       });
     }
     function canChangeType(doc2, pos, type) {
-      var $pos = doc2.resolve(pos), index6 = $pos.index();
-      return $pos.parent.canReplaceWith(index6, index6 + 1, type);
+      var $pos = doc2.resolve(pos), index7 = $pos.index();
+      return $pos.parent.canReplaceWith(index7, index7 + 1, type);
     }
     function _setNodeMarkup(tr, pos, type, attrs, marks) {
       var node = tr.doc.nodeAt(pos);
@@ -60142,9 +60142,9 @@ var require_dist3 = __commonJS({
         if (!node.canReplace(_index + 1, node.childCount) || !after.type.validContent(rest))
           return false;
       }
-      var index6 = $pos.indexAfter(base2);
+      var index7 = $pos.indexAfter(base2);
       var baseType = typesAfter && typesAfter[0];
-      return $pos.node(base2).canReplaceWith(index6, index6, baseType ? baseType.type : $pos.node(base2 + 1).type);
+      return $pos.node(base2).canReplaceWith(index7, index7, baseType ? baseType.type : $pos.node(base2 + 1).type);
     }
     function _split(tr, pos) {
       var depth = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : 1;
@@ -60158,8 +60158,8 @@ var require_dist3 = __commonJS({
       tr.step(new ReplaceStep(pos, pos, new prosemirrorModel.Slice(before.append(after), depth, depth), true));
     }
     function canJoin(doc2, pos) {
-      var $pos = doc2.resolve(pos), index6 = $pos.index();
-      return joinable($pos.nodeBefore, $pos.nodeAfter) && $pos.parent.canReplace(index6, index6 + 1);
+      var $pos = doc2.resolve(pos), index7 = $pos.index();
+      return joinable($pos.nodeBefore, $pos.nodeAfter) && $pos.parent.canReplace(index7, index7 + 1);
     }
     function joinable(a, b4) {
       return !!(a && b4 && !a.isLeaf && a.canAppend(b4));
@@ -60168,19 +60168,19 @@ var require_dist3 = __commonJS({
       var dir = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : -1;
       var $pos = doc2.resolve(pos);
       for (var d3 = $pos.depth; ; d3--) {
-        var before = void 0, after = void 0, index6 = $pos.index(d3);
+        var before = void 0, after = void 0, index7 = $pos.index(d3);
         if (d3 == $pos.depth) {
           before = $pos.nodeBefore;
           after = $pos.nodeAfter;
         } else if (dir > 0) {
           before = $pos.node(d3 + 1);
-          index6++;
-          after = $pos.node(d3).maybeChild(index6);
+          index7++;
+          after = $pos.node(d3).maybeChild(index7);
         } else {
-          before = $pos.node(d3).maybeChild(index6 - 1);
+          before = $pos.node(d3).maybeChild(index7 - 1);
           after = $pos.node(d3 + 1);
         }
-        if (before && !before.isTextblock && joinable(before, after) && $pos.node(d3).canReplace(index6, index6 + 1))
+        if (before && !before.isTextblock && joinable(before, after) && $pos.node(d3).canReplace(index7, index7 + 1))
           return pos;
         if (d3 == 0)
           break;
@@ -60197,10 +60197,10 @@ var require_dist3 = __commonJS({
         return pos;
       if ($pos.parentOffset == 0)
         for (var d3 = $pos.depth - 1; d3 >= 0; d3--) {
-          var index6 = $pos.index(d3);
-          if ($pos.node(d3).canReplaceWith(index6, index6, nodeType))
+          var index7 = $pos.index(d3);
+          if ($pos.node(d3).canReplaceWith(index7, index7, nodeType))
             return $pos.before(d3 + 1);
-          if (index6 > 0)
+          if (index7 > 0)
             return null;
         }
       if ($pos.parentOffset == $pos.parent.content.size)
@@ -60272,7 +60272,7 @@ var require_dist3 = __commonJS({
       }
       _createClass(Fitter2, [{
         key: "depth",
-        get: function get3() {
+        get: function get4() {
           return this.frontier.length - 1;
         }
       }, {
@@ -60517,11 +60517,11 @@ var require_dist3 = __commonJS({
       return node.copy(frag);
     }
     function contentAfterFits($to, depth, type, match, open) {
-      var node = $to.node(depth), index6 = open ? $to.indexAfter(depth) : $to.index(depth);
-      if (index6 == node.childCount && !type.compatibleContent(node.type))
+      var node = $to.node(depth), index7 = open ? $to.indexAfter(depth) : $to.index(depth);
+      if (index7 == node.childCount && !type.compatibleContent(node.type))
         return null;
-      var fit = match.fillBefore(node.content, true, index6);
-      return fit && !invalidMarks(type, node.content, index6) ? fit : null;
+      var fit = match.fillBefore(node.content, true, index7);
+      return fit && !invalidMarks(type, node.content, index7) ? fit : null;
     }
     function invalidMarks(type, fragment, start2) {
       for (var i2 = start2; i2 < fragment.childCount; i2++) {
@@ -60580,8 +60580,8 @@ var require_dist3 = __commonJS({
             expand = false;
             targetDepth = -targetDepth;
           }
-          var parent2 = $from.node(targetDepth - 1), index6 = $from.index(targetDepth - 1);
-          if (parent2.canReplaceWith(index6, index6, insert.type, insert.marks))
+          var parent2 = $from.node(targetDepth - 1), index7 = $from.index(targetDepth - 1);
+          if (parent2.canReplaceWith(index7, index7, insert.type, insert.marks))
             return tr.replace($from.before(targetDepth), expand ? $to.after(targetDepth) : to, new prosemirrorModel.Slice(closeFragment(slice.content, 0, slice.openStart, openDepth), openDepth, slice.openEnd));
         }
       }
@@ -60671,7 +60671,7 @@ var require_dist3 = __commonJS({
       }
       _createClass(Transform2, [{
         key: "before",
-        get: function get3() {
+        get: function get4() {
           return this.docs.length ? this.docs[0] : this.doc;
         }
       }, {
@@ -60692,7 +60692,7 @@ var require_dist3 = __commonJS({
         }
       }, {
         key: "docChanged",
-        get: function get3() {
+        get: function get4() {
           return this.steps.length > 0;
         }
       }, {
@@ -60972,37 +60972,37 @@ var require_dist4 = __commonJS({
       }
       _createClass(Selection2, [{
         key: "anchor",
-        get: function get3() {
+        get: function get4() {
           return this.$anchor.pos;
         }
       }, {
         key: "head",
-        get: function get3() {
+        get: function get4() {
           return this.$head.pos;
         }
       }, {
         key: "from",
-        get: function get3() {
+        get: function get4() {
           return this.$from.pos;
         }
       }, {
         key: "to",
-        get: function get3() {
+        get: function get4() {
           return this.$to.pos;
         }
       }, {
         key: "$from",
-        get: function get3() {
+        get: function get4() {
           return this.ranges[0].$from;
         }
       }, {
         key: "$to",
-        get: function get3() {
+        get: function get4() {
           return this.ranges[0].$to;
         }
       }, {
         key: "empty",
-        get: function get3() {
+        get: function get4() {
           var ranges = this.ranges;
           for (var i2 = 0; i2 < ranges.length; i2++) {
             if (ranges[i2].$from.pos != ranges[i2].$to.pos)
@@ -61129,7 +61129,7 @@ var require_dist4 = __commonJS({
       }
       _createClass(TextSelection2, [{
         key: "$cursor",
-        get: function get3() {
+        get: function get4() {
           return this.$anchor.pos == this.$head.pos ? this.$head : null;
         }
       }, {
@@ -61379,11 +61379,11 @@ var require_dist4 = __commonJS({
         return new AllSelection(doc2);
       }
     };
-    function findSelectionIn(doc2, node, pos, index6, dir) {
+    function findSelectionIn(doc2, node, pos, index7, dir) {
       var text = arguments.length > 5 && arguments[5] !== void 0 ? arguments[5] : false;
       if (node.inlineContent)
         return TextSelection.create(doc2, pos);
-      for (var i2 = index6 - (dir > 0 ? 0 : 1); dir > 0 ? i2 < node.childCount : i2 >= 0; i2 += dir) {
+      for (var i2 = index7 - (dir > 0 ? 0 : 1); dir > 0 ? i2 < node.childCount : i2 >= 0; i2 += dir) {
         var child = node.child(i2);
         if (!child.isAtom) {
           var inner = findSelectionIn(doc2, child, pos + dir, dir < 0 ? child.childCount : 0, dir, text);
@@ -61430,7 +61430,7 @@ var require_dist4 = __commonJS({
       }
       _createClass(Transaction2, [{
         key: "selection",
-        get: function get3() {
+        get: function get4() {
           if (this.curSelectionFor < this.steps.length) {
             this.curSelection = this.curSelection.map(this.doc, this.mapping.slice(this.curSelectionFor));
             this.curSelectionFor = this.steps.length;
@@ -61450,7 +61450,7 @@ var require_dist4 = __commonJS({
         }
       }, {
         key: "selectionSet",
-        get: function get3() {
+        get: function get4() {
           return (this.updated & UPDATED_SEL) > 0;
         }
       }, {
@@ -61479,7 +61479,7 @@ var require_dist4 = __commonJS({
         }
       }, {
         key: "storedMarksSet",
-        get: function get3() {
+        get: function get4() {
           return (this.updated & UPDATED_MARKS) > 0;
         }
       }, {
@@ -61555,7 +61555,7 @@ var require_dist4 = __commonJS({
         }
       }, {
         key: "isGeneric",
-        get: function get3() {
+        get: function get4() {
           for (var _2 in this.meta) {
             return false;
           }
@@ -61569,7 +61569,7 @@ var require_dist4 = __commonJS({
         }
       }, {
         key: "scrolledIntoView",
-        get: function get3() {
+        get: function get4() {
           return (this.updated & UPDATED_SCROLL) > 0;
         }
       }]);
@@ -61637,12 +61637,12 @@ var require_dist4 = __commonJS({
       }
       _createClass(EditorState2, [{
         key: "schema",
-        get: function get3() {
+        get: function get4() {
           return this.config.schema;
         }
       }, {
         key: "plugins",
-        get: function get3() {
+        get: function get4() {
           return this.config.plugins;
         }
       }, {
@@ -61725,7 +61725,7 @@ var require_dist4 = __commonJS({
         }
       }, {
         key: "tr",
-        get: function get3() {
+        get: function get4() {
           return new Transaction(this);
         }
       }, {
@@ -61847,7 +61847,7 @@ var require_dist4 = __commonJS({
       }
       _createClass(PluginKey2, [{
         key: "get",
-        value: function get3(state) {
+        value: function get4(state) {
           return state.config.pluginsByKey[this.key];
         }
       }, {
@@ -62021,10 +62021,10 @@ var require_dist5 = __commonJS({
     var webkit = !!doc2 && "webkitFontSmoothing" in doc2.documentElement.style;
     var webkit_version = webkit ? +(/\bAppleWebKit\/(\d+)/.exec(navigator.userAgent) || [0, 0])[1] : 0;
     var domIndex = function domIndex2(node) {
-      for (var index6 = 0; ; index6++) {
+      for (var index7 = 0; ; index7++) {
         node = node.previousSibling;
         if (!node)
-          return index6;
+          return index7;
       }
     };
     var parentNode = function parentNode2(node) {
@@ -62069,12 +62069,12 @@ var require_dist5 = __commonJS({
       for (var atStart = offset == 0, atEnd = offset == nodeSize(node); atStart || atEnd; ) {
         if (node == parent2)
           return true;
-        var index6 = domIndex(node);
+        var index7 = domIndex(node);
         node = node.parentNode;
         if (!node)
           return false;
-        atStart = atStart && index6 == 0;
-        atEnd = atEnd && index6 == nodeSize(node);
+        atStart = atStart && index7 == 0;
+        atEnd = atEnd && index7 == nodeSize(node);
       }
     }
     function hasBlockDesc(dom) {
@@ -62620,7 +62620,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "size",
-        get: function get3() {
+        get: function get4() {
           var size = 0;
           for (var i2 = 0; i2 < this.children.length; i2++) {
             size += this.children[i2].size;
@@ -62629,7 +62629,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "border",
-        get: function get3() {
+        get: function get4() {
           return 0;
         }
       }, {
@@ -62654,22 +62654,22 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "posBefore",
-        get: function get3() {
+        get: function get4() {
           return this.parent.posBeforeChild(this);
         }
       }, {
         key: "posAtStart",
-        get: function get3() {
+        get: function get4() {
           return this.parent ? this.parent.posBeforeChild(this) + this.border : 0;
         }
       }, {
         key: "posAfter",
-        get: function get3() {
+        get: function get4() {
           return this.posBefore + this.size;
         }
       }, {
         key: "posAtEnd",
-        get: function get3() {
+        get: function get4() {
           return this.posAtStart + this.size - 2 * this.border;
         }
       }, {
@@ -62980,7 +62980,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "contentLost",
-        get: function get3() {
+        get: function get4() {
           return this.contentDOM && this.contentDOM != this.dom && !this.dom.contains(this.contentDOM);
         }
       }, {
@@ -63017,12 +63017,12 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "domAtom",
-        get: function get3() {
+        get: function get4() {
           return false;
         }
       }, {
         key: "ignoreForCoords",
-        get: function get3() {
+        get: function get4() {
           return false;
         }
       }]);
@@ -63088,12 +63088,12 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "domAtom",
-        get: function get3() {
+        get: function get4() {
           return true;
         }
       }, {
         key: "side",
-        get: function get3() {
+        get: function get4() {
           return this.widget.type.side;
         }
       }]);
@@ -63112,7 +63112,7 @@ var require_dist5 = __commonJS({
       }
       _createClass(CompositionViewDesc2, [{
         key: "size",
-        get: function get3() {
+        get: function get4() {
           return this.text.length;
         }
       }, {
@@ -63260,12 +63260,12 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "size",
-        get: function get3() {
+        get: function get4() {
           return this.node.nodeSize;
         }
       }, {
         key: "border",
-        get: function get3() {
+        get: function get4() {
           return this.node.isLeaf ? 0 : 1;
         }
       }, {
@@ -63408,7 +63408,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "domAtom",
-        get: function get3() {
+        get: function get4() {
           return this.node.isAtom;
         }
       }], [{
@@ -63532,7 +63532,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "domAtom",
-        get: function get3() {
+        get: function get4() {
           return false;
         }
       }]);
@@ -63559,12 +63559,12 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "domAtom",
-        get: function get3() {
+        get: function get4() {
           return true;
         }
       }, {
         key: "ignoreForCoords",
-        get: function get3() {
+        get: function get4() {
           return this.dom.nodeName == "IMG";
         }
       }]);
@@ -63831,9 +63831,9 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "findNodeMatch",
-        value: function findNodeMatch(node, outerDeco, innerDeco, index6) {
+        value: function findNodeMatch(node, outerDeco, innerDeco, index7) {
           var found = -1, targetDesc;
-          if (index6 >= this.preMatch.index && (targetDesc = this.preMatch.matches[index6 - this.preMatch.index]).parent == this.top && targetDesc.matchesNode(node, outerDeco, innerDeco)) {
+          if (index7 >= this.preMatch.index && (targetDesc = this.preMatch.matches[index7 - this.preMatch.index]).parent == this.top && targetDesc.matchesNode(node, outerDeco, innerDeco)) {
             found = this.top.children.indexOf(targetDesc, this.index);
           } else {
             for (var i2 = this.index, e2 = Math.min(this.top.children.length, i2 + 5); i2 < e2; i2++) {
@@ -63852,14 +63852,14 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "updateNodeAt",
-        value: function updateNodeAt(node, outerDeco, innerDeco, index6, view) {
-          var child = this.top.children[index6];
+        value: function updateNodeAt(node, outerDeco, innerDeco, index7, view) {
+          var child = this.top.children[index7];
           if (child.dirty == NODE_DIRTY && child.dom == child.contentDOM)
             child.dirty = CONTENT_DIRTY;
           if (!child.update(node, outerDeco, innerDeco, view))
             return false;
-          this.destroyBetween(this.index, index6);
-          this.index = index6 + 1;
+          this.destroyBetween(this.index, index7);
+          this.index = index7 + 1;
           return true;
         }
       }, {
@@ -63883,12 +63883,12 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "updateNextNode",
-        value: function updateNextNode(node, outerDeco, innerDeco, view, index6) {
+        value: function updateNextNode(node, outerDeco, innerDeco, view, index7) {
           for (var i2 = this.index; i2 < this.top.children.length; i2++) {
             var next = this.top.children[i2];
             if (next instanceof NodeViewDesc) {
               var _preMatch = this.preMatch.matched.get(next);
-              if (_preMatch != null && _preMatch != index6)
+              if (_preMatch != null && _preMatch != index7)
                 return false;
               var nextDOM = next.dom;
               var locked = this.lock && (nextDOM == this.lock || nextDOM.nodeType == 1 && nextDOM.contains(this.lock.parentNode)) && !(node.isText && next.node && next.node.isText && next.nodeDOM.nodeValue == node.text && next.dirty != NODE_DIRTY && sameOuterDeco(outerDeco, next.outerDeco));
@@ -64028,13 +64028,13 @@ var require_dist5 = __commonJS({
             onWidget(widget, parentIndex, !!restNode);
           }
         }
-        var _child = void 0, index6 = void 0;
+        var _child = void 0, index7 = void 0;
         if (restNode) {
-          index6 = -1;
+          index7 = -1;
           _child = restNode;
           restNode = null;
         } else if (parentIndex < parent2.childCount) {
-          index6 = parentIndex;
+          index7 = parentIndex;
           _child = parent2.child(parentIndex++);
         } else {
           break;
@@ -64059,13 +64059,13 @@ var require_dist5 = __commonJS({
             restNode = _child.cut(cutAt - offset);
             _child = _child.cut(0, cutAt - offset);
             end = cutAt;
-            index6 = -1;
+            index7 = -1;
           }
         }
         var outerDeco = _child.isInline && !_child.isLeaf ? active.filter(function(d3) {
           return !d3.inline;
         }) : active.slice();
-        onNode(_child, outerDeco, deco.forChild(offset, _child), index6);
+        onNode(_child, outerDeco, deco.forChild(offset, _child), index7);
         offset = end;
       }
     }
@@ -65625,8 +65625,8 @@ var require_dist5 = __commonJS({
       }, {
         key: "valid",
         value: function valid(node, span) {
-          var _node$content$findInd = node.content.findIndex(span.from), index6 = _node$content$findInd.index, offset = _node$content$findInd.offset, child;
-          return offset == span.from && !(child = node.child(index6)).isText && offset + child.nodeSize == span.to;
+          var _node$content$findInd = node.content.findIndex(span.from), index7 = _node$content$findInd.index, offset = _node$content$findInd.offset, child;
+          return offset == span.from && !(child = node.child(index7)).isText && offset + child.nodeSize == span.to;
         }
       }, {
         key: "eq",
@@ -65665,12 +65665,12 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "spec",
-        get: function get3() {
+        get: function get4() {
           return this.type.spec;
         }
       }, {
         key: "inline",
-        get: function get3() {
+        get: function get4() {
           return this.type instanceof InlineType;
         }
       }], [{
@@ -66018,8 +66018,8 @@ var require_dist5 = __commonJS({
             continue;
           }
           var to = mapping.map(oldChildren[_i9 + 1] + oldOffset, -1), toLocal = to - offset;
-          var _node$content$findInd2 = node.content.findIndex(fromLocal), index6 = _node$content$findInd2.index, childOffset = _node$content$findInd2.offset;
-          var childNode = node.maybeChild(index6);
+          var _node$content$findInd2 = node.content.findIndex(fromLocal), index7 = _node$content$findInd2.index, childOffset = _node$content$findInd2.offset;
+          var childNode = node.maybeChild(index7);
           if (childNode && childOffset == fromLocal && childOffset + childNode.nodeSize == toLocal) {
             var mapped = children[_i9 + 2].mapInner(mapping, childNode, from + 1, oldChildren[_i9] + oldOffset + 1, options);
             if (mapped != empty) {
@@ -66820,12 +66820,12 @@ var require_dist5 = __commonJS({
       }
       _createClass(EditorView2, [{
         key: "composing",
-        get: function get3() {
+        get: function get4() {
           return this.input.composing;
         }
       }, {
         key: "props",
-        get: function get3() {
+        get: function get4() {
           if (this._props.state != this.state) {
             var prev = this._props;
             this._props = {};
@@ -67001,7 +67001,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "root",
-        get: function get3() {
+        get: function get4() {
           var _this17 = this;
           var cached = this._root;
           if (cached == null) {
@@ -67079,7 +67079,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "isDestroyed",
-        get: function get3() {
+        get: function get4() {
           return this.docView == null;
         }
       }, {
@@ -67734,15 +67734,15 @@ var require_dist7 = __commonJS({
       return true;
     };
     function joinMaybeClear(state, $pos, dispatch) {
-      var before = $pos.nodeBefore, after = $pos.nodeAfter, index6 = $pos.index();
+      var before = $pos.nodeBefore, after = $pos.nodeAfter, index7 = $pos.index();
       if (!before || !after || !before.type.compatibleContent(after.type))
         return false;
-      if (!before.content.size && $pos.parent.canReplace(index6 - 1, index6)) {
+      if (!before.content.size && $pos.parent.canReplace(index7 - 1, index7)) {
         if (dispatch)
           dispatch(state.tr["delete"]($pos.pos - before.nodeSize, $pos.pos).scrollIntoView());
         return true;
       }
-      if (!$pos.parent.canReplace(index6, index6 + 1) || !(after.isTextblock || prosemirrorTransform.canJoin(state.doc, $pos.pos)))
+      if (!$pos.parent.canReplace(index7, index7 + 1) || !(after.isTextblock || prosemirrorTransform.canJoin(state.doc, $pos.pos)))
         return false;
       if (dispatch)
         dispatch(state.tr.clearIncompatible($pos.pos, before.type, before.contentMatchAt(before.childCount)).join($pos.pos).scrollIntoView());
@@ -67846,8 +67846,8 @@ var require_dist7 = __commonJS({
           if (node.type == nodeType) {
             applicable = true;
           } else {
-            var $pos = state.doc.resolve(pos), index6 = $pos.index();
-            applicable = $pos.parent.canReplaceWith(index6, index6 + 1, nodeType);
+            var $pos = state.doc.resolve(pos), index7 = $pos.index();
+            applicable = $pos.parent.canReplaceWith(index7, index7 + 1, nodeType);
           }
         });
         if (!applicable)
@@ -67935,12 +67935,12 @@ var require_dist7 = __commonJS({
         for (var _i3 = 0; _i3 < ranges.length; _i3 += 2) {
           var from = ranges[_i3], to = ranges[_i3 + 1];
           var $from = tr.doc.resolve(from), depth = $from.sharedDepth(to), parent2 = $from.node(depth);
-          for (var index6 = $from.indexAfter(depth), pos = $from.after(depth + 1); pos <= to; ++index6) {
-            var after = parent2.maybeChild(index6);
+          for (var index7 = $from.indexAfter(depth), pos = $from.after(depth + 1); pos <= to; ++index7) {
+            var after = parent2.maybeChild(index7);
             if (!after)
               break;
-            if (index6 && joinable.indexOf(pos) == -1) {
-              var before = parent2.child(index6 - 1);
+            if (index7 && joinable.indexOf(pos) == -1) {
+              var before = parent2.child(index7 - 1);
               if (before.type == after.type && isJoinable(before, after))
                 joinable.push(pos);
             }
@@ -68739,13 +68739,13 @@ var require_tiptap_core_cjs = __commonJS({
     }
     var getTextContentFromNodes = ($from, maxMatch = 500) => {
       let textBefore = "";
-      $from.parent.nodesBetween(Math.max(0, $from.parentOffset - maxMatch), $from.parentOffset, (node, pos, parent2, index6) => {
+      $from.parent.nodesBetween(Math.max(0, $from.parentOffset - maxMatch), $from.parentOffset, (node, pos, parent2, index7) => {
         var _a, _b, _c;
         textBefore += ((_b = (_a = node.type.spec).toText) === null || _b === void 0 ? void 0 : _b.call(_a, {
           node,
           pos,
           parent: parent2,
-          index: index6
+          index: index7
         })) || ((_c = $from.nodeBefore) === null || _c === void 0 ? void 0 : _c.text) || "%leaf%";
       });
       return textBefore;
@@ -69040,7 +69040,7 @@ var require_tiptap_core_cjs = __commonJS({
       return plugins;
     }
     function findDuplicates(items) {
-      const filtered = items.filter((el, index6) => items.indexOf(el) !== index6);
+      const filtered = items.filter((el, index7) => items.indexOf(el) !== index7);
       return [...new Set(filtered)];
     }
     var ExtensionManager = class {
@@ -69324,7 +69324,7 @@ var require_tiptap_core_cjs = __commonJS({
       const { blockSeparator = "\n\n", textSerializers = {} } = options || {};
       let text = "";
       let separated = true;
-      startNode.nodesBetween(from, to, (node, pos, parent2, index6) => {
+      startNode.nodesBetween(from, to, (node, pos, parent2, index7) => {
         var _a;
         const textSerializer = textSerializers === null || textSerializers === void 0 ? void 0 : textSerializers[node.type.name];
         if (textSerializer) {
@@ -69337,7 +69337,7 @@ var require_tiptap_core_cjs = __commonJS({
               node,
               pos,
               parent: parent2,
-              index: index6,
+              index: index7,
               range
             });
           }
@@ -69630,7 +69630,7 @@ var require_tiptap_core_cjs = __commonJS({
       return true;
     };
     var forEach2 = (items, fn) => (props) => {
-      return items.every((item, index6) => fn(item, __spreadProps(__spreadValues({}, props), { index: index6 })));
+      return items.every((item, index7) => fn(item, __spreadProps(__spreadValues({}, props), { index: index7 })));
     };
     var insertContent = (value, options) => ({ tr, commands: commands2 }) => {
       return commands2.insertContentAt({ from: tr.selection.from, to: tr.selection.to }, value, options);
@@ -71121,8 +71121,8 @@ img.ProseMirror-separator {
     }
     function simplifyChangedRanges(changes) {
       const uniqueChanges = removeDuplicates(changes);
-      return uniqueChanges.length === 1 ? uniqueChanges : uniqueChanges.filter((change, index6) => {
-        const rest = uniqueChanges.filter((_2, i2) => i2 !== index6);
+      return uniqueChanges.length === 1 ? uniqueChanges : uniqueChanges.filter((change, index7) => {
+        const rest = uniqueChanges.filter((_2, i2) => i2 !== index7);
         return !rest.some((otherChange) => {
           return change.oldRange.from >= otherChange.oldRange.from && change.oldRange.to <= otherChange.oldRange.to && change.newRange.from >= otherChange.newRange.from && change.newRange.to <= otherChange.newRange.to;
         });
@@ -71131,10 +71131,10 @@ img.ProseMirror-separator {
     function getChangedRanges(transform) {
       const { mapping, steps } = transform;
       const changes = [];
-      mapping.maps.forEach((stepMap, index6) => {
+      mapping.maps.forEach((stepMap, index7) => {
         const ranges = [];
         if (!stepMap.ranges.length) {
-          const { from, to } = steps[index6];
+          const { from, to } = steps[index7];
           if (from === void 0 || to === void 0) {
             return;
           }
@@ -71145,8 +71145,8 @@ img.ProseMirror-separator {
           });
         }
         ranges.forEach(({ from, to }) => {
-          const newStart = mapping.slice(index6).map(from, -1);
-          const newEnd = mapping.slice(index6).map(to);
+          const newStart = mapping.slice(index7).map(from, -1);
+          const newEnd = mapping.slice(index7).map(to);
           const oldStart = mapping.invert().map(newStart, -1);
           const oldEnd = mapping.invert().map(newEnd);
           changes.push({
@@ -73031,13 +73031,13 @@ var require_linkify = __commonJS({
     function stringToArray(str) {
       var result = [];
       var len = str.length;
-      var index6 = 0;
-      while (index6 < len) {
-        var first = str.charCodeAt(index6);
+      var index7 = 0;
+      while (index7 < len) {
+        var first = str.charCodeAt(index7);
         var second = void 0;
-        var char = first < 55296 || first > 56319 || index6 + 1 === len || (second = str.charCodeAt(index6 + 1)) < 56320 || second > 57343 ? str[index6] : str.slice(index6, index6 + 2);
+        var char = first < 55296 || first > 56319 || index7 + 1 === len || (second = str.charCodeAt(index7 + 1)) < 56320 || second > 57343 ? str[index7] : str.slice(index7, index7 + 2);
         result.push(char);
-        index6 += char.length;
+        index7 += char.length;
       }
       return result;
     }
@@ -73107,7 +73107,7 @@ var require_linkify = __commonJS({
       check: function check(token) {
         return this.get("validate", token.toString(), token);
       },
-      get: function get3(key2, operator, token) {
+      get: function get4(key2, operator, token) {
         var option = this[key2];
         if (!option) {
           return option;
@@ -74522,10 +74522,10 @@ var require_lodash3 = __commonJS({
       return string.split("");
     }
     function baseFindIndex(array2, predicate, fromIndex, fromRight) {
-      var length = array2.length, index6 = fromIndex + (fromRight ? 1 : -1);
-      while (fromRight ? index6-- : ++index6 < length) {
-        if (predicate(array2[index6], index6, array2)) {
-          return index6;
+      var length = array2.length, index7 = fromIndex + (fromRight ? 1 : -1);
+      while (fromRight ? index7-- : ++index7 < length) {
+        if (predicate(array2[index7], index7, array2)) {
+          return index7;
         }
       }
       return -1;
@@ -74534,10 +74534,10 @@ var require_lodash3 = __commonJS({
       if (value !== value) {
         return baseFindIndex(array2, baseIsNaN, fromIndex);
       }
-      var index6 = fromIndex - 1, length = array2.length;
-      while (++index6 < length) {
-        if (array2[index6] === value) {
-          return index6;
+      var index7 = fromIndex - 1, length = array2.length;
+      while (++index7 < length) {
+        if (array2[index7] === value) {
+          return index7;
         }
       }
       return -1;
@@ -74546,16 +74546,16 @@ var require_lodash3 = __commonJS({
       return value !== value;
     }
     function charsStartIndex(strSymbols, chrSymbols) {
-      var index6 = -1, length = strSymbols.length;
-      while (++index6 < length && baseIndexOf(chrSymbols, strSymbols[index6], 0) > -1) {
+      var index7 = -1, length = strSymbols.length;
+      while (++index7 < length && baseIndexOf(chrSymbols, strSymbols[index7], 0) > -1) {
       }
-      return index6;
+      return index7;
     }
     function charsEndIndex(strSymbols, chrSymbols) {
-      var index6 = strSymbols.length;
-      while (index6-- && baseIndexOf(chrSymbols, strSymbols[index6], 0) > -1) {
+      var index7 = strSymbols.length;
+      while (index7-- && baseIndexOf(chrSymbols, strSymbols[index7], 0) > -1) {
       }
-      return index6;
+      return index7;
     }
     function hasUnicode(string) {
       return reHasUnicode.test(string);
@@ -74572,7 +74572,7 @@ var require_lodash3 = __commonJS({
     var symbolProto = Symbol2 ? Symbol2.prototype : void 0;
     var symbolToString = symbolProto ? symbolProto.toString : void 0;
     function baseSlice(array2, start2, end) {
-      var index6 = -1, length = array2.length;
+      var index7 = -1, length = array2.length;
       if (start2 < 0) {
         start2 = -start2 > length ? 0 : length + start2;
       }
@@ -74583,8 +74583,8 @@ var require_lodash3 = __commonJS({
       length = start2 > end ? 0 : end - start2 >>> 0;
       start2 >>>= 0;
       var result = Array(length);
-      while (++index6 < length) {
-        result[index6] = array2[index6 + start2];
+      while (++index7 < length) {
+        result[index7] = array2[index7 + start2];
       }
       return result;
     }
@@ -74659,26 +74659,26 @@ var require_lodash4 = __commonJS({
       return !!length && baseIndexOf(array2, value, 0) > -1;
     }
     function arrayIncludesWith(array2, value, comparator) {
-      var index6 = -1, length = array2 ? array2.length : 0;
-      while (++index6 < length) {
-        if (comparator(value, array2[index6])) {
+      var index7 = -1, length = array2 ? array2.length : 0;
+      while (++index7 < length) {
+        if (comparator(value, array2[index7])) {
           return true;
         }
       }
       return false;
     }
     function arrayMap(array2, iteratee) {
-      var index6 = -1, length = array2 ? array2.length : 0, result = Array(length);
-      while (++index6 < length) {
-        result[index6] = iteratee(array2[index6], index6, array2);
+      var index7 = -1, length = array2 ? array2.length : 0, result = Array(length);
+      while (++index7 < length) {
+        result[index7] = iteratee(array2[index7], index7, array2);
       }
       return result;
     }
     function baseFindIndex(array2, predicate, fromIndex, fromRight) {
-      var length = array2.length, index6 = fromIndex + (fromRight ? 1 : -1);
-      while (fromRight ? index6-- : ++index6 < length) {
-        if (predicate(array2[index6], index6, array2)) {
-          return index6;
+      var length = array2.length, index7 = fromIndex + (fromRight ? 1 : -1);
+      while (fromRight ? index7-- : ++index7 < length) {
+        if (predicate(array2[index7], index7, array2)) {
+          return index7;
         }
       }
       return -1;
@@ -74687,10 +74687,10 @@ var require_lodash4 = __commonJS({
       if (value !== value) {
         return baseFindIndex(array2, baseIsNaN, fromIndex);
       }
-      var index6 = fromIndex - 1, length = array2.length;
-      while (++index6 < length) {
-        if (array2[index6] === value) {
-          return index6;
+      var index7 = fromIndex - 1, length = array2.length;
+      while (++index7 < length) {
+        if (array2[index7] === value) {
+          return index7;
         }
       }
       return -1;
@@ -74736,11 +74736,11 @@ var require_lodash4 = __commonJS({
     var Map2 = getNative(root, "Map");
     var nativeCreate = getNative(Object, "create");
     function Hash(entries) {
-      var index6 = -1, length = entries ? entries.length : 0;
+      var index7 = -1, length = entries ? entries.length : 0;
       this.clear();
-      while (++index6 < length) {
-        var entry6 = entries[index6];
-        this.set(entry6[0], entry6[1]);
+      while (++index7 < length) {
+        var entry7 = entries[index7];
+        this.set(entry7[0], entry7[1]);
       }
     }
     function hashClear() {
@@ -74772,42 +74772,42 @@ var require_lodash4 = __commonJS({
     Hash.prototype.has = hashHas;
     Hash.prototype.set = hashSet;
     function ListCache(entries) {
-      var index6 = -1, length = entries ? entries.length : 0;
+      var index7 = -1, length = entries ? entries.length : 0;
       this.clear();
-      while (++index6 < length) {
-        var entry6 = entries[index6];
-        this.set(entry6[0], entry6[1]);
+      while (++index7 < length) {
+        var entry7 = entries[index7];
+        this.set(entry7[0], entry7[1]);
       }
     }
     function listCacheClear() {
       this.__data__ = [];
     }
     function listCacheDelete(key2) {
-      var data = this.__data__, index6 = assocIndexOf(data, key2);
-      if (index6 < 0) {
+      var data = this.__data__, index7 = assocIndexOf(data, key2);
+      if (index7 < 0) {
         return false;
       }
       var lastIndex = data.length - 1;
-      if (index6 == lastIndex) {
+      if (index7 == lastIndex) {
         data.pop();
       } else {
-        splice.call(data, index6, 1);
+        splice.call(data, index7, 1);
       }
       return true;
     }
     function listCacheGet(key2) {
-      var data = this.__data__, index6 = assocIndexOf(data, key2);
-      return index6 < 0 ? void 0 : data[index6][1];
+      var data = this.__data__, index7 = assocIndexOf(data, key2);
+      return index7 < 0 ? void 0 : data[index7][1];
     }
     function listCacheHas(key2) {
       return assocIndexOf(this.__data__, key2) > -1;
     }
     function listCacheSet(key2, value) {
-      var data = this.__data__, index6 = assocIndexOf(data, key2);
-      if (index6 < 0) {
+      var data = this.__data__, index7 = assocIndexOf(data, key2);
+      if (index7 < 0) {
         data.push([key2, value]);
       } else {
-        data[index6][1] = value;
+        data[index7][1] = value;
       }
       return this;
     }
@@ -74817,11 +74817,11 @@ var require_lodash4 = __commonJS({
     ListCache.prototype.has = listCacheHas;
     ListCache.prototype.set = listCacheSet;
     function MapCache(entries) {
-      var index6 = -1, length = entries ? entries.length : 0;
+      var index7 = -1, length = entries ? entries.length : 0;
       this.clear();
-      while (++index6 < length) {
-        var entry6 = entries[index6];
-        this.set(entry6[0], entry6[1]);
+      while (++index7 < length) {
+        var entry7 = entries[index7];
+        this.set(entry7[0], entry7[1]);
       }
     }
     function mapCacheClear() {
@@ -74850,10 +74850,10 @@ var require_lodash4 = __commonJS({
     MapCache.prototype.has = mapCacheHas;
     MapCache.prototype.set = mapCacheSet;
     function SetCache(values) {
-      var index6 = -1, length = values ? values.length : 0;
+      var index7 = -1, length = values ? values.length : 0;
       this.__data__ = new MapCache();
-      while (++index6 < length) {
-        this.add(values[index6]);
+      while (++index7 < length) {
+        this.add(values[index7]);
       }
     }
     function setCacheAdd(value) {
@@ -74875,7 +74875,7 @@ var require_lodash4 = __commonJS({
       return -1;
     }
     function baseDifference(array2, values, iteratee, comparator) {
-      var index6 = -1, includes = arrayIncludes, isCommon = true, length = array2.length, result = [], valuesLength = values.length;
+      var index7 = -1, includes = arrayIncludes, isCommon = true, length = array2.length, result = [], valuesLength = values.length;
       if (!length) {
         return result;
       }
@@ -74891,8 +74891,8 @@ var require_lodash4 = __commonJS({
         values = new SetCache(values);
       }
       outer:
-        while (++index6 < length) {
-          var value = array2[index6], computed = iteratee ? iteratee(value) : value;
+        while (++index7 < length) {
+          var value = array2[index7], computed = iteratee ? iteratee(value) : value;
           value = comparator || value !== 0 ? value : 0;
           if (isCommon && computed === computed) {
             var valuesIndex = valuesLength;
@@ -74918,14 +74918,14 @@ var require_lodash4 = __commonJS({
     function baseRest(func, start2) {
       start2 = nativeMax(start2 === void 0 ? func.length - 1 : start2, 0);
       return function() {
-        var args = arguments, index6 = -1, length = nativeMax(args.length - start2, 0), array2 = Array(length);
-        while (++index6 < length) {
-          array2[index6] = args[start2 + index6];
+        var args = arguments, index7 = -1, length = nativeMax(args.length - start2, 0), array2 = Array(length);
+        while (++index7 < length) {
+          array2[index7] = args[start2 + index7];
         }
-        index6 = -1;
+        index7 = -1;
         var otherArgs = Array(start2 + 1);
-        while (++index6 < start2) {
-          otherArgs[index6] = args[index6];
+        while (++index7 < start2) {
+          otherArgs[index7] = args[index7];
         }
         otherArgs[start2] = array2;
         return apply(func, this, otherArgs);
@@ -75580,35 +75580,35 @@ var require_lodash5 = __commonJS({
       return set;
     }
     function arrayEach(array2, iteratee) {
-      var index6 = -1, length = array2 ? array2.length : 0;
-      while (++index6 < length) {
-        if (iteratee(array2[index6], index6, array2) === false) {
+      var index7 = -1, length = array2 ? array2.length : 0;
+      while (++index7 < length) {
+        if (iteratee(array2[index7], index7, array2) === false) {
           break;
         }
       }
       return array2;
     }
     function arrayPush(array2, values) {
-      var index6 = -1, length = values.length, offset = array2.length;
-      while (++index6 < length) {
-        array2[offset + index6] = values[index6];
+      var index7 = -1, length = values.length, offset = array2.length;
+      while (++index7 < length) {
+        array2[offset + index7] = values[index7];
       }
       return array2;
     }
     function arrayReduce(array2, iteratee, accumulator, initAccum) {
-      var index6 = -1, length = array2 ? array2.length : 0;
+      var index7 = -1, length = array2 ? array2.length : 0;
       if (initAccum && length) {
-        accumulator = array2[++index6];
+        accumulator = array2[++index7];
       }
-      while (++index6 < length) {
-        accumulator = iteratee(accumulator, array2[index6], index6, array2);
+      while (++index7 < length) {
+        accumulator = iteratee(accumulator, array2[index7], index7, array2);
       }
       return accumulator;
     }
     function baseTimes(n, iteratee) {
-      var index6 = -1, result = Array(n);
-      while (++index6 < n) {
-        result[index6] = iteratee(index6);
+      var index7 = -1, result = Array(n);
+      while (++index7 < n) {
+        result[index7] = iteratee(index7);
       }
       return result;
     }
@@ -75626,9 +75626,9 @@ var require_lodash5 = __commonJS({
       return result;
     }
     function mapToArray(map) {
-      var index6 = -1, result = Array(map.size);
+      var index7 = -1, result = Array(map.size);
       map.forEach(function(value, key2) {
-        result[++index6] = [key2, value];
+        result[++index7] = [key2, value];
       });
       return result;
     }
@@ -75638,9 +75638,9 @@ var require_lodash5 = __commonJS({
       };
     }
     function setToArray(set) {
-      var index6 = -1, result = Array(set.size);
+      var index7 = -1, result = Array(set.size);
       set.forEach(function(value) {
-        result[++index6] = value;
+        result[++index7] = value;
       });
       return result;
     }
@@ -75680,11 +75680,11 @@ var require_lodash5 = __commonJS({
     var symbolProto = Symbol2 ? Symbol2.prototype : void 0;
     var symbolValueOf = symbolProto ? symbolProto.valueOf : void 0;
     function Hash(entries) {
-      var index6 = -1, length = entries ? entries.length : 0;
+      var index7 = -1, length = entries ? entries.length : 0;
       this.clear();
-      while (++index6 < length) {
-        var entry6 = entries[index6];
-        this.set(entry6[0], entry6[1]);
+      while (++index7 < length) {
+        var entry7 = entries[index7];
+        this.set(entry7[0], entry7[1]);
       }
     }
     function hashClear() {
@@ -75716,42 +75716,42 @@ var require_lodash5 = __commonJS({
     Hash.prototype.has = hashHas;
     Hash.prototype.set = hashSet;
     function ListCache(entries) {
-      var index6 = -1, length = entries ? entries.length : 0;
+      var index7 = -1, length = entries ? entries.length : 0;
       this.clear();
-      while (++index6 < length) {
-        var entry6 = entries[index6];
-        this.set(entry6[0], entry6[1]);
+      while (++index7 < length) {
+        var entry7 = entries[index7];
+        this.set(entry7[0], entry7[1]);
       }
     }
     function listCacheClear() {
       this.__data__ = [];
     }
     function listCacheDelete(key2) {
-      var data = this.__data__, index6 = assocIndexOf(data, key2);
-      if (index6 < 0) {
+      var data = this.__data__, index7 = assocIndexOf(data, key2);
+      if (index7 < 0) {
         return false;
       }
       var lastIndex = data.length - 1;
-      if (index6 == lastIndex) {
+      if (index7 == lastIndex) {
         data.pop();
       } else {
-        splice.call(data, index6, 1);
+        splice.call(data, index7, 1);
       }
       return true;
     }
     function listCacheGet(key2) {
-      var data = this.__data__, index6 = assocIndexOf(data, key2);
-      return index6 < 0 ? void 0 : data[index6][1];
+      var data = this.__data__, index7 = assocIndexOf(data, key2);
+      return index7 < 0 ? void 0 : data[index7][1];
     }
     function listCacheHas(key2) {
       return assocIndexOf(this.__data__, key2) > -1;
     }
     function listCacheSet(key2, value) {
-      var data = this.__data__, index6 = assocIndexOf(data, key2);
-      if (index6 < 0) {
+      var data = this.__data__, index7 = assocIndexOf(data, key2);
+      if (index7 < 0) {
         data.push([key2, value]);
       } else {
-        data[index6][1] = value;
+        data[index7][1] = value;
       }
       return this;
     }
@@ -75761,11 +75761,11 @@ var require_lodash5 = __commonJS({
     ListCache.prototype.has = listCacheHas;
     ListCache.prototype.set = listCacheSet;
     function MapCache(entries) {
-      var index6 = -1, length = entries ? entries.length : 0;
+      var index7 = -1, length = entries ? entries.length : 0;
       this.clear();
-      while (++index6 < length) {
-        var entry6 = entries[index6];
-        this.set(entry6[0], entry6[1]);
+      while (++index7 < length) {
+        var entry7 = entries[index7];
+        this.set(entry7[0], entry7[1]);
       }
     }
     function mapCacheClear() {
@@ -75976,18 +75976,18 @@ var require_lodash5 = __commonJS({
       return new typedArray.constructor(buffer, typedArray.byteOffset, typedArray.length);
     }
     function copyArray(source, array2) {
-      var index6 = -1, length = source.length;
+      var index7 = -1, length = source.length;
       array2 || (array2 = Array(length));
-      while (++index6 < length) {
-        array2[index6] = source[index6];
+      while (++index7 < length) {
+        array2[index7] = source[index7];
       }
       return array2;
     }
     function copyObject(source, props, object, customizer) {
       object || (object = {});
-      var index6 = -1, length = props.length;
-      while (++index6 < length) {
-        var key2 = props[index6];
+      var index7 = -1, length = props.length;
+      while (++index7 < length) {
+        var key2 = props[index7];
         var newValue = customizer ? customizer(object[key2], source[key2], key2, object, source) : void 0;
         assignValue(object, key2, newValue === void 0 ? source[key2] : newValue);
       }
@@ -77003,7 +77003,7 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
 <div class="${"toolbar svelte-cnj9mu"}"><div class="${"toolbar-left svelte-cnj9mu"}"><div class="${["icon _clickable svelte-cnj9mu", data._expanded ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-down"}"></i></div>
         <div class="${"icon _clickable svelte-cnj9mu"}"><i class="${"fa-solid fa-up-right-and-down-left-from-center"}"></i></div>
         <div class="${"icon _clickable svelte-cnj9mu"}"><a href="${"/facebook_share/?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-facebook svelte-cnj9mu"}"></i></a></div>
-        <div class="${"icon _clickable svelte-cnj9mu"}"><i class="${"fa-brands fa-twitter svelte-cnj9mu"}"></i></div></div>
+        <div class="${"icon _clickable svelte-cnj9mu"}"><a href="${"/twitter_share/?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-twitter svelte-cnj9mu"}"></i></a></div></div>
     <div class="${"toolbar-right svelte-cnj9mu"}">${validate_component(Font, "Font").$$render($$result, {
         font: 0,
         size: 0.75,
@@ -77229,12 +77229,12 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
       };
       const bounceAnimation = Array(COLUMN_COUNT).fill(1).map((_2) => tweened(0, { duration: 350, easing: backInOut }));
       const _bounceAnimation = Array(COLUMN_COUNT).fill(1);
-      _eventListener("nav-click").subscribe((index6) => {
+      _eventListener("nav-click").subscribe((index7) => {
         const sizeConfig = _getSizeConfig();
         const maxLeft = COLUMN_COUNT - Math.floor(window.innerWidth / sizeConfig.columnWidth);
-        if (index6 < maxLeft) {
-          hScrollIndex.value = index6;
-          setHorizontalScroll(sizeConfig.columnWidth * index6);
+        if (index7 < maxLeft) {
+          hScrollIndex.value = index7;
+          setHorizontalScroll(sizeConfig.columnWidth * index7);
         } else {
           hScrollIndex.value = maxLeft;
           const remainingSpace = COLUMN_COUNT * sizeConfig.columnWidth + 15 - hScrollIndex.value * sizeConfig.columnWidth - window.innerWidth;
@@ -77242,9 +77242,9 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
           setHorizontalScroll(sizeConfig.columnWidth * maxLeft + remainingSpace);
         }
         if (!$_isMobile) {
-          bounceAnimation[index6].set(8);
+          bounceAnimation[index7].set(8);
           setTimeout(() => {
-            bounceAnimation[index6].set(0);
+            bounceAnimation[index7].set(0);
           }, 350);
         }
       });
@@ -77315,8 +77315,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    entry3 = "pages/index.svelte-8d6091ef.js";
-    js3 = ["pages/index.svelte-8d6091ef.js", "chunks/index-c6bcf044.js", "chunks/theme-c0486153.js", "chunks/index-08fcd1e9.js", "chunks/preview-ac599a5b.js", "chunks/storage-ab6fba9e.js"];
+    entry3 = "pages/index.svelte-63ea37f8.js";
+    js3 = ["pages/index.svelte-63ea37f8.js", "chunks/index-c6bcf044.js", "chunks/theme-c0486153.js", "chunks/index-08fcd1e9.js", "chunks/preview-ac599a5b.js", "chunks/storage-ab6fba9e.js"];
     css6 = ["assets/pages/index.svelte-ff08113a.css", "assets/preview-8a8829f8.css"];
   }
 });
@@ -77460,6 +77460,51 @@ var init__5 = __esm({
   }
 });
 
+// .svelte-kit/output/server/entries/pages/twitter_share.svelte.js
+var twitter_share_svelte_exports = {};
+__export(twitter_share_svelte_exports, {
+  default: () => Twitter_share
+});
+var css11, Twitter_share;
+var init_twitter_share_svelte = __esm({
+  ".svelte-kit/output/server/entries/pages/twitter_share.svelte.js"() {
+    init_shims();
+    init_index_4aa555f5();
+    css11 = {
+      code: ".facebook-share.svelte-ptggs0{display:flex;align-items:center;justify-content:center;width:100%;height:100%}",
+      map: null
+    };
+    Twitter_share = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let { postId } = $$props;
+      if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
+        $$bindings.postId(postId);
+      $$result.css.add(css11);
+      return `<div class="${"facebook-share svelte-ptggs0"}">Redirecting to facebook..</div>`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/nodes/5.js
+var __exports6 = {};
+__export(__exports6, {
+  css: () => css12,
+  entry: () => entry6,
+  index: () => index6,
+  js: () => js6,
+  module: () => twitter_share_svelte_exports
+});
+var index6, entry6, js6, css12;
+var init__6 = __esm({
+  ".svelte-kit/output/server/nodes/5.js"() {
+    init_shims();
+    init_twitter_share_svelte();
+    index6 = 5;
+    entry6 = "pages/twitter_share.svelte-6ec1c015.js";
+    js6 = ["pages/twitter_share.svelte-6ec1c015.js", "chunks/index-c6bcf044.js"];
+    css12 = ["assets/pages/facebook_share.svelte-1486c597.css"];
+  }
+});
+
 // .svelte-kit/output/server/entries/endpoints/index.js
 var endpoints_exports = {};
 __export(endpoints_exports, {
@@ -77514,6 +77559,31 @@ var init_facebook_share = __esm({
   ".svelte-kit/output/server/entries/endpoints/facebook_share.js"() {
     init_shims();
     get2 = async ({ url }) => {
+      let postId;
+      if (url.search.includes("=")) {
+        postId = url.search.split("=")[1];
+      }
+      return {
+        status: 200,
+        headers: {},
+        body: {
+          postId
+        }
+      };
+    };
+  }
+});
+
+// .svelte-kit/output/server/entries/endpoints/twitter_share.js
+var twitter_share_exports = {};
+__export(twitter_share_exports, {
+  get: () => get3
+});
+var get3;
+var init_twitter_share = __esm({
+  ".svelte-kit/output/server/entries/endpoints/twitter_share.js"() {
+    init_shims();
+    get3 = async ({ url }) => {
       let postId;
       if (url.search.includes("=")) {
         postId = url.search.split("=")[1];
@@ -77810,12 +77880,12 @@ function devalue(value) {
   }
   walk(value);
   var names = /* @__PURE__ */ new Map();
-  Array.from(counts).filter(function(entry6) {
-    return entry6[1] > 1;
+  Array.from(counts).filter(function(entry7) {
+    return entry7[1] > 1;
   }).sort(function(a, b4) {
     return b4[1] - a[1];
-  }).forEach(function(entry6, i2) {
-    names.set(entry6[0], getName(i2));
+  }).forEach(function(entry7, i2) {
+    names.set(entry7[0], getName(i2));
   });
   function stringify(thing) {
     if (names.has(thing)) {
@@ -78538,20 +78608,20 @@ function parse$1(str, options) {
   var obj = {};
   var opt = options || {};
   var dec = opt.decode || decode;
-  var index6 = 0;
-  while (index6 < str.length) {
-    var eqIdx = str.indexOf("=", index6);
+  var index7 = 0;
+  while (index7 < str.length) {
+    var eqIdx = str.indexOf("=", index7);
     if (eqIdx === -1) {
       break;
     }
-    var endIdx = str.indexOf(";", index6);
+    var endIdx = str.indexOf(";", index7);
     if (endIdx === -1) {
       endIdx = str.length;
     } else if (endIdx < eqIdx) {
-      index6 = str.lastIndexOf(";", eqIdx - 1) + 1;
+      index7 = str.lastIndexOf(";", eqIdx - 1) + 1;
       continue;
     }
-    var key2 = str.slice(index6, eqIdx).trim();
+    var key2 = str.slice(index7, eqIdx).trim();
     if (obj[key2] === void 0) {
       var val = str.slice(eqIdx + 1, endIdx).trim();
       if (val.charCodeAt(0) === 34) {
@@ -78559,7 +78629,7 @@ function parse$1(str, options) {
       }
       obj[key2] = tryDecode(val, dec);
     }
-    index6 = endIdx + 1;
+    index7 = endIdx + 1;
   }
   return obj;
 }
@@ -79170,9 +79240,9 @@ async function load_shadow_data(route, event, options, prerender) {
       }
       data.body = body;
     }
-    const get3 = method === "head" && mod2.head || mod2.get;
-    if (get3) {
-      const result = await get3(event);
+    const get4 = method === "head" && mod2.head || mod2.get;
+    if (get4) {
+      const result = await get4(event);
       if (result.fallthrough) {
         throw new Error("fallthrough is no longer supported. Use matchers instead: https://kit.svelte.dev/docs/routing#advanced-routing-matching");
       }
@@ -79371,8 +79441,8 @@ async function respond$1(opts) {
         if (error2) {
           while (i2--) {
             if (route.b[i2]) {
-              const index6 = route.b[i2];
-              const error_node = await options.manifest._.nodes[index6]();
+              const index7 = route.b[i2];
+              const error_node = await options.manifest._.nodes[index7]();
               let node_loaded;
               let j = i2;
               while (!(node_loaded = branch[j])) {
@@ -79852,13 +79922,14 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-50450a50.js", "js": ["start-50450a50.js", "chunks/index-c6bcf044.js", "chunks/index-08fcd1e9.js"], "css": [] },
+    entry: { "file": "start-bc5e1932.js", "js": ["start-bc5e1932.js", "chunks/index-c6bcf044.js", "chunks/index-08fcd1e9.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
       () => Promise.resolve().then(() => (init__3(), __exports3)),
       () => Promise.resolve().then(() => (init__4(), __exports4)),
-      () => Promise.resolve().then(() => (init__5(), __exports5))
+      () => Promise.resolve().then(() => (init__5(), __exports5)),
+      () => Promise.resolve().then(() => (init__6(), __exports6))
     ],
     routes: [
       {
@@ -79892,6 +79963,17 @@ var manifest = {
         path: "/post_preview",
         shadow: null,
         a: [0, 4],
+        b: [1]
+      },
+      {
+        type: "page",
+        id: "twitter_share",
+        pattern: /^\/twitter_share\/?$/,
+        names: [],
+        types: [],
+        path: "/twitter_share",
+        shadow: () => Promise.resolve().then(() => (init_twitter_share(), twitter_share_exports)),
+        a: [0, 5],
         b: [1]
       }
     ],

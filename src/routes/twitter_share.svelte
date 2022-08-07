@@ -9,7 +9,7 @@
     });
 </script>
 
-<div class="facebook-share">Redirecting to facebook..</div>
+<div class="facebook-share">Redirecting to twitter..</div>
 
 <style>
     .facebook-share {
@@ -18,6 +18,6 @@
         justify-content: center;
 
         width: 100%;
-        height: 100%;
+        height: 100vh;
     }
 </style>

@@ -1,11 +1,11 @@
 <script>
+    import { _emitEvent } from '$lib/services/events';
+
     import Empty from '../posts/empty.svelte';
     import Bulletin from '../posts/bulletin.svelte';
     import News from '../posts/news.svelte';
 
     export let data;
-
-    let showPost = true;
 
     export const COMPONENTS = {
         bulletin: Bulletin,
@@ -14,17 +14,15 @@
     }
 </script>
 
-{#if showPost}
 <div 
     class="post"
-    on:click|self={() => showPost = false}>
+    on:click|self={() => _emitEvent('hide-post')}>
     <div class="post-container">
         <svelte:component 
             this={COMPONENTS[data.type]}
             data={data}/>
     </div>
 </div>
-{/if}
 
 <style>
     .post {
