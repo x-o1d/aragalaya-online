@@ -76705,10 +76705,10 @@ var init_index_svelte = __esm({
     init_index_4aa555f5();
     init_column_config_31e21418();
     init_preview_70638432();
+    init_string_strip_html_esm();
     init_storage_f13827bb();
     init_theme_9925ab8b();
     init_database_7f9188cd();
-    init_string_strip_html_esm();
     init_dist3();
     init_dist4();
     import_chroma_js3 = __toESM(require_chroma(), 1);
@@ -77190,9 +77190,10 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
       let type = "website";
       let image = "https://firebasestorage.googleapis.com/v0/b/aragalaya-online.appspot.com/o/aragalaya-image.jpeg?alt=media&token=46171892-7f2f-49bb-8424-65ca7411271e";
       if (postData) {
+        postData._expanded = true;
         title = postData.title[0];
         url = "https://aragalaya-online.web.app/?post=" + postData.id;
-        description = postData.description && postData.description[0] || postData.shortDescription && postData.shortDescription[0];
+        description = ue(postData.description && postData.description[0] || postData.shortDescription && postData.shortDescription[0]).result;
         type = "article";
         let images = [];
         Object.keys(postData).map((key2) => {
@@ -77314,8 +77315,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    entry3 = "pages/index.svelte-d48adb20.js";
-    js3 = ["pages/index.svelte-d48adb20.js", "chunks/index-c6bcf044.js", "chunks/theme-c0486153.js", "chunks/index-08fcd1e9.js", "chunks/preview-7e4a5c33.js", "chunks/storage-ab6fba9e.js"];
+    entry3 = "pages/index.svelte-19f22d65.js";
+    js3 = ["pages/index.svelte-19f22d65.js", "chunks/index-c6bcf044.js", "chunks/theme-c0486153.js", "chunks/index-08fcd1e9.js", "chunks/preview-ac599a5b.js", "chunks/storage-ab6fba9e.js"];
     css6 = ["assets/pages/index.svelte-ff08113a.css", "assets/preview-8a8829f8.css"];
   }
 });
@@ -77408,8 +77409,8 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 3;
-    entry4 = "pages/post_preview.svelte-92775007.js";
-    js4 = ["pages/post_preview.svelte-92775007.js", "chunks/index-c6bcf044.js", "chunks/preview-7e4a5c33.js", "chunks/index-08fcd1e9.js", "chunks/theme-c0486153.js"];
+    entry4 = "pages/post_preview.svelte-5d7e7a9e.js";
+    js4 = ["pages/post_preview.svelte-5d7e7a9e.js", "chunks/index-c6bcf044.js", "chunks/preview-ac599a5b.js", "chunks/index-08fcd1e9.js", "chunks/theme-c0486153.js"];
     css8 = ["assets/pages/post_preview.svelte-31ce9f42.css", "assets/progress.svelte_svelte_type_style_lang-990d2f18.css", "assets/preview-8a8829f8.css"];
   }
 });
@@ -79781,7 +79782,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-6f5aef1d.js", "js": ["start-6f5aef1d.js", "chunks/index-c6bcf044.js", "chunks/index-08fcd1e9.js"], "css": [] },
+    entry: { "file": "start-8e2140b2.js", "js": ["start-8e2140b2.js", "chunks/index-c6bcf044.js", "chunks/index-08fcd1e9.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

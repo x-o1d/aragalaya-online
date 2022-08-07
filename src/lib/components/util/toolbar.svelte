@@ -44,7 +44,9 @@ EXAMPLE:
             <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
         </div>
         <div class="icon _clickable">
-            <i class="fa-brands fa-facebook"></i>
+            <a href="/facebook_share/?post={data.id}" target="_blank">
+                <i class="fa-brands fa-facebook"></i>
+            </a>
         </div>
         <div class="icon _clickable">
             <i class="fa-brands fa-twitter"></i>

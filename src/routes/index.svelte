@@ -67,6 +67,7 @@
     // also post links shared on social media whatsapp/facebook will be able to render
     // the post content properly in their previews.
     if(postData) {
+        postData._expanded = true;
         title = postData.title[0];
         url = 'https://aragalaya-online.web.app/?post=' + postData.id;
         description = stripHtml((postData.description && postData.description[0]) 
@@ -226,6 +227,7 @@
 <svelte:head>
     <title>{title}</title>
     <!-- meta og tags for site crawlers and shareable content -->
+    <meta property="fb:app_id"      content="420214326726915"/>
     <meta property="og:url"         content="{url}"/>
     <meta property="og:type"        content="{type}"/>
     <meta property="og:title"       content="{title}"/>
