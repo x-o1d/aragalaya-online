@@ -77166,7 +77166,8 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
       if ($$props.COMPONENTS === void 0 && $$bindings.COMPONENTS && COMPONENTS !== void 0)
         $$bindings.COMPONENTS(COMPONENTS);
       $$result.css.add(css$13);
-      return `${`<div class="${"post svelte-mz9v7g"}"><div class="${"post-container svelte-mz9v7g"}">${validate_component(COMPONENTS[data.type] || missing_component, "svelte:component").$$render($$result, { data }, {}, {})}</div></div>`}`;
+      return `<div class="${"post svelte-mz9v7g"}"><div class="${"post-container svelte-mz9v7g"}">${validate_component(COMPONENTS[data.type] || missing_component, "svelte:component").$$render($$result, { data }, {}, {})}</div>
+</div>`;
     });
     css5 = {
       code: "ul.svelte-13s0a6s.svelte-13s0a6s{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.svelte-13s0a6s.svelte-13s0a6s{display:inline-flex}.columns.svelte-13s0a6s.svelte-13s0a6s{position:relative;overflow:hidden;background-color:var(--theme-columnbackground)}.column.svelte-13s0a6s.svelte-13s0a6s{position:relative;width:var(--theme-columnwidth);height:calc(100vh - var(--theme-columnheaderheight))}.header.svelte-13s0a6s.svelte-13s0a6s{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;height:var(--theme-columnheaderheight);color:var(--theme-headerfontcolor);padding:0 var(--s15px) 0 var(--s10px);font-weight:bold;z-index:2}.header.svelte-13s0a6s div.svelte-13s0a6s{display:flex;align-items:center;height:100%}.header.svelte-13s0a6s.svelte-13s0a6s:first-child{font-size:var(--s24px)}.icon-button.svelte-13s0a6s.svelte-13s0a6s{display:inline-flex;align-items:center;justify-content:center;width:35px;height:35px;font-size:var(--s17px)}.cards.svelte-13s0a6s.svelte-13s0a6s{position:relative;width:100%;height:calc(100vh - var(--s100px));overflow-y:scroll;overflow-x:hidden;-ms-overflow-style:none;scrollbar-width:none;padding:var(--theme-cardseparationhalf) 0}.cards.svelte-13s0a6s.svelte-13s0a6s::-webkit-scrollbar{display:none}.spacer.svelte-13s0a6s.svelte-13s0a6s{width:var(--theme-cardseparationhalf);height:calc(100vh - var(--theme-columnheaderheight))}.spacer.svelte-13s0a6s.svelte-13s0a6s::after{display:block;content:'';height:var(--theme-columnheaderheight);width:var(--theme-cardseparationhalf);background-color:var(--background)}.scrollbar.svelte-13s0a6s.svelte-13s0a6s{position:absolute;top:var(--theme-columnheaderheight);right:0}.scroll.svelte-13s0a6s.svelte-13s0a6s{position:absolute;overflow:hidden;top:var(--s20px);right:var(--s-3_75px);width:var(--s7_5px);border-radius:var(--s7_5px);opacity:0.5;background-color:rgba(0,0,0,0.4)}",
@@ -77184,6 +77185,16 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
       };
       let { columnData } = $$props;
       let { postData } = $$props;
+      const showPostEvent = _eventListener("show-post").subscribe((data) => {
+        window.history.pushState("", "", `/?post=${data.id}`);
+        postData = data;
+      });
+      onDestroy(() => showPostEvent.unsubscribe());
+      const hidePostEvent = _eventListener("hide-post").subscribe(() => {
+        window.history.pushState("", "", "/");
+        postData = void 0;
+      });
+      onDestroy(() => hidePostEvent.unsubscribe());
       let title = "aragalaya.online";
       let url = "https://aragalaya-online.web.app";
       let description = "The online portal for the aragalaya movement in Sri Lanka";
@@ -77201,7 +77212,7 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
             images.push(...postData[key2]);
           }
         });
-        if (images[0].href)
+        if (images[0] && images[0].href)
           image = images[0].href;
       }
       const newColumnDataEvent = _eventListener("new-column-data").subscribe(async (event) => {
@@ -77315,8 +77326,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    entry3 = "pages/index.svelte-63ea37f8.js";
-    js3 = ["pages/index.svelte-63ea37f8.js", "chunks/index-c6bcf044.js", "chunks/theme-c0486153.js", "chunks/index-08fcd1e9.js", "chunks/preview-ac599a5b.js", "chunks/storage-ab6fba9e.js"];
+    entry3 = "pages/index.svelte-f6e24d3a.js";
+    js3 = ["pages/index.svelte-f6e24d3a.js", "chunks/index-c6bcf044.js", "chunks/theme-c0486153.js", "chunks/index-08fcd1e9.js", "chunks/preview-ac599a5b.js", "chunks/storage-ab6fba9e.js"];
     css6 = ["assets/pages/index.svelte-ff08113a.css", "assets/preview-8a8829f8.css"];
   }
 });
@@ -77332,7 +77343,7 @@ var init_facebook_share_svelte = __esm({
     init_shims();
     init_index_4aa555f5();
     css7 = {
-      code: ".facebook-share.svelte-ptggs0{display:flex;align-items:center;justify-content:center;width:100%;height:100%}",
+      code: ".facebook-share.svelte-foqk6f{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}",
       map: null
     };
     Facebook_share = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -77340,7 +77351,7 @@ var init_facebook_share_svelte = __esm({
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
       $$result.css.add(css7);
-      return `<div class="${"facebook-share svelte-ptggs0"}">Redirecting to facebook..</div>`;
+      return `<div class="${"facebook-share svelte-foqk6f"}">Redirecting to facebook..</div>`;
     });
   }
 });
@@ -77360,9 +77371,9 @@ var init__4 = __esm({
     init_shims();
     init_facebook_share_svelte();
     index4 = 2;
-    entry4 = "pages/facebook_share.svelte-c4075a37.js";
-    js4 = ["pages/facebook_share.svelte-c4075a37.js", "chunks/index-c6bcf044.js"];
-    css8 = ["assets/pages/facebook_share.svelte-1486c597.css"];
+    entry4 = "pages/facebook_share.svelte-1298c2ea.js";
+    js4 = ["pages/facebook_share.svelte-1298c2ea.js", "chunks/index-c6bcf044.js"];
+    css8 = ["assets/pages/facebook_share.svelte-fc9c0eb0.css"];
   }
 });
 
@@ -77471,7 +77482,7 @@ var init_twitter_share_svelte = __esm({
     init_shims();
     init_index_4aa555f5();
     css11 = {
-      code: ".facebook-share.svelte-ptggs0{display:flex;align-items:center;justify-content:center;width:100%;height:100%}",
+      code: ".facebook-share.svelte-foqk6f{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}",
       map: null
     };
     Twitter_share = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -77479,7 +77490,7 @@ var init_twitter_share_svelte = __esm({
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
       $$result.css.add(css11);
-      return `<div class="${"facebook-share svelte-ptggs0"}">Redirecting to facebook..</div>`;
+      return `<div class="${"facebook-share svelte-foqk6f"}">Redirecting to twitter..</div>`;
     });
   }
 });
@@ -77499,9 +77510,9 @@ var init__6 = __esm({
     init_shims();
     init_twitter_share_svelte();
     index6 = 5;
-    entry6 = "pages/twitter_share.svelte-6ec1c015.js";
-    js6 = ["pages/twitter_share.svelte-6ec1c015.js", "chunks/index-c6bcf044.js"];
-    css12 = ["assets/pages/facebook_share.svelte-1486c597.css"];
+    entry6 = "pages/twitter_share.svelte-4dbc64b4.js";
+    js6 = ["pages/twitter_share.svelte-4dbc64b4.js", "chunks/index-c6bcf044.js"];
+    css12 = ["assets/pages/facebook_share.svelte-fc9c0eb0.css"];
   }
 });
 
@@ -79922,7 +79933,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-bc5e1932.js", "js": ["start-bc5e1932.js", "chunks/index-c6bcf044.js", "chunks/index-08fcd1e9.js"], "css": [] },
+    entry: { "file": "start-ac8900bd.js", "js": ["start-ac8900bd.js", "chunks/index-c6bcf044.js", "chunks/index-08fcd1e9.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

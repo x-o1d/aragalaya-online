@@ -31,6 +31,16 @@ EXAMPLE:
     const toggleExpanded = () => {
         dispatch('toggleExpanded', !data._expanded)
     }
+
+    const toggleSinglePostView = () => {
+        if(data._singlePostView) {
+            data._singlePostView = false;
+            data._expanded = true;
+            _emitEvent('hide-post');
+        } else {
+            _emitEvent('show-post', data)
+        }
+    }
 </script>
 
 <div class="toolbar">
@@ -43,7 +53,8 @@ EXAMPLE:
         </div>
         <div 
             class="icon _clickable"
-            on:click={() => _emitEvent('show-post', data)}>
+            class:on={data._singlePostView}
+            on:click={toggleSinglePostView}>
             <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
         </div>
         <div class="icon _clickable">

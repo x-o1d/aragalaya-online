@@ -55,8 +55,15 @@
     // triggered by the Toolbar component when show post button is clicked
     // this assigns the post data 
     const showPostEvent = _eventListener('show-post').subscribe((data) => {
+        // set the post id in the url
         window.history.pushState("", "", `/?post=${data.id}`);
+        // in single post view expand all previews
+        data._expanded = true;
+        // let the toolbar know that the post is in single post view
+        data._singlePostView = true;
+        // assign data and show the Post component
         postData = data;
+
     });
     // clear subscriptions
     onDestroy(() => showPostEvent.unsubscribe());
@@ -64,7 +71,9 @@
     // triggered by the Post component when it's exited
     // this clears the postData therefore hiding the post component
     const hidePostEvent = _eventListener('hide-post').subscribe(() => {
+        // clear the post id from the url
         window.history.pushState("", "", '/');
+        // clear data and hide the Post component
         postData = undefined;
     });
     // clear subscriptions
@@ -85,6 +94,7 @@
     // also post links shared on social media whatsapp/facebook will be able to render
     // the post content properly in their previews.
     if(postData) {
+        // in single post view expand all previews
         postData._expanded = true;
         title = postData.title[0];
         url = 'https://aragalaya-online.web.app/?post=' + postData.id;

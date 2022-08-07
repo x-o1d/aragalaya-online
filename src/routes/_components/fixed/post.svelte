@@ -12,11 +12,17 @@
         newsx: News,
         empty: Empty
     }
+
+    const hidePost = () => {
+        data._singlePostView = false;
+        data._expanded = true;
+        _emitEvent('hide-post');
+    }
 </script>
 
 <div 
     class="post"
-    on:click|self={() => _emitEvent('hide-post')}>
+    on:click|self={hidePost}>
     <div class="post-container">
         <svelte:component 
             this={COMPONENTS[data.type]}
