@@ -76972,8 +76972,8 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
 
 <div class="${"toolbar svelte-cnj9mu"}"><div class="${"toolbar-left svelte-cnj9mu"}"><div class="${["icon _clickable svelte-cnj9mu", data._expanded ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-down"}"></i></div>
         <div class="${["icon _clickable svelte-cnj9mu", data._singlePostView ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-right-and-down-left-from-center"}"></i></div>
-        <div class="${"icon _clickable svelte-cnj9mu"}"><a href="${"/facebook_share/?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-facebook svelte-cnj9mu"}"></i></a></div>
-        <div class="${"icon _clickable svelte-cnj9mu"}"><a href="${"/twitter_share/?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-twitter svelte-cnj9mu"}"></i></a></div></div>
+        <div class="${"icon _clickable svelte-cnj9mu"}"><a href="${"/facebook_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-facebook svelte-cnj9mu"}"></i></a></div>
+        <div class="${"icon _clickable svelte-cnj9mu"}"><a href="${"/twitter_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-twitter svelte-cnj9mu"}"></i></a></div></div>
     <div class="${"toolbar-right svelte-cnj9mu"}">${validate_component(Font, "Font").$$render($$result, {
         font: 0,
         size: 0.75,
@@ -77292,8 +77292,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    entry3 = "pages/index.svelte-8cdd8d8f.js";
-    js3 = ["pages/index.svelte-8cdd8d8f.js", "chunks/index-b4cd5e61.js", "chunks/storage-b57cabe5.js", "chunks/_commonjsHelpers-6c5e443f.js", "chunks/index-28a16b23.js", "chunks/preview-6ede56dc.js"];
+    entry3 = "pages/index.svelte-d1b2edb2.js";
+    js3 = ["pages/index.svelte-d1b2edb2.js", "chunks/index-b4cd5e61.js", "chunks/storage-b57cabe5.js", "chunks/_commonjsHelpers-6c5e443f.js", "chunks/index-28a16b23.js", "chunks/preview-6ede56dc.js"];
     css6 = ["assets/pages/index.svelte-ff08113a.css", "assets/preview-f52fb3b0.css"];
   }
 });
@@ -79896,7 +79896,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-009f65ce.js", "js": ["start-009f65ce.js", "chunks/index-b4cd5e61.js", "chunks/index-28a16b23.js"], "css": [] },
+    entry: { "file": "start-746f591c.js", "js": ["start-746f591c.js", "chunks/index-b4cd5e61.js", "chunks/index-28a16b23.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

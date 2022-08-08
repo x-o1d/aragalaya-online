@@ -1,10 +1,12 @@
 const { Translate } = require('@google-cloud/translate').v2;
 const { Firestore, FieldValue } = require('@google-cloud/firestore');
 const functions = require('firebase-functions');
-const {google} = require('googleapis');
+const { google } = require('googleapis');
 const { logger } = require("firebase-functions");
 const admin = require('firebase-admin');
 const service = google.youtube('v3');
+const { API_KEY } = require('../../sensitive/googgle-apikey');
+
 admin.initializeApp();
 
 const firestore = new Firestore();
@@ -18,7 +20,7 @@ async function getThumbnail(data) {
         if(key == 'videoId') {
             let thumbnail = await new Promise((resolve) => {
                 service.videos.list({
-                    auth: 'AIzaSyCAf9rP6dYf9aC1Zk6hGkmbZmY_K5Ml0co',
+                    auth: API_KEY,
                     part: 'snippet',
                     id: data[key],
                 }, function(err, response) {
