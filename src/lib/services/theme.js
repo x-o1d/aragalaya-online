@@ -155,6 +155,9 @@ const navSize = 60;
 // previewHeight (maintain 16:9 aspect ratio)
 const previewHeight = (columnWidth-cardSeparation-cardPadding*2)*9/16;
 
+// toolbar button size
+const toolbarButtonSize = 22;
+
 // NOTE:: make sure _getSizeConfig is called from inside an onMount() hook
 // window isn't available for SSR
 export const _getSizeConfig = () => {
@@ -166,6 +169,7 @@ export const _getSizeConfig = () => {
     let _columnWidth = columnWidth;
     let _previewHeight = previewHeight;
     let _navSize = navSize;
+    let _toolbarButtonSize = toolbarButtonSize;
 
     // scale sizes for mobile screens if screen width is smaller than 600px
     if(window && (window.innerWidth < 600)) {
@@ -175,6 +179,7 @@ export const _getSizeConfig = () => {
         _columnWidth = window.innerWidth;
         _previewHeight = (_columnWidth-cardSeparation-cardPadding*2)*9/16;
         _navSize = 50;
+        _toolbarButtonSize = 26;
     }
 
     // these parameters are automatically added as css variables in __layout.svelte
@@ -191,6 +196,7 @@ export const _getSizeConfig = () => {
         previewHeight: _previewHeight/devicePixelRatio,
         navSize: _navSize/devicePixelRatio,
         navIconSize: _navSize/3/devicePixelRatio,
+        toolbarButtonSize: _toolbarButtonSize/devicePixelRatio,
     }
 }
 

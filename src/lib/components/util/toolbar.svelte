@@ -100,8 +100,8 @@ EXAMPLE:
         align-items: center;
         justify-content: center;
 
-        width: var(--s20px);
-        height: var(--s20px);
+        width: var(--theme-toolbarbuttonsize);
+        height: var(--theme-toolbarbuttonsize);
 
         margin-right: var(--s5px);
 
