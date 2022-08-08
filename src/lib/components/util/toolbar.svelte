@@ -58,12 +58,12 @@ EXAMPLE:
             <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
         </div>
         <div class="icon _clickable">
-            <a href="/facebook_share/?post={data.id}" target="_blank">
+            <a href="/facebook_share?post={data.id}" target="_blank">
                 <i class="fa-brands fa-facebook"></i>
             </a>
         </div>
         <div class="icon _clickable">
-            <a href="/twitter_share/?post={data.id}" target="_blank">
+            <a href="/twitter_share?post={data.id}" target="_blank">
                 <i class="fa-brands fa-twitter"></i>
             </a>
         </div>
