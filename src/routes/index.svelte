@@ -25,12 +25,13 @@
     import { __handleHorizontalScroll, __handleTouchMove, __handleTouchStart, __handleVerticalScroll } from '$lib/utils/scroll';
 
     // components
-    import Nav from './_components/fixed/nav.svelte'
-    import Font from '$lib/components/display/font.svelte';
+    import Nav from './_components/fixed/nav.svelte';
     import Empty from './_components/posts/empty.svelte';
     import Bulletin from './_components/posts/bulletin.svelte';
     import News from './_components/posts/news.svelte';
     import Post from './_components/fixed/post.svelte';
+    import Font from '$lib/components/display/font.svelte';
+    import Filter from '$lib/components/util/filter.svelte';
     
     // the component of the card to be loaded for a particular column
     // data.type = component'
@@ -51,6 +52,9 @@
     // if a postId was specified in the url, the data for that post will be
     // available in this prop, this is populated by the page endpoint (./index.js)
     export let postData;
+
+    // this flag determines if a column filters are visible or not
+    let showFilters = Array(COLUMN_COUNT).fill(false);
 
     // triggered by the Toolbar component when show post button is clicked
     // this assigns the post data 
@@ -311,6 +315,13 @@
                             </Font>
                         </div>
                         <div>
+                            <!-- filter button -->
+                            <div 
+                                class='icon-button'
+                                on:click|stopPropagation={(e) => showFilters[_i] = !showFilters[_i]}>
+                                <i class="fa-solid fa-arrow-down-wide-short"></i>
+                            </div>
+                            <!-- add document button -->
                             <div 
                                 class='icon-button'
                                 on:click|stopPropagation={(e) => addDocument(e, _i)}>
@@ -319,6 +330,9 @@
                         </div>
                     </div>
                 </div>
+                <Filter 
+                    show={showFilters[_i]}
+                    columnId={_i}/>
                 <!-- column cards -->
                 <div 
                     class="cards"
@@ -382,7 +396,7 @@
         width: 100%;
         height: var(--theme-columnheaderheight);
         color: var(--theme-headerfontcolor);
-        padding: 0 var(--s15px) 0 var(--s10px);
+        padding: 0 var(--theme-cardseparationhalf) 0 var(--s10px);
         font-weight: bold;
         z-index: 2;
     }

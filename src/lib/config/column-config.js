@@ -68,8 +68,38 @@ export const COLUMNS = [
             'අවලංගු කරන්න',
             'cancel',
             'ரத்து செய்'
-        ]
+        ],
         // END - input form properties
+        // START - filter properties
+        filter: {
+            verified: true,
+            tags: [{
+                name: 'mainstream',
+                strings: [
+                    'ප්‍රධාන ධාරාවේ පුවත්',
+                    'mainstream news',
+                    'முக்கிய செய்தி'
+                ],
+                color: '#ffd492'
+            },{
+                name: 'aragala',
+                strings: [
+                    'අරගල පුවත්',
+                    'aragala news',
+                    'அரகல செய்தி'
+                ],
+                color: '#3cc1ff'
+            },{
+                name: 'economy',
+                strings: [
+                    'ආර්ථිකය',
+                    'economy',
+                    'பொருளாதாரம்'
+                ],
+                color: '#c57dff'
+            }]
+        }
+        // END - filter properties
     },
     {
         title: [

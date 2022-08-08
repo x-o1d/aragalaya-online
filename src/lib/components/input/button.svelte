@@ -9,22 +9,27 @@
     export let onclick;
     export let text;
     export let cancel;
+    export let form;
+    export let style = undefined;
+    export let fontSize = undefined
 </script>
 
 <div 
     class="button"
     class:cancel={cancel}
+    class:form={form}
+    style={style}
     on:click={async () => {
         buttonProgress = true;
         await onclick();
         buttonProgress = false;
     }}>
     {#if buttonProgress}
-        <Progress/>
+        <Progress delay={100}/>
     {:else}
         <Font
             font={0}
-            size={1}>
+            size={fontSize || 1}>
             {text[$_lang]}
         </Font>
     {/if}
@@ -35,20 +40,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-
-        height: var(--s45px);
-        width: 90%;
+        
         border-radius: var(--s5px);
         padding: var(--s5px);
         cursor: pointer;
 
         color: white;
-        font-size: 1.1rem;
-        font-weight: bold;
-
-        margin-bottom: var(--s14px);
 
         background-color: var(--theme-defaultbutton);
+    }
+    .form {
+        height: var(--s45px);
+        width: 90%;
+        margin-bottom: var(--s14px);
     }
     .cancel {
         background-color: var(--theme-cancelbutton);

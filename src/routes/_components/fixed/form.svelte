@@ -152,9 +152,11 @@
                     error={errors[_i]}/>
             {/each}
             <Button
+                form
                 onclick={submitDocument}
                 text={COLUMNS[columnIndex].submitButton}></Button>
             <Button
+                form
                 cancel
                 onclick={cancelDocument}
                 text={COLUMNS[columnIndex].cancelButton}></Button>

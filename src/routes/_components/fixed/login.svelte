@@ -202,6 +202,7 @@
             {/if}
             <!-- change onclick to a standard on:click event dispatcher -->
             <Button
+                form
                 onclick={continueEmailSignin}
                 text={_strings['continue']}/>
             <Font
