@@ -146,6 +146,9 @@
 		<div class="online">
 			.online
 		</div>
+        <div class="beta">
+            (dev-beta)
+        </div>
 	</div>
 	<ul class="header-right">
         {#if !$_isMobile}
@@ -282,6 +285,12 @@
 		font-size: var(--s18px);
 		font-family: 'Roboto', sans-serif;
 	}
+    .beta {
+        padding: var(--s5px);
+        font-size: var(--s9px);
+        font-weight: bold;
+        color: green;
+    }
 
 	.header-right li {
 		font-size: var(--s14px);

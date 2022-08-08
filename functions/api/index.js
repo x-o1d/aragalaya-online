@@ -5,7 +5,7 @@ const { google } = require('googleapis');
 const { logger } = require("firebase-functions");
 const admin = require('firebase-admin');
 const service = google.youtube('v3');
-const { API_KEY } = require('../../sensitive/googgle-apikey');
+const { API_KEY } = import('../sensitive/googgle-apikey.cjs');
 
 admin.initializeApp();
 
