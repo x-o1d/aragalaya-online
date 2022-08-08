@@ -108,7 +108,7 @@
         padding: var(--theme-cardseparationhalf) 0 0 0;
     }
     .tag {
-        border: var(--s3px) solid #a5a5a5;
+        border: var(--s2px) solid #a5a5a5;
         border-radius: var(--s3px);
         padding: 0 var(--s3px);
         margin-right: var(--s3px);
@@ -118,7 +118,7 @@
         cursor: pointer;
     }
     .selected {
-        border: var(--s3px) solid #1ea5ff;
+        border: var(--s2px) solid black;
         filter: none;
     }
     .green {
