@@ -12,7 +12,7 @@ EXAMPLE:
 --->
 <script>
     // npm modules
-    import { createEventDispatcher } from 'svelte';
+    import { createEventDispatcher, onMount } from 'svelte';
 
     // services
     import { _lang } from '$lib/services/store';
@@ -24,6 +24,12 @@ EXAMPLE:
 
     // component props
     export let data;
+
+    // check if the browser support navigator.share for sharing links
+    let navigatorShareAvailable = false;
+    onMount(() => {
+        navigatorShareAvailable = !!navigator.share;
+    })
 
     // event dispatcher
     const dispatch = createEventDispatcher();
@@ -76,6 +82,7 @@ EXAMPLE:
             on:click={shareButtonClick}>
             <i class="fa-solid fa-share-nodes"></i>
         </div>
+        {#if !navigatorShareAvailable}
         <div class="icon _clickable">
             <a href="/facebook_share?post={data.id}" target="_blank">
                 <i class="fa-brands fa-facebook"></i>
@@ -86,6 +93,7 @@ EXAMPLE:
                 <i class="fa-brands fa-twitter"></i>
             </a>
         </div>
+        {/if}
     </div>
     <div class="toolbar-right">
         <Font
