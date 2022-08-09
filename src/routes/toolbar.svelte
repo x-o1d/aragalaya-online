@@ -93,11 +93,6 @@ EXAMPLE:
                 <i class="fa-brands fa-twitter"></i>
             </a>
         </div>
-        <div class="icon _clickable">
-            <a href="/whatsapp_share?post={data.id}" target="_blank">
-                <i class="fa-brands fa-whatsapp"></i>
-            </a>
-        </div>
         {/if}
     </div>
     <div class="toolbar-right">
@@ -155,8 +150,5 @@ EXAMPLE:
     }
     .fa-twitter {
         color: #1da1f2;
-    }
-    .fa-whatsapp {
-        color: #0dc143;
     }
 </style>

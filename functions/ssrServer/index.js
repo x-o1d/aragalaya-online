@@ -5659,7 +5659,7 @@ var init_hooks_1c45ba0b = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/store-5df23960.js
+// .svelte-kit/output/server/chunks/store-5296fced.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -5701,9 +5701,9 @@ function writable2(value, start2 = noop2) {
   }
   return { set, update, subscribe: subscribe2 };
 }
-var subscriber_queue2, _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady;
-var init_store_5df23960 = __esm({
-  ".svelte-kit/output/server/chunks/store-5df23960.js"() {
+var subscriber_queue2, _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady;
+var init_store_5296fced = __esm({
+  ".svelte-kit/output/server/chunks/store-5296fced.js"() {
     init_shims();
     init_index_8ff2e117();
     subscriber_queue2 = [];
@@ -5711,6 +5711,7 @@ var init_store_5df23960 = __esm({
     _themeColorsReady = writable2(false);
     _themeSizesReady = writable2(false);
     _scaledPixelsReady = writable2(false);
+    _appContentReady = writable2(false);
   }
 });
 
@@ -55164,13 +55165,13 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/storage-cb30be93.js
+// .svelte-kit/output/server/chunks/storage-4b6c44ba.js
 var import_chroma_js, import_rxjs, events, _emitEvent, _eventListener, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, Font, css, Button;
-var init_storage_cb30be93 = __esm({
-  ".svelte-kit/output/server/chunks/storage-cb30be93.js"() {
+var init_storage_4b6c44ba = __esm({
+  ".svelte-kit/output/server/chunks/storage-4b6c44ba.js"() {
     init_shims();
     init_index_8ff2e117();
-    init_store_5df23960();
+    init_store_5296fced();
     init_column_config_844ff6fc();
     import_chroma_js = __toESM(require_chroma(), 1);
     init_dist3();
@@ -73824,9 +73825,9 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_8ff2e117();
-    init_storage_cb30be93();
+    init_storage_4b6c44ba();
     init_column_config_844ff6fc();
-    init_store_5df23960();
+    init_store_5296fced();
     init_dist5();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
     import_extension_bold = __toESM(require_tiptap_extension_bold_cjs(), 1);
@@ -74317,13 +74318,16 @@ ${``}`;
       map: null
     };
     Loader = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $$unsubscribe__appContentReady;
       let $$unsubscribe__scaledPixelsReady;
       let $$unsubscribe__themeSizesReady;
       let $$unsubscribe__themeColorsReady;
+      $$unsubscribe__appContentReady = subscribe(_appContentReady, (value) => value);
       $$unsubscribe__scaledPixelsReady = subscribe(_scaledPixelsReady, (value) => value);
       $$unsubscribe__themeSizesReady = subscribe(_themeSizesReady, (value) => value);
       $$unsubscribe__themeColorsReady = subscribe(_themeColorsReady, (value) => value);
       $$result.css.add(css$2);
+      $$unsubscribe__appContentReady();
       $$unsubscribe__scaledPixelsReady();
       $$unsubscribe__themeSizesReady();
       $$unsubscribe__themeColorsReady();
@@ -74394,7 +74398,7 @@ ${showText ? `<div class="${["toast-container svelte-15okh1n", event ? "event" :
       onDestroy(() => themeChangedEvent.unsubscribe());
       let showLanguageSelect = false;
       const globalClickEvent = _eventListener("global-click").subscribe((event) => {
-        if (event.target.id != "language-button" && event.target.parentElement.id != "language-button") {
+        if (event.target.id != "language-button" && (event.target.parentElement && event.target.parentElement.id) != "language-button") {
           showLanguageSelect = false;
         }
       });
@@ -74453,8 +74457,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-88dbacbb.js";
-    js = ["pages/__layout.svelte-88dbacbb.js", "chunks/index-99f19140.js", "chunks/_commonjsHelpers-7199bca1.js", "chunks/index-734c5de0.js", "chunks/storage-9d77b294.js"];
+    entry = "pages/__layout.svelte-9f691fe6.js";
+    js = ["pages/__layout.svelte-9f691fe6.js", "chunks/index-99f19140.js", "chunks/_commonjsHelpers-31b0d81d.js", "chunks/index-734c5de0.js", "chunks/storage-66a8dbd4.js"];
     css3 = ["assets/pages/__layout.svelte-e71d076d.css", "assets/storage-b40e8d4c.css"];
   }
 });
@@ -76543,14 +76547,14 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/preview-c670f798.js
+// .svelte-kit/output/server/chunks/preview-009d52e6.js
 var css$12, Card, strings2, Content, css5, Preview;
-var init_preview_c670f798 = __esm({
-  ".svelte-kit/output/server/chunks/preview-c670f798.js"() {
+var init_preview_009d52e6 = __esm({
+  ".svelte-kit/output/server/chunks/preview-009d52e6.js"() {
     init_shims();
     init_index_8ff2e117();
     init_string_strip_html_esm();
-    init_store_5df23960();
+    init_store_5296fced();
     css$12 = {
       code: ".card-container.svelte-sunxgf{padding:var(--theme-cardseparationhalf)}.card.svelte-sunxgf{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}",
       map: null
@@ -76757,10 +76761,10 @@ var init_index_svelte = __esm({
     init_shims();
     init_index_8ff2e117();
     init_column_config_844ff6fc();
-    init_store_5df23960();
+    init_store_5296fced();
     init_string_strip_html_esm();
-    init_storage_cb30be93();
-    init_preview_c670f798();
+    init_storage_4b6c44ba();
+    init_preview_009d52e6();
     init_dist();
     init_dist2();
     import_chroma_js3 = __toESM(require_chroma(), 1);
@@ -77126,19 +77130,20 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
       })}`;
     });
     css$32 = {
-      code: ".youtube.svelte-1oarfdn{position:relative;border-radius:var(--s3px);overflow:hidden;height:var(--theme-previewheight);width:100%}.youtube-preview.svelte-1oarfdn{filter:grayscale(0.6)}.youtube-overlay.svelte-1oarfdn{position:absolute;top:0;left:0;height:var(--theme-previewheight);width:100%;background-color:black;opacity:var(--theme-previewopacity);border-radius:3px}",
+      code: ".youtube.svelte-416ybv{position:relative;border-radius:var(--s3px);overflow:hidden;height:var(--theme-previewheight);width:100%}.youtube-preview.svelte-416ybv{background-image:var(--thumbnail);background-color:#7b7b7b;height:var(--theme-previewheight);width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;filter:grayscale(0.6)}.youtube-overlay.svelte-416ybv{position:absolute;top:0;left:0;display:flex;align-items:center;justify-content:center;color:white;font-size:var(--s35px);height:var(--theme-previewheight);width:100%;background-color:rgba(0,0,0, var(--theme-previewopacity));border-radius:3px}",
       map: null
     };
     Youtube = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let { videoId } = $$props;
+      let { data } = $$props;
       let { style = "" } = $$props;
-      if ($$props.videoId === void 0 && $$bindings.videoId && videoId !== void 0)
-        $$bindings.videoId(videoId);
+      let youtubeStyles = style + `;--thumbnail: url(${data.videoId_images && data.videoId_images[0].href})`;
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+        $$bindings.data(data);
       if ($$props.style === void 0 && $$bindings.style && style !== void 0)
         $$bindings.style(style);
       $$result.css.add(css$32);
-      return `<div class="${["youtube svelte-1oarfdn", "youtube-preview"].join(" ").trim()}"${add_attribute("style", style, 0)}><div id="${"player-" + escape(videoId)}"></div>
-    ${`<div class="${"youtube-overlay svelte-1oarfdn"}"></div>`}
+      return `<div class="${["youtube svelte-416ybv", "youtube-preview"].join(" ").trim()}"${add_attribute("style", youtubeStyles, 0)}><div id="${"player-" + escape(data.videoId)}"></div>
+    ${`<div class="${"youtube-overlay svelte-416ybv"}"><i class="${"fa-solid fa-play"}"></i></div>`}
 </div>`;
     });
     News = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -77159,7 +77164,7 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
           })}
     
     ${validate_component(Youtube, "Youtube").$$render($$result, {
-            videoId: data.videoId,
+            data,
             style: "margin-bottom: var(--s7px);"
           }, {}, {})}
     
@@ -77479,9 +77484,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    entry3 = "pages/index.svelte-37f6fbef.js";
-    js3 = ["pages/index.svelte-37f6fbef.js", "chunks/index-99f19140.js", "chunks/storage-9d77b294.js", "chunks/_commonjsHelpers-7199bca1.js", "chunks/index-734c5de0.js", "chunks/preview-93967723.js"];
-    css7 = ["assets/pages/index.svelte-dd4c1411.css", "assets/storage-b40e8d4c.css", "assets/preview-f52fb3b0.css"];
+    entry3 = "pages/index.svelte-38935e72.js";
+    js3 = ["pages/index.svelte-38935e72.js", "chunks/index-99f19140.js", "chunks/storage-66a8dbd4.js", "chunks/_commonjsHelpers-31b0d81d.js", "chunks/index-734c5de0.js", "chunks/preview-ca1cbbf9.js"];
+    css7 = ["assets/pages/index.svelte-55060bda.css", "assets/storage-b40e8d4c.css", "assets/preview-f52fb3b0.css"];
   }
 });
 
@@ -77540,9 +77545,9 @@ var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_8ff2e117();
-    init_preview_c670f798();
+    init_preview_009d52e6();
     init_string_strip_html_esm();
-    init_store_5df23960();
+    init_store_5296fced();
     css$14 = {
       code: ".proposals.svelte-vf5qjd{width:100%}",
       map: null
@@ -77616,8 +77621,8 @@ var init__5 = __esm({
     init_shims();
     init_post_preview_svelte();
     index5 = 4;
-    entry5 = "pages/post_preview.svelte-3e6b3351.js";
-    js5 = ["pages/post_preview.svelte-3e6b3351.js", "chunks/index-99f19140.js", "chunks/preview-93967723.js", "chunks/_commonjsHelpers-7199bca1.js", "chunks/index-734c5de0.js"];
+    entry5 = "pages/post_preview.svelte-27fcd338.js";
+    js5 = ["pages/post_preview.svelte-27fcd338.js", "chunks/index-99f19140.js", "chunks/preview-ca1cbbf9.js", "chunks/_commonjsHelpers-31b0d81d.js", "chunks/index-734c5de0.js"];
     css11 = ["assets/pages/post_preview.svelte-31ce9f42.css", "assets/preview-f52fb3b0.css"];
   }
 });
@@ -80083,7 +80088,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-190ebab6.js", "js": ["start-190ebab6.js", "chunks/index-99f19140.js", "chunks/index-734c5de0.js"], "css": [] },
+    entry: { "file": "start-a9f41131.js", "js": ["start-a9f41131.js", "chunks/index-99f19140.js", "chunks/index-734c5de0.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
