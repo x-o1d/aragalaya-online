@@ -77052,8 +77052,8 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
 <div class="${"toolbar svelte-svan16"}"><div class="${"toolbar-left svelte-svan16"}"><div class="${["icon _clickable svelte-svan16", data._expanded ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-down"}"></i></div>
         <div class="${["icon _clickable svelte-svan16", data._singlePostView ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-right-and-down-left-from-center"}"></i></div>
         <div class="${"icon _clickable svelte-svan16"}"><i class="${"fa-solid fa-share-nodes"}"></i></div>
-        <div class="${"icon _clickable svelte-svan16"}"><a href="${"/facebook_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-facebook svelte-svan16"}"></i></a></div>
-        <div class="${"icon _clickable svelte-svan16"}"><a href="${"/twitter_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-twitter svelte-svan16"}"></i></a></div></div>
+        ${`<div class="${"icon _clickable svelte-svan16"}"><a href="${"/facebook_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-facebook svelte-svan16"}"></i></a></div>
+        <div class="${"icon _clickable svelte-svan16"}"><a href="${"/twitter_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-twitter svelte-svan16"}"></i></a></div>`}</div>
     <div class="${"toolbar-right svelte-svan16"}">${validate_component(Font, "Font").$$render($$result, {
         font: 0,
         size: 0.75,
@@ -77479,8 +77479,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    entry3 = "pages/index.svelte-fe6df0d0.js";
-    js3 = ["pages/index.svelte-fe6df0d0.js", "chunks/index-99f19140.js", "chunks/storage-9d77b294.js", "chunks/_commonjsHelpers-7199bca1.js", "chunks/index-734c5de0.js", "chunks/preview-93967723.js"];
+    entry3 = "pages/index.svelte-37f6fbef.js";
+    js3 = ["pages/index.svelte-37f6fbef.js", "chunks/index-99f19140.js", "chunks/storage-9d77b294.js", "chunks/_commonjsHelpers-7199bca1.js", "chunks/index-734c5de0.js", "chunks/preview-93967723.js"];
     css7 = ["assets/pages/index.svelte-dd4c1411.css", "assets/storage-b40e8d4c.css", "assets/preview-f52fb3b0.css"];
   }
 });
@@ -80083,7 +80083,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-ad23b3f8.js", "js": ["start-ad23b3f8.js", "chunks/index-99f19140.js", "chunks/index-734c5de0.js"], "css": [] },
+    entry: { "file": "start-190ebab6.js", "js": ["start-190ebab6.js", "chunks/index-99f19140.js", "chunks/index-734c5de0.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

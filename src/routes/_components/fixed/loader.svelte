@@ -3,7 +3,7 @@
     import { onMount } from "svelte";
     // services
     import { _eventListener } from "$lib/services/events";
-    import { _themeColorsReady, _themeSizesReady, _scaledPixelsReady } from "$lib/services/store";
+    import { _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady } from "$lib/services/store";
     // components
     import PreloadingIndicator from "$lib/components/util/preloading-indicator.svelte";
     import Logo from "$lib/assets/logo-tiny.png"
@@ -43,6 +43,7 @@
                 }
             }
             if(fontsLoaded && 
+                normalizeCssLoaded &&
                 faV4FontFaceLoaded && 
                 faV5FontFaceLoaded && 
                 faV4ShimsLoaded && 
@@ -52,7 +53,9 @@
                 // if theme size css variables have been set
                 $_themeSizesReady &&
                 // if scaled pixel value css variables have been set
-                $_scaledPixelsReady
+                $_scaledPixelsReady &&
+                // if the window 'load' event has been fired
+                $_appContentReady
             ) {
                 setTimeout(() => {
                     loadingComplete = true;

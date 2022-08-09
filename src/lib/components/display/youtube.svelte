@@ -2,56 +2,67 @@
 	import { onMount } from 'svelte';
     import { _getSizeConfig } from '$lib/services/theme';
 
-    export let videoId;
+    export let data;
     export let style = '';
 
     let preview = true;
 
     let player;
+    let playerLoaded = false;
+    let youtubeStyles = style + `;--thumbnail: url(${data.videoId_images && data.videoId_images[0].href})`;
 
-	onMount(() => {
+    const loadPlayer = () => {
         const sizeConfig = _getSizeConfig();
-		const executeOnApi = () => {
-			if (window.YTapiReady) {
-				player = new YT.Player('player-' + videoId, {
-					height: sizeConfig.previewHeight.toString(),
-					width: (sizeConfig.columnWidth
-                            - sizeConfig.cardSeparation 
-                            - sizeConfig.cardPadding*2
-                            ).toString(),
-					videoId: videoId,
-					playerVars: {
-						playsinline: 1
-					},
-					events: {
-						onReady: () => {},
-						onStateChange: (event) => {
-                            if(event.data == 2) {
-                                preview = true;
-                            }
+        if (window.YTapiReady) {
+            playerLoaded = true;
+            player = new YT.Player('player-' + data.videoId, {
+                height: sizeConfig.previewHeight.toString(),
+                width: (sizeConfig.columnWidth
+                        - sizeConfig.cardSeparation 
+                        - sizeConfig.cardPadding*2
+                        ).toString(),
+                videoId: data.videoId,
+                playerVars: {
+                    playsinline: 1
+                },
+                events: {
+                    onReady: () => {
+                        preview = false;
+                        player.playVideo();
+                    },
+                    onStateChange: (event) => {
+                        if(event.data == 2) {
+                            preview = true;
                         }
-					}
-				});
-			} else {
-				setTimeout(executeOnApi, 100);
-			}
-		};
-		executeOnApi();
-	});
+                    }
+                }
+            });
+            
+        } else {
+            setTimeout(loadPlayer, 100);
+        }
+    };
+
 </script>
 
 <div 
     class="youtube"
     class:youtube-preview={preview}
-    style={style}>
-	<div id="player-{videoId}" />
+    style={youtubeStyles}>
+	<div id="player-{data.videoId}" />
     {#if preview}
     <div 
         class="youtube-overlay"
         on:click={() => {
-            preview = false;
-            player.playVideo();
-        }}></div>
+            if(!playerLoaded) {
+                loadPlayer();
+            } else {
+                preview = false;
+                player.playVideo();
+            }
+        }}>
+        <i class="fa-solid fa-play"></i>
+    </div>
     {/if}
 </div>
 
@@ -64,6 +75,13 @@
         width: 100%;
     }
     .youtube-preview {
+        background-image: var(--thumbnail);
+        background-color: #7b7b7b; 
+        height: var(--theme-previewheight);
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
         filter: grayscale(0.6);
     }
     .youtube-overlay {
@@ -71,11 +89,17 @@
         top: 0;
         left: 0;
 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: white;
+        font-size: var(--s35px);
+
         height: var(--theme-previewheight); 
         width: 100%;
         
-        background-color: black;
-        opacity: var(--theme-previewopacity);
+        background-color: rgba(0,0,0, var(--theme-previewopacity));
         border-radius: 3px;
     }
 </style>

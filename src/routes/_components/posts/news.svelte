@@ -28,7 +28,7 @@
     </Font>
     <!-- youtube video -->
     <Youtube 
-        videoId={data.videoId}
+        data={data}
         style="margin-bottom: var(--s7px);"/>
     <!-- title -->
     <Font 

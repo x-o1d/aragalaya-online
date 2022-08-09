@@ -3,7 +3,7 @@
 	import { onMount, onDestroy } from 'svelte';
 
     // services
-	import { _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady } from '$lib/services/store';
+	import { _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady } from '$lib/services/store';
 	import { _eventListener, _emitEvent } from '$lib/services/events';
     import { _setUserTheme } from '$lib/services/database';
     import { _themes, _fontGroups, _fontSizes, _getSizeConfig, _isMobile } from '$lib/services/theme';
@@ -109,6 +109,11 @@
         _scaledPixelsReady.set(true);
 	});
 
+    // let the Loader component know that all content and resources has been loaded
+    onMount(() => {
+        addEventListener('load', (event) => _appContentReady.set(true));
+    })
+
     // setup a global click event listener to capture any events that are not
     // blocked by stopPropogation
     onMount(() => {
@@ -123,7 +128,8 @@
     // listen to global click events and hide the language option
     const globalClickEvent = _eventListener('global-click').subscribe((event) => {
         // if the source isn't the language button hide the language options
-        if((event.target.id != 'language-button') && (event.target.parentElement.id != 'language-button')) {
+        if((event.target.id != 'language-button') && 
+            ((event.target.parentElement && event.target.parentElement.id) != 'language-button')) {
             showLanguageSelect = false;
         }
     });
