@@ -35910,10 +35910,10 @@ var init_dist2 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/column-config-844ff6fc.js
+// .svelte-kit/output/server/chunks/column-config-559bffae.js
 var firebaseConfig, app, dev, db, _createError, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord, COLUMNS, COLUMN_COUNT;
-var init_column_config_844ff6fc = __esm({
-  ".svelte-kit/output/server/chunks/column-config-844ff6fc.js"() {
+var init_column_config_559bffae = __esm({
+  ".svelte-kit/output/server/chunks/column-config-559bffae.js"() {
     init_shims();
     init_dist();
     init_dist2();
@@ -36001,11 +36001,11 @@ var init_column_config_844ff6fc = __esm({
     COLUMNS = [
       {
         title: [
-          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0DCA \u0DB4\u0DD4\u0DC0\u0DBB\u0DD4\u0DC0",
-          "Bulletin board",
-          "\u0B85\u0BB1\u0BBF\u0BB5\u0BBF\u0BAA\u0BCD\u0BAA\u0BC1 \u0BAA\u0BB2\u0B95\u0BC8"
+          "\u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+          "News",
+          "\u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
         ],
-        icon: "fa-solid fa-file-lines",
+        icon: "fa-solid fa-radio",
         height: "200px",
         type: "bulletin",
         data: {
@@ -36078,11 +36078,11 @@ var init_column_config_844ff6fc = __esm({
       },
       {
         title: [
-          "\u0DB4\u0DD4\u0DC0\u0DAD\u0DCA \u0DC3\u0DC4 \u0DC3\u0DCF\u0D9A\u0DA0\u0DCA\u0DA0\u0DCF",
-          "News & discussions",
-          "\u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF \u0BAE\u0BB1\u0BCD\u0BB1\u0BC1\u0BAE\u0BCD \u0BB5\u0BBF\u0BB5\u0BBE\u0BA4\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+          "\u0DC3\u0DCF\u0D9A\u0DA0\u0DCA\u0DA1\u0DCF",
+          "Discussions",
+          "\u0BB5\u0BBF\u0BB5\u0BBE\u0BA4\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
         ],
-        icon: "fa-solid fa-radio",
+        icon: "fa-solid fa-comments",
         height: "310px",
         type: "newsx",
         data: {
@@ -36147,13 +36147,80 @@ var init_column_config_844ff6fc = __esm({
       },
       {
         title: [
-          "\u0DB8\u0DAD \u0DC0\u0DD2\u0DB8\u0DC3\u0DD3\u0DB8\u0DCA",
-          "Polls",
-          "\u0BA4\u0BC7\u0BB0\u0BCD\u0BA4\u0BB2\u0BCD\u0B95\u0BB3\u0BCD"
+          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0DCA \u0DB4\u0DD4\u0DC0\u0DBB\u0DD4\u0DC0",
+          "Bulletin board",
+          "\u0B85\u0BB1\u0BBF\u0BB5\u0BBF\u0BAA\u0BCD\u0BAA\u0BC1 \u0BAA\u0BB2\u0B95\u0BC8"
         ],
-        icon: "fa-solid fa-check-to-slot",
+        icon: "fa-solid fa-calendar-days",
         height: "300px",
-        type: "poll"
+        type: "bulletinx",
+        data: {
+          title: {
+            type: "text",
+            maxlength: 100,
+            placeholder: [
+              "\u0DC1\u0DD3\u0DBB\u0DCA\u0DC2\u0DBA",
+              "title",
+              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
+            ],
+            required: true,
+            translate: true
+          },
+          description: {
+            type: "html",
+            maxlength: 100,
+            placeholder: [
+              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A \u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8 ",
+              "details",
+              "\u0BB5\u0BBF\u0BB5\u0BB0\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+            ],
+            required: true,
+            translate: true
+          }
+        },
+        dataFormTitle: [
+          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "Create a bulletin",
+          "\u0B92\u0BB0\u0BC1 \u0BAA\u0BC1\u0BB2\u0BCD\u0BB2\u0B9F\u0BCD\u0B9F\u0BBF\u0BA9\u0BCD \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
+        ],
+        submitButton: [
+          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "create",
+          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
+        ],
+        cancelButton: [
+          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "cancel",
+          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
+        ],
+        filter: {
+          verified: true,
+          tags: [{
+            name: "mainstream",
+            strings: [
+              "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+              "mainstream news",
+              "\u0BAE\u0BC1\u0B95\u0BCD\u0B95\u0BBF\u0BAF \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
+            ],
+            color: "#ffd492"
+          }, {
+            name: "aragala",
+            strings: [
+              "\u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+              "aragala news",
+              "\u0B85\u0BB0\u0B95\u0BB2 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
+            ],
+            color: "#3cc1ff"
+          }, {
+            name: "economy",
+            strings: [
+              "\u0D86\u0DBB\u0DCA\u0DAE\u0DD2\u0D9A\u0DBA",
+              "economy",
+              "\u0BAA\u0BCA\u0BB0\u0BC1\u0BB3\u0BBE\u0BA4\u0BBE\u0BB0\u0BAE\u0BCD"
+            ],
+            color: "#c57dff"
+          }]
+        }
       },
       {
         title: [
@@ -36161,7 +36228,7 @@ var init_column_config_844ff6fc = __esm({
           "Proposals for public comments",
           "\u0BAA\u0BCA\u0BA4\u0BC1 \u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BB3\u0BC1\u0B95\u0BCD\u0B95\u0BBE\u0BA9 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAE\u0BCA\u0BB4\u0BBF\u0BB5\u0BC1\u0B95\u0BB3\u0BCD"
         ],
-        icon: "fa-solid fa-comments",
+        icon: "fa-solid fa-file-lines",
         height: "400px",
         type: "proposal"
       },
@@ -55165,14 +55232,14 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/storage-3cc04629.js
+// .svelte-kit/output/server/chunks/storage-2ef2aebb.js
 var import_chroma_js, import_rxjs, events, _emitEvent, _eventListener, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, Font, css, Button;
-var init_storage_3cc04629 = __esm({
-  ".svelte-kit/output/server/chunks/storage-3cc04629.js"() {
+var init_storage_2ef2aebb = __esm({
+  ".svelte-kit/output/server/chunks/storage-2ef2aebb.js"() {
     init_shims();
     init_index_0ed5b273();
     init_store_8b2b8971();
-    init_column_config_844ff6fc();
+    init_column_config_559bffae();
     import_chroma_js = __toESM(require_chroma(), 1);
     init_dist3();
     init_dist4();
@@ -73825,8 +73892,8 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_0ed5b273();
-    init_storage_3cc04629();
-    init_column_config_844ff6fc();
+    init_storage_2ef2aebb();
+    init_column_config_559bffae();
     init_store_8b2b8971();
     init_dist5();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
@@ -74510,8 +74577,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-779fb82a.js";
-    js = ["pages/__layout.svelte-779fb82a.js", "chunks/index-79fab9bd.js", "chunks/_commonjsHelpers-84b88f9c.js", "chunks/index-50d34799.js", "chunks/storage-5813d573.js"];
+    entry = "pages/__layout.svelte-23690413.js";
+    js = ["pages/__layout.svelte-23690413.js", "chunks/index-79fab9bd.js", "chunks/_commonjsHelpers-84b88f9c.js", "chunks/index-50d34799.js", "chunks/storage-547b5821.js"];
     css3 = ["assets/pages/__layout.svelte-5e49a30e.css", "assets/storage-b40e8d4c.css"];
   }
 });
@@ -76813,10 +76880,10 @@ var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
     init_index_0ed5b273();
-    init_column_config_844ff6fc();
+    init_column_config_559bffae();
     init_store_8b2b8971();
     init_string_strip_html_esm();
-    init_storage_3cc04629();
+    init_storage_2ef2aebb();
     init_preview_5e06edee();
     init_dist();
     init_dist2();
@@ -77262,7 +77329,8 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
       const COMPONENTS = {
         bulletin: Bulletin,
         newsx: News,
-        empty: Empty
+        empty: Empty,
+        bulletinx: Bulletin
       };
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
@@ -77386,7 +77454,8 @@ ${show ? `<div class="${"filters svelte-12dky3y"}">${validate_component(Card, "C
       const COMPONENTS = {
         bulletin: Bulletin,
         newsx: News,
-        empty: Empty
+        empty: Empty,
+        bulletinx: Bulletin
       };
       let { columnData } = $$props;
       let { postData = void 0 } = $$props;
@@ -77538,8 +77607,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    entry3 = "pages/index.svelte-04a6832f.js";
-    js3 = ["pages/index.svelte-04a6832f.js", "chunks/index-79fab9bd.js", "chunks/storage-5813d573.js", "chunks/_commonjsHelpers-84b88f9c.js", "chunks/index-50d34799.js", "chunks/preview-5986b17c.js"];
+    entry3 = "pages/index.svelte-cb9671e1.js";
+    js3 = ["pages/index.svelte-cb9671e1.js", "chunks/index-79fab9bd.js", "chunks/storage-547b5821.js", "chunks/_commonjsHelpers-84b88f9c.js", "chunks/index-50d34799.js", "chunks/preview-5986b17c.js"];
     css7 = ["assets/pages/index.svelte-1b3250a5.css", "assets/storage-b40e8d4c.css", "assets/preview-f52fb3b0.css"];
   }
 });
@@ -77585,7 +77654,7 @@ var init__4 = __esm({
     index4 = 2;
     entry4 = "pages/facebook_share.svelte-c6c7a41c.js";
     js4 = ["pages/facebook_share.svelte-c6c7a41c.js", "chunks/index-79fab9bd.js"];
-    css9 = ["assets/pages/whatsapp_share.svelte-0ff8c91d.css"];
+    css9 = ["assets/pages/facebook_share.svelte-fc9c0eb0.css"];
   }
 });
 
@@ -77722,7 +77791,7 @@ var init__6 = __esm({
     index6 = 5;
     entry6 = "pages/twitter_share.svelte-eb83e86a.js";
     js6 = ["pages/twitter_share.svelte-eb83e86a.js", "chunks/index-79fab9bd.js"];
-    css13 = ["assets/pages/whatsapp_share.svelte-0ff8c91d.css"];
+    css13 = ["assets/pages/facebook_share.svelte-fc9c0eb0.css"];
   }
 });
 
@@ -77767,7 +77836,7 @@ var init__7 = __esm({
     index7 = 6;
     entry7 = "pages/whatsapp_share.svelte-cae4a8b2.js";
     js7 = ["pages/whatsapp_share.svelte-cae4a8b2.js", "chunks/index-79fab9bd.js"];
-    css15 = ["assets/pages/whatsapp_share.svelte-0ff8c91d.css"];
+    css15 = ["assets/pages/facebook_share.svelte-fc9c0eb0.css"];
   }
 });
 
@@ -77780,10 +77849,10 @@ var IMPLEMENTED_TYPES, get;
 var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
-    init_column_config_844ff6fc();
+    init_column_config_559bffae();
     init_dist();
     init_dist2();
-    IMPLEMENTED_TYPES = ["bulletin", "newsx"];
+    IMPLEMENTED_TYPES = ["bulletin", "newsx", "bulletinx"];
     get = async ({ url }) => {
       let postData;
       if (url.search.includes("=")) {
@@ -80212,7 +80281,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-e7225343.js", "js": ["start-e7225343.js", "chunks/index-79fab9bd.js", "chunks/index-50d34799.js"], "css": [] },
+    entry: { "file": "start-10dfe350.js", "js": ["start-10dfe350.js", "chunks/index-79fab9bd.js", "chunks/index-50d34799.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

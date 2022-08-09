@@ -43,7 +43,7 @@
         font={3}
         size={0.75}
         color="rgb(55, 55, 55);"
-        style="margin-bottom: var(--s7px);">
+        style="margin-bottom: var(--s10px);">
         {data.createdByName}
     </Font>
     <!-- description -->

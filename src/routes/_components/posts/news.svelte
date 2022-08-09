@@ -36,7 +36,7 @@
         size={1.25}
         style="
             font-weight: bold;
-            margin-bottom: var(--s3px);">
+            margin-bottom: var(--s10px);">
         <Content
             data={data}
             contentField={'title'}/>
