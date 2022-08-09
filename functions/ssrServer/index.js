@@ -77201,13 +77201,13 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
         "\u0BB5\u0B95\u0BC8\u0B95\u0BB3\u0BCD:"
       ],
       filter: [
-        "\u0DB4\u0DD9\u0DBB\u0DB1\u0DCA\u0DB1",
+        "\u0DAD\u0DDD\u0DBB\u0DB1\u0DCA\u0DB1",
         "filter",
         "\u0BB5\u0B9F\u0BBF\u0B95\u0B9F\u0BCD\u0B9F\u0BC1"
       ]
     };
     css$13 = {
-      code: ".filters.svelte-1lby608{position:relative;width:100%;padding:var(--theme-cardseparationhalf) 0 0 0}.tag.svelte-1lby608{border:var(--s3px) solid #a5a5a5;border-radius:var(--s3px);padding:0 var(--s3px);margin-right:var(--s3px);filter:grayscale(0.8)}.tag.svelte-1lby608:hover{cursor:pointer}.selected.svelte-1lby608{border:var(--s3px) solid #1ea5ff;filter:none}.green.svelte-1lby608{background-color:#9cff6f}.red.svelte-1lby608{background-color:#ff8181}.filter-button.svelte-1lby608{display:flex;justify-content:flex-end}",
+      code: ".filters.svelte-12dky3y{position:relative;width:100%;padding:var(--theme-cardseparationhalf) 0 0 0}.tag.svelte-12dky3y{border:var(--s2px) solid #a5a5a5;border-radius:var(--s3px);padding:0 var(--s3px);margin-right:var(--s3px);filter:grayscale(0.8)}.tag.svelte-12dky3y:hover{cursor:pointer}.selected.svelte-12dky3y{border:var(--s2px) solid black;filter:none}.green.svelte-12dky3y{background-color:#9cff6f}.red.svelte-12dky3y{background-color:#ff8181}.filter-button.svelte-12dky3y{display:flex;justify-content:flex-end}",
       map: null
     };
     Filter2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -77227,7 +77227,7 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
       return `
 
 
-${show ? `<div class="${"filters svelte-1lby608"}">${validate_component(Card, "Card").$$render($$result, {}, {}, {
+${show ? `<div class="${"filters svelte-12dky3y"}">${validate_component(Card, "Card").$$render($$result, {}, {}, {
         default: () => {
           return `${validate_component(Font, "Font").$$render($$result, {
             font: 1,
@@ -77244,8 +77244,8 @@ ${show ? `<div class="${"filters svelte-1lby608"}">${validate_component(Card, "C
             style: "\n                display: inline-flex;\n                margin-bottom: var(--s10px);"
           }, {}, {
             default: () => {
-              return `<span class="${["tag green svelte-1lby608", "selected"].join(" ").trim()}">${escape(strings3["verified"][$_lang])}</span>
-            <span class="${["tag red svelte-1lby608", ""].join(" ").trim()}">${escape(strings3["not_verified"][$_lang])}</span>`;
+              return `<span class="${["tag green svelte-12dky3y", "selected"].join(" ").trim()}">${escape(strings3["verified"][$_lang])}</span>
+            <span class="${["tag red svelte-12dky3y", ""].join(" ").trim()}">${escape(strings3["not_verified"][$_lang])}</span>`;
             }
           })}
         
@@ -77265,13 +77265,13 @@ ${show ? `<div class="${"filters svelte-1lby608"}">${validate_component(Card, "C
           }, {}, {
             default: () => {
               return `${each(COLUMNS[columnId].filter.tags, (tag, _i) => {
-                return `<span class="${["tag svelte-1lby608", selected[_i] ? "selected" : ""].join(" ").trim()}" style="${"background-color: " + escape(tag.color) + ";"}">${escape(tag.strings[$_lang])}
+                return `<span class="${["tag svelte-12dky3y", selected[_i] ? "selected" : ""].join(" ").trim()}" style="${"background-color: " + escape(tag.color) + ";"}">${escape(tag.strings[$_lang])}
             </span>`;
               })}`;
             }
           })}` : ``}
         
-        <div class="${"filter-button svelte-1lby608"}">${validate_component(Button, "Button").$$render($$result, {
+        <div class="${"filter-button svelte-12dky3y"}">${validate_component(Button, "Button").$$render($$result, {
             text: strings3["filter"],
             style: "\n                    display: inline-flex;\n                    width: var(--s100px);",
             fontSize: 0.8,
@@ -77445,9 +77445,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    entry3 = "pages/index.svelte-769fca9b.js";
-    js3 = ["pages/index.svelte-769fca9b.js", "chunks/index-99f19140.js", "chunks/storage-9d77b294.js", "chunks/_commonjsHelpers-7199bca1.js", "chunks/index-734c5de0.js", "chunks/preview-93967723.js"];
-    css7 = ["assets/pages/index.svelte-cc57310a.css", "assets/storage-b40e8d4c.css", "assets/preview-f52fb3b0.css"];
+    entry3 = "pages/index.svelte-b5a8e82e.js";
+    js3 = ["pages/index.svelte-b5a8e82e.js", "chunks/index-99f19140.js", "chunks/storage-9d77b294.js", "chunks/_commonjsHelpers-7199bca1.js", "chunks/index-734c5de0.js", "chunks/preview-93967723.js"];
+    css7 = ["assets/pages/index.svelte-dd4c1411.css", "assets/storage-b40e8d4c.css", "assets/preview-f52fb3b0.css"];
   }
 });
 
@@ -77492,7 +77492,7 @@ var init__4 = __esm({
     index4 = 2;
     entry4 = "pages/facebook_share.svelte-4eddb58e.js";
     js4 = ["pages/facebook_share.svelte-4eddb58e.js", "chunks/index-99f19140.js"];
-    css9 = ["assets/pages/facebook_share.svelte-fc9c0eb0.css"];
+    css9 = ["assets/pages/twitter_share.svelte-7113e60c.css"];
   }
 });
 
@@ -77629,7 +77629,7 @@ var init__6 = __esm({
     index6 = 5;
     entry6 = "pages/twitter_share.svelte-e7673f49.js";
     js6 = ["pages/twitter_share.svelte-e7673f49.js", "chunks/index-99f19140.js"];
-    css13 = ["assets/pages/facebook_share.svelte-fc9c0eb0.css"];
+    css13 = ["assets/pages/twitter_share.svelte-7113e60c.css"];
   }
 });
 
@@ -80049,7 +80049,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-e1e23738.js", "js": ["start-e1e23738.js", "chunks/index-99f19140.js", "chunks/index-734c5de0.js"], "css": [] },
+    entry: { "file": "start-62fc84bd.js", "js": ["start-62fc84bd.js", "chunks/index-99f19140.js", "chunks/index-734c5de0.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

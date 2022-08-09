@@ -41,6 +41,20 @@ EXAMPLE:
             _emitEvent('show-post', data)
         }
     }
+
+    const shareButtonClick = (e) => {
+        let link = 'https://aragalaya-online.web.app/?post=' + data.id;
+        if(navigator.share) {
+            navigator.share({url: link})
+        } else {
+            navigator.clipboard.writeText(link);
+            _emitEvent('show-toast', { 
+                text: 'Link copied!',
+                event: e
+            });
+        }
+    }
+
 </script>
 
 <div class="toolbar">
@@ -56,6 +70,11 @@ EXAMPLE:
             class:on={data._singlePostView}
             on:click={toggleSinglePostView}>
             <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+        </div>
+        <div 
+            class="icon _clickable"
+            on:click={shareButtonClick}>
+            <i class="fa-solid fa-share-nodes"></i>
         </div>
         <div class="icon _clickable">
             <a href="/facebook_share?post={data.id}" target="_blank">

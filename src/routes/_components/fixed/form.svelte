@@ -177,6 +177,8 @@
         width: 100vw;
         height: 100vh;
 
+        overflow-y: scroll;
+
         background-color: rgba(0,0,0,0.9);
     }
     .form_c {

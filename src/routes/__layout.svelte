@@ -13,6 +13,7 @@
 	import Form from './_components/fixed/form.svelte';
 	import ThemeSelector from '$lib/components/util/theme-selector.svelte';
     import Loader from './_components/fixed/loader.svelte';
+    import Toasts from './_components/fixed/toasts.svelte';
 
     // listen to if the user is signed in
     const userReady = _eventListener('user-ready');
@@ -136,6 +137,7 @@
 <Loader/>
 <Login/>
 <Form/>
+<Toasts/>
 
 <div 
 	class="header">
