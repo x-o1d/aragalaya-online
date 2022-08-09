@@ -41,7 +41,8 @@
     export const COMPONENTS = {
         bulletin: Bulletin,
         newsx: News,
-        empty: Empty
+        empty: Empty,
+        bulletinx: Bulletin,
     }
 
     // column data, this is populated by the page endpoint (./index.js)

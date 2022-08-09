@@ -10,7 +10,8 @@
     export const COMPONENTS = {
         bulletin: Bulletin,
         newsx: News,
-        empty: Empty
+        empty: Empty,
+        bulletinx: Bulletin,
     }
 
     const hidePost = () => {

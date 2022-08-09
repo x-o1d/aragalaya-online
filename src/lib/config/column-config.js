@@ -10,7 +10,10 @@
 // createdOn, createdBy and createdByName is added to each data automatically
 ////////////////////
 //   NOTE:: the actual component that's rendered in the column
-//   has to be specified in the src/routes/index.svelte (line 20) COMPONENTS object 
+//   has to be specified in:
+//   1) src/routes/index.svelte (line 20) COMPONENTS object 
+//   2) post.svelte (line 10) COMPONENTS object 
+//   3) index.js implemented types
 //   specifying it here causes some cyclic reference issues and messes up SSR
 //   we should see if there's a better solution.
 //   https://github.com/sveltejs/svelte/issues/6702
@@ -19,11 +22,11 @@ export const COLUMNS = [
     {
         // START - column properties
         title: [
-            'දැන්වීම් පුවරුව', 
-            'Bulletin board', 
-            'அறிவிப்பு பலகை'
+            'පුවත්', 
+            'News', 
+            'செய்தி'
         ],
-        icon: 'fa-solid fa-file-lines',
+        icon: 'fa-solid fa-radio',
         height: '200px',
         type: 'bulletin',
         // END - column properties
@@ -103,11 +106,11 @@ export const COLUMNS = [
     },
     {
         title: [
-            'පුවත් සහ සාකච්චා', 
-            'News & discussions', 
-            'செய்தி மற்றும் விவாதங்கள்'
+            'සාකච්ඡා', 
+            'Discussions', 
+            'விவாதங்கள்'
         ],
-        icon: 'fa-solid fa-radio',
+        icon: 'fa-solid fa-comments',
         height: '310px',
         type: 'newsx',
         // START - input form field properties
@@ -177,13 +180,86 @@ export const COLUMNS = [
     },
     {
         title: [
-            'මත විමසීම්', 
-            'Polls', 
-            'தேர்தல்கள்'
+            'දැන්වීම් පුවරුව', 
+            'Bulletin board', 
+            'அறிவிப்பு பலகை'
         ],
-        icon: 'fa-solid fa-check-to-slot',
+        icon: 'fa-solid fa-calendar-days',
         height: '300px',
-        type: 'poll',
+        type: 'bulletinx',
+        // START - input form field properties
+        data: {
+            title: {
+                type: 'text',
+                maxlength: 100,
+                placeholder: [
+                    'ශීර්ෂය',
+                    'title',
+                    'தலைப்பு'
+                ],
+                required: true,
+                translate: true,
+            },
+            description: {
+                type: 'html',
+                maxlength: 100,
+                placeholder: [
+                    'සවිස්තරාත්මක දැන්වීම ',
+                    'details',
+                    'விவரங்கள்'
+                ],
+                required: true,
+                translate: true,
+            }
+        },
+        // END - input form field properties
+        // START - input form properties
+        dataFormTitle: [
+            'දැන්වීමක් ඇතුල් කරන්න',
+            'Create a bulletin',
+            'ஒரு புல்லட்டின் உருவாக்கவும்'
+        ],
+        submitButton: [
+            'ඇතුල් කරන්න',
+            'create',
+            'உருவாக்க'
+        ],
+        cancelButton: [
+            'අවලංගු කරන්න',
+            'cancel',
+            'ரத்து செய்'
+        ],
+        // END - input form properties
+        // START - filter properties
+        filter: {
+            verified: true,
+            tags: [{
+                name: 'mainstream',
+                strings: [
+                    'ප්‍රධාන ධාරාවේ පුවත්',
+                    'mainstream news',
+                    'முக்கிய செய்தி'
+                ],
+                color: '#ffd492'
+            },{
+                name: 'aragala',
+                strings: [
+                    'අරගල පුවත්',
+                    'aragala news',
+                    'அரகல செய்தி'
+                ],
+                color: '#3cc1ff'
+            },{
+                name: 'economy',
+                strings: [
+                    'ආර්ථිකය',
+                    'economy',
+                    'பொருளாதாரம்'
+                ],
+                color: '#c57dff'
+            }]
+        }
+        // END - filter properties
     },
     {
         title: [
@@ -191,7 +267,7 @@ export const COLUMNS = [
             'Proposals for public comments', 
             'பொது கருத்துகளுக்கான முன்மொழிவுகள்'
         ],
-        icon: 'fa-solid fa-comments',
+        icon: 'fa-solid fa-file-lines',
         height: '400px',
         type: 'proposal'
     },

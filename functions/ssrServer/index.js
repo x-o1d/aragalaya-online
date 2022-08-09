@@ -5480,7 +5480,7 @@ var init_shims = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/index-8ff2e117.js
+// .svelte-kit/output/server/chunks/index-0ed5b273.js
 function noop2() {
 }
 function assign(tar, src) {
@@ -5629,8 +5629,8 @@ function add_attribute(name7, value, boolean) {
   return ` ${name7}${assignment}`;
 }
 var identity, is_client, now, raf, tasks, current_component, escaped, missing_component, on_destroy;
-var init_index_8ff2e117 = __esm({
-  ".svelte-kit/output/server/chunks/index-8ff2e117.js"() {
+var init_index_0ed5b273 = __esm({
+  ".svelte-kit/output/server/chunks/index-0ed5b273.js"() {
     init_shims();
     identity = (x3) => x3;
     is_client = typeof window !== "undefined";
@@ -5659,7 +5659,7 @@ var init_hooks_1c45ba0b = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/store-5296fced.js
+// .svelte-kit/output/server/chunks/store-8b2b8971.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -5702,10 +5702,10 @@ function writable2(value, start2 = noop2) {
   return { set, update, subscribe: subscribe2 };
 }
 var subscriber_queue2, _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady;
-var init_store_5296fced = __esm({
-  ".svelte-kit/output/server/chunks/store-5296fced.js"() {
+var init_store_8b2b8971 = __esm({
+  ".svelte-kit/output/server/chunks/store-8b2b8971.js"() {
     init_shims();
-    init_index_8ff2e117();
+    init_index_0ed5b273();
     subscriber_queue2 = [];
     _lang = writable2(0);
     _themeColorsReady = writable2(false);
@@ -55165,13 +55165,13 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/storage-ee0a6b2b.js
+// .svelte-kit/output/server/chunks/storage-3cc04629.js
 var import_chroma_js, import_rxjs, events, _emitEvent, _eventListener, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, Font, css, Button;
-var init_storage_ee0a6b2b = __esm({
-  ".svelte-kit/output/server/chunks/storage-ee0a6b2b.js"() {
+var init_storage_3cc04629 = __esm({
+  ".svelte-kit/output/server/chunks/storage-3cc04629.js"() {
     init_shims();
-    init_index_8ff2e117();
-    init_store_5296fced();
+    init_index_0ed5b273();
+    init_store_8b2b8971();
     init_column_config_844ff6fc();
     import_chroma_js = __toESM(require_chroma(), 1);
     init_dist3();
@@ -73820,14 +73820,14 @@ var layout_svelte_exports = {};
 __export(layout_svelte_exports, {
   default: () => _layout
 });
-var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_extension_link, import_chroma_js2, __defProp3, __defProps3, __getOwnPropDescs3, __getOwnPropSymbols3, __hasOwnProp3, __propIsEnum3, __defNormalProp3, __spreadValues3, __spreadProps3, strings, css$9, Text_input, css$8, Login, functions, _createPost, css$7, Tiptap_editor, css$6, Html_input, css$5, Form, css$4, Theme_selector, css$3, Preloading_indicator, Logo, css$2, Loader, css$1, Toasts, css2, _layout;
+var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_extension_link, import_chroma_js2, __defProp3, __defProps3, __getOwnPropDescs3, __getOwnPropSymbols3, __hasOwnProp3, __propIsEnum3, __defNormalProp3, __spreadValues3, __spreadProps3, strings, css$a, Text_input, css$9, Login, functions, _createPost, css$8, Tiptap_editor, css$7, Html_input, css$6, Select, css$5, Form, css$4, Theme_selector, css$3, Preloading_indicator, Logo, css$2, Loader, css$1, Toasts, css2, _layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
-    init_index_8ff2e117();
-    init_storage_ee0a6b2b();
+    init_index_0ed5b273();
+    init_storage_3cc04629();
     init_column_config_844ff6fc();
-    init_store_5296fced();
+    init_store_8b2b8971();
     init_dist5();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
     import_extension_bold = __toESM(require_tiptap_extension_bold_cjs(), 1);
@@ -73904,7 +73904,7 @@ var init_layout_svelte = __esm({
         "\u0B85\u0BB2\u0BCD\u0BB2\u0BA4\u0BC1"
       ]
     };
-    css$9 = {
+    css$a = {
       code: ".text-input.svelte-1keabnd{width:90%;margin-bottom:var(--s18px)}input.svelte-1keabnd{height:var(--s45px);width:100%;border-radius:var(--s5px);padding:var(--s10px);border:var(--s1px) solid var(--theme-defaultbutton);font-size:1rem;margin-bottom:3px}span.svelte-1keabnd{color:red}.error.svelte-1keabnd{border-width:2px;border-color:#c02e46}",
       map: null
     };
@@ -73923,7 +73923,7 @@ var init_layout_svelte = __esm({
         $$bindings.data(data);
       if ($$props.error === void 0 && $$bindings.error && error2 !== void 0)
         $$bindings.error(error2);
-      $$result.css.add(css$9);
+      $$result.css.add(css$a);
       $$unsubscribe__lang();
       return `<div class="${"text-input svelte-1keabnd"}">${validate_component(Font, "Font").$$render($$result, { font: 0, size: 1 }, {}, {
         default: () => {
@@ -73939,7 +73939,7 @@ var init_layout_svelte = __esm({
       })}
 </div>`;
     });
-    css$8 = {
+    css$9 = {
       code: ".overlay.svelte-zl2hry{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;width:100vw;height:100vh;background-color:rgba(0,0,0,0.9)}.overlay.svelte-zl2hry:hover{cursor:ne-resize}.login_c.svelte-zl2hry{width:var(--s340px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c;cursor:auto}.login.svelte-zl2hry{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s20px);width:100%;height:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}.fb-button.svelte-zl2hry{display:flex;align-items:center;justify-content:center;height:var(--s45px);width:90%;border-radius:var(--s5px);padding:var(--s5px);background-color:var(--button);cursor:pointer;color:white;font-size:1.1rem;font-weight:bold;margin-bottom:var(--s14px);font-family:'Roboto', sans-serif;font-size:var(--s13px);background-color:#0a82ec}.fa-facebook-square.svelte-zl2hry{font-size:1.3rem;margin-right:var(--s10px)}",
       map: null
     };
@@ -74032,7 +74032,7 @@ var init_layout_svelte = __esm({
         repeatPasswordError = false;
         signinOrSignup = 0;
       };
-      $$result.css.add(css$8);
+      $$result.css.add(css$9);
       $$unsubscribe__lang();
       return `${showLogin ? `<div class="${"overlay svelte-zl2hry"}"><div class="${"login_c svelte-zl2hry"}"><div class="${"login svelte-zl2hry"}">${validate_component(Font, "Font").$$render($$result, {
         font: 2,
@@ -74107,7 +74107,7 @@ var init_layout_svelte = __esm({
     _createPost = async (post) => {
       return httpsCallable(functions, "addpost")(post);
     };
-    css$7 = {
+    css$8 = {
       code: ".editor-container.svelte-1e8yveh{position:relative}.editor-mask.svelte-1e8yveh{display:flex;align-items:center;justify-content:center;position:absolute;top:0;left:0;height:100%;width:100%;color:white;background-color:black;font-size:1.5rem;opacity:0.7;border-radius:var(--s5px);z-index:10000}.editable > .ProseMirror{min-height:var(--s300px);max-height:80vh;overflow-y:auto;border-radius:var(--s5px);background-color:white;border:var(--s1px) solid var(--button);padding:var(--s10px)}.error > .ProseMirror{border:var(--s2px) solid #c02e46}button.svelte-1e8yveh{background:white;font-size:13px;border:var(--s1px) solid var(--theme-defaultbutton);padding:var(--s3px);border-radius:var(--s3px)}button.active.svelte-1e8yveh{background:black;color:white}.ProseMirror img{max-width:100%}h2{margin:var(--s10px) 0px}.ProseMirror p.is-editor-empty:first-child::before{content:attr(data-placeholder);float:left;color:#a3a3a3;pointer-events:none;height:0}",
       map: null
     };
@@ -74129,7 +74129,7 @@ var init_layout_svelte = __esm({
         $$bindings.config(config);
       if ($$props.error === void 0 && $$bindings.error && error2 !== void 0)
         $$bindings.error(error2);
-      $$result.css.add(css$7);
+      $$result.css.add(css$8);
       $$unsubscribe__lang();
       return `${``}
   
@@ -74142,7 +74142,7 @@ var init_layout_svelte = __esm({
     ${``}
 </div>`;
     });
-    css$6 = {
+    css$7 = {
       code: ".html-input.svelte-1hiixgc{width:90%;margin-bottom:var(--s18px)}span.svelte-1hiixgc{color:red}",
       map: null
     };
@@ -74156,7 +74156,7 @@ var init_layout_svelte = __esm({
         $$bindings.data(data);
       if ($$props.error === void 0 && $$bindings.error && error2 !== void 0)
         $$bindings.error(error2);
-      $$result.css.add(css$6);
+      $$result.css.add(css$7);
       return `<div class="${"html-input svelte-1hiixgc"}">${validate_component(Tiptap_editor, "TipTap").$$render($$result, {
         placeholder: config.placeholder,
         config,
@@ -74171,8 +74171,44 @@ var init_layout_svelte = __esm({
       })}</span>` : ``}
 </div>`;
     });
+    css$6 = {
+      code: ".select.svelte-1a1jwtd{position:relative;width:90%;height:var(--s45px);margin-bottom:var(--s14px)}.select-box.svelte-1a1jwtd{padding:var(--s5px);border-radius:var(--s5px);padding:var(--s10px);border:var(--s1px) solid var(--theme-defaultbutton);background-color:white}.select-options.svelte-1a1jwtd{position:absolute;top:var(--s50px);left:0;width:100%;border-radius:var(--s5px);border:var(--s1px) solid var(--theme-defaultbutton);background-color:white}.option.svelte-1a1jwtd{padding:var(--s5px);border-radius:var(--s5px)}.option.svelte-1a1jwtd:hover{cursor:pointer;background-color:aliceblue}",
+      map: null
+    };
+    Select = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $$unsubscribe__lang;
+      $$unsubscribe__lang = subscribe(_lang, (value2) => value2);
+      let { style = void 0 } = $$props;
+      let { value } = $$props;
+      let { placeholder } = $$props;
+      let { options } = $$props;
+      if (!options)
+        options = [];
+      createEventDispatcher();
+      if ($$props.style === void 0 && $$bindings.style && style !== void 0)
+        $$bindings.style(style);
+      if ($$props.value === void 0 && $$bindings.value && value !== void 0)
+        $$bindings.value(value);
+      if ($$props.placeholder === void 0 && $$bindings.placeholder && placeholder !== void 0)
+        $$bindings.placeholder(placeholder);
+      if ($$props.options === void 0 && $$bindings.options && options !== void 0)
+        $$bindings.options(options);
+      $$result.css.add(css$6);
+      $$unsubscribe__lang();
+      return `<div class="${"select svelte-1a1jwtd"}"${add_attribute("style", style, 0)}><div class="${"select-box svelte-1a1jwtd"}">${validate_component(Font, "Font").$$render($$result, {
+        font: 0,
+        size: 0.9,
+        color: value ? "black" : "#767676"
+      }, {}, {
+        default: () => {
+          return `${escape(value || placeholder)}`;
+        }
+      })}</div>
+    ${``}
+</div>`;
+    });
     css$5 = {
-      code: ".overlay.svelte-dym9ff{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;width:100vw;height:100vh;overflow-y:scroll;background-color:rgba(0,0,0,0.9)}.form_c.svelte-dym9ff{width:var(--s500px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c}.form.svelte-dym9ff{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s20px);width:100%;height:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}",
+      code: ".overlay.svelte-1633j0p{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;width:100vw;height:100vh;overflow-y:scroll;background-color:rgba(0,0,0,0.9)}.form_c.svelte-1633j0p{width:var(--s500px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c}.form.svelte-1633j0p{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s20px);width:100%;height:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}.tag.svelte-1633j0p{border:var(--s2px) solid #a5a5a5;border-radius:var(--s3px);padding:0 var(--s3px);margin-right:var(--s3px)}.tag.svelte-1633j0p:hover{cursor:pointer}",
       map: null
     };
     Form = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -74233,6 +74269,8 @@ var init_layout_svelte = __esm({
         data = {};
         showForm = false;
       };
+      let tags = COLUMNS[columnIndex].filter && COLUMNS[columnIndex].filter.tags;
+      let selectedTags = [];
       $$result.css.add(css$5);
       fields = Object.keys(COLUMNS[columnIndex].data);
       fieldConfigs = fields.map((f5) => {
@@ -74248,7 +74286,7 @@ var init_layout_svelte = __esm({
       });
       errors = Array(fields.length).fill(false);
       $$unsubscribe__lang();
-      return `${showForm ? `<div class="${"overlay svelte-dym9ff"}"><div class="${"form_c svelte-dym9ff"}"><div class="${"form svelte-dym9ff"}">${validate_component(Font, "Font").$$render($$result, {
+      return `${showForm ? `<div class="${"overlay svelte-1633j0p"}"><div class="${"form_c svelte-1633j0p"}"><div class="${"form svelte-1633j0p"}">${validate_component(Font, "Font").$$render($$result, {
         font: 2,
         size: 1.3,
         color: "black",
@@ -74258,7 +74296,6 @@ var init_layout_svelte = __esm({
           return `${escape(COLUMNS[columnIndex].dataFormTitle[$_lang])}`;
         }
       })}
-            
             ${each(fields, (field, _i) => {
         return `${validate_component(COMPONENTS[fieldConfigs[_i].type] || missing_component, "svelte:component").$$render($$result, {
           config: fieldConfigs[_i],
@@ -74266,6 +74303,22 @@ var init_layout_svelte = __esm({
           error: errors[_i]
         }, {}, {})}`;
       })}
+            ${validate_component(Font, "Font").$$render($$result, {
+        font: 0,
+        size: 0.75,
+        style: "\n                    display: inline-flex;\n                    margin-bottom: var(--s10px);\n                    width: calc(90% - 4px);"
+      }, {}, {
+        default: () => {
+          return `${each(selectedTags, (tag, _i) => {
+            return `<span class="${"tag svelte-1633j0p"}" style="${"background-color: " + escape(tag.color) + ";"}">${escape(tag.strings[$_lang])}
+                </span>`;
+          })}`;
+        }
+      })}
+            ${validate_component(Select, "Select").$$render($$result, {
+        placeholder: "select tags",
+        options: tags
+      }, {}, {})}
             ${validate_component(Button, "Button").$$render($$result, {
         form: true,
         onclick: submitDocument,
@@ -74457,9 +74510,9 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-591405b0.js";
-    js = ["pages/__layout.svelte-591405b0.js", "chunks/index-99f19140.js", "chunks/_commonjsHelpers-31b0d81d.js", "chunks/index-734c5de0.js", "chunks/storage-091a76bf.js"];
-    css3 = ["assets/pages/__layout.svelte-e71d076d.css", "assets/storage-b40e8d4c.css"];
+    entry = "pages/__layout.svelte-779fb82a.js";
+    js = ["pages/__layout.svelte-779fb82a.js", "chunks/index-79fab9bd.js", "chunks/_commonjsHelpers-84b88f9c.js", "chunks/index-50d34799.js", "chunks/storage-5813d573.js"];
+    css3 = ["assets/pages/__layout.svelte-5e49a30e.css", "assets/storage-b40e8d4c.css"];
   }
 });
 
@@ -74476,7 +74529,7 @@ var Error2;
 var init_error_svelte = __esm({
   ".svelte-kit/output/server/entries/fallbacks/error.svelte.js"() {
     init_shims();
-    init_index_8ff2e117();
+    init_index_0ed5b273();
     Error2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { status } = $$props;
       let { error: error2 } = $$props;
@@ -74511,8 +74564,8 @@ var init__2 = __esm({
     init_shims();
     init_error_svelte();
     index2 = 1;
-    entry2 = "error.svelte-0f8cadf2.js";
-    js2 = ["error.svelte-0f8cadf2.js", "chunks/index-99f19140.js"];
+    entry2 = "error.svelte-ffb0dcd7.js";
+    js2 = ["error.svelte-ffb0dcd7.js", "chunks/index-79fab9bd.js"];
     css4 = [];
   }
 });
@@ -76547,14 +76600,14 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/preview-009d52e6.js
+// .svelte-kit/output/server/chunks/preview-5e06edee.js
 var css$12, Card, strings2, Content, css5, Preview;
-var init_preview_009d52e6 = __esm({
-  ".svelte-kit/output/server/chunks/preview-009d52e6.js"() {
+var init_preview_5e06edee = __esm({
+  ".svelte-kit/output/server/chunks/preview-5e06edee.js"() {
     init_shims();
-    init_index_8ff2e117();
+    init_index_0ed5b273();
     init_string_strip_html_esm();
-    init_store_5296fced();
+    init_store_8b2b8971();
     css$12 = {
       code: ".card-container.svelte-sunxgf{padding:var(--theme-cardseparationhalf)}.card.svelte-sunxgf{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}",
       map: null
@@ -76759,12 +76812,12 @@ var import_chroma_js3, css$72, Nav, css$62, Empty, strings$3, Timestamp2, string
 var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
-    init_index_8ff2e117();
+    init_index_0ed5b273();
     init_column_config_844ff6fc();
-    init_store_5296fced();
+    init_store_8b2b8971();
     init_string_strip_html_esm();
-    init_storage_ee0a6b2b();
-    init_preview_009d52e6();
+    init_storage_3cc04629();
+    init_preview_5e06edee();
     init_dist();
     init_dist2();
     import_chroma_js3 = __toESM(require_chroma(), 1);
@@ -77038,7 +77091,7 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
       ]
     };
     css$42 = {
-      code: ".toolbar.svelte-i0t80m{display:flex;align-items:center;justify-content:space-between;margin-top:var(--s10px)}.toolbar-left.svelte-i0t80m{display:inline-flex}.toolbar-right.svelte-i0t80m{display:inline-flex;align-items:center}.icon.svelte-i0t80m{display:inline-flex;align-items:center;justify-content:center;width:var(--theme-toolbarbuttonsize);height:var(--theme-toolbarbuttonsize);margin-right:var(--s5px);font-size:var(--s13px);background-color:rgb(226, 230, 230);border-radius:3px}.on.svelte-i0t80m{background-color:rgb(124, 124, 124);color:white}.verified.svelte-i0t80m{background-color:#85e757;color:white;margin-right:0}.facebook.svelte-i0t80m{background-color:#557bab}.twitter.svelte-i0t80m{background-color:#6abef2}.whatsapp.svelte-i0t80m{background-color:#61ba7b}.fa-brands.svelte-i0t80m{color:white}",
+      code: ".toolbar.svelte-9nmzu0{display:flex;align-items:center;justify-content:space-between;margin-top:var(--s10px)}.toolbar-left.svelte-9nmzu0{display:inline-flex}.toolbar-right.svelte-9nmzu0{display:inline-flex;align-items:center}.icon.svelte-9nmzu0{display:inline-flex;align-items:center;justify-content:center;width:var(--theme-toolbarbuttonsize);height:var(--theme-toolbarbuttonsize);margin-right:var(--s5px);font-size:var(--s13px);line-height:var(--s14px);background-color:rgb(226, 230, 230);border-radius:3px}.on.svelte-9nmzu0{background-color:rgb(124, 124, 124);color:white}.verified.svelte-9nmzu0{background-color:#48bb6b;color:white;margin-right:0}.facebook.svelte-9nmzu0{background-color:#557bab}.twitter.svelte-9nmzu0{background-color:#6abef2}.whatsapp.svelte-9nmzu0{background-color:#61ba7b}.fa-brands.svelte-9nmzu0{color:white}",
       map: null
     };
     Toolbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -77053,13 +77106,13 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
       return `
 
 
-<div class="${"toolbar svelte-i0t80m"}"><div class="${"toolbar-left svelte-i0t80m"}"><div class="${["icon _clickable svelte-i0t80m", data._expanded ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-down"}"></i></div>
-        <div class="${["icon _clickable svelte-i0t80m", data._singlePostView ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-right-and-down-left-from-center"}"></i></div>
-        <div class="${"icon _clickable svelte-i0t80m"}"><i class="${"fa-solid fa-share-nodes"}"></i></div>
-        ${`<div class="${"icon facebook _clickable svelte-i0t80m"}"><a href="${"/facebook_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-facebook svelte-i0t80m"}"></i></a></div>
-        <div class="${"icon twitter _clickable svelte-i0t80m"}"><a href="${"/twitter_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-twitter svelte-i0t80m"}"></i></a></div>
-        <div class="${"icon whatsapp _clickable svelte-i0t80m"}"><a href="${"/whatsapp_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-whatsapp svelte-i0t80m"}"></i></a></div>`}</div>
-    <div class="${"toolbar-right svelte-i0t80m"}">${validate_component(Font, "Font").$$render($$result, {
+<div class="${"toolbar svelte-9nmzu0"}"><div class="${"toolbar-left svelte-9nmzu0"}"><div class="${["icon _clickable svelte-9nmzu0", data._expanded ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-down"}"></i></div>
+        <div class="${["icon _clickable svelte-9nmzu0", data._singlePostView ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-right-and-down-left-from-center"}"></i></div>
+        <div class="${"icon _clickable svelte-9nmzu0"}"><i class="${"fa-solid fa-share-nodes"}"></i></div>
+        ${`<div class="${"icon facebook _clickable svelte-9nmzu0"}"><a href="${"/facebook_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-facebook svelte-9nmzu0"}"></i></a></div>
+        <div class="${"icon twitter _clickable svelte-9nmzu0"}"><a href="${"/twitter_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-twitter svelte-9nmzu0"}"></i></a></div>
+        <div class="${"icon whatsapp _clickable svelte-9nmzu0"}"><a href="${"/whatsapp_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-whatsapp svelte-9nmzu0"}"></i></a></div>`}</div>
+    <div class="${"toolbar-right svelte-9nmzu0"}">${validate_component(Font, "Font").$$render($$result, {
         font: 0,
         size: 0.75,
         style: "margin-right: var(--s5px);"
@@ -77068,7 +77121,7 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
           return `${escape(strings$1["verified"][$_lang])}`;
         }
       })}
-        <div class="${"icon verified svelte-i0t80m"}"><i class="${"fa-solid fa-check"}"></i></div></div>
+        <div class="${"icon verified svelte-9nmzu0"}"><i class="${"fa-solid fa-check"}"></i></div></div>
 </div>`;
     });
     Bulletin = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -77485,9 +77538,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    entry3 = "pages/index.svelte-a96082d3.js";
-    js3 = ["pages/index.svelte-a96082d3.js", "chunks/index-99f19140.js", "chunks/storage-091a76bf.js", "chunks/_commonjsHelpers-31b0d81d.js", "chunks/index-734c5de0.js", "chunks/preview-ca1cbbf9.js"];
-    css7 = ["assets/pages/index.svelte-4d3811c1.css", "assets/storage-b40e8d4c.css", "assets/preview-f52fb3b0.css"];
+    entry3 = "pages/index.svelte-04a6832f.js";
+    js3 = ["pages/index.svelte-04a6832f.js", "chunks/index-79fab9bd.js", "chunks/storage-5813d573.js", "chunks/_commonjsHelpers-84b88f9c.js", "chunks/index-50d34799.js", "chunks/preview-5986b17c.js"];
+    css7 = ["assets/pages/index.svelte-1b3250a5.css", "assets/storage-b40e8d4c.css", "assets/preview-f52fb3b0.css"];
   }
 });
 
@@ -77500,7 +77553,7 @@ var css8, Facebook_share;
 var init_facebook_share_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/facebook_share.svelte.js"() {
     init_shims();
-    init_index_8ff2e117();
+    init_index_0ed5b273();
     css8 = {
       code: ".facebook-share.svelte-foqk6f{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}",
       map: null
@@ -77530,9 +77583,9 @@ var init__4 = __esm({
     init_shims();
     init_facebook_share_svelte();
     index4 = 2;
-    entry4 = "pages/facebook_share.svelte-4eddb58e.js";
-    js4 = ["pages/facebook_share.svelte-4eddb58e.js", "chunks/index-99f19140.js"];
-    css9 = ["assets/pages/facebook_share.svelte-fc9c0eb0.css"];
+    entry4 = "pages/facebook_share.svelte-c6c7a41c.js";
+    js4 = ["pages/facebook_share.svelte-c6c7a41c.js", "chunks/index-79fab9bd.js"];
+    css9 = ["assets/pages/whatsapp_share.svelte-0ff8c91d.css"];
   }
 });
 
@@ -77545,10 +77598,10 @@ var css$14, Proposals, css10, Post_preview;
 var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
-    init_index_8ff2e117();
-    init_preview_009d52e6();
+    init_index_0ed5b273();
+    init_preview_5e06edee();
     init_string_strip_html_esm();
-    init_store_5296fced();
+    init_store_8b2b8971();
     css$14 = {
       code: ".proposals.svelte-vf5qjd{width:100%}",
       map: null
@@ -77622,8 +77675,8 @@ var init__5 = __esm({
     init_shims();
     init_post_preview_svelte();
     index5 = 4;
-    entry5 = "pages/post_preview.svelte-27fcd338.js";
-    js5 = ["pages/post_preview.svelte-27fcd338.js", "chunks/index-99f19140.js", "chunks/preview-ca1cbbf9.js", "chunks/_commonjsHelpers-31b0d81d.js", "chunks/index-734c5de0.js"];
+    entry5 = "pages/post_preview.svelte-8a363548.js";
+    js5 = ["pages/post_preview.svelte-8a363548.js", "chunks/index-79fab9bd.js", "chunks/preview-5986b17c.js", "chunks/_commonjsHelpers-84b88f9c.js", "chunks/index-50d34799.js"];
     css11 = ["assets/pages/post_preview.svelte-31ce9f42.css", "assets/preview-f52fb3b0.css"];
   }
 });
@@ -77637,7 +77690,7 @@ var css12, Twitter_share;
 var init_twitter_share_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/twitter_share.svelte.js"() {
     init_shims();
-    init_index_8ff2e117();
+    init_index_0ed5b273();
     css12 = {
       code: ".facebook-share.svelte-foqk6f{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}",
       map: null
@@ -77667,9 +77720,9 @@ var init__6 = __esm({
     init_shims();
     init_twitter_share_svelte();
     index6 = 5;
-    entry6 = "pages/twitter_share.svelte-e7673f49.js";
-    js6 = ["pages/twitter_share.svelte-e7673f49.js", "chunks/index-99f19140.js"];
-    css13 = ["assets/pages/facebook_share.svelte-fc9c0eb0.css"];
+    entry6 = "pages/twitter_share.svelte-eb83e86a.js";
+    js6 = ["pages/twitter_share.svelte-eb83e86a.js", "chunks/index-79fab9bd.js"];
+    css13 = ["assets/pages/whatsapp_share.svelte-0ff8c91d.css"];
   }
 });
 
@@ -77682,7 +77735,7 @@ var css14, Whatsapp_share;
 var init_whatsapp_share_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/whatsapp_share.svelte.js"() {
     init_shims();
-    init_index_8ff2e117();
+    init_index_0ed5b273();
     css14 = {
       code: ".facebook-share.svelte-foqk6f{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}",
       map: null
@@ -77712,9 +77765,9 @@ var init__7 = __esm({
     init_shims();
     init_whatsapp_share_svelte();
     index7 = 6;
-    entry7 = "pages/whatsapp_share.svelte-ef0c0ff5.js";
-    js7 = ["pages/whatsapp_share.svelte-ef0c0ff5.js", "chunks/index-99f19140.js"];
-    css15 = ["assets/pages/facebook_share.svelte-fc9c0eb0.css"];
+    entry7 = "pages/whatsapp_share.svelte-cae4a8b2.js";
+    js7 = ["pages/whatsapp_share.svelte-cae4a8b2.js", "chunks/index-79fab9bd.js"];
+    css15 = ["assets/pages/whatsapp_share.svelte-0ff8c91d.css"];
   }
 });
 
@@ -77846,7 +77899,7 @@ init_shims();
 
 // .svelte-kit/output/server/index.js
 init_shims();
-init_index_8ff2e117();
+init_index_0ed5b273();
 var __defProp2 = Object.defineProperty;
 var __defProps2 = Object.defineProperties;
 var __getOwnPropDescs2 = Object.getOwnPropertyDescriptors;
@@ -80159,7 +80212,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-10f2fa20.js", "js": ["start-10f2fa20.js", "chunks/index-99f19140.js", "chunks/index-734c5de0.js"], "css": [] },
+    entry: { "file": "start-e7225343.js", "js": ["start-e7225343.js", "chunks/index-79fab9bd.js", "chunks/index-50d34799.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
