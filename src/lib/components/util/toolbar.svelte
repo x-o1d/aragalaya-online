@@ -83,17 +83,17 @@ EXAMPLE:
             <i class="fa-solid fa-share-nodes"></i>
         </div>
         {#if !navigatorShareAvailable}
-        <div class="icon _clickable">
+        <div class="icon facebook _clickable">
             <a href="/facebook_share?post={data.id}" target="_blank">
                 <i class="fa-brands fa-facebook"></i>
             </a>
         </div>
-        <div class="icon _clickable">
+        <div class="icon twitter _clickable">
             <a href="/twitter_share?post={data.id}" target="_blank">
                 <i class="fa-brands fa-twitter"></i>
             </a>
         </div>
-        <div class="icon _clickable">
+        <div class="icon whatsapp _clickable">
             <a href="/whatsapp_share?post={data.id}" target="_blank">
                 <i class="fa-brands fa-whatsapp"></i>
             </a>
@@ -150,13 +150,16 @@ EXAMPLE:
         color: white;
         margin-right: 0;
     }
-    .fa-facebook {
-        color: #165baf;
+    .facebook {
+        background-color: #587ba7;
     }
-    .fa-twitter {
-        color: #1da1f2;
+    .twitter {
+        background-color: #7cc5f2;
     }
-    .fa-whatsapp {
-        color: #0dc143;
+    .whatsapp {
+        background-color: #6cca89;
+    }
+    .fa-brands {
+        color: white;
     }
 </style>

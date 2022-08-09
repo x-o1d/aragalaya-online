@@ -51,7 +51,7 @@
 
     // if a postId was specified in the url, the data for that post will be
     // available in this prop, this is populated by the page endpoint (./index.js)
-    export let postData;
+    export let postData = undefined;
 
     // this flag determines if a column filters are visible or not
     let showFilters = Array(COLUMN_COUNT).fill(false);

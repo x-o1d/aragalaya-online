@@ -156,7 +156,7 @@ const navSize = 60;
 const previewHeight = (columnWidth-cardSeparation-cardPadding*2)*9/16;
 
 // toolbar button size
-const toolbarButtonSize = 22;
+const toolbarButtonSize = 20;
 
 // NOTE:: make sure _getSizeConfig is called from inside an onMount() hook
 // window isn't available for SSR
