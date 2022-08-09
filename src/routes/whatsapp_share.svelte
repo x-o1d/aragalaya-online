@@ -4,8 +4,14 @@
     export let postId;
 
     onMount(() => {
-        let redirectURL = `https://web.whatsapp.com/send?text=https%3A%2F%2Faragalaya-online.web.app%2F%3Fpost%3D${postId}`;
+        let redirectURL = `whatsapp://send?text=https%3A%2F%2Faragalaya-online.web.app%2F%3Fpost%3D${postId}`;
         location.href = redirectURL;
+        if(location.href.includes('whatsapp_share?post')) {
+            location.href = `https://web.whatsapp.com/send?text=https%3A%2F%2Faragalaya-online.web.app%2F%3Fpost%3D${postId}`;
+        } else {
+            window.opener = self;
+            window.close();
+        }
     });
 </script>
 

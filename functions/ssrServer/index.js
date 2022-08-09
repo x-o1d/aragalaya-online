@@ -55165,10 +55165,10 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/storage-4b6c44ba.js
+// .svelte-kit/output/server/chunks/storage-ee0a6b2b.js
 var import_chroma_js, import_rxjs, events, _emitEvent, _eventListener, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, Font, css, Button;
-var init_storage_4b6c44ba = __esm({
-  ".svelte-kit/output/server/chunks/storage-4b6c44ba.js"() {
+var init_storage_ee0a6b2b = __esm({
+  ".svelte-kit/output/server/chunks/storage-ee0a6b2b.js"() {
     init_shims();
     init_index_8ff2e117();
     init_store_5296fced();
@@ -55268,7 +55268,7 @@ var init_storage_4b6c44ba = __esm({
     cardPadding = 10;
     navSize = 60;
     previewHeight = (columnWidth - cardSeparation - cardPadding * 2) * 9 / 16;
-    toolbarButtonSize = 22;
+    toolbarButtonSize = 20;
     _getSizeConfig = () => {
       let devicePixelRatio = window && window.innerWidth > 600 ? window.devicePixelRatio : 1;
       let _columnWidth = columnWidth;
@@ -73825,7 +73825,7 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_8ff2e117();
-    init_storage_4b6c44ba();
+    init_storage_ee0a6b2b();
     init_column_config_844ff6fc();
     init_store_5296fced();
     init_dist5();
@@ -74457,8 +74457,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    entry = "pages/__layout.svelte-9f691fe6.js";
-    js = ["pages/__layout.svelte-9f691fe6.js", "chunks/index-99f19140.js", "chunks/_commonjsHelpers-31b0d81d.js", "chunks/index-734c5de0.js", "chunks/storage-66a8dbd4.js"];
+    entry = "pages/__layout.svelte-591405b0.js";
+    js = ["pages/__layout.svelte-591405b0.js", "chunks/index-99f19140.js", "chunks/_commonjsHelpers-31b0d81d.js", "chunks/index-734c5de0.js", "chunks/storage-091a76bf.js"];
     css3 = ["assets/pages/__layout.svelte-e71d076d.css", "assets/storage-b40e8d4c.css"];
   }
 });
@@ -76763,7 +76763,7 @@ var init_index_svelte = __esm({
     init_column_config_844ff6fc();
     init_store_5296fced();
     init_string_strip_html_esm();
-    init_storage_4b6c44ba();
+    init_storage_ee0a6b2b();
     init_preview_009d52e6();
     init_dist();
     init_dist2();
@@ -77038,7 +77038,7 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
       ]
     };
     css$42 = {
-      code: ".toolbar.svelte-1iockcg{display:flex;align-items:center;justify-content:space-between;margin-top:var(--s10px)}.toolbar-left.svelte-1iockcg{display:inline-flex}.toolbar-right.svelte-1iockcg{display:inline-flex;align-items:center}.icon.svelte-1iockcg{display:inline-flex;align-items:center;justify-content:center;width:var(--theme-toolbarbuttonsize);height:var(--theme-toolbarbuttonsize);margin-right:var(--s5px);font-size:var(--s13px);background-color:rgb(226, 230, 230);border-radius:3px}.on.svelte-1iockcg{background-color:rgb(124, 124, 124);color:white}.verified.svelte-1iockcg{background-color:#85e757;color:white;margin-right:0}.fa-facebook.svelte-1iockcg{color:#165baf}.fa-twitter.svelte-1iockcg{color:#1da1f2}.fa-whatsapp.svelte-1iockcg{color:#0dc143}",
+      code: ".toolbar.svelte-1g49cr9{display:flex;align-items:center;justify-content:space-between;margin-top:var(--s10px)}.toolbar-left.svelte-1g49cr9{display:inline-flex}.toolbar-right.svelte-1g49cr9{display:inline-flex;align-items:center}.icon.svelte-1g49cr9{display:inline-flex;align-items:center;justify-content:center;width:var(--theme-toolbarbuttonsize);height:var(--theme-toolbarbuttonsize);margin-right:var(--s5px);font-size:var(--s13px);background-color:rgb(226, 230, 230);border-radius:3px}.on.svelte-1g49cr9{background-color:rgb(124, 124, 124);color:white}.verified.svelte-1g49cr9{background-color:#85e757;color:white;margin-right:0}.facebook.svelte-1g49cr9{background-color:#587ba7}.twitter.svelte-1g49cr9{background-color:#7cc5f2}.whatsapp.svelte-1g49cr9{background-color:#6cca89}.fa-brands.svelte-1g49cr9{color:white}",
       map: null
     };
     Toolbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -77053,13 +77053,13 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
       return `
 
 
-<div class="${"toolbar svelte-1iockcg"}"><div class="${"toolbar-left svelte-1iockcg"}"><div class="${["icon _clickable svelte-1iockcg", data._expanded ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-down"}"></i></div>
-        <div class="${["icon _clickable svelte-1iockcg", data._singlePostView ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-right-and-down-left-from-center"}"></i></div>
-        <div class="${"icon _clickable svelte-1iockcg"}"><i class="${"fa-solid fa-share-nodes"}"></i></div>
-        ${`<div class="${"icon _clickable svelte-1iockcg"}"><a href="${"/facebook_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-facebook svelte-1iockcg"}"></i></a></div>
-        <div class="${"icon _clickable svelte-1iockcg"}"><a href="${"/twitter_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-twitter svelte-1iockcg"}"></i></a></div>
-        <div class="${"icon _clickable svelte-1iockcg"}"><a href="${"/whatsapp_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-whatsapp svelte-1iockcg"}"></i></a></div>`}</div>
-    <div class="${"toolbar-right svelte-1iockcg"}">${validate_component(Font, "Font").$$render($$result, {
+<div class="${"toolbar svelte-1g49cr9"}"><div class="${"toolbar-left svelte-1g49cr9"}"><div class="${["icon _clickable svelte-1g49cr9", data._expanded ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-down"}"></i></div>
+        <div class="${["icon _clickable svelte-1g49cr9", data._singlePostView ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-right-and-down-left-from-center"}"></i></div>
+        <div class="${"icon _clickable svelte-1g49cr9"}"><i class="${"fa-solid fa-share-nodes"}"></i></div>
+        ${`<div class="${"icon facebook _clickable svelte-1g49cr9"}"><a href="${"/facebook_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-facebook svelte-1g49cr9"}"></i></a></div>
+        <div class="${"icon twitter _clickable svelte-1g49cr9"}"><a href="${"/twitter_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-twitter svelte-1g49cr9"}"></i></a></div>
+        <div class="${"icon whatsapp _clickable svelte-1g49cr9"}"><a href="${"/whatsapp_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-whatsapp svelte-1g49cr9"}"></i></a></div>`}</div>
+    <div class="${"toolbar-right svelte-1g49cr9"}">${validate_component(Font, "Font").$$render($$result, {
         font: 0,
         size: 0.75,
         style: "margin-right: var(--s5px);"
@@ -77068,7 +77068,7 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
           return `${escape(strings$1["verified"][$_lang])}`;
         }
       })}
-        <div class="${"icon verified svelte-1iockcg"}"><i class="${"fa-solid fa-check"}"></i></div></div>
+        <div class="${"icon verified svelte-1g49cr9"}"><i class="${"fa-solid fa-check"}"></i></div></div>
 </div>`;
     });
     Bulletin = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -77336,7 +77336,7 @@ ${show ? `<div class="${"filters svelte-12dky3y"}">${validate_component(Card, "C
         empty: Empty
       };
       let { columnData } = $$props;
-      let { postData } = $$props;
+      let { postData = void 0 } = $$props;
       let showFilters = Array(COLUMN_COUNT).fill(false);
       const showPostEvent = _eventListener("show-post").subscribe((data) => {
         window.history.pushState("", "", `/?post=${data.id}`);
@@ -77485,9 +77485,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    entry3 = "pages/index.svelte-fe384916.js";
-    js3 = ["pages/index.svelte-fe384916.js", "chunks/index-99f19140.js", "chunks/storage-66a8dbd4.js", "chunks/_commonjsHelpers-31b0d81d.js", "chunks/index-734c5de0.js", "chunks/preview-ca1cbbf9.js"];
-    css7 = ["assets/pages/index.svelte-ec74db71.css", "assets/storage-b40e8d4c.css", "assets/preview-f52fb3b0.css"];
+    entry3 = "pages/index.svelte-364a7cda.js";
+    js3 = ["pages/index.svelte-364a7cda.js", "chunks/index-99f19140.js", "chunks/storage-091a76bf.js", "chunks/_commonjsHelpers-31b0d81d.js", "chunks/index-734c5de0.js", "chunks/preview-ca1cbbf9.js"];
+    css7 = ["assets/pages/index.svelte-cd327c3e.css", "assets/storage-b40e8d4c.css", "assets/preview-f52fb3b0.css"];
   }
 });
 
@@ -77532,7 +77532,7 @@ var init__4 = __esm({
     index4 = 2;
     entry4 = "pages/facebook_share.svelte-4eddb58e.js";
     js4 = ["pages/facebook_share.svelte-4eddb58e.js", "chunks/index-99f19140.js"];
-    css9 = ["assets/pages/facebook_share.svelte-fc9c0eb0.css"];
+    css9 = ["assets/pages/twitter_share.svelte-7113e60c.css"];
   }
 });
 
@@ -77669,7 +77669,7 @@ var init__6 = __esm({
     index6 = 5;
     entry6 = "pages/twitter_share.svelte-e7673f49.js";
     js6 = ["pages/twitter_share.svelte-e7673f49.js", "chunks/index-99f19140.js"];
-    css13 = ["assets/pages/facebook_share.svelte-fc9c0eb0.css"];
+    css13 = ["assets/pages/twitter_share.svelte-7113e60c.css"];
   }
 });
 
@@ -77714,7 +77714,7 @@ var init__7 = __esm({
     index7 = 6;
     entry7 = "pages/whatsapp_share.svelte-70550d5d.js";
     js7 = ["pages/whatsapp_share.svelte-70550d5d.js", "chunks/index-99f19140.js"];
-    css15 = ["assets/pages/facebook_share.svelte-fc9c0eb0.css"];
+    css15 = ["assets/pages/twitter_share.svelte-7113e60c.css"];
   }
 });
 
@@ -80159,7 +80159,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-cfd10428.js", "js": ["start-cfd10428.js", "chunks/index-99f19140.js", "chunks/index-734c5de0.js"], "css": [] },
+    entry: { "file": "start-534e1f3e.js", "js": ["start-534e1f3e.js", "chunks/index-99f19140.js", "chunks/index-734c5de0.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
