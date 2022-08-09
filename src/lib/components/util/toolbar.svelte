@@ -138,6 +138,8 @@ EXAMPLE:
         margin-right: var(--s5px);
 
         font-size: var(--s13px);
+        line-height: var(--s14px);
+
         background-color: rgb(226, 230, 230);
         border-radius: 3px;
     }
@@ -146,18 +148,18 @@ EXAMPLE:
         color: white;
     }
     .verified {
-        background-color: #85e757;
+        background-color: #48bb6b;
         color: white;
         margin-right: 0;
     }
     .facebook {
-        background-color: #587ba7;
+        background-color: #557bab;
     }
     .twitter {
-        background-color: #7cc5f2;
+        background-color: #6abef2;
     }
     .whatsapp {
-        background-color: #6cca89;
+        background-color: #61ba7b;
     }
     .fa-brands {
         color: white;

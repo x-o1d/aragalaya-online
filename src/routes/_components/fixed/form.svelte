@@ -12,6 +12,7 @@
     import HtmlInput from '$lib/components/input/html-input.svelte';
     import Button from '$lib/components/input/button.svelte';
     import Font from '$lib/components/display/font.svelte';
+    import Select from '$lib/components/input/select.svelte';   
     
     let showForm = false;
     let columnIndex = 0;
@@ -124,6 +125,10 @@
         showForm = false;
     }
 
+    let tags = COLUMNS[columnIndex].filter &&
+                COLUMNS[columnIndex].filter.tags;
+
+    let selectedTags = [];
 
 </script>
 
@@ -143,7 +148,6 @@
                     margin-bottom: var(--s20px);">
                 {COLUMNS[columnIndex].dataFormTitle[$_lang]}
             </Font>
-            
             {#each fields as field, _i}
                 <svelte:component 
                     this={COMPONENTS[fieldConfigs[_i].type]}
@@ -151,6 +155,29 @@
                     data={data}
                     error={errors[_i]}/>
             {/each}
+            <Font
+                font={0}
+                size={0.75}
+                style="
+                    display: inline-flex;
+                    margin-bottom: var(--s10px);
+                    width: calc(90% - 4px);">
+                {#each selectedTags as tag, _i}
+                <span 
+                    class="tag"
+                    on:click={() => {}}
+                    style="background-color: {tag.color};">
+                    {tag.strings[$_lang]}
+                </span>
+                {/each}
+            </Font>
+            <Select
+                placeholder="select tags"
+                options={tags}
+                on:select={(e) => {
+                    selectedTags.push(e.detail);
+                    selectedTags = selectedTags;
+                }}/>
             <Button
                 form
                 onclick={submitDocument}
@@ -207,4 +234,13 @@
         border: var(--s1px) solid #707070;
     }
 
+    .tag {
+        border: var(--s2px) solid #a5a5a5;
+        border-radius: var(--s3px);
+        padding: 0 var(--s3px);
+        margin-right: var(--s3px);
+    }
+    .tag:hover {
+        cursor: pointer;
+    }
 </style>

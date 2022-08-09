@@ -77038,7 +77038,7 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
       ]
     };
     css$42 = {
-      code: ".toolbar.svelte-1g49cr9{display:flex;align-items:center;justify-content:space-between;margin-top:var(--s10px)}.toolbar-left.svelte-1g49cr9{display:inline-flex}.toolbar-right.svelte-1g49cr9{display:inline-flex;align-items:center}.icon.svelte-1g49cr9{display:inline-flex;align-items:center;justify-content:center;width:var(--theme-toolbarbuttonsize);height:var(--theme-toolbarbuttonsize);margin-right:var(--s5px);font-size:var(--s13px);background-color:rgb(226, 230, 230);border-radius:3px}.on.svelte-1g49cr9{background-color:rgb(124, 124, 124);color:white}.verified.svelte-1g49cr9{background-color:#85e757;color:white;margin-right:0}.facebook.svelte-1g49cr9{background-color:#587ba7}.twitter.svelte-1g49cr9{background-color:#7cc5f2}.whatsapp.svelte-1g49cr9{background-color:#6cca89}.fa-brands.svelte-1g49cr9{color:white}",
+      code: ".toolbar.svelte-i0t80m{display:flex;align-items:center;justify-content:space-between;margin-top:var(--s10px)}.toolbar-left.svelte-i0t80m{display:inline-flex}.toolbar-right.svelte-i0t80m{display:inline-flex;align-items:center}.icon.svelte-i0t80m{display:inline-flex;align-items:center;justify-content:center;width:var(--theme-toolbarbuttonsize);height:var(--theme-toolbarbuttonsize);margin-right:var(--s5px);font-size:var(--s13px);background-color:rgb(226, 230, 230);border-radius:3px}.on.svelte-i0t80m{background-color:rgb(124, 124, 124);color:white}.verified.svelte-i0t80m{background-color:#85e757;color:white;margin-right:0}.facebook.svelte-i0t80m{background-color:#557bab}.twitter.svelte-i0t80m{background-color:#6abef2}.whatsapp.svelte-i0t80m{background-color:#61ba7b}.fa-brands.svelte-i0t80m{color:white}",
       map: null
     };
     Toolbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -77053,13 +77053,13 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
       return `
 
 
-<div class="${"toolbar svelte-1g49cr9"}"><div class="${"toolbar-left svelte-1g49cr9"}"><div class="${["icon _clickable svelte-1g49cr9", data._expanded ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-down"}"></i></div>
-        <div class="${["icon _clickable svelte-1g49cr9", data._singlePostView ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-right-and-down-left-from-center"}"></i></div>
-        <div class="${"icon _clickable svelte-1g49cr9"}"><i class="${"fa-solid fa-share-nodes"}"></i></div>
-        ${`<div class="${"icon facebook _clickable svelte-1g49cr9"}"><a href="${"/facebook_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-facebook svelte-1g49cr9"}"></i></a></div>
-        <div class="${"icon twitter _clickable svelte-1g49cr9"}"><a href="${"/twitter_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-twitter svelte-1g49cr9"}"></i></a></div>
-        <div class="${"icon whatsapp _clickable svelte-1g49cr9"}"><a href="${"/whatsapp_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-whatsapp svelte-1g49cr9"}"></i></a></div>`}</div>
-    <div class="${"toolbar-right svelte-1g49cr9"}">${validate_component(Font, "Font").$$render($$result, {
+<div class="${"toolbar svelte-i0t80m"}"><div class="${"toolbar-left svelte-i0t80m"}"><div class="${["icon _clickable svelte-i0t80m", data._expanded ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-down"}"></i></div>
+        <div class="${["icon _clickable svelte-i0t80m", data._singlePostView ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-right-and-down-left-from-center"}"></i></div>
+        <div class="${"icon _clickable svelte-i0t80m"}"><i class="${"fa-solid fa-share-nodes"}"></i></div>
+        ${`<div class="${"icon facebook _clickable svelte-i0t80m"}"><a href="${"/facebook_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-facebook svelte-i0t80m"}"></i></a></div>
+        <div class="${"icon twitter _clickable svelte-i0t80m"}"><a href="${"/twitter_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-twitter svelte-i0t80m"}"></i></a></div>
+        <div class="${"icon whatsapp _clickable svelte-i0t80m"}"><a href="${"/whatsapp_share?post=" + escape(data.id)}" target="${"_blank"}"><i class="${"fa-brands fa-whatsapp svelte-i0t80m"}"></i></a></div>`}</div>
+    <div class="${"toolbar-right svelte-i0t80m"}">${validate_component(Font, "Font").$$render($$result, {
         font: 0,
         size: 0.75,
         style: "margin-right: var(--s5px);"
@@ -77068,7 +77068,7 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
           return `${escape(strings$1["verified"][$_lang])}`;
         }
       })}
-        <div class="${"icon verified svelte-1g49cr9"}"><i class="${"fa-solid fa-check"}"></i></div></div>
+        <div class="${"icon verified svelte-i0t80m"}"><i class="${"fa-solid fa-check"}"></i></div></div>
 </div>`;
     });
     Bulletin = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -77485,9 +77485,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    entry3 = "pages/index.svelte-364a7cda.js";
-    js3 = ["pages/index.svelte-364a7cda.js", "chunks/index-99f19140.js", "chunks/storage-091a76bf.js", "chunks/_commonjsHelpers-31b0d81d.js", "chunks/index-734c5de0.js", "chunks/preview-ca1cbbf9.js"];
-    css7 = ["assets/pages/index.svelte-cd327c3e.css", "assets/storage-b40e8d4c.css", "assets/preview-f52fb3b0.css"];
+    entry3 = "pages/index.svelte-a96082d3.js";
+    js3 = ["pages/index.svelte-a96082d3.js", "chunks/index-99f19140.js", "chunks/storage-091a76bf.js", "chunks/_commonjsHelpers-31b0d81d.js", "chunks/index-734c5de0.js", "chunks/preview-ca1cbbf9.js"];
+    css7 = ["assets/pages/index.svelte-4d3811c1.css", "assets/storage-b40e8d4c.css", "assets/preview-f52fb3b0.css"];
   }
 });
 
@@ -77532,7 +77532,7 @@ var init__4 = __esm({
     index4 = 2;
     entry4 = "pages/facebook_share.svelte-4eddb58e.js";
     js4 = ["pages/facebook_share.svelte-4eddb58e.js", "chunks/index-99f19140.js"];
-    css9 = ["assets/pages/twitter_share.svelte-7113e60c.css"];
+    css9 = ["assets/pages/facebook_share.svelte-fc9c0eb0.css"];
   }
 });
 
@@ -77669,7 +77669,7 @@ var init__6 = __esm({
     index6 = 5;
     entry6 = "pages/twitter_share.svelte-e7673f49.js";
     js6 = ["pages/twitter_share.svelte-e7673f49.js", "chunks/index-99f19140.js"];
-    css13 = ["assets/pages/twitter_share.svelte-7113e60c.css"];
+    css13 = ["assets/pages/facebook_share.svelte-fc9c0eb0.css"];
   }
 });
 
@@ -77712,9 +77712,9 @@ var init__7 = __esm({
     init_shims();
     init_whatsapp_share_svelte();
     index7 = 6;
-    entry7 = "pages/whatsapp_share.svelte-70550d5d.js";
-    js7 = ["pages/whatsapp_share.svelte-70550d5d.js", "chunks/index-99f19140.js"];
-    css15 = ["assets/pages/twitter_share.svelte-7113e60c.css"];
+    entry7 = "pages/whatsapp_share.svelte-ef0c0ff5.js";
+    js7 = ["pages/whatsapp_share.svelte-ef0c0ff5.js", "chunks/index-99f19140.js"];
+    css15 = ["assets/pages/facebook_share.svelte-fc9c0eb0.css"];
   }
 });
 
@@ -80159,7 +80159,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-534e1f3e.js", "js": ["start-534e1f3e.js", "chunks/index-99f19140.js", "chunks/index-734c5de0.js"], "css": [] },
+    entry: { "file": "start-10f2fa20.js", "js": ["start-10f2fa20.js", "chunks/index-99f19140.js", "chunks/index-734c5de0.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

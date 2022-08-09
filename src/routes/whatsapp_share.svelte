@@ -4,14 +4,19 @@
     export let postId;
 
     onMount(() => {
-        let redirectURL = `whatsapp://send?text=https%3A%2F%2Faragalaya-online.web.app%2F%3Fpost%3D${postId}`;
+        let redirectURL = `https://wa.me/?text=https%3A%2F%2Faragalaya-online.web.app%2F%3Fpost%3D${postId}`;
         location.href = redirectURL;
-        if(location.href.includes('whatsapp_share?post')) {
-            location.href = `https://web.whatsapp.com/send?text=https%3A%2F%2Faragalaya-online.web.app%2F%3Fpost%3D${postId}`;
-        } else {
-            window.opener = self;
-            window.close();
-        }
+        // check if redirect failed, happens if whatsapp desktop is not connected
+        // to the browser.
+        // redirect to whatsapp web.
+        // setTimeout(() => {
+        //     if(location.href.includes('whatsapp_share?post')) {
+        //         location.href = `https://wa.me/?text=https%3A%2F%2Faragalaya-online.web.app%2F%3Fpost%3D${postId}`;
+        //     } else {
+        //         window.opener = self;
+        //         window.close();
+        //     }
+        // }, 3000);
     });
 </script>
 
