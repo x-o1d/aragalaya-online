@@ -1,4 +1,5 @@
 import { app } from '$lib/config/firebase-config';
+import { _environment } from '$lib/config/environment';
 
 import { getFunctions, httpsCallable } from 'firebase/functions';
 
@@ -10,5 +11,6 @@ const functions = getFunctions(app);
 // --
 
 export const _createPost = async (post) => {
+    post._environment = _environment;
     return httpsCallable(functions, 'addpost')(post);
 }

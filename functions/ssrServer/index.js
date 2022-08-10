@@ -77222,7 +77222,7 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
             font: 3,
             size: 0.75,
             color: "rgb(55, 55, 55);",
-            style: "margin-bottom: var(--s7px);"
+            style: "margin-bottom: var(--s10px);"
           }, {}, {
             default: () => {
               return `${escape(data.createdByName)}`;
@@ -77292,7 +77292,7 @@ ${machineTranslated ? `<div class="${"machine-translated svelte-2shrv7"}">${vali
     ${validate_component(Font, "Font").$$render($$result, {
             font: 1,
             size: 1.25,
-            style: "\n            font-weight: bold;\n            margin-bottom: var(--s3px);"
+            style: "\n            font-weight: bold;\n            margin-bottom: var(--s10px);"
           }, {}, {
             default: () => {
               return `${validate_component(Content, "Content").$$render($$result, { data, contentField: "title" }, {}, {})}`;
@@ -77607,8 +77607,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    entry3 = "pages/index.svelte-cb9671e1.js";
-    js3 = ["pages/index.svelte-cb9671e1.js", "chunks/index-79fab9bd.js", "chunks/storage-547b5821.js", "chunks/_commonjsHelpers-84b88f9c.js", "chunks/index-50d34799.js", "chunks/preview-5986b17c.js"];
+    entry3 = "pages/index.svelte-c011b296.js";
+    js3 = ["pages/index.svelte-c011b296.js", "chunks/index-79fab9bd.js", "chunks/storage-547b5821.js", "chunks/_commonjsHelpers-84b88f9c.js", "chunks/index-50d34799.js", "chunks/preview-5986b17c.js"];
     css7 = ["assets/pages/index.svelte-1b3250a5.css", "assets/storage-b40e8d4c.css", "assets/preview-f52fb3b0.css"];
   }
 });
@@ -80281,7 +80281,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "start-10dfe350.js", "js": ["start-10dfe350.js", "chunks/index-79fab9bd.js", "chunks/index-50d34799.js"], "css": [] },
+    entry: { "file": "start-cd530ddd.js", "js": ["start-cd530ddd.js", "chunks/index-79fab9bd.js", "chunks/index-50d34799.js"], "css": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

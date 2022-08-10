@@ -147,7 +147,7 @@ const columnHeaderHeight = 50;
 const cardSeparation = 12;
 
 // padding inside a card
-const cardPadding = 10;
+const cardPadding = 12;
 
 // navigation button size
 const navSize = 60;

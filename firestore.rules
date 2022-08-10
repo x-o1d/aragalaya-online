@@ -16,6 +16,16 @@ service cloud.firestore {
     match /Errors/{error} {
     	allow create: if true;
     }
+    match /Posts-prod/{post} {
+    	allow create: if 
+        	request.auth.uid != null;
+        allow update, delete: if 
+        	request.auth.uid != resource.data.createdBy;
+        allow read: if true;
+    }
+    match /Errors-prod/{error} {
+    	allow create: if true;
+    }
     match /Logs/{logs} {
     	allow create: if true;
     }

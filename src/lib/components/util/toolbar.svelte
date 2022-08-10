@@ -98,6 +98,11 @@ EXAMPLE:
                 <i class="fa-brands fa-whatsapp"></i>
             </a>
         </div>
+        <div class="icon reddit _clickable">
+            <a href="/reddit_share?post={data.id}" target="_blank">
+                <i class="fa-brands fa-reddit"></i>
+            </a>
+        </div>
         {/if}
     </div>
     <div class="toolbar-right">
@@ -160,6 +165,9 @@ EXAMPLE:
     }
     .whatsapp {
         background-color: #61ba7b;
+    }
+    .reddit {
+        background-color: #fc7949;
     }
     .fa-brands {
         color: white;

@@ -4,12 +4,12 @@
     export let postId;
 
     onMount(() => {
-        let redirectURL = `https://wa.me/?text=https%3A%2F%2Faragalaya-online.web.app%2F%3Fpost%3D${postId}`;
+        let redirectURL = `https://reddit.com/submit?url=https%3A%2F%2Faragalaya-online.web.app%2F%3Fpost%3D${postId}`;
         location.href = redirectURL;
     });
 </script>
 
-<div class="facebook-share">Redirecting to whatsapp..</div>
+<div class="facebook-share">Redirecting to reddit..</div>
 
 <style>
     .facebook-share {
