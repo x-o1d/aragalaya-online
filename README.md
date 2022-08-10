@@ -3,6 +3,11 @@
 this is the public repository for the aragalaya.online project, an open-source collective effort to support the aragalaya movement in sri lanka.
 https://aragalaya-online.web.app
 
+you can see our kanban board here,
+https://trello.com/b/6ArJOe4u/aragalayaonline-kanban-board
+
+feel free to contact us at contact@aragalaya.online
+
 ### getting started
 
 if you'd like to contribute, follow the below steps to set up your development environment
