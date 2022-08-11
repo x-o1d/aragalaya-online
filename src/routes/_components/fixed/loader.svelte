@@ -6,7 +6,6 @@
     import { _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady } from "$lib/services/store";
     // components
     import PreloadingIndicator from "$lib/components/util/preloading-indicator.svelte";
-    import Logo from "$lib/assets/logo-tiny.png"
 
     // css loaded variables
     let fontsLoaded = false;
@@ -69,7 +68,7 @@
 {#if !loadingComplete}
 <div class="loader">
     <div class="title">
-        <img src={Logo} alt="අරගලය.online">
+        <img src="/logo-tiny.png" alt="අරගලය.online">
     </div>
     <div class="progress-bar">
         <PreloadingIndicator></PreloadingIndicator>
