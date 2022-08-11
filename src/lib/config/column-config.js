@@ -411,16 +411,16 @@ export const COLUMNS = [
             releaseDate: '29/09/2022'
         }]
     },
-    {
-        title: [
-            'ගැලරිය', 
-            'Gallery', 
-            'கேலரி'
-        ],
-        icon: 'fa-solid fa-camera-retro',
-        height: '290px',
-        type: 'photo'
-    }
+    // {
+    //     title: [
+    //         'ගැලරිය', 
+    //         'Gallery', 
+    //         'கேலரி'
+    //     ],
+    //     icon: 'fa-solid fa-camera-retro',
+    //     height: '290px',
+    //     type: 'photo'
+    // }
 ];
 
 export const COLUMN_COUNT = COLUMNS.length;

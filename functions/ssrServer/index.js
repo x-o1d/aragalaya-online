@@ -13232,10 +13232,10 @@ var init_hooks_bced8853 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/column-config-ca4f920c.js
+// .svelte-kit/output/server/_app/immutable/chunks/column-config-63e26bf3.js
 var COLUMNS, COLUMN_COUNT;
-var init_column_config_ca4f920c = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/column-config-ca4f920c.js"() {
+var init_column_config_63e26bf3 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/column-config-63e26bf3.js"() {
     init_shims();
     COLUMNS = [
       {
@@ -13551,13 +13551,41 @@ var init_column_config_ca4f920c = __esm({
       },
       {
         title: [
+          "\u0DB8\u0DAD \u0DC0\u0DD2\u0DB8\u0DC3\u0DD3\u0DB8\u0DCA",
+          "Opinion polls",
+          "\u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BCD \u0B95\u0BA3\u0BBF\u0BAA\u0BCD\u0BAA\u0BC1\u0B95\u0BB3\u0BCD"
+        ],
+        icon: "fa-solid fa-file-signature",
+        height: "500px",
+        type: "static",
+        static: [{
+          type: "wip",
+          service: [
+            `\u0DA1\u0DB1\u0DCA\u0DAF \u0DC0\u0DD2\u0DB8\u0DC3\u0DD3\u0DB8\u0DCA \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0D95\u0DB1\u0DD1\u0DB8 \u0D9A\u0DD9\u0DB1\u0DD9\u0D9A\u0DD4\u0DA7 \u0DB4\u0DDC\u0DAF\u0DD4 \u0DB8\u0DAD \u0DC0\u0DD2\u0DB8\u0DC3\u0DD4\u0DB8\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC3\u0DC4 \u0DB8\u0DD2\u0DB1\u0DD2\u0DC3\u0DD4\u0DB1\u0DCA\u0DA7 \u0D92 \u0DC3\u0DB3\u0DC4\u0DCF \u0DA1\u0DB1\u0DCA\u0DAF\u0DBA \u0DB4\u0DCA\u200D\u0DBB\u0D9A\u0DCF\u0DC1 \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DBD\u0DB6\u0DCF \u0DAF\u0DDA. \u0D85\u0DBB\u0D9C\u0DBD\u0DBA\u0DDA \u0DAF\u0DD2\u0DC1\u0DCF\u0DB1\u0DAD\u0DD2\u0DBA \u0D9C\u0DD0\u0DB1 \u0DB4\u0DCA\u200D\u0DBB\u0DA2\u0DCF\u0DAD\u0DB1\u0DCA\u0DAD\u0DCA\u200D\u0DBB\u0DC0\u0DCF\u0DAF\u0DD3\u0DC0 \u0DAD\u0DD3\u0DBB\u0DAB \u0D9C\u0DD0\u0DB1\u0DD3\u0DB8\u0DA7 \u0DB8\u0DD9\u0DBA \u0DBA\u0DDC\u0DAF\u0DCF\u0D9C\u0DAD \u0DC4\u0DD0\u0D9A.`,
+            `polls will allow anyone to create a public poll and allow anyone to create and vote for suggestions. this can be used to make democratic decisions about the direction of aragalaya.`,
+            `\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC6\u0B9F\u0BC1\u0BAA\u0BCD\u0BAA\u0BC1\u0B95\u0BB3\u0BCD \u0BAF\u0BBE\u0BB0\u0BC8\u0BAF\u0BC1\u0BAE\u0BCD \u0BAA\u0BCA\u0BA4\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC6\u0B9F\u0BC1\u0BAA\u0BCD\u0BAA\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD \u0BAE\u0BB1\u0BCD\u0BB1\u0BC1\u0BAE\u0BCD \u0BAE\u0B95\u0BCD\u0B95\u0BB3\u0BCD \u0B85\u0BA4\u0BB1\u0BCD\u0B95\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB3\u0BBF\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE\u0BB5\u0BBF\u0BA9\u0BCD \u0BA4\u0BBF\u0B9A\u0BC8\u0BAF\u0BC8\u0BAA\u0BCD \u0BAA\u0BB1\u0BCD\u0BB1\u0BBF \u0B9C\u0BA9\u0BA8\u0BBE\u0BAF\u0B95 \u0BAE\u0BC1\u0B9F\u0BBF\u0BB5\u0BC1\u0B95\u0BB3\u0BC8 \u0B8E\u0B9F\u0BC1\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4\u0BB2\u0BBE\u0BAE\u0BCD.`
+          ],
+          releaseDate: "29/08/2022"
+        }]
+      },
+      {
+        title: [
           "\u0DC3\u0DCF\u0DB8\u0DD4\u0DC4\u0DD2\u0D9A \u0DBD\u0DDA\u0D9B\u0DB1",
           "Collaborative documents",
           "\u0B95\u0BC2\u0B9F\u0BCD\u0B9F\u0BC1 \u0B86\u0BB5\u0BA3\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
         ],
         icon: "fa-solid fa-file-signature",
         height: "500px",
-        type: ""
+        type: "static",
+        static: [{
+          type: "wip",
+          service: [
+            `\u0DB8\u0DD9\u0DB8 \u0DC3\u0DDA\u0DC0\u0DCF\u0DC0 \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0DC3\u0DCF\u0DB8\u0DD4\u0DC4\u0DD2\u0D9A\u0DC0 \u0DBD\u0DDA\u0D9B\u0DB1 \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DBD \u0DC4\u0DD0\u0D9A\u0DD2 \u0D85\u0DAD\u0DBB, \u0D91\u0DC4\u0DD2\u0DAF\u0DD3 \u0D87\u0DAD\u0DD2\u0DC0\u0DB1 \u0D9C\u0DD0\u0DA7\u0DD4\u0DB8\u0DCA \u0DA0\u0DB1\u0DCA\u0DAF\u0DBA\u0D9A\u0DCA \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0DC0\u0DD2\u0DC3\u0DB3\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DC3\u0DBD\u0DC3\u0DBA\u0DD2. \u0DB8\u0DD9\u0DBA \u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DCA\u200D\u0DBB\u0DA5\u0DB4\u0DCA\u0DAD\u0DD2\u0DBA\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC4\u0DCF \u0DB1\u0DC0 \u0DC0\u0DCA\u200D\u0DBA\u0DC0\u0DC3\u0DCA\u0DAE\u0DCF\u0DC0\u0D9A\u0DCA \u0DB4\u0DC0\u0DCF \u0DB4\u0DCA\u200D\u0DBB\u0DA2\u0DCF\u0DAD\u0DB1\u0DCA\u0DAD\u0DCA\u200D\u0DBB\u0DC0\u0DCF\u0DAF\u0DD2\u0DC0 \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DB7\u0DCF\u0DC0\u0DD2\u0DAD\u0DCF \u0D9A\u0DBD \u0DC4\u0DD0\u0D9A.`,
+            `this service will allow to create collaborative documents with conflicts resolved through voting. this can be used to create an aragala manifesto, or even a new constitution.`,
+            `\u0B87\u0BA8\u0BCD\u0BA4\u0B9A\u0BCD \u0B9A\u0BC7\u0BB5\u0BC8\u0BAF\u0BBE\u0BA9\u0BA4\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC1\u0BAA\u0BCD\u0BAA\u0BA4\u0BBF\u0BB5\u0BC1 \u0BAE\u0BC2\u0BB2\u0BAE\u0BCD \u0BA4\u0BC0\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BC1\u0BAE\u0BCD \u0BAE\u0BC1\u0BB0\u0BA3\u0BCD\u0BAA\u0BBE\u0B9F\u0BC1\u0B95\u0BB3\u0BC1\u0B9F\u0BA9\u0BCD \u0B95\u0BC2\u0B9F\u0BCD\u0B9F\u0BC1 \u0B86\u0BB5\u0BA3\u0B99\u0BCD\u0B95\u0BB3\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0B85\u0BB0\u0B95\u0BB2 \u0BAA\u0BBF\u0BB0\u0B95\u0B9F\u0BA9\u0BA4\u0BCD\u0BA4\u0BC8 \u0B85\u0BB2\u0BCD\u0BB2\u0BA4\u0BC1 \u0BAA\u0BC1\u0BA4\u0BBF\u0BAF \u0B85\u0BB0\u0B9A\u0BBF\u0BAF\u0BB2\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4\u0BB2\u0BBE\u0BAE\u0BCD.`
+          ],
+          releaseDate: "29/09/2022"
+        }]
       },
       {
         title: [
@@ -13567,7 +13595,17 @@ var init_column_config_ca4f920c = __esm({
         ],
         icon: "fa-solid fa-coins",
         height: "410px",
-        type: "budget"
+        type: "budget",
+        type: "static",
+        static: [{
+          type: "wip",
+          service: [
+            `\u0DC0\u0DD2\u0DB1\u0DD2\u0DC0\u0DD2\u0DAF \u0DB4\u0DD9\u0DB1\u0DD9\u0DB1 \u0D85\u0DBA\u0DC0\u0DD0\u0DBA \u0DB8\u0D9F\u0DD2\u0DB1\u0DCA \u0D95\u0DB1\u0DD1\u0DB8 \u0D85\u0DBB\u0D9C\u0DBD\u0DBA \u0DC0\u0DCA\u200D\u0DBA\u0DCF\u0DB4\u0DD8\u0DAD\u0DD2\u0DBA\u0D9A\u0DCA \u0DC3\u0DB3\u0DC4\u0DCF \u0DC0\u0DD2\u0DC0\u0DD8\u0DAD \u0D85\u0DBA\u0DC0\u0DD0\u0DBA\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DC3\u0DD0\u0DBD\u0DC3\u0DDA. \u0DB4\u0DC5\u0DB8\u0DD4 \u0DB4\u0DD2\u0DBA\u0DC0\u0DBB \u0DBD\u0DD9\u0DC3 \u0D85\u0DB4\u0DD2 aragalaya.online \u0DC0\u0DCA\u200D\u0DBA\u0DCF\u0DB4\u0DD8\u0DAD\u0DD2\u0DBA \u0DC3\u0DB3\u0DC4\u0DCF \u0D85\u0DBA\u0DC0\u0DD0\u0DBA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8 \u0DC3\u0DB3\u0DC4\u0DCF \u0DB8\u0DD9\u0DBA \u0DB7\u0DCF\u0DC0\u0DD2\u0DAD\u0DCF \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC3\u0DD0\u0DBD\u0DC3\u0DD4\u0DB8\u0DCA \u0D9A\u0DBB\u0DB8\u0DD4.`,
+            `transparent budgets will allow to create open budgets for any of the aragalaya projects. as first step we're planning to use this for creating the budget for the aragalaya.online project.`,
+            `\u0BB5\u0BC6\u0BB3\u0BBF\u0BAA\u0BCD\u0BAA\u0B9F\u0BC8\u0BAF\u0BBE\u0BA9 \u0BB5\u0BB0\u0BB5\u0BC1\u0B9A\u0BC6\u0BB2\u0BB5\u0BC1\u0BA4\u0BCD\u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0B8E\u0BA8\u0BCD\u0BA4\u0BB5\u0BCA\u0BB0\u0BC1 \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BC1\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD \u0BA4\u0BBF\u0BB1\u0BA8\u0BCD\u0BA4 \u0BB5\u0BB0\u0BB5\u0BC1 \u0B9A\u0BC6\u0BB2\u0BB5\u0BC1\u0BA4\u0BCD \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0BAE\u0BC1\u0BA4\u0BB2\u0BCD \u0B95\u0B9F\u0BCD\u0B9F\u0BAE\u0BBE\u0B95 \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE.\u0B86\u0BA9\u0BCD\u0BB2\u0BC8\u0BA9\u0BCD \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0BA4\u0BCD\u0BA4\u0BBF\u0BB1\u0BCD\u0B95\u0BBE\u0BA9 \u0BAA\u0B9F\u0BCD\u0B9C\u0BC6\u0B9F\u0BCD\u0B9F\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4 \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0BAE\u0BBF\u0B9F\u0BCD\u0B9F\u0BC1\u0BB3\u0BCD\u0BB3\u0BCB\u0BAE\u0BCD.`
+          ],
+          releaseDate: "29/09/2022"
+        }]
       },
       {
         title: [
@@ -16651,7 +16689,7 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/font-5b202901.js
+// .svelte-kit/output/server/_app/immutable/chunks/font-d1937815.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -16694,11 +16732,11 @@ function writable2(value, start2 = noop2) {
   return { set, update, subscribe: subscribe2 };
 }
 var import_chroma_js, subscriber_queue2, _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, Font;
-var init_font_5b202901 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/font-5b202901.js"() {
+var init_font_d1937815 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/font-d1937815.js"() {
     init_shims();
     init_index_19a73778();
-    init_column_config_ca4f920c();
+    init_column_config_63e26bf3();
     import_chroma_js = __toESM(require_chroma(), 1);
     subscriber_queue2 = [];
     _lang = writable2(0);
@@ -53256,10 +53294,10 @@ var init_dist2 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/database-8e0ce6fe.js
+// .svelte-kit/output/server/_app/immutable/chunks/database-e087c939.js
 var firebaseConfig, app, db, _createError, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord;
-var init_database_8e0ce6fe = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/database-8e0ce6fe.js"() {
+var init_database_e087c939 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/database-e087c939.js"() {
     init_shims();
     init_dist();
     init_dist2();
@@ -53271,6 +53309,16 @@ var init_database_8e0ce6fe = __esm({
       messagingSenderId: "15533282305",
       appId: "1:15533282305:web:a807d2c4f789c046a71c00"
     };
+    {
+      firebaseConfig = {
+        apiKey: "AIzaSyAIFR7IVXYjG_8lyPyfHxsdx_kaRz4z3SM",
+        authDomain: "aragalaya-online-prod.firebaseapp.com",
+        projectId: "aragalaya-online-prod",
+        storageBucket: "aragalaya-online-prod.appspot.com",
+        messagingSenderId: "730227179317",
+        appId: "1:730227179317:web:59771460444f98ae52567c"
+      };
+    }
     app = initializeApp(firebaseConfig);
     db = getFirestore(app);
     _createError = async (error2, caller, data) => {
@@ -69268,14 +69316,14 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/storage-214bb17a.js
+// .svelte-kit/output/server/_app/immutable/chunks/storage-f89532b1.js
 var import_rxjs, events, _emitEvent, _eventListener, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, css, Button;
-var init_storage_214bb17a = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/storage-214bb17a.js"() {
+var init_storage_f89532b1 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/storage-f89532b1.js"() {
     init_shims();
     init_index_19a73778();
-    init_font_5b202901();
-    init_database_8e0ce6fe();
+    init_font_d1937815();
+    init_database_e087c939();
     init_dist3();
     init_dist4();
     import_rxjs = __toESM(require_cjs(), 1);
@@ -87874,10 +87922,10 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_storage_214bb17a();
-    init_database_8e0ce6fe();
-    init_font_5b202901();
-    init_column_config_ca4f920c();
+    init_storage_f89532b1();
+    init_database_e087c939();
+    init_font_d1937815();
+    init_column_config_63e26bf3();
     init_dist5();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
     import_extension_bold = __toESM(require_tiptap_extension_bold_cjs(), 1);
@@ -88594,7 +88642,9 @@ ${validate_component(Toasts, "Toasts").$$render($$result, {}, {}, {})}
 		</div>
 		<div class="${"online s-PoaHcXV6SIWL"}">.online
 		</div>
-        <div class="${"beta s-PoaHcXV6SIWL"}">${escape("(dev-beta)")}</div></div>
+        <div class="${"beta s-PoaHcXV6SIWL"}">${escape(
+        "(prod-beta)"
+      )}</div></div>
 	<ul class="${"header-right s-PoaHcXV6SIWL"}">${!$_isMobile ? `<li class="${"s-PoaHcXV6SIWL"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
 		</li>
 		<li class="${"s-PoaHcXV6SIWL"}">English 
@@ -88632,8 +88682,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-a3d18a8f.js";
-    imports = ["_app/immutable/pages/__layout.svelte-a3d18a8f.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-dc8269c9.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-7eb83aa6.js"];
+    file2 = "_app/immutable/pages/__layout.svelte-f96ccb92.js";
+    imports = ["_app/immutable/pages/__layout.svelte-f96ccb92.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-dbc2caba.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-d383ebf5.js"];
     stylesheets = ["_app/immutable/assets/__layout-1c514b46.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
@@ -90741,13 +90791,13 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/proposal-be2aa418.js
+// .svelte-kit/output/server/_app/immutable/chunks/proposal-301d3b02.js
 var css$32, Card, strings$3, Timestamp2, strings$2, css$22, Content, css$12, Preview, strings$1, css3, Toolbar, strings2, Proposal;
-var init_proposal_be2aa418 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/proposal-be2aa418.js"() {
+var init_proposal_301d3b02 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/proposal-301d3b02.js"() {
     init_shims();
     init_index_19a73778();
-    init_font_5b202901();
+    init_font_d1937815();
     init_string_strip_html_esm();
     css$32 = {
       code: ".card-container.s-Hio59jcNIlCL{padding:var(--theme-cardseparationhalf)}.card.s-Hio59jcNIlCL{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.s-Hio59jcNIlCL{}",
@@ -91274,24 +91324,24 @@ function tweened(value, defaults = {}) {
     subscribe: store.subscribe
   };
 }
-var import_chroma_js3, css$62, Nav, css$52, Empty, strings$12, css$42, Mt, Bulletin, css$33, Youtube, News, css$23, Post, strings3, css$13, Filter2, css4, COMPONENTS, Routes;
+var import_chroma_js3, css$72, Nav, css$62, Empty, strings$22, css$52, Mt, Bulletin, css$42, Youtube, News, css$33, Post, strings$12, css$23, Filter2, strings3, css$13, Wip, css4, COMPONENTS, Routes;
 var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_column_config_ca4f920c();
-    init_font_5b202901();
+    init_column_config_63e26bf3();
+    init_font_d1937815();
     init_string_strip_html_esm();
-    init_storage_214bb17a();
-    init_database_8e0ce6fe();
-    init_proposal_be2aa418();
+    init_storage_f89532b1();
+    init_database_e087c939();
+    init_proposal_301d3b02();
     import_chroma_js3 = __toESM(require_chroma(), 1);
     init_dist3();
     init_dist4();
     init_dist();
     init_dist2();
     Array(COLUMN_COUNT).fill(0);
-    css$62 = {
+    css$72 = {
       code: ".navigation.s-QYN83HapRChq{position:fixed;right:var(--s5px);bottom:var(--s5px);z-index:100;display:flex;align-items:center;flex-direction:column;background-color:black;border-radius:var(--s6px)}.animated.s-QYN83HapRChq{position:relative}.icons.s-QYN83HapRChq{position:relative;overflow:hidden}.icon.s-QYN83HapRChq{position:relative;width:var(--theme-navsize);height:var(--theme-navsize);display:flex;align-items:center;justify-content:center;color:var(--nav-buttons);font-size:var(--theme-naviconsize)}.toggle.s-QYN83HapRChq{color:white}.show-hide.s-QYN83HapRChq{background-color:black;z-index:1;color:white;border-radius:var(--s6px)}.scroll.s-QYN83HapRChq{position:absolute;right:0;width:var(--s4px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-columns-7) 25%, \n            var(--theme-columns-5) 50%,\n            var(--theme-columns-3) 75%, \n            var(--theme-columns-1) 100%);border-radius:var(--s6px)}.title_c.s-QYN83HapRChq{position:fixed}.title.s-QYN83HapRChq{font-weight:bold;color:rgb(85, 85, 85);padding:var(--s0px) var(--s5px);background-color:white}.s-QYN83HapRChq{}",
       map: null
     };
@@ -91333,7 +91383,7 @@ var init_index_svelte = __esm({
         }
         hidden = !hidden;
       }
-      $$result.css.add(css$62);
+      $$result.css.add(css$72);
       $$unsubscribe__isMobile();
       $$unsubscribe_height();
       $$unsubscribe_scrollPosition();
@@ -91349,7 +91399,7 @@ var init_index_svelte = __esm({
     <div class="${"icon show-hide _clickable s-QYN83HapRChq"}">${!hidden ? `<i class="${"fa-solid fa-angles-down s-QYN83HapRChq"}"></i>` : `<i class="${"fa-solid fa-angles-up s-QYN83HapRChq"}"></i>`}</div>
 </div>`;
     });
-    css$52 = {
+    css$62 = {
       code: ".empty-space.s-FeUw14jh5ZGb{width:100%}.s-FeUw14jh5ZGb{}",
       map: null
     };
@@ -91357,7 +91407,7 @@ var init_index_svelte = __esm({
       let { data } = $$props;
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      $$result.css.add(css$52);
+      $$result.css.add(css$62);
       return `
 
 
@@ -91369,7 +91419,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
         }
       })}`;
     });
-    strings$12 = {
+    strings$22 = {
       machine_translated: [
         "\u0DC3\u0DCA\u0DC0\u0DBA\u0D82\u0D9A\u0DCA\u200D\u0DBB\u0DD3\u0DBA \u0DB4\u0DBB\u0DD2\u0DC0\u0DBB\u0DCA\u0DAD\u0DB1\u0DBA\u0D9A\u0DD2, \u0DB8\u0DD4\u0DBD\u0DCA \u0DB4\u0DD2\u0DA7\u0DB4\u0DAD \u0DB6\u0DBD\u0DB1\u0DCA\u0DB1.",
         "automatic translation, view original.",
@@ -91381,7 +91431,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
         "\u0B85\u0B9A\u0BB2\u0BCD \u0B89\u0BB0\u0BC8, \u0BAE\u0BCA\u0BB4\u0BBF\u0BAA\u0BC6\u0BAF\u0BB0\u0BCD\u0BAA\u0BCD\u0BAA\u0BC1 \u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95"
       ]
     };
-    css$42 = {
+    css$52 = {
       code: ".machine-translated.s-Q7XEqeLz3oYK{padding:var(--s5px) 0;cursor:pointer}.fa-solid.s-Q7XEqeLz3oYK{font-size:var(--s11px)}.s-Q7XEqeLz3oYK{}",
       map: null
     };
@@ -91396,7 +91446,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
       let objectFields = objectProps.filter((prop) => prop.includes("_MT"));
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      $$result.css.add(css$42);
+      $$result.css.add(css$52);
       machineTranslated = objectFields.some((key2) => data[key2][$_lang]);
       $$unsubscribe__lang();
       return `
@@ -91412,7 +91462,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         {},
         {
           default: () => {
-            return `${`<i class="${"fa-solid fa-globe s-Q7XEqeLz3oYK"}"></i> ${escape(strings$12["machine_translated"][$_lang])}`}`;
+            return `${`<i class="${"fa-solid fa-globe s-Q7XEqeLz3oYK"}"></i> ${escape(strings$22["machine_translated"][$_lang])}`}`;
           }
         }
       )}</div>` : ``}`;
@@ -91429,7 +91479,8 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
             {
               font: 0,
               size: 0.75,
-              color: "\n            rgb(100, 99, 99);\n            margin-bottom: var(--s5px);"
+              color: "rgb(100, 99, 99)",
+              style: "margin-bottom: var(--s5px);"
             },
             {},
             {
@@ -91501,7 +91552,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         }
       })}`;
     });
-    css$33 = {
+    css$42 = {
       code: ".youtube.s-pP_MCOEFRNVA{position:relative;border-radius:var(--s3px);overflow:hidden;height:var(--theme-previewheight);width:100%}.youtube-preview.s-pP_MCOEFRNVA{background-image:var(--thumbnail);background-color:#7b7b7b;height:var(--theme-previewheight);width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;filter:grayscale(0.6)}.youtube-overlay.s-pP_MCOEFRNVA{position:absolute;top:0;left:0;display:flex;align-items:center;justify-content:center;color:white;font-size:var(--s35px);height:var(--theme-previewheight);width:100%;background-color:rgba(0,0,0, var(--theme-previewopacity));border-radius:3px}.s-pP_MCOEFRNVA{}",
       map: null
     };
@@ -91513,7 +91564,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         $$bindings.data(data);
       if ($$props.style === void 0 && $$bindings.style && style !== void 0)
         $$bindings.style(style);
-      $$result.css.add(css$33);
+      $$result.css.add(css$42);
       return `<div class="${["youtube s-pP_MCOEFRNVA", "youtube-preview"].join(" ").trim()}"${add_attribute("style", youtubeStyles, 0)}><div id="${"player-" + escape(data.videoId, true)}" class="${"s-pP_MCOEFRNVA"}"></div>
     ${`<div class="${"youtube-overlay s-pP_MCOEFRNVA"}"><i class="${"fa-solid fa-play s-pP_MCOEFRNVA"}"></i></div>`}
 </div>`;
@@ -91596,7 +91647,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         }
       })}`;
     });
-    css$23 = {
+    css$33 = {
       code: ".post.s--3yJQkpZRIwU{position:absolute;top:0;left:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background-color:rgba(0,0,0,0.9)}.post-container.s--3yJQkpZRIwU{width:var(--theme-columnwidth)}.s--3yJQkpZRIwU{}",
       map: null
     };
@@ -91604,11 +91655,11 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
       let { data } = $$props;
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      $$result.css.add(css$23);
+      $$result.css.add(css$33);
       return `<div class="${"post s--3yJQkpZRIwU"}"><div class="${"post-container s--3yJQkpZRIwU"}">${validate_component(COMPONENTS[data.type] || missing_component, "svelte:component").$$render($$result, { data }, {}, {})}</div>
 </div>`;
     });
-    strings3 = {
+    strings$12 = {
       verified_status: [
         "\u0DC3\u0DAD\u0DCA\u200D\u0DBA\u0DCF\u0DB4\u0DD2\u0DAD \u0DB6\u0DC0:",
         "verified status:",
@@ -91635,7 +91686,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         "\u0BB5\u0B9F\u0BBF\u0B95\u0B9F\u0BCD\u0B9F\u0BC1"
       ]
     };
-    css$13 = {
+    css$23 = {
       code: ".filters.s-BJo09dFzrlwu{position:relative;width:100%;padding:var(--theme-cardseparationhalf) 0 0 0}.tag.s-BJo09dFzrlwu{border:var(--s2px) solid #a5a5a5;border-radius:var(--s3px);padding:0 var(--s3px);margin-right:var(--s3px);filter:grayscale(0.8)}.tag.s-BJo09dFzrlwu:hover{cursor:pointer}.selected.s-BJo09dFzrlwu{border:var(--s2px) solid black;filter:none}.green.s-BJo09dFzrlwu{background-color:#9cff6f}.red.s-BJo09dFzrlwu{background-color:#ff8181}.filter-button.s-BJo09dFzrlwu{display:flex;justify-content:flex-end}.s-BJo09dFzrlwu{}",
       map: null
     };
@@ -91652,7 +91703,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         $$bindings.show(show);
       if ($$props.columnId === void 0 && $$bindings.columnId && columnId !== void 0)
         $$bindings.columnId(columnId);
-      $$result.css.add(css$13);
+      $$result.css.add(css$23);
       $$unsubscribe__lang();
       return `
 
@@ -91669,7 +91720,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             {},
             {
               default: () => {
-                return `${escape(strings3["verified_status"][$_lang])}`;
+                return `${escape(strings$12["verified_status"][$_lang])}`;
               }
             }
           )}
@@ -91683,8 +91734,8 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             {},
             {
               default: () => {
-                return `<span class="${["tag green s-BJo09dFzrlwu", "selected"].join(" ").trim()}">${escape(strings3["verified"][$_lang])}</span>
-            <span class="${["tag red s-BJo09dFzrlwu", ""].join(" ").trim()}">${escape(strings3["not_verified"][$_lang])}</span>`;
+                return `<span class="${["tag green s-BJo09dFzrlwu", "selected"].join(" ").trim()}">${escape(strings$12["verified"][$_lang])}</span>
+            <span class="${["tag red s-BJo09dFzrlwu", ""].join(" ").trim()}">${escape(strings$12["not_verified"][$_lang])}</span>`;
               }
             }
           )}
@@ -91699,7 +91750,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             {},
             {
               default: () => {
-                return `${escape(strings3["tags"][$_lang])}`;
+                return `${escape(strings$12["tags"][$_lang])}`;
               }
             }
           )}
@@ -91724,7 +91775,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
         <div class="${"filter-button s-BJo09dFzrlwu"}">${validate_component(Button, "Button").$$render(
             $$result,
             {
-              text: strings3["filter"],
+              text: strings$12["filter"],
               style: "\n                    display: inline-flex;\n                    width: var(--s100px);",
               fontSize: 0.8,
               onclick: () => {
@@ -91736,6 +91787,88 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
         }
       })}</div>` : ``}`;
     });
+    strings3 = {
+      wip: [
+        "\u0DB8\u0DD9\u0DB8 \u0DC3\u0DDA\u0DC0\u0DCF\u0DC0 \u0DAD\u0DC0\u0DB8\u0DAD\u0DCA \u0D89\u0DAF\u0DD2\u0D9A\u0DBB\u0DB8\u0DD2\u0DB1\u0DCA \u0DB4\u0DC0\u0DAD\u0DD3",
+        "this service is still under construction",
+        "\u0B87\u0BA8\u0BCD\u0BA4 \u0B9A\u0BC7\u0BB5\u0BC8 \u0B87\u0BA9\u0BCD\u0BA9\u0BC1\u0BAE\u0BCD \u0B95\u0B9F\u0BCD\u0B9F\u0BC1\u0BAE\u0BBE\u0BA9\u0BA4\u0BCD\u0BA4\u0BBF\u0BB2\u0BCD \u0B89\u0BB3\u0BCD\u0BB3\u0BA4\u0BC1"
+      ],
+      description: [
+        "\u0DC3\u0DDA\u0DC0\u0DCF \u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DBA",
+        "service description",
+        "\u0B9A\u0BC7\u0BB5\u0BC8 \u0BB5\u0BBF\u0BB3\u0B95\u0BCD\u0B95\u0BAE\u0BCD"
+      ],
+      release: [
+        "\u0DC3\u0DD0\u0DBD\u0DC3\u0DD4\u0DB8\u0DCA\u0D9C\u0DAD \u0DB8\u0DD4\u0DAF\u0DCF \u0DC4\u0DD0\u0DBB\u0DD3\u0DB8\u0DDA \u0DAF\u0DD2\u0DB1\u0DBA",
+        "planned release date",
+        "\u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0BAE\u0BBF\u0B9F\u0BCD\u0B9F \u0BB5\u0BC6\u0BB3\u0BBF\u0BAF\u0BC0\u0B9F\u0BCD\u0B9F\u0BC1 \u0BA4\u0BC7\u0BA4\u0BBF"
+      ]
+    };
+    css$13 = {
+      code: ".wip-icon.s-VlBfGya5dl-K{font-size:var(--s30px);text-align:center;padding:var(--s20px)}.s-VlBfGya5dl-K{}",
+      map: null
+    };
+    Wip = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $_lang, $$unsubscribe__lang;
+      validate_store(_lang, "_lang");
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let { data } = $$props;
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+        $$bindings.data(data);
+      $$result.css.add(css$13);
+      $$unsubscribe__lang();
+      return `${validate_component(Card, "Card").$$render($$result, {}, {}, {
+        default: () => {
+          return `<div class="${"wip-icon s-VlBfGya5dl-K"}"><i class="${"fa-solid fa-screwdriver-wrench s-VlBfGya5dl-K"}"></i></div>
+    ${validate_component(Font, "Font").$$render(
+            $$result,
+            {
+              font: 2,
+              size: 1,
+              color: "rgb(55, 55, 55);",
+              style: "\n            margin-bottom: var(--s10px);\n            text-align: center;\n            font-weight: bold;"
+            },
+            {},
+            {
+              default: () => {
+                return `${escape(strings3["wip"][$_lang])}`;
+              }
+            }
+          )}
+    ${validate_component(Font, "Font").$$render(
+            $$result,
+            {
+              font: 0,
+              size: 0.9,
+              color: "rgb(55, 55, 55);",
+              style: "\n            margin-bottom: var(--s10px);\n            text-align: center;"
+            },
+            {},
+            {
+              default: () => {
+                return `${escape(data.service[$_lang])}`;
+              }
+            }
+          )}
+
+    ${validate_component(Font, "Font").$$render(
+            $$result,
+            {
+              font: 0,
+              size: 0.9,
+              color: "rgb(55, 55, 55);",
+              style: "\n            margin-bottom: var(--s10px);\n            text-align: center;"
+            },
+            {},
+            {
+              default: () => {
+                return `${escape(strings3["release"][$_lang] + ": " + data.releaseDate)}`;
+              }
+            }
+          )}`;
+        }
+      })}`;
+    });
     css4 = {
       code: "ul.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex}.columns.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;overflow:hidden;background-color:var(--theme-columnbackground)}.column.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;width:var(--theme-columnwidth);height:calc(100vh - var(--theme-columnheaderheight))}.header.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;height:var(--theme-columnheaderheight);color:var(--theme-headerfontcolor);padding:0 var(--theme-cardseparationhalf) 0 var(--s10px);font-weight:bold;z-index:2}.header.s-Uap-jPRb-uiE div.s-Uap-jPRb-uiE{display:flex;align-items:center;height:100%}.header.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE:first-child{font-size:var(--s24px)}.icon-button.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex;align-items:center;justify-content:center;width:35px;height:35px;font-size:var(--s17px)}.cards.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;width:100%;height:calc(100vh - var(--s100px));overflow-y:scroll;overflow-x:hidden;-ms-overflow-style:none;scrollbar-width:none;padding:var(--theme-cardseparationhalf) 0}.cards.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE::-webkit-scrollbar{display:none}.spacer.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{width:var(--theme-cardseparationhalf);height:calc(100vh - var(--theme-columnheaderheight))}.spacer.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE::after{display:block;content:'';height:var(--theme-columnheaderheight);width:var(--theme-cardseparationhalf);background-color:var(--background)}.scrollbar.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:absolute;top:var(--theme-columnheaderheight);right:0}.scroll.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:absolute;overflow:hidden;top:var(--s20px);right:var(--s-3_75px);width:var(--s7_5px);border-radius:var(--s7_5px);opacity:0.5;background-color:rgba(0,0,0,0.4)}.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{}",
       map: null
@@ -91745,7 +91878,8 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
       newsx: News,
       empty: Empty,
       bulletinx: Bulletin,
-      proposal: Proposal
+      proposal: Proposal,
+      wip: Wip
     };
     Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $_isMobile, $$unsubscribe__isMobile;
@@ -91887,7 +92021,7 @@ ${validate_component(Nav, "Nav").$$render($$result, {}, {}, {})}
                 ${validate_component(Filter2, "Filter").$$render($$result, { show: showFilters[_i], columnId: _i }, {}, {})}
                 
                 <div class="${"cards s-Uap-jPRb-uiE"}">${each(columnData[_i], (item, _i2) => {
-          return `<div class="${"s-Uap-jPRb-uiE"}">${validate_component(COMPONENTS[column.type] || Empty || missing_component, "svelte:component").$$render($$result, { data: item }, {}, {})}
+          return `<div class="${"s-Uap-jPRb-uiE"}">${validate_component(COMPONENTS[item.type] || Empty || missing_component, "svelte:component").$$render($$result, { data: item }, {}, {})}
                     </div>`;
         })}</div>
                 <div class="${"scrollbar s-Uap-jPRb-uiE"}"><div class="${"scroll s-Uap-jPRb-uiE"}" style="${"top: " + escape(vScroll[_i], true) + "px; opacity: " + escape(_vScrollAnimation[_i], true) + "; height: " + escape(_vScrollAnimation[_i] * 25, true) + "px"}"></div>
@@ -91915,9 +92049,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    file4 = "_app/immutable/pages/index.svelte-ffeaa622.js";
-    imports3 = ["_app/immutable/pages/index.svelte-ffeaa622.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-dc8269c9.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/proposal-f05be127.js", "_app/immutable/chunks/storage-7eb83aa6.js"];
-    stylesheets3 = ["_app/immutable/assets/index-6d9446a5.css", "_app/immutable/assets/proposal-62aca3cb.css", "_app/immutable/assets/storage-c7057ab9.css"];
+    file4 = "_app/immutable/pages/index.svelte-c2776564.js";
+    imports3 = ["_app/immutable/pages/index.svelte-c2776564.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-dbc2caba.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/proposal-cbc4a92a.js", "_app/immutable/chunks/storage-d383ebf5.js"];
+    stylesheets3 = ["_app/immutable/assets/index-897422f7.css", "_app/immutable/assets/proposal-62aca3cb.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
 
@@ -91976,9 +92110,9 @@ var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_proposal_be2aa418();
-    init_font_5b202901();
-    init_column_config_ca4f920c();
+    init_proposal_301d3b02();
+    init_font_d1937815();
+    init_column_config_63e26bf3();
     import_chroma_js4 = __toESM(require_chroma(), 1);
     init_string_strip_html_esm();
     css6 = {
@@ -92026,8 +92160,8 @@ var init__5 = __esm({
     init_shims();
     init_post_preview_svelte();
     index5 = 4;
-    file6 = "_app/immutable/pages/post_preview.svelte-0d0d4e6a.js";
-    imports5 = ["_app/immutable/pages/post_preview.svelte-0d0d4e6a.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/proposal-f05be127.js", "_app/immutable/chunks/font-dc8269c9.js", "_app/immutable/chunks/index-cc16aad1.js"];
+    file6 = "_app/immutable/pages/post_preview.svelte-bba68ae8.js";
+    imports5 = ["_app/immutable/pages/post_preview.svelte-bba68ae8.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/proposal-cbc4a92a.js", "_app/immutable/chunks/font-dbc2caba.js", "_app/immutable/chunks/index-cc16aad1.js"];
     stylesheets5 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-62aca3cb.css"];
   }
 });
@@ -92176,8 +92310,8 @@ var IMPLEMENTED_TYPES, GET;
 var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
-    init_column_config_ca4f920c();
-    init_database_8e0ce6fe();
+    init_column_config_63e26bf3();
+    init_database_e087c939();
     init_dist();
     init_dist2();
     IMPLEMENTED_TYPES = ["bulletin", "newsx", "bulletinx", "proposal"];
@@ -92190,10 +92324,12 @@ var init_endpoints = __esm({
       const columnData = [];
       for (let column of COLUMNS) {
         let data;
-        if (IMPLEMENTED_TYPES.includes(column.type)) {
+        if (column.type == "static") {
+          data = column.static;
+        } else if (IMPLEMENTED_TYPES.includes(column.type)) {
           data = await _getPosts(column.type);
         } else {
-          data = Array(10).fill(true).map((_2, i2) => {
+          data = Array(5).fill(true).map((_2, i2) => {
             return { id: i2, type: "empty", height: column.height };
           });
         }
@@ -94833,7 +94969,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-03944373.js", "imports": ["_app/immutable/start-03944373.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-a745c35d.js", "imports": ["_app/immutable/start-a745c35d.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
