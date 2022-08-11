@@ -53256,10 +53256,10 @@ var init_dist2 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/database-8e0ce6fe.js
+// .svelte-kit/output/server/_app/immutable/chunks/database-e087c939.js
 var firebaseConfig, app, db, _createError, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord;
-var init_database_8e0ce6fe = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/database-8e0ce6fe.js"() {
+var init_database_e087c939 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/database-e087c939.js"() {
     init_shims();
     init_dist();
     init_dist2();
@@ -53271,6 +53271,16 @@ var init_database_8e0ce6fe = __esm({
       messagingSenderId: "15533282305",
       appId: "1:15533282305:web:a807d2c4f789c046a71c00"
     };
+    {
+      firebaseConfig = {
+        apiKey: "AIzaSyAIFR7IVXYjG_8lyPyfHxsdx_kaRz4z3SM",
+        authDomain: "aragalaya-online-prod.firebaseapp.com",
+        projectId: "aragalaya-online-prod",
+        storageBucket: "aragalaya-online-prod.appspot.com",
+        messagingSenderId: "730227179317",
+        appId: "1:730227179317:web:59771460444f98ae52567c"
+      };
+    }
     app = initializeApp(firebaseConfig);
     db = getFirestore(app);
     _createError = async (error2, caller, data) => {
@@ -69268,14 +69278,14 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/storage-214bb17a.js
+// .svelte-kit/output/server/_app/immutable/chunks/storage-fe17d5d5.js
 var import_rxjs, events, _emitEvent, _eventListener, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, css, Button;
-var init_storage_214bb17a = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/storage-214bb17a.js"() {
+var init_storage_fe17d5d5 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/storage-fe17d5d5.js"() {
     init_shims();
     init_index_19a73778();
     init_font_5b202901();
-    init_database_8e0ce6fe();
+    init_database_e087c939();
     init_dist3();
     init_dist4();
     import_rxjs = __toESM(require_cjs(), 1);
@@ -87874,8 +87884,8 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_storage_214bb17a();
-    init_database_8e0ce6fe();
+    init_storage_fe17d5d5();
+    init_database_e087c939();
     init_font_5b202901();
     init_column_config_ca4f920c();
     init_dist5();
@@ -88594,7 +88604,9 @@ ${validate_component(Toasts, "Toasts").$$render($$result, {}, {}, {})}
 		</div>
 		<div class="${"online s-PoaHcXV6SIWL"}">.online
 		</div>
-        <div class="${"beta s-PoaHcXV6SIWL"}">${escape("(dev-beta)")}</div></div>
+        <div class="${"beta s-PoaHcXV6SIWL"}">${escape(
+        "(prod-beta)"
+      )}</div></div>
 	<ul class="${"header-right s-PoaHcXV6SIWL"}">${!$_isMobile ? `<li class="${"s-PoaHcXV6SIWL"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
 		</li>
 		<li class="${"s-PoaHcXV6SIWL"}">English 
@@ -88632,8 +88644,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-a3d18a8f.js";
-    imports = ["_app/immutable/pages/__layout.svelte-a3d18a8f.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-dc8269c9.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-7eb83aa6.js"];
+    file2 = "_app/immutable/pages/__layout.svelte-8cb44d48.js";
+    imports = ["_app/immutable/pages/__layout.svelte-8cb44d48.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-dc8269c9.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-626cba00.js"];
     stylesheets = ["_app/immutable/assets/__layout-1c514b46.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
@@ -90741,34 +90753,177 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/proposal-83a0e022.js
-var css$42, Card, strings$1, css$32, Content, css$22, Preview, strings2, css$12, Toolbar, css3, Proposal;
-var init_proposal_83a0e022 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/proposal-83a0e022.js"() {
+// .svelte-kit/output/server/_app/immutable/chunks/proposal-dcb519a3.js
+var css$32, Card, strings$3, Timestamp2, strings$2, css$22, Content, css$12, Preview, strings$1, css3, Toolbar, strings2, Proposal;
+var init_proposal_dcb519a3 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/proposal-dcb519a3.js"() {
     init_shims();
     init_index_19a73778();
-    init_string_strip_html_esm();
     init_font_5b202901();
-    css$42 = {
+    init_string_strip_html_esm();
+    css$32 = {
       code: ".card-container.s-Hio59jcNIlCL{padding:var(--theme-cardseparationhalf)}.card.s-Hio59jcNIlCL{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.s-Hio59jcNIlCL{}",
       map: null
     };
     Card = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css$42);
+      $$result.css.add(css$32);
       return `
 
 
 <div class="${"card-container s-Hio59jcNIlCL"}"><div class="${"card s-Hio59jcNIlCL"}">${slots.default ? slots.default({}) : ``}</div>
 </div>`;
     });
-    strings$1 = {
+    strings$3 = {
+      yesterday: [
+        "\u0D8A\u0DBA\u0DDA",
+        "yesterday",
+        "\u0BA8\u0BC7\u0BB1\u0BCD\u0BB1\u0BC1"
+      ],
+      minuteAgo: [
+        "\u0DC0\u0DD2\u0DB1\u0DCF\u0DA9\u0DD2\u0DBA\u0D9A\u0DA7 \u0DB4\u0DD9\u0DBB",
+        "a minute ago",
+        "\u0B92\u0BB0\u0BC1 \u0BA8\u0BBF\u0BAE\u0BBF\u0B9F\u0BAE\u0BCD \u0BAE\u0BC1\u0BA9\u0BCD\u0BAA\u0BC1"
+      ],
+      now: [
+        "\u0DAF\u0DD0\u0DB1\u0DCA",
+        "Now",
+        "\u0B87\u0BAA\u0BCD\u0BAA\u0BCB\u0BA4\u0BC1"
+      ],
+      today: [
+        "\u0D85\u0DAF",
+        "today",
+        "\u0B87\u0BA9\u0BCD\u0BB1\u0BC1"
+      ],
+      minutesAgo: [
+        "\u0DB8\u0DD2\u0DB1\u0DD2\u0DAD\u0DCA\u0DAD\u0DD4 *minutes* \u0D9A\u0DA7 \u0DB4\u0DD9\u0DBB",
+        "*minutes* minutes ago",
+        "*minutes* \u0BA8\u0BBF\u0BAE\u0BBF\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BC1\u0B95\u0BCD\u0B95\u0BC1 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAA\u0BC1"
+      ],
+      secondsAgo: [
+        "\u0DAD\u0DAD\u0DCA\u0DB4\u0DBB *seconds* \u0D9A\u0DA7 \u0DB4\u0DD9\u0DBB",
+        "*seconds* seconds ago",
+        "*seconds* \u0BB5\u0BBF\u0BA9\u0BBE\u0B9F\u0BBF\u0B95\u0BB3\u0BC1\u0B95\u0BCD\u0B95\u0BC1 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAA\u0BC1"
+      ],
+      verified: [
+        "\u0DAD\u0DC4\u0DC0\u0DD4\u0DBB\u0DD4 \u0D9A\u0DBB \u0D87\u0DAD",
+        "verified content",
+        "\u0B9A\u0BB0\u0BBF\u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BCD\u0B9F\u0BA4\u0BC1"
+      ],
+      notVerified: [
+        "\u0DAD\u0DC4\u0DC0\u0DD4\u0DBB\u0DD4 \u0D9A\u0DBB \u0DB1\u0DD0\u0DAD",
+        "not verified",
+        "\u0B9A\u0BB0\u0BBF\u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BB5\u0BBF\u0BB2\u0BCD\u0BB2\u0BC8\u0BC8"
+      ],
+      comments: [
+        "\u0DB4\u0DCA\u200D\u0DBB\u0DAD\u0DD2\u0DA0\u0DCF\u0DBB *count*",
+        " *count* comments",
+        "*count* \u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BB3\u0BCD"
+      ],
+      commentPlaceholder: [
+        "\u0D85\u0DAF\u0DC4\u0DC3\u0D9A\u0DCA \u0DA7\u0DBA\u0DD2\u0DB4\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1..",
+        "Type a comment..",
+        "\u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC8 \u0B89\u0BB3\u0BCD\u0BB3\u0BBF\u0B9F\u0BB5\u0BC1\u0BAE\u0BCD.."
+      ],
+      submit: [
+        "\u0D91\u0D9A\u0DAD\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+        "Submit comment",
+        "\u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC8\u0B9A\u0BCD \u0B9A\u0BAE\u0BB0\u0BCD\u0BAA\u0BCD\u0BAA\u0BBF\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
+      ],
+      mt: [
+        "\u0DC3\u0DCA\u0DC0\u0DBA\u0D82\u0D9A\u0DCA\u200D\u0DBB\u0DD2\u0DBA \u0DB4\u0DBB\u0DD2\u0DC0\u0DBB\u0DCA\u0DAD\u0DB1\u0DBA\u0D9A\u0DD2",
+        "A machine translation",
+        "\u0BA4\u0BBE\u0BA9\u0BBF\u0BAF\u0B99\u0BCD\u0B95\u0BBF \u0BAE\u0BCA\u0BB4\u0BBF\u0BAA\u0BC6\u0BAF\u0BB0\u0BCD\u0BAA\u0BCD\u0BAA\u0BC1\u0BC1"
+      ],
+      anonymous: [
+        "\u0DB1\u0DD2\u0DBB\u0DCA\u0DB1\u0DCF\u0DB8\u0DD2\u0D9A",
+        "anonymous",
+        "\u0B85\u0BA8\u0BBE\u0BAE\u0BA4\u0BC7\u0BAF"
+      ]
+    };
+    Timestamp2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let { time } = $$props;
+      let { inline = false } = $$props;
+      const MONTH_NAMES = [
+        ["\u0DA2\u0DB1\u0DC0\u0DCF\u0DBB\u0DD2", "January", "\u0B9C\u0BA9\u0BB5\u0BB0\u0BBF"],
+        ["\u0DB4\u0DD9\u0DB6\u0DBB\u0DC0\u0DCF\u0DBB\u0DD2", "February", "\u0BAA\u0BBF\u0BAA\u0BCD\u0BB0\u0BB5\u0BB0\u0BBF"],
+        ["\u0DB8\u0DCF\u0DBB\u0DCA\u0DAD\u0DD4", "March", "\u0BAE\u0BBE\u0BB0\u0BCD\u0B9A\u0BCD"],
+        ["\u0D85\u0DB4\u0DCA\u0DBB\u0DDA\u0DBD\u0DCA", "April", "\u0B8F\u0BAA\u0BCD\u0BB0\u0BB2\u0BCD"],
+        ["\u0DB8\u0DD0\u0DBA\u0DD2", "May", "\u0BAE\u0BC7"],
+        ["\u0DA2\u0DD6\u0DB1\u0DD2", "June", "\u0B9C\u0BC2\u0BA9\u0BCD"],
+        ["\u0DA2\u0DD6\u0DBD\u0DD2", "July", "\u0B9C\u0BC2\u0BB2\u0BC8"],
+        ["\u0D85\u0D9C\u0DDD\u0DC3\u0DCA\u0DAD\u0DD4", "August", "\u0B86\u0B95\u0BB8\u0BCD\u0B9F\u0BCD"],
+        ["\u0DC3\u0DD0\u0DB4\u0DCA\u0DAD\u0DD0\u0DB8\u0DCA\u0DB6\u0DBB\u0DCA", "September", "\u0B9A\u0BC6\u0BAA\u0BCD\u0B9F\u0BAE\u0BCD\u0BAA\u0BB0\u0BCD"],
+        ["\u0D94\u0D9A\u0DCA\u0DAD\u0DDD\u0DB6\u0DBB\u0DCA", "October", "\u0B85\u0B95\u0BCD\u0B9F\u0BCB\u0BAA\u0BB0\u0BCD"],
+        ["\u0DB1\u0DDC\u0DC0\u0DD0\u0DB8\u0DCA\u0DB6\u0DBB\u0DCA", "November", "\u0BA8\u0BB5\u0BAE\u0BCD\u0BAA\u0BB0\u0BCD"],
+        ["\u0DAF\u0DD9\u0DC3\u0DD0\u0DB8\u0DCA\u0DB6\u0DBB\u0DCA", "December", "\u0B9F\u0BBF\u0B9A\u0BAE\u0BCD\u0BAA\u0BB0\u0BCD"]
+      ];
+      const timeAgo = (dateParam) => {
+        if (!dateParam) {
+          return "";
+        }
+        const date = typeof dateParam === "object" ? dateParam : new Date(dateParam);
+        const DAY_IN_MS = 864e5;
+        const today = new Date();
+        const yesterday = new Date(today.getTime() - DAY_IN_MS);
+        const seconds = Math.round((today.getTime() - date.getTime()) / 1e3);
+        const minutes = Math.round(seconds / 60);
+        const isToday = today.toDateString() === date.toDateString();
+        const isYesterday = yesterday.toDateString() === date.toDateString();
+        const isThisYear = today.getFullYear() === date.getFullYear();
+        if (seconds < 5) {
+          return strings$3["now"][language];
+        } else if (seconds < 60) {
+          return strings$3["secondsAgo"][language].replace("*seconds*", seconds.toString());
+        } else if (seconds < 90) {
+          return strings$3["minuteAgo"][language];
+        } else if (minutes < 60) {
+          return strings$3["minutesAgo"][language].replace("*minutes*", minutes.toString());
+        } else if (isToday) {
+          return getFormattedDate(date, strings$3["today"][language]);
+        } else if (isYesterday) {
+          return getFormattedDate(date, strings$3["yesterday"][language]);
+        } else if (isThisYear) {
+          return getFormattedDate(date, false, true);
+        }
+        return getFormattedDate(date);
+      };
+      const getFormattedDate = (date, prefomattedDate = false, hideYear = false) => {
+        const day = date.getDate();
+        const month = MONTH_NAMES[date.getMonth()][language];
+        const year = date.getFullYear();
+        const hours = date.getHours();
+        let minutes = date.getMinutes();
+        if (minutes < 10) {
+          minutes = `0${minutes}`;
+        }
+        if (prefomattedDate) {
+          return `${prefomattedDate} ${language == 1 ? "at" : ""} ${hours}:${minutes}${language == 0 ? "\u0DA7" : language == 2 ? " \u0BAE\u0BA3\u0BBF\u0B95\u0BCD\u0B95\u0BC1" : ""}`;
+        }
+        if (hideYear) {
+          return `${day} ${month} ${language == 1 ? "at" : ""} ${hours}:${minutes}${language == 0 ? "\u0DA7" : language == 2 ? " \u0BAE\u0BA3\u0BBF\u0B95\u0BCD\u0B95\u0BC1" : ""}`;
+        }
+        return `${day} ${month} ${year}. ${language == 1 ? "at" : ""} ${hours}:${minutes}`;
+      };
+      let language = 0;
+      let timeAgoString = timeAgo(time);
+      _lang.subscribe((l) => {
+        language = l;
+        timeAgoString = timeAgo(time);
+      });
+      if ($$props.time === void 0 && $$bindings.time && time !== void 0)
+        $$bindings.time(time);
+      if ($$props.inline === void 0 && $$bindings.inline && inline !== void 0)
+        $$bindings.inline(inline);
+      return `<div class="${"timestamp"}" style="${"display: " + escape(inline ? "inline-block" : "block", true)}">${escape(timeAgoString)}</div>`;
+    });
+    strings$2 = {
       read_more: [
         "\u0DC0\u0DD0\u0DA9\u0DD2\u0DAF\u0DD4\u0DBB \u0D9A\u0DD2\u0DBA\u0DC0\u0DB1\u0DCA\u0DB1",
         "read more",
         "\u0BAE\u0BC7\u0BB2\u0BC1\u0BAE\u0BCD \u0BAA\u0B9F\u0BBF\u0B95\u0BCD\u0B95"
       ]
     };
-    css$32 = { code: ".s-DkLwbhZttZVG{}", map: null };
+    css$22 = { code: ".s-DkLwbhZttZVG{}", map: null };
     Content = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $_lang, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
@@ -90779,7 +90934,7 @@ var init_proposal_83a0e022 = __esm({
         $$bindings.data(data);
       if ($$props.contentField === void 0 && $$bindings.contentField && contentField !== void 0)
         $$bindings.contentField(contentField);
-      $$result.css.add(css$32);
+      $$result.css.add(css$22);
       $$unsubscribe__lang();
       return `
 
@@ -90788,7 +90943,7 @@ var init_proposal_83a0e022 = __esm({
     <!-- HTML_TAG_START -->${data[contentField][data._viewOriginal ? 3 : $_lang]}<!-- HTML_TAG_END -->  
 </div>`;
     });
-    css$22 = {
+    css$12 = {
       code: ".preview-image.s-Aln3qbhUrjzf{background-image:var(--url);background-color:#7b7b7b;height:var(--theme-previewheight);width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;margin-top:5px;filter:grayscale(0.6)}.preview-container.s-Aln3qbhUrjzf{position:relative}.preview-overlay.s-Aln3qbhUrjzf{position:absolute;top:0;left:0;height:var(--theme-previewheight);width:100%;background-color:black;opacity:var(--theme-previewopacity);border-radius:3px}.preview img{margin:var(--s10px) 0;width:100%;border-radius:3px}.s-Aln3qbhUrjzf{}",
       map: null
     };
@@ -90817,7 +90972,7 @@ var init_proposal_83a0e022 = __esm({
         $$bindings.limit(limit2);
       if ($$props.expanded === void 0 && $$bindings.expanded && expanded !== void 0)
         $$bindings.expanded(expanded);
-      $$result.css.add(css$22);
+      $$result.css.add(css$12);
       contentString = Array.isArray(content) ? content[data._viewOriginal ? 3 : $_lang] : content;
       images = contentString.match(/src="([\w\W]+?)"/g);
       images = images && images.map((src, _i) => {
@@ -90832,19 +90987,19 @@ var init_proposal_83a0e022 = __esm({
 
 
 <div class="${"preview s-Aln3qbhUrjzf"}">${expanded ? `${validate_component(Content, "Content").$$render($$result, { data, contentField }, {}, {})}` : `<div class="${"_clickable s-Aln3qbhUrjzf"}">${escape(croppedText)}
-            ${croppedFlag ? `<span style="${"font-weight:bold; text-decoration:underline"}" class="${"s-Aln3qbhUrjzf"}">${escape(strings$1["read_more"][$_lang])}</span>
+            ${croppedFlag ? `<span style="${"font-weight:bold; text-decoration:underline"}" class="${"s-Aln3qbhUrjzf"}">${escape(strings$2["read_more"][$_lang])}</span>
                 ${images ? `<div class="${"preview-container s-Aln3qbhUrjzf"}"><div class="${"preview-image s-Aln3qbhUrjzf"}" style="${"--url: url(" + escape(images[0], true) + ")"}"></div>
                     <div class="${"preview-overlay s-Aln3qbhUrjzf"}"></div></div>` : ``}` : ``}</div>`}
 </div>`;
     });
-    strings2 = {
+    strings$1 = {
       verified: [
         "\u0DAD\u0DC4\u0DC0\u0DD4\u0DBB\u0DD4 \u0D9A\u0DBB \u0D87\u0DAD",
         "verified post",
         "\u0B9A\u0BB0\u0BBF\u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BCD\u0B9F\u0BA4\u0BC1"
       ]
     };
-    css$12 = {
+    css3 = {
       code: ".toolbar.s-A62t8M1ucyij{display:flex;align-items:center;justify-content:space-between;margin-top:var(--s10px)}.toolbar-left.s-A62t8M1ucyij{display:inline-flex}.toolbar-right.s-A62t8M1ucyij{display:inline-flex;align-items:center}.icon.s-A62t8M1ucyij{display:inline-flex;align-items:center;justify-content:center;width:var(--theme-toolbarbuttonsize);height:var(--theme-toolbarbuttonsize);margin-right:var(--s5px);font-size:var(--s13px);line-height:var(--s14px);background-color:rgb(226, 230, 230);border-radius:3px}.on.s-A62t8M1ucyij{background-color:rgb(124, 124, 124);color:white}.verified.s-A62t8M1ucyij{background-color:#48bb6b;color:white;margin-right:0}.facebook.s-A62t8M1ucyij{background-color:#557bab}.twitter.s-A62t8M1ucyij{background-color:#6abef2}.whatsapp.s-A62t8M1ucyij{background-color:#61ba7b}.reddit.s-A62t8M1ucyij{background-color:#fc7949}.fa-brands.s-A62t8M1ucyij{color:white}.s-A62t8M1ucyij{}",
       map: null
     };
@@ -90856,7 +91011,7 @@ var init_proposal_83a0e022 = __esm({
       createEventDispatcher();
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      $$result.css.add(css$12);
+      $$result.css.add(css3);
       $$unsubscribe__lang();
       return `
 
@@ -90878,39 +91033,141 @@ var init_proposal_83a0e022 = __esm({
         {},
         {
           default: () => {
-            return `${escape(strings2["verified"][$_lang])}`;
+            return `${escape(strings$1["verified"][$_lang])}`;
           }
         }
       )}
         <div class="${"icon verified s-A62t8M1ucyij"}"><i class="${"fa-solid fa-check s-A62t8M1ucyij"}"></i></div></div>
 </div>`;
     });
-    css3 = {
-      code: ".proposals.s-3w2mc5DrBy3_{width:100%}.s-3w2mc5DrBy3_{}",
-      map: null
+    strings2 = {
+      motive: [
+        "\u0D86\u0DBA\u0DAD\u0DB1\u0DBA\u0DDA \u0D85\u0DBB\u0DB8\u0DD4\u0DAB:",
+        "organization's motive:",
+        "\u0B85\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BBF\u0BA9\u0BCD \u0BA8\u0BCB\u0B95\u0BCD\u0B95\u0BAE\u0BCD:"
+      ],
+      proposal: [
+        "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A\u0DC0 \u0DBA\u0DDD\u0DA2\u0DB1\u0DCF\u0DC0",
+        "proposal in detail",
+        "\u0BB5\u0BBF\u0BB0\u0BBF\u0BB5\u0BBE\u0BA9 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAE\u0BCA\u0BB4\u0BBF\u0BB5\u0BC1"
+      ]
     };
     Proposal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $_lang, $$unsubscribe__lang;
+      validate_store(_lang, "_lang");
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
       let { data } = $$props;
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      $$result.css.add(css3);
-      return `<div class="${"proposals s-3w2mc5DrBy3_"}">${validate_component(Card, "Card").$$render($$result, {}, {}, {
+      $$unsubscribe__lang();
+      return `<div class="${"proposals"}">${validate_component(Card, "Card").$$render($$result, {}, {}, {
         default: () => {
-          return `${validate_component(Preview, "Preview").$$render(
+          return `
+        ${validate_component(Font, "Font").$$render(
             $$result,
             {
-              data,
-              contentField: "proposal",
-              limit: 50,
-              expanded: data._expanded
+              font: 0,
+              size: 0.75,
+              color: "\n                rgb(100, 99, 99);\n                margin-bottom: var(--s5px);"
             },
             {},
-            {}
+            {
+              default: () => {
+                return `${validate_component(Timestamp2, "Timestamp").$$render($$result, { time: data.createdOn }, {}, {})}`;
+              }
+            }
+          )}
+        
+        ${validate_component(Font, "Font").$$render(
+            $$result,
+            {
+              font: 1,
+              size: 1.25,
+              style: "\n                font-weight: bold;\n                margin-bottom: var(--s10px);"
+            },
+            {},
+            {
+              default: () => {
+                return `${validate_component(Content, "Content").$$render($$result, { data, contentField: "organization" }, {}, {})}`;
+              }
+            }
+          )}
+        
+        ${validate_component(Font, "Font").$$render(
+            $$result,
+            {
+              font: 3,
+              size: 0.8,
+              color: "rgb(55, 55, 55);",
+              style: "\n                margin-bottom: var(--s3px);\n                font-weight: bold;"
+            },
+            {},
+            {
+              default: () => {
+                return `${escape(strings2["motive"][$_lang])}`;
+              }
+            }
+          )}
+        
+        ${validate_component(Font, "Font").$$render(
+            $$result,
+            {
+              font: 0,
+              size: 0.9,
+              color: "rgb(57, 56, 56);",
+              style: "\n                margin-bottom: var(--s10px);"
+            },
+            {},
+            {
+              default: () => {
+                return `${validate_component(Content, "Content").$$render($$result, { data, contentField: "motive" }, {}, {})}`;
+              }
+            }
+          )}
+        
+        ${validate_component(Font, "Font").$$render(
+            $$result,
+            {
+              font: 3,
+              size: 0.8,
+              color: "rgb(55, 55, 55);",
+              style: "\n                margin-bottom: var(--s3px);\n                font-weight: bold;"
+            },
+            {},
+            {
+              default: () => {
+                return `${escape(strings2["proposal"][$_lang])}`;
+              }
+            }
+          )}
+        
+        ${validate_component(Font, "Font").$$render(
+            $$result,
+            {
+              font: 0,
+              size: 0.9,
+              color: "rgb(57, 56, 56);"
+            },
+            {},
+            {
+              default: () => {
+                return `${validate_component(Preview, "Preview").$$render(
+                  $$result,
+                  {
+                    data,
+                    contentField: "proposal",
+                    limit: 50,
+                    expanded: data._expanded
+                  },
+                  {},
+                  {}
+                )}`;
+              }
+            }
           )}
         ${validate_component(Toolbar, "Toolbar").$$render($$result, { data }, {}, {})}`;
         }
-      })}
-</div>`;
+      })}</div>`;
     });
   }
 });
@@ -91029,7 +91286,7 @@ function tweened(value, defaults = {}) {
     subscribe: store.subscribe
   };
 }
-var import_chroma_js3, css$62, Nav, css$52, Empty, strings$2, Timestamp2, strings$12, css$43, Mt, Bulletin, css$33, Youtube, News, css$23, Post, strings3, css$13, Filter2, css4, COMPONENTS, Routes;
+var import_chroma_js3, css$62, Nav, css$52, Empty, strings$12, css$42, Mt, Bulletin, css$33, Youtube, News, css$23, Post, strings3, css$13, Filter2, css4, COMPONENTS, Routes;
 var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
@@ -91037,9 +91294,9 @@ var init_index_svelte = __esm({
     init_column_config_ca4f920c();
     init_font_5b202901();
     init_string_strip_html_esm();
-    init_storage_214bb17a();
-    init_database_8e0ce6fe();
-    init_proposal_83a0e022();
+    init_storage_fe17d5d5();
+    init_database_e087c939();
+    init_proposal_dcb519a3();
     import_chroma_js3 = __toESM(require_chroma(), 1);
     init_dist3();
     init_dist4();
@@ -91124,149 +91381,6 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
         }
       })}`;
     });
-    strings$2 = {
-      yesterday: [
-        "\u0D8A\u0DBA\u0DDA",
-        "yesterday",
-        "\u0BA8\u0BC7\u0BB1\u0BCD\u0BB1\u0BC1"
-      ],
-      minuteAgo: [
-        "\u0DC0\u0DD2\u0DB1\u0DCF\u0DA9\u0DD2\u0DBA\u0D9A\u0DA7 \u0DB4\u0DD9\u0DBB",
-        "a minute ago",
-        "\u0B92\u0BB0\u0BC1 \u0BA8\u0BBF\u0BAE\u0BBF\u0B9F\u0BAE\u0BCD \u0BAE\u0BC1\u0BA9\u0BCD\u0BAA\u0BC1"
-      ],
-      now: [
-        "\u0DAF\u0DD0\u0DB1\u0DCA",
-        "Now",
-        "\u0B87\u0BAA\u0BCD\u0BAA\u0BCB\u0BA4\u0BC1"
-      ],
-      today: [
-        "\u0D85\u0DAF",
-        "today",
-        "\u0B87\u0BA9\u0BCD\u0BB1\u0BC1"
-      ],
-      minutesAgo: [
-        "\u0DB8\u0DD2\u0DB1\u0DD2\u0DAD\u0DCA\u0DAD\u0DD4 *minutes* \u0D9A\u0DA7 \u0DB4\u0DD9\u0DBB",
-        "*minutes* minutes ago",
-        "*minutes* \u0BA8\u0BBF\u0BAE\u0BBF\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BC1\u0B95\u0BCD\u0B95\u0BC1 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAA\u0BC1"
-      ],
-      secondsAgo: [
-        "\u0DAD\u0DAD\u0DCA\u0DB4\u0DBB *seconds* \u0D9A\u0DA7 \u0DB4\u0DD9\u0DBB",
-        "*seconds* seconds ago",
-        "*seconds* \u0BB5\u0BBF\u0BA9\u0BBE\u0B9F\u0BBF\u0B95\u0BB3\u0BC1\u0B95\u0BCD\u0B95\u0BC1 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAA\u0BC1"
-      ],
-      verified: [
-        "\u0DAD\u0DC4\u0DC0\u0DD4\u0DBB\u0DD4 \u0D9A\u0DBB \u0D87\u0DAD",
-        "verified content",
-        "\u0B9A\u0BB0\u0BBF\u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BCD\u0B9F\u0BA4\u0BC1"
-      ],
-      notVerified: [
-        "\u0DAD\u0DC4\u0DC0\u0DD4\u0DBB\u0DD4 \u0D9A\u0DBB \u0DB1\u0DD0\u0DAD",
-        "not verified",
-        "\u0B9A\u0BB0\u0BBF\u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BB5\u0BBF\u0BB2\u0BCD\u0BB2\u0BC8\u0BC8"
-      ],
-      comments: [
-        "\u0DB4\u0DCA\u200D\u0DBB\u0DAD\u0DD2\u0DA0\u0DCF\u0DBB *count*",
-        " *count* comments",
-        "*count* \u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BB3\u0BCD"
-      ],
-      commentPlaceholder: [
-        "\u0D85\u0DAF\u0DC4\u0DC3\u0D9A\u0DCA \u0DA7\u0DBA\u0DD2\u0DB4\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1..",
-        "Type a comment..",
-        "\u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC8 \u0B89\u0BB3\u0BCD\u0BB3\u0BBF\u0B9F\u0BB5\u0BC1\u0BAE\u0BCD.."
-      ],
-      submit: [
-        "\u0D91\u0D9A\u0DAD\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-        "Submit comment",
-        "\u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC8\u0B9A\u0BCD \u0B9A\u0BAE\u0BB0\u0BCD\u0BAA\u0BCD\u0BAA\u0BBF\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
-      ],
-      mt: [
-        "\u0DC3\u0DCA\u0DC0\u0DBA\u0D82\u0D9A\u0DCA\u200D\u0DBB\u0DD2\u0DBA \u0DB4\u0DBB\u0DD2\u0DC0\u0DBB\u0DCA\u0DAD\u0DB1\u0DBA\u0D9A\u0DD2",
-        "A machine translation",
-        "\u0BA4\u0BBE\u0BA9\u0BBF\u0BAF\u0B99\u0BCD\u0B95\u0BBF \u0BAE\u0BCA\u0BB4\u0BBF\u0BAA\u0BC6\u0BAF\u0BB0\u0BCD\u0BAA\u0BCD\u0BAA\u0BC1\u0BC1"
-      ],
-      anonymous: [
-        "\u0DB1\u0DD2\u0DBB\u0DCA\u0DB1\u0DCF\u0DB8\u0DD2\u0D9A",
-        "anonymous",
-        "\u0B85\u0BA8\u0BBE\u0BAE\u0BA4\u0BC7\u0BAF"
-      ]
-    };
-    Timestamp2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let { time } = $$props;
-      let { inline = false } = $$props;
-      const MONTH_NAMES = [
-        ["\u0DA2\u0DB1\u0DC0\u0DCF\u0DBB\u0DD2", "January", "\u0B9C\u0BA9\u0BB5\u0BB0\u0BBF"],
-        ["\u0DB4\u0DD9\u0DB6\u0DBB\u0DC0\u0DCF\u0DBB\u0DD2", "February", "\u0BAA\u0BBF\u0BAA\u0BCD\u0BB0\u0BB5\u0BB0\u0BBF"],
-        ["\u0DB8\u0DCF\u0DBB\u0DCA\u0DAD\u0DD4", "March", "\u0BAE\u0BBE\u0BB0\u0BCD\u0B9A\u0BCD"],
-        ["\u0D85\u0DB4\u0DCA\u0DBB\u0DDA\u0DBD\u0DCA", "April", "\u0B8F\u0BAA\u0BCD\u0BB0\u0BB2\u0BCD"],
-        ["\u0DB8\u0DD0\u0DBA\u0DD2", "May", "\u0BAE\u0BC7"],
-        ["\u0DA2\u0DD6\u0DB1\u0DD2", "June", "\u0B9C\u0BC2\u0BA9\u0BCD"],
-        ["\u0DA2\u0DD6\u0DBD\u0DD2", "July", "\u0B9C\u0BC2\u0BB2\u0BC8"],
-        ["\u0D85\u0D9C\u0DDD\u0DC3\u0DCA\u0DAD\u0DD4", "August", "\u0B86\u0B95\u0BB8\u0BCD\u0B9F\u0BCD"],
-        ["\u0DC3\u0DD0\u0DB4\u0DCA\u0DAD\u0DD0\u0DB8\u0DCA\u0DB6\u0DBB\u0DCA", "September", "\u0B9A\u0BC6\u0BAA\u0BCD\u0B9F\u0BAE\u0BCD\u0BAA\u0BB0\u0BCD"],
-        ["\u0D94\u0D9A\u0DCA\u0DAD\u0DDD\u0DB6\u0DBB\u0DCA", "October", "\u0B85\u0B95\u0BCD\u0B9F\u0BCB\u0BAA\u0BB0\u0BCD"],
-        ["\u0DB1\u0DDC\u0DC0\u0DD0\u0DB8\u0DCA\u0DB6\u0DBB\u0DCA", "November", "\u0BA8\u0BB5\u0BAE\u0BCD\u0BAA\u0BB0\u0BCD"],
-        ["\u0DAF\u0DD9\u0DC3\u0DD0\u0DB8\u0DCA\u0DB6\u0DBB\u0DCA", "December", "\u0B9F\u0BBF\u0B9A\u0BAE\u0BCD\u0BAA\u0BB0\u0BCD"]
-      ];
-      const timeAgo = (dateParam) => {
-        if (!dateParam) {
-          return "";
-        }
-        const date = typeof dateParam === "object" ? dateParam : new Date(dateParam);
-        const DAY_IN_MS = 864e5;
-        const today = new Date();
-        const yesterday = new Date(today.getTime() - DAY_IN_MS);
-        const seconds = Math.round((today.getTime() - date.getTime()) / 1e3);
-        const minutes = Math.round(seconds / 60);
-        const isToday = today.toDateString() === date.toDateString();
-        const isYesterday = yesterday.toDateString() === date.toDateString();
-        const isThisYear = today.getFullYear() === date.getFullYear();
-        if (seconds < 5) {
-          return strings$2["now"][language];
-        } else if (seconds < 60) {
-          return strings$2["secondsAgo"][language].replace("*seconds*", seconds.toString());
-        } else if (seconds < 90) {
-          return strings$2["minuteAgo"][language];
-        } else if (minutes < 60) {
-          return strings$2["minutesAgo"][language].replace("*minutes*", minutes.toString());
-        } else if (isToday) {
-          return getFormattedDate(date, strings$2["today"][language]);
-        } else if (isYesterday) {
-          return getFormattedDate(date, strings$2["yesterday"][language]);
-        } else if (isThisYear) {
-          return getFormattedDate(date, false, true);
-        }
-        return getFormattedDate(date);
-      };
-      const getFormattedDate = (date, prefomattedDate = false, hideYear = false) => {
-        const day = date.getDate();
-        const month = MONTH_NAMES[date.getMonth()][language];
-        const year = date.getFullYear();
-        const hours = date.getHours();
-        let minutes = date.getMinutes();
-        if (minutes < 10) {
-          minutes = `0${minutes}`;
-        }
-        if (prefomattedDate) {
-          return `${prefomattedDate} ${language == 1 ? "at" : ""} ${hours}:${minutes}${language == 0 ? "\u0DA7" : language == 2 ? " \u0BAE\u0BA3\u0BBF\u0B95\u0BCD\u0B95\u0BC1" : ""}`;
-        }
-        if (hideYear) {
-          return `${day} ${month} ${language == 1 ? "at" : ""} ${hours}:${minutes}${language == 0 ? "\u0DA7" : language == 2 ? " \u0BAE\u0BA3\u0BBF\u0B95\u0BCD\u0B95\u0BC1" : ""}`;
-        }
-        return `${day} ${month} ${year}. ${language == 1 ? "at" : ""} ${hours}:${minutes}`;
-      };
-      let language = 0;
-      let timeAgoString = timeAgo(time);
-      _lang.subscribe((l) => {
-        language = l;
-        timeAgoString = timeAgo(time);
-      });
-      if ($$props.time === void 0 && $$bindings.time && time !== void 0)
-        $$bindings.time(time);
-      if ($$props.inline === void 0 && $$bindings.inline && inline !== void 0)
-        $$bindings.inline(inline);
-      return `<div class="${"timestamp"}" style="${"display: " + escape(inline ? "inline-block" : "block", true)}">${escape(timeAgoString)}</div>`;
-    });
     strings$12 = {
       machine_translated: [
         "\u0DC3\u0DCA\u0DC0\u0DBA\u0D82\u0D9A\u0DCA\u200D\u0DBB\u0DD3\u0DBA \u0DB4\u0DBB\u0DD2\u0DC0\u0DBB\u0DCA\u0DAD\u0DB1\u0DBA\u0D9A\u0DD2, \u0DB8\u0DD4\u0DBD\u0DCA \u0DB4\u0DD2\u0DA7\u0DB4\u0DAD \u0DB6\u0DBD\u0DB1\u0DCA\u0DB1.",
@@ -91279,7 +91393,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
         "\u0B85\u0B9A\u0BB2\u0BCD \u0B89\u0BB0\u0BC8, \u0BAE\u0BCA\u0BB4\u0BBF\u0BAA\u0BC6\u0BAF\u0BB0\u0BCD\u0BAA\u0BCD\u0BAA\u0BC1 \u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95"
       ]
     };
-    css$43 = {
+    css$42 = {
       code: ".machine-translated.s-Q7XEqeLz3oYK{padding:var(--s5px) 0;cursor:pointer}.fa-solid.s-Q7XEqeLz3oYK{font-size:var(--s11px)}.s-Q7XEqeLz3oYK{}",
       map: null
     };
@@ -91294,7 +91408,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
       let objectFields = objectProps.filter((prop) => prop.includes("_MT"));
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      $$result.css.add(css$43);
+      $$result.css.add(css$42);
       machineTranslated = objectFields.some((key2) => data[key2][$_lang]);
       $$unsubscribe__lang();
       return `
@@ -91664,17 +91778,18 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
       onDestroy(() => showPostEvent.unsubscribe());
       const hidePostEvent = _eventListener("hide-post").subscribe(() => {
         window.history.pushState("", "", "/");
+        title = "\u0D85\u0DBB\u0D9C\u0DBD\u0DBA.online";
         postData = void 0;
       });
       onDestroy(() => hidePostEvent.unsubscribe());
-      let title = "aragalaya.online";
+      let title = "\u0D85\u0DBB\u0D9C\u0DBD\u0DBA.online";
       let url = "https://aragalaya-online.web.app";
       let description = "The online portal for the aragalaya movement in Sri Lanka";
       let type = "website";
       let image = "https://firebasestorage.googleapis.com/v0/b/aragalaya-online.appspot.com/o/aragalaya-image.jpeg?alt=media&token=46171892-7f2f-49bb-8424-65ca7411271e";
       if (postData) {
         postData._expanded = true;
-        title = postData.title && postData.title[0] || postData.organization && postData.organization[0] || "aragalaya.online";
+        title = postData.title && postData.title[0] || postData.organization && postData.organization[0] || "\u0D85\u0DBB\u0D9C\u0DBD\u0DBA.online";
         url = "https://aragalaya-online.web.app/?post=" + postData.id;
         description = ge(postData.description && postData.description[0] || postData.shortDescription && postData.shortDescription[0] || postData.proposal && postData.proposal[0]).result;
         type = "article";
@@ -91812,9 +91927,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    file4 = "_app/immutable/pages/index.svelte-6eb48ee8.js";
-    imports3 = ["_app/immutable/pages/index.svelte-6eb48ee8.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-dc8269c9.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/proposal-e51312d0.js", "_app/immutable/chunks/storage-7eb83aa6.js"];
-    stylesheets3 = ["_app/immutable/assets/index-6d9446a5.css", "_app/immutable/assets/proposal-b40970de.css", "_app/immutable/assets/storage-c7057ab9.css"];
+    file4 = "_app/immutable/pages/index.svelte-a38961da.js";
+    imports3 = ["_app/immutable/pages/index.svelte-a38961da.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-dc8269c9.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/proposal-bb5d785a.js", "_app/immutable/chunks/storage-626cba00.js"];
+    stylesheets3 = ["_app/immutable/assets/index-6d9446a5.css", "_app/immutable/assets/proposal-62aca3cb.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
 
@@ -91873,11 +91988,11 @@ var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_proposal_83a0e022();
-    init_string_strip_html_esm();
+    init_proposal_dcb519a3();
     init_font_5b202901();
     init_column_config_ca4f920c();
     import_chroma_js4 = __toESM(require_chroma(), 1);
+    init_string_strip_html_esm();
     css6 = {
       code: ".preview.s-nkO0SViUUGe1{display:flex;justify-content:center;background-color:var(--theme-columnbackground);width:100%;height:100vh}.column-container.s-nkO0SViUUGe1{padding:var(--theme-cardseparationhalf);height:100%}.column.s-nkO0SViUUGe1{display:flex;align-items:center;justify-content:center;flex-direction:column;width:var(--theme-columnwidth);height:100%;padding:0 var(--theme-cardseparationhalf)}.s-nkO0SViUUGe1{}",
       map: null
@@ -91923,9 +92038,9 @@ var init__5 = __esm({
     init_shims();
     init_post_preview_svelte();
     index5 = 4;
-    file6 = "_app/immutable/pages/post_preview.svelte-286665d1.js";
-    imports5 = ["_app/immutable/pages/post_preview.svelte-286665d1.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/proposal-e51312d0.js", "_app/immutable/chunks/font-dc8269c9.js", "_app/immutable/chunks/index-cc16aad1.js"];
-    stylesheets5 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-b40970de.css"];
+    file6 = "_app/immutable/pages/post_preview.svelte-4ad3dc12.js";
+    imports5 = ["_app/immutable/pages/post_preview.svelte-4ad3dc12.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/proposal-bb5d785a.js", "_app/immutable/chunks/font-dc8269c9.js", "_app/immutable/chunks/index-cc16aad1.js"];
+    stylesheets5 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-62aca3cb.css"];
   }
 });
 
@@ -92074,7 +92189,7 @@ var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
     init_column_config_ca4f920c();
-    init_database_8e0ce6fe();
+    init_database_e087c939();
     init_dist();
     init_dist2();
     IMPLEMENTED_TYPES = ["bulletin", "newsx", "bulletinx", "proposal"];
@@ -94730,7 +94845,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-ef3b31de.js", "imports": ["_app/immutable/start-ef3b31de.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-e1d9d7ee.js", "imports": ["_app/immutable/start-e1d9d7ee.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

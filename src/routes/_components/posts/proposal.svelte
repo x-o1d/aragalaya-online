@@ -76,7 +76,7 @@
             <Preview
                 data={data}
                 contentField={'proposal'}
-                limit={50}
+                limit={150}
                 expanded={data._expanded}
                 on:expandPost={() => data._expanded = true}/>
         </Font>
