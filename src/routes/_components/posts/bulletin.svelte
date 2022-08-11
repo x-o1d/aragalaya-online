@@ -70,8 +70,3 @@
         data={data}
         on:toggleExpanded={(e) => data._expanded = e.detail}/>
 </Card>
-
-
-<style>
-
-</style>

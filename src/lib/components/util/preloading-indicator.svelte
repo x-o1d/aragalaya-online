@@ -7,7 +7,7 @@
 	onMount(() => {
 		function next() {
 			visible = true;
-			p += 0.1;
+			p += 0.08;
 
 			const remaining = 1 - p;
 			if (remaining > 0.15) setTimeout(next, 500 / remaining);
@@ -23,7 +23,7 @@
 	</div>
 {/if}
 
-{#if p >= 0.4}
+{#if p >= 0.6}
 	<div class="fade" />
 {/if}
 
@@ -32,9 +32,9 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: 100%;
+		width: 80%;
 		height: 4px;
-		z-index: 999;
+		z-index: 997;
 	}
 
 	.progress {
@@ -50,7 +50,7 @@
 		position: fixed;
 		width: 100%;
 		height: 100%;
-		background-color: rgba(255, 255, 255, 0.3);
+		background-color: rgba(255, 255, 255, 0.8);
 		pointer-events: none;
 		z-index: 998;
 		animation: fade 0.4s;

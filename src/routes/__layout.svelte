@@ -155,7 +155,7 @@
 			.online
 		</div>
         <div class="beta">
-            (dev-beta)
+            {import.meta.env.MODE == 'prod'? '(prod-beta)': '(dev-beta)'}
         </div>
 	</div>
 	<ul class="header-right">

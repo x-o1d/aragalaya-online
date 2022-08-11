@@ -1,1 +1,0 @@
-export let _environment = 'dev';

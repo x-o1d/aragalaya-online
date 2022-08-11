@@ -1,4 +1,4 @@
-export const get = async ({ url }) => {
+export const GET = async ({ url }) => {
     // if a post id is specified in the url (?post=<post_id>)
     // fetch the post data in SSR
     // index.svelte route will automatically display the post data in

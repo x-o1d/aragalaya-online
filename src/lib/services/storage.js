@@ -17,21 +17,22 @@ export const _uploadToImages = async (file) => {
     try {
         let user = _userSignedIn();
         if(!user) throw ('user not signed in');
-
+        // replace the actual file name with a uuid
         let name = uuid();
+        // upload to firebase storage
         const storageRef = ref(storage, 'images/'+ name);
-
-        await uploadBytes(storageRef, file);
+        let result = await uploadBytes(storageRef, file);
 
         return {
-            url: '/images/'+ name,
+            url: '/images/'+ result.metadata.name,
             name: file.name,
+            type: result.metadata.contentType,
             createdBy: user.uid,
             createdByName: user.name,
             createdOn: (new Date()).getTime()
         }
     } catch (error) {
-        _createError(error, 'storageService::_uploadToImages');
+        _createError(error, 'storageService::_uploadToImages', file);
     }    
 }
 

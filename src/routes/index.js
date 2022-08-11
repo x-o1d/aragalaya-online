@@ -1,19 +1,9 @@
 import { COLUMNS } from '$lib/config/column-config';
-
 import { _getPost, _getPosts } from '$lib/services/database';
-import { _environment } from '$lib/config/environment';
 
 const IMPLEMENTED_TYPES = ['bulletin', 'newsx', 'bulletinx'];
 
-export const get = async ({ url }) => {
-    // check the url and set the _environment store
-    // the db service will use the _environment store to fetch the
-    // the data from the correct database (-prod) or dev (database.js).
-    // the _environment variable will also be attached to the data 
-    // object for any function calls (functions.js).
-    if(url.host == 'aragalaya.online' && !url.host.includes('dev')) {
-        _environment = 'prod';
-    }
+export const GET = async ({ url }) => {
     // if a post id is specified in the url (?post=<post_id>)
     // fetch the post data in SSR
     // index.svelte route will automatically display the post data in

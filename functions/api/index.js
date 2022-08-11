@@ -6,6 +6,7 @@ const { logger } = require("firebase-functions");
 const admin = require('firebase-admin');
 const service = google.youtube('v3');
 const { API_KEY } = require('../sensitive/google-apikey.cjs');
+const { API_KEY_PROD } = require('../sensitive/google-apikey-prod.cjs');
 
 admin.initializeApp();
 
@@ -16,20 +17,19 @@ const translate = new Translate();
 // so that it can be specified in og:image tag for video post
 // social shares
 async function getThumbnail(data) {
-    logger.info('api', API_KEY);
+    logger.info(process.env.MODE)
     for (let key of Object.keys(data)) {
         if(key == 'videoId') {
             let thumbnail = await new Promise((resolve) => {
                 service.videos.list({
-                    auth: API_KEY,
+                    auth: (process.env.MODE == 'prod')? API_KEY_PROD: API_KEY,
                     part: 'snippet',
                     id: data[key],
                 }, function(err, response) {
                     if(!err && response.data.items[0]) {
                         resolve(response.data.items[0].snippet.thumbnails.standard);
                     } else {
-                        logger.info('Error getting thumbnail: ', err, response);
-                        resolve(undefined);
+                        logger.info('Error getting thumbnail: ', err);
                     }
                 });
             });

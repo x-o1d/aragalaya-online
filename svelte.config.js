@@ -4,12 +4,14 @@ import firebase from 'svelte-adapter-firebase';
 const config = {
 	kit: {
 		adapter: firebase(),
-		prerender: {
-			default: true
+
+		// Override http methods in the Todo forms
+		methodOverride: {
+			allowed: ['PATCH', 'DELETE']
 		},
-		files: {
+        files: {
+            assets: 'src/lib/assets',
 			lib: 'src/lib',
-			routes: 'src/routes',
 		},
 	}
 };
