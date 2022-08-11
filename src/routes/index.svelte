@@ -87,6 +87,7 @@
     const hidePostEvent = _eventListener('hide-post').subscribe(() => {
         // clear the post id from the url
         window.history.pushState("", "", '/');
+        title = 'අරගලය.online';
         // clear data and hide the Post component
         postData = undefined;
     });
@@ -95,7 +96,7 @@
 
     // default values for the opengraph meta tags
     // these will be added to the page in SSR
-    let title = 'aragalaya.online';
+    let title = 'අරගලය.online';
     let url = 'https://aragalaya-online.web.app';
     let description = 'The online portal for the aragalaya movement in Sri Lanka';
     let type = 'website';
@@ -112,7 +113,7 @@
         postData._expanded = true;
         title = (postData.title && postData.title[0]) || 
                     (postData.organization && postData.organization[0]) ||
-                        'aragalaya.online';
+                        'අරගලය.online';
         url = 'https://aragalaya-online.web.app/?post=' + postData.id;
         description = stripHtml(
                 (postData.description && postData.description[0]) ||

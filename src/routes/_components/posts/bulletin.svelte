@@ -1,7 +1,6 @@
 <script>
     // services
     import { _lang } from '$lib/services/store';
-    import { _emitEvent } from '$lib/services/events';
 
     // components
     import Timestamp from '$lib/components/display/timestamp.svelte';
@@ -13,8 +12,6 @@
     import Toolbar from '$lib/components/util/toolbar.svelte';
 
     export let data;
-
-    let minimized = true;
     
 </script>
 

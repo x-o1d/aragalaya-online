@@ -13232,7 +13232,3426 @@ var init_hooks_bced8853 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/store-7a5a957b.js
+// .svelte-kit/output/server/_app/immutable/chunks/column-config-ca4f920c.js
+var COLUMNS, COLUMN_COUNT;
+var init_column_config_ca4f920c = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/column-config-ca4f920c.js"() {
+    init_shims();
+    COLUMNS = [
+      {
+        title: [
+          "\u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+          "News",
+          "\u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
+        ],
+        icon: "fa-solid fa-radio",
+        height: "200px",
+        type: "bulletin",
+        data: {
+          title: {
+            type: "text",
+            maxlength: 100,
+            placeholder: [
+              "\u0DC1\u0DD3\u0DBB\u0DCA\u0DC2\u0DBA",
+              "title",
+              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
+            ],
+            required: true,
+            translate: true
+          },
+          description: {
+            type: "html",
+            maxlength: 100,
+            placeholder: [
+              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A \u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8 ",
+              "details",
+              "\u0BB5\u0BBF\u0BB5\u0BB0\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+            ],
+            required: true,
+            translate: true
+          }
+        },
+        dataFormTitle: [
+          "\u0DB4\u0DD4\u0DC0\u0DAD\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "Create a news article",
+          "\u0B92\u0BB0\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF \u0B95\u0B9F\u0BCD\u0B9F\u0BC1\u0BB0\u0BC8\u0BAF\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
+        ],
+        submitButton: [
+          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "create",
+          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
+        ],
+        cancelButton: [
+          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "cancel",
+          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
+        ],
+        filter: {
+          verified: true,
+          tags: [{
+            name: "mainstream",
+            strings: [
+              "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+              "mainstream news",
+              "\u0BAE\u0BC1\u0B95\u0BCD\u0B95\u0BBF\u0BAF \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
+            ],
+            color: "#ffd492"
+          }, {
+            name: "aragala",
+            strings: [
+              "\u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+              "aragala news",
+              "\u0B85\u0BB0\u0B95\u0BB2 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
+            ],
+            color: "#3cc1ff"
+          }, {
+            name: "economy",
+            strings: [
+              "\u0D86\u0DBB\u0DCA\u0DAE\u0DD2\u0D9A\u0DBA",
+              "economy",
+              "\u0BAA\u0BCA\u0BB0\u0BC1\u0BB3\u0BBE\u0BA4\u0BBE\u0BB0\u0BAE\u0BCD"
+            ],
+            color: "#c57dff"
+          }]
+        }
+      },
+      {
+        title: [
+          "\u0DC3\u0DCF\u0D9A\u0DA0\u0DCA\u0DA1\u0DCF",
+          "Discussions",
+          "\u0BB5\u0BBF\u0BB5\u0BBE\u0BA4\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+        ],
+        icon: "fa-solid fa-comments",
+        height: "310px",
+        type: "newsx",
+        data: {
+          videoId: {
+            type: "text",
+            maxlength: 100,
+            placeholder: [
+              "https://www.youtube.com/watch?v=ueYFyWW8e5I",
+              "https://www.youtube.com/watch?v=ueYFyWW8e5I",
+              "https://www.youtube.com/watch?v=ueYFyWW8e5I"
+            ],
+            required: true,
+            validate: (val) => {
+              var videoIdRegexp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
+              let result = videoIdRegexp.exec(val);
+              return !result[1];
+            },
+            process: (val) => {
+              var videoIdRegexp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
+              let result = videoIdRegexp.exec(val);
+              return result[1];
+            }
+          },
+          title: {
+            type: "text",
+            maxlength: 300,
+            placeholder: [
+              "\u0DB8\u0DCF\u0DAD\u0DD8\u0D9A\u0DCF\u0DC0",
+              "title",
+              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
+            ],
+            required: true,
+            translate: true
+          },
+          shortDescription: {
+            type: "text",
+            maxlength: 300,
+            placeholder: [
+              "\u0D9A\u0DD9\u0DA7\u0DD2 \u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DBA",
+              "short description",
+              "\u0B95\u0BC1\u0BB1\u0BC1\u0B95\u0BBF\u0BAF \u0BB5\u0BBF\u0BB3\u0B95\u0BCD\u0B95\u0BAE\u0BCD"
+            ],
+            required: true,
+            translate: true
+          }
+        },
+        dataFormTitle: [
+          "\u0DC0\u0DD3\u0DA9\u0DD2\u0DBA\u0DDD\u0DC0\u0D9A\u0DCA \u0D91\u0D9A\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "Add a video",
+          "\u0B92\u0BB0\u0BC1 \u0BB5\u0BC0\u0B9F\u0BBF\u0BAF\u0BCB\u0BB5\u0BC8\u0B9A\u0BCD \u0B9A\u0BC7\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
+        ],
+        submitButton: [
+          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "submit",
+          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
+        ],
+        cancelButton: [
+          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "cancel",
+          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
+        ]
+      },
+      {
+        title: [
+          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0DCA \u0DB4\u0DD4\u0DC0\u0DBB\u0DD4\u0DC0",
+          "Bulletin board",
+          "\u0B85\u0BB1\u0BBF\u0BB5\u0BBF\u0BAA\u0BCD\u0BAA\u0BC1 \u0BAA\u0BB2\u0B95\u0BC8"
+        ],
+        icon: "fa-solid fa-calendar-days",
+        height: "300px",
+        type: "bulletinx",
+        data: {
+          title: {
+            type: "text",
+            maxlength: 100,
+            placeholder: [
+              "\u0DC1\u0DD3\u0DBB\u0DCA\u0DC2\u0DBA",
+              "title",
+              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
+            ],
+            required: true,
+            translate: true
+          },
+          description: {
+            type: "html",
+            maxlength: 100,
+            placeholder: [
+              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A \u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8 ",
+              "details",
+              "\u0BB5\u0BBF\u0BB5\u0BB0\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+            ],
+            required: true,
+            translate: true
+          }
+        },
+        dataFormTitle: [
+          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "Create a bulletin",
+          "\u0B92\u0BB0\u0BC1 \u0BAA\u0BC1\u0BB2\u0BCD\u0BB2\u0B9F\u0BCD\u0B9F\u0BBF\u0BA9\u0BCD \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
+        ],
+        submitButton: [
+          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "create",
+          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
+        ],
+        cancelButton: [
+          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "cancel",
+          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
+        ],
+        filter: {
+          verified: true,
+          tags: [{
+            name: "mainstream",
+            strings: [
+              "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+              "mainstream news",
+              "\u0BAE\u0BC1\u0B95\u0BCD\u0B95\u0BBF\u0BAF \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
+            ],
+            color: "#ffd492"
+          }, {
+            name: "aragala",
+            strings: [
+              "\u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+              "aragala news",
+              "\u0B85\u0BB0\u0B95\u0BB2 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
+            ],
+            color: "#3cc1ff"
+          }, {
+            name: "economy",
+            strings: [
+              "\u0D86\u0DBB\u0DCA\u0DAE\u0DD2\u0D9A\u0DBA",
+              "economy",
+              "\u0BAA\u0BCA\u0BB0\u0BC1\u0BB3\u0BBE\u0BA4\u0BBE\u0BB0\u0BAE\u0BCD"
+            ],
+            color: "#c57dff"
+          }]
+        }
+      },
+      {
+        title: [
+          "\u0DB8\u0DC4\u0DA2\u0DB1 \u0D85\u0DAF\u0DC4\u0DC3\u0DCA \u0DC3\u0DB3\u0DC4\u0DCF \u0DBA\u0DDD\u0DA2\u0DB1\u0DCF",
+          "Proposals for public comments",
+          "\u0BAA\u0BCA\u0BA4\u0BC1 \u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BB3\u0BC1\u0B95\u0BCD\u0B95\u0BBE\u0BA9 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAE\u0BCA\u0BB4\u0BBF\u0BB5\u0BC1\u0B95\u0BB3\u0BCD"
+        ],
+        icon: "fa-solid fa-file-lines",
+        height: "400px",
+        type: "proposal",
+        data: {
+          organization: {
+            type: "text",
+            maxlength: 100,
+            placeholder: [
+              "\u0D86\u0DBA\u0DAD\u0DB1\u0DBA",
+              "organization",
+              "\u0B85\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
+            ],
+            required: true,
+            translate: true
+          },
+          motive: {
+            type: "text",
+            maxlength: 300,
+            placeholder: [
+              "\u0D86\u0DBA\u0DAD\u0DB1\u0DBA\u0DDA \u0D85\u0DBB\u0DB8\u0DD4\u0DAB",
+              "organization's motive",
+              "\u0B85\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BBF\u0BA9\u0BCD \u0BA8\u0BCB\u0B95\u0BCD\u0B95\u0BAE\u0BCD"
+            ],
+            required: true,
+            translate: true
+          },
+          proposal: {
+            type: "html",
+            maxlength: 1e3,
+            placeholder: [
+              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A\u0DC0 \u0DBA\u0DDD\u0DA2\u0DB1\u0DCF\u0DC0",
+              "proposal in detail",
+              "\u0BB5\u0BBF\u0BB0\u0BBF\u0BB5\u0BBE\u0BA9 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAE\u0BCA\u0BB4\u0BBF\u0BB5\u0BC1"
+            ],
+            required: true,
+            translate: true
+          }
+        },
+        dataFormTitle: [
+          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "Create a bulletin",
+          "\u0B92\u0BB0\u0BC1 \u0BAA\u0BC1\u0BB2\u0BCD\u0BB2\u0B9F\u0BCD\u0B9F\u0BBF\u0BA9\u0BCD \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
+        ],
+        submitButton: [
+          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "create",
+          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
+        ],
+        cancelButton: [
+          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "cancel",
+          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
+        ],
+        filter: {
+          verified: true,
+          tags: [{
+            name: "mainstream",
+            strings: [
+              "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+              "mainstream news",
+              "\u0BAE\u0BC1\u0B95\u0BCD\u0B95\u0BBF\u0BAF \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
+            ],
+            color: "#ffd492"
+          }, {
+            name: "aragala",
+            strings: [
+              "\u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+              "aragala news",
+              "\u0B85\u0BB0\u0B95\u0BB2 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
+            ],
+            color: "#3cc1ff"
+          }, {
+            name: "economy",
+            strings: [
+              "\u0D86\u0DBB\u0DCA\u0DAE\u0DD2\u0D9A\u0DBA",
+              "economy",
+              "\u0BAA\u0BCA\u0BB0\u0BC1\u0BB3\u0BBE\u0BA4\u0BBE\u0BB0\u0BAE\u0BCD"
+            ],
+            color: "#c57dff"
+          }]
+        }
+      },
+      {
+        title: [
+          "\u0DC3\u0DCF\u0DB8\u0DD4\u0DC4\u0DD2\u0D9A \u0DBD\u0DDA\u0D9B\u0DB1",
+          "Collaborative documents",
+          "\u0B95\u0BC2\u0B9F\u0BCD\u0B9F\u0BC1 \u0B86\u0BB5\u0BA3\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+        ],
+        icon: "fa-solid fa-file-signature",
+        height: "500px",
+        type: ""
+      },
+      {
+        title: [
+          "\u0DC0\u0DD2\u0DC0\u0DD4\u0DBB\u0DCA\u0DAD \u0D85\u0DBA\u0DC0\u0DD0\u0DBA",
+          "Open budgets",
+          "\u0BA4\u0BBF\u0BB1\u0BA8\u0BCD\u0BA4 \u0BAA\u0B9F\u0BCD\u0B9C\u0BC6\u0B9F\u0BCD"
+        ],
+        icon: "fa-solid fa-coins",
+        height: "410px",
+        type: "budget"
+      },
+      {
+        title: [
+          "\u0D9C\u0DD0\u0DBD\u0DBB\u0DD2\u0DBA",
+          "Gallery",
+          "\u0B95\u0BC7\u0BB2\u0BB0\u0BBF"
+        ],
+        icon: "fa-solid fa-camera-retro",
+        height: "290px",
+        type: "photo"
+      }
+    ];
+    COLUMN_COUNT = COLUMNS.length;
+  }
+});
+
+// node_modules/chroma-js/chroma.js
+var require_chroma = __commonJS({
+  "node_modules/chroma-js/chroma.js"(exports2, module2) {
+    init_shims();
+    (function(global2, factory2) {
+      typeof exports2 === "object" && typeof module2 !== "undefined" ? module2.exports = factory2() : typeof define === "function" && define.amd ? define(factory2) : (global2 = typeof globalThis !== "undefined" ? globalThis : global2 || self, global2.chroma = factory2());
+    })(exports2, function() {
+      "use strict";
+      var limit$2 = function(x2, min2, max2) {
+        if (min2 === void 0)
+          min2 = 0;
+        if (max2 === void 0)
+          max2 = 1;
+        return x2 < min2 ? min2 : x2 > max2 ? max2 : x2;
+      };
+      var limit$1 = limit$2;
+      var clip_rgb$3 = function(rgb2) {
+        rgb2._clipped = false;
+        rgb2._unclipped = rgb2.slice(0);
+        for (var i3 = 0; i3 <= 3; i3++) {
+          if (i3 < 3) {
+            if (rgb2[i3] < 0 || rgb2[i3] > 255) {
+              rgb2._clipped = true;
+            }
+            rgb2[i3] = limit$1(rgb2[i3], 0, 255);
+          } else if (i3 === 3) {
+            rgb2[i3] = limit$1(rgb2[i3], 0, 1);
+          }
+        }
+        return rgb2;
+      };
+      var classToType = {};
+      for (var i$1 = 0, list$1 = ["Boolean", "Number", "String", "Function", "Array", "Date", "RegExp", "Undefined", "Null"]; i$1 < list$1.length; i$1 += 1) {
+        var name7 = list$1[i$1];
+        classToType["[object " + name7 + "]"] = name7.toLowerCase();
+      }
+      var type$p = function(obj) {
+        return classToType[Object.prototype.toString.call(obj)] || "object";
+      };
+      var type$o = type$p;
+      var unpack$B = function(args, keyOrder) {
+        if (keyOrder === void 0)
+          keyOrder = null;
+        if (args.length >= 3) {
+          return Array.prototype.slice.call(args);
+        }
+        if (type$o(args[0]) == "object" && keyOrder) {
+          return keyOrder.split("").filter(function(k) {
+            return args[0][k] !== void 0;
+          }).map(function(k) {
+            return args[0][k];
+          });
+        }
+        return args[0];
+      };
+      var type$n = type$p;
+      var last$4 = function(args) {
+        if (args.length < 2) {
+          return null;
+        }
+        var l = args.length - 1;
+        if (type$n(args[l]) == "string") {
+          return args[l].toLowerCase();
+        }
+        return null;
+      };
+      var PI$2 = Math.PI;
+      var utils2 = {
+        clip_rgb: clip_rgb$3,
+        limit: limit$2,
+        type: type$p,
+        unpack: unpack$B,
+        last: last$4,
+        PI: PI$2,
+        TWOPI: PI$2 * 2,
+        PITHIRD: PI$2 / 3,
+        DEG2RAD: PI$2 / 180,
+        RAD2DEG: 180 / PI$2
+      };
+      var input$h = {
+        format: {},
+        autodetect: []
+      };
+      var last$3 = utils2.last;
+      var clip_rgb$2 = utils2.clip_rgb;
+      var type$m = utils2.type;
+      var _input = input$h;
+      var Color$D = function Color2() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var me = this;
+        if (type$m(args[0]) === "object" && args[0].constructor && args[0].constructor === this.constructor) {
+          return args[0];
+        }
+        var mode = last$3(args);
+        var autodetect = false;
+        if (!mode) {
+          autodetect = true;
+          if (!_input.sorted) {
+            _input.autodetect = _input.autodetect.sort(function(a, b4) {
+              return b4.p - a.p;
+            });
+            _input.sorted = true;
+          }
+          for (var i3 = 0, list2 = _input.autodetect; i3 < list2.length; i3 += 1) {
+            var chk = list2[i3];
+            mode = chk.test.apply(chk, args);
+            if (mode) {
+              break;
+            }
+          }
+        }
+        if (_input.format[mode]) {
+          var rgb2 = _input.format[mode].apply(null, autodetect ? args : args.slice(0, -1));
+          me._rgb = clip_rgb$2(rgb2);
+        } else {
+          throw new Error("unknown format: " + args);
+        }
+        if (me._rgb.length === 3) {
+          me._rgb.push(1);
+        }
+      };
+      Color$D.prototype.toString = function toString() {
+        if (type$m(this.hex) == "function") {
+          return this.hex();
+        }
+        return "[" + this._rgb.join(",") + "]";
+      };
+      var Color_1 = Color$D;
+      var chroma$k = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(chroma$k.Color, [null].concat(args)))();
+      };
+      chroma$k.Color = Color_1;
+      chroma$k.version = "2.4.2";
+      var chroma_1 = chroma$k;
+      var unpack$A = utils2.unpack;
+      var max$2 = Math.max;
+      var rgb2cmyk$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$A(args, "rgb");
+        var r2 = ref[0];
+        var g2 = ref[1];
+        var b4 = ref[2];
+        r2 = r2 / 255;
+        g2 = g2 / 255;
+        b4 = b4 / 255;
+        var k = 1 - max$2(r2, max$2(g2, b4));
+        var f5 = k < 1 ? 1 / (1 - k) : 0;
+        var c3 = (1 - r2 - k) * f5;
+        var m3 = (1 - g2 - k) * f5;
+        var y = (1 - b4 - k) * f5;
+        return [c3, m3, y, k];
+      };
+      var rgb2cmyk_1 = rgb2cmyk$1;
+      var unpack$z = utils2.unpack;
+      var cmyk2rgb = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$z(args, "cmyk");
+        var c3 = args[0];
+        var m3 = args[1];
+        var y = args[2];
+        var k = args[3];
+        var alpha = args.length > 4 ? args[4] : 1;
+        if (k === 1) {
+          return [0, 0, 0, alpha];
+        }
+        return [
+          c3 >= 1 ? 0 : 255 * (1 - c3) * (1 - k),
+          m3 >= 1 ? 0 : 255 * (1 - m3) * (1 - k),
+          y >= 1 ? 0 : 255 * (1 - y) * (1 - k),
+          alpha
+        ];
+      };
+      var cmyk2rgb_1 = cmyk2rgb;
+      var chroma$j = chroma_1;
+      var Color$C = Color_1;
+      var input$g = input$h;
+      var unpack$y = utils2.unpack;
+      var type$l = utils2.type;
+      var rgb2cmyk = rgb2cmyk_1;
+      Color$C.prototype.cmyk = function() {
+        return rgb2cmyk(this._rgb);
+      };
+      chroma$j.cmyk = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$C, [null].concat(args, ["cmyk"])))();
+      };
+      input$g.format.cmyk = cmyk2rgb_1;
+      input$g.autodetect.push({
+        p: 2,
+        test: function() {
+          var args = [], len = arguments.length;
+          while (len--)
+            args[len] = arguments[len];
+          args = unpack$y(args, "cmyk");
+          if (type$l(args) === "array" && args.length === 4) {
+            return "cmyk";
+          }
+        }
+      });
+      var unpack$x = utils2.unpack;
+      var last$2 = utils2.last;
+      var rnd = function(a) {
+        return Math.round(a * 100) / 100;
+      };
+      var hsl2css$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var hsla = unpack$x(args, "hsla");
+        var mode = last$2(args) || "lsa";
+        hsla[0] = rnd(hsla[0] || 0);
+        hsla[1] = rnd(hsla[1] * 100) + "%";
+        hsla[2] = rnd(hsla[2] * 100) + "%";
+        if (mode === "hsla" || hsla.length > 3 && hsla[3] < 1) {
+          hsla[3] = hsla.length > 3 ? hsla[3] : 1;
+          mode = "hsla";
+        } else {
+          hsla.length = 3;
+        }
+        return mode + "(" + hsla.join(",") + ")";
+      };
+      var hsl2css_1 = hsl2css$1;
+      var unpack$w = utils2.unpack;
+      var rgb2hsl$3 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$w(args, "rgba");
+        var r2 = args[0];
+        var g2 = args[1];
+        var b4 = args[2];
+        r2 /= 255;
+        g2 /= 255;
+        b4 /= 255;
+        var min2 = Math.min(r2, g2, b4);
+        var max2 = Math.max(r2, g2, b4);
+        var l = (max2 + min2) / 2;
+        var s3, h3;
+        if (max2 === min2) {
+          s3 = 0;
+          h3 = Number.NaN;
+        } else {
+          s3 = l < 0.5 ? (max2 - min2) / (max2 + min2) : (max2 - min2) / (2 - max2 - min2);
+        }
+        if (r2 == max2) {
+          h3 = (g2 - b4) / (max2 - min2);
+        } else if (g2 == max2) {
+          h3 = 2 + (b4 - r2) / (max2 - min2);
+        } else if (b4 == max2) {
+          h3 = 4 + (r2 - g2) / (max2 - min2);
+        }
+        h3 *= 60;
+        if (h3 < 0) {
+          h3 += 360;
+        }
+        if (args.length > 3 && args[3] !== void 0) {
+          return [h3, s3, l, args[3]];
+        }
+        return [h3, s3, l];
+      };
+      var rgb2hsl_1 = rgb2hsl$3;
+      var unpack$v = utils2.unpack;
+      var last$1 = utils2.last;
+      var hsl2css = hsl2css_1;
+      var rgb2hsl$2 = rgb2hsl_1;
+      var round$6 = Math.round;
+      var rgb2css$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var rgba = unpack$v(args, "rgba");
+        var mode = last$1(args) || "rgb";
+        if (mode.substr(0, 3) == "hsl") {
+          return hsl2css(rgb2hsl$2(rgba), mode);
+        }
+        rgba[0] = round$6(rgba[0]);
+        rgba[1] = round$6(rgba[1]);
+        rgba[2] = round$6(rgba[2]);
+        if (mode === "rgba" || rgba.length > 3 && rgba[3] < 1) {
+          rgba[3] = rgba.length > 3 ? rgba[3] : 1;
+          mode = "rgba";
+        }
+        return mode + "(" + rgba.slice(0, mode === "rgb" ? 3 : 4).join(",") + ")";
+      };
+      var rgb2css_1 = rgb2css$1;
+      var unpack$u = utils2.unpack;
+      var round$5 = Math.round;
+      var hsl2rgb$1 = function() {
+        var assign2;
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$u(args, "hsl");
+        var h3 = args[0];
+        var s3 = args[1];
+        var l = args[2];
+        var r2, g2, b4;
+        if (s3 === 0) {
+          r2 = g2 = b4 = l * 255;
+        } else {
+          var t3 = [0, 0, 0];
+          var c3 = [0, 0, 0];
+          var t2 = l < 0.5 ? l * (1 + s3) : l + s3 - l * s3;
+          var t1 = 2 * l - t2;
+          var h_ = h3 / 360;
+          t3[0] = h_ + 1 / 3;
+          t3[1] = h_;
+          t3[2] = h_ - 1 / 3;
+          for (var i3 = 0; i3 < 3; i3++) {
+            if (t3[i3] < 0) {
+              t3[i3] += 1;
+            }
+            if (t3[i3] > 1) {
+              t3[i3] -= 1;
+            }
+            if (6 * t3[i3] < 1) {
+              c3[i3] = t1 + (t2 - t1) * 6 * t3[i3];
+            } else if (2 * t3[i3] < 1) {
+              c3[i3] = t2;
+            } else if (3 * t3[i3] < 2) {
+              c3[i3] = t1 + (t2 - t1) * (2 / 3 - t3[i3]) * 6;
+            } else {
+              c3[i3] = t1;
+            }
+          }
+          assign2 = [round$5(c3[0] * 255), round$5(c3[1] * 255), round$5(c3[2] * 255)], r2 = assign2[0], g2 = assign2[1], b4 = assign2[2];
+        }
+        if (args.length > 3) {
+          return [r2, g2, b4, args[3]];
+        }
+        return [r2, g2, b4, 1];
+      };
+      var hsl2rgb_1 = hsl2rgb$1;
+      var hsl2rgb = hsl2rgb_1;
+      var input$f = input$h;
+      var RE_RGB = /^rgb\(\s*(-?\d+),\s*(-?\d+)\s*,\s*(-?\d+)\s*\)$/;
+      var RE_RGBA = /^rgba\(\s*(-?\d+),\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*([01]|[01]?\.\d+)\)$/;
+      var RE_RGB_PCT = /^rgb\(\s*(-?\d+(?:\.\d+)?)%,\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*\)$/;
+      var RE_RGBA_PCT = /^rgba\(\s*(-?\d+(?:\.\d+)?)%,\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*,\s*([01]|[01]?\.\d+)\)$/;
+      var RE_HSL = /^hsl\(\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*\)$/;
+      var RE_HSLA = /^hsla\(\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*,\s*([01]|[01]?\.\d+)\)$/;
+      var round$4 = Math.round;
+      var css2rgb$1 = function(css10) {
+        css10 = css10.toLowerCase().trim();
+        var m3;
+        if (input$f.format.named) {
+          try {
+            return input$f.format.named(css10);
+          } catch (e2) {
+          }
+        }
+        if (m3 = css10.match(RE_RGB)) {
+          var rgb2 = m3.slice(1, 4);
+          for (var i3 = 0; i3 < 3; i3++) {
+            rgb2[i3] = +rgb2[i3];
+          }
+          rgb2[3] = 1;
+          return rgb2;
+        }
+        if (m3 = css10.match(RE_RGBA)) {
+          var rgb$1 = m3.slice(1, 5);
+          for (var i$12 = 0; i$12 < 4; i$12++) {
+            rgb$1[i$12] = +rgb$1[i$12];
+          }
+          return rgb$1;
+        }
+        if (m3 = css10.match(RE_RGB_PCT)) {
+          var rgb$2 = m3.slice(1, 4);
+          for (var i$2 = 0; i$2 < 3; i$2++) {
+            rgb$2[i$2] = round$4(rgb$2[i$2] * 2.55);
+          }
+          rgb$2[3] = 1;
+          return rgb$2;
+        }
+        if (m3 = css10.match(RE_RGBA_PCT)) {
+          var rgb$3 = m3.slice(1, 5);
+          for (var i$3 = 0; i$3 < 3; i$3++) {
+            rgb$3[i$3] = round$4(rgb$3[i$3] * 2.55);
+          }
+          rgb$3[3] = +rgb$3[3];
+          return rgb$3;
+        }
+        if (m3 = css10.match(RE_HSL)) {
+          var hsl2 = m3.slice(1, 4);
+          hsl2[1] *= 0.01;
+          hsl2[2] *= 0.01;
+          var rgb$4 = hsl2rgb(hsl2);
+          rgb$4[3] = 1;
+          return rgb$4;
+        }
+        if (m3 = css10.match(RE_HSLA)) {
+          var hsl$1 = m3.slice(1, 4);
+          hsl$1[1] *= 0.01;
+          hsl$1[2] *= 0.01;
+          var rgb$5 = hsl2rgb(hsl$1);
+          rgb$5[3] = +m3[4];
+          return rgb$5;
+        }
+      };
+      css2rgb$1.test = function(s3) {
+        return RE_RGB.test(s3) || RE_RGBA.test(s3) || RE_RGB_PCT.test(s3) || RE_RGBA_PCT.test(s3) || RE_HSL.test(s3) || RE_HSLA.test(s3);
+      };
+      var css2rgb_1 = css2rgb$1;
+      var chroma$i = chroma_1;
+      var Color$B = Color_1;
+      var input$e = input$h;
+      var type$k = utils2.type;
+      var rgb2css = rgb2css_1;
+      var css2rgb = css2rgb_1;
+      Color$B.prototype.css = function(mode) {
+        return rgb2css(this._rgb, mode);
+      };
+      chroma$i.css = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$B, [null].concat(args, ["css"])))();
+      };
+      input$e.format.css = css2rgb;
+      input$e.autodetect.push({
+        p: 5,
+        test: function(h3) {
+          var rest = [], len = arguments.length - 1;
+          while (len-- > 0)
+            rest[len] = arguments[len + 1];
+          if (!rest.length && type$k(h3) === "string" && css2rgb.test(h3)) {
+            return "css";
+          }
+        }
+      });
+      var Color$A = Color_1;
+      var chroma$h = chroma_1;
+      var input$d = input$h;
+      var unpack$t = utils2.unpack;
+      input$d.format.gl = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var rgb2 = unpack$t(args, "rgba");
+        rgb2[0] *= 255;
+        rgb2[1] *= 255;
+        rgb2[2] *= 255;
+        return rgb2;
+      };
+      chroma$h.gl = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$A, [null].concat(args, ["gl"])))();
+      };
+      Color$A.prototype.gl = function() {
+        var rgb2 = this._rgb;
+        return [rgb2[0] / 255, rgb2[1] / 255, rgb2[2] / 255, rgb2[3]];
+      };
+      var unpack$s = utils2.unpack;
+      var rgb2hcg$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$s(args, "rgb");
+        var r2 = ref[0];
+        var g2 = ref[1];
+        var b4 = ref[2];
+        var min2 = Math.min(r2, g2, b4);
+        var max2 = Math.max(r2, g2, b4);
+        var delta = max2 - min2;
+        var c3 = delta * 100 / 255;
+        var _g = min2 / (255 - delta) * 100;
+        var h3;
+        if (delta === 0) {
+          h3 = Number.NaN;
+        } else {
+          if (r2 === max2) {
+            h3 = (g2 - b4) / delta;
+          }
+          if (g2 === max2) {
+            h3 = 2 + (b4 - r2) / delta;
+          }
+          if (b4 === max2) {
+            h3 = 4 + (r2 - g2) / delta;
+          }
+          h3 *= 60;
+          if (h3 < 0) {
+            h3 += 360;
+          }
+        }
+        return [h3, c3, _g];
+      };
+      var rgb2hcg_1 = rgb2hcg$1;
+      var unpack$r = utils2.unpack;
+      var floor$3 = Math.floor;
+      var hcg2rgb = function() {
+        var assign2, assign$1, assign$2, assign$3, assign$4, assign$5;
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$r(args, "hcg");
+        var h3 = args[0];
+        var c3 = args[1];
+        var _g = args[2];
+        var r2, g2, b4;
+        _g = _g * 255;
+        var _c = c3 * 255;
+        if (c3 === 0) {
+          r2 = g2 = b4 = _g;
+        } else {
+          if (h3 === 360) {
+            h3 = 0;
+          }
+          if (h3 > 360) {
+            h3 -= 360;
+          }
+          if (h3 < 0) {
+            h3 += 360;
+          }
+          h3 /= 60;
+          var i3 = floor$3(h3);
+          var f5 = h3 - i3;
+          var p2 = _g * (1 - c3);
+          var q = p2 + _c * (1 - f5);
+          var t2 = p2 + _c * f5;
+          var v3 = p2 + _c;
+          switch (i3) {
+            case 0:
+              assign2 = [v3, t2, p2], r2 = assign2[0], g2 = assign2[1], b4 = assign2[2];
+              break;
+            case 1:
+              assign$1 = [q, v3, p2], r2 = assign$1[0], g2 = assign$1[1], b4 = assign$1[2];
+              break;
+            case 2:
+              assign$2 = [p2, v3, t2], r2 = assign$2[0], g2 = assign$2[1], b4 = assign$2[2];
+              break;
+            case 3:
+              assign$3 = [p2, q, v3], r2 = assign$3[0], g2 = assign$3[1], b4 = assign$3[2];
+              break;
+            case 4:
+              assign$4 = [t2, p2, v3], r2 = assign$4[0], g2 = assign$4[1], b4 = assign$4[2];
+              break;
+            case 5:
+              assign$5 = [v3, p2, q], r2 = assign$5[0], g2 = assign$5[1], b4 = assign$5[2];
+              break;
+          }
+        }
+        return [r2, g2, b4, args.length > 3 ? args[3] : 1];
+      };
+      var hcg2rgb_1 = hcg2rgb;
+      var unpack$q = utils2.unpack;
+      var type$j = utils2.type;
+      var chroma$g = chroma_1;
+      var Color$z = Color_1;
+      var input$c = input$h;
+      var rgb2hcg = rgb2hcg_1;
+      Color$z.prototype.hcg = function() {
+        return rgb2hcg(this._rgb);
+      };
+      chroma$g.hcg = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$z, [null].concat(args, ["hcg"])))();
+      };
+      input$c.format.hcg = hcg2rgb_1;
+      input$c.autodetect.push({
+        p: 1,
+        test: function() {
+          var args = [], len = arguments.length;
+          while (len--)
+            args[len] = arguments[len];
+          args = unpack$q(args, "hcg");
+          if (type$j(args) === "array" && args.length === 3) {
+            return "hcg";
+          }
+        }
+      });
+      var unpack$p = utils2.unpack;
+      var last = utils2.last;
+      var round$3 = Math.round;
+      var rgb2hex$2 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$p(args, "rgba");
+        var r2 = ref[0];
+        var g2 = ref[1];
+        var b4 = ref[2];
+        var a = ref[3];
+        var mode = last(args) || "auto";
+        if (a === void 0) {
+          a = 1;
+        }
+        if (mode === "auto") {
+          mode = a < 1 ? "rgba" : "rgb";
+        }
+        r2 = round$3(r2);
+        g2 = round$3(g2);
+        b4 = round$3(b4);
+        var u2 = r2 << 16 | g2 << 8 | b4;
+        var str = "000000" + u2.toString(16);
+        str = str.substr(str.length - 6);
+        var hxa = "0" + round$3(a * 255).toString(16);
+        hxa = hxa.substr(hxa.length - 2);
+        switch (mode.toLowerCase()) {
+          case "rgba":
+            return "#" + str + hxa;
+          case "argb":
+            return "#" + hxa + str;
+          default:
+            return "#" + str;
+        }
+      };
+      var rgb2hex_1 = rgb2hex$2;
+      var RE_HEX = /^#?([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+      var RE_HEXA = /^#?([A-Fa-f0-9]{8}|[A-Fa-f0-9]{4})$/;
+      var hex2rgb$1 = function(hex) {
+        if (hex.match(RE_HEX)) {
+          if (hex.length === 4 || hex.length === 7) {
+            hex = hex.substr(1);
+          }
+          if (hex.length === 3) {
+            hex = hex.split("");
+            hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+          }
+          var u2 = parseInt(hex, 16);
+          var r2 = u2 >> 16;
+          var g2 = u2 >> 8 & 255;
+          var b4 = u2 & 255;
+          return [r2, g2, b4, 1];
+        }
+        if (hex.match(RE_HEXA)) {
+          if (hex.length === 5 || hex.length === 9) {
+            hex = hex.substr(1);
+          }
+          if (hex.length === 4) {
+            hex = hex.split("");
+            hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2] + hex[3] + hex[3];
+          }
+          var u$1 = parseInt(hex, 16);
+          var r$1 = u$1 >> 24 & 255;
+          var g$1 = u$1 >> 16 & 255;
+          var b$1 = u$1 >> 8 & 255;
+          var a = Math.round((u$1 & 255) / 255 * 100) / 100;
+          return [r$1, g$1, b$1, a];
+        }
+        throw new Error("unknown hex color: " + hex);
+      };
+      var hex2rgb_1 = hex2rgb$1;
+      var chroma$f = chroma_1;
+      var Color$y = Color_1;
+      var type$i = utils2.type;
+      var input$b = input$h;
+      var rgb2hex$1 = rgb2hex_1;
+      Color$y.prototype.hex = function(mode) {
+        return rgb2hex$1(this._rgb, mode);
+      };
+      chroma$f.hex = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$y, [null].concat(args, ["hex"])))();
+      };
+      input$b.format.hex = hex2rgb_1;
+      input$b.autodetect.push({
+        p: 4,
+        test: function(h3) {
+          var rest = [], len = arguments.length - 1;
+          while (len-- > 0)
+            rest[len] = arguments[len + 1];
+          if (!rest.length && type$i(h3) === "string" && [3, 4, 5, 6, 7, 8, 9].indexOf(h3.length) >= 0) {
+            return "hex";
+          }
+        }
+      });
+      var unpack$o = utils2.unpack;
+      var TWOPI$2 = utils2.TWOPI;
+      var min$2 = Math.min;
+      var sqrt$4 = Math.sqrt;
+      var acos = Math.acos;
+      var rgb2hsi$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$o(args, "rgb");
+        var r2 = ref[0];
+        var g2 = ref[1];
+        var b4 = ref[2];
+        r2 /= 255;
+        g2 /= 255;
+        b4 /= 255;
+        var h3;
+        var min_ = min$2(r2, g2, b4);
+        var i3 = (r2 + g2 + b4) / 3;
+        var s3 = i3 > 0 ? 1 - min_ / i3 : 0;
+        if (s3 === 0) {
+          h3 = NaN;
+        } else {
+          h3 = (r2 - g2 + (r2 - b4)) / 2;
+          h3 /= sqrt$4((r2 - g2) * (r2 - g2) + (r2 - b4) * (g2 - b4));
+          h3 = acos(h3);
+          if (b4 > g2) {
+            h3 = TWOPI$2 - h3;
+          }
+          h3 /= TWOPI$2;
+        }
+        return [h3 * 360, s3, i3];
+      };
+      var rgb2hsi_1 = rgb2hsi$1;
+      var unpack$n = utils2.unpack;
+      var limit2 = utils2.limit;
+      var TWOPI$1 = utils2.TWOPI;
+      var PITHIRD = utils2.PITHIRD;
+      var cos$4 = Math.cos;
+      var hsi2rgb = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$n(args, "hsi");
+        var h3 = args[0];
+        var s3 = args[1];
+        var i3 = args[2];
+        var r2, g2, b4;
+        if (isNaN(h3)) {
+          h3 = 0;
+        }
+        if (isNaN(s3)) {
+          s3 = 0;
+        }
+        if (h3 > 360) {
+          h3 -= 360;
+        }
+        if (h3 < 0) {
+          h3 += 360;
+        }
+        h3 /= 360;
+        if (h3 < 1 / 3) {
+          b4 = (1 - s3) / 3;
+          r2 = (1 + s3 * cos$4(TWOPI$1 * h3) / cos$4(PITHIRD - TWOPI$1 * h3)) / 3;
+          g2 = 1 - (b4 + r2);
+        } else if (h3 < 2 / 3) {
+          h3 -= 1 / 3;
+          r2 = (1 - s3) / 3;
+          g2 = (1 + s3 * cos$4(TWOPI$1 * h3) / cos$4(PITHIRD - TWOPI$1 * h3)) / 3;
+          b4 = 1 - (r2 + g2);
+        } else {
+          h3 -= 2 / 3;
+          g2 = (1 - s3) / 3;
+          b4 = (1 + s3 * cos$4(TWOPI$1 * h3) / cos$4(PITHIRD - TWOPI$1 * h3)) / 3;
+          r2 = 1 - (g2 + b4);
+        }
+        r2 = limit2(i3 * r2 * 3);
+        g2 = limit2(i3 * g2 * 3);
+        b4 = limit2(i3 * b4 * 3);
+        return [r2 * 255, g2 * 255, b4 * 255, args.length > 3 ? args[3] : 1];
+      };
+      var hsi2rgb_1 = hsi2rgb;
+      var unpack$m = utils2.unpack;
+      var type$h = utils2.type;
+      var chroma$e = chroma_1;
+      var Color$x = Color_1;
+      var input$a = input$h;
+      var rgb2hsi = rgb2hsi_1;
+      Color$x.prototype.hsi = function() {
+        return rgb2hsi(this._rgb);
+      };
+      chroma$e.hsi = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$x, [null].concat(args, ["hsi"])))();
+      };
+      input$a.format.hsi = hsi2rgb_1;
+      input$a.autodetect.push({
+        p: 2,
+        test: function() {
+          var args = [], len = arguments.length;
+          while (len--)
+            args[len] = arguments[len];
+          args = unpack$m(args, "hsi");
+          if (type$h(args) === "array" && args.length === 3) {
+            return "hsi";
+          }
+        }
+      });
+      var unpack$l = utils2.unpack;
+      var type$g = utils2.type;
+      var chroma$d = chroma_1;
+      var Color$w = Color_1;
+      var input$9 = input$h;
+      var rgb2hsl$1 = rgb2hsl_1;
+      Color$w.prototype.hsl = function() {
+        return rgb2hsl$1(this._rgb);
+      };
+      chroma$d.hsl = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$w, [null].concat(args, ["hsl"])))();
+      };
+      input$9.format.hsl = hsl2rgb_1;
+      input$9.autodetect.push({
+        p: 2,
+        test: function() {
+          var args = [], len = arguments.length;
+          while (len--)
+            args[len] = arguments[len];
+          args = unpack$l(args, "hsl");
+          if (type$g(args) === "array" && args.length === 3) {
+            return "hsl";
+          }
+        }
+      });
+      var unpack$k = utils2.unpack;
+      var min$1 = Math.min;
+      var max$1 = Math.max;
+      var rgb2hsl = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$k(args, "rgb");
+        var r2 = args[0];
+        var g2 = args[1];
+        var b4 = args[2];
+        var min_ = min$1(r2, g2, b4);
+        var max_ = max$1(r2, g2, b4);
+        var delta = max_ - min_;
+        var h3, s3, v3;
+        v3 = max_ / 255;
+        if (max_ === 0) {
+          h3 = Number.NaN;
+          s3 = 0;
+        } else {
+          s3 = delta / max_;
+          if (r2 === max_) {
+            h3 = (g2 - b4) / delta;
+          }
+          if (g2 === max_) {
+            h3 = 2 + (b4 - r2) / delta;
+          }
+          if (b4 === max_) {
+            h3 = 4 + (r2 - g2) / delta;
+          }
+          h3 *= 60;
+          if (h3 < 0) {
+            h3 += 360;
+          }
+        }
+        return [h3, s3, v3];
+      };
+      var rgb2hsv$1 = rgb2hsl;
+      var unpack$j = utils2.unpack;
+      var floor$2 = Math.floor;
+      var hsv2rgb = function() {
+        var assign2, assign$1, assign$2, assign$3, assign$4, assign$5;
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$j(args, "hsv");
+        var h3 = args[0];
+        var s3 = args[1];
+        var v3 = args[2];
+        var r2, g2, b4;
+        v3 *= 255;
+        if (s3 === 0) {
+          r2 = g2 = b4 = v3;
+        } else {
+          if (h3 === 360) {
+            h3 = 0;
+          }
+          if (h3 > 360) {
+            h3 -= 360;
+          }
+          if (h3 < 0) {
+            h3 += 360;
+          }
+          h3 /= 60;
+          var i3 = floor$2(h3);
+          var f5 = h3 - i3;
+          var p2 = v3 * (1 - s3);
+          var q = v3 * (1 - s3 * f5);
+          var t2 = v3 * (1 - s3 * (1 - f5));
+          switch (i3) {
+            case 0:
+              assign2 = [v3, t2, p2], r2 = assign2[0], g2 = assign2[1], b4 = assign2[2];
+              break;
+            case 1:
+              assign$1 = [q, v3, p2], r2 = assign$1[0], g2 = assign$1[1], b4 = assign$1[2];
+              break;
+            case 2:
+              assign$2 = [p2, v3, t2], r2 = assign$2[0], g2 = assign$2[1], b4 = assign$2[2];
+              break;
+            case 3:
+              assign$3 = [p2, q, v3], r2 = assign$3[0], g2 = assign$3[1], b4 = assign$3[2];
+              break;
+            case 4:
+              assign$4 = [t2, p2, v3], r2 = assign$4[0], g2 = assign$4[1], b4 = assign$4[2];
+              break;
+            case 5:
+              assign$5 = [v3, p2, q], r2 = assign$5[0], g2 = assign$5[1], b4 = assign$5[2];
+              break;
+          }
+        }
+        return [r2, g2, b4, args.length > 3 ? args[3] : 1];
+      };
+      var hsv2rgb_1 = hsv2rgb;
+      var unpack$i = utils2.unpack;
+      var type$f = utils2.type;
+      var chroma$c = chroma_1;
+      var Color$v = Color_1;
+      var input$8 = input$h;
+      var rgb2hsv = rgb2hsv$1;
+      Color$v.prototype.hsv = function() {
+        return rgb2hsv(this._rgb);
+      };
+      chroma$c.hsv = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$v, [null].concat(args, ["hsv"])))();
+      };
+      input$8.format.hsv = hsv2rgb_1;
+      input$8.autodetect.push({
+        p: 2,
+        test: function() {
+          var args = [], len = arguments.length;
+          while (len--)
+            args[len] = arguments[len];
+          args = unpack$i(args, "hsv");
+          if (type$f(args) === "array" && args.length === 3) {
+            return "hsv";
+          }
+        }
+      });
+      var labConstants = {
+        Kn: 18,
+        Xn: 0.95047,
+        Yn: 1,
+        Zn: 1.08883,
+        t0: 0.137931034,
+        t1: 0.206896552,
+        t2: 0.12841855,
+        t3: 8856452e-9
+      };
+      var LAB_CONSTANTS$3 = labConstants;
+      var unpack$h = utils2.unpack;
+      var pow$a = Math.pow;
+      var rgb2lab$2 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$h(args, "rgb");
+        var r2 = ref[0];
+        var g2 = ref[1];
+        var b4 = ref[2];
+        var ref$1 = rgb2xyz(r2, g2, b4);
+        var x2 = ref$1[0];
+        var y = ref$1[1];
+        var z = ref$1[2];
+        var l = 116 * y - 16;
+        return [l < 0 ? 0 : l, 500 * (x2 - y), 200 * (y - z)];
+      };
+      var rgb_xyz = function(r2) {
+        if ((r2 /= 255) <= 0.04045) {
+          return r2 / 12.92;
+        }
+        return pow$a((r2 + 0.055) / 1.055, 2.4);
+      };
+      var xyz_lab = function(t2) {
+        if (t2 > LAB_CONSTANTS$3.t3) {
+          return pow$a(t2, 1 / 3);
+        }
+        return t2 / LAB_CONSTANTS$3.t2 + LAB_CONSTANTS$3.t0;
+      };
+      var rgb2xyz = function(r2, g2, b4) {
+        r2 = rgb_xyz(r2);
+        g2 = rgb_xyz(g2);
+        b4 = rgb_xyz(b4);
+        var x2 = xyz_lab((0.4124564 * r2 + 0.3575761 * g2 + 0.1804375 * b4) / LAB_CONSTANTS$3.Xn);
+        var y = xyz_lab((0.2126729 * r2 + 0.7151522 * g2 + 0.072175 * b4) / LAB_CONSTANTS$3.Yn);
+        var z = xyz_lab((0.0193339 * r2 + 0.119192 * g2 + 0.9503041 * b4) / LAB_CONSTANTS$3.Zn);
+        return [x2, y, z];
+      };
+      var rgb2lab_1 = rgb2lab$2;
+      var LAB_CONSTANTS$2 = labConstants;
+      var unpack$g = utils2.unpack;
+      var pow$9 = Math.pow;
+      var lab2rgb$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$g(args, "lab");
+        var l = args[0];
+        var a = args[1];
+        var b4 = args[2];
+        var x2, y, z, r2, g2, b_;
+        y = (l + 16) / 116;
+        x2 = isNaN(a) ? y : y + a / 500;
+        z = isNaN(b4) ? y : y - b4 / 200;
+        y = LAB_CONSTANTS$2.Yn * lab_xyz(y);
+        x2 = LAB_CONSTANTS$2.Xn * lab_xyz(x2);
+        z = LAB_CONSTANTS$2.Zn * lab_xyz(z);
+        r2 = xyz_rgb(3.2404542 * x2 - 1.5371385 * y - 0.4985314 * z);
+        g2 = xyz_rgb(-0.969266 * x2 + 1.8760108 * y + 0.041556 * z);
+        b_ = xyz_rgb(0.0556434 * x2 - 0.2040259 * y + 1.0572252 * z);
+        return [r2, g2, b_, args.length > 3 ? args[3] : 1];
+      };
+      var xyz_rgb = function(r2) {
+        return 255 * (r2 <= 304e-5 ? 12.92 * r2 : 1.055 * pow$9(r2, 1 / 2.4) - 0.055);
+      };
+      var lab_xyz = function(t2) {
+        return t2 > LAB_CONSTANTS$2.t1 ? t2 * t2 * t2 : LAB_CONSTANTS$2.t2 * (t2 - LAB_CONSTANTS$2.t0);
+      };
+      var lab2rgb_1 = lab2rgb$1;
+      var unpack$f = utils2.unpack;
+      var type$e = utils2.type;
+      var chroma$b = chroma_1;
+      var Color$u = Color_1;
+      var input$7 = input$h;
+      var rgb2lab$1 = rgb2lab_1;
+      Color$u.prototype.lab = function() {
+        return rgb2lab$1(this._rgb);
+      };
+      chroma$b.lab = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$u, [null].concat(args, ["lab"])))();
+      };
+      input$7.format.lab = lab2rgb_1;
+      input$7.autodetect.push({
+        p: 2,
+        test: function() {
+          var args = [], len = arguments.length;
+          while (len--)
+            args[len] = arguments[len];
+          args = unpack$f(args, "lab");
+          if (type$e(args) === "array" && args.length === 3) {
+            return "lab";
+          }
+        }
+      });
+      var unpack$e = utils2.unpack;
+      var RAD2DEG = utils2.RAD2DEG;
+      var sqrt$3 = Math.sqrt;
+      var atan2$2 = Math.atan2;
+      var round$2 = Math.round;
+      var lab2lch$2 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$e(args, "lab");
+        var l = ref[0];
+        var a = ref[1];
+        var b4 = ref[2];
+        var c3 = sqrt$3(a * a + b4 * b4);
+        var h3 = (atan2$2(b4, a) * RAD2DEG + 360) % 360;
+        if (round$2(c3 * 1e4) === 0) {
+          h3 = Number.NaN;
+        }
+        return [l, c3, h3];
+      };
+      var lab2lch_1 = lab2lch$2;
+      var unpack$d = utils2.unpack;
+      var rgb2lab = rgb2lab_1;
+      var lab2lch$1 = lab2lch_1;
+      var rgb2lch$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$d(args, "rgb");
+        var r2 = ref[0];
+        var g2 = ref[1];
+        var b4 = ref[2];
+        var ref$1 = rgb2lab(r2, g2, b4);
+        var l = ref$1[0];
+        var a = ref$1[1];
+        var b_ = ref$1[2];
+        return lab2lch$1(l, a, b_);
+      };
+      var rgb2lch_1 = rgb2lch$1;
+      var unpack$c = utils2.unpack;
+      var DEG2RAD = utils2.DEG2RAD;
+      var sin$3 = Math.sin;
+      var cos$3 = Math.cos;
+      var lch2lab$2 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$c(args, "lch");
+        var l = ref[0];
+        var c3 = ref[1];
+        var h3 = ref[2];
+        if (isNaN(h3)) {
+          h3 = 0;
+        }
+        h3 = h3 * DEG2RAD;
+        return [l, cos$3(h3) * c3, sin$3(h3) * c3];
+      };
+      var lch2lab_1 = lch2lab$2;
+      var unpack$b = utils2.unpack;
+      var lch2lab$1 = lch2lab_1;
+      var lab2rgb = lab2rgb_1;
+      var lch2rgb$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$b(args, "lch");
+        var l = args[0];
+        var c3 = args[1];
+        var h3 = args[2];
+        var ref = lch2lab$1(l, c3, h3);
+        var L = ref[0];
+        var a = ref[1];
+        var b_ = ref[2];
+        var ref$1 = lab2rgb(L, a, b_);
+        var r2 = ref$1[0];
+        var g2 = ref$1[1];
+        var b4 = ref$1[2];
+        return [r2, g2, b4, args.length > 3 ? args[3] : 1];
+      };
+      var lch2rgb_1 = lch2rgb$1;
+      var unpack$a = utils2.unpack;
+      var lch2rgb = lch2rgb_1;
+      var hcl2rgb = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var hcl = unpack$a(args, "hcl").reverse();
+        return lch2rgb.apply(void 0, hcl);
+      };
+      var hcl2rgb_1 = hcl2rgb;
+      var unpack$9 = utils2.unpack;
+      var type$d = utils2.type;
+      var chroma$a = chroma_1;
+      var Color$t = Color_1;
+      var input$6 = input$h;
+      var rgb2lch = rgb2lch_1;
+      Color$t.prototype.lch = function() {
+        return rgb2lch(this._rgb);
+      };
+      Color$t.prototype.hcl = function() {
+        return rgb2lch(this._rgb).reverse();
+      };
+      chroma$a.lch = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$t, [null].concat(args, ["lch"])))();
+      };
+      chroma$a.hcl = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$t, [null].concat(args, ["hcl"])))();
+      };
+      input$6.format.lch = lch2rgb_1;
+      input$6.format.hcl = hcl2rgb_1;
+      ["lch", "hcl"].forEach(function(m3) {
+        return input$6.autodetect.push({
+          p: 2,
+          test: function() {
+            var args = [], len = arguments.length;
+            while (len--)
+              args[len] = arguments[len];
+            args = unpack$9(args, m3);
+            if (type$d(args) === "array" && args.length === 3) {
+              return m3;
+            }
+          }
+        });
+      });
+      var w3cx11$1 = {
+        aliceblue: "#f0f8ff",
+        antiquewhite: "#faebd7",
+        aqua: "#00ffff",
+        aquamarine: "#7fffd4",
+        azure: "#f0ffff",
+        beige: "#f5f5dc",
+        bisque: "#ffe4c4",
+        black: "#000000",
+        blanchedalmond: "#ffebcd",
+        blue: "#0000ff",
+        blueviolet: "#8a2be2",
+        brown: "#a52a2a",
+        burlywood: "#deb887",
+        cadetblue: "#5f9ea0",
+        chartreuse: "#7fff00",
+        chocolate: "#d2691e",
+        coral: "#ff7f50",
+        cornflower: "#6495ed",
+        cornflowerblue: "#6495ed",
+        cornsilk: "#fff8dc",
+        crimson: "#dc143c",
+        cyan: "#00ffff",
+        darkblue: "#00008b",
+        darkcyan: "#008b8b",
+        darkgoldenrod: "#b8860b",
+        darkgray: "#a9a9a9",
+        darkgreen: "#006400",
+        darkgrey: "#a9a9a9",
+        darkkhaki: "#bdb76b",
+        darkmagenta: "#8b008b",
+        darkolivegreen: "#556b2f",
+        darkorange: "#ff8c00",
+        darkorchid: "#9932cc",
+        darkred: "#8b0000",
+        darksalmon: "#e9967a",
+        darkseagreen: "#8fbc8f",
+        darkslateblue: "#483d8b",
+        darkslategray: "#2f4f4f",
+        darkslategrey: "#2f4f4f",
+        darkturquoise: "#00ced1",
+        darkviolet: "#9400d3",
+        deeppink: "#ff1493",
+        deepskyblue: "#00bfff",
+        dimgray: "#696969",
+        dimgrey: "#696969",
+        dodgerblue: "#1e90ff",
+        firebrick: "#b22222",
+        floralwhite: "#fffaf0",
+        forestgreen: "#228b22",
+        fuchsia: "#ff00ff",
+        gainsboro: "#dcdcdc",
+        ghostwhite: "#f8f8ff",
+        gold: "#ffd700",
+        goldenrod: "#daa520",
+        gray: "#808080",
+        green: "#008000",
+        greenyellow: "#adff2f",
+        grey: "#808080",
+        honeydew: "#f0fff0",
+        hotpink: "#ff69b4",
+        indianred: "#cd5c5c",
+        indigo: "#4b0082",
+        ivory: "#fffff0",
+        khaki: "#f0e68c",
+        laserlemon: "#ffff54",
+        lavender: "#e6e6fa",
+        lavenderblush: "#fff0f5",
+        lawngreen: "#7cfc00",
+        lemonchiffon: "#fffacd",
+        lightblue: "#add8e6",
+        lightcoral: "#f08080",
+        lightcyan: "#e0ffff",
+        lightgoldenrod: "#fafad2",
+        lightgoldenrodyellow: "#fafad2",
+        lightgray: "#d3d3d3",
+        lightgreen: "#90ee90",
+        lightgrey: "#d3d3d3",
+        lightpink: "#ffb6c1",
+        lightsalmon: "#ffa07a",
+        lightseagreen: "#20b2aa",
+        lightskyblue: "#87cefa",
+        lightslategray: "#778899",
+        lightslategrey: "#778899",
+        lightsteelblue: "#b0c4de",
+        lightyellow: "#ffffe0",
+        lime: "#00ff00",
+        limegreen: "#32cd32",
+        linen: "#faf0e6",
+        magenta: "#ff00ff",
+        maroon: "#800000",
+        maroon2: "#7f0000",
+        maroon3: "#b03060",
+        mediumaquamarine: "#66cdaa",
+        mediumblue: "#0000cd",
+        mediumorchid: "#ba55d3",
+        mediumpurple: "#9370db",
+        mediumseagreen: "#3cb371",
+        mediumslateblue: "#7b68ee",
+        mediumspringgreen: "#00fa9a",
+        mediumturquoise: "#48d1cc",
+        mediumvioletred: "#c71585",
+        midnightblue: "#191970",
+        mintcream: "#f5fffa",
+        mistyrose: "#ffe4e1",
+        moccasin: "#ffe4b5",
+        navajowhite: "#ffdead",
+        navy: "#000080",
+        oldlace: "#fdf5e6",
+        olive: "#808000",
+        olivedrab: "#6b8e23",
+        orange: "#ffa500",
+        orangered: "#ff4500",
+        orchid: "#da70d6",
+        palegoldenrod: "#eee8aa",
+        palegreen: "#98fb98",
+        paleturquoise: "#afeeee",
+        palevioletred: "#db7093",
+        papayawhip: "#ffefd5",
+        peachpuff: "#ffdab9",
+        peru: "#cd853f",
+        pink: "#ffc0cb",
+        plum: "#dda0dd",
+        powderblue: "#b0e0e6",
+        purple: "#800080",
+        purple2: "#7f007f",
+        purple3: "#a020f0",
+        rebeccapurple: "#663399",
+        red: "#ff0000",
+        rosybrown: "#bc8f8f",
+        royalblue: "#4169e1",
+        saddlebrown: "#8b4513",
+        salmon: "#fa8072",
+        sandybrown: "#f4a460",
+        seagreen: "#2e8b57",
+        seashell: "#fff5ee",
+        sienna: "#a0522d",
+        silver: "#c0c0c0",
+        skyblue: "#87ceeb",
+        slateblue: "#6a5acd",
+        slategray: "#708090",
+        slategrey: "#708090",
+        snow: "#fffafa",
+        springgreen: "#00ff7f",
+        steelblue: "#4682b4",
+        tan: "#d2b48c",
+        teal: "#008080",
+        thistle: "#d8bfd8",
+        tomato: "#ff6347",
+        turquoise: "#40e0d0",
+        violet: "#ee82ee",
+        wheat: "#f5deb3",
+        white: "#ffffff",
+        whitesmoke: "#f5f5f5",
+        yellow: "#ffff00",
+        yellowgreen: "#9acd32"
+      };
+      var w3cx11_1 = w3cx11$1;
+      var Color$s = Color_1;
+      var input$5 = input$h;
+      var type$c = utils2.type;
+      var w3cx11 = w3cx11_1;
+      var hex2rgb = hex2rgb_1;
+      var rgb2hex = rgb2hex_1;
+      Color$s.prototype.name = function() {
+        var hex = rgb2hex(this._rgb, "rgb");
+        for (var i3 = 0, list2 = Object.keys(w3cx11); i3 < list2.length; i3 += 1) {
+          var n = list2[i3];
+          if (w3cx11[n] === hex) {
+            return n.toLowerCase();
+          }
+        }
+        return hex;
+      };
+      input$5.format.named = function(name8) {
+        name8 = name8.toLowerCase();
+        if (w3cx11[name8]) {
+          return hex2rgb(w3cx11[name8]);
+        }
+        throw new Error("unknown color name: " + name8);
+      };
+      input$5.autodetect.push({
+        p: 5,
+        test: function(h3) {
+          var rest = [], len = arguments.length - 1;
+          while (len-- > 0)
+            rest[len] = arguments[len + 1];
+          if (!rest.length && type$c(h3) === "string" && w3cx11[h3.toLowerCase()]) {
+            return "named";
+          }
+        }
+      });
+      var unpack$8 = utils2.unpack;
+      var rgb2num$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$8(args, "rgb");
+        var r2 = ref[0];
+        var g2 = ref[1];
+        var b4 = ref[2];
+        return (r2 << 16) + (g2 << 8) + b4;
+      };
+      var rgb2num_1 = rgb2num$1;
+      var type$b = utils2.type;
+      var num2rgb = function(num2) {
+        if (type$b(num2) == "number" && num2 >= 0 && num2 <= 16777215) {
+          var r2 = num2 >> 16;
+          var g2 = num2 >> 8 & 255;
+          var b4 = num2 & 255;
+          return [r2, g2, b4, 1];
+        }
+        throw new Error("unknown num color: " + num2);
+      };
+      var num2rgb_1 = num2rgb;
+      var chroma$9 = chroma_1;
+      var Color$r = Color_1;
+      var input$4 = input$h;
+      var type$a = utils2.type;
+      var rgb2num = rgb2num_1;
+      Color$r.prototype.num = function() {
+        return rgb2num(this._rgb);
+      };
+      chroma$9.num = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$r, [null].concat(args, ["num"])))();
+      };
+      input$4.format.num = num2rgb_1;
+      input$4.autodetect.push({
+        p: 5,
+        test: function() {
+          var args = [], len = arguments.length;
+          while (len--)
+            args[len] = arguments[len];
+          if (args.length === 1 && type$a(args[0]) === "number" && args[0] >= 0 && args[0] <= 16777215) {
+            return "num";
+          }
+        }
+      });
+      var chroma$8 = chroma_1;
+      var Color$q = Color_1;
+      var input$3 = input$h;
+      var unpack$7 = utils2.unpack;
+      var type$9 = utils2.type;
+      var round$1 = Math.round;
+      Color$q.prototype.rgb = function(rnd2) {
+        if (rnd2 === void 0)
+          rnd2 = true;
+        if (rnd2 === false) {
+          return this._rgb.slice(0, 3);
+        }
+        return this._rgb.slice(0, 3).map(round$1);
+      };
+      Color$q.prototype.rgba = function(rnd2) {
+        if (rnd2 === void 0)
+          rnd2 = true;
+        return this._rgb.slice(0, 4).map(function(v3, i3) {
+          return i3 < 3 ? rnd2 === false ? v3 : round$1(v3) : v3;
+        });
+      };
+      chroma$8.rgb = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$q, [null].concat(args, ["rgb"])))();
+      };
+      input$3.format.rgb = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var rgba = unpack$7(args, "rgba");
+        if (rgba[3] === void 0) {
+          rgba[3] = 1;
+        }
+        return rgba;
+      };
+      input$3.autodetect.push({
+        p: 3,
+        test: function() {
+          var args = [], len = arguments.length;
+          while (len--)
+            args[len] = arguments[len];
+          args = unpack$7(args, "rgba");
+          if (type$9(args) === "array" && (args.length === 3 || args.length === 4 && type$9(args[3]) == "number" && args[3] >= 0 && args[3] <= 1)) {
+            return "rgb";
+          }
+        }
+      });
+      var log$1 = Math.log;
+      var temperature2rgb$1 = function(kelvin) {
+        var temp = kelvin / 100;
+        var r2, g2, b4;
+        if (temp < 66) {
+          r2 = 255;
+          g2 = temp < 6 ? 0 : -155.25485562709179 - 0.44596950469579133 * (g2 = temp - 2) + 104.49216199393888 * log$1(g2);
+          b4 = temp < 20 ? 0 : -254.76935184120902 + 0.8274096064007395 * (b4 = temp - 10) + 115.67994401066147 * log$1(b4);
+        } else {
+          r2 = 351.97690566805693 + 0.114206453784165 * (r2 = temp - 55) - 40.25366309332127 * log$1(r2);
+          g2 = 325.4494125711974 + 0.07943456536662342 * (g2 = temp - 50) - 28.0852963507957 * log$1(g2);
+          b4 = 255;
+        }
+        return [r2, g2, b4, 1];
+      };
+      var temperature2rgb_1 = temperature2rgb$1;
+      var temperature2rgb = temperature2rgb_1;
+      var unpack$6 = utils2.unpack;
+      var round = Math.round;
+      var rgb2temperature$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var rgb2 = unpack$6(args, "rgb");
+        var r2 = rgb2[0], b4 = rgb2[2];
+        var minTemp = 1e3;
+        var maxTemp = 4e4;
+        var eps = 0.4;
+        var temp;
+        while (maxTemp - minTemp > eps) {
+          temp = (maxTemp + minTemp) * 0.5;
+          var rgb$1 = temperature2rgb(temp);
+          if (rgb$1[2] / rgb$1[0] >= b4 / r2) {
+            maxTemp = temp;
+          } else {
+            minTemp = temp;
+          }
+        }
+        return round(temp);
+      };
+      var rgb2temperature_1 = rgb2temperature$1;
+      var chroma$7 = chroma_1;
+      var Color$p = Color_1;
+      var input$2 = input$h;
+      var rgb2temperature = rgb2temperature_1;
+      Color$p.prototype.temp = Color$p.prototype.kelvin = Color$p.prototype.temperature = function() {
+        return rgb2temperature(this._rgb);
+      };
+      chroma$7.temp = chroma$7.kelvin = chroma$7.temperature = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$p, [null].concat(args, ["temp"])))();
+      };
+      input$2.format.temp = input$2.format.kelvin = input$2.format.temperature = temperature2rgb_1;
+      var unpack$5 = utils2.unpack;
+      var cbrt = Math.cbrt;
+      var pow$8 = Math.pow;
+      var sign$1 = Math.sign;
+      var rgb2oklab$2 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$5(args, "rgb");
+        var r2 = ref[0];
+        var g2 = ref[1];
+        var b4 = ref[2];
+        var ref$1 = [rgb2lrgb(r2 / 255), rgb2lrgb(g2 / 255), rgb2lrgb(b4 / 255)];
+        var lr = ref$1[0];
+        var lg = ref$1[1];
+        var lb = ref$1[2];
+        var l = cbrt(0.4122214708 * lr + 0.5363325363 * lg + 0.0514459929 * lb);
+        var m3 = cbrt(0.2119034982 * lr + 0.6806995451 * lg + 0.1073969566 * lb);
+        var s3 = cbrt(0.0883024619 * lr + 0.2817188376 * lg + 0.6299787005 * lb);
+        return [
+          0.2104542553 * l + 0.793617785 * m3 - 0.0040720468 * s3,
+          1.9779984951 * l - 2.428592205 * m3 + 0.4505937099 * s3,
+          0.0259040371 * l + 0.7827717662 * m3 - 0.808675766 * s3
+        ];
+      };
+      var rgb2oklab_1 = rgb2oklab$2;
+      function rgb2lrgb(c3) {
+        var abs2 = Math.abs(c3);
+        if (abs2 < 0.04045) {
+          return c3 / 12.92;
+        }
+        return (sign$1(c3) || 1) * pow$8((abs2 + 0.055) / 1.055, 2.4);
+      }
+      var unpack$4 = utils2.unpack;
+      var pow$7 = Math.pow;
+      var sign = Math.sign;
+      var oklab2rgb$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$4(args, "lab");
+        var L = args[0];
+        var a = args[1];
+        var b4 = args[2];
+        var l = pow$7(L + 0.3963377774 * a + 0.2158037573 * b4, 3);
+        var m3 = pow$7(L - 0.1055613458 * a - 0.0638541728 * b4, 3);
+        var s3 = pow$7(L - 0.0894841775 * a - 1.291485548 * b4, 3);
+        return [
+          255 * lrgb2rgb(4.0767416621 * l - 3.3077115913 * m3 + 0.2309699292 * s3),
+          255 * lrgb2rgb(-1.2684380046 * l + 2.6097574011 * m3 - 0.3413193965 * s3),
+          255 * lrgb2rgb(-0.0041960863 * l - 0.7034186147 * m3 + 1.707614701 * s3),
+          args.length > 3 ? args[3] : 1
+        ];
+      };
+      var oklab2rgb_1 = oklab2rgb$1;
+      function lrgb2rgb(c3) {
+        var abs2 = Math.abs(c3);
+        if (abs2 > 31308e-7) {
+          return (sign(c3) || 1) * (1.055 * pow$7(abs2, 1 / 2.4) - 0.055);
+        }
+        return c3 * 12.92;
+      }
+      var unpack$3 = utils2.unpack;
+      var type$8 = utils2.type;
+      var chroma$6 = chroma_1;
+      var Color$o = Color_1;
+      var input$1 = input$h;
+      var rgb2oklab$1 = rgb2oklab_1;
+      Color$o.prototype.oklab = function() {
+        return rgb2oklab$1(this._rgb);
+      };
+      chroma$6.oklab = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$o, [null].concat(args, ["oklab"])))();
+      };
+      input$1.format.oklab = oklab2rgb_1;
+      input$1.autodetect.push({
+        p: 3,
+        test: function() {
+          var args = [], len = arguments.length;
+          while (len--)
+            args[len] = arguments[len];
+          args = unpack$3(args, "oklab");
+          if (type$8(args) === "array" && args.length === 3) {
+            return "oklab";
+          }
+        }
+      });
+      var unpack$2 = utils2.unpack;
+      var rgb2oklab = rgb2oklab_1;
+      var lab2lch = lab2lch_1;
+      var rgb2oklch$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$2(args, "rgb");
+        var r2 = ref[0];
+        var g2 = ref[1];
+        var b4 = ref[2];
+        var ref$1 = rgb2oklab(r2, g2, b4);
+        var l = ref$1[0];
+        var a = ref$1[1];
+        var b_ = ref$1[2];
+        return lab2lch(l, a, b_);
+      };
+      var rgb2oklch_1 = rgb2oklch$1;
+      var unpack$1 = utils2.unpack;
+      var lch2lab = lch2lab_1;
+      var oklab2rgb = oklab2rgb_1;
+      var oklch2rgb = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$1(args, "lch");
+        var l = args[0];
+        var c3 = args[1];
+        var h3 = args[2];
+        var ref = lch2lab(l, c3, h3);
+        var L = ref[0];
+        var a = ref[1];
+        var b_ = ref[2];
+        var ref$1 = oklab2rgb(L, a, b_);
+        var r2 = ref$1[0];
+        var g2 = ref$1[1];
+        var b4 = ref$1[2];
+        return [r2, g2, b4, args.length > 3 ? args[3] : 1];
+      };
+      var oklch2rgb_1 = oklch2rgb;
+      var unpack = utils2.unpack;
+      var type$7 = utils2.type;
+      var chroma$5 = chroma_1;
+      var Color$n = Color_1;
+      var input = input$h;
+      var rgb2oklch = rgb2oklch_1;
+      Color$n.prototype.oklch = function() {
+        return rgb2oklch(this._rgb);
+      };
+      chroma$5.oklch = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$n, [null].concat(args, ["oklch"])))();
+      };
+      input.format.oklch = oklch2rgb_1;
+      input.autodetect.push({
+        p: 3,
+        test: function() {
+          var args = [], len = arguments.length;
+          while (len--)
+            args[len] = arguments[len];
+          args = unpack(args, "oklch");
+          if (type$7(args) === "array" && args.length === 3) {
+            return "oklch";
+          }
+        }
+      });
+      var Color$m = Color_1;
+      var type$6 = utils2.type;
+      Color$m.prototype.alpha = function(a, mutate) {
+        if (mutate === void 0)
+          mutate = false;
+        if (a !== void 0 && type$6(a) === "number") {
+          if (mutate) {
+            this._rgb[3] = a;
+            return this;
+          }
+          return new Color$m([this._rgb[0], this._rgb[1], this._rgb[2], a], "rgb");
+        }
+        return this._rgb[3];
+      };
+      var Color$l = Color_1;
+      Color$l.prototype.clipped = function() {
+        return this._rgb._clipped || false;
+      };
+      var Color$k = Color_1;
+      var LAB_CONSTANTS$1 = labConstants;
+      Color$k.prototype.darken = function(amount) {
+        if (amount === void 0)
+          amount = 1;
+        var me = this;
+        var lab2 = me.lab();
+        lab2[0] -= LAB_CONSTANTS$1.Kn * amount;
+        return new Color$k(lab2, "lab").alpha(me.alpha(), true);
+      };
+      Color$k.prototype.brighten = function(amount) {
+        if (amount === void 0)
+          amount = 1;
+        return this.darken(-amount);
+      };
+      Color$k.prototype.darker = Color$k.prototype.darken;
+      Color$k.prototype.brighter = Color$k.prototype.brighten;
+      var Color$j = Color_1;
+      Color$j.prototype.get = function(mc) {
+        var ref = mc.split(".");
+        var mode = ref[0];
+        var channel = ref[1];
+        var src = this[mode]();
+        if (channel) {
+          var i3 = mode.indexOf(channel) - (mode.substr(0, 2) === "ok" ? 2 : 0);
+          if (i3 > -1) {
+            return src[i3];
+          }
+          throw new Error("unknown channel " + channel + " in mode " + mode);
+        } else {
+          return src;
+        }
+      };
+      var Color$i = Color_1;
+      var type$5 = utils2.type;
+      var pow$6 = Math.pow;
+      var EPS = 1e-7;
+      var MAX_ITER = 20;
+      Color$i.prototype.luminance = function(lum) {
+        if (lum !== void 0 && type$5(lum) === "number") {
+          if (lum === 0) {
+            return new Color$i([0, 0, 0, this._rgb[3]], "rgb");
+          }
+          if (lum === 1) {
+            return new Color$i([255, 255, 255, this._rgb[3]], "rgb");
+          }
+          var cur_lum = this.luminance();
+          var mode = "rgb";
+          var max_iter = MAX_ITER;
+          var test = function(low, high) {
+            var mid = low.interpolate(high, 0.5, mode);
+            var lm = mid.luminance();
+            if (Math.abs(lum - lm) < EPS || !max_iter--) {
+              return mid;
+            }
+            return lm > lum ? test(low, mid) : test(mid, high);
+          };
+          var rgb2 = (cur_lum > lum ? test(new Color$i([0, 0, 0]), this) : test(this, new Color$i([255, 255, 255]))).rgb();
+          return new Color$i(rgb2.concat([this._rgb[3]]));
+        }
+        return rgb2luminance.apply(void 0, this._rgb.slice(0, 3));
+      };
+      var rgb2luminance = function(r2, g2, b4) {
+        r2 = luminance_x(r2);
+        g2 = luminance_x(g2);
+        b4 = luminance_x(b4);
+        return 0.2126 * r2 + 0.7152 * g2 + 0.0722 * b4;
+      };
+      var luminance_x = function(x2) {
+        x2 /= 255;
+        return x2 <= 0.03928 ? x2 / 12.92 : pow$6((x2 + 0.055) / 1.055, 2.4);
+      };
+      var interpolator$1 = {};
+      var Color$h = Color_1;
+      var type$4 = utils2.type;
+      var interpolator = interpolator$1;
+      var mix$1 = function(col1, col2, f5) {
+        if (f5 === void 0)
+          f5 = 0.5;
+        var rest = [], len = arguments.length - 3;
+        while (len-- > 0)
+          rest[len] = arguments[len + 3];
+        var mode = rest[0] || "lrgb";
+        if (!interpolator[mode] && !rest.length) {
+          mode = Object.keys(interpolator)[0];
+        }
+        if (!interpolator[mode]) {
+          throw new Error("interpolation mode " + mode + " is not defined");
+        }
+        if (type$4(col1) !== "object") {
+          col1 = new Color$h(col1);
+        }
+        if (type$4(col2) !== "object") {
+          col2 = new Color$h(col2);
+        }
+        return interpolator[mode](col1, col2, f5).alpha(col1.alpha() + f5 * (col2.alpha() - col1.alpha()));
+      };
+      var Color$g = Color_1;
+      var mix = mix$1;
+      Color$g.prototype.mix = Color$g.prototype.interpolate = function(col2, f5) {
+        if (f5 === void 0)
+          f5 = 0.5;
+        var rest = [], len = arguments.length - 2;
+        while (len-- > 0)
+          rest[len] = arguments[len + 2];
+        return mix.apply(void 0, [this, col2, f5].concat(rest));
+      };
+      var Color$f = Color_1;
+      Color$f.prototype.premultiply = function(mutate) {
+        if (mutate === void 0)
+          mutate = false;
+        var rgb2 = this._rgb;
+        var a = rgb2[3];
+        if (mutate) {
+          this._rgb = [rgb2[0] * a, rgb2[1] * a, rgb2[2] * a, a];
+          return this;
+        } else {
+          return new Color$f([rgb2[0] * a, rgb2[1] * a, rgb2[2] * a, a], "rgb");
+        }
+      };
+      var Color$e = Color_1;
+      var LAB_CONSTANTS = labConstants;
+      Color$e.prototype.saturate = function(amount) {
+        if (amount === void 0)
+          amount = 1;
+        var me = this;
+        var lch2 = me.lch();
+        lch2[1] += LAB_CONSTANTS.Kn * amount;
+        if (lch2[1] < 0) {
+          lch2[1] = 0;
+        }
+        return new Color$e(lch2, "lch").alpha(me.alpha(), true);
+      };
+      Color$e.prototype.desaturate = function(amount) {
+        if (amount === void 0)
+          amount = 1;
+        return this.saturate(-amount);
+      };
+      var Color$d = Color_1;
+      var type$3 = utils2.type;
+      Color$d.prototype.set = function(mc, value, mutate) {
+        if (mutate === void 0)
+          mutate = false;
+        var ref = mc.split(".");
+        var mode = ref[0];
+        var channel = ref[1];
+        var src = this[mode]();
+        if (channel) {
+          var i3 = mode.indexOf(channel) - (mode.substr(0, 2) === "ok" ? 2 : 0);
+          if (i3 > -1) {
+            if (type$3(value) == "string") {
+              switch (value.charAt(0)) {
+                case "+":
+                  src[i3] += +value;
+                  break;
+                case "-":
+                  src[i3] += +value;
+                  break;
+                case "*":
+                  src[i3] *= +value.substr(1);
+                  break;
+                case "/":
+                  src[i3] /= +value.substr(1);
+                  break;
+                default:
+                  src[i3] = +value;
+              }
+            } else if (type$3(value) === "number") {
+              src[i3] = value;
+            } else {
+              throw new Error("unsupported value for Color.set");
+            }
+            var out = new Color$d(src, mode);
+            if (mutate) {
+              this._rgb = out._rgb;
+              return this;
+            }
+            return out;
+          }
+          throw new Error("unknown channel " + channel + " in mode " + mode);
+        } else {
+          return src;
+        }
+      };
+      var Color$c = Color_1;
+      var rgb = function(col1, col2, f5) {
+        var xyz0 = col1._rgb;
+        var xyz1 = col2._rgb;
+        return new Color$c(
+          xyz0[0] + f5 * (xyz1[0] - xyz0[0]),
+          xyz0[1] + f5 * (xyz1[1] - xyz0[1]),
+          xyz0[2] + f5 * (xyz1[2] - xyz0[2]),
+          "rgb"
+        );
+      };
+      interpolator$1.rgb = rgb;
+      var Color$b = Color_1;
+      var sqrt$2 = Math.sqrt;
+      var pow$5 = Math.pow;
+      var lrgb = function(col1, col2, f5) {
+        var ref = col1._rgb;
+        var x1 = ref[0];
+        var y1 = ref[1];
+        var z1 = ref[2];
+        var ref$1 = col2._rgb;
+        var x2 = ref$1[0];
+        var y2 = ref$1[1];
+        var z2 = ref$1[2];
+        return new Color$b(
+          sqrt$2(pow$5(x1, 2) * (1 - f5) + pow$5(x2, 2) * f5),
+          sqrt$2(pow$5(y1, 2) * (1 - f5) + pow$5(y2, 2) * f5),
+          sqrt$2(pow$5(z1, 2) * (1 - f5) + pow$5(z2, 2) * f5),
+          "rgb"
+        );
+      };
+      interpolator$1.lrgb = lrgb;
+      var Color$a = Color_1;
+      var lab = function(col1, col2, f5) {
+        var xyz0 = col1.lab();
+        var xyz1 = col2.lab();
+        return new Color$a(
+          xyz0[0] + f5 * (xyz1[0] - xyz0[0]),
+          xyz0[1] + f5 * (xyz1[1] - xyz0[1]),
+          xyz0[2] + f5 * (xyz1[2] - xyz0[2]),
+          "lab"
+        );
+      };
+      interpolator$1.lab = lab;
+      var Color$9 = Color_1;
+      var _hsx = function(col1, col2, f5, m3) {
+        var assign2, assign$1;
+        var xyz0, xyz1;
+        if (m3 === "hsl") {
+          xyz0 = col1.hsl();
+          xyz1 = col2.hsl();
+        } else if (m3 === "hsv") {
+          xyz0 = col1.hsv();
+          xyz1 = col2.hsv();
+        } else if (m3 === "hcg") {
+          xyz0 = col1.hcg();
+          xyz1 = col2.hcg();
+        } else if (m3 === "hsi") {
+          xyz0 = col1.hsi();
+          xyz1 = col2.hsi();
+        } else if (m3 === "lch" || m3 === "hcl") {
+          m3 = "hcl";
+          xyz0 = col1.hcl();
+          xyz1 = col2.hcl();
+        } else if (m3 === "oklch") {
+          xyz0 = col1.oklch().reverse();
+          xyz1 = col2.oklch().reverse();
+        }
+        var hue0, hue1, sat0, sat1, lbv0, lbv1;
+        if (m3.substr(0, 1) === "h" || m3 === "oklch") {
+          assign2 = xyz0, hue0 = assign2[0], sat0 = assign2[1], lbv0 = assign2[2];
+          assign$1 = xyz1, hue1 = assign$1[0], sat1 = assign$1[1], lbv1 = assign$1[2];
+        }
+        var sat, hue, lbv, dh;
+        if (!isNaN(hue0) && !isNaN(hue1)) {
+          if (hue1 > hue0 && hue1 - hue0 > 180) {
+            dh = hue1 - (hue0 + 360);
+          } else if (hue1 < hue0 && hue0 - hue1 > 180) {
+            dh = hue1 + 360 - hue0;
+          } else {
+            dh = hue1 - hue0;
+          }
+          hue = hue0 + f5 * dh;
+        } else if (!isNaN(hue0)) {
+          hue = hue0;
+          if ((lbv1 == 1 || lbv1 == 0) && m3 != "hsv") {
+            sat = sat0;
+          }
+        } else if (!isNaN(hue1)) {
+          hue = hue1;
+          if ((lbv0 == 1 || lbv0 == 0) && m3 != "hsv") {
+            sat = sat1;
+          }
+        } else {
+          hue = Number.NaN;
+        }
+        if (sat === void 0) {
+          sat = sat0 + f5 * (sat1 - sat0);
+        }
+        lbv = lbv0 + f5 * (lbv1 - lbv0);
+        return m3 === "oklch" ? new Color$9([lbv, sat, hue], m3) : new Color$9([hue, sat, lbv], m3);
+      };
+      var interpolate_hsx$5 = _hsx;
+      var lch = function(col1, col2, f5) {
+        return interpolate_hsx$5(col1, col2, f5, "lch");
+      };
+      interpolator$1.lch = lch;
+      interpolator$1.hcl = lch;
+      var Color$8 = Color_1;
+      var num = function(col1, col2, f5) {
+        var c1 = col1.num();
+        var c22 = col2.num();
+        return new Color$8(c1 + f5 * (c22 - c1), "num");
+      };
+      interpolator$1.num = num;
+      var interpolate_hsx$4 = _hsx;
+      var hcg = function(col1, col2, f5) {
+        return interpolate_hsx$4(col1, col2, f5, "hcg");
+      };
+      interpolator$1.hcg = hcg;
+      var interpolate_hsx$3 = _hsx;
+      var hsi = function(col1, col2, f5) {
+        return interpolate_hsx$3(col1, col2, f5, "hsi");
+      };
+      interpolator$1.hsi = hsi;
+      var interpolate_hsx$2 = _hsx;
+      var hsl = function(col1, col2, f5) {
+        return interpolate_hsx$2(col1, col2, f5, "hsl");
+      };
+      interpolator$1.hsl = hsl;
+      var interpolate_hsx$1 = _hsx;
+      var hsv = function(col1, col2, f5) {
+        return interpolate_hsx$1(col1, col2, f5, "hsv");
+      };
+      interpolator$1.hsv = hsv;
+      var Color$7 = Color_1;
+      var oklab = function(col1, col2, f5) {
+        var xyz0 = col1.oklab();
+        var xyz1 = col2.oklab();
+        return new Color$7(
+          xyz0[0] + f5 * (xyz1[0] - xyz0[0]),
+          xyz0[1] + f5 * (xyz1[1] - xyz0[1]),
+          xyz0[2] + f5 * (xyz1[2] - xyz0[2]),
+          "oklab"
+        );
+      };
+      interpolator$1.oklab = oklab;
+      var interpolate_hsx = _hsx;
+      var oklch = function(col1, col2, f5) {
+        return interpolate_hsx(col1, col2, f5, "oklch");
+      };
+      interpolator$1.oklch = oklch;
+      var Color$6 = Color_1;
+      var clip_rgb$1 = utils2.clip_rgb;
+      var pow$4 = Math.pow;
+      var sqrt$1 = Math.sqrt;
+      var PI$1 = Math.PI;
+      var cos$2 = Math.cos;
+      var sin$2 = Math.sin;
+      var atan2$1 = Math.atan2;
+      var average = function(colors, mode, weights) {
+        if (mode === void 0)
+          mode = "lrgb";
+        if (weights === void 0)
+          weights = null;
+        var l = colors.length;
+        if (!weights) {
+          weights = Array.from(new Array(l)).map(function() {
+            return 1;
+          });
+        }
+        var k = l / weights.reduce(function(a, b4) {
+          return a + b4;
+        });
+        weights.forEach(function(w2, i4) {
+          weights[i4] *= k;
+        });
+        colors = colors.map(function(c3) {
+          return new Color$6(c3);
+        });
+        if (mode === "lrgb") {
+          return _average_lrgb(colors, weights);
+        }
+        var first = colors.shift();
+        var xyz = first.get(mode);
+        var cnt = [];
+        var dx = 0;
+        var dy = 0;
+        for (var i3 = 0; i3 < xyz.length; i3++) {
+          xyz[i3] = (xyz[i3] || 0) * weights[0];
+          cnt.push(isNaN(xyz[i3]) ? 0 : weights[0]);
+          if (mode.charAt(i3) === "h" && !isNaN(xyz[i3])) {
+            var A2 = xyz[i3] / 180 * PI$1;
+            dx += cos$2(A2) * weights[0];
+            dy += sin$2(A2) * weights[0];
+          }
+        }
+        var alpha = first.alpha() * weights[0];
+        colors.forEach(function(c3, ci) {
+          var xyz2 = c3.get(mode);
+          alpha += c3.alpha() * weights[ci + 1];
+          for (var i4 = 0; i4 < xyz.length; i4++) {
+            if (!isNaN(xyz2[i4])) {
+              cnt[i4] += weights[ci + 1];
+              if (mode.charAt(i4) === "h") {
+                var A3 = xyz2[i4] / 180 * PI$1;
+                dx += cos$2(A3) * weights[ci + 1];
+                dy += sin$2(A3) * weights[ci + 1];
+              } else {
+                xyz[i4] += xyz2[i4] * weights[ci + 1];
+              }
+            }
+          }
+        });
+        for (var i$12 = 0; i$12 < xyz.length; i$12++) {
+          if (mode.charAt(i$12) === "h") {
+            var A$1 = atan2$1(dy / cnt[i$12], dx / cnt[i$12]) / PI$1 * 180;
+            while (A$1 < 0) {
+              A$1 += 360;
+            }
+            while (A$1 >= 360) {
+              A$1 -= 360;
+            }
+            xyz[i$12] = A$1;
+          } else {
+            xyz[i$12] = xyz[i$12] / cnt[i$12];
+          }
+        }
+        alpha /= l;
+        return new Color$6(xyz, mode).alpha(alpha > 0.99999 ? 1 : alpha, true);
+      };
+      var _average_lrgb = function(colors, weights) {
+        var l = colors.length;
+        var xyz = [0, 0, 0, 0];
+        for (var i3 = 0; i3 < colors.length; i3++) {
+          var col = colors[i3];
+          var f5 = weights[i3] / l;
+          var rgb2 = col._rgb;
+          xyz[0] += pow$4(rgb2[0], 2) * f5;
+          xyz[1] += pow$4(rgb2[1], 2) * f5;
+          xyz[2] += pow$4(rgb2[2], 2) * f5;
+          xyz[3] += rgb2[3] * f5;
+        }
+        xyz[0] = sqrt$1(xyz[0]);
+        xyz[1] = sqrt$1(xyz[1]);
+        xyz[2] = sqrt$1(xyz[2]);
+        if (xyz[3] > 0.9999999) {
+          xyz[3] = 1;
+        }
+        return new Color$6(clip_rgb$1(xyz));
+      };
+      var chroma$4 = chroma_1;
+      var type$2 = utils2.type;
+      var pow$3 = Math.pow;
+      var scale$2 = function(colors) {
+        var _mode = "rgb";
+        var _nacol = chroma$4("#ccc");
+        var _spread = 0;
+        var _domain = [0, 1];
+        var _pos = [];
+        var _padding = [0, 0];
+        var _classes = false;
+        var _colors = [];
+        var _out = false;
+        var _min = 0;
+        var _max = 1;
+        var _correctLightness = false;
+        var _colorCache = {};
+        var _useCache = true;
+        var _gamma = 1;
+        var setColors = function(colors2) {
+          colors2 = colors2 || ["#fff", "#000"];
+          if (colors2 && type$2(colors2) === "string" && chroma$4.brewer && chroma$4.brewer[colors2.toLowerCase()]) {
+            colors2 = chroma$4.brewer[colors2.toLowerCase()];
+          }
+          if (type$2(colors2) === "array") {
+            if (colors2.length === 1) {
+              colors2 = [colors2[0], colors2[0]];
+            }
+            colors2 = colors2.slice(0);
+            for (var c3 = 0; c3 < colors2.length; c3++) {
+              colors2[c3] = chroma$4(colors2[c3]);
+            }
+            _pos.length = 0;
+            for (var c$1 = 0; c$1 < colors2.length; c$1++) {
+              _pos.push(c$1 / (colors2.length - 1));
+            }
+          }
+          resetCache();
+          return _colors = colors2;
+        };
+        var getClass = function(value) {
+          if (_classes != null) {
+            var n = _classes.length - 1;
+            var i3 = 0;
+            while (i3 < n && value >= _classes[i3]) {
+              i3++;
+            }
+            return i3 - 1;
+          }
+          return 0;
+        };
+        var tMapLightness = function(t2) {
+          return t2;
+        };
+        var tMapDomain = function(t2) {
+          return t2;
+        };
+        var getColor = function(val, bypassMap) {
+          var col, t2;
+          if (bypassMap == null) {
+            bypassMap = false;
+          }
+          if (isNaN(val) || val === null) {
+            return _nacol;
+          }
+          if (!bypassMap) {
+            if (_classes && _classes.length > 2) {
+              var c3 = getClass(val);
+              t2 = c3 / (_classes.length - 2);
+            } else if (_max !== _min) {
+              t2 = (val - _min) / (_max - _min);
+            } else {
+              t2 = 1;
+            }
+          } else {
+            t2 = val;
+          }
+          t2 = tMapDomain(t2);
+          if (!bypassMap) {
+            t2 = tMapLightness(t2);
+          }
+          if (_gamma !== 1) {
+            t2 = pow$3(t2, _gamma);
+          }
+          t2 = _padding[0] + t2 * (1 - _padding[0] - _padding[1]);
+          t2 = Math.min(1, Math.max(0, t2));
+          var k = Math.floor(t2 * 1e4);
+          if (_useCache && _colorCache[k]) {
+            col = _colorCache[k];
+          } else {
+            if (type$2(_colors) === "array") {
+              for (var i3 = 0; i3 < _pos.length; i3++) {
+                var p2 = _pos[i3];
+                if (t2 <= p2) {
+                  col = _colors[i3];
+                  break;
+                }
+                if (t2 >= p2 && i3 === _pos.length - 1) {
+                  col = _colors[i3];
+                  break;
+                }
+                if (t2 > p2 && t2 < _pos[i3 + 1]) {
+                  t2 = (t2 - p2) / (_pos[i3 + 1] - p2);
+                  col = chroma$4.interpolate(_colors[i3], _colors[i3 + 1], t2, _mode);
+                  break;
+                }
+              }
+            } else if (type$2(_colors) === "function") {
+              col = _colors(t2);
+            }
+            if (_useCache) {
+              _colorCache[k] = col;
+            }
+          }
+          return col;
+        };
+        var resetCache = function() {
+          return _colorCache = {};
+        };
+        setColors(colors);
+        var f5 = function(v3) {
+          var c3 = chroma$4(getColor(v3));
+          if (_out && c3[_out]) {
+            return c3[_out]();
+          } else {
+            return c3;
+          }
+        };
+        f5.classes = function(classes) {
+          if (classes != null) {
+            if (type$2(classes) === "array") {
+              _classes = classes;
+              _domain = [classes[0], classes[classes.length - 1]];
+            } else {
+              var d3 = chroma$4.analyze(_domain);
+              if (classes === 0) {
+                _classes = [d3.min, d3.max];
+              } else {
+                _classes = chroma$4.limits(d3, "e", classes);
+              }
+            }
+            return f5;
+          }
+          return _classes;
+        };
+        f5.domain = function(domain) {
+          if (!arguments.length) {
+            return _domain;
+          }
+          _min = domain[0];
+          _max = domain[domain.length - 1];
+          _pos = [];
+          var k = _colors.length;
+          if (domain.length === k && _min !== _max) {
+            for (var i3 = 0, list2 = Array.from(domain); i3 < list2.length; i3 += 1) {
+              var d3 = list2[i3];
+              _pos.push((d3 - _min) / (_max - _min));
+            }
+          } else {
+            for (var c3 = 0; c3 < k; c3++) {
+              _pos.push(c3 / (k - 1));
+            }
+            if (domain.length > 2) {
+              var tOut = domain.map(function(d4, i4) {
+                return i4 / (domain.length - 1);
+              });
+              var tBreaks = domain.map(function(d4) {
+                return (d4 - _min) / (_max - _min);
+              });
+              if (!tBreaks.every(function(val, i4) {
+                return tOut[i4] === val;
+              })) {
+                tMapDomain = function(t2) {
+                  if (t2 <= 0 || t2 >= 1) {
+                    return t2;
+                  }
+                  var i4 = 0;
+                  while (t2 >= tBreaks[i4 + 1]) {
+                    i4++;
+                  }
+                  var f6 = (t2 - tBreaks[i4]) / (tBreaks[i4 + 1] - tBreaks[i4]);
+                  var out = tOut[i4] + f6 * (tOut[i4 + 1] - tOut[i4]);
+                  return out;
+                };
+              }
+            }
+          }
+          _domain = [_min, _max];
+          return f5;
+        };
+        f5.mode = function(_m) {
+          if (!arguments.length) {
+            return _mode;
+          }
+          _mode = _m;
+          resetCache();
+          return f5;
+        };
+        f5.range = function(colors2, _pos2) {
+          setColors(colors2);
+          return f5;
+        };
+        f5.out = function(_o) {
+          _out = _o;
+          return f5;
+        };
+        f5.spread = function(val) {
+          if (!arguments.length) {
+            return _spread;
+          }
+          _spread = val;
+          return f5;
+        };
+        f5.correctLightness = function(v3) {
+          if (v3 == null) {
+            v3 = true;
+          }
+          _correctLightness = v3;
+          resetCache();
+          if (_correctLightness) {
+            tMapLightness = function(t2) {
+              var L0 = getColor(0, true).lab()[0];
+              var L1 = getColor(1, true).lab()[0];
+              var pol = L0 > L1;
+              var L_actual = getColor(t2, true).lab()[0];
+              var L_ideal = L0 + (L1 - L0) * t2;
+              var L_diff = L_actual - L_ideal;
+              var t0 = 0;
+              var t1 = 1;
+              var max_iter = 20;
+              while (Math.abs(L_diff) > 0.01 && max_iter-- > 0) {
+                (function() {
+                  if (pol) {
+                    L_diff *= -1;
+                  }
+                  if (L_diff < 0) {
+                    t0 = t2;
+                    t2 += (t1 - t2) * 0.5;
+                  } else {
+                    t1 = t2;
+                    t2 += (t0 - t2) * 0.5;
+                  }
+                  L_actual = getColor(t2, true).lab()[0];
+                  return L_diff = L_actual - L_ideal;
+                })();
+              }
+              return t2;
+            };
+          } else {
+            tMapLightness = function(t2) {
+              return t2;
+            };
+          }
+          return f5;
+        };
+        f5.padding = function(p2) {
+          if (p2 != null) {
+            if (type$2(p2) === "number") {
+              p2 = [p2, p2];
+            }
+            _padding = p2;
+            return f5;
+          } else {
+            return _padding;
+          }
+        };
+        f5.colors = function(numColors, out) {
+          if (arguments.length < 2) {
+            out = "hex";
+          }
+          var result = [];
+          if (arguments.length === 0) {
+            result = _colors.slice(0);
+          } else if (numColors === 1) {
+            result = [f5(0.5)];
+          } else if (numColors > 1) {
+            var dm = _domain[0];
+            var dd = _domain[1] - dm;
+            result = __range__(0, numColors, false).map(function(i4) {
+              return f5(dm + i4 / (numColors - 1) * dd);
+            });
+          } else {
+            colors = [];
+            var samples = [];
+            if (_classes && _classes.length > 2) {
+              for (var i3 = 1, end = _classes.length, asc = 1 <= end; asc ? i3 < end : i3 > end; asc ? i3++ : i3--) {
+                samples.push((_classes[i3 - 1] + _classes[i3]) * 0.5);
+              }
+            } else {
+              samples = _domain;
+            }
+            result = samples.map(function(v3) {
+              return f5(v3);
+            });
+          }
+          if (chroma$4[out]) {
+            result = result.map(function(c3) {
+              return c3[out]();
+            });
+          }
+          return result;
+        };
+        f5.cache = function(c3) {
+          if (c3 != null) {
+            _useCache = c3;
+            return f5;
+          } else {
+            return _useCache;
+          }
+        };
+        f5.gamma = function(g2) {
+          if (g2 != null) {
+            _gamma = g2;
+            return f5;
+          } else {
+            return _gamma;
+          }
+        };
+        f5.nodata = function(d3) {
+          if (d3 != null) {
+            _nacol = chroma$4(d3);
+            return f5;
+          } else {
+            return _nacol;
+          }
+        };
+        return f5;
+      };
+      function __range__(left, right, inclusive) {
+        var range = [];
+        var ascending = left < right;
+        var end = !inclusive ? right : ascending ? right + 1 : right - 1;
+        for (var i3 = left; ascending ? i3 < end : i3 > end; ascending ? i3++ : i3--) {
+          range.push(i3);
+        }
+        return range;
+      }
+      var Color$5 = Color_1;
+      var scale$1 = scale$2;
+      var binom_row = function(n) {
+        var row = [1, 1];
+        for (var i3 = 1; i3 < n; i3++) {
+          var newrow = [1];
+          for (var j2 = 1; j2 <= row.length; j2++) {
+            newrow[j2] = (row[j2] || 0) + row[j2 - 1];
+          }
+          row = newrow;
+        }
+        return row;
+      };
+      var bezier = function(colors) {
+        var assign2, assign$1, assign$2;
+        var I, lab0, lab1, lab2;
+        colors = colors.map(function(c3) {
+          return new Color$5(c3);
+        });
+        if (colors.length === 2) {
+          assign2 = colors.map(function(c3) {
+            return c3.lab();
+          }), lab0 = assign2[0], lab1 = assign2[1];
+          I = function(t2) {
+            var lab4 = [0, 1, 2].map(function(i3) {
+              return lab0[i3] + t2 * (lab1[i3] - lab0[i3]);
+            });
+            return new Color$5(lab4, "lab");
+          };
+        } else if (colors.length === 3) {
+          assign$1 = colors.map(function(c3) {
+            return c3.lab();
+          }), lab0 = assign$1[0], lab1 = assign$1[1], lab2 = assign$1[2];
+          I = function(t2) {
+            var lab4 = [0, 1, 2].map(function(i3) {
+              return (1 - t2) * (1 - t2) * lab0[i3] + 2 * (1 - t2) * t2 * lab1[i3] + t2 * t2 * lab2[i3];
+            });
+            return new Color$5(lab4, "lab");
+          };
+        } else if (colors.length === 4) {
+          var lab3;
+          assign$2 = colors.map(function(c3) {
+            return c3.lab();
+          }), lab0 = assign$2[0], lab1 = assign$2[1], lab2 = assign$2[2], lab3 = assign$2[3];
+          I = function(t2) {
+            var lab4 = [0, 1, 2].map(function(i3) {
+              return (1 - t2) * (1 - t2) * (1 - t2) * lab0[i3] + 3 * (1 - t2) * (1 - t2) * t2 * lab1[i3] + 3 * (1 - t2) * t2 * t2 * lab2[i3] + t2 * t2 * t2 * lab3[i3];
+            });
+            return new Color$5(lab4, "lab");
+          };
+        } else if (colors.length >= 5) {
+          var labs, row, n;
+          labs = colors.map(function(c3) {
+            return c3.lab();
+          });
+          n = colors.length - 1;
+          row = binom_row(n);
+          I = function(t2) {
+            var u2 = 1 - t2;
+            var lab4 = [0, 1, 2].map(function(i3) {
+              return labs.reduce(function(sum, el, j2) {
+                return sum + row[j2] * Math.pow(u2, n - j2) * Math.pow(t2, j2) * el[i3];
+              }, 0);
+            });
+            return new Color$5(lab4, "lab");
+          };
+        } else {
+          throw new RangeError("No point in running bezier with only one color.");
+        }
+        return I;
+      };
+      var bezier_1 = function(colors) {
+        var f5 = bezier(colors);
+        f5.scale = function() {
+          return scale$1(f5);
+        };
+        return f5;
+      };
+      var chroma$3 = chroma_1;
+      var blend = function(bottom, top, mode) {
+        if (!blend[mode]) {
+          throw new Error("unknown blend mode " + mode);
+        }
+        return blend[mode](bottom, top);
+      };
+      var blend_f = function(f5) {
+        return function(bottom, top) {
+          var c0 = chroma$3(top).rgb();
+          var c1 = chroma$3(bottom).rgb();
+          return chroma$3.rgb(f5(c0, c1));
+        };
+      };
+      var each2 = function(f5) {
+        return function(c0, c1) {
+          var out = [];
+          out[0] = f5(c0[0], c1[0]);
+          out[1] = f5(c0[1], c1[1]);
+          out[2] = f5(c0[2], c1[2]);
+          return out;
+        };
+      };
+      var normal = function(a) {
+        return a;
+      };
+      var multiply = function(a, b4) {
+        return a * b4 / 255;
+      };
+      var darken = function(a, b4) {
+        return a > b4 ? b4 : a;
+      };
+      var lighten = function(a, b4) {
+        return a > b4 ? a : b4;
+      };
+      var screen = function(a, b4) {
+        return 255 * (1 - (1 - a / 255) * (1 - b4 / 255));
+      };
+      var overlay = function(a, b4) {
+        return b4 < 128 ? 2 * a * b4 / 255 : 255 * (1 - 2 * (1 - a / 255) * (1 - b4 / 255));
+      };
+      var burn = function(a, b4) {
+        return 255 * (1 - (1 - b4 / 255) / (a / 255));
+      };
+      var dodge = function(a, b4) {
+        if (a === 255) {
+          return 255;
+        }
+        a = 255 * (b4 / 255) / (1 - a / 255);
+        return a > 255 ? 255 : a;
+      };
+      blend.normal = blend_f(each2(normal));
+      blend.multiply = blend_f(each2(multiply));
+      blend.screen = blend_f(each2(screen));
+      blend.overlay = blend_f(each2(overlay));
+      blend.darken = blend_f(each2(darken));
+      blend.lighten = blend_f(each2(lighten));
+      blend.dodge = blend_f(each2(dodge));
+      blend.burn = blend_f(each2(burn));
+      var blend_1 = blend;
+      var type$1 = utils2.type;
+      var clip_rgb = utils2.clip_rgb;
+      var TWOPI = utils2.TWOPI;
+      var pow$2 = Math.pow;
+      var sin$1 = Math.sin;
+      var cos$1 = Math.cos;
+      var chroma$2 = chroma_1;
+      var cubehelix = function(start2, rotations, hue, gamma, lightness) {
+        if (start2 === void 0)
+          start2 = 300;
+        if (rotations === void 0)
+          rotations = -1.5;
+        if (hue === void 0)
+          hue = 1;
+        if (gamma === void 0)
+          gamma = 1;
+        if (lightness === void 0)
+          lightness = [0, 1];
+        var dh = 0, dl;
+        if (type$1(lightness) === "array") {
+          dl = lightness[1] - lightness[0];
+        } else {
+          dl = 0;
+          lightness = [lightness, lightness];
+        }
+        var f5 = function(fract) {
+          var a = TWOPI * ((start2 + 120) / 360 + rotations * fract);
+          var l = pow$2(lightness[0] + dl * fract, gamma);
+          var h3 = dh !== 0 ? hue[0] + fract * dh : hue;
+          var amp = h3 * l * (1 - l) / 2;
+          var cos_a = cos$1(a);
+          var sin_a = sin$1(a);
+          var r2 = l + amp * (-0.14861 * cos_a + 1.78277 * sin_a);
+          var g2 = l + amp * (-0.29227 * cos_a - 0.90649 * sin_a);
+          var b4 = l + amp * (1.97294 * cos_a);
+          return chroma$2(clip_rgb([r2 * 255, g2 * 255, b4 * 255, 1]));
+        };
+        f5.start = function(s3) {
+          if (s3 == null) {
+            return start2;
+          }
+          start2 = s3;
+          return f5;
+        };
+        f5.rotations = function(r2) {
+          if (r2 == null) {
+            return rotations;
+          }
+          rotations = r2;
+          return f5;
+        };
+        f5.gamma = function(g2) {
+          if (g2 == null) {
+            return gamma;
+          }
+          gamma = g2;
+          return f5;
+        };
+        f5.hue = function(h3) {
+          if (h3 == null) {
+            return hue;
+          }
+          hue = h3;
+          if (type$1(hue) === "array") {
+            dh = hue[1] - hue[0];
+            if (dh === 0) {
+              hue = hue[1];
+            }
+          } else {
+            dh = 0;
+          }
+          return f5;
+        };
+        f5.lightness = function(h3) {
+          if (h3 == null) {
+            return lightness;
+          }
+          if (type$1(h3) === "array") {
+            lightness = h3;
+            dl = h3[1] - h3[0];
+          } else {
+            lightness = [h3, h3];
+            dl = 0;
+          }
+          return f5;
+        };
+        f5.scale = function() {
+          return chroma$2.scale(f5);
+        };
+        f5.hue(hue);
+        return f5;
+      };
+      var Color$4 = Color_1;
+      var digits = "0123456789abcdef";
+      var floor$1 = Math.floor;
+      var random = Math.random;
+      var random_1 = function() {
+        var code = "#";
+        for (var i3 = 0; i3 < 6; i3++) {
+          code += digits.charAt(floor$1(random() * 16));
+        }
+        return new Color$4(code, "hex");
+      };
+      var type = type$p;
+      var log = Math.log;
+      var pow$1 = Math.pow;
+      var floor = Math.floor;
+      var abs$1 = Math.abs;
+      var analyze = function(data, key3) {
+        if (key3 === void 0)
+          key3 = null;
+        var r2 = {
+          min: Number.MAX_VALUE,
+          max: Number.MAX_VALUE * -1,
+          sum: 0,
+          values: [],
+          count: 0
+        };
+        if (type(data) === "object") {
+          data = Object.values(data);
+        }
+        data.forEach(function(val) {
+          if (key3 && type(val) === "object") {
+            val = val[key3];
+          }
+          if (val !== void 0 && val !== null && !isNaN(val)) {
+            r2.values.push(val);
+            r2.sum += val;
+            if (val < r2.min) {
+              r2.min = val;
+            }
+            if (val > r2.max) {
+              r2.max = val;
+            }
+            r2.count += 1;
+          }
+        });
+        r2.domain = [r2.min, r2.max];
+        r2.limits = function(mode, num2) {
+          return limits(r2, mode, num2);
+        };
+        return r2;
+      };
+      var limits = function(data, mode, num2) {
+        if (mode === void 0)
+          mode = "equal";
+        if (num2 === void 0)
+          num2 = 7;
+        if (type(data) == "array") {
+          data = analyze(data);
+        }
+        var min2 = data.min;
+        var max2 = data.max;
+        var values = data.values.sort(function(a, b4) {
+          return a - b4;
+        });
+        if (num2 === 1) {
+          return [min2, max2];
+        }
+        var limits2 = [];
+        if (mode.substr(0, 1) === "c") {
+          limits2.push(min2);
+          limits2.push(max2);
+        }
+        if (mode.substr(0, 1) === "e") {
+          limits2.push(min2);
+          for (var i3 = 1; i3 < num2; i3++) {
+            limits2.push(min2 + i3 / num2 * (max2 - min2));
+          }
+          limits2.push(max2);
+        } else if (mode.substr(0, 1) === "l") {
+          if (min2 <= 0) {
+            throw new Error("Logarithmic scales are only possible for values > 0");
+          }
+          var min_log = Math.LOG10E * log(min2);
+          var max_log = Math.LOG10E * log(max2);
+          limits2.push(min2);
+          for (var i$12 = 1; i$12 < num2; i$12++) {
+            limits2.push(pow$1(10, min_log + i$12 / num2 * (max_log - min_log)));
+          }
+          limits2.push(max2);
+        } else if (mode.substr(0, 1) === "q") {
+          limits2.push(min2);
+          for (var i$2 = 1; i$2 < num2; i$2++) {
+            var p2 = (values.length - 1) * i$2 / num2;
+            var pb = floor(p2);
+            if (pb === p2) {
+              limits2.push(values[pb]);
+            } else {
+              var pr = p2 - pb;
+              limits2.push(values[pb] * (1 - pr) + values[pb + 1] * pr);
+            }
+          }
+          limits2.push(max2);
+        } else if (mode.substr(0, 1) === "k") {
+          var cluster;
+          var n = values.length;
+          var assignments = new Array(n);
+          var clusterSizes = new Array(num2);
+          var repeat = true;
+          var nb_iters = 0;
+          var centroids = null;
+          centroids = [];
+          centroids.push(min2);
+          for (var i$3 = 1; i$3 < num2; i$3++) {
+            centroids.push(min2 + i$3 / num2 * (max2 - min2));
+          }
+          centroids.push(max2);
+          while (repeat) {
+            for (var j2 = 0; j2 < num2; j2++) {
+              clusterSizes[j2] = 0;
+            }
+            for (var i$4 = 0; i$4 < n; i$4++) {
+              var value = values[i$4];
+              var mindist = Number.MAX_VALUE;
+              var best = void 0;
+              for (var j$1 = 0; j$1 < num2; j$1++) {
+                var dist = abs$1(centroids[j$1] - value);
+                if (dist < mindist) {
+                  mindist = dist;
+                  best = j$1;
+                }
+                clusterSizes[best]++;
+                assignments[i$4] = best;
+              }
+            }
+            var newCentroids = new Array(num2);
+            for (var j$2 = 0; j$2 < num2; j$2++) {
+              newCentroids[j$2] = null;
+            }
+            for (var i$5 = 0; i$5 < n; i$5++) {
+              cluster = assignments[i$5];
+              if (newCentroids[cluster] === null) {
+                newCentroids[cluster] = values[i$5];
+              } else {
+                newCentroids[cluster] += values[i$5];
+              }
+            }
+            for (var j$3 = 0; j$3 < num2; j$3++) {
+              newCentroids[j$3] *= 1 / clusterSizes[j$3];
+            }
+            repeat = false;
+            for (var j$4 = 0; j$4 < num2; j$4++) {
+              if (newCentroids[j$4] !== centroids[j$4]) {
+                repeat = true;
+                break;
+              }
+            }
+            centroids = newCentroids;
+            nb_iters++;
+            if (nb_iters > 200) {
+              repeat = false;
+            }
+          }
+          var kClusters = {};
+          for (var j$5 = 0; j$5 < num2; j$5++) {
+            kClusters[j$5] = [];
+          }
+          for (var i$6 = 0; i$6 < n; i$6++) {
+            cluster = assignments[i$6];
+            kClusters[cluster].push(values[i$6]);
+          }
+          var tmpKMeansBreaks = [];
+          for (var j$6 = 0; j$6 < num2; j$6++) {
+            tmpKMeansBreaks.push(kClusters[j$6][0]);
+            tmpKMeansBreaks.push(kClusters[j$6][kClusters[j$6].length - 1]);
+          }
+          tmpKMeansBreaks = tmpKMeansBreaks.sort(function(a, b4) {
+            return a - b4;
+          });
+          limits2.push(tmpKMeansBreaks[0]);
+          for (var i$7 = 1; i$7 < tmpKMeansBreaks.length; i$7 += 2) {
+            var v3 = tmpKMeansBreaks[i$7];
+            if (!isNaN(v3) && limits2.indexOf(v3) === -1) {
+              limits2.push(v3);
+            }
+          }
+        }
+        return limits2;
+      };
+      var analyze_1 = { analyze, limits };
+      var Color$3 = Color_1;
+      var contrast = function(a, b4) {
+        a = new Color$3(a);
+        b4 = new Color$3(b4);
+        var l1 = a.luminance();
+        var l2 = b4.luminance();
+        return l1 > l2 ? (l1 + 0.05) / (l2 + 0.05) : (l2 + 0.05) / (l1 + 0.05);
+      };
+      var Color$2 = Color_1;
+      var sqrt = Math.sqrt;
+      var pow = Math.pow;
+      var min = Math.min;
+      var max = Math.max;
+      var atan2 = Math.atan2;
+      var abs = Math.abs;
+      var cos = Math.cos;
+      var sin = Math.sin;
+      var exp = Math.exp;
+      var PI = Math.PI;
+      var deltaE = function(a, b4, Kl, Kc, Kh) {
+        if (Kl === void 0)
+          Kl = 1;
+        if (Kc === void 0)
+          Kc = 1;
+        if (Kh === void 0)
+          Kh = 1;
+        var rad2deg = function(rad) {
+          return 360 * rad / (2 * PI);
+        };
+        var deg2rad = function(deg) {
+          return 2 * PI * deg / 360;
+        };
+        a = new Color$2(a);
+        b4 = new Color$2(b4);
+        var ref = Array.from(a.lab());
+        var L1 = ref[0];
+        var a1 = ref[1];
+        var b1 = ref[2];
+        var ref$1 = Array.from(b4.lab());
+        var L2 = ref$1[0];
+        var a2 = ref$1[1];
+        var b22 = ref$1[2];
+        var avgL = (L1 + L2) / 2;
+        var C1 = sqrt(pow(a1, 2) + pow(b1, 2));
+        var C2 = sqrt(pow(a2, 2) + pow(b22, 2));
+        var avgC = (C1 + C2) / 2;
+        var G2 = 0.5 * (1 - sqrt(pow(avgC, 7) / (pow(avgC, 7) + pow(25, 7))));
+        var a1p = a1 * (1 + G2);
+        var a2p = a2 * (1 + G2);
+        var C1p = sqrt(pow(a1p, 2) + pow(b1, 2));
+        var C2p = sqrt(pow(a2p, 2) + pow(b22, 2));
+        var avgCp = (C1p + C2p) / 2;
+        var arctan1 = rad2deg(atan2(b1, a1p));
+        var arctan2 = rad2deg(atan2(b22, a2p));
+        var h1p = arctan1 >= 0 ? arctan1 : arctan1 + 360;
+        var h2p = arctan2 >= 0 ? arctan2 : arctan2 + 360;
+        var avgHp = abs(h1p - h2p) > 180 ? (h1p + h2p + 360) / 2 : (h1p + h2p) / 2;
+        var T2 = 1 - 0.17 * cos(deg2rad(avgHp - 30)) + 0.24 * cos(deg2rad(2 * avgHp)) + 0.32 * cos(deg2rad(3 * avgHp + 6)) - 0.2 * cos(deg2rad(4 * avgHp - 63));
+        var deltaHp = h2p - h1p;
+        deltaHp = abs(deltaHp) <= 180 ? deltaHp : h2p <= h1p ? deltaHp + 360 : deltaHp - 360;
+        deltaHp = 2 * sqrt(C1p * C2p) * sin(deg2rad(deltaHp) / 2);
+        var deltaL = L2 - L1;
+        var deltaCp = C2p - C1p;
+        var sl = 1 + 0.015 * pow(avgL - 50, 2) / sqrt(20 + pow(avgL - 50, 2));
+        var sc = 1 + 0.045 * avgCp;
+        var sh = 1 + 0.015 * avgCp * T2;
+        var deltaTheta = 30 * exp(-pow((avgHp - 275) / 25, 2));
+        var Rc = 2 * sqrt(pow(avgCp, 7) / (pow(avgCp, 7) + pow(25, 7)));
+        var Rt = -Rc * sin(2 * deg2rad(deltaTheta));
+        var result = sqrt(pow(deltaL / (Kl * sl), 2) + pow(deltaCp / (Kc * sc), 2) + pow(deltaHp / (Kh * sh), 2) + Rt * (deltaCp / (Kc * sc)) * (deltaHp / (Kh * sh)));
+        return max(0, min(100, result));
+      };
+      var Color$1 = Color_1;
+      var distance = function(a, b4, mode) {
+        if (mode === void 0)
+          mode = "lab";
+        a = new Color$1(a);
+        b4 = new Color$1(b4);
+        var l1 = a.get(mode);
+        var l2 = b4.get(mode);
+        var sum_sq = 0;
+        for (var i3 in l1) {
+          var d3 = (l1[i3] || 0) - (l2[i3] || 0);
+          sum_sq += d3 * d3;
+        }
+        return Math.sqrt(sum_sq);
+      };
+      var Color = Color_1;
+      var valid = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        try {
+          new (Function.prototype.bind.apply(Color, [null].concat(args)))();
+          return true;
+        } catch (e2) {
+          return false;
+        }
+      };
+      var chroma$1 = chroma_1;
+      var scale = scale$2;
+      var scales = {
+        cool: function cool() {
+          return scale([chroma$1.hsl(180, 1, 0.9), chroma$1.hsl(250, 0.7, 0.4)]);
+        },
+        hot: function hot() {
+          return scale(["#000", "#f00", "#ff0", "#fff"]).mode("rgb");
+        }
+      };
+      var colorbrewer = {
+        OrRd: ["#fff7ec", "#fee8c8", "#fdd49e", "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#b30000", "#7f0000"],
+        PuBu: ["#fff7fb", "#ece7f2", "#d0d1e6", "#a6bddb", "#74a9cf", "#3690c0", "#0570b0", "#045a8d", "#023858"],
+        BuPu: ["#f7fcfd", "#e0ecf4", "#bfd3e6", "#9ebcda", "#8c96c6", "#8c6bb1", "#88419d", "#810f7c", "#4d004b"],
+        Oranges: ["#fff5eb", "#fee6ce", "#fdd0a2", "#fdae6b", "#fd8d3c", "#f16913", "#d94801", "#a63603", "#7f2704"],
+        BuGn: ["#f7fcfd", "#e5f5f9", "#ccece6", "#99d8c9", "#66c2a4", "#41ae76", "#238b45", "#006d2c", "#00441b"],
+        YlOrBr: ["#ffffe5", "#fff7bc", "#fee391", "#fec44f", "#fe9929", "#ec7014", "#cc4c02", "#993404", "#662506"],
+        YlGn: ["#ffffe5", "#f7fcb9", "#d9f0a3", "#addd8e", "#78c679", "#41ab5d", "#238443", "#006837", "#004529"],
+        Reds: ["#fff5f0", "#fee0d2", "#fcbba1", "#fc9272", "#fb6a4a", "#ef3b2c", "#cb181d", "#a50f15", "#67000d"],
+        RdPu: ["#fff7f3", "#fde0dd", "#fcc5c0", "#fa9fb5", "#f768a1", "#dd3497", "#ae017e", "#7a0177", "#49006a"],
+        Greens: ["#f7fcf5", "#e5f5e0", "#c7e9c0", "#a1d99b", "#74c476", "#41ab5d", "#238b45", "#006d2c", "#00441b"],
+        YlGnBu: ["#ffffd9", "#edf8b1", "#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#253494", "#081d58"],
+        Purples: ["#fcfbfd", "#efedf5", "#dadaeb", "#bcbddc", "#9e9ac8", "#807dba", "#6a51a3", "#54278f", "#3f007d"],
+        GnBu: ["#f7fcf0", "#e0f3db", "#ccebc5", "#a8ddb5", "#7bccc4", "#4eb3d3", "#2b8cbe", "#0868ac", "#084081"],
+        Greys: ["#ffffff", "#f0f0f0", "#d9d9d9", "#bdbdbd", "#969696", "#737373", "#525252", "#252525", "#000000"],
+        YlOrRd: ["#ffffcc", "#ffeda0", "#fed976", "#feb24c", "#fd8d3c", "#fc4e2a", "#e31a1c", "#bd0026", "#800026"],
+        PuRd: ["#f7f4f9", "#e7e1ef", "#d4b9da", "#c994c7", "#df65b0", "#e7298a", "#ce1256", "#980043", "#67001f"],
+        Blues: ["#f7fbff", "#deebf7", "#c6dbef", "#9ecae1", "#6baed6", "#4292c6", "#2171b5", "#08519c", "#08306b"],
+        PuBuGn: ["#fff7fb", "#ece2f0", "#d0d1e6", "#a6bddb", "#67a9cf", "#3690c0", "#02818a", "#016c59", "#014636"],
+        Viridis: ["#440154", "#482777", "#3f4a8a", "#31678e", "#26838f", "#1f9d8a", "#6cce5a", "#b6de2b", "#fee825"],
+        Spectral: ["#9e0142", "#d53e4f", "#f46d43", "#fdae61", "#fee08b", "#ffffbf", "#e6f598", "#abdda4", "#66c2a5", "#3288bd", "#5e4fa2"],
+        RdYlGn: ["#a50026", "#d73027", "#f46d43", "#fdae61", "#fee08b", "#ffffbf", "#d9ef8b", "#a6d96a", "#66bd63", "#1a9850", "#006837"],
+        RdBu: ["#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#f7f7f7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061"],
+        PiYG: ["#8e0152", "#c51b7d", "#de77ae", "#f1b6da", "#fde0ef", "#f7f7f7", "#e6f5d0", "#b8e186", "#7fbc41", "#4d9221", "#276419"],
+        PRGn: ["#40004b", "#762a83", "#9970ab", "#c2a5cf", "#e7d4e8", "#f7f7f7", "#d9f0d3", "#a6dba0", "#5aae61", "#1b7837", "#00441b"],
+        RdYlBu: ["#a50026", "#d73027", "#f46d43", "#fdae61", "#fee090", "#ffffbf", "#e0f3f8", "#abd9e9", "#74add1", "#4575b4", "#313695"],
+        BrBG: ["#543005", "#8c510a", "#bf812d", "#dfc27d", "#f6e8c3", "#f5f5f5", "#c7eae5", "#80cdc1", "#35978f", "#01665e", "#003c30"],
+        RdGy: ["#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#ffffff", "#e0e0e0", "#bababa", "#878787", "#4d4d4d", "#1a1a1a"],
+        PuOr: ["#7f3b08", "#b35806", "#e08214", "#fdb863", "#fee0b6", "#f7f7f7", "#d8daeb", "#b2abd2", "#8073ac", "#542788", "#2d004b"],
+        Set2: ["#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f", "#e5c494", "#b3b3b3"],
+        Accent: ["#7fc97f", "#beaed4", "#fdc086", "#ffff99", "#386cb0", "#f0027f", "#bf5b17", "#666666"],
+        Set1: ["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#ffff33", "#a65628", "#f781bf", "#999999"],
+        Set3: ["#8dd3c7", "#ffffb3", "#bebada", "#fb8072", "#80b1d3", "#fdb462", "#b3de69", "#fccde5", "#d9d9d9", "#bc80bd", "#ccebc5", "#ffed6f"],
+        Dark2: ["#1b9e77", "#d95f02", "#7570b3", "#e7298a", "#66a61e", "#e6ab02", "#a6761d", "#666666"],
+        Paired: ["#a6cee3", "#1f78b4", "#b2df8a", "#33a02c", "#fb9a99", "#e31a1c", "#fdbf6f", "#ff7f00", "#cab2d6", "#6a3d9a", "#ffff99", "#b15928"],
+        Pastel2: ["#b3e2cd", "#fdcdac", "#cbd5e8", "#f4cae4", "#e6f5c9", "#fff2ae", "#f1e2cc", "#cccccc"],
+        Pastel1: ["#fbb4ae", "#b3cde3", "#ccebc5", "#decbe4", "#fed9a6", "#ffffcc", "#e5d8bd", "#fddaec", "#f2f2f2"]
+      };
+      for (var i2 = 0, list = Object.keys(colorbrewer); i2 < list.length; i2 += 1) {
+        var key2 = list[i2];
+        colorbrewer[key2.toLowerCase()] = colorbrewer[key2];
+      }
+      var colorbrewer_1 = colorbrewer;
+      var chroma2 = chroma_1;
+      chroma2.average = average;
+      chroma2.bezier = bezier_1;
+      chroma2.blend = blend_1;
+      chroma2.cubehelix = cubehelix;
+      chroma2.mix = chroma2.interpolate = mix$1;
+      chroma2.random = random_1;
+      chroma2.scale = scale$2;
+      chroma2.analyze = analyze_1.analyze;
+      chroma2.contrast = contrast;
+      chroma2.deltaE = deltaE;
+      chroma2.distance = distance;
+      chroma2.limits = analyze_1.limits;
+      chroma2.valid = valid;
+      chroma2.scales = scales;
+      chroma2.colors = w3cx11_1;
+      chroma2.brewer = colorbrewer_1;
+      var chroma_js = chroma2;
+      return chroma_js;
+    });
+  }
+});
+
+// .svelte-kit/output/server/_app/immutable/chunks/font-5b202901.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -13274,17 +16693,146 @@ function writable2(value, start2 = noop2) {
   }
   return { set, update, subscribe: subscribe2 };
 }
-var subscriber_queue2, _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady;
-var init_store_7a5a957b = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/store-7a5a957b.js"() {
+var import_chroma_js, subscriber_queue2, _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, Font;
+var init_font_5b202901 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/font-5b202901.js"() {
     init_shims();
     init_index_19a73778();
+    init_column_config_ca4f920c();
+    import_chroma_js = __toESM(require_chroma(), 1);
     subscriber_queue2 = [];
     _lang = writable2(0);
     _themeColorsReady = writable2(false);
     _themeSizesReady = writable2(false);
     _scaledPixelsReady = writable2(false);
     _appContentReady = writable2(false);
+    _isMobile = writable2(false);
+    _fontGroups = [
+      [
+        "'Abhaya Libre', serif",
+        "'Nunito', sans-serif",
+        "'Hind Madurai', sans-serif"
+      ],
+      [
+        "'Noto Serif Sinhala', serif",
+        "'Source Sans Pro', sans-serif",
+        "'Pavanam', sans-serif"
+      ],
+      [
+        "'Noto Sans Sinhala', sans-serif",
+        "'Open Sans', sans-serif",
+        "'Mukta Malar', sans-serif"
+      ],
+      [
+        "'Roboto', sans-serif",
+        "'Roboto', sans-serif",
+        "'Roboto', sans-serif"
+      ]
+    ];
+    _fontSizes = [
+      [1.2, 1, 0.85],
+      [0.8, 1, 1],
+      [0.9, 1, 1],
+      [1, 1, 1]
+    ];
+    pallettes = [
+      ["#274654", "#299d8f", "#e9c46a", "#f4a261", "#e76f51"],
+      ["#9A031A", "#e26413", "#fb8b24", "#0f4C5C", "#5f0f41"],
+      ["#E63A46", "#e12f7d", "#bf47af", "#7f63d1", "#0076dc"],
+      ["#E96491", "#bd629f", "#8b629f", "#5d5e90", "#3c5576"],
+      ["#fffe00", "#85e757", "#00c484", "#009b95", "#007184"],
+      ["#6f3cb1", "#ca369c", "#ff537c", "#ff885f", "#ffc154"]
+    ];
+    _headerFontColor = "#ffffff";
+    _previewOpacity = "0.3";
+    _themes = pallettes.map((pallette, i2) => {
+      const columns = import_chroma_js.default.scale(pallette).mode("lch").colors(COLUMN_COUNT + 2, "hex");
+      const navigation = columns.map((c3, _i) => {
+        return (0, import_chroma_js.default)(c3).luminance(0.3).hex();
+      });
+      const headerBackground = "white";
+      const columnBackground = import_chroma_js.default.scale(["black", "white"])(0.92).hex();
+      const columnBackgroundAlternate = import_chroma_js.default.scale(["black", "white"])(0.86).hex();
+      const defaultButton = navigation[0];
+      const cancelButton = navigation[1];
+      const headerFontColor = _headerFontColor;
+      const previewOpacity = _previewOpacity;
+      return {
+        columns,
+        navigation,
+        headerBackground,
+        columnBackground,
+        columnBackgroundAlternate,
+        defaultButton,
+        cancelButton,
+        headerFontColor,
+        previewOpacity
+      };
+    });
+    layoutHeaderHeight = 50;
+    columnWidth = 500;
+    columnHeaderHeight = 50;
+    cardSeparation = 12;
+    cardPadding = 12;
+    navSize = 60;
+    previewHeight = (columnWidth - cardSeparation - cardPadding * 2) * 9 / 16;
+    toolbarButtonSize = 20;
+    _getSizeConfig = () => {
+      let devicePixelRatio = window && window.innerWidth > 600 ? window.devicePixelRatio : 1;
+      let _columnWidth = columnWidth;
+      let _previewHeight = previewHeight;
+      let _navSize = navSize;
+      let _toolbarButtonSize = toolbarButtonSize;
+      if (window && window.innerWidth < 600) {
+        _isMobile.set(true);
+        _columnWidth = window.innerWidth;
+        _previewHeight = (_columnWidth - cardSeparation - cardPadding * 2) * 9 / 16;
+        _navSize = 50;
+        _toolbarButtonSize = 26;
+      }
+      return {
+        layoutHeaderHeight: layoutHeaderHeight / devicePixelRatio,
+        columnWidth: _columnWidth / devicePixelRatio,
+        columnHeaderHeight: columnHeaderHeight / devicePixelRatio,
+        cardSeparation: cardSeparation / devicePixelRatio,
+        cardSeparationHalf: cardSeparation / 2 / devicePixelRatio,
+        cardPadding: cardPadding / devicePixelRatio,
+        previewHeight: _previewHeight / devicePixelRatio,
+        navSize: _navSize / devicePixelRatio,
+        navIconSize: _navSize / 3 / devicePixelRatio,
+        toolbarButtonSize: _toolbarButtonSize / devicePixelRatio
+      };
+    };
+    Font = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let fontSize;
+      let fontFamily;
+      let $_lang, $$unsubscribe__lang;
+      validate_store(_lang, "_lang");
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let { font = 0 } = $$props;
+      let { size = 1 } = $$props;
+      let { color = "" } = $$props;
+      let { style = "" } = $$props;
+      let { inline = false } = $$props;
+      let devicePixelRatio = 1;
+      if ($$props.font === void 0 && $$bindings.font && font !== void 0)
+        $$bindings.font(font);
+      if ($$props.size === void 0 && $$bindings.size && size !== void 0)
+        $$bindings.size(size);
+      if ($$props.color === void 0 && $$bindings.color && color !== void 0)
+        $$bindings.color(color);
+      if ($$props.style === void 0 && $$bindings.style && style !== void 0)
+        $$bindings.style(style);
+      if ($$props.inline === void 0 && $$bindings.inline && inline !== void 0)
+        $$bindings.inline(inline);
+      fontSize = _fontSizes[font][$_lang] * size * 16 / devicePixelRatio;
+      fontFamily = _fontGroups[font][$_lang];
+      $$unsubscribe__lang();
+      return `
+
+
+<div style="${"font-family: " + escape(fontFamily, true) + "; font-size: " + escape(fontSize, true) + "px; color: " + escape(color || "inherit", true) + "; display: " + escape(inline ? "inline-block" : "block", true) + "; " + escape(style, true)}">${slots.default ? slots.default({}) : ``}</div>`;
+    });
   }
 });
 
@@ -49708,346 +53256,13 @@ var init_dist2 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/database-ccbc9956.js
-var COLUMNS, COLUMN_COUNT, firebaseConfig, app, db, _createError, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord;
-var init_database_ccbc9956 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/database-ccbc9956.js"() {
+// .svelte-kit/output/server/_app/immutable/chunks/database-8e0ce6fe.js
+var firebaseConfig, app, db, _createError, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord;
+var init_database_8e0ce6fe = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/database-8e0ce6fe.js"() {
     init_shims();
     init_dist();
     init_dist2();
-    COLUMNS = [
-      {
-        title: [
-          "\u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
-          "News",
-          "\u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
-        ],
-        icon: "fa-solid fa-radio",
-        height: "200px",
-        type: "bulletin",
-        data: {
-          title: {
-            type: "text",
-            maxlength: 100,
-            placeholder: [
-              "\u0DC1\u0DD3\u0DBB\u0DCA\u0DC2\u0DBA",
-              "title",
-              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
-            ],
-            required: true,
-            translate: true
-          },
-          description: {
-            type: "html",
-            maxlength: 100,
-            placeholder: [
-              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A \u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8 ",
-              "details",
-              "\u0BB5\u0BBF\u0BB5\u0BB0\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
-            ],
-            required: true,
-            translate: true
-          }
-        },
-        dataFormTitle: [
-          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "Create a bulletin",
-          "\u0B92\u0BB0\u0BC1 \u0BAA\u0BC1\u0BB2\u0BCD\u0BB2\u0B9F\u0BCD\u0B9F\u0BBF\u0BA9\u0BCD \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
-        ],
-        submitButton: [
-          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "create",
-          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
-        ],
-        cancelButton: [
-          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "cancel",
-          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
-        ],
-        filter: {
-          verified: true,
-          tags: [{
-            name: "mainstream",
-            strings: [
-              "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
-              "mainstream news",
-              "\u0BAE\u0BC1\u0B95\u0BCD\u0B95\u0BBF\u0BAF \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
-            ],
-            color: "#ffd492"
-          }, {
-            name: "aragala",
-            strings: [
-              "\u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
-              "aragala news",
-              "\u0B85\u0BB0\u0B95\u0BB2 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
-            ],
-            color: "#3cc1ff"
-          }, {
-            name: "economy",
-            strings: [
-              "\u0D86\u0DBB\u0DCA\u0DAE\u0DD2\u0D9A\u0DBA",
-              "economy",
-              "\u0BAA\u0BCA\u0BB0\u0BC1\u0BB3\u0BBE\u0BA4\u0BBE\u0BB0\u0BAE\u0BCD"
-            ],
-            color: "#c57dff"
-          }]
-        }
-      },
-      {
-        title: [
-          "\u0DC3\u0DCF\u0D9A\u0DA0\u0DCA\u0DA1\u0DCF",
-          "Discussions",
-          "\u0BB5\u0BBF\u0BB5\u0BBE\u0BA4\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
-        ],
-        icon: "fa-solid fa-comments",
-        height: "310px",
-        type: "newsx",
-        data: {
-          videoId: {
-            type: "text",
-            maxlength: 100,
-            placeholder: [
-              "https://www.youtube.com/watch?v=ueYFyWW8e5I",
-              "https://www.youtube.com/watch?v=ueYFyWW8e5I",
-              "https://www.youtube.com/watch?v=ueYFyWW8e5I"
-            ],
-            required: true,
-            validate: (val) => {
-              var videoIdRegexp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
-              let result = videoIdRegexp.exec(val);
-              return !result[1];
-            },
-            process: (val) => {
-              var videoIdRegexp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
-              let result = videoIdRegexp.exec(val);
-              return result[1];
-            }
-          },
-          title: {
-            type: "text",
-            maxlength: 300,
-            placeholder: [
-              "\u0DB8\u0DCF\u0DAD\u0DD8\u0D9A\u0DCF\u0DC0",
-              "title",
-              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
-            ],
-            required: true,
-            translate: true
-          },
-          shortDescription: {
-            type: "text",
-            maxlength: 300,
-            placeholder: [
-              "\u0D9A\u0DD9\u0DA7\u0DD2 \u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DBA",
-              "short description",
-              "\u0B95\u0BC1\u0BB1\u0BC1\u0B95\u0BBF\u0BAF \u0BB5\u0BBF\u0BB3\u0B95\u0BCD\u0B95\u0BAE\u0BCD"
-            ],
-            required: true,
-            translate: true
-          }
-        },
-        dataFormTitle: [
-          "\u0DC0\u0DD3\u0DA9\u0DD2\u0DBA\u0DDD\u0DC0\u0D9A\u0DCA \u0D91\u0D9A\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "Add a video",
-          "\u0B92\u0BB0\u0BC1 \u0BB5\u0BC0\u0B9F\u0BBF\u0BAF\u0BCB\u0BB5\u0BC8\u0B9A\u0BCD \u0B9A\u0BC7\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
-        ],
-        submitButton: [
-          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "submit",
-          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
-        ],
-        cancelButton: [
-          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "cancel",
-          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
-        ]
-      },
-      {
-        title: [
-          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0DCA \u0DB4\u0DD4\u0DC0\u0DBB\u0DD4\u0DC0",
-          "Bulletin board",
-          "\u0B85\u0BB1\u0BBF\u0BB5\u0BBF\u0BAA\u0BCD\u0BAA\u0BC1 \u0BAA\u0BB2\u0B95\u0BC8"
-        ],
-        icon: "fa-solid fa-calendar-days",
-        height: "300px",
-        type: "bulletinx",
-        data: {
-          title: {
-            type: "text",
-            maxlength: 100,
-            placeholder: [
-              "\u0DC1\u0DD3\u0DBB\u0DCA\u0DC2\u0DBA",
-              "title",
-              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
-            ],
-            required: true,
-            translate: true
-          },
-          description: {
-            type: "html",
-            maxlength: 100,
-            placeholder: [
-              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A \u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8 ",
-              "details",
-              "\u0BB5\u0BBF\u0BB5\u0BB0\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
-            ],
-            required: true,
-            translate: true
-          }
-        },
-        dataFormTitle: [
-          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "Create a bulletin",
-          "\u0B92\u0BB0\u0BC1 \u0BAA\u0BC1\u0BB2\u0BCD\u0BB2\u0B9F\u0BCD\u0B9F\u0BBF\u0BA9\u0BCD \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
-        ],
-        submitButton: [
-          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "create",
-          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
-        ],
-        cancelButton: [
-          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "cancel",
-          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
-        ],
-        filter: {
-          verified: true,
-          tags: [{
-            name: "mainstream",
-            strings: [
-              "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
-              "mainstream news",
-              "\u0BAE\u0BC1\u0B95\u0BCD\u0B95\u0BBF\u0BAF \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
-            ],
-            color: "#ffd492"
-          }, {
-            name: "aragala",
-            strings: [
-              "\u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
-              "aragala news",
-              "\u0B85\u0BB0\u0B95\u0BB2 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
-            ],
-            color: "#3cc1ff"
-          }, {
-            name: "economy",
-            strings: [
-              "\u0D86\u0DBB\u0DCA\u0DAE\u0DD2\u0D9A\u0DBA",
-              "economy",
-              "\u0BAA\u0BCA\u0BB0\u0BC1\u0BB3\u0BBE\u0BA4\u0BBE\u0BB0\u0BAE\u0BCD"
-            ],
-            color: "#c57dff"
-          }]
-        }
-      },
-      {
-        title: [
-          "\u0DB8\u0DC4\u0DA2\u0DB1 \u0D85\u0DAF\u0DC4\u0DC3\u0DCA \u0DC3\u0DB3\u0DC4\u0DCF \u0DBA\u0DDD\u0DA2\u0DB1\u0DCF",
-          "Proposals for public comments",
-          "\u0BAA\u0BCA\u0BA4\u0BC1 \u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BB3\u0BC1\u0B95\u0BCD\u0B95\u0BBE\u0BA9 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAE\u0BCA\u0BB4\u0BBF\u0BB5\u0BC1\u0B95\u0BB3\u0BCD"
-        ],
-        icon: "fa-solid fa-file-lines",
-        height: "400px",
-        type: "proposal",
-        data: {
-          title: {
-            type: "text",
-            maxlength: 100,
-            placeholder: [
-              "\u0DC1\u0DD3\u0DBB\u0DCA\u0DC2\u0DBA",
-              "title",
-              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
-            ],
-            required: true,
-            translate: true
-          },
-          description: {
-            type: "html",
-            maxlength: 100,
-            placeholder: [
-              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A \u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8 ",
-              "details",
-              "\u0BB5\u0BBF\u0BB5\u0BB0\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
-            ],
-            required: true,
-            translate: true
-          }
-        },
-        dataFormTitle: [
-          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "Create a bulletin",
-          "\u0B92\u0BB0\u0BC1 \u0BAA\u0BC1\u0BB2\u0BCD\u0BB2\u0B9F\u0BCD\u0B9F\u0BBF\u0BA9\u0BCD \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
-        ],
-        submitButton: [
-          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "create",
-          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
-        ],
-        cancelButton: [
-          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "cancel",
-          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
-        ],
-        filter: {
-          verified: true,
-          tags: [{
-            name: "mainstream",
-            strings: [
-              "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
-              "mainstream news",
-              "\u0BAE\u0BC1\u0B95\u0BCD\u0B95\u0BBF\u0BAF \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
-            ],
-            color: "#ffd492"
-          }, {
-            name: "aragala",
-            strings: [
-              "\u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
-              "aragala news",
-              "\u0B85\u0BB0\u0B95\u0BB2 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
-            ],
-            color: "#3cc1ff"
-          }, {
-            name: "economy",
-            strings: [
-              "\u0D86\u0DBB\u0DCA\u0DAE\u0DD2\u0D9A\u0DBA",
-              "economy",
-              "\u0BAA\u0BCA\u0BB0\u0BC1\u0BB3\u0BBE\u0BA4\u0BBE\u0BB0\u0BAE\u0BCD"
-            ],
-            color: "#c57dff"
-          }]
-        }
-      },
-      {
-        title: [
-          "\u0DC3\u0DCF\u0DB8\u0DD4\u0DC4\u0DD2\u0D9A \u0DBD\u0DDA\u0D9B\u0DB1",
-          "Collaborative documents",
-          "\u0B95\u0BC2\u0B9F\u0BCD\u0B9F\u0BC1 \u0B86\u0BB5\u0BA3\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
-        ],
-        icon: "fa-solid fa-file-signature",
-        height: "500px",
-        type: ""
-      },
-      {
-        title: [
-          "\u0DC0\u0DD2\u0DC0\u0DD4\u0DBB\u0DCA\u0DAD \u0D85\u0DBA\u0DC0\u0DD0\u0DBA",
-          "Open budgets",
-          "\u0BA4\u0BBF\u0BB1\u0BA8\u0BCD\u0BA4 \u0BAA\u0B9F\u0BCD\u0B9C\u0BC6\u0B9F\u0BCD"
-        ],
-        icon: "fa-solid fa-coins",
-        height: "410px",
-        type: "budget"
-      },
-      {
-        title: [
-          "\u0D9C\u0DD0\u0DBD\u0DBB\u0DD2\u0DBA",
-          "Gallery",
-          "\u0B95\u0BC7\u0BB2\u0BB0\u0BBF"
-        ],
-        icon: "fa-solid fa-camera-retro",
-        height: "290px",
-        type: "photo"
-      }
-    ];
-    COLUMN_COUNT = COLUMNS.length;
     firebaseConfig = {
       apiKey: "AIzaSyCFIhFlai5zMvE-9eeSiaL4ZiGiSvpg0yY",
       authDomain: "aragalaya-online.firebaseapp.com",
@@ -50131,3073 +53346,6 @@ var init_database_ccbc9956 = __esm({
         _createError(error2, "DBService:getUserRecord");
       }
     };
-  }
-});
-
-// node_modules/chroma-js/chroma.js
-var require_chroma = __commonJS({
-  "node_modules/chroma-js/chroma.js"(exports2, module2) {
-    init_shims();
-    (function(global2, factory2) {
-      typeof exports2 === "object" && typeof module2 !== "undefined" ? module2.exports = factory2() : typeof define === "function" && define.amd ? define(factory2) : (global2 = typeof globalThis !== "undefined" ? globalThis : global2 || self, global2.chroma = factory2());
-    })(exports2, function() {
-      "use strict";
-      var limit$2 = function(x2, min2, max2) {
-        if (min2 === void 0)
-          min2 = 0;
-        if (max2 === void 0)
-          max2 = 1;
-        return x2 < min2 ? min2 : x2 > max2 ? max2 : x2;
-      };
-      var limit$1 = limit$2;
-      var clip_rgb$3 = function(rgb2) {
-        rgb2._clipped = false;
-        rgb2._unclipped = rgb2.slice(0);
-        for (var i3 = 0; i3 <= 3; i3++) {
-          if (i3 < 3) {
-            if (rgb2[i3] < 0 || rgb2[i3] > 255) {
-              rgb2._clipped = true;
-            }
-            rgb2[i3] = limit$1(rgb2[i3], 0, 255);
-          } else if (i3 === 3) {
-            rgb2[i3] = limit$1(rgb2[i3], 0, 1);
-          }
-        }
-        return rgb2;
-      };
-      var classToType = {};
-      for (var i$1 = 0, list$1 = ["Boolean", "Number", "String", "Function", "Array", "Date", "RegExp", "Undefined", "Null"]; i$1 < list$1.length; i$1 += 1) {
-        var name7 = list$1[i$1];
-        classToType["[object " + name7 + "]"] = name7.toLowerCase();
-      }
-      var type$p = function(obj) {
-        return classToType[Object.prototype.toString.call(obj)] || "object";
-      };
-      var type$o = type$p;
-      var unpack$B = function(args, keyOrder) {
-        if (keyOrder === void 0)
-          keyOrder = null;
-        if (args.length >= 3) {
-          return Array.prototype.slice.call(args);
-        }
-        if (type$o(args[0]) == "object" && keyOrder) {
-          return keyOrder.split("").filter(function(k) {
-            return args[0][k] !== void 0;
-          }).map(function(k) {
-            return args[0][k];
-          });
-        }
-        return args[0];
-      };
-      var type$n = type$p;
-      var last$4 = function(args) {
-        if (args.length < 2) {
-          return null;
-        }
-        var l = args.length - 1;
-        if (type$n(args[l]) == "string") {
-          return args[l].toLowerCase();
-        }
-        return null;
-      };
-      var PI$2 = Math.PI;
-      var utils2 = {
-        clip_rgb: clip_rgb$3,
-        limit: limit$2,
-        type: type$p,
-        unpack: unpack$B,
-        last: last$4,
-        PI: PI$2,
-        TWOPI: PI$2 * 2,
-        PITHIRD: PI$2 / 3,
-        DEG2RAD: PI$2 / 180,
-        RAD2DEG: 180 / PI$2
-      };
-      var input$h = {
-        format: {},
-        autodetect: []
-      };
-      var last$3 = utils2.last;
-      var clip_rgb$2 = utils2.clip_rgb;
-      var type$m = utils2.type;
-      var _input = input$h;
-      var Color$D = function Color2() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var me = this;
-        if (type$m(args[0]) === "object" && args[0].constructor && args[0].constructor === this.constructor) {
-          return args[0];
-        }
-        var mode = last$3(args);
-        var autodetect = false;
-        if (!mode) {
-          autodetect = true;
-          if (!_input.sorted) {
-            _input.autodetect = _input.autodetect.sort(function(a, b4) {
-              return b4.p - a.p;
-            });
-            _input.sorted = true;
-          }
-          for (var i3 = 0, list2 = _input.autodetect; i3 < list2.length; i3 += 1) {
-            var chk = list2[i3];
-            mode = chk.test.apply(chk, args);
-            if (mode) {
-              break;
-            }
-          }
-        }
-        if (_input.format[mode]) {
-          var rgb2 = _input.format[mode].apply(null, autodetect ? args : args.slice(0, -1));
-          me._rgb = clip_rgb$2(rgb2);
-        } else {
-          throw new Error("unknown format: " + args);
-        }
-        if (me._rgb.length === 3) {
-          me._rgb.push(1);
-        }
-      };
-      Color$D.prototype.toString = function toString() {
-        if (type$m(this.hex) == "function") {
-          return this.hex();
-        }
-        return "[" + this._rgb.join(",") + "]";
-      };
-      var Color_1 = Color$D;
-      var chroma$k = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(chroma$k.Color, [null].concat(args)))();
-      };
-      chroma$k.Color = Color_1;
-      chroma$k.version = "2.4.2";
-      var chroma_1 = chroma$k;
-      var unpack$A = utils2.unpack;
-      var max$2 = Math.max;
-      var rgb2cmyk$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$A(args, "rgb");
-        var r2 = ref[0];
-        var g2 = ref[1];
-        var b4 = ref[2];
-        r2 = r2 / 255;
-        g2 = g2 / 255;
-        b4 = b4 / 255;
-        var k = 1 - max$2(r2, max$2(g2, b4));
-        var f5 = k < 1 ? 1 / (1 - k) : 0;
-        var c3 = (1 - r2 - k) * f5;
-        var m3 = (1 - g2 - k) * f5;
-        var y = (1 - b4 - k) * f5;
-        return [c3, m3, y, k];
-      };
-      var rgb2cmyk_1 = rgb2cmyk$1;
-      var unpack$z = utils2.unpack;
-      var cmyk2rgb = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$z(args, "cmyk");
-        var c3 = args[0];
-        var m3 = args[1];
-        var y = args[2];
-        var k = args[3];
-        var alpha = args.length > 4 ? args[4] : 1;
-        if (k === 1) {
-          return [0, 0, 0, alpha];
-        }
-        return [
-          c3 >= 1 ? 0 : 255 * (1 - c3) * (1 - k),
-          m3 >= 1 ? 0 : 255 * (1 - m3) * (1 - k),
-          y >= 1 ? 0 : 255 * (1 - y) * (1 - k),
-          alpha
-        ];
-      };
-      var cmyk2rgb_1 = cmyk2rgb;
-      var chroma$j = chroma_1;
-      var Color$C = Color_1;
-      var input$g = input$h;
-      var unpack$y = utils2.unpack;
-      var type$l = utils2.type;
-      var rgb2cmyk = rgb2cmyk_1;
-      Color$C.prototype.cmyk = function() {
-        return rgb2cmyk(this._rgb);
-      };
-      chroma$j.cmyk = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$C, [null].concat(args, ["cmyk"])))();
-      };
-      input$g.format.cmyk = cmyk2rgb_1;
-      input$g.autodetect.push({
-        p: 2,
-        test: function() {
-          var args = [], len = arguments.length;
-          while (len--)
-            args[len] = arguments[len];
-          args = unpack$y(args, "cmyk");
-          if (type$l(args) === "array" && args.length === 4) {
-            return "cmyk";
-          }
-        }
-      });
-      var unpack$x = utils2.unpack;
-      var last$2 = utils2.last;
-      var rnd = function(a) {
-        return Math.round(a * 100) / 100;
-      };
-      var hsl2css$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var hsla = unpack$x(args, "hsla");
-        var mode = last$2(args) || "lsa";
-        hsla[0] = rnd(hsla[0] || 0);
-        hsla[1] = rnd(hsla[1] * 100) + "%";
-        hsla[2] = rnd(hsla[2] * 100) + "%";
-        if (mode === "hsla" || hsla.length > 3 && hsla[3] < 1) {
-          hsla[3] = hsla.length > 3 ? hsla[3] : 1;
-          mode = "hsla";
-        } else {
-          hsla.length = 3;
-        }
-        return mode + "(" + hsla.join(",") + ")";
-      };
-      var hsl2css_1 = hsl2css$1;
-      var unpack$w = utils2.unpack;
-      var rgb2hsl$3 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$w(args, "rgba");
-        var r2 = args[0];
-        var g2 = args[1];
-        var b4 = args[2];
-        r2 /= 255;
-        g2 /= 255;
-        b4 /= 255;
-        var min2 = Math.min(r2, g2, b4);
-        var max2 = Math.max(r2, g2, b4);
-        var l = (max2 + min2) / 2;
-        var s3, h3;
-        if (max2 === min2) {
-          s3 = 0;
-          h3 = Number.NaN;
-        } else {
-          s3 = l < 0.5 ? (max2 - min2) / (max2 + min2) : (max2 - min2) / (2 - max2 - min2);
-        }
-        if (r2 == max2) {
-          h3 = (g2 - b4) / (max2 - min2);
-        } else if (g2 == max2) {
-          h3 = 2 + (b4 - r2) / (max2 - min2);
-        } else if (b4 == max2) {
-          h3 = 4 + (r2 - g2) / (max2 - min2);
-        }
-        h3 *= 60;
-        if (h3 < 0) {
-          h3 += 360;
-        }
-        if (args.length > 3 && args[3] !== void 0) {
-          return [h3, s3, l, args[3]];
-        }
-        return [h3, s3, l];
-      };
-      var rgb2hsl_1 = rgb2hsl$3;
-      var unpack$v = utils2.unpack;
-      var last$1 = utils2.last;
-      var hsl2css = hsl2css_1;
-      var rgb2hsl$2 = rgb2hsl_1;
-      var round$6 = Math.round;
-      var rgb2css$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var rgba = unpack$v(args, "rgba");
-        var mode = last$1(args) || "rgb";
-        if (mode.substr(0, 3) == "hsl") {
-          return hsl2css(rgb2hsl$2(rgba), mode);
-        }
-        rgba[0] = round$6(rgba[0]);
-        rgba[1] = round$6(rgba[1]);
-        rgba[2] = round$6(rgba[2]);
-        if (mode === "rgba" || rgba.length > 3 && rgba[3] < 1) {
-          rgba[3] = rgba.length > 3 ? rgba[3] : 1;
-          mode = "rgba";
-        }
-        return mode + "(" + rgba.slice(0, mode === "rgb" ? 3 : 4).join(",") + ")";
-      };
-      var rgb2css_1 = rgb2css$1;
-      var unpack$u = utils2.unpack;
-      var round$5 = Math.round;
-      var hsl2rgb$1 = function() {
-        var assign2;
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$u(args, "hsl");
-        var h3 = args[0];
-        var s3 = args[1];
-        var l = args[2];
-        var r2, g2, b4;
-        if (s3 === 0) {
-          r2 = g2 = b4 = l * 255;
-        } else {
-          var t3 = [0, 0, 0];
-          var c3 = [0, 0, 0];
-          var t2 = l < 0.5 ? l * (1 + s3) : l + s3 - l * s3;
-          var t1 = 2 * l - t2;
-          var h_ = h3 / 360;
-          t3[0] = h_ + 1 / 3;
-          t3[1] = h_;
-          t3[2] = h_ - 1 / 3;
-          for (var i3 = 0; i3 < 3; i3++) {
-            if (t3[i3] < 0) {
-              t3[i3] += 1;
-            }
-            if (t3[i3] > 1) {
-              t3[i3] -= 1;
-            }
-            if (6 * t3[i3] < 1) {
-              c3[i3] = t1 + (t2 - t1) * 6 * t3[i3];
-            } else if (2 * t3[i3] < 1) {
-              c3[i3] = t2;
-            } else if (3 * t3[i3] < 2) {
-              c3[i3] = t1 + (t2 - t1) * (2 / 3 - t3[i3]) * 6;
-            } else {
-              c3[i3] = t1;
-            }
-          }
-          assign2 = [round$5(c3[0] * 255), round$5(c3[1] * 255), round$5(c3[2] * 255)], r2 = assign2[0], g2 = assign2[1], b4 = assign2[2];
-        }
-        if (args.length > 3) {
-          return [r2, g2, b4, args[3]];
-        }
-        return [r2, g2, b4, 1];
-      };
-      var hsl2rgb_1 = hsl2rgb$1;
-      var hsl2rgb = hsl2rgb_1;
-      var input$f = input$h;
-      var RE_RGB = /^rgb\(\s*(-?\d+),\s*(-?\d+)\s*,\s*(-?\d+)\s*\)$/;
-      var RE_RGBA = /^rgba\(\s*(-?\d+),\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*([01]|[01]?\.\d+)\)$/;
-      var RE_RGB_PCT = /^rgb\(\s*(-?\d+(?:\.\d+)?)%,\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*\)$/;
-      var RE_RGBA_PCT = /^rgba\(\s*(-?\d+(?:\.\d+)?)%,\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*,\s*([01]|[01]?\.\d+)\)$/;
-      var RE_HSL = /^hsl\(\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*\)$/;
-      var RE_HSLA = /^hsla\(\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*,\s*([01]|[01]?\.\d+)\)$/;
-      var round$4 = Math.round;
-      var css2rgb$1 = function(css10) {
-        css10 = css10.toLowerCase().trim();
-        var m3;
-        if (input$f.format.named) {
-          try {
-            return input$f.format.named(css10);
-          } catch (e2) {
-          }
-        }
-        if (m3 = css10.match(RE_RGB)) {
-          var rgb2 = m3.slice(1, 4);
-          for (var i3 = 0; i3 < 3; i3++) {
-            rgb2[i3] = +rgb2[i3];
-          }
-          rgb2[3] = 1;
-          return rgb2;
-        }
-        if (m3 = css10.match(RE_RGBA)) {
-          var rgb$1 = m3.slice(1, 5);
-          for (var i$12 = 0; i$12 < 4; i$12++) {
-            rgb$1[i$12] = +rgb$1[i$12];
-          }
-          return rgb$1;
-        }
-        if (m3 = css10.match(RE_RGB_PCT)) {
-          var rgb$2 = m3.slice(1, 4);
-          for (var i$2 = 0; i$2 < 3; i$2++) {
-            rgb$2[i$2] = round$4(rgb$2[i$2] * 2.55);
-          }
-          rgb$2[3] = 1;
-          return rgb$2;
-        }
-        if (m3 = css10.match(RE_RGBA_PCT)) {
-          var rgb$3 = m3.slice(1, 5);
-          for (var i$3 = 0; i$3 < 3; i$3++) {
-            rgb$3[i$3] = round$4(rgb$3[i$3] * 2.55);
-          }
-          rgb$3[3] = +rgb$3[3];
-          return rgb$3;
-        }
-        if (m3 = css10.match(RE_HSL)) {
-          var hsl2 = m3.slice(1, 4);
-          hsl2[1] *= 0.01;
-          hsl2[2] *= 0.01;
-          var rgb$4 = hsl2rgb(hsl2);
-          rgb$4[3] = 1;
-          return rgb$4;
-        }
-        if (m3 = css10.match(RE_HSLA)) {
-          var hsl$1 = m3.slice(1, 4);
-          hsl$1[1] *= 0.01;
-          hsl$1[2] *= 0.01;
-          var rgb$5 = hsl2rgb(hsl$1);
-          rgb$5[3] = +m3[4];
-          return rgb$5;
-        }
-      };
-      css2rgb$1.test = function(s3) {
-        return RE_RGB.test(s3) || RE_RGBA.test(s3) || RE_RGB_PCT.test(s3) || RE_RGBA_PCT.test(s3) || RE_HSL.test(s3) || RE_HSLA.test(s3);
-      };
-      var css2rgb_1 = css2rgb$1;
-      var chroma$i = chroma_1;
-      var Color$B = Color_1;
-      var input$e = input$h;
-      var type$k = utils2.type;
-      var rgb2css = rgb2css_1;
-      var css2rgb = css2rgb_1;
-      Color$B.prototype.css = function(mode) {
-        return rgb2css(this._rgb, mode);
-      };
-      chroma$i.css = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$B, [null].concat(args, ["css"])))();
-      };
-      input$e.format.css = css2rgb;
-      input$e.autodetect.push({
-        p: 5,
-        test: function(h3) {
-          var rest = [], len = arguments.length - 1;
-          while (len-- > 0)
-            rest[len] = arguments[len + 1];
-          if (!rest.length && type$k(h3) === "string" && css2rgb.test(h3)) {
-            return "css";
-          }
-        }
-      });
-      var Color$A = Color_1;
-      var chroma$h = chroma_1;
-      var input$d = input$h;
-      var unpack$t = utils2.unpack;
-      input$d.format.gl = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var rgb2 = unpack$t(args, "rgba");
-        rgb2[0] *= 255;
-        rgb2[1] *= 255;
-        rgb2[2] *= 255;
-        return rgb2;
-      };
-      chroma$h.gl = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$A, [null].concat(args, ["gl"])))();
-      };
-      Color$A.prototype.gl = function() {
-        var rgb2 = this._rgb;
-        return [rgb2[0] / 255, rgb2[1] / 255, rgb2[2] / 255, rgb2[3]];
-      };
-      var unpack$s = utils2.unpack;
-      var rgb2hcg$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$s(args, "rgb");
-        var r2 = ref[0];
-        var g2 = ref[1];
-        var b4 = ref[2];
-        var min2 = Math.min(r2, g2, b4);
-        var max2 = Math.max(r2, g2, b4);
-        var delta = max2 - min2;
-        var c3 = delta * 100 / 255;
-        var _g = min2 / (255 - delta) * 100;
-        var h3;
-        if (delta === 0) {
-          h3 = Number.NaN;
-        } else {
-          if (r2 === max2) {
-            h3 = (g2 - b4) / delta;
-          }
-          if (g2 === max2) {
-            h3 = 2 + (b4 - r2) / delta;
-          }
-          if (b4 === max2) {
-            h3 = 4 + (r2 - g2) / delta;
-          }
-          h3 *= 60;
-          if (h3 < 0) {
-            h3 += 360;
-          }
-        }
-        return [h3, c3, _g];
-      };
-      var rgb2hcg_1 = rgb2hcg$1;
-      var unpack$r = utils2.unpack;
-      var floor$3 = Math.floor;
-      var hcg2rgb = function() {
-        var assign2, assign$1, assign$2, assign$3, assign$4, assign$5;
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$r(args, "hcg");
-        var h3 = args[0];
-        var c3 = args[1];
-        var _g = args[2];
-        var r2, g2, b4;
-        _g = _g * 255;
-        var _c = c3 * 255;
-        if (c3 === 0) {
-          r2 = g2 = b4 = _g;
-        } else {
-          if (h3 === 360) {
-            h3 = 0;
-          }
-          if (h3 > 360) {
-            h3 -= 360;
-          }
-          if (h3 < 0) {
-            h3 += 360;
-          }
-          h3 /= 60;
-          var i3 = floor$3(h3);
-          var f5 = h3 - i3;
-          var p2 = _g * (1 - c3);
-          var q = p2 + _c * (1 - f5);
-          var t2 = p2 + _c * f5;
-          var v3 = p2 + _c;
-          switch (i3) {
-            case 0:
-              assign2 = [v3, t2, p2], r2 = assign2[0], g2 = assign2[1], b4 = assign2[2];
-              break;
-            case 1:
-              assign$1 = [q, v3, p2], r2 = assign$1[0], g2 = assign$1[1], b4 = assign$1[2];
-              break;
-            case 2:
-              assign$2 = [p2, v3, t2], r2 = assign$2[0], g2 = assign$2[1], b4 = assign$2[2];
-              break;
-            case 3:
-              assign$3 = [p2, q, v3], r2 = assign$3[0], g2 = assign$3[1], b4 = assign$3[2];
-              break;
-            case 4:
-              assign$4 = [t2, p2, v3], r2 = assign$4[0], g2 = assign$4[1], b4 = assign$4[2];
-              break;
-            case 5:
-              assign$5 = [v3, p2, q], r2 = assign$5[0], g2 = assign$5[1], b4 = assign$5[2];
-              break;
-          }
-        }
-        return [r2, g2, b4, args.length > 3 ? args[3] : 1];
-      };
-      var hcg2rgb_1 = hcg2rgb;
-      var unpack$q = utils2.unpack;
-      var type$j = utils2.type;
-      var chroma$g = chroma_1;
-      var Color$z = Color_1;
-      var input$c = input$h;
-      var rgb2hcg = rgb2hcg_1;
-      Color$z.prototype.hcg = function() {
-        return rgb2hcg(this._rgb);
-      };
-      chroma$g.hcg = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$z, [null].concat(args, ["hcg"])))();
-      };
-      input$c.format.hcg = hcg2rgb_1;
-      input$c.autodetect.push({
-        p: 1,
-        test: function() {
-          var args = [], len = arguments.length;
-          while (len--)
-            args[len] = arguments[len];
-          args = unpack$q(args, "hcg");
-          if (type$j(args) === "array" && args.length === 3) {
-            return "hcg";
-          }
-        }
-      });
-      var unpack$p = utils2.unpack;
-      var last = utils2.last;
-      var round$3 = Math.round;
-      var rgb2hex$2 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$p(args, "rgba");
-        var r2 = ref[0];
-        var g2 = ref[1];
-        var b4 = ref[2];
-        var a = ref[3];
-        var mode = last(args) || "auto";
-        if (a === void 0) {
-          a = 1;
-        }
-        if (mode === "auto") {
-          mode = a < 1 ? "rgba" : "rgb";
-        }
-        r2 = round$3(r2);
-        g2 = round$3(g2);
-        b4 = round$3(b4);
-        var u2 = r2 << 16 | g2 << 8 | b4;
-        var str = "000000" + u2.toString(16);
-        str = str.substr(str.length - 6);
-        var hxa = "0" + round$3(a * 255).toString(16);
-        hxa = hxa.substr(hxa.length - 2);
-        switch (mode.toLowerCase()) {
-          case "rgba":
-            return "#" + str + hxa;
-          case "argb":
-            return "#" + hxa + str;
-          default:
-            return "#" + str;
-        }
-      };
-      var rgb2hex_1 = rgb2hex$2;
-      var RE_HEX = /^#?([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
-      var RE_HEXA = /^#?([A-Fa-f0-9]{8}|[A-Fa-f0-9]{4})$/;
-      var hex2rgb$1 = function(hex) {
-        if (hex.match(RE_HEX)) {
-          if (hex.length === 4 || hex.length === 7) {
-            hex = hex.substr(1);
-          }
-          if (hex.length === 3) {
-            hex = hex.split("");
-            hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-          }
-          var u2 = parseInt(hex, 16);
-          var r2 = u2 >> 16;
-          var g2 = u2 >> 8 & 255;
-          var b4 = u2 & 255;
-          return [r2, g2, b4, 1];
-        }
-        if (hex.match(RE_HEXA)) {
-          if (hex.length === 5 || hex.length === 9) {
-            hex = hex.substr(1);
-          }
-          if (hex.length === 4) {
-            hex = hex.split("");
-            hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2] + hex[3] + hex[3];
-          }
-          var u$1 = parseInt(hex, 16);
-          var r$1 = u$1 >> 24 & 255;
-          var g$1 = u$1 >> 16 & 255;
-          var b$1 = u$1 >> 8 & 255;
-          var a = Math.round((u$1 & 255) / 255 * 100) / 100;
-          return [r$1, g$1, b$1, a];
-        }
-        throw new Error("unknown hex color: " + hex);
-      };
-      var hex2rgb_1 = hex2rgb$1;
-      var chroma$f = chroma_1;
-      var Color$y = Color_1;
-      var type$i = utils2.type;
-      var input$b = input$h;
-      var rgb2hex$1 = rgb2hex_1;
-      Color$y.prototype.hex = function(mode) {
-        return rgb2hex$1(this._rgb, mode);
-      };
-      chroma$f.hex = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$y, [null].concat(args, ["hex"])))();
-      };
-      input$b.format.hex = hex2rgb_1;
-      input$b.autodetect.push({
-        p: 4,
-        test: function(h3) {
-          var rest = [], len = arguments.length - 1;
-          while (len-- > 0)
-            rest[len] = arguments[len + 1];
-          if (!rest.length && type$i(h3) === "string" && [3, 4, 5, 6, 7, 8, 9].indexOf(h3.length) >= 0) {
-            return "hex";
-          }
-        }
-      });
-      var unpack$o = utils2.unpack;
-      var TWOPI$2 = utils2.TWOPI;
-      var min$2 = Math.min;
-      var sqrt$4 = Math.sqrt;
-      var acos = Math.acos;
-      var rgb2hsi$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$o(args, "rgb");
-        var r2 = ref[0];
-        var g2 = ref[1];
-        var b4 = ref[2];
-        r2 /= 255;
-        g2 /= 255;
-        b4 /= 255;
-        var h3;
-        var min_ = min$2(r2, g2, b4);
-        var i3 = (r2 + g2 + b4) / 3;
-        var s3 = i3 > 0 ? 1 - min_ / i3 : 0;
-        if (s3 === 0) {
-          h3 = NaN;
-        } else {
-          h3 = (r2 - g2 + (r2 - b4)) / 2;
-          h3 /= sqrt$4((r2 - g2) * (r2 - g2) + (r2 - b4) * (g2 - b4));
-          h3 = acos(h3);
-          if (b4 > g2) {
-            h3 = TWOPI$2 - h3;
-          }
-          h3 /= TWOPI$2;
-        }
-        return [h3 * 360, s3, i3];
-      };
-      var rgb2hsi_1 = rgb2hsi$1;
-      var unpack$n = utils2.unpack;
-      var limit2 = utils2.limit;
-      var TWOPI$1 = utils2.TWOPI;
-      var PITHIRD = utils2.PITHIRD;
-      var cos$4 = Math.cos;
-      var hsi2rgb = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$n(args, "hsi");
-        var h3 = args[0];
-        var s3 = args[1];
-        var i3 = args[2];
-        var r2, g2, b4;
-        if (isNaN(h3)) {
-          h3 = 0;
-        }
-        if (isNaN(s3)) {
-          s3 = 0;
-        }
-        if (h3 > 360) {
-          h3 -= 360;
-        }
-        if (h3 < 0) {
-          h3 += 360;
-        }
-        h3 /= 360;
-        if (h3 < 1 / 3) {
-          b4 = (1 - s3) / 3;
-          r2 = (1 + s3 * cos$4(TWOPI$1 * h3) / cos$4(PITHIRD - TWOPI$1 * h3)) / 3;
-          g2 = 1 - (b4 + r2);
-        } else if (h3 < 2 / 3) {
-          h3 -= 1 / 3;
-          r2 = (1 - s3) / 3;
-          g2 = (1 + s3 * cos$4(TWOPI$1 * h3) / cos$4(PITHIRD - TWOPI$1 * h3)) / 3;
-          b4 = 1 - (r2 + g2);
-        } else {
-          h3 -= 2 / 3;
-          g2 = (1 - s3) / 3;
-          b4 = (1 + s3 * cos$4(TWOPI$1 * h3) / cos$4(PITHIRD - TWOPI$1 * h3)) / 3;
-          r2 = 1 - (g2 + b4);
-        }
-        r2 = limit2(i3 * r2 * 3);
-        g2 = limit2(i3 * g2 * 3);
-        b4 = limit2(i3 * b4 * 3);
-        return [r2 * 255, g2 * 255, b4 * 255, args.length > 3 ? args[3] : 1];
-      };
-      var hsi2rgb_1 = hsi2rgb;
-      var unpack$m = utils2.unpack;
-      var type$h = utils2.type;
-      var chroma$e = chroma_1;
-      var Color$x = Color_1;
-      var input$a = input$h;
-      var rgb2hsi = rgb2hsi_1;
-      Color$x.prototype.hsi = function() {
-        return rgb2hsi(this._rgb);
-      };
-      chroma$e.hsi = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$x, [null].concat(args, ["hsi"])))();
-      };
-      input$a.format.hsi = hsi2rgb_1;
-      input$a.autodetect.push({
-        p: 2,
-        test: function() {
-          var args = [], len = arguments.length;
-          while (len--)
-            args[len] = arguments[len];
-          args = unpack$m(args, "hsi");
-          if (type$h(args) === "array" && args.length === 3) {
-            return "hsi";
-          }
-        }
-      });
-      var unpack$l = utils2.unpack;
-      var type$g = utils2.type;
-      var chroma$d = chroma_1;
-      var Color$w = Color_1;
-      var input$9 = input$h;
-      var rgb2hsl$1 = rgb2hsl_1;
-      Color$w.prototype.hsl = function() {
-        return rgb2hsl$1(this._rgb);
-      };
-      chroma$d.hsl = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$w, [null].concat(args, ["hsl"])))();
-      };
-      input$9.format.hsl = hsl2rgb_1;
-      input$9.autodetect.push({
-        p: 2,
-        test: function() {
-          var args = [], len = arguments.length;
-          while (len--)
-            args[len] = arguments[len];
-          args = unpack$l(args, "hsl");
-          if (type$g(args) === "array" && args.length === 3) {
-            return "hsl";
-          }
-        }
-      });
-      var unpack$k = utils2.unpack;
-      var min$1 = Math.min;
-      var max$1 = Math.max;
-      var rgb2hsl = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$k(args, "rgb");
-        var r2 = args[0];
-        var g2 = args[1];
-        var b4 = args[2];
-        var min_ = min$1(r2, g2, b4);
-        var max_ = max$1(r2, g2, b4);
-        var delta = max_ - min_;
-        var h3, s3, v3;
-        v3 = max_ / 255;
-        if (max_ === 0) {
-          h3 = Number.NaN;
-          s3 = 0;
-        } else {
-          s3 = delta / max_;
-          if (r2 === max_) {
-            h3 = (g2 - b4) / delta;
-          }
-          if (g2 === max_) {
-            h3 = 2 + (b4 - r2) / delta;
-          }
-          if (b4 === max_) {
-            h3 = 4 + (r2 - g2) / delta;
-          }
-          h3 *= 60;
-          if (h3 < 0) {
-            h3 += 360;
-          }
-        }
-        return [h3, s3, v3];
-      };
-      var rgb2hsv$1 = rgb2hsl;
-      var unpack$j = utils2.unpack;
-      var floor$2 = Math.floor;
-      var hsv2rgb = function() {
-        var assign2, assign$1, assign$2, assign$3, assign$4, assign$5;
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$j(args, "hsv");
-        var h3 = args[0];
-        var s3 = args[1];
-        var v3 = args[2];
-        var r2, g2, b4;
-        v3 *= 255;
-        if (s3 === 0) {
-          r2 = g2 = b4 = v3;
-        } else {
-          if (h3 === 360) {
-            h3 = 0;
-          }
-          if (h3 > 360) {
-            h3 -= 360;
-          }
-          if (h3 < 0) {
-            h3 += 360;
-          }
-          h3 /= 60;
-          var i3 = floor$2(h3);
-          var f5 = h3 - i3;
-          var p2 = v3 * (1 - s3);
-          var q = v3 * (1 - s3 * f5);
-          var t2 = v3 * (1 - s3 * (1 - f5));
-          switch (i3) {
-            case 0:
-              assign2 = [v3, t2, p2], r2 = assign2[0], g2 = assign2[1], b4 = assign2[2];
-              break;
-            case 1:
-              assign$1 = [q, v3, p2], r2 = assign$1[0], g2 = assign$1[1], b4 = assign$1[2];
-              break;
-            case 2:
-              assign$2 = [p2, v3, t2], r2 = assign$2[0], g2 = assign$2[1], b4 = assign$2[2];
-              break;
-            case 3:
-              assign$3 = [p2, q, v3], r2 = assign$3[0], g2 = assign$3[1], b4 = assign$3[2];
-              break;
-            case 4:
-              assign$4 = [t2, p2, v3], r2 = assign$4[0], g2 = assign$4[1], b4 = assign$4[2];
-              break;
-            case 5:
-              assign$5 = [v3, p2, q], r2 = assign$5[0], g2 = assign$5[1], b4 = assign$5[2];
-              break;
-          }
-        }
-        return [r2, g2, b4, args.length > 3 ? args[3] : 1];
-      };
-      var hsv2rgb_1 = hsv2rgb;
-      var unpack$i = utils2.unpack;
-      var type$f = utils2.type;
-      var chroma$c = chroma_1;
-      var Color$v = Color_1;
-      var input$8 = input$h;
-      var rgb2hsv = rgb2hsv$1;
-      Color$v.prototype.hsv = function() {
-        return rgb2hsv(this._rgb);
-      };
-      chroma$c.hsv = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$v, [null].concat(args, ["hsv"])))();
-      };
-      input$8.format.hsv = hsv2rgb_1;
-      input$8.autodetect.push({
-        p: 2,
-        test: function() {
-          var args = [], len = arguments.length;
-          while (len--)
-            args[len] = arguments[len];
-          args = unpack$i(args, "hsv");
-          if (type$f(args) === "array" && args.length === 3) {
-            return "hsv";
-          }
-        }
-      });
-      var labConstants = {
-        Kn: 18,
-        Xn: 0.95047,
-        Yn: 1,
-        Zn: 1.08883,
-        t0: 0.137931034,
-        t1: 0.206896552,
-        t2: 0.12841855,
-        t3: 8856452e-9
-      };
-      var LAB_CONSTANTS$3 = labConstants;
-      var unpack$h = utils2.unpack;
-      var pow$a = Math.pow;
-      var rgb2lab$2 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$h(args, "rgb");
-        var r2 = ref[0];
-        var g2 = ref[1];
-        var b4 = ref[2];
-        var ref$1 = rgb2xyz(r2, g2, b4);
-        var x2 = ref$1[0];
-        var y = ref$1[1];
-        var z = ref$1[2];
-        var l = 116 * y - 16;
-        return [l < 0 ? 0 : l, 500 * (x2 - y), 200 * (y - z)];
-      };
-      var rgb_xyz = function(r2) {
-        if ((r2 /= 255) <= 0.04045) {
-          return r2 / 12.92;
-        }
-        return pow$a((r2 + 0.055) / 1.055, 2.4);
-      };
-      var xyz_lab = function(t2) {
-        if (t2 > LAB_CONSTANTS$3.t3) {
-          return pow$a(t2, 1 / 3);
-        }
-        return t2 / LAB_CONSTANTS$3.t2 + LAB_CONSTANTS$3.t0;
-      };
-      var rgb2xyz = function(r2, g2, b4) {
-        r2 = rgb_xyz(r2);
-        g2 = rgb_xyz(g2);
-        b4 = rgb_xyz(b4);
-        var x2 = xyz_lab((0.4124564 * r2 + 0.3575761 * g2 + 0.1804375 * b4) / LAB_CONSTANTS$3.Xn);
-        var y = xyz_lab((0.2126729 * r2 + 0.7151522 * g2 + 0.072175 * b4) / LAB_CONSTANTS$3.Yn);
-        var z = xyz_lab((0.0193339 * r2 + 0.119192 * g2 + 0.9503041 * b4) / LAB_CONSTANTS$3.Zn);
-        return [x2, y, z];
-      };
-      var rgb2lab_1 = rgb2lab$2;
-      var LAB_CONSTANTS$2 = labConstants;
-      var unpack$g = utils2.unpack;
-      var pow$9 = Math.pow;
-      var lab2rgb$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$g(args, "lab");
-        var l = args[0];
-        var a = args[1];
-        var b4 = args[2];
-        var x2, y, z, r2, g2, b_;
-        y = (l + 16) / 116;
-        x2 = isNaN(a) ? y : y + a / 500;
-        z = isNaN(b4) ? y : y - b4 / 200;
-        y = LAB_CONSTANTS$2.Yn * lab_xyz(y);
-        x2 = LAB_CONSTANTS$2.Xn * lab_xyz(x2);
-        z = LAB_CONSTANTS$2.Zn * lab_xyz(z);
-        r2 = xyz_rgb(3.2404542 * x2 - 1.5371385 * y - 0.4985314 * z);
-        g2 = xyz_rgb(-0.969266 * x2 + 1.8760108 * y + 0.041556 * z);
-        b_ = xyz_rgb(0.0556434 * x2 - 0.2040259 * y + 1.0572252 * z);
-        return [r2, g2, b_, args.length > 3 ? args[3] : 1];
-      };
-      var xyz_rgb = function(r2) {
-        return 255 * (r2 <= 304e-5 ? 12.92 * r2 : 1.055 * pow$9(r2, 1 / 2.4) - 0.055);
-      };
-      var lab_xyz = function(t2) {
-        return t2 > LAB_CONSTANTS$2.t1 ? t2 * t2 * t2 : LAB_CONSTANTS$2.t2 * (t2 - LAB_CONSTANTS$2.t0);
-      };
-      var lab2rgb_1 = lab2rgb$1;
-      var unpack$f = utils2.unpack;
-      var type$e = utils2.type;
-      var chroma$b = chroma_1;
-      var Color$u = Color_1;
-      var input$7 = input$h;
-      var rgb2lab$1 = rgb2lab_1;
-      Color$u.prototype.lab = function() {
-        return rgb2lab$1(this._rgb);
-      };
-      chroma$b.lab = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$u, [null].concat(args, ["lab"])))();
-      };
-      input$7.format.lab = lab2rgb_1;
-      input$7.autodetect.push({
-        p: 2,
-        test: function() {
-          var args = [], len = arguments.length;
-          while (len--)
-            args[len] = arguments[len];
-          args = unpack$f(args, "lab");
-          if (type$e(args) === "array" && args.length === 3) {
-            return "lab";
-          }
-        }
-      });
-      var unpack$e = utils2.unpack;
-      var RAD2DEG = utils2.RAD2DEG;
-      var sqrt$3 = Math.sqrt;
-      var atan2$2 = Math.atan2;
-      var round$2 = Math.round;
-      var lab2lch$2 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$e(args, "lab");
-        var l = ref[0];
-        var a = ref[1];
-        var b4 = ref[2];
-        var c3 = sqrt$3(a * a + b4 * b4);
-        var h3 = (atan2$2(b4, a) * RAD2DEG + 360) % 360;
-        if (round$2(c3 * 1e4) === 0) {
-          h3 = Number.NaN;
-        }
-        return [l, c3, h3];
-      };
-      var lab2lch_1 = lab2lch$2;
-      var unpack$d = utils2.unpack;
-      var rgb2lab = rgb2lab_1;
-      var lab2lch$1 = lab2lch_1;
-      var rgb2lch$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$d(args, "rgb");
-        var r2 = ref[0];
-        var g2 = ref[1];
-        var b4 = ref[2];
-        var ref$1 = rgb2lab(r2, g2, b4);
-        var l = ref$1[0];
-        var a = ref$1[1];
-        var b_ = ref$1[2];
-        return lab2lch$1(l, a, b_);
-      };
-      var rgb2lch_1 = rgb2lch$1;
-      var unpack$c = utils2.unpack;
-      var DEG2RAD = utils2.DEG2RAD;
-      var sin$3 = Math.sin;
-      var cos$3 = Math.cos;
-      var lch2lab$2 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$c(args, "lch");
-        var l = ref[0];
-        var c3 = ref[1];
-        var h3 = ref[2];
-        if (isNaN(h3)) {
-          h3 = 0;
-        }
-        h3 = h3 * DEG2RAD;
-        return [l, cos$3(h3) * c3, sin$3(h3) * c3];
-      };
-      var lch2lab_1 = lch2lab$2;
-      var unpack$b = utils2.unpack;
-      var lch2lab$1 = lch2lab_1;
-      var lab2rgb = lab2rgb_1;
-      var lch2rgb$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$b(args, "lch");
-        var l = args[0];
-        var c3 = args[1];
-        var h3 = args[2];
-        var ref = lch2lab$1(l, c3, h3);
-        var L = ref[0];
-        var a = ref[1];
-        var b_ = ref[2];
-        var ref$1 = lab2rgb(L, a, b_);
-        var r2 = ref$1[0];
-        var g2 = ref$1[1];
-        var b4 = ref$1[2];
-        return [r2, g2, b4, args.length > 3 ? args[3] : 1];
-      };
-      var lch2rgb_1 = lch2rgb$1;
-      var unpack$a = utils2.unpack;
-      var lch2rgb = lch2rgb_1;
-      var hcl2rgb = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var hcl = unpack$a(args, "hcl").reverse();
-        return lch2rgb.apply(void 0, hcl);
-      };
-      var hcl2rgb_1 = hcl2rgb;
-      var unpack$9 = utils2.unpack;
-      var type$d = utils2.type;
-      var chroma$a = chroma_1;
-      var Color$t = Color_1;
-      var input$6 = input$h;
-      var rgb2lch = rgb2lch_1;
-      Color$t.prototype.lch = function() {
-        return rgb2lch(this._rgb);
-      };
-      Color$t.prototype.hcl = function() {
-        return rgb2lch(this._rgb).reverse();
-      };
-      chroma$a.lch = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$t, [null].concat(args, ["lch"])))();
-      };
-      chroma$a.hcl = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$t, [null].concat(args, ["hcl"])))();
-      };
-      input$6.format.lch = lch2rgb_1;
-      input$6.format.hcl = hcl2rgb_1;
-      ["lch", "hcl"].forEach(function(m3) {
-        return input$6.autodetect.push({
-          p: 2,
-          test: function() {
-            var args = [], len = arguments.length;
-            while (len--)
-              args[len] = arguments[len];
-            args = unpack$9(args, m3);
-            if (type$d(args) === "array" && args.length === 3) {
-              return m3;
-            }
-          }
-        });
-      });
-      var w3cx11$1 = {
-        aliceblue: "#f0f8ff",
-        antiquewhite: "#faebd7",
-        aqua: "#00ffff",
-        aquamarine: "#7fffd4",
-        azure: "#f0ffff",
-        beige: "#f5f5dc",
-        bisque: "#ffe4c4",
-        black: "#000000",
-        blanchedalmond: "#ffebcd",
-        blue: "#0000ff",
-        blueviolet: "#8a2be2",
-        brown: "#a52a2a",
-        burlywood: "#deb887",
-        cadetblue: "#5f9ea0",
-        chartreuse: "#7fff00",
-        chocolate: "#d2691e",
-        coral: "#ff7f50",
-        cornflower: "#6495ed",
-        cornflowerblue: "#6495ed",
-        cornsilk: "#fff8dc",
-        crimson: "#dc143c",
-        cyan: "#00ffff",
-        darkblue: "#00008b",
-        darkcyan: "#008b8b",
-        darkgoldenrod: "#b8860b",
-        darkgray: "#a9a9a9",
-        darkgreen: "#006400",
-        darkgrey: "#a9a9a9",
-        darkkhaki: "#bdb76b",
-        darkmagenta: "#8b008b",
-        darkolivegreen: "#556b2f",
-        darkorange: "#ff8c00",
-        darkorchid: "#9932cc",
-        darkred: "#8b0000",
-        darksalmon: "#e9967a",
-        darkseagreen: "#8fbc8f",
-        darkslateblue: "#483d8b",
-        darkslategray: "#2f4f4f",
-        darkslategrey: "#2f4f4f",
-        darkturquoise: "#00ced1",
-        darkviolet: "#9400d3",
-        deeppink: "#ff1493",
-        deepskyblue: "#00bfff",
-        dimgray: "#696969",
-        dimgrey: "#696969",
-        dodgerblue: "#1e90ff",
-        firebrick: "#b22222",
-        floralwhite: "#fffaf0",
-        forestgreen: "#228b22",
-        fuchsia: "#ff00ff",
-        gainsboro: "#dcdcdc",
-        ghostwhite: "#f8f8ff",
-        gold: "#ffd700",
-        goldenrod: "#daa520",
-        gray: "#808080",
-        green: "#008000",
-        greenyellow: "#adff2f",
-        grey: "#808080",
-        honeydew: "#f0fff0",
-        hotpink: "#ff69b4",
-        indianred: "#cd5c5c",
-        indigo: "#4b0082",
-        ivory: "#fffff0",
-        khaki: "#f0e68c",
-        laserlemon: "#ffff54",
-        lavender: "#e6e6fa",
-        lavenderblush: "#fff0f5",
-        lawngreen: "#7cfc00",
-        lemonchiffon: "#fffacd",
-        lightblue: "#add8e6",
-        lightcoral: "#f08080",
-        lightcyan: "#e0ffff",
-        lightgoldenrod: "#fafad2",
-        lightgoldenrodyellow: "#fafad2",
-        lightgray: "#d3d3d3",
-        lightgreen: "#90ee90",
-        lightgrey: "#d3d3d3",
-        lightpink: "#ffb6c1",
-        lightsalmon: "#ffa07a",
-        lightseagreen: "#20b2aa",
-        lightskyblue: "#87cefa",
-        lightslategray: "#778899",
-        lightslategrey: "#778899",
-        lightsteelblue: "#b0c4de",
-        lightyellow: "#ffffe0",
-        lime: "#00ff00",
-        limegreen: "#32cd32",
-        linen: "#faf0e6",
-        magenta: "#ff00ff",
-        maroon: "#800000",
-        maroon2: "#7f0000",
-        maroon3: "#b03060",
-        mediumaquamarine: "#66cdaa",
-        mediumblue: "#0000cd",
-        mediumorchid: "#ba55d3",
-        mediumpurple: "#9370db",
-        mediumseagreen: "#3cb371",
-        mediumslateblue: "#7b68ee",
-        mediumspringgreen: "#00fa9a",
-        mediumturquoise: "#48d1cc",
-        mediumvioletred: "#c71585",
-        midnightblue: "#191970",
-        mintcream: "#f5fffa",
-        mistyrose: "#ffe4e1",
-        moccasin: "#ffe4b5",
-        navajowhite: "#ffdead",
-        navy: "#000080",
-        oldlace: "#fdf5e6",
-        olive: "#808000",
-        olivedrab: "#6b8e23",
-        orange: "#ffa500",
-        orangered: "#ff4500",
-        orchid: "#da70d6",
-        palegoldenrod: "#eee8aa",
-        palegreen: "#98fb98",
-        paleturquoise: "#afeeee",
-        palevioletred: "#db7093",
-        papayawhip: "#ffefd5",
-        peachpuff: "#ffdab9",
-        peru: "#cd853f",
-        pink: "#ffc0cb",
-        plum: "#dda0dd",
-        powderblue: "#b0e0e6",
-        purple: "#800080",
-        purple2: "#7f007f",
-        purple3: "#a020f0",
-        rebeccapurple: "#663399",
-        red: "#ff0000",
-        rosybrown: "#bc8f8f",
-        royalblue: "#4169e1",
-        saddlebrown: "#8b4513",
-        salmon: "#fa8072",
-        sandybrown: "#f4a460",
-        seagreen: "#2e8b57",
-        seashell: "#fff5ee",
-        sienna: "#a0522d",
-        silver: "#c0c0c0",
-        skyblue: "#87ceeb",
-        slateblue: "#6a5acd",
-        slategray: "#708090",
-        slategrey: "#708090",
-        snow: "#fffafa",
-        springgreen: "#00ff7f",
-        steelblue: "#4682b4",
-        tan: "#d2b48c",
-        teal: "#008080",
-        thistle: "#d8bfd8",
-        tomato: "#ff6347",
-        turquoise: "#40e0d0",
-        violet: "#ee82ee",
-        wheat: "#f5deb3",
-        white: "#ffffff",
-        whitesmoke: "#f5f5f5",
-        yellow: "#ffff00",
-        yellowgreen: "#9acd32"
-      };
-      var w3cx11_1 = w3cx11$1;
-      var Color$s = Color_1;
-      var input$5 = input$h;
-      var type$c = utils2.type;
-      var w3cx11 = w3cx11_1;
-      var hex2rgb = hex2rgb_1;
-      var rgb2hex = rgb2hex_1;
-      Color$s.prototype.name = function() {
-        var hex = rgb2hex(this._rgb, "rgb");
-        for (var i3 = 0, list2 = Object.keys(w3cx11); i3 < list2.length; i3 += 1) {
-          var n = list2[i3];
-          if (w3cx11[n] === hex) {
-            return n.toLowerCase();
-          }
-        }
-        return hex;
-      };
-      input$5.format.named = function(name8) {
-        name8 = name8.toLowerCase();
-        if (w3cx11[name8]) {
-          return hex2rgb(w3cx11[name8]);
-        }
-        throw new Error("unknown color name: " + name8);
-      };
-      input$5.autodetect.push({
-        p: 5,
-        test: function(h3) {
-          var rest = [], len = arguments.length - 1;
-          while (len-- > 0)
-            rest[len] = arguments[len + 1];
-          if (!rest.length && type$c(h3) === "string" && w3cx11[h3.toLowerCase()]) {
-            return "named";
-          }
-        }
-      });
-      var unpack$8 = utils2.unpack;
-      var rgb2num$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$8(args, "rgb");
-        var r2 = ref[0];
-        var g2 = ref[1];
-        var b4 = ref[2];
-        return (r2 << 16) + (g2 << 8) + b4;
-      };
-      var rgb2num_1 = rgb2num$1;
-      var type$b = utils2.type;
-      var num2rgb = function(num2) {
-        if (type$b(num2) == "number" && num2 >= 0 && num2 <= 16777215) {
-          var r2 = num2 >> 16;
-          var g2 = num2 >> 8 & 255;
-          var b4 = num2 & 255;
-          return [r2, g2, b4, 1];
-        }
-        throw new Error("unknown num color: " + num2);
-      };
-      var num2rgb_1 = num2rgb;
-      var chroma$9 = chroma_1;
-      var Color$r = Color_1;
-      var input$4 = input$h;
-      var type$a = utils2.type;
-      var rgb2num = rgb2num_1;
-      Color$r.prototype.num = function() {
-        return rgb2num(this._rgb);
-      };
-      chroma$9.num = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$r, [null].concat(args, ["num"])))();
-      };
-      input$4.format.num = num2rgb_1;
-      input$4.autodetect.push({
-        p: 5,
-        test: function() {
-          var args = [], len = arguments.length;
-          while (len--)
-            args[len] = arguments[len];
-          if (args.length === 1 && type$a(args[0]) === "number" && args[0] >= 0 && args[0] <= 16777215) {
-            return "num";
-          }
-        }
-      });
-      var chroma$8 = chroma_1;
-      var Color$q = Color_1;
-      var input$3 = input$h;
-      var unpack$7 = utils2.unpack;
-      var type$9 = utils2.type;
-      var round$1 = Math.round;
-      Color$q.prototype.rgb = function(rnd2) {
-        if (rnd2 === void 0)
-          rnd2 = true;
-        if (rnd2 === false) {
-          return this._rgb.slice(0, 3);
-        }
-        return this._rgb.slice(0, 3).map(round$1);
-      };
-      Color$q.prototype.rgba = function(rnd2) {
-        if (rnd2 === void 0)
-          rnd2 = true;
-        return this._rgb.slice(0, 4).map(function(v3, i3) {
-          return i3 < 3 ? rnd2 === false ? v3 : round$1(v3) : v3;
-        });
-      };
-      chroma$8.rgb = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$q, [null].concat(args, ["rgb"])))();
-      };
-      input$3.format.rgb = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var rgba = unpack$7(args, "rgba");
-        if (rgba[3] === void 0) {
-          rgba[3] = 1;
-        }
-        return rgba;
-      };
-      input$3.autodetect.push({
-        p: 3,
-        test: function() {
-          var args = [], len = arguments.length;
-          while (len--)
-            args[len] = arguments[len];
-          args = unpack$7(args, "rgba");
-          if (type$9(args) === "array" && (args.length === 3 || args.length === 4 && type$9(args[3]) == "number" && args[3] >= 0 && args[3] <= 1)) {
-            return "rgb";
-          }
-        }
-      });
-      var log$1 = Math.log;
-      var temperature2rgb$1 = function(kelvin) {
-        var temp = kelvin / 100;
-        var r2, g2, b4;
-        if (temp < 66) {
-          r2 = 255;
-          g2 = temp < 6 ? 0 : -155.25485562709179 - 0.44596950469579133 * (g2 = temp - 2) + 104.49216199393888 * log$1(g2);
-          b4 = temp < 20 ? 0 : -254.76935184120902 + 0.8274096064007395 * (b4 = temp - 10) + 115.67994401066147 * log$1(b4);
-        } else {
-          r2 = 351.97690566805693 + 0.114206453784165 * (r2 = temp - 55) - 40.25366309332127 * log$1(r2);
-          g2 = 325.4494125711974 + 0.07943456536662342 * (g2 = temp - 50) - 28.0852963507957 * log$1(g2);
-          b4 = 255;
-        }
-        return [r2, g2, b4, 1];
-      };
-      var temperature2rgb_1 = temperature2rgb$1;
-      var temperature2rgb = temperature2rgb_1;
-      var unpack$6 = utils2.unpack;
-      var round = Math.round;
-      var rgb2temperature$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var rgb2 = unpack$6(args, "rgb");
-        var r2 = rgb2[0], b4 = rgb2[2];
-        var minTemp = 1e3;
-        var maxTemp = 4e4;
-        var eps = 0.4;
-        var temp;
-        while (maxTemp - minTemp > eps) {
-          temp = (maxTemp + minTemp) * 0.5;
-          var rgb$1 = temperature2rgb(temp);
-          if (rgb$1[2] / rgb$1[0] >= b4 / r2) {
-            maxTemp = temp;
-          } else {
-            minTemp = temp;
-          }
-        }
-        return round(temp);
-      };
-      var rgb2temperature_1 = rgb2temperature$1;
-      var chroma$7 = chroma_1;
-      var Color$p = Color_1;
-      var input$2 = input$h;
-      var rgb2temperature = rgb2temperature_1;
-      Color$p.prototype.temp = Color$p.prototype.kelvin = Color$p.prototype.temperature = function() {
-        return rgb2temperature(this._rgb);
-      };
-      chroma$7.temp = chroma$7.kelvin = chroma$7.temperature = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$p, [null].concat(args, ["temp"])))();
-      };
-      input$2.format.temp = input$2.format.kelvin = input$2.format.temperature = temperature2rgb_1;
-      var unpack$5 = utils2.unpack;
-      var cbrt = Math.cbrt;
-      var pow$8 = Math.pow;
-      var sign$1 = Math.sign;
-      var rgb2oklab$2 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$5(args, "rgb");
-        var r2 = ref[0];
-        var g2 = ref[1];
-        var b4 = ref[2];
-        var ref$1 = [rgb2lrgb(r2 / 255), rgb2lrgb(g2 / 255), rgb2lrgb(b4 / 255)];
-        var lr = ref$1[0];
-        var lg = ref$1[1];
-        var lb = ref$1[2];
-        var l = cbrt(0.4122214708 * lr + 0.5363325363 * lg + 0.0514459929 * lb);
-        var m3 = cbrt(0.2119034982 * lr + 0.6806995451 * lg + 0.1073969566 * lb);
-        var s3 = cbrt(0.0883024619 * lr + 0.2817188376 * lg + 0.6299787005 * lb);
-        return [
-          0.2104542553 * l + 0.793617785 * m3 - 0.0040720468 * s3,
-          1.9779984951 * l - 2.428592205 * m3 + 0.4505937099 * s3,
-          0.0259040371 * l + 0.7827717662 * m3 - 0.808675766 * s3
-        ];
-      };
-      var rgb2oklab_1 = rgb2oklab$2;
-      function rgb2lrgb(c3) {
-        var abs2 = Math.abs(c3);
-        if (abs2 < 0.04045) {
-          return c3 / 12.92;
-        }
-        return (sign$1(c3) || 1) * pow$8((abs2 + 0.055) / 1.055, 2.4);
-      }
-      var unpack$4 = utils2.unpack;
-      var pow$7 = Math.pow;
-      var sign = Math.sign;
-      var oklab2rgb$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$4(args, "lab");
-        var L = args[0];
-        var a = args[1];
-        var b4 = args[2];
-        var l = pow$7(L + 0.3963377774 * a + 0.2158037573 * b4, 3);
-        var m3 = pow$7(L - 0.1055613458 * a - 0.0638541728 * b4, 3);
-        var s3 = pow$7(L - 0.0894841775 * a - 1.291485548 * b4, 3);
-        return [
-          255 * lrgb2rgb(4.0767416621 * l - 3.3077115913 * m3 + 0.2309699292 * s3),
-          255 * lrgb2rgb(-1.2684380046 * l + 2.6097574011 * m3 - 0.3413193965 * s3),
-          255 * lrgb2rgb(-0.0041960863 * l - 0.7034186147 * m3 + 1.707614701 * s3),
-          args.length > 3 ? args[3] : 1
-        ];
-      };
-      var oklab2rgb_1 = oklab2rgb$1;
-      function lrgb2rgb(c3) {
-        var abs2 = Math.abs(c3);
-        if (abs2 > 31308e-7) {
-          return (sign(c3) || 1) * (1.055 * pow$7(abs2, 1 / 2.4) - 0.055);
-        }
-        return c3 * 12.92;
-      }
-      var unpack$3 = utils2.unpack;
-      var type$8 = utils2.type;
-      var chroma$6 = chroma_1;
-      var Color$o = Color_1;
-      var input$1 = input$h;
-      var rgb2oklab$1 = rgb2oklab_1;
-      Color$o.prototype.oklab = function() {
-        return rgb2oklab$1(this._rgb);
-      };
-      chroma$6.oklab = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$o, [null].concat(args, ["oklab"])))();
-      };
-      input$1.format.oklab = oklab2rgb_1;
-      input$1.autodetect.push({
-        p: 3,
-        test: function() {
-          var args = [], len = arguments.length;
-          while (len--)
-            args[len] = arguments[len];
-          args = unpack$3(args, "oklab");
-          if (type$8(args) === "array" && args.length === 3) {
-            return "oklab";
-          }
-        }
-      });
-      var unpack$2 = utils2.unpack;
-      var rgb2oklab = rgb2oklab_1;
-      var lab2lch = lab2lch_1;
-      var rgb2oklch$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$2(args, "rgb");
-        var r2 = ref[0];
-        var g2 = ref[1];
-        var b4 = ref[2];
-        var ref$1 = rgb2oklab(r2, g2, b4);
-        var l = ref$1[0];
-        var a = ref$1[1];
-        var b_ = ref$1[2];
-        return lab2lch(l, a, b_);
-      };
-      var rgb2oklch_1 = rgb2oklch$1;
-      var unpack$1 = utils2.unpack;
-      var lch2lab = lch2lab_1;
-      var oklab2rgb = oklab2rgb_1;
-      var oklch2rgb = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$1(args, "lch");
-        var l = args[0];
-        var c3 = args[1];
-        var h3 = args[2];
-        var ref = lch2lab(l, c3, h3);
-        var L = ref[0];
-        var a = ref[1];
-        var b_ = ref[2];
-        var ref$1 = oklab2rgb(L, a, b_);
-        var r2 = ref$1[0];
-        var g2 = ref$1[1];
-        var b4 = ref$1[2];
-        return [r2, g2, b4, args.length > 3 ? args[3] : 1];
-      };
-      var oklch2rgb_1 = oklch2rgb;
-      var unpack = utils2.unpack;
-      var type$7 = utils2.type;
-      var chroma$5 = chroma_1;
-      var Color$n = Color_1;
-      var input = input$h;
-      var rgb2oklch = rgb2oklch_1;
-      Color$n.prototype.oklch = function() {
-        return rgb2oklch(this._rgb);
-      };
-      chroma$5.oklch = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$n, [null].concat(args, ["oklch"])))();
-      };
-      input.format.oklch = oklch2rgb_1;
-      input.autodetect.push({
-        p: 3,
-        test: function() {
-          var args = [], len = arguments.length;
-          while (len--)
-            args[len] = arguments[len];
-          args = unpack(args, "oklch");
-          if (type$7(args) === "array" && args.length === 3) {
-            return "oklch";
-          }
-        }
-      });
-      var Color$m = Color_1;
-      var type$6 = utils2.type;
-      Color$m.prototype.alpha = function(a, mutate) {
-        if (mutate === void 0)
-          mutate = false;
-        if (a !== void 0 && type$6(a) === "number") {
-          if (mutate) {
-            this._rgb[3] = a;
-            return this;
-          }
-          return new Color$m([this._rgb[0], this._rgb[1], this._rgb[2], a], "rgb");
-        }
-        return this._rgb[3];
-      };
-      var Color$l = Color_1;
-      Color$l.prototype.clipped = function() {
-        return this._rgb._clipped || false;
-      };
-      var Color$k = Color_1;
-      var LAB_CONSTANTS$1 = labConstants;
-      Color$k.prototype.darken = function(amount) {
-        if (amount === void 0)
-          amount = 1;
-        var me = this;
-        var lab2 = me.lab();
-        lab2[0] -= LAB_CONSTANTS$1.Kn * amount;
-        return new Color$k(lab2, "lab").alpha(me.alpha(), true);
-      };
-      Color$k.prototype.brighten = function(amount) {
-        if (amount === void 0)
-          amount = 1;
-        return this.darken(-amount);
-      };
-      Color$k.prototype.darker = Color$k.prototype.darken;
-      Color$k.prototype.brighter = Color$k.prototype.brighten;
-      var Color$j = Color_1;
-      Color$j.prototype.get = function(mc) {
-        var ref = mc.split(".");
-        var mode = ref[0];
-        var channel = ref[1];
-        var src = this[mode]();
-        if (channel) {
-          var i3 = mode.indexOf(channel) - (mode.substr(0, 2) === "ok" ? 2 : 0);
-          if (i3 > -1) {
-            return src[i3];
-          }
-          throw new Error("unknown channel " + channel + " in mode " + mode);
-        } else {
-          return src;
-        }
-      };
-      var Color$i = Color_1;
-      var type$5 = utils2.type;
-      var pow$6 = Math.pow;
-      var EPS = 1e-7;
-      var MAX_ITER = 20;
-      Color$i.prototype.luminance = function(lum) {
-        if (lum !== void 0 && type$5(lum) === "number") {
-          if (lum === 0) {
-            return new Color$i([0, 0, 0, this._rgb[3]], "rgb");
-          }
-          if (lum === 1) {
-            return new Color$i([255, 255, 255, this._rgb[3]], "rgb");
-          }
-          var cur_lum = this.luminance();
-          var mode = "rgb";
-          var max_iter = MAX_ITER;
-          var test = function(low, high) {
-            var mid = low.interpolate(high, 0.5, mode);
-            var lm = mid.luminance();
-            if (Math.abs(lum - lm) < EPS || !max_iter--) {
-              return mid;
-            }
-            return lm > lum ? test(low, mid) : test(mid, high);
-          };
-          var rgb2 = (cur_lum > lum ? test(new Color$i([0, 0, 0]), this) : test(this, new Color$i([255, 255, 255]))).rgb();
-          return new Color$i(rgb2.concat([this._rgb[3]]));
-        }
-        return rgb2luminance.apply(void 0, this._rgb.slice(0, 3));
-      };
-      var rgb2luminance = function(r2, g2, b4) {
-        r2 = luminance_x(r2);
-        g2 = luminance_x(g2);
-        b4 = luminance_x(b4);
-        return 0.2126 * r2 + 0.7152 * g2 + 0.0722 * b4;
-      };
-      var luminance_x = function(x2) {
-        x2 /= 255;
-        return x2 <= 0.03928 ? x2 / 12.92 : pow$6((x2 + 0.055) / 1.055, 2.4);
-      };
-      var interpolator$1 = {};
-      var Color$h = Color_1;
-      var type$4 = utils2.type;
-      var interpolator = interpolator$1;
-      var mix$1 = function(col1, col2, f5) {
-        if (f5 === void 0)
-          f5 = 0.5;
-        var rest = [], len = arguments.length - 3;
-        while (len-- > 0)
-          rest[len] = arguments[len + 3];
-        var mode = rest[0] || "lrgb";
-        if (!interpolator[mode] && !rest.length) {
-          mode = Object.keys(interpolator)[0];
-        }
-        if (!interpolator[mode]) {
-          throw new Error("interpolation mode " + mode + " is not defined");
-        }
-        if (type$4(col1) !== "object") {
-          col1 = new Color$h(col1);
-        }
-        if (type$4(col2) !== "object") {
-          col2 = new Color$h(col2);
-        }
-        return interpolator[mode](col1, col2, f5).alpha(col1.alpha() + f5 * (col2.alpha() - col1.alpha()));
-      };
-      var Color$g = Color_1;
-      var mix = mix$1;
-      Color$g.prototype.mix = Color$g.prototype.interpolate = function(col2, f5) {
-        if (f5 === void 0)
-          f5 = 0.5;
-        var rest = [], len = arguments.length - 2;
-        while (len-- > 0)
-          rest[len] = arguments[len + 2];
-        return mix.apply(void 0, [this, col2, f5].concat(rest));
-      };
-      var Color$f = Color_1;
-      Color$f.prototype.premultiply = function(mutate) {
-        if (mutate === void 0)
-          mutate = false;
-        var rgb2 = this._rgb;
-        var a = rgb2[3];
-        if (mutate) {
-          this._rgb = [rgb2[0] * a, rgb2[1] * a, rgb2[2] * a, a];
-          return this;
-        } else {
-          return new Color$f([rgb2[0] * a, rgb2[1] * a, rgb2[2] * a, a], "rgb");
-        }
-      };
-      var Color$e = Color_1;
-      var LAB_CONSTANTS = labConstants;
-      Color$e.prototype.saturate = function(amount) {
-        if (amount === void 0)
-          amount = 1;
-        var me = this;
-        var lch2 = me.lch();
-        lch2[1] += LAB_CONSTANTS.Kn * amount;
-        if (lch2[1] < 0) {
-          lch2[1] = 0;
-        }
-        return new Color$e(lch2, "lch").alpha(me.alpha(), true);
-      };
-      Color$e.prototype.desaturate = function(amount) {
-        if (amount === void 0)
-          amount = 1;
-        return this.saturate(-amount);
-      };
-      var Color$d = Color_1;
-      var type$3 = utils2.type;
-      Color$d.prototype.set = function(mc, value, mutate) {
-        if (mutate === void 0)
-          mutate = false;
-        var ref = mc.split(".");
-        var mode = ref[0];
-        var channel = ref[1];
-        var src = this[mode]();
-        if (channel) {
-          var i3 = mode.indexOf(channel) - (mode.substr(0, 2) === "ok" ? 2 : 0);
-          if (i3 > -1) {
-            if (type$3(value) == "string") {
-              switch (value.charAt(0)) {
-                case "+":
-                  src[i3] += +value;
-                  break;
-                case "-":
-                  src[i3] += +value;
-                  break;
-                case "*":
-                  src[i3] *= +value.substr(1);
-                  break;
-                case "/":
-                  src[i3] /= +value.substr(1);
-                  break;
-                default:
-                  src[i3] = +value;
-              }
-            } else if (type$3(value) === "number") {
-              src[i3] = value;
-            } else {
-              throw new Error("unsupported value for Color.set");
-            }
-            var out = new Color$d(src, mode);
-            if (mutate) {
-              this._rgb = out._rgb;
-              return this;
-            }
-            return out;
-          }
-          throw new Error("unknown channel " + channel + " in mode " + mode);
-        } else {
-          return src;
-        }
-      };
-      var Color$c = Color_1;
-      var rgb = function(col1, col2, f5) {
-        var xyz0 = col1._rgb;
-        var xyz1 = col2._rgb;
-        return new Color$c(
-          xyz0[0] + f5 * (xyz1[0] - xyz0[0]),
-          xyz0[1] + f5 * (xyz1[1] - xyz0[1]),
-          xyz0[2] + f5 * (xyz1[2] - xyz0[2]),
-          "rgb"
-        );
-      };
-      interpolator$1.rgb = rgb;
-      var Color$b = Color_1;
-      var sqrt$2 = Math.sqrt;
-      var pow$5 = Math.pow;
-      var lrgb = function(col1, col2, f5) {
-        var ref = col1._rgb;
-        var x1 = ref[0];
-        var y1 = ref[1];
-        var z1 = ref[2];
-        var ref$1 = col2._rgb;
-        var x2 = ref$1[0];
-        var y2 = ref$1[1];
-        var z2 = ref$1[2];
-        return new Color$b(
-          sqrt$2(pow$5(x1, 2) * (1 - f5) + pow$5(x2, 2) * f5),
-          sqrt$2(pow$5(y1, 2) * (1 - f5) + pow$5(y2, 2) * f5),
-          sqrt$2(pow$5(z1, 2) * (1 - f5) + pow$5(z2, 2) * f5),
-          "rgb"
-        );
-      };
-      interpolator$1.lrgb = lrgb;
-      var Color$a = Color_1;
-      var lab = function(col1, col2, f5) {
-        var xyz0 = col1.lab();
-        var xyz1 = col2.lab();
-        return new Color$a(
-          xyz0[0] + f5 * (xyz1[0] - xyz0[0]),
-          xyz0[1] + f5 * (xyz1[1] - xyz0[1]),
-          xyz0[2] + f5 * (xyz1[2] - xyz0[2]),
-          "lab"
-        );
-      };
-      interpolator$1.lab = lab;
-      var Color$9 = Color_1;
-      var _hsx = function(col1, col2, f5, m3) {
-        var assign2, assign$1;
-        var xyz0, xyz1;
-        if (m3 === "hsl") {
-          xyz0 = col1.hsl();
-          xyz1 = col2.hsl();
-        } else if (m3 === "hsv") {
-          xyz0 = col1.hsv();
-          xyz1 = col2.hsv();
-        } else if (m3 === "hcg") {
-          xyz0 = col1.hcg();
-          xyz1 = col2.hcg();
-        } else if (m3 === "hsi") {
-          xyz0 = col1.hsi();
-          xyz1 = col2.hsi();
-        } else if (m3 === "lch" || m3 === "hcl") {
-          m3 = "hcl";
-          xyz0 = col1.hcl();
-          xyz1 = col2.hcl();
-        } else if (m3 === "oklch") {
-          xyz0 = col1.oklch().reverse();
-          xyz1 = col2.oklch().reverse();
-        }
-        var hue0, hue1, sat0, sat1, lbv0, lbv1;
-        if (m3.substr(0, 1) === "h" || m3 === "oklch") {
-          assign2 = xyz0, hue0 = assign2[0], sat0 = assign2[1], lbv0 = assign2[2];
-          assign$1 = xyz1, hue1 = assign$1[0], sat1 = assign$1[1], lbv1 = assign$1[2];
-        }
-        var sat, hue, lbv, dh;
-        if (!isNaN(hue0) && !isNaN(hue1)) {
-          if (hue1 > hue0 && hue1 - hue0 > 180) {
-            dh = hue1 - (hue0 + 360);
-          } else if (hue1 < hue0 && hue0 - hue1 > 180) {
-            dh = hue1 + 360 - hue0;
-          } else {
-            dh = hue1 - hue0;
-          }
-          hue = hue0 + f5 * dh;
-        } else if (!isNaN(hue0)) {
-          hue = hue0;
-          if ((lbv1 == 1 || lbv1 == 0) && m3 != "hsv") {
-            sat = sat0;
-          }
-        } else if (!isNaN(hue1)) {
-          hue = hue1;
-          if ((lbv0 == 1 || lbv0 == 0) && m3 != "hsv") {
-            sat = sat1;
-          }
-        } else {
-          hue = Number.NaN;
-        }
-        if (sat === void 0) {
-          sat = sat0 + f5 * (sat1 - sat0);
-        }
-        lbv = lbv0 + f5 * (lbv1 - lbv0);
-        return m3 === "oklch" ? new Color$9([lbv, sat, hue], m3) : new Color$9([hue, sat, lbv], m3);
-      };
-      var interpolate_hsx$5 = _hsx;
-      var lch = function(col1, col2, f5) {
-        return interpolate_hsx$5(col1, col2, f5, "lch");
-      };
-      interpolator$1.lch = lch;
-      interpolator$1.hcl = lch;
-      var Color$8 = Color_1;
-      var num = function(col1, col2, f5) {
-        var c1 = col1.num();
-        var c22 = col2.num();
-        return new Color$8(c1 + f5 * (c22 - c1), "num");
-      };
-      interpolator$1.num = num;
-      var interpolate_hsx$4 = _hsx;
-      var hcg = function(col1, col2, f5) {
-        return interpolate_hsx$4(col1, col2, f5, "hcg");
-      };
-      interpolator$1.hcg = hcg;
-      var interpolate_hsx$3 = _hsx;
-      var hsi = function(col1, col2, f5) {
-        return interpolate_hsx$3(col1, col2, f5, "hsi");
-      };
-      interpolator$1.hsi = hsi;
-      var interpolate_hsx$2 = _hsx;
-      var hsl = function(col1, col2, f5) {
-        return interpolate_hsx$2(col1, col2, f5, "hsl");
-      };
-      interpolator$1.hsl = hsl;
-      var interpolate_hsx$1 = _hsx;
-      var hsv = function(col1, col2, f5) {
-        return interpolate_hsx$1(col1, col2, f5, "hsv");
-      };
-      interpolator$1.hsv = hsv;
-      var Color$7 = Color_1;
-      var oklab = function(col1, col2, f5) {
-        var xyz0 = col1.oklab();
-        var xyz1 = col2.oklab();
-        return new Color$7(
-          xyz0[0] + f5 * (xyz1[0] - xyz0[0]),
-          xyz0[1] + f5 * (xyz1[1] - xyz0[1]),
-          xyz0[2] + f5 * (xyz1[2] - xyz0[2]),
-          "oklab"
-        );
-      };
-      interpolator$1.oklab = oklab;
-      var interpolate_hsx = _hsx;
-      var oklch = function(col1, col2, f5) {
-        return interpolate_hsx(col1, col2, f5, "oklch");
-      };
-      interpolator$1.oklch = oklch;
-      var Color$6 = Color_1;
-      var clip_rgb$1 = utils2.clip_rgb;
-      var pow$4 = Math.pow;
-      var sqrt$1 = Math.sqrt;
-      var PI$1 = Math.PI;
-      var cos$2 = Math.cos;
-      var sin$2 = Math.sin;
-      var atan2$1 = Math.atan2;
-      var average = function(colors, mode, weights) {
-        if (mode === void 0)
-          mode = "lrgb";
-        if (weights === void 0)
-          weights = null;
-        var l = colors.length;
-        if (!weights) {
-          weights = Array.from(new Array(l)).map(function() {
-            return 1;
-          });
-        }
-        var k = l / weights.reduce(function(a, b4) {
-          return a + b4;
-        });
-        weights.forEach(function(w2, i4) {
-          weights[i4] *= k;
-        });
-        colors = colors.map(function(c3) {
-          return new Color$6(c3);
-        });
-        if (mode === "lrgb") {
-          return _average_lrgb(colors, weights);
-        }
-        var first = colors.shift();
-        var xyz = first.get(mode);
-        var cnt = [];
-        var dx = 0;
-        var dy = 0;
-        for (var i3 = 0; i3 < xyz.length; i3++) {
-          xyz[i3] = (xyz[i3] || 0) * weights[0];
-          cnt.push(isNaN(xyz[i3]) ? 0 : weights[0]);
-          if (mode.charAt(i3) === "h" && !isNaN(xyz[i3])) {
-            var A2 = xyz[i3] / 180 * PI$1;
-            dx += cos$2(A2) * weights[0];
-            dy += sin$2(A2) * weights[0];
-          }
-        }
-        var alpha = first.alpha() * weights[0];
-        colors.forEach(function(c3, ci) {
-          var xyz2 = c3.get(mode);
-          alpha += c3.alpha() * weights[ci + 1];
-          for (var i4 = 0; i4 < xyz.length; i4++) {
-            if (!isNaN(xyz2[i4])) {
-              cnt[i4] += weights[ci + 1];
-              if (mode.charAt(i4) === "h") {
-                var A3 = xyz2[i4] / 180 * PI$1;
-                dx += cos$2(A3) * weights[ci + 1];
-                dy += sin$2(A3) * weights[ci + 1];
-              } else {
-                xyz[i4] += xyz2[i4] * weights[ci + 1];
-              }
-            }
-          }
-        });
-        for (var i$12 = 0; i$12 < xyz.length; i$12++) {
-          if (mode.charAt(i$12) === "h") {
-            var A$1 = atan2$1(dy / cnt[i$12], dx / cnt[i$12]) / PI$1 * 180;
-            while (A$1 < 0) {
-              A$1 += 360;
-            }
-            while (A$1 >= 360) {
-              A$1 -= 360;
-            }
-            xyz[i$12] = A$1;
-          } else {
-            xyz[i$12] = xyz[i$12] / cnt[i$12];
-          }
-        }
-        alpha /= l;
-        return new Color$6(xyz, mode).alpha(alpha > 0.99999 ? 1 : alpha, true);
-      };
-      var _average_lrgb = function(colors, weights) {
-        var l = colors.length;
-        var xyz = [0, 0, 0, 0];
-        for (var i3 = 0; i3 < colors.length; i3++) {
-          var col = colors[i3];
-          var f5 = weights[i3] / l;
-          var rgb2 = col._rgb;
-          xyz[0] += pow$4(rgb2[0], 2) * f5;
-          xyz[1] += pow$4(rgb2[1], 2) * f5;
-          xyz[2] += pow$4(rgb2[2], 2) * f5;
-          xyz[3] += rgb2[3] * f5;
-        }
-        xyz[0] = sqrt$1(xyz[0]);
-        xyz[1] = sqrt$1(xyz[1]);
-        xyz[2] = sqrt$1(xyz[2]);
-        if (xyz[3] > 0.9999999) {
-          xyz[3] = 1;
-        }
-        return new Color$6(clip_rgb$1(xyz));
-      };
-      var chroma$4 = chroma_1;
-      var type$2 = utils2.type;
-      var pow$3 = Math.pow;
-      var scale$2 = function(colors) {
-        var _mode = "rgb";
-        var _nacol = chroma$4("#ccc");
-        var _spread = 0;
-        var _domain = [0, 1];
-        var _pos = [];
-        var _padding = [0, 0];
-        var _classes = false;
-        var _colors = [];
-        var _out = false;
-        var _min = 0;
-        var _max = 1;
-        var _correctLightness = false;
-        var _colorCache = {};
-        var _useCache = true;
-        var _gamma = 1;
-        var setColors = function(colors2) {
-          colors2 = colors2 || ["#fff", "#000"];
-          if (colors2 && type$2(colors2) === "string" && chroma$4.brewer && chroma$4.brewer[colors2.toLowerCase()]) {
-            colors2 = chroma$4.brewer[colors2.toLowerCase()];
-          }
-          if (type$2(colors2) === "array") {
-            if (colors2.length === 1) {
-              colors2 = [colors2[0], colors2[0]];
-            }
-            colors2 = colors2.slice(0);
-            for (var c3 = 0; c3 < colors2.length; c3++) {
-              colors2[c3] = chroma$4(colors2[c3]);
-            }
-            _pos.length = 0;
-            for (var c$1 = 0; c$1 < colors2.length; c$1++) {
-              _pos.push(c$1 / (colors2.length - 1));
-            }
-          }
-          resetCache();
-          return _colors = colors2;
-        };
-        var getClass = function(value) {
-          if (_classes != null) {
-            var n = _classes.length - 1;
-            var i3 = 0;
-            while (i3 < n && value >= _classes[i3]) {
-              i3++;
-            }
-            return i3 - 1;
-          }
-          return 0;
-        };
-        var tMapLightness = function(t2) {
-          return t2;
-        };
-        var tMapDomain = function(t2) {
-          return t2;
-        };
-        var getColor = function(val, bypassMap) {
-          var col, t2;
-          if (bypassMap == null) {
-            bypassMap = false;
-          }
-          if (isNaN(val) || val === null) {
-            return _nacol;
-          }
-          if (!bypassMap) {
-            if (_classes && _classes.length > 2) {
-              var c3 = getClass(val);
-              t2 = c3 / (_classes.length - 2);
-            } else if (_max !== _min) {
-              t2 = (val - _min) / (_max - _min);
-            } else {
-              t2 = 1;
-            }
-          } else {
-            t2 = val;
-          }
-          t2 = tMapDomain(t2);
-          if (!bypassMap) {
-            t2 = tMapLightness(t2);
-          }
-          if (_gamma !== 1) {
-            t2 = pow$3(t2, _gamma);
-          }
-          t2 = _padding[0] + t2 * (1 - _padding[0] - _padding[1]);
-          t2 = Math.min(1, Math.max(0, t2));
-          var k = Math.floor(t2 * 1e4);
-          if (_useCache && _colorCache[k]) {
-            col = _colorCache[k];
-          } else {
-            if (type$2(_colors) === "array") {
-              for (var i3 = 0; i3 < _pos.length; i3++) {
-                var p2 = _pos[i3];
-                if (t2 <= p2) {
-                  col = _colors[i3];
-                  break;
-                }
-                if (t2 >= p2 && i3 === _pos.length - 1) {
-                  col = _colors[i3];
-                  break;
-                }
-                if (t2 > p2 && t2 < _pos[i3 + 1]) {
-                  t2 = (t2 - p2) / (_pos[i3 + 1] - p2);
-                  col = chroma$4.interpolate(_colors[i3], _colors[i3 + 1], t2, _mode);
-                  break;
-                }
-              }
-            } else if (type$2(_colors) === "function") {
-              col = _colors(t2);
-            }
-            if (_useCache) {
-              _colorCache[k] = col;
-            }
-          }
-          return col;
-        };
-        var resetCache = function() {
-          return _colorCache = {};
-        };
-        setColors(colors);
-        var f5 = function(v3) {
-          var c3 = chroma$4(getColor(v3));
-          if (_out && c3[_out]) {
-            return c3[_out]();
-          } else {
-            return c3;
-          }
-        };
-        f5.classes = function(classes) {
-          if (classes != null) {
-            if (type$2(classes) === "array") {
-              _classes = classes;
-              _domain = [classes[0], classes[classes.length - 1]];
-            } else {
-              var d3 = chroma$4.analyze(_domain);
-              if (classes === 0) {
-                _classes = [d3.min, d3.max];
-              } else {
-                _classes = chroma$4.limits(d3, "e", classes);
-              }
-            }
-            return f5;
-          }
-          return _classes;
-        };
-        f5.domain = function(domain) {
-          if (!arguments.length) {
-            return _domain;
-          }
-          _min = domain[0];
-          _max = domain[domain.length - 1];
-          _pos = [];
-          var k = _colors.length;
-          if (domain.length === k && _min !== _max) {
-            for (var i3 = 0, list2 = Array.from(domain); i3 < list2.length; i3 += 1) {
-              var d3 = list2[i3];
-              _pos.push((d3 - _min) / (_max - _min));
-            }
-          } else {
-            for (var c3 = 0; c3 < k; c3++) {
-              _pos.push(c3 / (k - 1));
-            }
-            if (domain.length > 2) {
-              var tOut = domain.map(function(d4, i4) {
-                return i4 / (domain.length - 1);
-              });
-              var tBreaks = domain.map(function(d4) {
-                return (d4 - _min) / (_max - _min);
-              });
-              if (!tBreaks.every(function(val, i4) {
-                return tOut[i4] === val;
-              })) {
-                tMapDomain = function(t2) {
-                  if (t2 <= 0 || t2 >= 1) {
-                    return t2;
-                  }
-                  var i4 = 0;
-                  while (t2 >= tBreaks[i4 + 1]) {
-                    i4++;
-                  }
-                  var f6 = (t2 - tBreaks[i4]) / (tBreaks[i4 + 1] - tBreaks[i4]);
-                  var out = tOut[i4] + f6 * (tOut[i4 + 1] - tOut[i4]);
-                  return out;
-                };
-              }
-            }
-          }
-          _domain = [_min, _max];
-          return f5;
-        };
-        f5.mode = function(_m) {
-          if (!arguments.length) {
-            return _mode;
-          }
-          _mode = _m;
-          resetCache();
-          return f5;
-        };
-        f5.range = function(colors2, _pos2) {
-          setColors(colors2);
-          return f5;
-        };
-        f5.out = function(_o) {
-          _out = _o;
-          return f5;
-        };
-        f5.spread = function(val) {
-          if (!arguments.length) {
-            return _spread;
-          }
-          _spread = val;
-          return f5;
-        };
-        f5.correctLightness = function(v3) {
-          if (v3 == null) {
-            v3 = true;
-          }
-          _correctLightness = v3;
-          resetCache();
-          if (_correctLightness) {
-            tMapLightness = function(t2) {
-              var L0 = getColor(0, true).lab()[0];
-              var L1 = getColor(1, true).lab()[0];
-              var pol = L0 > L1;
-              var L_actual = getColor(t2, true).lab()[0];
-              var L_ideal = L0 + (L1 - L0) * t2;
-              var L_diff = L_actual - L_ideal;
-              var t0 = 0;
-              var t1 = 1;
-              var max_iter = 20;
-              while (Math.abs(L_diff) > 0.01 && max_iter-- > 0) {
-                (function() {
-                  if (pol) {
-                    L_diff *= -1;
-                  }
-                  if (L_diff < 0) {
-                    t0 = t2;
-                    t2 += (t1 - t2) * 0.5;
-                  } else {
-                    t1 = t2;
-                    t2 += (t0 - t2) * 0.5;
-                  }
-                  L_actual = getColor(t2, true).lab()[0];
-                  return L_diff = L_actual - L_ideal;
-                })();
-              }
-              return t2;
-            };
-          } else {
-            tMapLightness = function(t2) {
-              return t2;
-            };
-          }
-          return f5;
-        };
-        f5.padding = function(p2) {
-          if (p2 != null) {
-            if (type$2(p2) === "number") {
-              p2 = [p2, p2];
-            }
-            _padding = p2;
-            return f5;
-          } else {
-            return _padding;
-          }
-        };
-        f5.colors = function(numColors, out) {
-          if (arguments.length < 2) {
-            out = "hex";
-          }
-          var result = [];
-          if (arguments.length === 0) {
-            result = _colors.slice(0);
-          } else if (numColors === 1) {
-            result = [f5(0.5)];
-          } else if (numColors > 1) {
-            var dm = _domain[0];
-            var dd = _domain[1] - dm;
-            result = __range__(0, numColors, false).map(function(i4) {
-              return f5(dm + i4 / (numColors - 1) * dd);
-            });
-          } else {
-            colors = [];
-            var samples = [];
-            if (_classes && _classes.length > 2) {
-              for (var i3 = 1, end = _classes.length, asc = 1 <= end; asc ? i3 < end : i3 > end; asc ? i3++ : i3--) {
-                samples.push((_classes[i3 - 1] + _classes[i3]) * 0.5);
-              }
-            } else {
-              samples = _domain;
-            }
-            result = samples.map(function(v3) {
-              return f5(v3);
-            });
-          }
-          if (chroma$4[out]) {
-            result = result.map(function(c3) {
-              return c3[out]();
-            });
-          }
-          return result;
-        };
-        f5.cache = function(c3) {
-          if (c3 != null) {
-            _useCache = c3;
-            return f5;
-          } else {
-            return _useCache;
-          }
-        };
-        f5.gamma = function(g2) {
-          if (g2 != null) {
-            _gamma = g2;
-            return f5;
-          } else {
-            return _gamma;
-          }
-        };
-        f5.nodata = function(d3) {
-          if (d3 != null) {
-            _nacol = chroma$4(d3);
-            return f5;
-          } else {
-            return _nacol;
-          }
-        };
-        return f5;
-      };
-      function __range__(left, right, inclusive) {
-        var range = [];
-        var ascending = left < right;
-        var end = !inclusive ? right : ascending ? right + 1 : right - 1;
-        for (var i3 = left; ascending ? i3 < end : i3 > end; ascending ? i3++ : i3--) {
-          range.push(i3);
-        }
-        return range;
-      }
-      var Color$5 = Color_1;
-      var scale$1 = scale$2;
-      var binom_row = function(n) {
-        var row = [1, 1];
-        for (var i3 = 1; i3 < n; i3++) {
-          var newrow = [1];
-          for (var j2 = 1; j2 <= row.length; j2++) {
-            newrow[j2] = (row[j2] || 0) + row[j2 - 1];
-          }
-          row = newrow;
-        }
-        return row;
-      };
-      var bezier = function(colors) {
-        var assign2, assign$1, assign$2;
-        var I, lab0, lab1, lab2;
-        colors = colors.map(function(c3) {
-          return new Color$5(c3);
-        });
-        if (colors.length === 2) {
-          assign2 = colors.map(function(c3) {
-            return c3.lab();
-          }), lab0 = assign2[0], lab1 = assign2[1];
-          I = function(t2) {
-            var lab4 = [0, 1, 2].map(function(i3) {
-              return lab0[i3] + t2 * (lab1[i3] - lab0[i3]);
-            });
-            return new Color$5(lab4, "lab");
-          };
-        } else if (colors.length === 3) {
-          assign$1 = colors.map(function(c3) {
-            return c3.lab();
-          }), lab0 = assign$1[0], lab1 = assign$1[1], lab2 = assign$1[2];
-          I = function(t2) {
-            var lab4 = [0, 1, 2].map(function(i3) {
-              return (1 - t2) * (1 - t2) * lab0[i3] + 2 * (1 - t2) * t2 * lab1[i3] + t2 * t2 * lab2[i3];
-            });
-            return new Color$5(lab4, "lab");
-          };
-        } else if (colors.length === 4) {
-          var lab3;
-          assign$2 = colors.map(function(c3) {
-            return c3.lab();
-          }), lab0 = assign$2[0], lab1 = assign$2[1], lab2 = assign$2[2], lab3 = assign$2[3];
-          I = function(t2) {
-            var lab4 = [0, 1, 2].map(function(i3) {
-              return (1 - t2) * (1 - t2) * (1 - t2) * lab0[i3] + 3 * (1 - t2) * (1 - t2) * t2 * lab1[i3] + 3 * (1 - t2) * t2 * t2 * lab2[i3] + t2 * t2 * t2 * lab3[i3];
-            });
-            return new Color$5(lab4, "lab");
-          };
-        } else if (colors.length >= 5) {
-          var labs, row, n;
-          labs = colors.map(function(c3) {
-            return c3.lab();
-          });
-          n = colors.length - 1;
-          row = binom_row(n);
-          I = function(t2) {
-            var u2 = 1 - t2;
-            var lab4 = [0, 1, 2].map(function(i3) {
-              return labs.reduce(function(sum, el, j2) {
-                return sum + row[j2] * Math.pow(u2, n - j2) * Math.pow(t2, j2) * el[i3];
-              }, 0);
-            });
-            return new Color$5(lab4, "lab");
-          };
-        } else {
-          throw new RangeError("No point in running bezier with only one color.");
-        }
-        return I;
-      };
-      var bezier_1 = function(colors) {
-        var f5 = bezier(colors);
-        f5.scale = function() {
-          return scale$1(f5);
-        };
-        return f5;
-      };
-      var chroma$3 = chroma_1;
-      var blend = function(bottom, top, mode) {
-        if (!blend[mode]) {
-          throw new Error("unknown blend mode " + mode);
-        }
-        return blend[mode](bottom, top);
-      };
-      var blend_f = function(f5) {
-        return function(bottom, top) {
-          var c0 = chroma$3(top).rgb();
-          var c1 = chroma$3(bottom).rgb();
-          return chroma$3.rgb(f5(c0, c1));
-        };
-      };
-      var each2 = function(f5) {
-        return function(c0, c1) {
-          var out = [];
-          out[0] = f5(c0[0], c1[0]);
-          out[1] = f5(c0[1], c1[1]);
-          out[2] = f5(c0[2], c1[2]);
-          return out;
-        };
-      };
-      var normal = function(a) {
-        return a;
-      };
-      var multiply = function(a, b4) {
-        return a * b4 / 255;
-      };
-      var darken = function(a, b4) {
-        return a > b4 ? b4 : a;
-      };
-      var lighten = function(a, b4) {
-        return a > b4 ? a : b4;
-      };
-      var screen = function(a, b4) {
-        return 255 * (1 - (1 - a / 255) * (1 - b4 / 255));
-      };
-      var overlay = function(a, b4) {
-        return b4 < 128 ? 2 * a * b4 / 255 : 255 * (1 - 2 * (1 - a / 255) * (1 - b4 / 255));
-      };
-      var burn = function(a, b4) {
-        return 255 * (1 - (1 - b4 / 255) / (a / 255));
-      };
-      var dodge = function(a, b4) {
-        if (a === 255) {
-          return 255;
-        }
-        a = 255 * (b4 / 255) / (1 - a / 255);
-        return a > 255 ? 255 : a;
-      };
-      blend.normal = blend_f(each2(normal));
-      blend.multiply = blend_f(each2(multiply));
-      blend.screen = blend_f(each2(screen));
-      blend.overlay = blend_f(each2(overlay));
-      blend.darken = blend_f(each2(darken));
-      blend.lighten = blend_f(each2(lighten));
-      blend.dodge = blend_f(each2(dodge));
-      blend.burn = blend_f(each2(burn));
-      var blend_1 = blend;
-      var type$1 = utils2.type;
-      var clip_rgb = utils2.clip_rgb;
-      var TWOPI = utils2.TWOPI;
-      var pow$2 = Math.pow;
-      var sin$1 = Math.sin;
-      var cos$1 = Math.cos;
-      var chroma$2 = chroma_1;
-      var cubehelix = function(start2, rotations, hue, gamma, lightness) {
-        if (start2 === void 0)
-          start2 = 300;
-        if (rotations === void 0)
-          rotations = -1.5;
-        if (hue === void 0)
-          hue = 1;
-        if (gamma === void 0)
-          gamma = 1;
-        if (lightness === void 0)
-          lightness = [0, 1];
-        var dh = 0, dl;
-        if (type$1(lightness) === "array") {
-          dl = lightness[1] - lightness[0];
-        } else {
-          dl = 0;
-          lightness = [lightness, lightness];
-        }
-        var f5 = function(fract) {
-          var a = TWOPI * ((start2 + 120) / 360 + rotations * fract);
-          var l = pow$2(lightness[0] + dl * fract, gamma);
-          var h3 = dh !== 0 ? hue[0] + fract * dh : hue;
-          var amp = h3 * l * (1 - l) / 2;
-          var cos_a = cos$1(a);
-          var sin_a = sin$1(a);
-          var r2 = l + amp * (-0.14861 * cos_a + 1.78277 * sin_a);
-          var g2 = l + amp * (-0.29227 * cos_a - 0.90649 * sin_a);
-          var b4 = l + amp * (1.97294 * cos_a);
-          return chroma$2(clip_rgb([r2 * 255, g2 * 255, b4 * 255, 1]));
-        };
-        f5.start = function(s3) {
-          if (s3 == null) {
-            return start2;
-          }
-          start2 = s3;
-          return f5;
-        };
-        f5.rotations = function(r2) {
-          if (r2 == null) {
-            return rotations;
-          }
-          rotations = r2;
-          return f5;
-        };
-        f5.gamma = function(g2) {
-          if (g2 == null) {
-            return gamma;
-          }
-          gamma = g2;
-          return f5;
-        };
-        f5.hue = function(h3) {
-          if (h3 == null) {
-            return hue;
-          }
-          hue = h3;
-          if (type$1(hue) === "array") {
-            dh = hue[1] - hue[0];
-            if (dh === 0) {
-              hue = hue[1];
-            }
-          } else {
-            dh = 0;
-          }
-          return f5;
-        };
-        f5.lightness = function(h3) {
-          if (h3 == null) {
-            return lightness;
-          }
-          if (type$1(h3) === "array") {
-            lightness = h3;
-            dl = h3[1] - h3[0];
-          } else {
-            lightness = [h3, h3];
-            dl = 0;
-          }
-          return f5;
-        };
-        f5.scale = function() {
-          return chroma$2.scale(f5);
-        };
-        f5.hue(hue);
-        return f5;
-      };
-      var Color$4 = Color_1;
-      var digits = "0123456789abcdef";
-      var floor$1 = Math.floor;
-      var random = Math.random;
-      var random_1 = function() {
-        var code = "#";
-        for (var i3 = 0; i3 < 6; i3++) {
-          code += digits.charAt(floor$1(random() * 16));
-        }
-        return new Color$4(code, "hex");
-      };
-      var type = type$p;
-      var log = Math.log;
-      var pow$1 = Math.pow;
-      var floor = Math.floor;
-      var abs$1 = Math.abs;
-      var analyze = function(data, key3) {
-        if (key3 === void 0)
-          key3 = null;
-        var r2 = {
-          min: Number.MAX_VALUE,
-          max: Number.MAX_VALUE * -1,
-          sum: 0,
-          values: [],
-          count: 0
-        };
-        if (type(data) === "object") {
-          data = Object.values(data);
-        }
-        data.forEach(function(val) {
-          if (key3 && type(val) === "object") {
-            val = val[key3];
-          }
-          if (val !== void 0 && val !== null && !isNaN(val)) {
-            r2.values.push(val);
-            r2.sum += val;
-            if (val < r2.min) {
-              r2.min = val;
-            }
-            if (val > r2.max) {
-              r2.max = val;
-            }
-            r2.count += 1;
-          }
-        });
-        r2.domain = [r2.min, r2.max];
-        r2.limits = function(mode, num2) {
-          return limits(r2, mode, num2);
-        };
-        return r2;
-      };
-      var limits = function(data, mode, num2) {
-        if (mode === void 0)
-          mode = "equal";
-        if (num2 === void 0)
-          num2 = 7;
-        if (type(data) == "array") {
-          data = analyze(data);
-        }
-        var min2 = data.min;
-        var max2 = data.max;
-        var values = data.values.sort(function(a, b4) {
-          return a - b4;
-        });
-        if (num2 === 1) {
-          return [min2, max2];
-        }
-        var limits2 = [];
-        if (mode.substr(0, 1) === "c") {
-          limits2.push(min2);
-          limits2.push(max2);
-        }
-        if (mode.substr(0, 1) === "e") {
-          limits2.push(min2);
-          for (var i3 = 1; i3 < num2; i3++) {
-            limits2.push(min2 + i3 / num2 * (max2 - min2));
-          }
-          limits2.push(max2);
-        } else if (mode.substr(0, 1) === "l") {
-          if (min2 <= 0) {
-            throw new Error("Logarithmic scales are only possible for values > 0");
-          }
-          var min_log = Math.LOG10E * log(min2);
-          var max_log = Math.LOG10E * log(max2);
-          limits2.push(min2);
-          for (var i$12 = 1; i$12 < num2; i$12++) {
-            limits2.push(pow$1(10, min_log + i$12 / num2 * (max_log - min_log)));
-          }
-          limits2.push(max2);
-        } else if (mode.substr(0, 1) === "q") {
-          limits2.push(min2);
-          for (var i$2 = 1; i$2 < num2; i$2++) {
-            var p2 = (values.length - 1) * i$2 / num2;
-            var pb = floor(p2);
-            if (pb === p2) {
-              limits2.push(values[pb]);
-            } else {
-              var pr = p2 - pb;
-              limits2.push(values[pb] * (1 - pr) + values[pb + 1] * pr);
-            }
-          }
-          limits2.push(max2);
-        } else if (mode.substr(0, 1) === "k") {
-          var cluster;
-          var n = values.length;
-          var assignments = new Array(n);
-          var clusterSizes = new Array(num2);
-          var repeat = true;
-          var nb_iters = 0;
-          var centroids = null;
-          centroids = [];
-          centroids.push(min2);
-          for (var i$3 = 1; i$3 < num2; i$3++) {
-            centroids.push(min2 + i$3 / num2 * (max2 - min2));
-          }
-          centroids.push(max2);
-          while (repeat) {
-            for (var j2 = 0; j2 < num2; j2++) {
-              clusterSizes[j2] = 0;
-            }
-            for (var i$4 = 0; i$4 < n; i$4++) {
-              var value = values[i$4];
-              var mindist = Number.MAX_VALUE;
-              var best = void 0;
-              for (var j$1 = 0; j$1 < num2; j$1++) {
-                var dist = abs$1(centroids[j$1] - value);
-                if (dist < mindist) {
-                  mindist = dist;
-                  best = j$1;
-                }
-                clusterSizes[best]++;
-                assignments[i$4] = best;
-              }
-            }
-            var newCentroids = new Array(num2);
-            for (var j$2 = 0; j$2 < num2; j$2++) {
-              newCentroids[j$2] = null;
-            }
-            for (var i$5 = 0; i$5 < n; i$5++) {
-              cluster = assignments[i$5];
-              if (newCentroids[cluster] === null) {
-                newCentroids[cluster] = values[i$5];
-              } else {
-                newCentroids[cluster] += values[i$5];
-              }
-            }
-            for (var j$3 = 0; j$3 < num2; j$3++) {
-              newCentroids[j$3] *= 1 / clusterSizes[j$3];
-            }
-            repeat = false;
-            for (var j$4 = 0; j$4 < num2; j$4++) {
-              if (newCentroids[j$4] !== centroids[j$4]) {
-                repeat = true;
-                break;
-              }
-            }
-            centroids = newCentroids;
-            nb_iters++;
-            if (nb_iters > 200) {
-              repeat = false;
-            }
-          }
-          var kClusters = {};
-          for (var j$5 = 0; j$5 < num2; j$5++) {
-            kClusters[j$5] = [];
-          }
-          for (var i$6 = 0; i$6 < n; i$6++) {
-            cluster = assignments[i$6];
-            kClusters[cluster].push(values[i$6]);
-          }
-          var tmpKMeansBreaks = [];
-          for (var j$6 = 0; j$6 < num2; j$6++) {
-            tmpKMeansBreaks.push(kClusters[j$6][0]);
-            tmpKMeansBreaks.push(kClusters[j$6][kClusters[j$6].length - 1]);
-          }
-          tmpKMeansBreaks = tmpKMeansBreaks.sort(function(a, b4) {
-            return a - b4;
-          });
-          limits2.push(tmpKMeansBreaks[0]);
-          for (var i$7 = 1; i$7 < tmpKMeansBreaks.length; i$7 += 2) {
-            var v3 = tmpKMeansBreaks[i$7];
-            if (!isNaN(v3) && limits2.indexOf(v3) === -1) {
-              limits2.push(v3);
-            }
-          }
-        }
-        return limits2;
-      };
-      var analyze_1 = { analyze, limits };
-      var Color$3 = Color_1;
-      var contrast = function(a, b4) {
-        a = new Color$3(a);
-        b4 = new Color$3(b4);
-        var l1 = a.luminance();
-        var l2 = b4.luminance();
-        return l1 > l2 ? (l1 + 0.05) / (l2 + 0.05) : (l2 + 0.05) / (l1 + 0.05);
-      };
-      var Color$2 = Color_1;
-      var sqrt = Math.sqrt;
-      var pow = Math.pow;
-      var min = Math.min;
-      var max = Math.max;
-      var atan2 = Math.atan2;
-      var abs = Math.abs;
-      var cos = Math.cos;
-      var sin = Math.sin;
-      var exp = Math.exp;
-      var PI = Math.PI;
-      var deltaE = function(a, b4, Kl, Kc, Kh) {
-        if (Kl === void 0)
-          Kl = 1;
-        if (Kc === void 0)
-          Kc = 1;
-        if (Kh === void 0)
-          Kh = 1;
-        var rad2deg = function(rad) {
-          return 360 * rad / (2 * PI);
-        };
-        var deg2rad = function(deg) {
-          return 2 * PI * deg / 360;
-        };
-        a = new Color$2(a);
-        b4 = new Color$2(b4);
-        var ref = Array.from(a.lab());
-        var L1 = ref[0];
-        var a1 = ref[1];
-        var b1 = ref[2];
-        var ref$1 = Array.from(b4.lab());
-        var L2 = ref$1[0];
-        var a2 = ref$1[1];
-        var b22 = ref$1[2];
-        var avgL = (L1 + L2) / 2;
-        var C1 = sqrt(pow(a1, 2) + pow(b1, 2));
-        var C2 = sqrt(pow(a2, 2) + pow(b22, 2));
-        var avgC = (C1 + C2) / 2;
-        var G2 = 0.5 * (1 - sqrt(pow(avgC, 7) / (pow(avgC, 7) + pow(25, 7))));
-        var a1p = a1 * (1 + G2);
-        var a2p = a2 * (1 + G2);
-        var C1p = sqrt(pow(a1p, 2) + pow(b1, 2));
-        var C2p = sqrt(pow(a2p, 2) + pow(b22, 2));
-        var avgCp = (C1p + C2p) / 2;
-        var arctan1 = rad2deg(atan2(b1, a1p));
-        var arctan2 = rad2deg(atan2(b22, a2p));
-        var h1p = arctan1 >= 0 ? arctan1 : arctan1 + 360;
-        var h2p = arctan2 >= 0 ? arctan2 : arctan2 + 360;
-        var avgHp = abs(h1p - h2p) > 180 ? (h1p + h2p + 360) / 2 : (h1p + h2p) / 2;
-        var T2 = 1 - 0.17 * cos(deg2rad(avgHp - 30)) + 0.24 * cos(deg2rad(2 * avgHp)) + 0.32 * cos(deg2rad(3 * avgHp + 6)) - 0.2 * cos(deg2rad(4 * avgHp - 63));
-        var deltaHp = h2p - h1p;
-        deltaHp = abs(deltaHp) <= 180 ? deltaHp : h2p <= h1p ? deltaHp + 360 : deltaHp - 360;
-        deltaHp = 2 * sqrt(C1p * C2p) * sin(deg2rad(deltaHp) / 2);
-        var deltaL = L2 - L1;
-        var deltaCp = C2p - C1p;
-        var sl = 1 + 0.015 * pow(avgL - 50, 2) / sqrt(20 + pow(avgL - 50, 2));
-        var sc = 1 + 0.045 * avgCp;
-        var sh = 1 + 0.015 * avgCp * T2;
-        var deltaTheta = 30 * exp(-pow((avgHp - 275) / 25, 2));
-        var Rc = 2 * sqrt(pow(avgCp, 7) / (pow(avgCp, 7) + pow(25, 7)));
-        var Rt = -Rc * sin(2 * deg2rad(deltaTheta));
-        var result = sqrt(pow(deltaL / (Kl * sl), 2) + pow(deltaCp / (Kc * sc), 2) + pow(deltaHp / (Kh * sh), 2) + Rt * (deltaCp / (Kc * sc)) * (deltaHp / (Kh * sh)));
-        return max(0, min(100, result));
-      };
-      var Color$1 = Color_1;
-      var distance = function(a, b4, mode) {
-        if (mode === void 0)
-          mode = "lab";
-        a = new Color$1(a);
-        b4 = new Color$1(b4);
-        var l1 = a.get(mode);
-        var l2 = b4.get(mode);
-        var sum_sq = 0;
-        for (var i3 in l1) {
-          var d3 = (l1[i3] || 0) - (l2[i3] || 0);
-          sum_sq += d3 * d3;
-        }
-        return Math.sqrt(sum_sq);
-      };
-      var Color = Color_1;
-      var valid = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        try {
-          new (Function.prototype.bind.apply(Color, [null].concat(args)))();
-          return true;
-        } catch (e2) {
-          return false;
-        }
-      };
-      var chroma$1 = chroma_1;
-      var scale = scale$2;
-      var scales = {
-        cool: function cool() {
-          return scale([chroma$1.hsl(180, 1, 0.9), chroma$1.hsl(250, 0.7, 0.4)]);
-        },
-        hot: function hot() {
-          return scale(["#000", "#f00", "#ff0", "#fff"]).mode("rgb");
-        }
-      };
-      var colorbrewer = {
-        OrRd: ["#fff7ec", "#fee8c8", "#fdd49e", "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#b30000", "#7f0000"],
-        PuBu: ["#fff7fb", "#ece7f2", "#d0d1e6", "#a6bddb", "#74a9cf", "#3690c0", "#0570b0", "#045a8d", "#023858"],
-        BuPu: ["#f7fcfd", "#e0ecf4", "#bfd3e6", "#9ebcda", "#8c96c6", "#8c6bb1", "#88419d", "#810f7c", "#4d004b"],
-        Oranges: ["#fff5eb", "#fee6ce", "#fdd0a2", "#fdae6b", "#fd8d3c", "#f16913", "#d94801", "#a63603", "#7f2704"],
-        BuGn: ["#f7fcfd", "#e5f5f9", "#ccece6", "#99d8c9", "#66c2a4", "#41ae76", "#238b45", "#006d2c", "#00441b"],
-        YlOrBr: ["#ffffe5", "#fff7bc", "#fee391", "#fec44f", "#fe9929", "#ec7014", "#cc4c02", "#993404", "#662506"],
-        YlGn: ["#ffffe5", "#f7fcb9", "#d9f0a3", "#addd8e", "#78c679", "#41ab5d", "#238443", "#006837", "#004529"],
-        Reds: ["#fff5f0", "#fee0d2", "#fcbba1", "#fc9272", "#fb6a4a", "#ef3b2c", "#cb181d", "#a50f15", "#67000d"],
-        RdPu: ["#fff7f3", "#fde0dd", "#fcc5c0", "#fa9fb5", "#f768a1", "#dd3497", "#ae017e", "#7a0177", "#49006a"],
-        Greens: ["#f7fcf5", "#e5f5e0", "#c7e9c0", "#a1d99b", "#74c476", "#41ab5d", "#238b45", "#006d2c", "#00441b"],
-        YlGnBu: ["#ffffd9", "#edf8b1", "#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#253494", "#081d58"],
-        Purples: ["#fcfbfd", "#efedf5", "#dadaeb", "#bcbddc", "#9e9ac8", "#807dba", "#6a51a3", "#54278f", "#3f007d"],
-        GnBu: ["#f7fcf0", "#e0f3db", "#ccebc5", "#a8ddb5", "#7bccc4", "#4eb3d3", "#2b8cbe", "#0868ac", "#084081"],
-        Greys: ["#ffffff", "#f0f0f0", "#d9d9d9", "#bdbdbd", "#969696", "#737373", "#525252", "#252525", "#000000"],
-        YlOrRd: ["#ffffcc", "#ffeda0", "#fed976", "#feb24c", "#fd8d3c", "#fc4e2a", "#e31a1c", "#bd0026", "#800026"],
-        PuRd: ["#f7f4f9", "#e7e1ef", "#d4b9da", "#c994c7", "#df65b0", "#e7298a", "#ce1256", "#980043", "#67001f"],
-        Blues: ["#f7fbff", "#deebf7", "#c6dbef", "#9ecae1", "#6baed6", "#4292c6", "#2171b5", "#08519c", "#08306b"],
-        PuBuGn: ["#fff7fb", "#ece2f0", "#d0d1e6", "#a6bddb", "#67a9cf", "#3690c0", "#02818a", "#016c59", "#014636"],
-        Viridis: ["#440154", "#482777", "#3f4a8a", "#31678e", "#26838f", "#1f9d8a", "#6cce5a", "#b6de2b", "#fee825"],
-        Spectral: ["#9e0142", "#d53e4f", "#f46d43", "#fdae61", "#fee08b", "#ffffbf", "#e6f598", "#abdda4", "#66c2a5", "#3288bd", "#5e4fa2"],
-        RdYlGn: ["#a50026", "#d73027", "#f46d43", "#fdae61", "#fee08b", "#ffffbf", "#d9ef8b", "#a6d96a", "#66bd63", "#1a9850", "#006837"],
-        RdBu: ["#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#f7f7f7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061"],
-        PiYG: ["#8e0152", "#c51b7d", "#de77ae", "#f1b6da", "#fde0ef", "#f7f7f7", "#e6f5d0", "#b8e186", "#7fbc41", "#4d9221", "#276419"],
-        PRGn: ["#40004b", "#762a83", "#9970ab", "#c2a5cf", "#e7d4e8", "#f7f7f7", "#d9f0d3", "#a6dba0", "#5aae61", "#1b7837", "#00441b"],
-        RdYlBu: ["#a50026", "#d73027", "#f46d43", "#fdae61", "#fee090", "#ffffbf", "#e0f3f8", "#abd9e9", "#74add1", "#4575b4", "#313695"],
-        BrBG: ["#543005", "#8c510a", "#bf812d", "#dfc27d", "#f6e8c3", "#f5f5f5", "#c7eae5", "#80cdc1", "#35978f", "#01665e", "#003c30"],
-        RdGy: ["#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#ffffff", "#e0e0e0", "#bababa", "#878787", "#4d4d4d", "#1a1a1a"],
-        PuOr: ["#7f3b08", "#b35806", "#e08214", "#fdb863", "#fee0b6", "#f7f7f7", "#d8daeb", "#b2abd2", "#8073ac", "#542788", "#2d004b"],
-        Set2: ["#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f", "#e5c494", "#b3b3b3"],
-        Accent: ["#7fc97f", "#beaed4", "#fdc086", "#ffff99", "#386cb0", "#f0027f", "#bf5b17", "#666666"],
-        Set1: ["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#ffff33", "#a65628", "#f781bf", "#999999"],
-        Set3: ["#8dd3c7", "#ffffb3", "#bebada", "#fb8072", "#80b1d3", "#fdb462", "#b3de69", "#fccde5", "#d9d9d9", "#bc80bd", "#ccebc5", "#ffed6f"],
-        Dark2: ["#1b9e77", "#d95f02", "#7570b3", "#e7298a", "#66a61e", "#e6ab02", "#a6761d", "#666666"],
-        Paired: ["#a6cee3", "#1f78b4", "#b2df8a", "#33a02c", "#fb9a99", "#e31a1c", "#fdbf6f", "#ff7f00", "#cab2d6", "#6a3d9a", "#ffff99", "#b15928"],
-        Pastel2: ["#b3e2cd", "#fdcdac", "#cbd5e8", "#f4cae4", "#e6f5c9", "#fff2ae", "#f1e2cc", "#cccccc"],
-        Pastel1: ["#fbb4ae", "#b3cde3", "#ccebc5", "#decbe4", "#fed9a6", "#ffffcc", "#e5d8bd", "#fddaec", "#f2f2f2"]
-      };
-      for (var i2 = 0, list = Object.keys(colorbrewer); i2 < list.length; i2 += 1) {
-        var key2 = list[i2];
-        colorbrewer[key2.toLowerCase()] = colorbrewer[key2];
-      }
-      var colorbrewer_1 = colorbrewer;
-      var chroma2 = chroma_1;
-      chroma2.average = average;
-      chroma2.bezier = bezier_1;
-      chroma2.blend = blend_1;
-      chroma2.cubehelix = cubehelix;
-      chroma2.mix = chroma2.interpolate = mix$1;
-      chroma2.random = random_1;
-      chroma2.scale = scale$2;
-      chroma2.analyze = analyze_1.analyze;
-      chroma2.contrast = contrast;
-      chroma2.deltaE = deltaE;
-      chroma2.distance = distance;
-      chroma2.limits = analyze_1.limits;
-      chroma2.valid = valid;
-      chroma2.scales = scales;
-      chroma2.colors = w3cx11_1;
-      chroma2.brewer = colorbrewer_1;
-      var chroma_js = chroma2;
-      return chroma_js;
-    });
   }
 });
 
@@ -69120,15 +69268,14 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/storage-51237ab3.js
-var import_chroma_js, import_rxjs, events, _emitEvent, _eventListener, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, Font, css, Button;
-var init_storage_51237ab3 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/storage-51237ab3.js"() {
+// .svelte-kit/output/server/_app/immutable/chunks/storage-214bb17a.js
+var import_rxjs, events, _emitEvent, _eventListener, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, css, Button;
+var init_storage_214bb17a = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/storage-214bb17a.js"() {
     init_shims();
     init_index_19a73778();
-    init_store_7a5a957b();
-    init_database_ccbc9956();
-    import_chroma_js = __toESM(require_chroma(), 1);
+    init_font_5b202901();
+    init_database_8e0ce6fe();
     init_dist3();
     init_dist4();
     import_rxjs = __toESM(require_cjs(), 1);
@@ -69152,103 +69299,6 @@ var init_storage_51237ab3 = __esm({
         });
       }
       return subject;
-    };
-    _isMobile = writable2(false);
-    _fontGroups = [
-      [
-        "'Abhaya Libre', serif",
-        "'Nunito', sans-serif",
-        "'Hind Madurai', sans-serif"
-      ],
-      [
-        "'Noto Serif Sinhala', serif",
-        "'Source Sans Pro', sans-serif",
-        "'Pavanam', sans-serif"
-      ],
-      [
-        "'Noto Sans Sinhala', sans-serif",
-        "'Open Sans', sans-serif",
-        "'Mukta Malar', sans-serif"
-      ],
-      [
-        "'Roboto', sans-serif",
-        "'Roboto', sans-serif",
-        "'Roboto', sans-serif"
-      ]
-    ];
-    _fontSizes = [
-      [1.2, 1, 0.85],
-      [0.8, 1, 1],
-      [0.9, 1, 1],
-      [1, 1, 1]
-    ];
-    pallettes = [
-      ["#274654", "#299d8f", "#e9c46a", "#f4a261", "#e76f51"],
-      ["#9A031A", "#e26413", "#fb8b24", "#0f4C5C", "#5f0f41"],
-      ["#E63A46", "#e12f7d", "#bf47af", "#7f63d1", "#0076dc"],
-      ["#E96491", "#bd629f", "#8b629f", "#5d5e90", "#3c5576"],
-      ["#fffe00", "#85e757", "#00c484", "#009b95", "#007184"],
-      ["#6f3cb1", "#ca369c", "#ff537c", "#ff885f", "#ffc154"]
-    ];
-    _headerFontColor = "#ffffff";
-    _previewOpacity = "0.3";
-    _themes = pallettes.map((pallette, i2) => {
-      const columns = import_chroma_js.default.scale(pallette).mode("lch").colors(COLUMN_COUNT + 2, "hex");
-      const navigation = columns.map((c3, _i) => {
-        return (0, import_chroma_js.default)(c3).luminance(0.3).hex();
-      });
-      const headerBackground = "white";
-      const columnBackground = import_chroma_js.default.scale(["black", "white"])(0.92).hex();
-      const columnBackgroundAlternate = import_chroma_js.default.scale(["black", "white"])(0.86).hex();
-      const defaultButton = navigation[0];
-      const cancelButton = navigation[1];
-      const headerFontColor = _headerFontColor;
-      const previewOpacity = _previewOpacity;
-      return {
-        columns,
-        navigation,
-        headerBackground,
-        columnBackground,
-        columnBackgroundAlternate,
-        defaultButton,
-        cancelButton,
-        headerFontColor,
-        previewOpacity
-      };
-    });
-    layoutHeaderHeight = 50;
-    columnWidth = 500;
-    columnHeaderHeight = 50;
-    cardSeparation = 12;
-    cardPadding = 12;
-    navSize = 60;
-    previewHeight = (columnWidth - cardSeparation - cardPadding * 2) * 9 / 16;
-    toolbarButtonSize = 20;
-    _getSizeConfig = () => {
-      let devicePixelRatio = window && window.innerWidth > 600 ? window.devicePixelRatio : 1;
-      let _columnWidth = columnWidth;
-      let _previewHeight = previewHeight;
-      let _navSize = navSize;
-      let _toolbarButtonSize = toolbarButtonSize;
-      if (window && window.innerWidth < 600) {
-        _isMobile.set(true);
-        _columnWidth = window.innerWidth;
-        _previewHeight = (_columnWidth - cardSeparation - cardPadding * 2) * 9 / 16;
-        _navSize = 50;
-        _toolbarButtonSize = 26;
-      }
-      return {
-        layoutHeaderHeight: layoutHeaderHeight / devicePixelRatio,
-        columnWidth: _columnWidth / devicePixelRatio,
-        columnHeaderHeight: columnHeaderHeight / devicePixelRatio,
-        cardSeparation: cardSeparation / devicePixelRatio,
-        cardSeparationHalf: cardSeparation / 2 / devicePixelRatio,
-        cardPadding: cardPadding / devicePixelRatio,
-        previewHeight: _previewHeight / devicePixelRatio,
-        navSize: _navSize / devicePixelRatio,
-        navIconSize: _navSize / 3 / devicePixelRatio,
-        toolbarButtonSize: _toolbarButtonSize / devicePixelRatio
-      };
     };
     auth = getAuth2(app);
     onAuthStateChanged(auth, async (authUser) => {
@@ -69318,36 +69368,6 @@ var init_storage_51237ab3 = __esm({
       } catch (error2) {
         _createError(error2);
       }
-    });
-    Font = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let fontSize;
-      let fontFamily;
-      let $_lang, $$unsubscribe__lang;
-      validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
-      let { font = 0 } = $$props;
-      let { size = 1 } = $$props;
-      let { color = "" } = $$props;
-      let { style = "" } = $$props;
-      let { inline = false } = $$props;
-      let devicePixelRatio = 1;
-      if ($$props.font === void 0 && $$bindings.font && font !== void 0)
-        $$bindings.font(font);
-      if ($$props.size === void 0 && $$bindings.size && size !== void 0)
-        $$bindings.size(size);
-      if ($$props.color === void 0 && $$bindings.color && color !== void 0)
-        $$bindings.color(color);
-      if ($$props.style === void 0 && $$bindings.style && style !== void 0)
-        $$bindings.style(style);
-      if ($$props.inline === void 0 && $$bindings.inline && inline !== void 0)
-        $$bindings.inline(inline);
-      fontSize = _fontSizes[font][$_lang] * size * 16 / devicePixelRatio;
-      fontFamily = _fontGroups[font][$_lang];
-      $$unsubscribe__lang();
-      return `
-
-
-<div style="${"font-family: " + escape(fontFamily, true) + "; font-size: " + escape(fontSize, true) + "px; color: " + escape(color || "inherit", true) + "; display: " + escape(inline ? "inline-block" : "block", true) + "; " + escape(style, true)}">${slots.default ? slots.default({}) : ``}</div>`;
     });
     css = {
       code: ".button.s-d9-80eNJ_c8b{display:flex;align-items:center;justify-content:center;border-radius:var(--s5px);padding:var(--s5px);cursor:pointer;color:white;background-color:var(--theme-defaultbutton)}.form.s-d9-80eNJ_c8b{height:var(--s45px);width:90%;margin-bottom:var(--s14px)}.cancel.s-d9-80eNJ_c8b{background-color:var(--theme-cancelbutton)}.s-d9-80eNJ_c8b{}",
@@ -87854,9 +87874,10 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_storage_51237ab3();
-    init_database_ccbc9956();
-    init_store_7a5a957b();
+    init_storage_214bb17a();
+    init_database_8e0ce6fe();
+    init_font_5b202901();
+    init_column_config_ca4f920c();
     init_dist5();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
     import_extension_bold = __toESM(require_tiptap_extension_bold_cjs(), 1);
@@ -87872,11 +87893,11 @@ var init_layout_svelte = __esm({
     import_extension_heading = __toESM(require_tiptap_extension_heading_cjs(), 1);
     import_extension_placeholder = __toESM(require_tiptap_extension_placeholder_cjs(), 1);
     import_extension_link = __toESM(require_tiptap_extension_link_cjs(), 1);
-    import_chroma_js2 = __toESM(require_chroma(), 1);
     init_dist3();
     init_dist4();
     init_dist();
     init_dist2();
+    import_chroma_js2 = __toESM(require_chroma(), 1);
     strings = {
       enter: [
         "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA\u0DC0\u0DB1\u0DCA\u0DB1",
@@ -88289,7 +88310,7 @@ var init_layout_svelte = __esm({
       });
       const fieldTranslated = {};
       const fieldTypes = {};
-      const COMPONENTS = { text: Text_input, html: Html_input };
+      const COMPONENTS2 = { text: Text_input, html: Html_input };
       const submitDocument = async () => {
         errors2 = fieldConfigs.map((config) => {
           if (config.required) {
@@ -88365,7 +88386,7 @@ var init_layout_svelte = __esm({
         }
       )}
             ${each(fields, (field, _i) => {
-        return `${validate_component(COMPONENTS[fieldConfigs[_i].type] || missing_component, "svelte:component").$$render(
+        return `${validate_component(COMPONENTS2[fieldConfigs[_i].type] || missing_component, "svelte:component").$$render(
           $$result,
           {
             config: fieldConfigs[_i],
@@ -88611,8 +88632,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-f0f7bde0.js";
-    imports = ["_app/immutable/pages/__layout.svelte-f0f7bde0.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/_commonjsHelpers-3220c194.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-9aaf6d43.js"];
+    file2 = "_app/immutable/pages/__layout.svelte-a3d18a8f.js";
+    imports = ["_app/immutable/pages/__layout.svelte-a3d18a8f.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-dc8269c9.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-7eb83aa6.js"];
     stylesheets = ["_app/immutable/assets/__layout-1c514b46.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
@@ -90720,34 +90741,34 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/preview-9f8b6bab.js
-var css$22, Card, strings2, css$12, Content, css3, Preview;
-var init_preview_9f8b6bab = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/preview-9f8b6bab.js"() {
+// .svelte-kit/output/server/_app/immutable/chunks/proposal-83a0e022.js
+var css$42, Card, strings$1, css$32, Content, css$22, Preview, strings2, css$12, Toolbar, css3, Proposal;
+var init_proposal_83a0e022 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/proposal-83a0e022.js"() {
     init_shims();
     init_index_19a73778();
     init_string_strip_html_esm();
-    init_store_7a5a957b();
-    css$22 = {
+    init_font_5b202901();
+    css$42 = {
       code: ".card-container.s-Hio59jcNIlCL{padding:var(--theme-cardseparationhalf)}.card.s-Hio59jcNIlCL{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.s-Hio59jcNIlCL{}",
       map: null
     };
     Card = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css$22);
+      $$result.css.add(css$42);
       return `
 
 
 <div class="${"card-container s-Hio59jcNIlCL"}"><div class="${"card s-Hio59jcNIlCL"}">${slots.default ? slots.default({}) : ``}</div>
 </div>`;
     });
-    strings2 = {
+    strings$1 = {
       read_more: [
         "\u0DC0\u0DD0\u0DA9\u0DD2\u0DAF\u0DD4\u0DBB \u0D9A\u0DD2\u0DBA\u0DC0\u0DB1\u0DCA\u0DB1",
         "read more",
         "\u0BAE\u0BC7\u0BB2\u0BC1\u0BAE\u0BCD \u0BAA\u0B9F\u0BBF\u0B95\u0BCD\u0B95"
       ]
     };
-    css$12 = { code: ".s-DkLwbhZttZVG{}", map: null };
+    css$32 = { code: ".s-DkLwbhZttZVG{}", map: null };
     Content = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $_lang, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
@@ -90758,7 +90779,7 @@ var init_preview_9f8b6bab = __esm({
         $$bindings.data(data);
       if ($$props.contentField === void 0 && $$bindings.contentField && contentField !== void 0)
         $$bindings.contentField(contentField);
-      $$result.css.add(css$12);
+      $$result.css.add(css$32);
       $$unsubscribe__lang();
       return `
 
@@ -90767,7 +90788,7 @@ var init_preview_9f8b6bab = __esm({
     <!-- HTML_TAG_START -->${data[contentField][data._viewOriginal ? 3 : $_lang]}<!-- HTML_TAG_END -->  
 </div>`;
     });
-    css3 = {
+    css$22 = {
       code: ".preview-image.s-Aln3qbhUrjzf{background-image:var(--url);background-color:#7b7b7b;height:var(--theme-previewheight);width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;margin-top:5px;filter:grayscale(0.6)}.preview-container.s-Aln3qbhUrjzf{position:relative}.preview-overlay.s-Aln3qbhUrjzf{position:absolute;top:0;left:0;height:var(--theme-previewheight);width:100%;background-color:black;opacity:var(--theme-previewopacity);border-radius:3px}.preview img{margin:var(--s10px) 0;width:100%;border-radius:3px}.s-Aln3qbhUrjzf{}",
       map: null
     };
@@ -90796,7 +90817,7 @@ var init_preview_9f8b6bab = __esm({
         $$bindings.limit(limit2);
       if ($$props.expanded === void 0 && $$bindings.expanded && expanded !== void 0)
         $$bindings.expanded(expanded);
-      $$result.css.add(css3);
+      $$result.css.add(css$22);
       contentString = Array.isArray(content) ? content[data._viewOriginal ? 3 : $_lang] : content;
       images = contentString.match(/src="([\w\W]+?)"/g);
       images = images && images.map((src, _i) => {
@@ -90811,9 +90832,84 @@ var init_preview_9f8b6bab = __esm({
 
 
 <div class="${"preview s-Aln3qbhUrjzf"}">${expanded ? `${validate_component(Content, "Content").$$render($$result, { data, contentField }, {}, {})}` : `<div class="${"_clickable s-Aln3qbhUrjzf"}">${escape(croppedText)}
-            ${croppedFlag ? `<span style="${"font-weight:bold; text-decoration:underline"}" class="${"s-Aln3qbhUrjzf"}">${escape(strings2["read_more"][$_lang])}</span>
+            ${croppedFlag ? `<span style="${"font-weight:bold; text-decoration:underline"}" class="${"s-Aln3qbhUrjzf"}">${escape(strings$1["read_more"][$_lang])}</span>
                 ${images ? `<div class="${"preview-container s-Aln3qbhUrjzf"}"><div class="${"preview-image s-Aln3qbhUrjzf"}" style="${"--url: url(" + escape(images[0], true) + ")"}"></div>
                     <div class="${"preview-overlay s-Aln3qbhUrjzf"}"></div></div>` : ``}` : ``}</div>`}
+</div>`;
+    });
+    strings2 = {
+      verified: [
+        "\u0DAD\u0DC4\u0DC0\u0DD4\u0DBB\u0DD4 \u0D9A\u0DBB \u0D87\u0DAD",
+        "verified post",
+        "\u0B9A\u0BB0\u0BBF\u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BCD\u0B9F\u0BA4\u0BC1"
+      ]
+    };
+    css$12 = {
+      code: ".toolbar.s-A62t8M1ucyij{display:flex;align-items:center;justify-content:space-between;margin-top:var(--s10px)}.toolbar-left.s-A62t8M1ucyij{display:inline-flex}.toolbar-right.s-A62t8M1ucyij{display:inline-flex;align-items:center}.icon.s-A62t8M1ucyij{display:inline-flex;align-items:center;justify-content:center;width:var(--theme-toolbarbuttonsize);height:var(--theme-toolbarbuttonsize);margin-right:var(--s5px);font-size:var(--s13px);line-height:var(--s14px);background-color:rgb(226, 230, 230);border-radius:3px}.on.s-A62t8M1ucyij{background-color:rgb(124, 124, 124);color:white}.verified.s-A62t8M1ucyij{background-color:#48bb6b;color:white;margin-right:0}.facebook.s-A62t8M1ucyij{background-color:#557bab}.twitter.s-A62t8M1ucyij{background-color:#6abef2}.whatsapp.s-A62t8M1ucyij{background-color:#61ba7b}.reddit.s-A62t8M1ucyij{background-color:#fc7949}.fa-brands.s-A62t8M1ucyij{color:white}.s-A62t8M1ucyij{}",
+      map: null
+    };
+    Toolbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $_lang, $$unsubscribe__lang;
+      validate_store(_lang, "_lang");
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let { data } = $$props;
+      createEventDispatcher();
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+        $$bindings.data(data);
+      $$result.css.add(css$12);
+      $$unsubscribe__lang();
+      return `
+
+
+<div class="${"toolbar s-A62t8M1ucyij"}"><div class="${"toolbar-left s-A62t8M1ucyij"}"><div class="${["icon _clickable s-A62t8M1ucyij", data._expanded ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-down s-A62t8M1ucyij"}"></i></div>
+        <div class="${["icon _clickable s-A62t8M1ucyij", data._singlePostView ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-right-and-down-left-from-center s-A62t8M1ucyij"}"></i></div>
+        <div class="${"icon _clickable s-A62t8M1ucyij"}"><i class="${"fa-solid fa-share-nodes s-A62t8M1ucyij"}"></i></div>
+        ${`<div class="${"icon facebook _clickable s-A62t8M1ucyij"}"><a href="${"/facebook_share?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-facebook s-A62t8M1ucyij"}"></i></a></div>
+        <div class="${"icon twitter _clickable s-A62t8M1ucyij"}"><a href="${"/twitter_share?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-twitter s-A62t8M1ucyij"}"></i></a></div>
+        <div class="${"icon whatsapp _clickable s-A62t8M1ucyij"}"><a href="${"/whatsapp_share?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-whatsapp s-A62t8M1ucyij"}"></i></a></div>
+        <div class="${"icon reddit _clickable s-A62t8M1ucyij"}"><a href="${"/reddit_share?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-reddit s-A62t8M1ucyij"}"></i></a></div>`}</div>
+    <div class="${"toolbar-right s-A62t8M1ucyij"}">${validate_component(Font, "Font").$$render(
+        $$result,
+        {
+          font: 0,
+          size: 0.75,
+          style: "margin-right: var(--s5px);"
+        },
+        {},
+        {
+          default: () => {
+            return `${escape(strings2["verified"][$_lang])}`;
+          }
+        }
+      )}
+        <div class="${"icon verified s-A62t8M1ucyij"}"><i class="${"fa-solid fa-check s-A62t8M1ucyij"}"></i></div></div>
+</div>`;
+    });
+    css3 = {
+      code: ".proposals.s-3w2mc5DrBy3_{width:100%}.s-3w2mc5DrBy3_{}",
+      map: null
+    };
+    Proposal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let { data } = $$props;
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+        $$bindings.data(data);
+      $$result.css.add(css3);
+      return `<div class="${"proposals s-3w2mc5DrBy3_"}">${validate_component(Card, "Card").$$render($$result, {}, {}, {
+        default: () => {
+          return `${validate_component(Preview, "Preview").$$render(
+            $$result,
+            {
+              data,
+              contentField: "proposal",
+              limit: 50,
+              expanded: data._expanded
+            },
+            {},
+            {}
+          )}
+        ${validate_component(Toolbar, "Toolbar").$$render($$result, { data }, {}, {})}`;
+        }
+      })}
 </div>`;
     });
   }
@@ -90822,6 +90918,7 @@ var init_preview_9f8b6bab = __esm({
 // .svelte-kit/output/server/entries/pages/index.svelte.js
 var index_svelte_exports = {};
 __export(index_svelte_exports, {
+  COMPONENTS: () => COMPONENTS,
   default: () => Routes
 });
 function backInOut(t2) {
@@ -90932,23 +91029,24 @@ function tweened(value, defaults = {}) {
     subscribe: store.subscribe
   };
 }
-var import_chroma_js3, css$72, Nav, css$62, Empty, strings$3, Timestamp2, strings$2, css$52, Mt, strings$1, css$42, Toolbar, Bulletin, css$32, Youtube, News, css$23, Post, strings3, css$13, Filter2, css4, Routes;
+var import_chroma_js3, css$62, Nav, css$52, Empty, strings$2, Timestamp2, strings$12, css$43, Mt, Bulletin, css$33, Youtube, News, css$23, Post, strings3, css$13, Filter2, css4, COMPONENTS, Routes;
 var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_database_ccbc9956();
-    init_store_7a5a957b();
+    init_column_config_ca4f920c();
+    init_font_5b202901();
     init_string_strip_html_esm();
-    init_storage_51237ab3();
-    init_preview_9f8b6bab();
-    init_dist();
-    init_dist2();
+    init_storage_214bb17a();
+    init_database_8e0ce6fe();
+    init_proposal_83a0e022();
     import_chroma_js3 = __toESM(require_chroma(), 1);
     init_dist3();
     init_dist4();
+    init_dist();
+    init_dist2();
     Array(COLUMN_COUNT).fill(0);
-    css$72 = {
+    css$62 = {
       code: ".navigation.s-QYN83HapRChq{position:fixed;right:var(--s5px);bottom:var(--s5px);z-index:100;display:flex;align-items:center;flex-direction:column;background-color:black;border-radius:var(--s6px)}.animated.s-QYN83HapRChq{position:relative}.icons.s-QYN83HapRChq{position:relative;overflow:hidden}.icon.s-QYN83HapRChq{position:relative;width:var(--theme-navsize);height:var(--theme-navsize);display:flex;align-items:center;justify-content:center;color:var(--nav-buttons);font-size:var(--theme-naviconsize)}.toggle.s-QYN83HapRChq{color:white}.show-hide.s-QYN83HapRChq{background-color:black;z-index:1;color:white;border-radius:var(--s6px)}.scroll.s-QYN83HapRChq{position:absolute;right:0;width:var(--s4px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-columns-7) 25%, \n            var(--theme-columns-5) 50%,\n            var(--theme-columns-3) 75%, \n            var(--theme-columns-1) 100%);border-radius:var(--s6px)}.title_c.s-QYN83HapRChq{position:fixed}.title.s-QYN83HapRChq{font-weight:bold;color:rgb(85, 85, 85);padding:var(--s0px) var(--s5px);background-color:white}.s-QYN83HapRChq{}",
       map: null
     };
@@ -90990,7 +91088,7 @@ var init_index_svelte = __esm({
         }
         hidden = !hidden;
       }
-      $$result.css.add(css$72);
+      $$result.css.add(css$62);
       $$unsubscribe__isMobile();
       $$unsubscribe_height();
       $$unsubscribe_scrollPosition();
@@ -91006,7 +91104,7 @@ var init_index_svelte = __esm({
     <div class="${"icon show-hide _clickable s-QYN83HapRChq"}">${!hidden ? `<i class="${"fa-solid fa-angles-down s-QYN83HapRChq"}"></i>` : `<i class="${"fa-solid fa-angles-up s-QYN83HapRChq"}"></i>`}</div>
 </div>`;
     });
-    css$62 = {
+    css$52 = {
       code: ".empty-space.s-FeUw14jh5ZGb{width:100%}.s-FeUw14jh5ZGb{}",
       map: null
     };
@@ -91014,7 +91112,7 @@ var init_index_svelte = __esm({
       let { data } = $$props;
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      $$result.css.add(css$62);
+      $$result.css.add(css$52);
       return `
 
 
@@ -91026,7 +91124,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
         }
       })}`;
     });
-    strings$3 = {
+    strings$2 = {
       yesterday: [
         "\u0D8A\u0DBA\u0DDA",
         "yesterday",
@@ -91124,17 +91222,17 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
         const isYesterday = yesterday.toDateString() === date.toDateString();
         const isThisYear = today.getFullYear() === date.getFullYear();
         if (seconds < 5) {
-          return strings$3["now"][language];
+          return strings$2["now"][language];
         } else if (seconds < 60) {
-          return strings$3["secondsAgo"][language].replace("*seconds*", seconds.toString());
+          return strings$2["secondsAgo"][language].replace("*seconds*", seconds.toString());
         } else if (seconds < 90) {
-          return strings$3["minuteAgo"][language];
+          return strings$2["minuteAgo"][language];
         } else if (minutes < 60) {
-          return strings$3["minutesAgo"][language].replace("*minutes*", minutes.toString());
+          return strings$2["minutesAgo"][language].replace("*minutes*", minutes.toString());
         } else if (isToday) {
-          return getFormattedDate(date, strings$3["today"][language]);
+          return getFormattedDate(date, strings$2["today"][language]);
         } else if (isYesterday) {
-          return getFormattedDate(date, strings$3["yesterday"][language]);
+          return getFormattedDate(date, strings$2["yesterday"][language]);
         } else if (isThisYear) {
           return getFormattedDate(date, false, true);
         }
@@ -91169,7 +91267,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
         $$bindings.inline(inline);
       return `<div class="${"timestamp"}" style="${"display: " + escape(inline ? "inline-block" : "block", true)}">${escape(timeAgoString)}</div>`;
     });
-    strings$2 = {
+    strings$12 = {
       machine_translated: [
         "\u0DC3\u0DCA\u0DC0\u0DBA\u0D82\u0D9A\u0DCA\u200D\u0DBB\u0DD3\u0DBA \u0DB4\u0DBB\u0DD2\u0DC0\u0DBB\u0DCA\u0DAD\u0DB1\u0DBA\u0D9A\u0DD2, \u0DB8\u0DD4\u0DBD\u0DCA \u0DB4\u0DD2\u0DA7\u0DB4\u0DAD \u0DB6\u0DBD\u0DB1\u0DCA\u0DB1.",
         "automatic translation, view original.",
@@ -91181,7 +91279,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
         "\u0B85\u0B9A\u0BB2\u0BCD \u0B89\u0BB0\u0BC8, \u0BAE\u0BCA\u0BB4\u0BBF\u0BAA\u0BC6\u0BAF\u0BB0\u0BCD\u0BAA\u0BCD\u0BAA\u0BC1 \u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95"
       ]
     };
-    css$52 = {
+    css$43 = {
       code: ".machine-translated.s-Q7XEqeLz3oYK{padding:var(--s5px) 0;cursor:pointer}.fa-solid.s-Q7XEqeLz3oYK{font-size:var(--s11px)}.s-Q7XEqeLz3oYK{}",
       map: null
     };
@@ -91196,7 +91294,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
       let objectFields = objectProps.filter((prop) => prop.includes("_MT"));
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      $$result.css.add(css$52);
+      $$result.css.add(css$43);
       machineTranslated = objectFields.some((key2) => data[key2][$_lang]);
       $$unsubscribe__lang();
       return `
@@ -91212,58 +91310,10 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         {},
         {
           default: () => {
-            return `${`<i class="${"fa-solid fa-globe s-Q7XEqeLz3oYK"}"></i> ${escape(strings$2["machine_translated"][$_lang])}`}`;
+            return `${`<i class="${"fa-solid fa-globe s-Q7XEqeLz3oYK"}"></i> ${escape(strings$12["machine_translated"][$_lang])}`}`;
           }
         }
       )}</div>` : ``}`;
-    });
-    strings$1 = {
-      verified: [
-        "\u0DAD\u0DC4\u0DC0\u0DD4\u0DBB\u0DD4 \u0D9A\u0DBB \u0D87\u0DAD",
-        "verified post",
-        "\u0B9A\u0BB0\u0BBF\u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BCD\u0B9F\u0BA4\u0BC1"
-      ]
-    };
-    css$42 = {
-      code: ".toolbar.s-A62t8M1ucyij{display:flex;align-items:center;justify-content:space-between;margin-top:var(--s10px)}.toolbar-left.s-A62t8M1ucyij{display:inline-flex}.toolbar-right.s-A62t8M1ucyij{display:inline-flex;align-items:center}.icon.s-A62t8M1ucyij{display:inline-flex;align-items:center;justify-content:center;width:var(--theme-toolbarbuttonsize);height:var(--theme-toolbarbuttonsize);margin-right:var(--s5px);font-size:var(--s13px);line-height:var(--s14px);background-color:rgb(226, 230, 230);border-radius:3px}.on.s-A62t8M1ucyij{background-color:rgb(124, 124, 124);color:white}.verified.s-A62t8M1ucyij{background-color:#48bb6b;color:white;margin-right:0}.facebook.s-A62t8M1ucyij{background-color:#557bab}.twitter.s-A62t8M1ucyij{background-color:#6abef2}.whatsapp.s-A62t8M1ucyij{background-color:#61ba7b}.reddit.s-A62t8M1ucyij{background-color:#fc7949}.fa-brands.s-A62t8M1ucyij{color:white}.s-A62t8M1ucyij{}",
-      map: null
-    };
-    Toolbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang, $$unsubscribe__lang;
-      validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
-      let { data } = $$props;
-      createEventDispatcher();
-      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
-        $$bindings.data(data);
-      $$result.css.add(css$42);
-      $$unsubscribe__lang();
-      return `
-
-
-<div class="${"toolbar s-A62t8M1ucyij"}"><div class="${"toolbar-left s-A62t8M1ucyij"}"><div class="${["icon _clickable s-A62t8M1ucyij", data._expanded ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-down s-A62t8M1ucyij"}"></i></div>
-        <div class="${["icon _clickable s-A62t8M1ucyij", data._singlePostView ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-right-and-down-left-from-center s-A62t8M1ucyij"}"></i></div>
-        <div class="${"icon _clickable s-A62t8M1ucyij"}"><i class="${"fa-solid fa-share-nodes s-A62t8M1ucyij"}"></i></div>
-        ${`<div class="${"icon facebook _clickable s-A62t8M1ucyij"}"><a href="${"/facebook_share?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-facebook s-A62t8M1ucyij"}"></i></a></div>
-        <div class="${"icon twitter _clickable s-A62t8M1ucyij"}"><a href="${"/twitter_share?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-twitter s-A62t8M1ucyij"}"></i></a></div>
-        <div class="${"icon whatsapp _clickable s-A62t8M1ucyij"}"><a href="${"/whatsapp_share?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-whatsapp s-A62t8M1ucyij"}"></i></a></div>
-        <div class="${"icon reddit _clickable s-A62t8M1ucyij"}"><a href="${"/reddit_share?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-reddit s-A62t8M1ucyij"}"></i></a></div>`}</div>
-    <div class="${"toolbar-right s-A62t8M1ucyij"}">${validate_component(Font, "Font").$$render(
-        $$result,
-        {
-          font: 0,
-          size: 0.75,
-          style: "margin-right: var(--s5px);"
-        },
-        {},
-        {
-          default: () => {
-            return `${escape(strings$1["verified"][$_lang])}`;
-          }
-        }
-      )}
-        <div class="${"icon verified s-A62t8M1ucyij"}"><i class="${"fa-solid fa-check s-A62t8M1ucyij"}"></i></div></div>
-</div>`;
     });
     Bulletin = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { data } = $$props;
@@ -91349,7 +91399,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         }
       })}`;
     });
-    css$32 = {
+    css$33 = {
       code: ".youtube.s-pP_MCOEFRNVA{position:relative;border-radius:var(--s3px);overflow:hidden;height:var(--theme-previewheight);width:100%}.youtube-preview.s-pP_MCOEFRNVA{background-image:var(--thumbnail);background-color:#7b7b7b;height:var(--theme-previewheight);width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;filter:grayscale(0.6)}.youtube-overlay.s-pP_MCOEFRNVA{position:absolute;top:0;left:0;display:flex;align-items:center;justify-content:center;color:white;font-size:var(--s35px);height:var(--theme-previewheight);width:100%;background-color:rgba(0,0,0, var(--theme-previewopacity));border-radius:3px}.s-pP_MCOEFRNVA{}",
       map: null
     };
@@ -91361,7 +91411,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         $$bindings.data(data);
       if ($$props.style === void 0 && $$bindings.style && style !== void 0)
         $$bindings.style(style);
-      $$result.css.add(css$32);
+      $$result.css.add(css$33);
       return `<div class="${["youtube s-pP_MCOEFRNVA", "youtube-preview"].join(" ").trim()}"${add_attribute("style", youtubeStyles, 0)}><div id="${"player-" + escape(data.videoId, true)}" class="${"s-pP_MCOEFRNVA"}"></div>
     ${`<div class="${"youtube-overlay s-pP_MCOEFRNVA"}"><i class="${"fa-solid fa-play s-pP_MCOEFRNVA"}"></i></div>`}
 </div>`;
@@ -91450,16 +91500,8 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
     };
     Post = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { data } = $$props;
-      const COMPONENTS = {
-        bulletin: Bulletin,
-        newsx: News,
-        empty: Empty,
-        bulletinx: Bulletin
-      };
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      if ($$props.COMPONENTS === void 0 && $$bindings.COMPONENTS && COMPONENTS !== void 0)
-        $$bindings.COMPONENTS(COMPONENTS);
       $$result.css.add(css$23);
       return `<div class="${"post s--3yJQkpZRIwU"}"><div class="${"post-container s--3yJQkpZRIwU"}">${validate_component(COMPONENTS[data.type] || missing_component, "svelte:component").$$render($$result, { data }, {}, {})}</div>
 </div>`;
@@ -91596,6 +91638,13 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
       code: "ul.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex}.columns.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;overflow:hidden;background-color:var(--theme-columnbackground)}.column.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;width:var(--theme-columnwidth);height:calc(100vh - var(--theme-columnheaderheight))}.header.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;height:var(--theme-columnheaderheight);color:var(--theme-headerfontcolor);padding:0 var(--theme-cardseparationhalf) 0 var(--s10px);font-weight:bold;z-index:2}.header.s-Uap-jPRb-uiE div.s-Uap-jPRb-uiE{display:flex;align-items:center;height:100%}.header.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE:first-child{font-size:var(--s24px)}.icon-button.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex;align-items:center;justify-content:center;width:35px;height:35px;font-size:var(--s17px)}.cards.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;width:100%;height:calc(100vh - var(--s100px));overflow-y:scroll;overflow-x:hidden;-ms-overflow-style:none;scrollbar-width:none;padding:var(--theme-cardseparationhalf) 0}.cards.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE::-webkit-scrollbar{display:none}.spacer.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{width:var(--theme-cardseparationhalf);height:calc(100vh - var(--theme-columnheaderheight))}.spacer.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE::after{display:block;content:'';height:var(--theme-columnheaderheight);width:var(--theme-cardseparationhalf);background-color:var(--background)}.scrollbar.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:absolute;top:var(--theme-columnheaderheight);right:0}.scroll.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:absolute;overflow:hidden;top:var(--s20px);right:var(--s-3_75px);width:var(--s7_5px);border-radius:var(--s7_5px);opacity:0.5;background-color:rgba(0,0,0,0.4)}.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{}",
       map: null
     };
+    COMPONENTS = {
+      bulletin: Bulletin,
+      newsx: News,
+      empty: Empty,
+      bulletinx: Bulletin,
+      proposal: Proposal
+    };
     Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $_isMobile, $$unsubscribe__isMobile;
       let $_lang, $$unsubscribe__lang;
@@ -91603,12 +91652,6 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
       $$unsubscribe__isMobile = subscribe(_isMobile, (value) => $_isMobile = value);
       validate_store(_lang, "_lang");
       $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
-      const COMPONENTS = {
-        bulletin: Bulletin,
-        newsx: News,
-        empty: Empty,
-        bulletinx: Bulletin
-      };
       let { columnData } = $$props;
       let { postData = void 0 } = $$props;
       let showFilters = Array(COLUMN_COUNT).fill(false);
@@ -91631,9 +91674,9 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
       let image = "https://firebasestorage.googleapis.com/v0/b/aragalaya-online.appspot.com/o/aragalaya-image.jpeg?alt=media&token=46171892-7f2f-49bb-8424-65ca7411271e";
       if (postData) {
         postData._expanded = true;
-        title = postData.title[0];
+        title = postData.title && postData.title[0] || postData.organization && postData.organization[0] || "aragalaya.online";
         url = "https://aragalaya-online.web.app/?post=" + postData.id;
-        description = ge(postData.description && postData.description[0] || postData.shortDescription && postData.shortDescription[0]).result;
+        description = ge(postData.description && postData.description[0] || postData.shortDescription && postData.shortDescription[0] || postData.proposal && postData.proposal[0]).result;
         type = "article";
         let images = [];
         Object.keys(postData).map((key2) => {
@@ -91691,8 +91734,6 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
           );
         }
       });
-      if ($$props.COMPONENTS === void 0 && $$bindings.COMPONENTS && COMPONENTS !== void 0)
-        $$bindings.COMPONENTS(COMPONENTS);
       if ($$props.columnData === void 0 && $$bindings.columnData && columnData !== void 0)
         $$bindings.columnData(columnData);
       if ($$props.postData === void 0 && $$bindings.postData && postData !== void 0)
@@ -91701,6 +91742,10 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
       $$unsubscribe__isMobile();
       $$unsubscribe__lang();
       return `
+
+
+
+
 
 
 ${$$result.head += `${$$result.title = `<title>${escape(title)}</title>`, ""}<meta property="${"fb:app_id"}" content="${"420214326726915"}" class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-1maaxn1"><meta property="${"og:url"}"${add_attribute("content", url, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-1maaxn1"><meta property="${"og:type"}"${add_attribute("content", type, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-1maaxn1"><meta property="${"og:title"}"${add_attribute("content", title, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-1maaxn1"><meta property="${"og:description"}"${add_attribute("content", description, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-1maaxn1"><meta property="${"og:image"}"${add_attribute("content", image, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-1maaxn1">`, ""}
@@ -91767,9 +91812,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    file4 = "_app/immutable/pages/index.svelte-5ed1c17e.js";
-    imports3 = ["_app/immutable/pages/index.svelte-5ed1c17e.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/storage-9aaf6d43.js", "_app/immutable/chunks/_commonjsHelpers-3220c194.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/preview-9acf9977.js"];
-    stylesheets3 = ["_app/immutable/assets/index-a1f3082a.css", "_app/immutable/assets/storage-c7057ab9.css", "_app/immutable/assets/preview-1978c973.css"];
+    file4 = "_app/immutable/pages/index.svelte-6eb48ee8.js";
+    imports3 = ["_app/immutable/pages/index.svelte-6eb48ee8.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-dc8269c9.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/proposal-e51312d0.js", "_app/immutable/chunks/storage-7eb83aa6.js"];
+    stylesheets3 = ["_app/immutable/assets/index-6d9446a5.css", "_app/immutable/assets/proposal-b40970de.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
 
@@ -91823,47 +91868,16 @@ var post_preview_svelte_exports = {};
 __export(post_preview_svelte_exports, {
   default: () => Post_preview
 });
-var css$14, Proposals, css6, Post_preview;
+var import_chroma_js4, css6, Post_preview;
 var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_preview_9f8b6bab();
+    init_proposal_83a0e022();
     init_string_strip_html_esm();
-    init_store_7a5a957b();
-    css$14 = {
-      code: ".proposals.s-ljJ_6ddTturf{width:100%}.s-ljJ_6ddTturf{}",
-      map: null
-    };
-    Proposals = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let { data } = $$props;
-      let minimized = false;
-      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
-        $$bindings.data(data);
-      $$result.css.add(css$14);
-      return `
-
-
-<div class="${"proposals s-ljJ_6ddTturf"}">${validate_component(Card, "Card").$$render($$result, {}, {}, {
-        default: () => {
-          return `
-            <div class="${"_clickable s-ljJ_6ddTturf"}">${validate_component(Preview, "Preview").$$render(
-            $$result,
-            {
-              data,
-              contentField: "title",
-              limit: 10,
-              preview: minimized
-            },
-            {},
-            {}
-          )}</div>
-            
-        `;
-        }
-      })}
-</div>`;
-    });
+    init_font_5b202901();
+    init_column_config_ca4f920c();
+    import_chroma_js4 = __toESM(require_chroma(), 1);
     css6 = {
       code: ".preview.s-nkO0SViUUGe1{display:flex;justify-content:center;background-color:var(--theme-columnbackground);width:100%;height:100vh}.column-container.s-nkO0SViUUGe1{padding:var(--theme-cardseparationhalf);height:100%}.column.s-nkO0SViUUGe1{display:flex;align-items:center;justify-content:center;flex-direction:column;width:var(--theme-columnwidth);height:100%;padding:0 var(--theme-cardseparationhalf)}.s-nkO0SViUUGe1{}",
       map: null
@@ -91887,7 +91901,7 @@ var init_post_preview_svelte = __esm({
 
 <div class="${"preview s-nkO0SViUUGe1"}"><div class="${"column-container s-nkO0SViUUGe1"}"><div class="${"column s-nkO0SViUUGe1"}">${each(mockColumnData, (data) => {
         return `
-            ${validate_component(Proposals || missing_component, "svelte:component").$$render($$result, { data }, {}, {})}`;
+            ${validate_component(Proposal || missing_component, "svelte:component").$$render($$result, { data }, {}, {})}`;
       })}</div></div>
 </div>`;
     });
@@ -91909,9 +91923,9 @@ var init__5 = __esm({
     init_shims();
     init_post_preview_svelte();
     index5 = 4;
-    file6 = "_app/immutable/pages/post_preview.svelte-487a97a6.js";
-    imports5 = ["_app/immutable/pages/post_preview.svelte-487a97a6.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/preview-9acf9977.js", "_app/immutable/chunks/_commonjsHelpers-3220c194.js", "_app/immutable/chunks/index-cc16aad1.js"];
-    stylesheets5 = ["_app/immutable/assets/post_preview-741e583e.css", "_app/immutable/assets/preview-1978c973.css"];
+    file6 = "_app/immutable/pages/post_preview.svelte-286665d1.js";
+    imports5 = ["_app/immutable/pages/post_preview.svelte-286665d1.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/proposal-e51312d0.js", "_app/immutable/chunks/font-dc8269c9.js", "_app/immutable/chunks/index-cc16aad1.js"];
+    stylesheets5 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-b40970de.css"];
   }
 });
 
@@ -92059,10 +92073,11 @@ var IMPLEMENTED_TYPES, GET;
 var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
-    init_database_ccbc9956();
+    init_column_config_ca4f920c();
+    init_database_8e0ce6fe();
     init_dist();
     init_dist2();
-    IMPLEMENTED_TYPES = ["bulletin", "newsx", "bulletinx"];
+    IMPLEMENTED_TYPES = ["bulletin", "newsx", "bulletinx", "proposal"];
     GET = async ({ url }) => {
       let postData;
       if (url.search.includes("=")) {
@@ -94715,7 +94730,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-d2460f42.js", "imports": ["_app/immutable/start-d2460f42.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-ef3b31de.js", "imports": ["_app/immutable/start-ef3b31de.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
