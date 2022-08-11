@@ -87792,7 +87792,7 @@ var layout_svelte_exports = {};
 __export(layout_svelte_exports, {
   default: () => _layout
 });
-var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_extension_link, import_chroma_js2, strings, css$a, Text_input, css$9, Login, functions, _createPost, css$8, Tiptap_editor, css$7, Html_input, css$6, Select, css$5, Form, css$4, Theme_selector, css$3, Preloading_indicator, Logo, css$2, Loader, css$1, Toasts, css2, _layout;
+var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_extension_link, import_chroma_js2, strings, css$a, Text_input, css$9, Login, functions, _createPost, css$8, Tiptap_editor, css$7, Html_input, css$6, Select, css$5, Form, css$4, Theme_selector, css$3, Preloading_indicator, css$2, Loader, css$1, Toasts, css2, _layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
@@ -88401,7 +88401,6 @@ var init_layout_svelte = __esm({
 
 ${``}`;
     });
-    Logo = "data:image/png;base64,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";
     css$2 = {
       code: ".loader.s-o47rfqMMGVwP{position:fixed;top:0;left:0;z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background-color:white}.title.s-o47rfqMMGVwP{padding:10px}.progress-bar.s-o47rfqMMGVwP{position:relative;width:90%}.s-o47rfqMMGVwP{}",
       map: null
@@ -88424,7 +88423,7 @@ ${``}`;
       $$unsubscribe__scaledPixelsReady();
       $$unsubscribe__themeSizesReady();
       $$unsubscribe__themeColorsReady();
-      return `${`<div class="${"loader s-o47rfqMMGVwP"}"><div class="${"title s-o47rfqMMGVwP"}"><img${add_attribute("src", Logo, 0)} alt="${"\u0D85\u0DBB\u0D9C\u0DBD\u0DBA.online"}" class="${"s-o47rfqMMGVwP"}"></div>
+      return `${`<div class="${"loader s-o47rfqMMGVwP"}"><div class="${"title s-o47rfqMMGVwP"}"><img src="${"/logo-tiny.png"}" alt="${"\u0D85\u0DBB\u0D9C\u0DBD\u0DBA.online"}" class="${"s-o47rfqMMGVwP"}"></div>
     <div class="${"progress-bar s-o47rfqMMGVwP"}">${validate_component(Preloading_indicator, "PreloadingIndicator").$$render($$result, {}, {}, {})}</div></div>`}`;
     });
     css$1 = {
@@ -88557,8 +88556,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-c26fa274.js";
-    imports = ["_app/immutable/pages/__layout.svelte-c26fa274.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/_commonjsHelpers-3220c194.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-5579bd74.js"];
+    file2 = "_app/immutable/pages/__layout.svelte-5af1fbac.js";
+    imports = ["_app/immutable/pages/__layout.svelte-5af1fbac.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/_commonjsHelpers-3220c194.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-5579bd74.js"];
     stylesheets = ["_app/immutable/assets/__layout-1c514b46.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
@@ -94661,7 +94660,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png"]),
   mimeTypes: { ".png": "image/png" },
   _: {
-    entry: { "file": "_app/immutable/start-9097b8e8.js", "imports": ["_app/immutable/start-9097b8e8.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-ac596579.js", "imports": ["_app/immutable/start-ac596579.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
