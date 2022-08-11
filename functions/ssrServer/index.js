@@ -94657,10 +94657,10 @@ var Server = class {
 init_shims();
 var manifest = {
   appDir: "_app",
-  assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png"]),
-  mimeTypes: { ".png": "image/png" },
+  assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
+  mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-ac596579.js", "imports": ["_app/immutable/start-ac596579.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-4d70dc59.js", "imports": ["_app/immutable/start-4d70dc59.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

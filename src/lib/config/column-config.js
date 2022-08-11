@@ -269,7 +269,80 @@ export const COLUMNS = [
         ],
         icon: 'fa-solid fa-file-lines',
         height: '400px',
-        type: 'proposal'
+        type: 'proposal',
+        // START - input form field properties
+        data: {
+            title: {
+                type: 'text',
+                maxlength: 100,
+                placeholder: [
+                    'ශීර්ෂය',
+                    'title',
+                    'தலைப்பு'
+                ],
+                required: true,
+                translate: true,
+            },
+            description: {
+                type: 'html',
+                maxlength: 100,
+                placeholder: [
+                    'සවිස්තරාත්මක දැන්වීම ',
+                    'details',
+                    'விவரங்கள்'
+                ],
+                required: true,
+                translate: true,
+            }
+        },
+        // END - input form field properties
+        // START - input form properties
+        dataFormTitle: [
+            'දැන්වීමක් ඇතුල් කරන්න',
+            'Create a bulletin',
+            'ஒரு புல்லட்டின் உருவாக்கவும்'
+        ],
+        submitButton: [
+            'ඇතුල් කරන්න',
+            'create',
+            'உருவாக்க'
+        ],
+        cancelButton: [
+            'අවලංගු කරන්න',
+            'cancel',
+            'ரத்து செய்'
+        ],
+        // END - input form properties
+        // START - filter properties
+        filter: {
+            verified: true,
+            tags: [{
+                name: 'mainstream',
+                strings: [
+                    'ප්‍රධාන ධාරාවේ පුවත්',
+                    'mainstream news',
+                    'முக்கிய செய்தி'
+                ],
+                color: '#ffd492'
+            },{
+                name: 'aragala',
+                strings: [
+                    'අරගල පුවත්',
+                    'aragala news',
+                    'அரகல செய்தி'
+                ],
+                color: '#3cc1ff'
+            },{
+                name: 'economy',
+                strings: [
+                    'ආර්ථිකය',
+                    'economy',
+                    'பொருளாதாரம்'
+                ],
+                color: '#c57dff'
+            }]
+        }
+        // END - filter properties
     },
     {
         title: [
