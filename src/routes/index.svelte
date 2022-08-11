@@ -3,6 +3,26 @@
 ---- it creates a multiple column layout which can be configured
 ---- in src/lib/config/column-config.js
 --->
+
+<!-- this context module block is added here so that the COMPONENT definition
+---- can be accesed by other components
+---- https://svelte.dev/tutorial/module-exports 
+--->
+<script context="module">
+    // the component of the card to be loaded for a particular column
+    // data.type = component'
+    // refer: comments in columns.js config file
+    // NOTE:: if a component is not specified for a column type it will load an
+    // empty card
+    export const COMPONENTS = {
+        bulletin: Bulletin,
+        newsx: News,
+        empty: Empty,
+        bulletinx: Bulletin,
+        proposal: Proposal
+    }
+</script>
+<!-- index route logic -->
 <script>
     // config
     import { COLUMNS, COLUMN_COUNT }from '$lib/config/column-config'
@@ -32,18 +52,7 @@
     import Post from './_components/fixed/post.svelte';
     import Font from '$lib/components/display/font.svelte';
     import Filter from '$lib/components/util/filter.svelte';
-    
-    // the component of the card to be loaded for a particular column
-    // data.type = component'
-    // refer: comments in columns.js config file
-    // NOTE:: if a component is not specified for a column type it will load an
-    // empty card
-    export const COMPONENTS = {
-        bulletin: Bulletin,
-        newsx: News,
-        empty: Empty,
-        bulletinx: Bulletin,
-    }
+    import Proposal from './_components/posts/proposal.svelte';
 
     // column data, this is populated by the page endpoint (./index.js)
     // using the page endpoint allows the data to be fetched in the backend
@@ -101,10 +110,15 @@
     if(postData) {
         // in single post view expand all previews
         postData._expanded = true;
-        title = postData.title[0];
+        title = (postData.title && postData.title[0]) || 
+                    (postData.organization && postData.organization[0]) ||
+                        'aragalaya.online';
         url = 'https://aragalaya-online.web.app/?post=' + postData.id;
-        description = stripHtml((postData.description && postData.description[0]) 
-                        || (postData.shortDescription && postData.shortDescription[0])).result;
+        description = stripHtml(
+                (postData.description && postData.description[0]) ||
+                    (postData.shortDescription && postData.shortDescription[0]) || 
+                        (postData.proposal && postData.proposal[0])
+                ).result;
         type = 'article';
         let images = [];
         Object.keys(postData).map(key => {

@@ -5,7 +5,7 @@
         "dev": "vite dev --mode localhost",
 		"dev:prod": "vite dev --mode prod",
 		"build": "vite build --mode prod",
-        "deploy:dev": "vite build --mode dev && firebase use aragalaya-online-dev && firebase deploy",
+        "deploy:dev": "vite build --mode dev && firebase use aragalaya-online && firebase deploy",
         "deploy:prod": "vite build --mode prod && firebase use aragalaya-online-prod && firebase deploy",
 		"package": "svelte-kit package",
 		"preview": "vite preview",

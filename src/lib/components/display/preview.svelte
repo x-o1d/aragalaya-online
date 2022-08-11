@@ -11,9 +11,11 @@
 ---- USAGE: 
 
 <Preview
-    content={data.description}
+    data={data}
+    contentField={'description'}
     limit={100}
-    preview={true}/>
+    expanded={data._expanded}
+    on:expandPost={() => data._expanded = true}>
     
 ----
 --->

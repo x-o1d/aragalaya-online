@@ -1,7 +1,7 @@
 import { COLUMNS } from '$lib/config/column-config';
 import { _getPost, _getPosts } from '$lib/services/database';
 
-const IMPLEMENTED_TYPES = ['bulletin', 'newsx', 'bulletinx'];
+const IMPLEMENTED_TYPES = ['bulletin', 'newsx', 'bulletinx', 'proposal'];
 
 export const GET = async ({ url }) => {
     // if a post id is specified in the url (?post=<post_id>)

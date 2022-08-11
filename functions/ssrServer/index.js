@@ -49708,10 +49708,10 @@ var init_dist2 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/database-b15bd720.js
+// .svelte-kit/output/server/_app/immutable/chunks/database-ccbc9956.js
 var COLUMNS, COLUMN_COUNT, firebaseConfig, app, db, _createError, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord;
-var init_database_b15bd720 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/database-b15bd720.js"() {
+var init_database_ccbc9956 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/database-ccbc9956.js"() {
     init_shims();
     init_dist();
     init_dist2();
@@ -49947,7 +49947,74 @@ var init_database_b15bd720 = __esm({
         ],
         icon: "fa-solid fa-file-lines",
         height: "400px",
-        type: "proposal"
+        type: "proposal",
+        data: {
+          title: {
+            type: "text",
+            maxlength: 100,
+            placeholder: [
+              "\u0DC1\u0DD3\u0DBB\u0DCA\u0DC2\u0DBA",
+              "title",
+              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
+            ],
+            required: true,
+            translate: true
+          },
+          description: {
+            type: "html",
+            maxlength: 100,
+            placeholder: [
+              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A \u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8 ",
+              "details",
+              "\u0BB5\u0BBF\u0BB5\u0BB0\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+            ],
+            required: true,
+            translate: true
+          }
+        },
+        dataFormTitle: [
+          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "Create a bulletin",
+          "\u0B92\u0BB0\u0BC1 \u0BAA\u0BC1\u0BB2\u0BCD\u0BB2\u0B9F\u0BCD\u0B9F\u0BBF\u0BA9\u0BCD \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
+        ],
+        submitButton: [
+          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "create",
+          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
+        ],
+        cancelButton: [
+          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "cancel",
+          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
+        ],
+        filter: {
+          verified: true,
+          tags: [{
+            name: "mainstream",
+            strings: [
+              "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+              "mainstream news",
+              "\u0BAE\u0BC1\u0B95\u0BCD\u0B95\u0BBF\u0BAF \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
+            ],
+            color: "#ffd492"
+          }, {
+            name: "aragala",
+            strings: [
+              "\u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+              "aragala news",
+              "\u0B85\u0BB0\u0B95\u0BB2 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
+            ],
+            color: "#3cc1ff"
+          }, {
+            name: "economy",
+            strings: [
+              "\u0D86\u0DBB\u0DCA\u0DAE\u0DD2\u0D9A\u0DBA",
+              "economy",
+              "\u0BAA\u0BCA\u0BB0\u0BC1\u0BB3\u0BBE\u0BA4\u0BBE\u0BB0\u0BAE\u0BCD"
+            ],
+            color: "#c57dff"
+          }]
+        }
       },
       {
         title: [
@@ -49989,16 +50056,6 @@ var init_database_b15bd720 = __esm({
       messagingSenderId: "15533282305",
       appId: "1:15533282305:web:a807d2c4f789c046a71c00"
     };
-    {
-      firebaseConfig = {
-        apiKey: "AIzaSyAIFR7IVXYjG_8lyPyfHxsdx_kaRz4z3SM",
-        authDomain: "aragalaya-online-prod.firebaseapp.com",
-        projectId: "aragalaya-online-prod",
-        storageBucket: "aragalaya-online-prod.appspot.com",
-        messagingSenderId: "730227179317",
-        appId: "1:730227179317:web:59771460444f98ae52567c"
-      };
-    }
     app = initializeApp(firebaseConfig);
     db = getFirestore(app);
     _createError = async (error2, caller, data) => {
@@ -69063,14 +69120,14 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/storage-796d6988.js
+// .svelte-kit/output/server/_app/immutable/chunks/storage-51237ab3.js
 var import_chroma_js, import_rxjs, events, _emitEvent, _eventListener, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, Font, css, Button;
-var init_storage_796d6988 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/storage-796d6988.js"() {
+var init_storage_51237ab3 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/storage-51237ab3.js"() {
     init_shims();
     init_index_19a73778();
     init_store_7a5a957b();
-    init_database_b15bd720();
+    init_database_ccbc9956();
     import_chroma_js = __toESM(require_chroma(), 1);
     init_dist3();
     init_dist4();
@@ -87797,8 +87854,8 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_storage_796d6988();
-    init_database_b15bd720();
+    init_storage_51237ab3();
+    init_database_ccbc9956();
     init_store_7a5a957b();
     init_dist5();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
@@ -88516,9 +88573,7 @@ ${validate_component(Toasts, "Toasts").$$render($$result, {}, {}, {})}
 		</div>
 		<div class="${"online s-PoaHcXV6SIWL"}">.online
 		</div>
-        <div class="${"beta s-PoaHcXV6SIWL"}">${escape(
-        "(prod-beta)"
-      )}</div></div>
+        <div class="${"beta s-PoaHcXV6SIWL"}">${escape("(dev-beta)")}</div></div>
 	<ul class="${"header-right s-PoaHcXV6SIWL"}">${!$_isMobile ? `<li class="${"s-PoaHcXV6SIWL"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
 		</li>
 		<li class="${"s-PoaHcXV6SIWL"}">English 
@@ -88556,8 +88611,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-5af1fbac.js";
-    imports = ["_app/immutable/pages/__layout.svelte-5af1fbac.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/_commonjsHelpers-3220c194.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-5579bd74.js"];
+    file2 = "_app/immutable/pages/__layout.svelte-f0f7bde0.js";
+    imports = ["_app/immutable/pages/__layout.svelte-f0f7bde0.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/_commonjsHelpers-3220c194.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-9aaf6d43.js"];
     stylesheets = ["_app/immutable/assets/__layout-1c514b46.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
@@ -90882,10 +90937,10 @@ var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_database_b15bd720();
+    init_database_ccbc9956();
     init_store_7a5a957b();
     init_string_strip_html_esm();
-    init_storage_796d6988();
+    init_storage_51237ab3();
     init_preview_9f8b6bab();
     init_dist();
     init_dist2();
@@ -91712,8 +91767,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    file4 = "_app/immutable/pages/index.svelte-8f2c8ca1.js";
-    imports3 = ["_app/immutable/pages/index.svelte-8f2c8ca1.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/storage-5579bd74.js", "_app/immutable/chunks/_commonjsHelpers-3220c194.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/preview-9f61fa0d.js"];
+    file4 = "_app/immutable/pages/index.svelte-5ed1c17e.js";
+    imports3 = ["_app/immutable/pages/index.svelte-5ed1c17e.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/storage-9aaf6d43.js", "_app/immutable/chunks/_commonjsHelpers-3220c194.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/preview-9acf9977.js"];
     stylesheets3 = ["_app/immutable/assets/index-a1f3082a.css", "_app/immutable/assets/storage-c7057ab9.css", "_app/immutable/assets/preview-1978c973.css"];
   }
 });
@@ -91854,8 +91909,8 @@ var init__5 = __esm({
     init_shims();
     init_post_preview_svelte();
     index5 = 4;
-    file6 = "_app/immutable/pages/post_preview.svelte-6e2d5659.js";
-    imports5 = ["_app/immutable/pages/post_preview.svelte-6e2d5659.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/preview-9f61fa0d.js", "_app/immutable/chunks/_commonjsHelpers-3220c194.js", "_app/immutable/chunks/index-cc16aad1.js"];
+    file6 = "_app/immutable/pages/post_preview.svelte-487a97a6.js";
+    imports5 = ["_app/immutable/pages/post_preview.svelte-487a97a6.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/preview-9acf9977.js", "_app/immutable/chunks/_commonjsHelpers-3220c194.js", "_app/immutable/chunks/index-cc16aad1.js"];
     stylesheets5 = ["_app/immutable/assets/post_preview-741e583e.css", "_app/immutable/assets/preview-1978c973.css"];
   }
 });
@@ -92004,7 +92059,7 @@ var IMPLEMENTED_TYPES, GET;
 var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
-    init_database_b15bd720();
+    init_database_ccbc9956();
     init_dist();
     init_dist2();
     IMPLEMENTED_TYPES = ["bulletin", "newsx", "bulletinx"];
@@ -94660,7 +94715,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-4d70dc59.js", "imports": ["_app/immutable/start-4d70dc59.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-d2460f42.js", "imports": ["_app/immutable/start-d2460f42.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

@@ -4,15 +4,16 @@
     import Empty from '../posts/empty.svelte';
     import Bulletin from '../posts/bulletin.svelte';
     import News from '../posts/news.svelte';
+    import { COMPONENTS } from '../../index.svelte';
 
     export let data;
 
-    export const COMPONENTS = {
-        bulletin: Bulletin,
-        newsx: News,
-        empty: Empty,
-        bulletinx: Bulletin,
-    }
+    // export const COMPONENTS = {
+    //     bulletin: Bulletin,
+    //     newsx: News,
+    //     empty: Empty,
+    //     bulletinx: Bulletin,
+    // }
 
     const hidePost = () => {
         data._singlePostView = false;

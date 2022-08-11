@@ -5,7 +5,7 @@
 --->
 <script>
     // import the post you want to preview
-    import Proposals from './_components/posts/proposals.svelte';
+    import Proposals from './_components/posts/proposal.svelte';
 
     // mock data for the post you want to preview can be
     // set in the below array.

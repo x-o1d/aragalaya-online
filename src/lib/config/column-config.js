@@ -11,9 +11,7 @@
 ////////////////////
 //   NOTE:: the actual component that's rendered in the column
 //   has to be specified in:
-//   1) src/routes/index.svelte (line 20) COMPONENTS object 
-//   2) post.svelte (line 10) COMPONENTS object 
-//   3) index.js implemented types
+//   1) src/routes/index.svelte COMPONENTS object 
 //   specifying it here causes some cyclic reference issues and messes up SSR
 //   we should see if there's a better solution.
 //   https://github.com/sveltejs/svelte/issues/6702
@@ -58,9 +56,9 @@ export const COLUMNS = [
         // END - input form field properties
         // START - input form properties
         dataFormTitle: [
-            'දැන්වීමක් ඇතුල් කරන්න',
-            'Create a bulletin',
-            'ஒரு புல்லட்டின் உருவாக்கவும்'
+            'පුවතක් ඇතුල් කරන්න',
+            'Create a news article',
+            'ஒரு செய்தி கட்டுரையை உருவாக்கவும்'
         ],
         submitButton: [
             'ඇතුල් කරන්න',
@@ -272,24 +270,35 @@ export const COLUMNS = [
         type: 'proposal',
         // START - input form field properties
         data: {
-            title: {
+            organization: {
                 type: 'text',
                 maxlength: 100,
                 placeholder: [
-                    'ශීර්ෂය',
-                    'title',
-                    'தலைப்பு'
+                    'ආයතනය',
+                    'organization',
+                    'அமைப்பு'
                 ],
                 required: true,
                 translate: true,
             },
-            description: {
-                type: 'html',
-                maxlength: 100,
+            motive: {
+                type: 'text',
+                maxlength: 300,
                 placeholder: [
-                    'සවිස්තරාත්මක දැන්වීම ',
-                    'details',
-                    'விவரங்கள்'
+                    'ආයතනයේ අරමුණ',
+                    'organization\'s motive',
+                    'அமைப்பின் நோக்கம்'
+                ],
+                required: true,
+                translate: true,
+            },
+            proposal: {
+                type: 'html',
+                maxlength: 1000,
+                placeholder: [
+                    'සවිස්තරාත්මකව යෝජනාව',
+                    'proposal in detail',
+                    'விரிவான முன்மொழிவு'
                 ],
                 required: true,
                 translate: true,
