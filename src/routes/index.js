@@ -18,7 +18,9 @@ export const GET = async ({ url }) => {
     for(let column of COLUMNS) {
         let data;
         // get data for the column
-        if(IMPLEMENTED_TYPES.includes(column.type)) {
+        if((column.type == 'static')) {
+            data = column.static;
+        } else if(IMPLEMENTED_TYPES.includes(column.type)) {
             data = await _getPosts(column.type);
         } else {
             // if the column type is not implemented
@@ -26,7 +28,7 @@ export const GET = async ({ url }) => {
             // id is neccessary since the #each block is
             // keyed on the id.
             // mock: true, ensures that an empty card is rendered
-            data = Array(10).fill(true).map((_, i) => {
+            data = Array(5).fill(true).map((_, i) => {
                 return {id: i, type: 'empty', height: column.height};
             });
         }

@@ -53256,10 +53256,10 @@ var init_dist2 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/database-e087c939.js
+// .svelte-kit/output/server/_app/immutable/chunks/database-8e0ce6fe.js
 var firebaseConfig, app, db, _createError, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord;
-var init_database_e087c939 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/database-e087c939.js"() {
+var init_database_8e0ce6fe = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/database-8e0ce6fe.js"() {
     init_shims();
     init_dist();
     init_dist2();
@@ -53271,16 +53271,6 @@ var init_database_e087c939 = __esm({
       messagingSenderId: "15533282305",
       appId: "1:15533282305:web:a807d2c4f789c046a71c00"
     };
-    {
-      firebaseConfig = {
-        apiKey: "AIzaSyAIFR7IVXYjG_8lyPyfHxsdx_kaRz4z3SM",
-        authDomain: "aragalaya-online-prod.firebaseapp.com",
-        projectId: "aragalaya-online-prod",
-        storageBucket: "aragalaya-online-prod.appspot.com",
-        messagingSenderId: "730227179317",
-        appId: "1:730227179317:web:59771460444f98ae52567c"
-      };
-    }
     app = initializeApp(firebaseConfig);
     db = getFirestore(app);
     _createError = async (error2, caller, data) => {
@@ -69278,14 +69268,14 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/storage-fe17d5d5.js
+// .svelte-kit/output/server/_app/immutable/chunks/storage-214bb17a.js
 var import_rxjs, events, _emitEvent, _eventListener, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, css, Button;
-var init_storage_fe17d5d5 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/storage-fe17d5d5.js"() {
+var init_storage_214bb17a = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/storage-214bb17a.js"() {
     init_shims();
     init_index_19a73778();
     init_font_5b202901();
-    init_database_e087c939();
+    init_database_8e0ce6fe();
     init_dist3();
     init_dist4();
     import_rxjs = __toESM(require_cjs(), 1);
@@ -87884,8 +87874,8 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_storage_fe17d5d5();
-    init_database_e087c939();
+    init_storage_214bb17a();
+    init_database_8e0ce6fe();
     init_font_5b202901();
     init_column_config_ca4f920c();
     init_dist5();
@@ -88604,9 +88594,7 @@ ${validate_component(Toasts, "Toasts").$$render($$result, {}, {}, {})}
 		</div>
 		<div class="${"online s-PoaHcXV6SIWL"}">.online
 		</div>
-        <div class="${"beta s-PoaHcXV6SIWL"}">${escape(
-        "(prod-beta)"
-      )}</div></div>
+        <div class="${"beta s-PoaHcXV6SIWL"}">${escape("(dev-beta)")}</div></div>
 	<ul class="${"header-right s-PoaHcXV6SIWL"}">${!$_isMobile ? `<li class="${"s-PoaHcXV6SIWL"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
 		</li>
 		<li class="${"s-PoaHcXV6SIWL"}">English 
@@ -88644,8 +88632,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-8cb44d48.js";
-    imports = ["_app/immutable/pages/__layout.svelte-8cb44d48.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-dc8269c9.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-626cba00.js"];
+    file2 = "_app/immutable/pages/__layout.svelte-a3d18a8f.js";
+    imports = ["_app/immutable/pages/__layout.svelte-a3d18a8f.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-dc8269c9.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-7eb83aa6.js"];
     stylesheets = ["_app/immutable/assets/__layout-1c514b46.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
@@ -90753,10 +90741,10 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/proposal-dcb519a3.js
+// .svelte-kit/output/server/_app/immutable/chunks/proposal-be2aa418.js
 var css$32, Card, strings$3, Timestamp2, strings$2, css$22, Content, css$12, Preview, strings$1, css3, Toolbar, strings2, Proposal;
-var init_proposal_dcb519a3 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/proposal-dcb519a3.js"() {
+var init_proposal_be2aa418 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/proposal-be2aa418.js"() {
     init_shims();
     init_index_19a73778();
     init_font_5b202901();
@@ -91156,7 +91144,7 @@ var init_proposal_dcb519a3 = __esm({
                   {
                     data,
                     contentField: "proposal",
-                    limit: 50,
+                    limit: 150,
                     expanded: data._expanded
                   },
                   {},
@@ -91294,9 +91282,9 @@ var init_index_svelte = __esm({
     init_column_config_ca4f920c();
     init_font_5b202901();
     init_string_strip_html_esm();
-    init_storage_fe17d5d5();
-    init_database_e087c939();
-    init_proposal_dcb519a3();
+    init_storage_214bb17a();
+    init_database_8e0ce6fe();
+    init_proposal_be2aa418();
     import_chroma_js3 = __toESM(require_chroma(), 1);
     init_dist3();
     init_dist4();
@@ -91927,8 +91915,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    file4 = "_app/immutable/pages/index.svelte-a38961da.js";
-    imports3 = ["_app/immutable/pages/index.svelte-a38961da.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-dc8269c9.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/proposal-bb5d785a.js", "_app/immutable/chunks/storage-626cba00.js"];
+    file4 = "_app/immutable/pages/index.svelte-ffeaa622.js";
+    imports3 = ["_app/immutable/pages/index.svelte-ffeaa622.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-dc8269c9.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/proposal-f05be127.js", "_app/immutable/chunks/storage-7eb83aa6.js"];
     stylesheets3 = ["_app/immutable/assets/index-6d9446a5.css", "_app/immutable/assets/proposal-62aca3cb.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
@@ -91988,7 +91976,7 @@ var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_proposal_dcb519a3();
+    init_proposal_be2aa418();
     init_font_5b202901();
     init_column_config_ca4f920c();
     import_chroma_js4 = __toESM(require_chroma(), 1);
@@ -92038,8 +92026,8 @@ var init__5 = __esm({
     init_shims();
     init_post_preview_svelte();
     index5 = 4;
-    file6 = "_app/immutable/pages/post_preview.svelte-4ad3dc12.js";
-    imports5 = ["_app/immutable/pages/post_preview.svelte-4ad3dc12.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/proposal-bb5d785a.js", "_app/immutable/chunks/font-dc8269c9.js", "_app/immutable/chunks/index-cc16aad1.js"];
+    file6 = "_app/immutable/pages/post_preview.svelte-0d0d4e6a.js";
+    imports5 = ["_app/immutable/pages/post_preview.svelte-0d0d4e6a.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/proposal-f05be127.js", "_app/immutable/chunks/font-dc8269c9.js", "_app/immutable/chunks/index-cc16aad1.js"];
     stylesheets5 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-62aca3cb.css"];
   }
 });
@@ -92189,7 +92177,7 @@ var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
     init_column_config_ca4f920c();
-    init_database_e087c939();
+    init_database_8e0ce6fe();
     init_dist();
     init_dist2();
     IMPLEMENTED_TYPES = ["bulletin", "newsx", "bulletinx", "proposal"];
@@ -94845,7 +94833,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-e1d9d7ee.js", "imports": ["_app/immutable/start-e1d9d7ee.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-03944373.js", "imports": ["_app/immutable/start-03944373.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

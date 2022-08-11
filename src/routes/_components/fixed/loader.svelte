@@ -18,6 +18,7 @@
     // app ready for display
     let loadingComplete = false;
 
+    let executionCount = 0;
     onMount(() => {
         const checkLoadedInterval = setInterval(() => {
             var ss = document.styleSheets;
@@ -61,6 +62,21 @@
                     clearInterval(checkLoadedInterval);
                 }, 200);
             }
+            if(executionCount > 4) {
+                if(!normalizeCssLoaded) {
+                    console.log('normalize.css pending..');
+                }
+                if(!faV4FontFaceLoaded || !faV5FontFaceLoaded || !faV4ShimsLoaded || !faMainLoaded) {
+                    console.log('font awesome pending..');
+                }
+                if(!$_themeColorsReady || !$_themeSizesReady || !$_scaledPixelsReady) {
+                    console.log('css variables pending..');
+                }
+                if(!$_appContentReady) {
+                    console.log('window onload() pending..');
+                }
+            }
+            executionCount++;
         }, 800);
     });
 </script>

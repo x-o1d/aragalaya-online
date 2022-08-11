@@ -1,7 +1,14 @@
 const functions = require('firebase-functions');
 
+const runtimeOpts = {
+    timeoutSeconds: 300,
+    memory: (process.env.MODE == 'prod')? '512MB': '256MB',
+    mode: process.env.MODE,
+};
+
 let ssrServerServer;
-exports.ssrServer = functions.region('us-central1').https.onRequest(async (request, response) => {
+exports.ssrServer = functions.region('us-central1').runWith(runtimeOpts).
+        https.onRequest(async (request, response) => {
     if (!ssrServerServer) {
         functions.logger.info('Initialising SvelteKit SSR entry');
         ssrServerServer = require('./ssrServer/index').default;

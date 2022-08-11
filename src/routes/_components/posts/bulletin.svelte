@@ -20,9 +20,8 @@
     <Font
         font={0}
         size={0.75}
-        color="
-            rgb(100, 99, 99);
-            margin-bottom: var(--s5px);">
+        color="rgb(100, 99, 99)"
+        style="margin-bottom: var(--s5px);">
         <Timestamp time={data.createdOn}/>
     </Font>
     <!-- title -->

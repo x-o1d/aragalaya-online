@@ -87,7 +87,13 @@ async function translateData(data) {
     return translatedData;
 }
 
-exports.addpost = functions.https.onCall(async (data, context) => {
+const runtimeOpts = {
+    timeoutSeconds: 300,
+    memory: '256MB',
+    mode: process.env.MODE,
+};
+
+exports.addpost = functions.runWith(runtimeOpts).https.onCall(async (data, context) => {
     logger.info('Input data :', data);
 
     if (!context.auth) {

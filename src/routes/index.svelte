@@ -19,7 +19,8 @@
         newsx: News,
         empty: Empty,
         bulletinx: Bulletin,
-        proposal: Proposal
+        proposal: Proposal,
+        wip: Wip,
     }
 </script>
 <!-- index route logic -->
@@ -53,6 +54,7 @@
     import Font from '$lib/components/display/font.svelte';
     import Filter from '$lib/components/util/filter.svelte';
     import Proposal from './_components/posts/proposal.svelte';
+    import Wip from './_components/posts/wip.svelte';
 
     // column data, this is populated by the page endpoint (./index.js)
     // using the page endpoint allows the data to be fetched in the backend
@@ -356,7 +358,7 @@
                     {#each columnData[_i] as item, _i (item.id)}
                     <div>
                         <svelte:component 
-                            this={COMPONENTS[column.type] || Empty}
+                            this={COMPONENTS[item.type] || Empty}
                             data={item}/>
                     </div>
                     {/each}

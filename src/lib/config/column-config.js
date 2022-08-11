@@ -355,13 +355,41 @@ export const COLUMNS = [
     },
     {
         title: [
+            'මත විමසීම්',
+            'Opinion polls',
+            'கருத்துக் கணிப்புகள்'
+        ],
+        icon: 'fa-solid fa-file-signature',
+        height: '500px',
+        type: 'static',
+        static: [{
+            type: 'wip',
+            service: [
+                `ඡන්ද විමසීම් මගින් ඕනෑම කෙනෙකුට පොදු මත විමසුමක් නිර්මාණය කිරීමට සහ මිනිසුන්ට ඒ සඳහා ඡන්දය ප්‍රකාශ කිරීමට ඉඩ ලබා දේ. අරගලයේ දිශානතිය ගැන ප්‍රජාතන්ත්‍රවාදීව තීරණ ගැනීමට මෙය යොදාගත හැක.`,
+                `polls will allow anyone to create a public poll and allow anyone to create and vote for suggestions. this can be used to make democratic decisions about the direction of aragalaya.`,
+                `வாக்கெடுப்புகள் யாரையும் பொது வாக்கெடுப்பை உருவாக்க அனுமதிக்கும் மற்றும் மக்கள் அதற்கு வாக்களிக்க அனுமதிக்கும். அரகலயாவின் திசையைப் பற்றி ஜனநாயக முடிவுகளை எடுக்க இதைப் பயன்படுத்தலாம்.`
+            ],
+            releaseDate: '29/08/2022'
+        }]
+    },
+    {
+        title: [
             'සාමුහික ලේඛන',
             'Collaborative documents',
             'கூட்டு ஆவணங்கள்'
         ],
         icon: 'fa-solid fa-file-signature',
         height: '500px',
-        type: ''
+        type: 'static',
+        static: [{
+            type: 'wip',
+            service: [
+                `මෙම සේවාව මගින් සාමුහිකව ලේඛන නිර්මාණය කල හැකි අතර, එහිදී ඇතිවන ගැටුම් චන්දයක් මගින් විසඳීමට ඉඩ සලසයි. මෙය අරගල ප්‍රඥප්තියක් නිර්මාණය කිරීමට හා නව ව්‍යවස්ථාවක් පවා ප්‍රජාතන්ත්‍රවාදිව නිර්මාණය කිරීමට භාවිතා කල හැක.`,
+                `this service will allow to create collaborative documents with conflicts resolved through voting. this can be used to create an aragala manifesto, or even a new constitution.`,
+                `இந்தச் சேவையானது வாக்குப்பதிவு மூலம் தீர்க்கப்படும் முரண்பாடுகளுடன் கூட்டு ஆவணங்களை உருவாக்க அனுமதிக்கும். அரகல பிரகடனத்தை அல்லது புதிய அரசியலமைப்பை உருவாக்க இதைப் பயன்படுத்தலாம்.`
+            ],
+            releaseDate: '29/09/2022'
+        }]
     },
     {
         title: [
@@ -371,7 +399,17 @@ export const COLUMNS = [
         ],
         icon: 'fa-solid fa-coins',
         height: '410px',
-        type: 'budget'
+        type: 'budget',
+        type: 'static',
+        static: [{
+            type: 'wip',
+            service: [
+                `විනිවිද පෙනෙන අයවැය මඟින් ඕනෑම අරගලය ව්‍යාපෘතියක් සඳහා විවෘත අයවැයක් නිර්මාණය කිරීමට ඉඩ සැලසේ. පළමු පියවර ලෙස අපි aragalaya.online ව්‍යාපෘතිය සඳහා අයවැය නිර්මාණය කිරීම සඳහා මෙය භාවිතා කිරීමට සැලසුම් කරමු.`,
+                `transparent budgets will allow to create open budgets for any of the aragalaya projects. as first step we're planning to use this for creating the budget for the aragalaya.online project.`,
+                `வெளிப்படையான வரவுசெலவுத்திட்டங்கள் எந்தவொரு அரகலயா திட்டங்களுக்கும் திறந்த வரவு செலவுத் திட்டங்களை உருவாக்க அனுமதிக்கும். முதல் கட்டமாக அரகலயா.ஆன்லைன் திட்டத்திற்கான பட்ஜெட்டை உருவாக்க இதைப் பயன்படுத்த திட்டமிட்டுள்ளோம்.`
+            ],
+            releaseDate: '29/09/2022'
+        }]
     },
     {
         title: [

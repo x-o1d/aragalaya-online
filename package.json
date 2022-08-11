@@ -6,7 +6,7 @@
 		"dev:prod": "vite dev --mode prod",
 		"build": "vite build --mode prod",
         "deploy:dev": "vite build --mode dev && firebase use aragalaya-online && firebase deploy",
-        "deploy:prod": "vite build --mode prod && firebase use aragalaya-online-prod && firebase deploy",
+        "deploy:prod": "vite build --mode prod && firebase use aragalaya-online-prod && MODE=prod firebase deploy",
 		"package": "svelte-kit package",
 		"preview": "vite preview",
 		"check": "svelte-check --tsconfig ./jsconfig.json",
