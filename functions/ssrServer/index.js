@@ -91903,7 +91903,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             {
               font: 1,
               size: 0.9,
-              style: "margin-bottom: var(--s3px);"
+              style: "\n                margin-bottom: var(--s3px);\n                text-align: center;"
             },
             {},
             {
@@ -91917,7 +91917,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             {
               font: 0,
               size: 0.75,
-              style: "\n                display: inline-flex;\n                margin-bottom: var(--s10px);"
+              style: "\n                display: inline-flex;\n                margin-bottom: var(--s10px);\n                text:align: center;"
             },
             {},
             {
@@ -92236,8 +92236,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    file4 = "_app/immutable/pages/index.svelte-db7f552b.js";
-    imports3 = ["_app/immutable/pages/index.svelte-db7f552b.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-1c71e77c.js", "_app/immutable/chunks/store-ca67da60.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/proposal-99e0a3b7.js", "_app/immutable/chunks/storage-0ea2a0e0.js"];
+    file4 = "_app/immutable/pages/index.svelte-208a5910.js";
+    imports3 = ["_app/immutable/pages/index.svelte-208a5910.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-1c71e77c.js", "_app/immutable/chunks/store-ca67da60.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/proposal-0a047175.js", "_app/immutable/chunks/storage-0ea2a0e0.js"];
     stylesheets3 = ["_app/immutable/assets/index-2968e32a.css", "_app/immutable/assets/proposal-62aca3cb.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
@@ -92302,8 +92302,8 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 3;
-    file5 = "_app/immutable/pages/post_preview.svelte-e8c45f49.js";
-    imports4 = ["_app/immutable/pages/post_preview.svelte-e8c45f49.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/proposal-99e0a3b7.js", "_app/immutable/chunks/store-ca67da60.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/font-1c71e77c.js"];
+    file5 = "_app/immutable/pages/post_preview.svelte-4ddf6fb0.js";
+    imports4 = ["_app/immutable/pages/post_preview.svelte-4ddf6fb0.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/proposal-0a047175.js", "_app/immutable/chunks/store-ca67da60.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/font-1c71e77c.js"];
     stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-62aca3cb.css"];
   }
 });
@@ -95196,7 +95196,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-e29c150c.js", "imports": ["_app/immutable/start-e29c150c.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-5d380211.js", "imports": ["_app/immutable/start-5d380211.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

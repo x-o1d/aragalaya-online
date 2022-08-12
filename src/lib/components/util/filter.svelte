@@ -10,7 +10,6 @@
 
     import Card from '$lib/components/util/card.svelte';
     import Font from '$lib/components/display/font.svelte';
-    import Button from '$lib/components/input/button.svelte';
 
     export let show;
     export let columnId;
@@ -21,7 +20,7 @@
     let verified = true;
     let notVerified = false;
     let tags = [];
-    let selected = Array(configTags.length).fill(false);
+    let selected = Array(configTags.length).fill(true);
 
     const tagSelect = (tag) => {
         if(tags.includes(tag)) {
@@ -31,50 +30,43 @@
         }
         selected = selected.map((_,_i) => tags.includes(configTags[_i].name));
     }
+
+    const clearAll = () => {
+        verified = true;
+        notVerified = false;
+        selected = selected.map((_,_i) => (_i == 0));
+    }
+
+    const selectAll = () => {
+        verified = true;
+        notVerified = true;
+        selected = selected.map((_,_i) => (_i > -1));
+    }
 </script>
 
 {#if show}
 <div class="filters">
     <Card>
         <Font
-            font={1}
-            size={0.9}
-            style="margin-bottom: var(--s3px);">
-            {_strings['verified_status'][$_lang]}
-        </Font>
-        <Font
             font={0}
-            size={0.75}
+            size={0.9}
             style="
-                display: inline-flex;
-                margin-bottom: var(--s10px);">
+                display: flex;
+                margin-bottom: var(--s5px);
+                justify-content: center;
+                flex-wrap: wrap;">
             <span
-                class="tag green" 
+                class="tag verified" 
                 class:selected={verified}
                 on:click={() => verified = !verified}>
                 {_strings['verified'][$_lang]}
             </span>
             <span 
-                class="tag red"
+                class="tag not-verified"
                 class:selected={notVerified}
                 on:click={() => notVerified = !notVerified}>
                 {_strings['not_verified'][$_lang]}
             </span>
-        </Font>
-        <!-- tag selection -->
-        {#if showTags}
-        <Font
-            font={1}
-            size={0.9}
-            style="margin-bottom: var(--s3px);">
-            {_strings['tags'][$_lang]}
-        </Font>
-        <Font
-            font={0}
-            size={0.75}
-            style="
-                display: inline-flex;
-                margin-bottom: var(--s3px);">
             {#each COLUMNS[columnId].filter.tags as tag, _i}
             <span 
                 class="tag"
@@ -85,17 +77,24 @@
             </span>
             {/each}
         </Font>
-        {/if}
-        <!-- filter button -->
-        <div class="filter-button">
-            <Button 
-                text={_strings['filter']}
-                style="
-                    display: inline-flex;
-                    width: var(--s100px);"
-                fontSize={0.8}
-                onclick={() => {}}/>
+        <div class="button-container">
+            <div 
+                class="button"
+                on:click={selectAll}>
+                <i class="fa-solid fa-grip"></i>
+            </div>
+            <div 
+                class="button"
+                on:click={clearAll}>
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div class="button filter">
+                {_strings['filter'][$_lang]}
+            </div>
+            
         </div>
+        <!-- filter button -->
+        
         
     </Card>
 </div>
@@ -111,8 +110,9 @@
         border: var(--s2px) solid #a5a5a5;
         border-radius: var(--s3px);
         padding: 0 var(--s3px);
-        margin-right: var(--s3px);
+        margin-right: var(--s5px);
         filter: grayscale(0.8);
+        margin-bottom: var(--s5px);
     }
     .tag:hover {
         cursor: pointer;
@@ -121,15 +121,33 @@
         border: var(--s2px) solid black;
         filter: none;
     }
-    .green {
+    .verified {
         background-color: #9cff6f;
     }
-    .red {
+    .not-verified {
         background-color: #ff8181;
         
     }
-    .filter-button {
+    .button-container {
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
+    }
+    .button {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: var(--s5px);
+        padding: var(--s5px);
+        background-color: rgb(199, 226, 249);
+        border-radius: var(--s3px);
+        width: var(--s30px);
+    }
+    .button:hover {
+        cursor: pointer;
+    }
+    .filter {
+        background-color: rgb(127, 191, 247);
+        padding: var(--s5px) var(--s10px);
+        width: auto;
     }
 </style>

@@ -7,7 +7,6 @@
     
     // TODO:: change onclick to a standard on:click event dispatcher
     export let onclick;
-    export let text;
     export let cancel;
     export let form;
     export let style = undefined;
@@ -30,7 +29,7 @@
         <Font
             font={0}
             size={fontSize || 1}>
-            {text[$_lang]}
+            <slot/>
         </Font>
     {/if}
 </div>

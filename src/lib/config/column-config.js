@@ -98,6 +98,38 @@ export const COLUMNS = [
                     'பொருளாதாரம்'
                 ],
                 color: '#c57dff'
+            },{
+                name: 'political',
+                strings: [
+                    'දේශපාලන',
+                    'political',
+                    'அரசியல்'
+                ],
+                color: '#a57dff'
+            },{
+                name: 'legal',
+                strings: [
+                    'අධිකරණ',
+                    'judicial',
+                    'நீதித்துறை'
+                ],
+                color: '#b57dff'
+            },{
+                name: 'international',
+                strings: [
+                    'ජාත්‍යන්තර',
+                    'international',
+                    'சர்வதேச'
+                ],
+                color: '#b57dff'
+            },{
+                name: 'energy',
+                strings: [
+                    'බලශක්ති',
+                    'power & energy',
+                    'ஆற்றல்'
+                ],
+                color: '#c57dff'
             }]
         }
         // END - filter properties
