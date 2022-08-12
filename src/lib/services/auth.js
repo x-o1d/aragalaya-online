@@ -36,6 +36,7 @@ onAuthStateChanged(auth, async (authUser) => {
             }, 'authService::onAuthStateChanged');
         } else {
             _emitEvent('user-ready', user);
+            _emitEvent('theme-changed', user.theme);
         }
     } else {
         _emitEvent('user-ready', undefined);

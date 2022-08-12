@@ -5,7 +5,10 @@ import { writable } from "svelte/store";
 // an underscore (_) so that they can easily be distinguished from component properties.
 // --
 
+// dynamic user variables
 export const _lang = writable(0);
+
+// stores used by the Loader component
 export const _themeColorsReady = writable(false);
 export const _themeSizesReady = writable(false);
 export const _scaledPixelsReady = writable(false);

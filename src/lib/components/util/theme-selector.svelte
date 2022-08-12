@@ -9,9 +9,16 @@
     let themeSelect;
     let themePanel;
 
+    let showPanel = false;
+
     let currentTheme = 0;
 
-    let showPanel = false;
+    // listen to theme changed events and update the current theme
+    const themeChangedEvent = _eventListener('theme-changed').subscribe((theme) => {
+        currentTheme = theme;
+    })
+    // clear subscription
+    onDestroy(() => themeChangedEvent.unsubscribe());
 
     // listen to global click events and hide the theme options
     const globalClickEvent = _eventListener('global-click').subscribe((event) => {
@@ -36,7 +43,6 @@
 
     const selectTheme = (index) => {
         _emitEvent('theme-changed', index);
-        currentTheme = index;
     }
 </script>
 

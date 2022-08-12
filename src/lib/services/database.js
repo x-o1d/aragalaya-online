@@ -11,8 +11,11 @@ import {
     doc, 
     setDoc, 
     addDoc,
-    getDoc
+    getDoc,
+    updateDoc,
 } from "firebase/firestore";
+
+import { getAuth } from 'firebase/auth';
 
 const db = getFirestore(app);
 
@@ -30,15 +33,14 @@ export const _createError = async (error, caller, data) => {
         if(data) {
             console.log('Data: ', data);
         }
-        if(true) {
-            const docRef = await addDoc(collection(db, 'Errors'), {
+        if(!dev) {
+            await addDoc(collection(db, 'Errors'), {
                 message: error.message,
                 code: error.code,
                 caller: caller,
                 signedin: getAuth().currentUser != null,
                 time: (new Date()).getTime()
             });
-            console.log(docRef);
         }
         
     } catch (error) {
