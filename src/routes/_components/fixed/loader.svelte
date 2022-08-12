@@ -1,9 +1,9 @@
 <script>
     // npm modules
-    import { onMount } from "svelte";
+    import { onDestroy, onMount } from "svelte";
     // services
     import { _eventListener } from "$lib/services/events";
-    import { _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady } from "$lib/services/store";
+    import { _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _authStateChecked } from "$lib/services/store";
     // components
     import PreloadingIndicator from "$lib/components/util/preloading-indicator.svelte";
 
@@ -20,7 +20,7 @@
 
     let executionCount = 0;
     onMount(() => {
-        const checkLoadedInterval = setInterval(() => {
+        let checkLoadedInterval = setInterval(() => {
             var ss = document.styleSheets;
             for(var i = 0, max = ss.length; i < max; i++) {
                 if(ss[i].href && ss[i].href.includes('fonts.googleapis.com/css')) {
@@ -55,13 +55,13 @@
                 // if scaled pixel value css variables have been set
                 $_scaledPixelsReady &&
                 // if the window 'load' event has been fired
-                $_appContentReady
+                $_appContentReady &&
+                // check if the auth state has been checked
+                $_authStateChecked
             ) {
-                setTimeout(() => {
-                    loadingComplete = true;
-                    clearInterval(checkLoadedInterval);
-                }, 200);
-            }
+                loadingComplete = true;
+                clearInterval(checkLoadedInterval);
+            } 
             if(executionCount > 4) {
                 if(!normalizeCssLoaded) {
                     console.log('normalize.css pending..');
@@ -74,6 +74,9 @@
                 }
                 if(!$_appContentReady) {
                     console.log('window onload() pending..');
+                }
+                if(!$_authStateChecked) {
+                    console.log('auth state pending..');
                 }
             }
             executionCount++;

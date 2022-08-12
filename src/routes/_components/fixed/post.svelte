@@ -1,9 +1,9 @@
 <script>
     import { _emitEvent } from '$lib/services/events';
 
-    import Empty from '../posts/empty.svelte';
+    import Empty from '../posts/_template.svelte';
     import Bulletin from '../posts/bulletin.svelte';
-    import News from '../posts/news.svelte';
+    import News from '../posts/video.svelte';
     import { COMPONENTS } from '../../index.svelte';
 
     export let data;

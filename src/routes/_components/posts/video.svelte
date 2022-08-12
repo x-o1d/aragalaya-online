@@ -1,15 +1,16 @@
 <script>
-    // services
-    import { _lang } from '$lib/services/store';
+    import { _lang } from "$lib/services/store";
 
-    // components
-    import Timestamp from '$lib/components/display/timestamp.svelte';
-    import Font from '$lib/components/display/font.svelte';
-    import Preview from '$lib/components/display/preview.svelte';
-    import Card from '$lib/components/util/card.svelte';
+    import Card from "$lib/components/util/card.svelte";
+    import Youtube from "$lib/components/display/youtube.svelte";
+    import Font from "$lib/components/display/font.svelte";
+    import Timestamp from "$lib/components/display/timestamp.svelte";
+    import Preview from "$lib/components/display/preview.svelte";
     import Content from '$lib/components/display/content.svelte';
     import MT from '$lib/components/util/mt.svelte';
     import Toolbar from '$lib/components/util/toolbar.svelte';
+
+    import { _emitEvent } from "$lib/services/events";
 
     export let data;
     
@@ -20,45 +21,39 @@
     <Font
         font={0}
         size={0.75}
-        color="rgb(100, 99, 99)"
-        style="margin-bottom: var(--s5px);">
+        color="
+            rgb(100, 99, 99);
+            margin-bottom: var(--s7px);">
         <Timestamp time={data.createdOn}/>
     </Font>
+    <!-- youtube video -->
+    <Youtube 
+        data={data}
+        style="margin-bottom: var(--s7px);"/>
     <!-- title -->
     <Font 
         font={1}
         size={1.25}
         style="
-            font-weight: bold;">
+            font-weight: bold;
+            margin-bottom: var(--s10px);">
         <Content
             data={data}
             contentField={'title'}/>
     </Font>
-    <!-- author -->
-    <Font 
-        font={3}
-        size={0.75}
-        color="rgb(55, 55, 55);"
-        style="margin-bottom: var(--s10px);">
-        {data.createdByName}
-    </Font>
-    <!-- description -->
+    <!-- short description -->
     <Font
         font={0}
         size={0.9}
         color="rgb(57, 56, 56);">
         <Preview
             data={data}
-            contentField={'description'}
-            limit={60}
+            contentField={'shortDescription'}
+            limit={100}
             expanded={data._expanded}
             on:expandPost={() => data._expanded = true}/>
     </Font>
-    <!-- machine translated indication
-    ---- the _viewOriginal property of data has to be updated
-    ---- from the viewOriginal event so that svelte can reactively
-    ---- update the content of other components
-    --->
+    <!-- machine translated indication -->
     <MT data={data}
         on:viewOriginal={e => data._viewOriginal = e.detail}/>
     <!-- post toolbar -->
@@ -66,3 +61,4 @@
         data={data}
         on:toggleExpanded={(e) => data._expanded = e.detail}/>
 </Card>
+

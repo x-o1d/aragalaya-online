@@ -15,10 +15,9 @@
     // NOTE:: if a component is not specified for a column type it will load an
     // empty card
     export const COMPONENTS = {
+        news: News,
+        video: Video,
         bulletin: Bulletin,
-        newsx: News,
-        empty: Empty,
-        bulletinx: Bulletin,
         proposal: Proposal,
         wip: Wip,
     }
@@ -47,7 +46,7 @@
 
     // components
     import Nav from './_components/fixed/nav.svelte';
-    import Empty from './_components/posts/empty.svelte';
+    import Empty from './_components/posts/_template.svelte';
     import Bulletin from './_components/posts/bulletin.svelte';
     import News from './_components/posts/news.svelte';
     import Post from './_components/fixed/post.svelte';
@@ -55,6 +54,7 @@
     import Filter from '$lib/components/util/filter.svelte';
     import Proposal from './_components/posts/proposal.svelte';
     import Wip from './_components/posts/wip.svelte';
+    import Video from './_components/posts/video.svelte';
 
     // column data, this is populated by the page endpoint (./index.js)
     // using the page endpoint allows the data to be fetched in the backend
@@ -102,7 +102,7 @@
     let url = 'https://aragalaya-online.web.app';
     let description = 'The online portal for the aragalaya movement in Sri Lanka';
     let type = 'website';
-    let image = 'https://firebasestorage.googleapis.com/v0/b/aragalaya-online.appspot.com/o/aragalaya-image.jpeg?alt=media&token=46171892-7f2f-49bb-8424-65ca7411271e';
+    let imagex = 'https://firebasestorage.googleapis.com/v0/b/aragalaya-online.appspot.com/o/aragalaya-image.jpeg?alt=media&token=46171892-7f2f-49bb-8424-65ca7411271e';
     
     // if the url is for a specific post (?post=<post_id>) opengraph meta tags will be populated
     // with the data from that post.
@@ -129,7 +129,7 @@
                 images.push(...postData[key]);
             }
         })
-        if(images[0] && images[0].href) image = images[0].href;
+        if(images[0] && images[0].href) imagex = images[0].href;
     }
 
     // when new data is added by a form it's inserted to the column
@@ -282,7 +282,7 @@
     <meta property="og:type"        content="{type}"/>
     <meta property="og:title"       content="{title}"/>
     <meta property="og:description" content="{description}"/>
-    <meta property="og:image"       content="{image}"/>
+    <meta property="og:image"       content="{imagex}"/>
 </svelte:head>
 
 <!-- Nav is the navigation bar component which is a fixed overlay-->

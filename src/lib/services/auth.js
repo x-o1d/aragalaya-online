@@ -8,11 +8,13 @@ import {
     updatePassword,
     sendEmailVerification,
     getAuth,
-    onAuthStateChanged
+    onAuthStateChanged,
+    signOut,
 } from "firebase/auth";
 
 import { _createUserRecord, _getUserRecord, _createError } from '$lib/services/database';
 import { _emitEvent } from '$lib/services/events';
+import { _authStateChecked } from './store';
 
 const auth = getAuth(app);
 
@@ -27,7 +29,8 @@ onAuthStateChanged(auth, async (authUser) => {
             user = await _getUserRecord(authUser.uid);
         }
         if(!user) {
-            _createError({
+            _emitEvent('user-ready', undefined);
+            await _createError({
                 error: 'invalid-user',
                 authUser
             }, 'authService::onAuthStateChanged');
@@ -35,8 +38,9 @@ onAuthStateChanged(auth, async (authUser) => {
             _emitEvent('user-ready', user);
         }
     } else {
-        console.log('user not signed in');
+        _emitEvent('user-ready', undefined);
     }
+    _authStateChecked.set(true);
 });
 
 // --
@@ -137,3 +141,9 @@ export const _changePassword = (newPassword, name, email) => new Promise(async (
         _createError(error);
     }
 });
+
+export const _userLogout = () => {
+    signOut(auth);
+    user = undefined;
+    _emitEvent('user-ready', undefined);
+}

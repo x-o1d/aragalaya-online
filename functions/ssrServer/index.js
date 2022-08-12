@@ -13232,10 +13232,10 @@ var init_hooks_bced8853 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/column-config-63e26bf3.js
+// .svelte-kit/output/server/_app/immutable/chunks/column-config-811d46bc.js
 var COLUMNS, COLUMN_COUNT;
-var init_column_config_63e26bf3 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/column-config-63e26bf3.js"() {
+var init_column_config_811d46bc = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/column-config-811d46bc.js"() {
     init_shims();
     COLUMNS = [
       {
@@ -13246,7 +13246,7 @@ var init_column_config_63e26bf3 = __esm({
         ],
         icon: "fa-solid fa-radio",
         height: "200px",
-        type: "bulletin",
+        type: "news",
         data: {
           title: {
             type: "text",
@@ -13323,7 +13323,7 @@ var init_column_config_63e26bf3 = __esm({
         ],
         icon: "fa-solid fa-comments",
         height: "310px",
-        type: "newsx",
+        type: "video",
         data: {
           videoId: {
             type: "text",
@@ -13392,7 +13392,7 @@ var init_column_config_63e26bf3 = __esm({
         ],
         icon: "fa-solid fa-calendar-days",
         height: "300px",
-        type: "bulletinx",
+        type: "bulletin",
         data: {
           title: {
             type: "text",
@@ -13555,7 +13555,7 @@ var init_column_config_63e26bf3 = __esm({
           "Opinion polls",
           "\u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BCD \u0B95\u0BA3\u0BBF\u0BAA\u0BCD\u0BAA\u0BC1\u0B95\u0BB3\u0BCD"
         ],
-        icon: "fa-solid fa-file-signature",
+        icon: "fa-solid fa-check-to-slot",
         height: "500px",
         type: "static",
         static: [{
@@ -13606,16 +13606,6 @@ var init_column_config_63e26bf3 = __esm({
           ],
           releaseDate: "29/09/2022"
         }]
-      },
-      {
-        title: [
-          "\u0D9C\u0DD0\u0DBD\u0DBB\u0DD2\u0DBA",
-          "Gallery",
-          "\u0B95\u0BC7\u0BB2\u0BB0\u0BBF"
-        ],
-        icon: "fa-solid fa-camera-retro",
-        height: "290px",
-        type: "photo"
       }
     ];
     COLUMN_COUNT = COLUMNS.length;
@@ -16689,7 +16679,7 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/font-d1937815.js
+// .svelte-kit/output/server/_app/immutable/chunks/font-be8713a2.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -16731,12 +16721,12 @@ function writable2(value, start2 = noop2) {
   }
   return { set, update, subscribe: subscribe2 };
 }
-var import_chroma_js, subscriber_queue2, _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, Font;
-var init_font_d1937815 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/font-d1937815.js"() {
+var import_chroma_js, subscriber_queue2, _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _authStateChecked, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, Font;
+var init_font_be8713a2 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/font-be8713a2.js"() {
     init_shims();
     init_index_19a73778();
-    init_column_config_63e26bf3();
+    init_column_config_811d46bc();
     import_chroma_js = __toESM(require_chroma(), 1);
     subscriber_queue2 = [];
     _lang = writable2(0);
@@ -16744,6 +16734,7 @@ var init_font_d1937815 = __esm({
     _themeSizesReady = writable2(false);
     _scaledPixelsReady = writable2(false);
     _appContentReady = writable2(false);
+    _authStateChecked = writable2(false);
     _isMobile = writable2(false);
     _fontGroups = [
       [
@@ -24019,7 +24010,7 @@ var require_namespace = __commonJS({
       }
       return this;
     };
-    Namespace.prototype.get = function get(name7) {
+    Namespace.prototype.get = function get3(name7) {
       return this.nested && this.nested[name7] || null;
     };
     Namespace.prototype.getEnum = function getEnum(name7) {
@@ -24427,7 +24418,7 @@ var require_service2 = __commonJS({
       service._methodsArray = null;
       return service;
     }
-    Service.prototype.get = function get(name7) {
+    Service.prototype.get = function get3(name7) {
       return this.methods[name7] || Namespace.prototype.get.call(this, name7);
     };
     Service.prototype.resolveAll = function resolveAll() {
@@ -25083,7 +25074,7 @@ var require_type = __commonJS({
         oneofs[i2++].resolve();
       return Namespace.prototype.resolveAll.call(this);
     };
-    Type.prototype.get = function get(name7) {
+    Type.prototype.get = function get3(name7) {
       return this.fields[name7] || this.oneofs && this.oneofs[name7] || this.nested && this.nested[name7] || null;
     };
     Type.prototype.add = function add(object) {
@@ -26887,7 +26878,7 @@ var require_common = __commonJS({
         }
       }
     });
-    common.get = function get(file10) {
+    common.get = function get3(file10) {
       return common[file10] || null;
     };
   }
@@ -36030,7 +36021,7 @@ var require_namespace2 = __commonJS({
       }
       return this;
     };
-    Namespace.prototype.get = function get(name7) {
+    Namespace.prototype.get = function get3(name7) {
       return this.nested && this.nested[name7] || null;
     };
     Namespace.prototype.getEnum = function getEnum(name7) {
@@ -36338,7 +36329,7 @@ var require_service4 = __commonJS({
       service._methodsArray = null;
       return service;
     }
-    Service.prototype.get = function get(name7) {
+    Service.prototype.get = function get3(name7) {
       return this.methods[name7] || Namespace.prototype.get.call(this, name7);
     };
     Service.prototype.resolveAll = function resolveAll() {
@@ -36994,7 +36985,7 @@ var require_type3 = __commonJS({
         oneofs[i2++].resolve();
       return Namespace.prototype.resolveAll.call(this);
     };
-    Type.prototype.get = function get(name7) {
+    Type.prototype.get = function get3(name7) {
       return this.fields[name7] || this.oneofs && this.oneofs[name7] || this.nested && this.nested[name7] || null;
     };
     Type.prototype.add = function add(object) {
@@ -38773,7 +38764,7 @@ var require_common2 = __commonJS({
         }
       }
     });
-    common.get = function get(file10) {
+    common.get = function get3(file10) {
       return common[file10] || null;
     };
   }
@@ -53294,10 +53285,10 @@ var init_dist2 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/database-e087c939.js
+// .svelte-kit/output/server/_app/immutable/chunks/database-8e0ce6fe.js
 var firebaseConfig, app, db, _createError, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord;
-var init_database_e087c939 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/database-e087c939.js"() {
+var init_database_8e0ce6fe = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/database-8e0ce6fe.js"() {
     init_shims();
     init_dist();
     init_dist2();
@@ -53309,16 +53300,6 @@ var init_database_e087c939 = __esm({
       messagingSenderId: "15533282305",
       appId: "1:15533282305:web:a807d2c4f789c046a71c00"
     };
-    {
-      firebaseConfig = {
-        apiKey: "AIzaSyAIFR7IVXYjG_8lyPyfHxsdx_kaRz4z3SM",
-        authDomain: "aragalaya-online-prod.firebaseapp.com",
-        projectId: "aragalaya-online-prod",
-        storageBucket: "aragalaya-online-prod.appspot.com",
-        messagingSenderId: "730227179317",
-        appId: "1:730227179317:web:59771460444f98ae52567c"
-      };
-    }
     app = initializeApp(firebaseConfig);
     db = getFirestore(app);
     _createError = async (error2, caller, data) => {
@@ -69316,14 +69297,14 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/storage-f89532b1.js
+// .svelte-kit/output/server/_app/immutable/chunks/storage-777b7d41.js
 var import_rxjs, events, _emitEvent, _eventListener, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, css, Button;
-var init_storage_f89532b1 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/storage-f89532b1.js"() {
+var init_storage_777b7d41 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/storage-777b7d41.js"() {
     init_shims();
     init_index_19a73778();
-    init_font_d1937815();
-    init_database_e087c939();
+    init_font_be8713a2();
+    init_database_8e0ce6fe();
     init_dist3();
     init_dist4();
     import_rxjs = __toESM(require_cjs(), 1);
@@ -69355,7 +69336,8 @@ var init_storage_f89532b1 = __esm({
           user = await _getUserRecord(authUser.uid);
         }
         if (!user) {
-          _createError({
+          _emitEvent("user-ready", void 0);
+          await _createError({
             error: "invalid-user",
             authUser
           }, "authService::onAuthStateChanged");
@@ -69363,8 +69345,9 @@ var init_storage_f89532b1 = __esm({
           _emitEvent("user-ready", user);
         }
       } else {
-        console.log("user not signed in");
+        _emitEvent("user-ready", void 0);
       }
+      _authStateChecked.set(true);
     });
     _userSignedIn = () => {
       let authUser = getAuth2().currentUser;
@@ -70313,17 +70296,17 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "firstChild",
-        get: function get() {
+        get: function get3() {
           return this.content.length ? this.content[0] : null;
         }
       }, {
         key: "lastChild",
-        get: function get() {
+        get: function get3() {
           return this.content.length ? this.content[this.content.length - 1] : null;
         }
       }, {
         key: "childCount",
-        get: function get() {
+        get: function get3() {
           return this.content.length;
         }
       }, {
@@ -70608,7 +70591,7 @@ var require_dist2 = __commonJS({
       }
       _createClass(Slice2, [{
         key: "size",
-        get: function get() {
+        get: function get3() {
           return this.content.size - this.openStart - this.openEnd;
         }
       }, {
@@ -70814,12 +70797,12 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "parent",
-        get: function get() {
+        get: function get3() {
           return this.node(this.depth);
         }
       }, {
         key: "doc",
-        get: function get() {
+        get: function get3() {
           return this.node(0);
         }
       }, {
@@ -70868,12 +70851,12 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "textOffset",
-        get: function get() {
+        get: function get3() {
           return this.pos - this.path[this.path.length - 1];
         }
       }, {
         key: "nodeAfter",
-        get: function get() {
+        get: function get3() {
           var parent2 = this.parent, index9 = this.index(this.depth);
           if (index9 == parent2.childCount)
             return null;
@@ -70882,7 +70865,7 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "nodeBefore",
-        get: function get() {
+        get: function get3() {
           var index9 = this.index(this.depth);
           var dOff = this.pos - this.path[this.path.length - 1];
           if (dOff)
@@ -71027,27 +71010,27 @@ var require_dist2 = __commonJS({
       }
       _createClass(NodeRange2, [{
         key: "start",
-        get: function get() {
+        get: function get3() {
           return this.$from.before(this.depth + 1);
         }
       }, {
         key: "end",
-        get: function get() {
+        get: function get3() {
           return this.$to.after(this.depth + 1);
         }
       }, {
         key: "parent",
-        get: function get() {
+        get: function get3() {
           return this.$from.node(this.depth);
         }
       }, {
         key: "startIndex",
-        get: function get() {
+        get: function get3() {
           return this.$from.index(this.depth);
         }
       }, {
         key: "endIndex",
-        get: function get() {
+        get: function get3() {
           return this.$to.indexAfter(this.depth);
         }
       }]);
@@ -71065,12 +71048,12 @@ var require_dist2 = __commonJS({
       }
       _createClass(Node2, [{
         key: "nodeSize",
-        get: function get() {
+        get: function get3() {
           return this.isLeaf ? 1 : 2 + this.content.size;
         }
       }, {
         key: "childCount",
-        get: function get() {
+        get: function get3() {
           return this.content.childCount;
         }
       }, {
@@ -71101,7 +71084,7 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "textContent",
-        get: function get() {
+        get: function get3() {
           return this.isLeaf && this.type.spec.leafText ? this.type.spec.leafText(this) : this.textBetween(0, this.content.size, "");
         }
       }, {
@@ -71111,12 +71094,12 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "firstChild",
-        get: function get() {
+        get: function get3() {
           return this.content.firstChild;
         }
       }, {
         key: "lastChild",
-        get: function get() {
+        get: function get3() {
           return this.content.lastChild;
         }
       }, {
@@ -71243,37 +71226,37 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "isBlock",
-        get: function get() {
+        get: function get3() {
           return this.type.isBlock;
         }
       }, {
         key: "isTextblock",
-        get: function get() {
+        get: function get3() {
           return this.type.isTextblock;
         }
       }, {
         key: "inlineContent",
-        get: function get() {
+        get: function get3() {
           return this.type.inlineContent;
         }
       }, {
         key: "isInline",
-        get: function get() {
+        get: function get3() {
           return this.type.isInline;
         }
       }, {
         key: "isText",
-        get: function get() {
+        get: function get3() {
           return this.type.isText;
         }
       }, {
         key: "isLeaf",
-        get: function get() {
+        get: function get3() {
           return this.type.isLeaf;
         }
       }, {
         key: "isAtom",
-        get: function get() {
+        get: function get3() {
           return this.type.isAtom;
         }
       }, {
@@ -71406,7 +71389,7 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "textContent",
-        get: function get() {
+        get: function get3() {
           return this.text;
         }
       }, {
@@ -71416,7 +71399,7 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "nodeSize",
-        get: function get() {
+        get: function get3() {
           return this.text.length;
         }
       }, {
@@ -71490,12 +71473,12 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "inlineContent",
-        get: function get() {
+        get: function get3() {
           return this.next.length && this.next[0].type.isInline;
         }
       }, {
         key: "defaultType",
-        get: function get() {
+        get: function get3() {
           for (var i2 = 0; i2 < this.next.length; i2++) {
             var type = this.next[i2].type;
             if (!(type.isText || type.hasRequiredAttrs()))
@@ -71583,7 +71566,7 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "edgeCount",
-        get: function get() {
+        get: function get3() {
           return this.next.length;
         }
       }, {
@@ -71645,7 +71628,7 @@ var require_dist2 = __commonJS({
       }
       _createClass(TokenStream2, [{
         key: "next",
-        get: function get() {
+        get: function get3() {
           return this.tokens[this.pos];
         }
       }, {
@@ -71957,27 +71940,27 @@ var require_dist2 = __commonJS({
       }
       _createClass(NodeType2, [{
         key: "isInline",
-        get: function get() {
+        get: function get3() {
           return !this.isBlock;
         }
       }, {
         key: "isTextblock",
-        get: function get() {
+        get: function get3() {
           return this.isBlock && this.inlineContent;
         }
       }, {
         key: "isLeaf",
-        get: function get() {
+        get: function get3() {
           return this.contentMatch == ContentMatch.empty;
         }
       }, {
         key: "isAtom",
-        get: function get() {
+        get: function get3() {
           return this.isLeaf || !!this.spec.atom;
         }
       }, {
         key: "whitespace",
-        get: function get() {
+        get: function get3() {
           return this.spec.whitespace || (this.spec.code ? "pre" : "normal");
         }
       }, {
@@ -72115,7 +72098,7 @@ var require_dist2 = __commonJS({
       }
       _createClass(Attribute2, [{
         key: "isRequired",
-        get: function get() {
+        get: function get3() {
           return !this.hasDefault;
         }
       }]);
@@ -72545,7 +72528,7 @@ var require_dist2 = __commonJS({
       }
       _createClass(ParseContext2, [{
         key: "top",
-        get: function get() {
+        get: function get3() {
           return this.nodes[this.open];
         }
       }, {
@@ -72815,7 +72798,7 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "currentPos",
-        get: function get() {
+        get: function get3() {
           this.closeExtra();
           var pos = 0;
           for (var i2 = this.open; i2 >= 0; i2--) {
@@ -73364,22 +73347,22 @@ var require_dist3 = __commonJS({
       }
       _createClass(MapResult2, [{
         key: "deleted",
-        get: function get() {
+        get: function get3() {
           return (this.delInfo & DEL_SIDE) > 0;
         }
       }, {
         key: "deletedBefore",
-        get: function get() {
+        get: function get3() {
           return (this.delInfo & (DEL_BEFORE | DEL_ACROSS)) > 0;
         }
       }, {
         key: "deletedAfter",
-        get: function get() {
+        get: function get3() {
           return (this.delInfo & (DEL_AFTER | DEL_ACROSS)) > 0;
         }
       }, {
         key: "deletedAcross",
-        get: function get() {
+        get: function get3() {
           return (this.delInfo & DEL_ACROSS) > 0;
         }
       }]);
@@ -74355,7 +74338,7 @@ var require_dist3 = __commonJS({
       }
       _createClass(Fitter2, [{
         key: "depth",
-        get: function get() {
+        get: function get3() {
           return this.frontier.length - 1;
         }
       }, {
@@ -74754,7 +74737,7 @@ var require_dist3 = __commonJS({
       }
       _createClass(Transform2, [{
         key: "before",
-        get: function get() {
+        get: function get3() {
           return this.docs.length ? this.docs[0] : this.doc;
         }
       }, {
@@ -74775,7 +74758,7 @@ var require_dist3 = __commonJS({
         }
       }, {
         key: "docChanged",
-        get: function get() {
+        get: function get3() {
           return this.steps.length > 0;
         }
       }, {
@@ -75055,37 +75038,37 @@ var require_dist4 = __commonJS({
       }
       _createClass(Selection2, [{
         key: "anchor",
-        get: function get() {
+        get: function get3() {
           return this.$anchor.pos;
         }
       }, {
         key: "head",
-        get: function get() {
+        get: function get3() {
           return this.$head.pos;
         }
       }, {
         key: "from",
-        get: function get() {
+        get: function get3() {
           return this.$from.pos;
         }
       }, {
         key: "to",
-        get: function get() {
+        get: function get3() {
           return this.$to.pos;
         }
       }, {
         key: "$from",
-        get: function get() {
+        get: function get3() {
           return this.ranges[0].$from;
         }
       }, {
         key: "$to",
-        get: function get() {
+        get: function get3() {
           return this.ranges[0].$to;
         }
       }, {
         key: "empty",
-        get: function get() {
+        get: function get3() {
           var ranges = this.ranges;
           for (var i2 = 0; i2 < ranges.length; i2++) {
             if (ranges[i2].$from.pos != ranges[i2].$to.pos)
@@ -75212,7 +75195,7 @@ var require_dist4 = __commonJS({
       }
       _createClass(TextSelection2, [{
         key: "$cursor",
-        get: function get() {
+        get: function get3() {
           return this.$anchor.pos == this.$head.pos ? this.$head : null;
         }
       }, {
@@ -75513,7 +75496,7 @@ var require_dist4 = __commonJS({
       }
       _createClass(Transaction2, [{
         key: "selection",
-        get: function get() {
+        get: function get3() {
           if (this.curSelectionFor < this.steps.length) {
             this.curSelection = this.curSelection.map(this.doc, this.mapping.slice(this.curSelectionFor));
             this.curSelectionFor = this.steps.length;
@@ -75533,7 +75516,7 @@ var require_dist4 = __commonJS({
         }
       }, {
         key: "selectionSet",
-        get: function get() {
+        get: function get3() {
           return (this.updated & UPDATED_SEL) > 0;
         }
       }, {
@@ -75562,7 +75545,7 @@ var require_dist4 = __commonJS({
         }
       }, {
         key: "storedMarksSet",
-        get: function get() {
+        get: function get3() {
           return (this.updated & UPDATED_MARKS) > 0;
         }
       }, {
@@ -75638,7 +75621,7 @@ var require_dist4 = __commonJS({
         }
       }, {
         key: "isGeneric",
-        get: function get() {
+        get: function get3() {
           for (var _2 in this.meta) {
             return false;
           }
@@ -75652,7 +75635,7 @@ var require_dist4 = __commonJS({
         }
       }, {
         key: "scrolledIntoView",
-        get: function get() {
+        get: function get3() {
           return (this.updated & UPDATED_SCROLL) > 0;
         }
       }]);
@@ -75720,12 +75703,12 @@ var require_dist4 = __commonJS({
       }
       _createClass(EditorState2, [{
         key: "schema",
-        get: function get() {
+        get: function get3() {
           return this.config.schema;
         }
       }, {
         key: "plugins",
-        get: function get() {
+        get: function get3() {
           return this.config.plugins;
         }
       }, {
@@ -75808,7 +75791,7 @@ var require_dist4 = __commonJS({
         }
       }, {
         key: "tr",
-        get: function get() {
+        get: function get3() {
           return new Transaction(this);
         }
       }, {
@@ -75930,7 +75913,7 @@ var require_dist4 = __commonJS({
       }
       _createClass(PluginKey2, [{
         key: "get",
-        value: function get(state) {
+        value: function get3(state) {
           return state.config.pluginsByKey[this.key];
         }
       }, {
@@ -76703,7 +76686,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "size",
-        get: function get() {
+        get: function get3() {
           var size = 0;
           for (var i2 = 0; i2 < this.children.length; i2++) {
             size += this.children[i2].size;
@@ -76712,7 +76695,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "border",
-        get: function get() {
+        get: function get3() {
           return 0;
         }
       }, {
@@ -76737,22 +76720,22 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "posBefore",
-        get: function get() {
+        get: function get3() {
           return this.parent.posBeforeChild(this);
         }
       }, {
         key: "posAtStart",
-        get: function get() {
+        get: function get3() {
           return this.parent ? this.parent.posBeforeChild(this) + this.border : 0;
         }
       }, {
         key: "posAfter",
-        get: function get() {
+        get: function get3() {
           return this.posBefore + this.size;
         }
       }, {
         key: "posAtEnd",
-        get: function get() {
+        get: function get3() {
           return this.posAtStart + this.size - 2 * this.border;
         }
       }, {
@@ -77063,7 +77046,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "contentLost",
-        get: function get() {
+        get: function get3() {
           return this.contentDOM && this.contentDOM != this.dom && !this.dom.contains(this.contentDOM);
         }
       }, {
@@ -77100,12 +77083,12 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "domAtom",
-        get: function get() {
+        get: function get3() {
           return false;
         }
       }, {
         key: "ignoreForCoords",
-        get: function get() {
+        get: function get3() {
           return false;
         }
       }]);
@@ -77171,12 +77154,12 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "domAtom",
-        get: function get() {
+        get: function get3() {
           return true;
         }
       }, {
         key: "side",
-        get: function get() {
+        get: function get3() {
           return this.widget.type.side;
         }
       }]);
@@ -77195,7 +77178,7 @@ var require_dist5 = __commonJS({
       }
       _createClass(CompositionViewDesc2, [{
         key: "size",
-        get: function get() {
+        get: function get3() {
           return this.text.length;
         }
       }, {
@@ -77343,12 +77326,12 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "size",
-        get: function get() {
+        get: function get3() {
           return this.node.nodeSize;
         }
       }, {
         key: "border",
-        get: function get() {
+        get: function get3() {
           return this.node.isLeaf ? 0 : 1;
         }
       }, {
@@ -77491,7 +77474,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "domAtom",
-        get: function get() {
+        get: function get3() {
           return this.node.isAtom;
         }
       }], [{
@@ -77615,7 +77598,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "domAtom",
-        get: function get() {
+        get: function get3() {
           return false;
         }
       }]);
@@ -77642,12 +77625,12 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "domAtom",
-        get: function get() {
+        get: function get3() {
           return true;
         }
       }, {
         key: "ignoreForCoords",
-        get: function get() {
+        get: function get3() {
           return this.dom.nodeName == "IMG";
         }
       }]);
@@ -79748,12 +79731,12 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "spec",
-        get: function get() {
+        get: function get3() {
           return this.type.spec;
         }
       }, {
         key: "inline",
-        get: function get() {
+        get: function get3() {
           return this.type instanceof InlineType;
         }
       }], [{
@@ -80903,12 +80886,12 @@ var require_dist5 = __commonJS({
       }
       _createClass(EditorView2, [{
         key: "composing",
-        get: function get() {
+        get: function get3() {
           return this.input.composing;
         }
       }, {
         key: "props",
-        get: function get() {
+        get: function get3() {
           if (this._props.state != this.state) {
             var prev = this._props;
             this._props = {};
@@ -81084,7 +81067,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "root",
-        get: function get() {
+        get: function get3() {
           var _this17 = this;
           var cached = this._root;
           if (cached == null) {
@@ -81162,7 +81145,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "isDestroyed",
-        get: function get() {
+        get: function get3() {
           return this.docView == null;
         }
       }, {
@@ -87261,7 +87244,7 @@ var require_linkify = __commonJS({
       check: function check(token) {
         return this.get("validate", token.toString(), token);
       },
-      get: function get(key2, operator, token) {
+      get: function get3(key2, operator, token) {
         var option = this[key2];
         if (!option) {
           return option;
@@ -87922,10 +87905,10 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_storage_f89532b1();
-    init_database_e087c939();
-    init_font_d1937815();
-    init_column_config_63e26bf3();
+    init_storage_777b7d41();
+    init_database_8e0ce6fe();
+    init_font_be8713a2();
+    init_column_config_811d46bc();
     init_dist5();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
     import_extension_bold = __toESM(require_tiptap_extension_bold_cjs(), 1);
@@ -88532,10 +88515,13 @@ ${``}`;
       map: null
     };
     Loader = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $$unsubscribe__authStateChecked;
       let $$unsubscribe__appContentReady;
       let $$unsubscribe__scaledPixelsReady;
       let $$unsubscribe__themeSizesReady;
       let $$unsubscribe__themeColorsReady;
+      validate_store(_authStateChecked, "_authStateChecked");
+      $$unsubscribe__authStateChecked = subscribe(_authStateChecked, (value) => value);
       validate_store(_appContentReady, "_appContentReady");
       $$unsubscribe__appContentReady = subscribe(_appContentReady, (value) => value);
       validate_store(_scaledPixelsReady, "_scaledPixelsReady");
@@ -88545,6 +88531,7 @@ ${``}`;
       validate_store(_themeColorsReady, "_themeColorsReady");
       $$unsubscribe__themeColorsReady = subscribe(_themeColorsReady, (value) => value);
       $$result.css.add(css$2);
+      $$unsubscribe__authStateChecked();
       $$unsubscribe__appContentReady();
       $$unsubscribe__scaledPixelsReady();
       $$unsubscribe__themeSizesReady();
@@ -88589,7 +88576,7 @@ ${showText ? `<div class="${["toast-container s-F3BFPhrY-hZv", event ? "event" :
       })}</div></div>` : ``}`;
     });
     css2 = {
-      code: "html{font-family:'Roboto', sans-serif}body{margin:0;overflow:hidden}*{box-sizing:border-box}._clickable:hover{cursor:pointer}p{margin:0px}ul.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-flex}.header.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{--text:rgb(163, 47, 47);--shadow-height:0.5rem;--shadow-gradient:linear-gradient(\n			to bottom,\n			rgba(0, 0, 0, 0.3) 0%,\n			rgba(0, 0, 0, 0.1) 30%,\n			transparent 100%\n		);height:var(--theme-layoutheaderheight);display:flex;align-items:center;justify-content:space-between;width:100vw;margin:0;font-family:var(--font);transition:transform 0.2s;user-select:none;padding:0;background-color:var(--theme-headerbackground)}.logo.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:flex;padding:var(--s10px) var(--s7px);align-items:baseline;padding-bottom:var(--s10px)}.aragalaya.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-block;font-size:var(--s36px);line-height:var(--s28px);font-weight:bold;font-family:'Gemunu Libre', sans-serif}.online.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-block;font-size:var(--s18px);font-family:'Roboto', sans-serif}.beta.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{padding:var(--s5px);font-size:var(--s9px);font-weight:bold;color:green}.header-right.s-PoaHcXV6SIWL li.s-PoaHcXV6SIWL{font-size:var(--s14px);line-height:var(--s14px);padding:0 var(--s5px);font-family:'Roboto', sans-serif}.header-right.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL:last-child{margin-right:var(--s5px)}.login.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{margin-left:var(--s30px)}.login.s-PoaHcXV6SIWL .fa-solid.s-PoaHcXV6SIWL{font-size:var(--s21px);margin-right:var(--s5px)}.fa-user-nurse.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{color:green}.header-right.s-PoaHcXV6SIWL li.s-PoaHcXV6SIWL{cursor:pointer}.language-select.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:relative}.language-button.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:flex;align-items:center;justify-content:center;width:var(--s30px);height:var(--s30px);background:white;color:black;font-size:18px;border-radius:var(--s3px);border:0.0520vw solid black;cursor:pointer}.languages.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:absolute;top:var(--s35px);right:var(--s-22_5px);z-index:10;width:var(--s80px);border-radius:var(--s3px);border:0.0520vw solid black}.languages.s-PoaHcXV6SIWL>div.s-PoaHcXV6SIWL{padding:var(--s10px);background-color:white;text-align:center}main.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:relative;margin:0 auto;overflow:hiden}.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{}",
+      code: "html{font-family:'Roboto', sans-serif}body{margin:0;overflow:hidden}*{box-sizing:border-box}._clickable:hover{cursor:pointer}p{margin:0px}ul.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-flex}.header.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{--text:rgb(163, 47, 47);--shadow-height:0.5rem;--shadow-gradient:linear-gradient(\n			to bottom,\n			rgba(0, 0, 0, 0.3) 0%,\n			rgba(0, 0, 0, 0.1) 30%,\n			transparent 100%\n		);height:var(--theme-layoutheaderheight);display:flex;align-items:center;justify-content:space-between;width:100vw;margin:0;font-family:var(--font);transition:transform 0.2s;user-select:none;padding:0;background-color:var(--theme-headerbackground)}.logo.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:flex;padding:var(--s10px) var(--s7px);align-items:baseline;padding-bottom:var(--s10px)}.aragalaya.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-block;font-size:var(--s36px);line-height:var(--s28px);font-weight:bold;font-family:'Gemunu Libre', sans-serif}.online.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-block;font-size:var(--s18px);font-family:'Roboto', sans-serif}.beta.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{padding:var(--s5px);font-size:var(--s9px);font-weight:bold;color:green}.header-right.s-PoaHcXV6SIWL li.s-PoaHcXV6SIWL{font-size:var(--s14px);line-height:var(--s14px);padding:0 var(--s5px);font-family:'Roboto', sans-serif}.header-right.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL:last-child{margin-right:var(--s5px)}.login.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{margin-left:var(--s30px)}.login.s-PoaHcXV6SIWL .fa-solid.s-PoaHcXV6SIWL{font-size:var(--s19px);margin-right:var(--s3px)}.header-right.s-PoaHcXV6SIWL li.s-PoaHcXV6SIWL{cursor:pointer}.language-select.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:relative}.language-button.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:flex;align-items:center;justify-content:center;width:var(--s30px);height:var(--s30px);background:white;color:black;font-size:18px;border-radius:var(--s3px);border:0.0520vw solid black;cursor:pointer}.languages.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:absolute;top:var(--s35px);right:var(--s-22_5px);z-index:10;width:var(--s80px);border-radius:var(--s3px);border:0.0520vw solid black}.languages.s-PoaHcXV6SIWL>div.s-PoaHcXV6SIWL{padding:var(--s10px);background-color:white;text-align:center}main.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:relative;margin:0 auto;overflow:hiden}.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{}",
       map: null
     };
     _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -88642,16 +88629,14 @@ ${validate_component(Toasts, "Toasts").$$render($$result, {}, {}, {})}
 		</div>
 		<div class="${"online s-PoaHcXV6SIWL"}">.online
 		</div>
-        <div class="${"beta s-PoaHcXV6SIWL"}">${escape(
-        "(prod-beta)"
-      )}</div></div>
+        <div class="${"beta s-PoaHcXV6SIWL"}">${escape("(dev-beta)")}</div></div>
 	<ul class="${"header-right s-PoaHcXV6SIWL"}">${!$_isMobile ? `<li class="${"s-PoaHcXV6SIWL"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
 		</li>
 		<li class="${"s-PoaHcXV6SIWL"}">English 
 		</li>
 		<li class="${"s-PoaHcXV6SIWL"}">\u0BA4\u0BAE\u0BBF\u0BB4\u0BCD 
 		</li>` : ``}
-		<li class="${"login s-PoaHcXV6SIWL"}">${!user2 ? `<i class="${"fa-solid fa-user-astronaut s-PoaHcXV6SIWL"}"></i>` : `<i class="${"fa-solid fa-user-nurse s-PoaHcXV6SIWL"}"></i>`}</li>
+		<li class="${"login s-PoaHcXV6SIWL"}">${!user2 ? `<i class="${"fa-solid fa-user-plus s-PoaHcXV6SIWL"}"></i>` : `<i class="${"fa-solid fa-user-minus s-PoaHcXV6SIWL"}"></i>`}</li>
         ${$_isMobile ? `<li class="${"s-PoaHcXV6SIWL"}"><div class="${"language-select s-PoaHcXV6SIWL"}"><div class="${"language-button s-PoaHcXV6SIWL"}" id="${"language-button"}"><i class="${"fa-solid fa-globe s-PoaHcXV6SIWL"}"></i></div>
                 ${showLanguageSelect ? `<div class="${"languages s-PoaHcXV6SIWL"}"><div class="${"s-PoaHcXV6SIWL"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
                     </div>
@@ -88682,9 +88667,9 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-f96ccb92.js";
-    imports = ["_app/immutable/pages/__layout.svelte-f96ccb92.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-dbc2caba.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-d383ebf5.js"];
-    stylesheets = ["_app/immutable/assets/__layout-1c514b46.css", "_app/immutable/assets/storage-c7057ab9.css"];
+    file2 = "_app/immutable/pages/__layout.svelte-e31aa80b.js";
+    imports = ["_app/immutable/pages/__layout.svelte-e31aa80b.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-115a06ea.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-c43f69e7.js"];
+    stylesheets = ["_app/immutable/assets/__layout-8855faea.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
 
@@ -90791,13 +90776,13 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/proposal-301d3b02.js
+// .svelte-kit/output/server/_app/immutable/chunks/proposal-42704181.js
 var css$32, Card, strings$3, Timestamp2, strings$2, css$22, Content, css$12, Preview, strings$1, css3, Toolbar, strings2, Proposal;
-var init_proposal_301d3b02 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/proposal-301d3b02.js"() {
+var init_proposal_42704181 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/proposal-42704181.js"() {
     init_shims();
     init_index_19a73778();
-    init_font_d1937815();
+    init_font_be8713a2();
     init_string_strip_html_esm();
     css$32 = {
       code: ".card-container.s-Hio59jcNIlCL{padding:var(--theme-cardseparationhalf)}.card.s-Hio59jcNIlCL{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.s-Hio59jcNIlCL{}",
@@ -91057,10 +91042,10 @@ var init_proposal_301d3b02 = __esm({
 <div class="${"toolbar s-A62t8M1ucyij"}"><div class="${"toolbar-left s-A62t8M1ucyij"}"><div class="${["icon _clickable s-A62t8M1ucyij", data._expanded ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-down s-A62t8M1ucyij"}"></i></div>
         <div class="${["icon _clickable s-A62t8M1ucyij", data._singlePostView ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-right-and-down-left-from-center s-A62t8M1ucyij"}"></i></div>
         <div class="${"icon _clickable s-A62t8M1ucyij"}"><i class="${"fa-solid fa-share-nodes s-A62t8M1ucyij"}"></i></div>
-        ${`<div class="${"icon facebook _clickable s-A62t8M1ucyij"}"><a href="${"/facebook_share?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-facebook s-A62t8M1ucyij"}"></i></a></div>
-        <div class="${"icon twitter _clickable s-A62t8M1ucyij"}"><a href="${"/twitter_share?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-twitter s-A62t8M1ucyij"}"></i></a></div>
-        <div class="${"icon whatsapp _clickable s-A62t8M1ucyij"}"><a href="${"/whatsapp_share?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-whatsapp s-A62t8M1ucyij"}"></i></a></div>
-        <div class="${"icon reddit _clickable s-A62t8M1ucyij"}"><a href="${"/reddit_share?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-reddit s-A62t8M1ucyij"}"></i></a></div>`}</div>
+        ${`<div class="${"icon facebook _clickable s-A62t8M1ucyij"}"><a href="${"/share/facebook_share?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-facebook s-A62t8M1ucyij"}"></i></a></div>
+        <div class="${"icon twitter _clickable s-A62t8M1ucyij"}"><a href="${"/share/twitter_share?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-twitter s-A62t8M1ucyij"}"></i></a></div>
+        <div class="${"icon whatsapp _clickable s-A62t8M1ucyij"}"><a href="${"/share/whatsapp_share?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-whatsapp s-A62t8M1ucyij"}"></i></a></div>
+        <div class="${"icon reddit _clickable s-A62t8M1ucyij"}"><a href="${"/share/reddit_share?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-reddit s-A62t8M1ucyij"}"></i></a></div>`}</div>
     <div class="${"toolbar-right s-A62t8M1ucyij"}">${validate_component(Font, "Font").$$render(
         $$result,
         {
@@ -91324,17 +91309,17 @@ function tweened(value, defaults = {}) {
     subscribe: store.subscribe
   };
 }
-var import_chroma_js3, css$72, Nav, css$62, Empty, strings$22, css$52, Mt, Bulletin, css$42, Youtube, News, css$33, Post, strings$12, css$23, Filter2, strings3, css$13, Wip, css4, COMPONENTS, Routes;
+var import_chroma_js3, css$72, Nav, css$62, Template, strings$22, css$52, Mt, Bulletin, News, css$42, Youtube, Video, css$33, Post, strings$12, css$23, Filter2, strings3, css$13, Wip, css4, COMPONENTS, Routes;
 var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_column_config_63e26bf3();
-    init_font_d1937815();
+    init_column_config_811d46bc();
+    init_font_be8713a2();
     init_string_strip_html_esm();
-    init_storage_f89532b1();
-    init_database_e087c939();
-    init_proposal_301d3b02();
+    init_storage_777b7d41();
+    init_database_8e0ce6fe();
+    init_proposal_42704181();
     import_chroma_js3 = __toESM(require_chroma(), 1);
     init_dist3();
     init_dist4();
@@ -91400,10 +91385,10 @@ var init_index_svelte = __esm({
 </div>`;
     });
     css$62 = {
-      code: ".empty-space.s-FeUw14jh5ZGb{width:100%}.s-FeUw14jh5ZGb{}",
+      code: ".empty-space.s-8DH70jsVqHMY{width:100%}.s-8DH70jsVqHMY{}",
       map: null
     };
-    Empty = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+    Template = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { data } = $$props;
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
@@ -91414,7 +91399,7 @@ var init_index_svelte = __esm({
 ${validate_component(Card, "Card").$$render($$result, {}, {}, {
         default: () => {
           return `
-	<div class="${"empty-space s-FeUw14jh5ZGb"}" style="${"height: " + escape(data.height, true)}"></div>
+	<div class="${"empty-space s-8DH70jsVqHMY"}" style="${"height: " + escape(data.height, true)}"></div>
 	`;
         }
       })}`;
@@ -91552,6 +91537,91 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         }
       })}`;
     });
+    News = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let { data } = $$props;
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+        $$bindings.data(data);
+      return `${validate_component(Card, "Card").$$render($$result, {}, {}, {
+        default: () => {
+          return `
+    ${validate_component(Font, "Font").$$render(
+            $$result,
+            {
+              font: 0,
+              size: 0.75,
+              color: "rgb(100, 99, 99)",
+              style: "margin-bottom: var(--s5px);"
+            },
+            {},
+            {
+              default: () => {
+                return `${validate_component(Timestamp2, "Timestamp").$$render($$result, { time: data.createdOn }, {}, {})}`;
+              }
+            }
+          )}
+    
+    ${validate_component(Font, "Font").$$render(
+            $$result,
+            {
+              font: 1,
+              size: 1.25,
+              style: "\n            font-weight: bold;"
+            },
+            {},
+            {
+              default: () => {
+                return `${validate_component(Content, "Content").$$render($$result, { data, contentField: "title" }, {}, {})}`;
+              }
+            }
+          )}
+    
+    ${validate_component(Font, "Font").$$render(
+            $$result,
+            {
+              font: 3,
+              size: 0.75,
+              color: "rgb(55, 55, 55);",
+              style: "margin-bottom: var(--s10px);"
+            },
+            {},
+            {
+              default: () => {
+                return `${escape(data.createdByName)}`;
+              }
+            }
+          )}
+    
+    ${validate_component(Font, "Font").$$render(
+            $$result,
+            {
+              font: 0,
+              size: 0.9,
+              color: "rgb(57, 56, 56);"
+            },
+            {},
+            {
+              default: () => {
+                return `${validate_component(Preview, "Preview").$$render(
+                  $$result,
+                  {
+                    data,
+                    contentField: "description",
+                    limit: 60,
+                    expanded: data._expanded
+                  },
+                  {},
+                  {}
+                )}`;
+              }
+            }
+          )}
+    
+    ${validate_component(Mt, "MT").$$render($$result, { data }, {}, {})}
+    
+    ${validate_component(Toolbar, "Toolbar").$$render($$result, { data }, {}, {})}`;
+        }
+      })}`;
+    });
     css$42 = {
       code: ".youtube.s-pP_MCOEFRNVA{position:relative;border-radius:var(--s3px);overflow:hidden;height:var(--theme-previewheight);width:100%}.youtube-preview.s-pP_MCOEFRNVA{background-image:var(--thumbnail);background-color:#7b7b7b;height:var(--theme-previewheight);width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;filter:grayscale(0.6)}.youtube-overlay.s-pP_MCOEFRNVA{position:absolute;top:0;left:0;display:flex;align-items:center;justify-content:center;color:white;font-size:var(--s35px);height:var(--theme-previewheight);width:100%;background-color:rgba(0,0,0, var(--theme-previewopacity));border-radius:3px}.s-pP_MCOEFRNVA{}",
       map: null
@@ -91569,7 +91639,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
     ${`<div class="${"youtube-overlay s-pP_MCOEFRNVA"}"><i class="${"fa-solid fa-play s-pP_MCOEFRNVA"}"></i></div>`}
 </div>`;
     });
-    News = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+    Video = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { data } = $$props;
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
@@ -91874,10 +91944,9 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
       map: null
     };
     COMPONENTS = {
+      news: News,
+      video: Video,
       bulletin: Bulletin,
-      newsx: News,
-      empty: Empty,
-      bulletinx: Bulletin,
       proposal: Proposal,
       wip: Wip
     };
@@ -91908,7 +91977,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
       let url = "https://aragalaya-online.web.app";
       let description = "The online portal for the aragalaya movement in Sri Lanka";
       let type = "website";
-      let image = "https://firebasestorage.googleapis.com/v0/b/aragalaya-online.appspot.com/o/aragalaya-image.jpeg?alt=media&token=46171892-7f2f-49bb-8424-65ca7411271e";
+      let imagex = "https://firebasestorage.googleapis.com/v0/b/aragalaya-online.appspot.com/o/aragalaya-image.jpeg?alt=media&token=46171892-7f2f-49bb-8424-65ca7411271e";
       if (postData) {
         postData._expanded = true;
         title = postData.title && postData.title[0] || postData.organization && postData.organization[0] || "\u0D85\u0DBB\u0D9C\u0DBD\u0DBA.online";
@@ -91922,7 +91991,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
           }
         });
         if (images[0] && images[0].href)
-          image = images[0].href;
+          imagex = images[0].href;
       }
       const newColumnDataEvent = _eventListener("new-column-data").subscribe(async (event) => {
         const data = event.postData;
@@ -91985,7 +92054,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
 
 
 
-${$$result.head += `${$$result.title = `<title>${escape(title)}</title>`, ""}<meta property="${"fb:app_id"}" content="${"420214326726915"}" class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-1maaxn1"><meta property="${"og:url"}"${add_attribute("content", url, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-1maaxn1"><meta property="${"og:type"}"${add_attribute("content", type, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-1maaxn1"><meta property="${"og:title"}"${add_attribute("content", title, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-1maaxn1"><meta property="${"og:description"}"${add_attribute("content", description, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-1maaxn1"><meta property="${"og:image"}"${add_attribute("content", image, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-1maaxn1">`, ""}
+${$$result.head += `${$$result.title = `<title>${escape(title)}</title>`, ""}<meta property="${"fb:app_id"}" content="${"420214326726915"}" class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-i30uf"><meta property="${"og:url"}"${add_attribute("content", url, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-i30uf"><meta property="${"og:type"}"${add_attribute("content", type, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-i30uf"><meta property="${"og:title"}"${add_attribute("content", title, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-i30uf"><meta property="${"og:description"}"${add_attribute("content", description, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-i30uf"><meta property="${"og:image"}"${add_attribute("content", imagex, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-i30uf">`, ""}
 
 
 ${validate_component(Nav, "Nav").$$render($$result, {}, {}, {})}  
@@ -92021,7 +92090,7 @@ ${validate_component(Nav, "Nav").$$render($$result, {}, {}, {})}
                 ${validate_component(Filter2, "Filter").$$render($$result, { show: showFilters[_i], columnId: _i }, {}, {})}
                 
                 <div class="${"cards s-Uap-jPRb-uiE"}">${each(columnData[_i], (item, _i2) => {
-          return `<div class="${"s-Uap-jPRb-uiE"}">${validate_component(COMPONENTS[item.type] || Empty || missing_component, "svelte:component").$$render($$result, { data: item }, {}, {})}
+          return `<div class="${"s-Uap-jPRb-uiE"}">${validate_component(COMPONENTS[item.type] || Template || missing_component, "svelte:component").$$render($$result, { data: item }, {}, {})}
                     </div>`;
         })}</div>
                 <div class="${"scrollbar s-Uap-jPRb-uiE"}"><div class="${"scroll s-Uap-jPRb-uiE"}" style="${"top: " + escape(vScroll[_i], true) + "px; opacity: " + escape(_vScrollAnimation[_i], true) + "; height: " + escape(_vScrollAnimation[_i] * 25, true) + "px"}"></div>
@@ -92034,7 +92103,7 @@ ${validate_component(Nav, "Nav").$$render($$result, {}, {}, {})}
   }
 });
 
-// .svelte-kit/output/server/nodes/3.js
+// .svelte-kit/output/server/nodes/2.js
 var __exports3 = {};
 __export(__exports3, {
   file: () => file4,
@@ -92045,58 +92114,13 @@ __export(__exports3, {
 });
 var index3, file4, imports3, stylesheets3;
 var init__3 = __esm({
-  ".svelte-kit/output/server/nodes/3.js"() {
-    init_shims();
-    init_index_svelte();
-    index3 = 3;
-    file4 = "_app/immutable/pages/index.svelte-c2776564.js";
-    imports3 = ["_app/immutable/pages/index.svelte-c2776564.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-dbc2caba.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/proposal-cbc4a92a.js", "_app/immutable/chunks/storage-d383ebf5.js"];
-    stylesheets3 = ["_app/immutable/assets/index-897422f7.css", "_app/immutable/assets/proposal-62aca3cb.css", "_app/immutable/assets/storage-c7057ab9.css"];
-  }
-});
-
-// .svelte-kit/output/server/entries/pages/facebook_share.svelte.js
-var facebook_share_svelte_exports = {};
-__export(facebook_share_svelte_exports, {
-  default: () => Facebook_share
-});
-var css5, Facebook_share;
-var init_facebook_share_svelte = __esm({
-  ".svelte-kit/output/server/entries/pages/facebook_share.svelte.js"() {
-    init_shims();
-    init_index_19a73778();
-    css5 = {
-      code: ".facebook-share.s-fSU7pz0Zu7U0{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-fSU7pz0Zu7U0{}",
-      map: null
-    };
-    Facebook_share = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let { postId } = $$props;
-      if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
-        $$bindings.postId(postId);
-      $$result.css.add(css5);
-      return `<div class="${"facebook-share s-fSU7pz0Zu7U0"}">Redirecting to facebook..</div>`;
-    });
-  }
-});
-
-// .svelte-kit/output/server/nodes/2.js
-var __exports4 = {};
-__export(__exports4, {
-  file: () => file5,
-  imports: () => imports4,
-  index: () => index4,
-  module: () => facebook_share_svelte_exports,
-  stylesheets: () => stylesheets4
-});
-var index4, file5, imports4, stylesheets4;
-var init__4 = __esm({
   ".svelte-kit/output/server/nodes/2.js"() {
     init_shims();
-    init_facebook_share_svelte();
-    index4 = 2;
-    file5 = "_app/immutable/pages/facebook_share.svelte-08ecd6bc.js";
-    imports4 = ["_app/immutable/pages/facebook_share.svelte-08ecd6bc.js", "_app/immutable/chunks/index-08fc9de4.js"];
-    stylesheets4 = ["_app/immutable/assets/facebook_share-e612badf.css"];
+    init_index_svelte();
+    index3 = 2;
+    file4 = "_app/immutable/pages/index.svelte-6b6ffcba.js";
+    imports3 = ["_app/immutable/pages/index.svelte-6b6ffcba.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-115a06ea.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/proposal-abd2a858.js", "_app/immutable/chunks/storage-c43f69e7.js"];
+    stylesheets3 = ["_app/immutable/assets/index-2968e32a.css", "_app/immutable/assets/proposal-62aca3cb.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
 
@@ -92105,17 +92129,17 @@ var post_preview_svelte_exports = {};
 __export(post_preview_svelte_exports, {
   default: () => Post_preview
 });
-var import_chroma_js4, css6, Post_preview;
+var import_chroma_js4, css5, Post_preview;
 var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_proposal_301d3b02();
-    init_font_d1937815();
-    init_column_config_63e26bf3();
+    init_proposal_42704181();
+    init_font_be8713a2();
+    init_column_config_811d46bc();
     import_chroma_js4 = __toESM(require_chroma(), 1);
     init_string_strip_html_esm();
-    css6 = {
+    css5 = {
       code: ".preview.s-nkO0SViUUGe1{display:flex;justify-content:center;background-color:var(--theme-columnbackground);width:100%;height:100vh}.column-container.s-nkO0SViUUGe1{padding:var(--theme-cardseparationhalf);height:100%}.column.s-nkO0SViUUGe1{display:flex;align-items:center;justify-content:center;flex-direction:column;width:var(--theme-columnwidth);height:100%;padding:0 var(--theme-cardseparationhalf)}.s-nkO0SViUUGe1{}",
       map: null
     };
@@ -92132,7 +92156,7 @@ var init_post_preview_svelte = __esm({
           ]
         }
       ];
-      $$result.css.add(css6);
+      $$result.css.add(css5);
       return `
 
 
@@ -92145,39 +92169,84 @@ var init_post_preview_svelte = __esm({
   }
 });
 
+// .svelte-kit/output/server/nodes/3.js
+var __exports4 = {};
+__export(__exports4, {
+  file: () => file5,
+  imports: () => imports4,
+  index: () => index4,
+  module: () => post_preview_svelte_exports,
+  stylesheets: () => stylesheets4
+});
+var index4, file5, imports4, stylesheets4;
+var init__4 = __esm({
+  ".svelte-kit/output/server/nodes/3.js"() {
+    init_shims();
+    init_post_preview_svelte();
+    index4 = 3;
+    file5 = "_app/immutable/pages/post_preview.svelte-20b1e059.js";
+    imports4 = ["_app/immutable/pages/post_preview.svelte-20b1e059.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/proposal-abd2a858.js", "_app/immutable/chunks/font-115a06ea.js", "_app/immutable/chunks/index-cc16aad1.js"];
+    stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-62aca3cb.css"];
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/share/facebook_share.svelte.js
+var facebook_share_svelte_exports = {};
+__export(facebook_share_svelte_exports, {
+  default: () => Facebook_share
+});
+var css6, Facebook_share;
+var init_facebook_share_svelte = __esm({
+  ".svelte-kit/output/server/entries/pages/share/facebook_share.svelte.js"() {
+    init_shims();
+    init_index_19a73778();
+    css6 = {
+      code: ".facebook-share.s-Y2yE5XWdqTsh{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-Y2yE5XWdqTsh{}",
+      map: null
+    };
+    Facebook_share = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let { postId } = $$props;
+      if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
+        $$bindings.postId(postId);
+      $$result.css.add(css6);
+      return `<div class="${"facebook-share s-Y2yE5XWdqTsh"}">Redirecting to facebook..</div>`;
+    });
+  }
+});
+
 // .svelte-kit/output/server/nodes/4.js
 var __exports5 = {};
 __export(__exports5, {
   file: () => file6,
   imports: () => imports5,
   index: () => index5,
-  module: () => post_preview_svelte_exports,
+  module: () => facebook_share_svelte_exports,
   stylesheets: () => stylesheets5
 });
 var index5, file6, imports5, stylesheets5;
 var init__5 = __esm({
   ".svelte-kit/output/server/nodes/4.js"() {
     init_shims();
-    init_post_preview_svelte();
+    init_facebook_share_svelte();
     index5 = 4;
-    file6 = "_app/immutable/pages/post_preview.svelte-bba68ae8.js";
-    imports5 = ["_app/immutable/pages/post_preview.svelte-bba68ae8.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/proposal-cbc4a92a.js", "_app/immutable/chunks/font-dbc2caba.js", "_app/immutable/chunks/index-cc16aad1.js"];
-    stylesheets5 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-62aca3cb.css"];
+    file6 = "_app/immutable/pages/share/facebook_share.svelte-b9d11038.js";
+    imports5 = ["_app/immutable/pages/share/facebook_share.svelte-b9d11038.js", "_app/immutable/chunks/index-08fc9de4.js"];
+    stylesheets5 = ["_app/immutable/assets/facebook_share-6fbde549.css"];
   }
 });
 
-// .svelte-kit/output/server/entries/pages/reddit_share.svelte.js
+// .svelte-kit/output/server/entries/pages/share/reddit_share.svelte.js
 var reddit_share_svelte_exports = {};
 __export(reddit_share_svelte_exports, {
   default: () => Reddit_share
 });
 var css7, Reddit_share;
 var init_reddit_share_svelte = __esm({
-  ".svelte-kit/output/server/entries/pages/reddit_share.svelte.js"() {
+  ".svelte-kit/output/server/entries/pages/share/reddit_share.svelte.js"() {
     init_shims();
     init_index_19a73778();
     css7 = {
-      code: ".facebook-share.s-0MCg1uQboOJN{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-0MCg1uQboOJN{}",
+      code: ".facebook-share.s-l_DnS_RvsRGt{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-l_DnS_RvsRGt{}",
       map: null
     };
     Reddit_share = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -92185,7 +92254,7 @@ var init_reddit_share_svelte = __esm({
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
       $$result.css.add(css7);
-      return `<div class="${"facebook-share s-0MCg1uQboOJN"}">Redirecting to reddit..</div>`;
+      return `<div class="${"facebook-share s-l_DnS_RvsRGt"}">Redirecting to reddit..</div>`;
     });
   }
 });
@@ -92205,24 +92274,24 @@ var init__6 = __esm({
     init_shims();
     init_reddit_share_svelte();
     index6 = 5;
-    file7 = "_app/immutable/pages/reddit_share.svelte-1f1ab998.js";
-    imports6 = ["_app/immutable/pages/reddit_share.svelte-1f1ab998.js", "_app/immutable/chunks/index-08fc9de4.js"];
-    stylesheets6 = ["_app/immutable/assets/reddit_share-dcfe5238.css"];
+    file7 = "_app/immutable/pages/share/reddit_share.svelte-dd5252da.js";
+    imports6 = ["_app/immutable/pages/share/reddit_share.svelte-dd5252da.js", "_app/immutable/chunks/index-08fc9de4.js"];
+    stylesheets6 = ["_app/immutable/assets/reddit_share-3dd88e29.css"];
   }
 });
 
-// .svelte-kit/output/server/entries/pages/twitter_share.svelte.js
+// .svelte-kit/output/server/entries/pages/share/twitter_share.svelte.js
 var twitter_share_svelte_exports = {};
 __export(twitter_share_svelte_exports, {
   default: () => Twitter_share
 });
 var css8, Twitter_share;
 var init_twitter_share_svelte = __esm({
-  ".svelte-kit/output/server/entries/pages/twitter_share.svelte.js"() {
+  ".svelte-kit/output/server/entries/pages/share/twitter_share.svelte.js"() {
     init_shims();
     init_index_19a73778();
     css8 = {
-      code: ".facebook-share.s-70s3nBXpEUVV{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-70s3nBXpEUVV{}",
+      code: ".facebook-share.s-vR9NkJeIefn4{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-vR9NkJeIefn4{}",
       map: null
     };
     Twitter_share = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -92230,7 +92299,7 @@ var init_twitter_share_svelte = __esm({
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
       $$result.css.add(css8);
-      return `<div class="${"facebook-share s-70s3nBXpEUVV"}">Redirecting to twitter..</div>`;
+      return `<div class="${"facebook-share s-vR9NkJeIefn4"}">Redirecting to twitter..</div>`;
     });
   }
 });
@@ -92250,24 +92319,24 @@ var init__7 = __esm({
     init_shims();
     init_twitter_share_svelte();
     index7 = 6;
-    file8 = "_app/immutable/pages/twitter_share.svelte-68f2d8ec.js";
-    imports7 = ["_app/immutable/pages/twitter_share.svelte-68f2d8ec.js", "_app/immutable/chunks/index-08fc9de4.js"];
-    stylesheets7 = ["_app/immutable/assets/twitter_share-f60b3570.css"];
+    file8 = "_app/immutable/pages/share/twitter_share.svelte-d446fd80.js";
+    imports7 = ["_app/immutable/pages/share/twitter_share.svelte-d446fd80.js", "_app/immutable/chunks/index-08fc9de4.js"];
+    stylesheets7 = ["_app/immutable/assets/twitter_share-0f85283c.css"];
   }
 });
 
-// .svelte-kit/output/server/entries/pages/whatsapp_share.svelte.js
+// .svelte-kit/output/server/entries/pages/share/whatsapp_share.svelte.js
 var whatsapp_share_svelte_exports = {};
 __export(whatsapp_share_svelte_exports, {
   default: () => Whatsapp_share
 });
 var css9, Whatsapp_share;
 var init_whatsapp_share_svelte = __esm({
-  ".svelte-kit/output/server/entries/pages/whatsapp_share.svelte.js"() {
+  ".svelte-kit/output/server/entries/pages/share/whatsapp_share.svelte.js"() {
     init_shims();
     init_index_19a73778();
     css9 = {
-      code: ".facebook-share.s-mCjeP0_FkUnh{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-mCjeP0_FkUnh{}",
+      code: ".facebook-share.s-HdrvzUZ97c4e{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-HdrvzUZ97c4e{}",
       map: null
     };
     Whatsapp_share = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -92275,7 +92344,7 @@ var init_whatsapp_share_svelte = __esm({
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
       $$result.css.add(css9);
-      return `<div class="${"facebook-share s-mCjeP0_FkUnh"}">Redirecting to whatsapp..</div>`;
+      return `<div class="${"facebook-share s-HdrvzUZ97c4e"}">Redirecting to whatsapp..</div>`;
     });
   }
 });
@@ -92295,9 +92364,9 @@ var init__8 = __esm({
     init_shims();
     init_whatsapp_share_svelte();
     index8 = 7;
-    file9 = "_app/immutable/pages/whatsapp_share.svelte-7788f7db.js";
-    imports8 = ["_app/immutable/pages/whatsapp_share.svelte-7788f7db.js", "_app/immutable/chunks/index-08fc9de4.js"];
-    stylesheets8 = ["_app/immutable/assets/whatsapp_share-4786f601.css"];
+    file9 = "_app/immutable/pages/share/whatsapp_share.svelte-106e71e4.js";
+    imports8 = ["_app/immutable/pages/share/whatsapp_share.svelte-106e71e4.js", "_app/immutable/chunks/index-08fc9de4.js"];
+    stylesheets8 = ["_app/immutable/assets/whatsapp_share-863c989e.css"];
   }
 });
 
@@ -92306,15 +92375,14 @@ var endpoints_exports = {};
 __export(endpoints_exports, {
   GET: () => GET
 });
-var IMPLEMENTED_TYPES, GET;
+var GET;
 var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
-    init_column_config_63e26bf3();
-    init_database_e087c939();
+    init_column_config_811d46bc();
+    init_database_8e0ce6fe();
     init_dist();
     init_dist2();
-    IMPLEMENTED_TYPES = ["bulletin", "newsx", "bulletinx", "proposal"];
     GET = async ({ url }) => {
       let postData;
       if (url.search.includes("=")) {
@@ -92326,12 +92394,8 @@ var init_endpoints = __esm({
         let data;
         if (column.type == "static") {
           data = column.static;
-        } else if (IMPLEMENTED_TYPES.includes(column.type)) {
-          data = await _getPosts(column.type);
         } else {
-          data = Array(5).fill(true).map((_2, i2) => {
-            return { id: i2, type: "empty", height: column.height };
-          });
+          data = await _getPosts(column.type);
         }
         columnData.push(data || []);
       }
@@ -92347,14 +92411,14 @@ var init_endpoints = __esm({
   }
 });
 
-// .svelte-kit/output/server/entries/endpoints/facebook_share.js
+// .svelte-kit/output/server/entries/endpoints/share/facebook_share.js
 var facebook_share_exports = {};
 __export(facebook_share_exports, {
   GET: () => GET2
 });
 var GET2;
 var init_facebook_share = __esm({
-  ".svelte-kit/output/server/entries/endpoints/facebook_share.js"() {
+  ".svelte-kit/output/server/entries/endpoints/share/facebook_share.js"() {
     init_shims();
     GET2 = async ({ url }) => {
       let postId;
@@ -92372,14 +92436,39 @@ var init_facebook_share = __esm({
   }
 });
 
-// .svelte-kit/output/server/entries/endpoints/reddit_share.js
+// .svelte-kit/output/server/entries/endpoints/share/reddit_share.js
 var reddit_share_exports = {};
 __export(reddit_share_exports, {
+  get: () => get
+});
+var get;
+var init_reddit_share = __esm({
+  ".svelte-kit/output/server/entries/endpoints/share/reddit_share.js"() {
+    init_shims();
+    get = async ({ url }) => {
+      let postId;
+      if (url.search.includes("=")) {
+        postId = url.search.split("=")[1];
+      }
+      return {
+        status: 200,
+        headers: {},
+        body: {
+          postId
+        }
+      };
+    };
+  }
+});
+
+// .svelte-kit/output/server/entries/endpoints/share/twitter_share.js
+var twitter_share_exports = {};
+__export(twitter_share_exports, {
   GET: () => GET3
 });
 var GET3;
-var init_reddit_share = __esm({
-  ".svelte-kit/output/server/entries/endpoints/reddit_share.js"() {
+var init_twitter_share = __esm({
+  ".svelte-kit/output/server/entries/endpoints/share/twitter_share.js"() {
     init_shims();
     GET3 = async ({ url }) => {
       let postId;
@@ -92397,41 +92486,16 @@ var init_reddit_share = __esm({
   }
 });
 
-// .svelte-kit/output/server/entries/endpoints/twitter_share.js
-var twitter_share_exports = {};
-__export(twitter_share_exports, {
-  GET: () => GET4
-});
-var GET4;
-var init_twitter_share = __esm({
-  ".svelte-kit/output/server/entries/endpoints/twitter_share.js"() {
-    init_shims();
-    GET4 = async ({ url }) => {
-      let postId;
-      if (url.search.includes("=")) {
-        postId = url.search.split("=")[1];
-      }
-      return {
-        status: 200,
-        headers: {},
-        body: {
-          postId
-        }
-      };
-    };
-  }
-});
-
-// .svelte-kit/output/server/entries/endpoints/whatsapp_share.js
+// .svelte-kit/output/server/entries/endpoints/share/whatsapp_share.js
 var whatsapp_share_exports = {};
 __export(whatsapp_share_exports, {
-  GET: () => GET5
+  get: () => get2
 });
-var GET5;
+var get2;
 var init_whatsapp_share = __esm({
-  ".svelte-kit/output/server/entries/endpoints/whatsapp_share.js"() {
+  ".svelte-kit/output/server/entries/endpoints/share/whatsapp_share.js"() {
     init_shims();
-    GET5 = async ({ url }) => {
+    get2 = async ({ url }) => {
       let postId;
       if (url.search.includes("=")) {
         postId = url.search.split("=")[1];
@@ -94239,9 +94303,9 @@ async function load_shadow_data(route, event, options, prerender) {
       }
       data.body = body2;
     }
-    const get = method === "HEAD" && mod2.HEAD || mod2.GET;
-    if (get) {
-      const { status, headers: headers2, body: body2 } = validate_shadow_output(await get(event));
+    const get3 = method === "HEAD" && mod2.HEAD || mod2.GET;
+    if (get3) {
+      const { status, headers: headers2, body: body2 } = validate_shadow_output(await get3(event));
       add_cookies(data.cookies, headers2);
       if (body2 instanceof Error) {
         if (status < 400) {
@@ -94969,7 +95033,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-a745c35d.js", "imports": ["_app/immutable/start-a745c35d.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-46c66916.js", "imports": ["_app/immutable/start-46c66916.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
@@ -94994,55 +95058,55 @@ var manifest = {
       },
       {
         type: "page",
-        id: "facebook_share",
-        pattern: /^\/facebook_share\/?$/,
-        names: [],
-        types: [],
-        path: "/facebook_share",
-        shadow: () => Promise.resolve().then(() => (init_facebook_share(), facebook_share_exports)),
-        a: [0, 3],
-        b: [1]
-      },
-      {
-        type: "page",
         id: "post_preview",
         pattern: /^\/post_preview\/?$/,
         names: [],
         types: [],
         path: "/post_preview",
         shadow: null,
+        a: [0, 3],
+        b: [1]
+      },
+      {
+        type: "page",
+        id: "share/facebook_share",
+        pattern: /^\/share\/facebook_share\/?$/,
+        names: [],
+        types: [],
+        path: "/share/facebook_share",
+        shadow: () => Promise.resolve().then(() => (init_facebook_share(), facebook_share_exports)),
         a: [0, 4],
         b: [1]
       },
       {
         type: "page",
-        id: "reddit_share",
-        pattern: /^\/reddit_share\/?$/,
+        id: "share/reddit_share",
+        pattern: /^\/share\/reddit_share\/?$/,
         names: [],
         types: [],
-        path: "/reddit_share",
+        path: "/share/reddit_share",
         shadow: () => Promise.resolve().then(() => (init_reddit_share(), reddit_share_exports)),
         a: [0, 5],
         b: [1]
       },
       {
         type: "page",
-        id: "twitter_share",
-        pattern: /^\/twitter_share\/?$/,
+        id: "share/twitter_share",
+        pattern: /^\/share\/twitter_share\/?$/,
         names: [],
         types: [],
-        path: "/twitter_share",
+        path: "/share/twitter_share",
         shadow: () => Promise.resolve().then(() => (init_twitter_share(), twitter_share_exports)),
         a: [0, 6],
         b: [1]
       },
       {
         type: "page",
-        id: "whatsapp_share",
-        pattern: /^\/whatsapp_share\/?$/,
+        id: "share/whatsapp_share",
+        pattern: /^\/share\/whatsapp_share\/?$/,
         names: [],
         types: [],
-        path: "/whatsapp_share",
+        path: "/share/whatsapp_share",
         shadow: () => Promise.resolve().then(() => (init_whatsapp_share(), whatsapp_share_exports)),
         a: [0, 7],
         b: [1]

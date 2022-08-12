@@ -6,6 +6,7 @@
 	import { _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady } from '$lib/services/store';
 	import { _eventListener, _emitEvent } from '$lib/services/events';
     import { _setUserTheme } from '$lib/services/database';
+    import { _userLogout } from '$lib/services/auth';
     import { _themes, _fontGroups, _fontSizes, _getSizeConfig, _isMobile } from '$lib/services/theme';
     
     // components
@@ -14,6 +15,7 @@
 	import ThemeSelector from '$lib/components/util/theme-selector.svelte';
     import Loader from './_components/fixed/loader.svelte';
     import Toasts from './_components/fixed/toasts.svelte';
+
 
     // listen to if the user is signed in
     const userReady = _eventListener('user-ready');
@@ -136,6 +138,14 @@
     // clear subscription
     onDestroy(() => globalClickEvent.unsubscribe());
 
+    const userClick = () => {
+        if(!user) {
+            _emitEvent('show-hide-login', true);
+        } else {
+            _userLogout();
+        }
+           
+    }
 </script>
 
 <!-- Loader, Login and Form are fixed overlay components -->
@@ -171,12 +181,12 @@
 		</li>
         {/if}
 		<li 
-			on:click={() => _emitEvent('show-hide-login', true)}
+			on:click={userClick}
 			class="login">
 			{#if !user}
-			<i class="fa-solid fa-user-astronaut"></i>
+			<i class="fa-solid fa-user-plus"></i>
 			{:else}
-            <i class="fa-solid fa-user-nurse"></i>
+            <i class="fa-solid fa-user-minus"></i>
 			{/if}
 		</li>
         {#if $_isMobile}
@@ -313,12 +323,9 @@
 		margin-left: var(--s30px);
 	}
 	.login .fa-solid {
-		font-size: var(--s21px);
-		margin-right: var(--s5px);
+		font-size: var(--s19px);
+		margin-right: var(--s3px);
 	}
-    .fa-user-nurse {
-        color: green;
-    }
 	.header-right li {
 		cursor: pointer;
 	}

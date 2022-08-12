@@ -58,7 +58,7 @@ export const __handleTouchStart = (event) => {
 }
 
 export const __handleTouchMove = (event, hScrollIndex, setHorizontalScroll) => {
-    let deltaX = (event.touches[0].pageX - touchStartX)*1.5;
+    let deltaX = (event.touches[0].pageX - touchStartX)*2;
     __handleHorizontalScroll({wheelDeltaX: deltaX}, hScrollIndex, setHorizontalScroll);
 }
 

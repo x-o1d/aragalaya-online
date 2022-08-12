@@ -1,8 +1,6 @@
 import { COLUMNS } from '$lib/config/column-config';
 import { _getPost, _getPosts } from '$lib/services/database';
 
-const IMPLEMENTED_TYPES = ['bulletin', 'newsx', 'bulletinx', 'proposal'];
-
 export const GET = async ({ url }) => {
     // if a post id is specified in the url (?post=<post_id>)
     // fetch the post data in SSR
@@ -20,18 +18,9 @@ export const GET = async ({ url }) => {
         // get data for the column
         if((column.type == 'static')) {
             data = column.static;
-        } else if(IMPLEMENTED_TYPES.includes(column.type)) {
-            data = await _getPosts(column.type);
         } else {
-            // if the column type is not implemented
-            // fill it with empty objects with an id field.
-            // id is neccessary since the #each block is
-            // keyed on the id.
-            // mock: true, ensures that an empty card is rendered
-            data = Array(5).fill(true).map((_, i) => {
-                return {id: i, type: 'empty', height: column.height};
-            });
-        }
+            data = await _getPosts(column.type);
+        } 
         columnData.push(data || []);
     }
     return {

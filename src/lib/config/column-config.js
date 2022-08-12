@@ -26,7 +26,7 @@ export const COLUMNS = [
         ],
         icon: 'fa-solid fa-radio',
         height: '200px',
-        type: 'bulletin',
+        type: 'news',
         // END - column properties
         // START - input form field properties
         data: {
@@ -110,7 +110,7 @@ export const COLUMNS = [
         ],
         icon: 'fa-solid fa-comments',
         height: '310px',
-        type: 'newsx',
+        type: 'video',
         // START - input form field properties
         data: {
             videoId: {
@@ -184,7 +184,7 @@ export const COLUMNS = [
         ],
         icon: 'fa-solid fa-calendar-days',
         height: '300px',
-        type: 'bulletinx',
+        type: 'bulletin',
         // START - input form field properties
         data: {
             title: {
@@ -359,7 +359,7 @@ export const COLUMNS = [
             'Opinion polls',
             'கருத்துக் கணிப்புகள்'
         ],
-        icon: 'fa-solid fa-file-signature',
+        icon: 'fa-solid fa-check-to-slot',
         height: '500px',
         type: 'static',
         static: [{
