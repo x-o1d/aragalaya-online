@@ -27,6 +27,9 @@ export const COLUMNS = [
         icon: 'fa-solid fa-radio',
         height: '200px',
         type: 'news',
+        verified: true,
+        tags: ['mainstream', 'aragala', 'economy', 'political', 'legal',
+                    'international', 'energy'],
         // END - column properties
         // START - input form field properties
         data: {
@@ -71,68 +74,6 @@ export const COLUMNS = [
             'ரத்து செய்'
         ],
         // END - input form properties
-        // START - filter properties
-        filter: {
-            verified: true,
-            tags: [{
-                name: 'mainstream',
-                strings: [
-                    'ප්‍රධාන ධාරාවේ පුවත්',
-                    'mainstream news',
-                    'முக்கிய செய்தி'
-                ],
-                color: '#9b77d5'
-            },{
-                name: 'aragala',
-                strings: [
-                    'අරගල පුවත්',
-                    'aragala news',
-                    'அரகல செய்தி'
-                ],
-                color: '#d22fa4'
-            },{
-                name: 'economy',
-                strings: [
-                    'ආර්ථිකය',
-                    'economy',
-                    'பொருளாதாரம்'
-                ],
-                color: '#ff4d7e'
-            },{
-                name: 'political',
-                strings: [
-                    'දේශපාලන',
-                    'political',
-                    'அரசியல்'
-                ],
-                color: '#ff875d'
-            },{
-                name: 'legal',
-                strings: [
-                    'අධිකරණ',
-                    'judicial',
-                    'நீதித்துறை'
-                ],
-                color: '#ffc152'
-            },{
-                name: 'international',
-                strings: [
-                    'ජාත්‍යන්තර',
-                    'international',
-                    'சர்வதேச'
-                ],
-                color: '#f9f871'
-            },{
-                name: 'energy',
-                strings: [
-                    'බලශක්ති',
-                    'power & energy',
-                    'ஆற்றல்'
-                ],
-                color: '#ff92a7'
-            }]
-        }
-        // END - filter properties
     },
     {
         title: [
@@ -143,6 +84,9 @@ export const COLUMNS = [
         icon: 'fa-solid fa-comments',
         height: '310px',
         type: 'video',
+        verified: true,
+        tags: ['economy', 'political', 'legal',
+                    'international', 'energy', 'philosophy', 'english', 'discussion'],
         // START - input form field properties
         data: {
             videoId: {
@@ -217,6 +161,9 @@ export const COLUMNS = [
         icon: 'fa-solid fa-calendar-days',
         height: '300px',
         type: 'bulletin',
+        verified: true,
+        tags: ['mainstream', 'aragala', 'economy', 'political', 'legal',
+                    'international', 'energy'],
         // START - input form field properties
         data: {
             title: {
@@ -260,36 +207,6 @@ export const COLUMNS = [
             'ரத்து செய்'
         ],
         // END - input form properties
-        // START - filter properties
-        filter: {
-            verified: true,
-            tags: [{
-                name: 'mainstream',
-                strings: [
-                    'ප්‍රධාන ධාරාවේ පුවත්',
-                    'mainstream news',
-                    'முக்கிய செய்தி'
-                ],
-                color: '#ffd492'
-            },{
-                name: 'aragala',
-                strings: [
-                    'අරගල පුවත්',
-                    'aragala news',
-                    'அரகல செய்தி'
-                ],
-                color: '#3cc1ff'
-            },{
-                name: 'economy',
-                strings: [
-                    'ආර්ථිකය',
-                    'economy',
-                    'பொருளாதாரம்'
-                ],
-                color: '#c57dff'
-            }]
-        }
-        // END - filter properties
     },
     {
         title: [
@@ -300,6 +217,9 @@ export const COLUMNS = [
         icon: 'fa-solid fa-file-lines',
         height: '400px',
         type: 'proposal',
+        verified: true,
+        tags: ['mainstream', 'aragala', 'economy', 'political', 'legal',
+                    'international', 'energy'],
         // START - input form field properties
         data: {
             organization: {
@@ -354,36 +274,6 @@ export const COLUMNS = [
             'ரத்து செய்'
         ],
         // END - input form properties
-        // START - filter properties
-        filter: {
-            verified: true,
-            tags: [{
-                name: 'mainstream',
-                strings: [
-                    'ප්‍රධාන ධාරාවේ පුවත්',
-                    'mainstream news',
-                    'முக்கிய செய்தி'
-                ],
-                color: '#ffd492'
-            },{
-                name: 'aragala',
-                strings: [
-                    'අරගල පුවත්',
-                    'aragala news',
-                    'அரகல செய்தி'
-                ],
-                color: '#3cc1ff'
-            },{
-                name: 'economy',
-                strings: [
-                    'ආර්ථිකය',
-                    'economy',
-                    'பொருளாதாரம்'
-                ],
-                color: '#c57dff'
-            }]
-        }
-        // END - filter properties
     },
     {
         title: [

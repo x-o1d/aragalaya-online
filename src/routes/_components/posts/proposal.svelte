@@ -10,6 +10,7 @@
     import Font from '$lib/components/display/font.svelte';
     import Timestamp from '$lib/components/display/timestamp.svelte';
     import Content from '$lib/components/display/content.svelte';
+    import Tags from '$lib/components/util/tags.svelte';
 
 	export let data;
 
@@ -80,6 +81,11 @@
                 expanded={data._expanded}
                 on:expandPost={() => data._expanded = true}/>
         </Font>
+        <!-- post tags -->
+        <Tags 
+            tags={data.tags}
+            style="margin-top: var(--s10px)"/>
+        <!-- post toolbar -->
         <Toolbar 
             data={data}
             on:toggleExpanded={(e) => data._expanded = e.detail}/>

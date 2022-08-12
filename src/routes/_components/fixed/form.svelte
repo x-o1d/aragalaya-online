@@ -1,5 +1,6 @@
 <script>
     import { COLUMNS } from '$lib/config/column-config';
+    import { TAGS } from '$lib/config/tag-config';
 
     import { onDestroy } from 'svelte';
 
@@ -19,15 +20,12 @@
     let columnIndex = 0;
     let data = {};
 
-    let tags = COLUMNS[columnIndex].filter &&
-                COLUMNS[columnIndex].filter.tags;
-    let selectedTags = [];
-
     // listen to the add document event and display the form in an overlay
     // add-document event is triggered by clicking on a + icon in the column 
     // headers
     const addDocumentEvent = _eventListener('show-add-document-form').subscribe(event => {
         columnIndex = event.columnIndex;
+        unselectedTagNames = COLUMNS[columnIndex].tags;
         showForm = true;
     });
     // clear subscription
@@ -106,7 +104,7 @@
             ...data,
             ...fieldTypes,
             ...fieldTranslated,
-            tags: selectedTags,
+            tags: selectedTagNames,
             createdOn: (new Date()).getTime(),
             createdBy: user.uid,
             createdByName: user.name,
@@ -128,22 +126,27 @@
     const cancelDocument = async () => {
         // reset data and close form
         data = {};
-        selectTags = [];
+        selectedTagNames = [];
         showForm = false;
     }
 
-    const selectTag = (tag) => {
-        tags.splice(tags.findIndex(t => (t.name == tag.name)), 1);
-        selectedTags.push(tag);
+    let unselectedTagNames = [];
+    let selectedTagNames = [];
+
+    const selectTag = (tagObject) => {
+        unselectedTagNames.splice(unselectedTagNames.findIndex(_ => (_ == tagObject.name)), 1);
+        selectedTagNames.push(tagObject.name);
         // for reactivity
-        selectedTags = selectedTags;
+        selectedTagNames = selectedTagNames;
+        unselectedTagNames = unselectedTagNames;
     }
 
-    const clickTag = (tag) => {
-        tags.push(tag);
-        selectedTags.splice(selectedTags.findIndex(t => (t.name == tag.index)), 1);
+    const clickTag = (tagName) => {
+        unselectedTagNames.push(tagName);
+        selectedTagNames.splice(selectedTagNames.findIndex(_ => (_ == tagName)), 1);
         // for reactivity
-        selectedTags = selectedTags;
+        selectedTagNames = selectedTagNames;
+        unselectedTagNames = unselectedTagNames;
     }
 
 </script>
@@ -170,11 +173,11 @@
                     error={errors[_i]}/>
             {/each}
             <Tags  
-                tags={selectedTags}
+                tags={selectedTagNames}
                 on:tagclick={(e) => clickTag(e.detail)}/>
             <Select
                 placeholder="select tags"
-                options={tags}
+                options={unselectedTagNames.map(tag => TAGS[tag])}
                 on:select={(e) => selectTag(e.detail)}/>
             <Button
                 form

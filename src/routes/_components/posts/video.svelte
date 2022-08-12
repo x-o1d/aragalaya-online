@@ -9,6 +9,7 @@
     import Content from '$lib/components/display/content.svelte';
     import MT from '$lib/components/util/mt.svelte';
     import Toolbar from '$lib/components/util/toolbar.svelte';
+    import Tags from "$lib/components/util/tags.svelte";
 
     import { _emitEvent } from "$lib/services/events";
 
@@ -56,6 +57,10 @@
     <!-- machine translated indication -->
     <MT data={data}
         on:viewOriginal={e => data._viewOriginal = e.detail}/>
+    <!-- post tags -->
+    <Tags 
+        tags={data.tags}
+        style="margin-top: var(--s10px)"/>
     <!-- post toolbar -->
     <Toolbar 
         data={data}

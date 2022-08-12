@@ -4,6 +4,7 @@
 --->
 <script>
     import { COLUMNS } from '$lib/config/column-config';
+    import { TAGS } from '$lib/config/tag-config';
 
     import _strings from './filter-strings';
     import { _lang } from '$lib/services/store';
@@ -14,20 +15,23 @@
     export let show;
     export let columnId;
 
-    const configTags = (COLUMNS[columnId].filter && COLUMNS[columnId].filter.tags) || [];
+    let configTags = [];
+    if(COLUMNS[columnId].tags) {
+        configTags = COLUMNS[columnId].tags.map(tag => TAGS[tag]);
+    }
 
     let verified = true;
     let notVerified = false;
-    let tags = configTags.map(_ => _.name);
+    let tagNames = configTags.map(_ => _.name);
     let selected = Array(configTags.length).fill(true);
 
     const tagSelect = (tag) => {
-        if(tags.includes(tag)) {
+        if(tagNames.includes(tag)) {
             if(tags.length > 1) {
                 tags.splice(tags.indexOf(tag), 1);
             }
         } else {
-            tags.push(tag);
+            tagNames.push(tag);
         }
         selected = selected.map((_,_i) => tags.includes(configTags[_i].name));
     }
@@ -35,14 +39,14 @@
     const clearAll = () => {
         verified = true;
         notVerified = false;
-        tags = [configTags[0].name];
+        tagNames = [configTags[0].name];
         selected = selected.map((_,_i) => (_i == 0));
     }
 
     const selectAll = () => {
         verified = true;
         notVerified = true;
-        tags = configTags.map(_ => _.name);
+        tagNames = configTags.map(_ => _.name);
         selected = selected.map((_,_i) => (_i > -1));
     }
 
@@ -86,7 +90,7 @@
                 on:click={notVerifiedClick}>
                 {_strings['not_verified'][$_lang]}
             </span>
-            {#each COLUMNS[columnId].filter.tags as tag, _i}
+            {#each configTags as tag, _i}
             <span 
                 class="tag"
                 class:selected={selected[_i]}

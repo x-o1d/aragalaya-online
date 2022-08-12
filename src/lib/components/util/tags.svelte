@@ -1,13 +1,15 @@
 <script>
+    import { TAGS } from '$lib/config/tag-config';
+
     import { _lang } from "$lib/services/store";
     import Font from "../display/font.svelte";
     import { createEventDispatcher } from 'svelte';
 
     export let tags;
     export let style = '';
-    
+
     if(!tags) tags = [];
-    console.log(tags);
+    
     // event dispatcher
     const dispatch = createEventDispatcher();
 </script>
@@ -23,8 +25,8 @@
     <span 
         class="tag"
         on:click={() => dispatch('tagclick', tag)}
-        style="background-color: {tag.color};">
-        {tag.strings[$_lang]}
+        style="background-color: {TAGS[tag].color};">
+        {TAGS[tag].strings[$_lang]}
     </span>
     {/each}
 </Font>

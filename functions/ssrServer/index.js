@@ -13191,7 +13191,7 @@ function create_ssr_component(fn) {
       return {
         html,
         css: {
-          code: Array.from(result.css).map((css10) => css10.code).join("\n"),
+          code: Array.from(result.css).map((css11) => css11.code).join("\n"),
           map: null
         },
         head: result.title + result.head
@@ -13997,16 +13997,16 @@ var require_chroma = __commonJS({
       var RE_HSL = /^hsl\(\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*\)$/;
       var RE_HSLA = /^hsla\(\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*,\s*([01]|[01]?\.\d+)\)$/;
       var round$4 = Math.round;
-      var css2rgb$1 = function(css10) {
-        css10 = css10.toLowerCase().trim();
+      var css2rgb$1 = function(css11) {
+        css11 = css11.toLowerCase().trim();
         var m3;
         if (input$f.format.named) {
           try {
-            return input$f.format.named(css10);
+            return input$f.format.named(css11);
           } catch (e2) {
           }
         }
-        if (m3 = css10.match(RE_RGB)) {
+        if (m3 = css11.match(RE_RGB)) {
           var rgb2 = m3.slice(1, 4);
           for (var i3 = 0; i3 < 3; i3++) {
             rgb2[i3] = +rgb2[i3];
@@ -14014,14 +14014,14 @@ var require_chroma = __commonJS({
           rgb2[3] = 1;
           return rgb2;
         }
-        if (m3 = css10.match(RE_RGBA)) {
+        if (m3 = css11.match(RE_RGBA)) {
           var rgb$1 = m3.slice(1, 5);
           for (var i$12 = 0; i$12 < 4; i$12++) {
             rgb$1[i$12] = +rgb$1[i$12];
           }
           return rgb$1;
         }
-        if (m3 = css10.match(RE_RGB_PCT)) {
+        if (m3 = css11.match(RE_RGB_PCT)) {
           var rgb$2 = m3.slice(1, 4);
           for (var i$2 = 0; i$2 < 3; i$2++) {
             rgb$2[i$2] = round$4(rgb$2[i$2] * 2.55);
@@ -14029,7 +14029,7 @@ var require_chroma = __commonJS({
           rgb$2[3] = 1;
           return rgb$2;
         }
-        if (m3 = css10.match(RE_RGBA_PCT)) {
+        if (m3 = css11.match(RE_RGBA_PCT)) {
           var rgb$3 = m3.slice(1, 5);
           for (var i$3 = 0; i$3 < 3; i$3++) {
             rgb$3[i$3] = round$4(rgb$3[i$3] * 2.55);
@@ -14037,7 +14037,7 @@ var require_chroma = __commonJS({
           rgb$3[3] = +rgb$3[3];
           return rgb$3;
         }
-        if (m3 = css10.match(RE_HSL)) {
+        if (m3 = css11.match(RE_HSL)) {
           var hsl2 = m3.slice(1, 4);
           hsl2[1] *= 0.01;
           hsl2[2] *= 0.01;
@@ -14045,7 +14045,7 @@ var require_chroma = __commonJS({
           rgb$4[3] = 1;
           return rgb$4;
         }
-        if (m3 = css10.match(RE_HSLA)) {
+        if (m3 = css11.match(RE_HSLA)) {
           var hsl$1 = m3.slice(1, 4);
           hsl$1[1] *= 0.01;
           hsl$1[2] *= 0.01;
@@ -69438,16 +69438,17 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/storage-a7e3d92e.js
-var import_rxjs, events, _emitEvent, _eventListener, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword;
-var init_storage_a7e3d92e = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/storage-a7e3d92e.js"() {
+// .svelte-kit/output/server/_app/immutable/chunks/tags-b295157c.js
+var import_rxjs, events, _emitEvent, _eventListener, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, css, Tags;
+var init_tags_b295157c = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/tags-b295157c.js"() {
     init_shims();
     init_database_88f2b9f9();
     init_dist4();
     init_dist3();
     import_rxjs = __toESM(require_cjs(), 1);
     init_font_1a623370();
+    init_index_19a73778();
     events = [];
     _emitEvent = (tag, value) => {
       let event = events.find((event2) => tag == event2.tag);
@@ -69540,6 +69541,43 @@ var init_storage_a7e3d92e = __esm({
       }
     });
     getStorage(app);
+    css = {
+      code: ".tag.s-AT3XvDln3Ibo{border:var(--s2px) solid #a5a5a5;border-radius:var(--s3px);padding:0 var(--s3px);margin-right:var(--s3px);margin-bottom:var(--s3px)}.tag.s-AT3XvDln3Ibo:hover{cursor:pointer}.s-AT3XvDln3Ibo{}",
+      map: null
+    };
+    Tags = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $_lang2, $$unsubscribe__lang;
+      validate_store(_lang, "_lang");
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
+      let { tags } = $$props;
+      let { style = "" } = $$props;
+      if (!tags)
+        tags = [];
+      createEventDispatcher();
+      if ($$props.tags === void 0 && $$bindings.tags && tags !== void 0)
+        $$bindings.tags(tags);
+      if ($$props.style === void 0 && $$bindings.style && style !== void 0)
+        $$bindings.style(style);
+      $$result.css.add(css);
+      $$unsubscribe__lang();
+      return `${validate_component(Font, "Font").$$render(
+        $$result,
+        {
+          font: 0,
+          size: 0.75,
+          style: "\n        display: flex;\n        width: calc(90% - 4px);\n        flex-wrap: wrap;" + style
+        },
+        {},
+        {
+          default: () => {
+            return `${each(tags, (tag, _i) => {
+              return `<span class="${"tag s-AT3XvDln3Ibo"}" style="${"background-color: " + escape(tag.color, true) + ";"}">${escape(tag.strings[$_lang2])}
+    </span>`;
+            })}`;
+          }
+        }
+      )}`;
+    });
   }
 });
 
@@ -88004,13 +88042,13 @@ var layout_svelte_exports = {};
 __export(layout_svelte_exports, {
   default: () => _layout
 });
-var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_extension_link, import_chroma_js2, strings, css$b, Button, css$a, Text_input, css$9, Login, functions, _createPost, css$8, Tiptap_editor, css$7, Html_input, css$6, Select, css$5, Form, css$4, Theme_selector, css$3, Preloading_indicator, css$2, Loader, css$1, Toasts, css, _layout;
+var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_extension_link, import_chroma_js2, strings, css$b, Button, css$a, Text_input, css$9, Login, functions, _createPost, css$8, Tiptap_editor, css$7, Html_input, css$6, Select, css$5, Form, css$4, Theme_selector, css$3, Preloading_indicator, css$2, Loader, css$1, Toasts, css2, _layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_19a73778();
     init_font_1a623370();
-    init_storage_a7e3d92e();
+    init_tags_b295157c();
     init_database_88f2b9f9();
     init_column_config_10f4cf42();
     init_dist5();
@@ -88458,7 +88496,7 @@ var init_layout_svelte = __esm({
 </div>`;
     });
     css$5 = {
-      code: ".overlay.s-mtBDmpwXHSHy{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;width:100vw;height:100vh;overflow-y:scroll;background-color:rgba(0,0,0,0.9)}.form_c.s-mtBDmpwXHSHy{width:var(--s500px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c}.form.s-mtBDmpwXHSHy{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s20px);width:100%;height:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}.tag.s-mtBDmpwXHSHy{border:var(--s2px) solid #a5a5a5;border-radius:var(--s3px);padding:0 var(--s3px);margin-right:var(--s3px);margin-bottom:var(--s3px)}.tag.s-mtBDmpwXHSHy:hover{cursor:pointer}.s-mtBDmpwXHSHy{}",
+      code: ".overlay.s-mtBDmpwXHSHy{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;width:100vw;height:100vh;overflow-y:scroll;background-color:rgba(0,0,0,0.9)}.form_c.s-mtBDmpwXHSHy{width:var(--s500px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c}.form.s-mtBDmpwXHSHy{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s20px);width:100%;height:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}.s-mtBDmpwXHSHy{}",
       map: null
     };
     Form = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -88471,6 +88509,8 @@ var init_layout_svelte = __esm({
       let showForm = false;
       let columnIndex = 0;
       let data = {};
+      let tags = COLUMNS[columnIndex].filter && COLUMNS[columnIndex].filter.tags;
+      let selectedTags = [];
       const addDocumentEvent = _eventListener("show-add-document-form").subscribe((event) => {
         columnIndex = event.columnIndex;
         showForm = true;
@@ -88506,6 +88546,7 @@ var init_layout_svelte = __esm({
           ...data,
           ...fieldTypes,
           ...fieldTranslated,
+          tags: selectedTags,
           createdOn: new Date().getTime(),
           createdBy: user2.uid,
           createdByName: user2.name,
@@ -88521,10 +88562,9 @@ var init_layout_svelte = __esm({
       };
       const cancelDocument = async () => {
         data = {};
+        selectTags = [];
         showForm = false;
       };
-      let tags = COLUMNS[columnIndex].filter && COLUMNS[columnIndex].filter.tags;
-      let selectedTags = [];
       $$result.css.add(css$5);
       fields = Object.keys(COLUMNS[columnIndex].data);
       fieldConfigs = fields.map((f5) => {
@@ -88567,23 +88607,7 @@ var init_layout_svelte = __esm({
           {}
         )}`;
       })}
-            ${validate_component(Font, "Font").$$render(
-        $$result,
-        {
-          font: 0,
-          size: 0.75,
-          style: "\n                    display: flex;\n                    margin-bottom: var(--s7px);\n                    width: calc(90% - 4px);\n                    flex-wrap: wrap"
-        },
-        {},
-        {
-          default: () => {
-            return `${each(selectedTags, (tag, _i) => {
-              return `<span class="${"tag s-mtBDmpwXHSHy"}" style="${"background-color: " + escape(tag.color, true) + ";"}">${escape(tag.strings[$_lang2])}
-                </span>`;
-            })}`;
-          }
-        }
-      )}
+            ${validate_component(Tags, "Tags").$$render($$result, { tags: selectedTags }, {}, {})}
             ${validate_component(Select, "Select").$$render(
         $$result,
         {
@@ -88719,7 +88743,7 @@ ${showText ? `<div class="${["toast-container s-F3BFPhrY-hZv", event ? "event" :
         }
       })}</div></div>` : ``}`;
     });
-    css = {
+    css2 = {
       code: "html{font-family:'Roboto', sans-serif}body{margin:0;overflow:hidden}*{box-sizing:border-box}._clickable:hover{cursor:pointer}p{margin:0px}ul.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-flex}.header.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{--text:rgb(163, 47, 47);--shadow-height:0.5rem;--shadow-gradient:linear-gradient(\n			to bottom,\n			rgba(0, 0, 0, 0.3) 0%,\n			rgba(0, 0, 0, 0.1) 30%,\n			transparent 100%\n		);height:var(--theme-layoutheaderheight);display:flex;align-items:center;justify-content:space-between;width:100vw;margin:0;font-family:var(--font);transition:transform 0.2s;user-select:none;padding:0;background-color:var(--theme-headerbackground)}.logo.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:flex;padding:var(--s10px) var(--s7px);align-items:baseline;padding-bottom:var(--s10px)}.aragalaya.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-block;font-size:var(--s36px);line-height:var(--s28px);font-weight:bold;font-family:'Gemunu Libre', sans-serif}.online.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-block;font-size:var(--s18px);font-family:'Roboto', sans-serif}.beta.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{padding:var(--s5px);font-size:var(--s9px);font-weight:bold;color:green}.header-right.s-PoaHcXV6SIWL li.s-PoaHcXV6SIWL{font-size:var(--s14px);line-height:var(--s14px);padding:0 var(--s5px);font-family:'Roboto', sans-serif}.header-right.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL:last-child{margin-right:var(--s5px)}.login.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{margin-left:var(--s30px)}.login.s-PoaHcXV6SIWL .fa-solid.s-PoaHcXV6SIWL{font-size:var(--s19px);margin-right:var(--s3px)}.header-right.s-PoaHcXV6SIWL li.s-PoaHcXV6SIWL{cursor:pointer}.language-select.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:relative}.language-button.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:flex;align-items:center;justify-content:center;width:var(--s30px);height:var(--s30px);background:white;color:black;font-size:18px;border-radius:var(--s3px);border:0.0520vw solid black;cursor:pointer}.languages.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:absolute;top:var(--s35px);right:var(--s-22_5px);z-index:10;width:var(--s80px);border-radius:var(--s3px);border:0.0520vw solid black}.languages.s-PoaHcXV6SIWL>div.s-PoaHcXV6SIWL{padding:var(--s10px);background-color:white;text-align:center}main.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:relative;margin:0 auto;overflow:hiden}.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{}",
       map: null
     };
@@ -88763,7 +88787,7 @@ ${showText ? `<div class="${["toast-container s-F3BFPhrY-hZv", event ? "event" :
         }
       });
       onDestroy(() => globalClickEvent.unsubscribe());
-      $$result.css.add(css);
+      $$result.css.add(css2);
       $$unsubscribe__isMobile();
       return `
 
@@ -88814,9 +88838,9 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-3ec710e2.js";
-    imports = ["_app/immutable/pages/__layout.svelte-3ec710e2.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-0a5a4e4e.js", "_app/immutable/chunks/index-732fa142.js", "_app/immutable/chunks/font-411d0258.js", "_app/immutable/chunks/storage-fd280779.js"];
-    stylesheets = ["_app/immutable/assets/__layout-bda5a828.css"];
+    file2 = "_app/immutable/pages/__layout.svelte-f738e105.js";
+    imports = ["_app/immutable/pages/__layout.svelte-f738e105.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-0a5a4e4e.js", "_app/immutable/chunks/index-732fa142.js", "_app/immutable/chunks/font-411d0258.js", "_app/immutable/chunks/tags-ed49fe61.js"];
+    stylesheets = ["_app/immutable/assets/__layout-1e18029f.css", "_app/immutable/assets/tags-14381ee9.css"];
   }
 });
 
@@ -90924,7 +90948,7 @@ var init_string_strip_html_esm = __esm({
 });
 
 // .svelte-kit/output/server/_app/immutable/chunks/proposal-968909ff.js
-var css$32, Card, strings$3, Timestamp2, strings$2, css$22, Content, css$12, Preview, strings$1, css2, Toolbar, strings2, Proposal;
+var css$32, Card, strings$3, Timestamp2, strings$2, css$22, Content, css$12, Preview, strings$1, css3, Toolbar, strings2, Proposal;
 var init_proposal_968909ff = __esm({
   ".svelte-kit/output/server/_app/immutable/chunks/proposal-968909ff.js"() {
     init_shims();
@@ -91169,7 +91193,7 @@ var init_proposal_968909ff = __esm({
         "\u0B9A\u0BB0\u0BBF\u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BCD\u0B9F\u0BA4\u0BC1"
       ]
     };
-    css2 = {
+    css3 = {
       code: ".toolbar.s-A62t8M1ucyij{display:flex;align-items:center;justify-content:space-between;margin-top:var(--s10px)}.toolbar-left.s-A62t8M1ucyij{display:inline-flex}.toolbar-right.s-A62t8M1ucyij{display:inline-flex;align-items:center}.icon.s-A62t8M1ucyij{display:inline-flex;align-items:center;justify-content:center;width:var(--theme-toolbarbuttonsize);height:var(--theme-toolbarbuttonsize);margin-right:var(--s5px);font-size:var(--s13px);line-height:var(--s14px);background-color:rgb(226, 230, 230);border-radius:3px}.on.s-A62t8M1ucyij{background-color:rgb(124, 124, 124);color:white}.verified.s-A62t8M1ucyij{background-color:#48bb6b;color:white;margin-right:0}.facebook.s-A62t8M1ucyij{background-color:#557bab}.twitter.s-A62t8M1ucyij{background-color:#6abef2}.whatsapp.s-A62t8M1ucyij{background-color:#61ba7b}.reddit.s-A62t8M1ucyij{background-color:#fc7949}.fa-brands.s-A62t8M1ucyij{color:white}.s-A62t8M1ucyij{}",
       map: null
     };
@@ -91181,7 +91205,7 @@ var init_proposal_968909ff = __esm({
       createEventDispatcher();
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      $$result.css.add(css2);
+      $$result.css.add(css3);
       $$unsubscribe__lang();
       return `
 
@@ -91456,7 +91480,7 @@ function tweened(value, defaults = {}) {
     subscribe: store.subscribe
   };
 }
-var import_chroma_js3, css$72, Nav, css$62, Template, strings$22, css$52, Mt, Bulletin, News, css$42, Youtube, Video, css$33, Post, strings$12, css$23, Filter2, strings3, css$13, Wip, css3, COMPONENTS, Routes;
+var import_chroma_js3, css$72, Nav, css$62, Template, strings$22, css$52, Mt, Bulletin, News, css$42, Youtube, Video, css$33, Post, strings$12, css$23, Filter2, strings3, css$13, Wip, css4, COMPONENTS, Routes;
 var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
@@ -91464,7 +91488,7 @@ var init_index_svelte = __esm({
     init_column_config_10f4cf42();
     init_font_1a623370();
     init_string_strip_html_esm();
-    init_storage_a7e3d92e();
+    init_tags_b295157c();
     init_database_88f2b9f9();
     init_proposal_968909ff();
     import_chroma_js3 = __toESM(require_chroma(), 1);
@@ -91678,6 +91702,16 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
             }
           )}
     
+    ${validate_component(Tags, "Tags").$$render(
+            $$result,
+            {
+              tags: data.tags,
+              style: "margin-top: var(--s10px)"
+            },
+            {},
+            {}
+          )}
+    
     ${validate_component(Mt, "MT").$$render($$result, { data }, {}, {})}
     
     ${validate_component(Toolbar, "Toolbar").$$render($$result, { data }, {}, {})}`;
@@ -91763,6 +91797,16 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
             }
           )}
     
+    ${validate_component(Tags, "Tags").$$render(
+            $$result,
+            {
+              tags: data.tags,
+              style: "margin-top: var(--s10px)"
+            },
+            {},
+            {}
+          )}
+    
     ${validate_component(Mt, "MT").$$render($$result, { data }, {}, {})}
     
     ${validate_component(Toolbar, "Toolbar").$$render($$result, { data }, {}, {})}`;
@@ -91782,7 +91826,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
       if ($$props.style === void 0 && $$bindings.style && style !== void 0)
         $$bindings.style(style);
       $$result.css.add(css$42);
-      return `<div class="${["youtube s-pP_MCOEFRNVA", "youtube-preview"].join(" ").trim()}"${add_attribute("style", youtubeStyles, 0)}><div id="${"player-" + escape(data.videoId, true)}" class="${"s-pP_MCOEFRNVA"}"></div>
+      return `<div class="${["youtube s-pP_MCOEFRNVA", "youtube-preview"].join(" ").trim()}"${add_attribute("style", youtubeStyles, 0)}><div id="${"player-" + escape(data.id, true)}" class="${"s-pP_MCOEFRNVA"}"></div>
     ${`<div class="${"youtube-overlay s-pP_MCOEFRNVA"}"><i class="${"fa-solid fa-play s-pP_MCOEFRNVA"}"></i></div>`}
 </div>`;
     });
@@ -92035,7 +92079,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
         }
       })}`;
     });
-    css3 = {
+    css4 = {
       code: "ul.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex}.columns.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;overflow:hidden;background-color:var(--theme-columnbackground)}.column.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;width:var(--theme-columnwidth);height:calc(100vh - var(--theme-columnheaderheight))}.header.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;height:var(--theme-columnheaderheight);color:var(--theme-headerfontcolor);padding:0 var(--theme-cardseparationhalf) 0 var(--s10px);font-weight:bold;z-index:2}.header.s-Uap-jPRb-uiE div.s-Uap-jPRb-uiE{display:flex;align-items:center;height:100%}.header.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE:first-child{font-size:var(--s24px)}.icon-button.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex;align-items:center;justify-content:center;width:35px;height:35px;font-size:var(--s17px)}.cards.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;width:100%;height:calc(100vh - var(--s100px));overflow-y:scroll;overflow-x:hidden;-ms-overflow-style:none;scrollbar-width:none;padding:var(--theme-cardseparationhalf) 0}.cards.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE::-webkit-scrollbar{display:none}.spacer.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{width:var(--theme-cardseparationhalf);height:calc(100vh - var(--theme-columnheaderheight))}.spacer.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE::after{display:block;content:'';height:var(--theme-columnheaderheight);width:var(--theme-cardseparationhalf);background-color:var(--background)}.scrollbar.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:absolute;top:var(--theme-columnheaderheight);right:0}.scroll.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:absolute;overflow:hidden;top:var(--s20px);right:var(--s-3_75px);width:var(--s7_5px);border-radius:var(--s7_5px);opacity:0.5;background-color:rgba(0,0,0,0.4)}.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{}",
       map: null
     };
@@ -92140,7 +92184,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
         $$bindings.columnData(columnData);
       if ($$props.postData === void 0 && $$bindings.postData && postData !== void 0)
         $$bindings.postData(postData);
-      $$result.css.add(css3);
+      $$result.css.add(css4);
       $$unsubscribe__isMobile();
       $$unsubscribe__lang();
       return `
@@ -92214,9 +92258,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    file4 = "_app/immutable/pages/index.svelte-951102ec.js";
-    imports3 = ["_app/immutable/pages/index.svelte-951102ec.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/font-411d0258.js", "_app/immutable/chunks/store-0a5a4e4e.js", "_app/immutable/chunks/index-732fa142.js", "_app/immutable/chunks/proposal-c59421b5.js", "_app/immutable/chunks/storage-fd280779.js"];
-    stylesheets3 = ["_app/immutable/assets/index-7e00bd92.css", "_app/immutable/assets/proposal-62aca3cb.css"];
+    file4 = "_app/immutable/pages/index.svelte-4bff66c5.js";
+    imports3 = ["_app/immutable/pages/index.svelte-4bff66c5.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/font-411d0258.js", "_app/immutable/chunks/store-0a5a4e4e.js", "_app/immutable/chunks/index-732fa142.js", "_app/immutable/chunks/proposal-c59421b5.js", "_app/immutable/chunks/tags-ed49fe61.js"];
+    stylesheets3 = ["_app/immutable/assets/index-7e00bd92.css", "_app/immutable/assets/proposal-62aca3cb.css", "_app/immutable/assets/tags-14381ee9.css"];
   }
 });
 
@@ -92225,7 +92269,7 @@ var post_preview_svelte_exports = {};
 __export(post_preview_svelte_exports, {
   default: () => Post_preview
 });
-var import_chroma_js4, css4, Post_preview;
+var import_chroma_js4, css5, Post_preview;
 var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
@@ -92235,7 +92279,7 @@ var init_post_preview_svelte = __esm({
     init_column_config_10f4cf42();
     import_chroma_js4 = __toESM(require_chroma(), 1);
     init_string_strip_html_esm();
-    css4 = {
+    css5 = {
       code: ".preview.s-nkO0SViUUGe1{display:flex;justify-content:center;background-color:var(--theme-columnbackground);width:100%;height:100vh}.column-container.s-nkO0SViUUGe1{padding:var(--theme-cardseparationhalf);height:100%}.column.s-nkO0SViUUGe1{display:flex;align-items:center;justify-content:center;flex-direction:column;width:var(--theme-columnwidth);height:100%;padding:0 var(--theme-cardseparationhalf)}.s-nkO0SViUUGe1{}",
       map: null
     };
@@ -92252,7 +92296,7 @@ var init_post_preview_svelte = __esm({
           ]
         }
       ];
-      $$result.css.add(css4);
+      $$result.css.add(css5);
       return `
 
 
@@ -92291,17 +92335,17 @@ var privacy_policy_svelte_exports = {};
 __export(privacy_policy_svelte_exports, {
   default: () => Privacy_policy
 });
-var css5, Privacy_policy;
+var css6, Privacy_policy;
 var init_privacy_policy_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/privacy_policy.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    css5 = {
+    css6 = {
       code: ".privacy.s-BFsvH6Axz-AK{display:flex;align-items:center;justify-content:center;width:100vw;height:100vh;padding:150px}.s-BFsvH6Axz-AK{}",
       map: null
     };
     Privacy_policy = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css5);
+      $$result.css.add(css6);
       return `<div class="${"privacy s-BFsvH6Axz-AK"}">We do not collect or store any other information than your name and email.
     If you wish to hide your email, use the facebook signon method, click &#39;edit access&#39; and select hide email.
 </div>`;
@@ -92335,12 +92379,12 @@ var facebook_svelte_exports = {};
 __export(facebook_svelte_exports, {
   default: () => Facebook
 });
-var css6, Facebook;
+var css7, Facebook;
 var init_facebook_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/share/facebook.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    css6 = {
+    css7 = {
       code: ".redirect.s-uPWWvh_Oaxdy{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-uPWWvh_Oaxdy{}",
       map: null
     };
@@ -92348,7 +92392,7 @@ var init_facebook_svelte = __esm({
       let { postId } = $$props;
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
-      $$result.css.add(css6);
+      $$result.css.add(css7);
       return `<div class="${"redirect s-uPWWvh_Oaxdy"}">Redirecting to facebook..</div>`;
     });
   }
@@ -92380,12 +92424,12 @@ var reddit_svelte_exports = {};
 __export(reddit_svelte_exports, {
   default: () => Reddit
 });
-var css7, Reddit;
+var css8, Reddit;
 var init_reddit_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/share/reddit.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    css7 = {
+    css8 = {
       code: ".redirect.s-t6VgelH33f8J{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-t6VgelH33f8J{}",
       map: null
     };
@@ -92393,7 +92437,7 @@ var init_reddit_svelte = __esm({
       let { postId } = $$props;
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
-      $$result.css.add(css7);
+      $$result.css.add(css8);
       return `<div class="${"redirect s-t6VgelH33f8J"}">Redirecting to reddit..</div>`;
     });
   }
@@ -92425,12 +92469,12 @@ var twitter_svelte_exports = {};
 __export(twitter_svelte_exports, {
   default: () => Twitter
 });
-var css8, Twitter;
+var css9, Twitter;
 var init_twitter_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/share/twitter.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    css8 = {
+    css9 = {
       code: ".redirect.s-1wq-66mPpMC5{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-1wq-66mPpMC5{}",
       map: null
     };
@@ -92438,7 +92482,7 @@ var init_twitter_svelte = __esm({
       let { postId } = $$props;
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
-      $$result.css.add(css8);
+      $$result.css.add(css9);
       return `<div class="${"redirect s-1wq-66mPpMC5"}">Redirecting to twitter..</div>`;
     });
   }
@@ -92470,12 +92514,12 @@ var whatsapp_svelte_exports = {};
 __export(whatsapp_svelte_exports, {
   default: () => Whatsapp
 });
-var css9, Whatsapp;
+var css10, Whatsapp;
 var init_whatsapp_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/share/whatsapp.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    css9 = {
+    css10 = {
       code: ".redirect.s-mE7g6kYsnsCp{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-mE7g6kYsnsCp{}",
       map: null
     };
@@ -92483,7 +92527,7 @@ var init_whatsapp_svelte = __esm({
       let { postId } = $$props;
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
-      $$result.css.add(css9);
+      $$result.css.add(css10);
       return `<div class="${"redirect s-mE7g6kYsnsCp"}">Redirecting to whatsapp..</div>`;
     });
   }
@@ -95174,7 +95218,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-3325bffe.js", "imports": ["_app/immutable/start-3325bffe.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/index-732fa142.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-dc2ec2a0.js", "imports": ["_app/immutable/start-dc2ec2a0.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/index-732fa142.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
