@@ -54,13 +54,13 @@
             expanded={data._expanded}
             on:expandPost={() => data._expanded = true}/>
     </Font>
-    <!-- machine translated indication -->
-    <MT data={data}
-        on:viewOriginal={e => data._viewOriginal = e.detail}/>
     <!-- post tags -->
     <Tags 
         tags={data.tags}
         style="margin-top: var(--s10px)"/>
+    <!-- machine translated indication -->
+    <MT data={data}
+        on:viewOriginal={e => data._viewOriginal = e.detail}/>
     <!-- post toolbar -->
     <Toolbar 
         data={data}

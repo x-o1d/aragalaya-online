@@ -13232,418 +13232,6 @@ var init_hooks_bced8853 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/column-config-10f4cf42.js
-var COLUMNS, COLUMN_COUNT;
-var init_column_config_10f4cf42 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/column-config-10f4cf42.js"() {
-    init_shims();
-    COLUMNS = [
-      {
-        title: [
-          "\u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
-          "News",
-          "\u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
-        ],
-        icon: "fa-solid fa-radio",
-        height: "200px",
-        type: "news",
-        data: {
-          title: {
-            type: "text",
-            maxlength: 100,
-            placeholder: [
-              "\u0DC1\u0DD3\u0DBB\u0DCA\u0DC2\u0DBA",
-              "title",
-              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
-            ],
-            required: true,
-            translate: true
-          },
-          description: {
-            type: "html",
-            maxlength: 100,
-            placeholder: [
-              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A \u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8 ",
-              "details",
-              "\u0BB5\u0BBF\u0BB5\u0BB0\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
-            ],
-            required: true,
-            translate: true
-          }
-        },
-        dataFormTitle: [
-          "\u0DB4\u0DD4\u0DC0\u0DAD\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "Create a news article",
-          "\u0B92\u0BB0\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF \u0B95\u0B9F\u0BCD\u0B9F\u0BC1\u0BB0\u0BC8\u0BAF\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
-        ],
-        submitButton: [
-          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "create",
-          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
-        ],
-        cancelButton: [
-          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "cancel",
-          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
-        ],
-        filter: {
-          verified: true,
-          tags: [{
-            name: "mainstream",
-            strings: [
-              "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
-              "mainstream news",
-              "\u0BAE\u0BC1\u0B95\u0BCD\u0B95\u0BBF\u0BAF \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
-            ],
-            color: "#9b77d5"
-          }, {
-            name: "aragala",
-            strings: [
-              "\u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
-              "aragala news",
-              "\u0B85\u0BB0\u0B95\u0BB2 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
-            ],
-            color: "#d22fa4"
-          }, {
-            name: "economy",
-            strings: [
-              "\u0D86\u0DBB\u0DCA\u0DAE\u0DD2\u0D9A\u0DBA",
-              "economy",
-              "\u0BAA\u0BCA\u0BB0\u0BC1\u0BB3\u0BBE\u0BA4\u0BBE\u0BB0\u0BAE\u0BCD"
-            ],
-            color: "#ff4d7e"
-          }, {
-            name: "political",
-            strings: [
-              "\u0DAF\u0DDA\u0DC1\u0DB4\u0DCF\u0DBD\u0DB1",
-              "political",
-              "\u0B85\u0BB0\u0B9A\u0BBF\u0BAF\u0BB2\u0BCD"
-            ],
-            color: "#ff875d"
-          }, {
-            name: "legal",
-            strings: [
-              "\u0D85\u0DB0\u0DD2\u0D9A\u0DBB\u0DAB",
-              "judicial",
-              "\u0BA8\u0BC0\u0BA4\u0BBF\u0BA4\u0BCD\u0BA4\u0BC1\u0BB1\u0BC8"
-            ],
-            color: "#ffc152"
-          }, {
-            name: "international",
-            strings: [
-              "\u0DA2\u0DCF\u0DAD\u0DCA\u200D\u0DBA\u0DB1\u0DCA\u0DAD\u0DBB",
-              "international",
-              "\u0B9A\u0BB0\u0BCD\u0BB5\u0BA4\u0BC7\u0B9A"
-            ],
-            color: "#f9f871"
-          }, {
-            name: "energy",
-            strings: [
-              "\u0DB6\u0DBD\u0DC1\u0D9A\u0DCA\u0DAD\u0DD2",
-              "power & energy",
-              "\u0B86\u0BB1\u0BCD\u0BB1\u0BB2\u0BCD"
-            ],
-            color: "#ff92a7"
-          }]
-        }
-      },
-      {
-        title: [
-          "\u0DC3\u0DCF\u0D9A\u0DA0\u0DCA\u0DA1\u0DCF",
-          "Discussions",
-          "\u0BB5\u0BBF\u0BB5\u0BBE\u0BA4\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
-        ],
-        icon: "fa-solid fa-comments",
-        height: "310px",
-        type: "video",
-        data: {
-          videoId: {
-            type: "text",
-            maxlength: 100,
-            placeholder: [
-              "https://www.youtube.com/watch?v=ueYFyWW8e5I",
-              "https://www.youtube.com/watch?v=ueYFyWW8e5I",
-              "https://www.youtube.com/watch?v=ueYFyWW8e5I"
-            ],
-            required: true,
-            validate: (val) => {
-              var videoIdRegexp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
-              let result = videoIdRegexp.exec(val);
-              return !result[1];
-            },
-            process: (val) => {
-              var videoIdRegexp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
-              let result = videoIdRegexp.exec(val);
-              return result[1];
-            }
-          },
-          title: {
-            type: "text",
-            maxlength: 300,
-            placeholder: [
-              "\u0DB8\u0DCF\u0DAD\u0DD8\u0D9A\u0DCF\u0DC0",
-              "title",
-              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
-            ],
-            required: true,
-            translate: true
-          },
-          shortDescription: {
-            type: "text",
-            maxlength: 300,
-            placeholder: [
-              "\u0D9A\u0DD9\u0DA7\u0DD2 \u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DBA",
-              "short description",
-              "\u0B95\u0BC1\u0BB1\u0BC1\u0B95\u0BBF\u0BAF \u0BB5\u0BBF\u0BB3\u0B95\u0BCD\u0B95\u0BAE\u0BCD"
-            ],
-            required: true,
-            translate: true
-          }
-        },
-        dataFormTitle: [
-          "\u0DC0\u0DD3\u0DA9\u0DD2\u0DBA\u0DDD\u0DC0\u0D9A\u0DCA \u0D91\u0D9A\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "Add a video",
-          "\u0B92\u0BB0\u0BC1 \u0BB5\u0BC0\u0B9F\u0BBF\u0BAF\u0BCB\u0BB5\u0BC8\u0B9A\u0BCD \u0B9A\u0BC7\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
-        ],
-        submitButton: [
-          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "submit",
-          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
-        ],
-        cancelButton: [
-          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "cancel",
-          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
-        ]
-      },
-      {
-        title: [
-          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0DCA \u0DB4\u0DD4\u0DC0\u0DBB\u0DD4\u0DC0",
-          "Bulletin board",
-          "\u0B85\u0BB1\u0BBF\u0BB5\u0BBF\u0BAA\u0BCD\u0BAA\u0BC1 \u0BAA\u0BB2\u0B95\u0BC8"
-        ],
-        icon: "fa-solid fa-calendar-days",
-        height: "300px",
-        type: "bulletin",
-        data: {
-          title: {
-            type: "text",
-            maxlength: 100,
-            placeholder: [
-              "\u0DC1\u0DD3\u0DBB\u0DCA\u0DC2\u0DBA",
-              "title",
-              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
-            ],
-            required: true,
-            translate: true
-          },
-          description: {
-            type: "html",
-            maxlength: 100,
-            placeholder: [
-              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A \u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8 ",
-              "details",
-              "\u0BB5\u0BBF\u0BB5\u0BB0\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
-            ],
-            required: true,
-            translate: true
-          }
-        },
-        dataFormTitle: [
-          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "Create a bulletin",
-          "\u0B92\u0BB0\u0BC1 \u0BAA\u0BC1\u0BB2\u0BCD\u0BB2\u0B9F\u0BCD\u0B9F\u0BBF\u0BA9\u0BCD \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
-        ],
-        submitButton: [
-          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "create",
-          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
-        ],
-        cancelButton: [
-          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "cancel",
-          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
-        ],
-        filter: {
-          verified: true,
-          tags: [{
-            name: "mainstream",
-            strings: [
-              "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
-              "mainstream news",
-              "\u0BAE\u0BC1\u0B95\u0BCD\u0B95\u0BBF\u0BAF \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
-            ],
-            color: "#ffd492"
-          }, {
-            name: "aragala",
-            strings: [
-              "\u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
-              "aragala news",
-              "\u0B85\u0BB0\u0B95\u0BB2 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
-            ],
-            color: "#3cc1ff"
-          }, {
-            name: "economy",
-            strings: [
-              "\u0D86\u0DBB\u0DCA\u0DAE\u0DD2\u0D9A\u0DBA",
-              "economy",
-              "\u0BAA\u0BCA\u0BB0\u0BC1\u0BB3\u0BBE\u0BA4\u0BBE\u0BB0\u0BAE\u0BCD"
-            ],
-            color: "#c57dff"
-          }]
-        }
-      },
-      {
-        title: [
-          "\u0DB8\u0DC4\u0DA2\u0DB1 \u0D85\u0DAF\u0DC4\u0DC3\u0DCA \u0DC3\u0DB3\u0DC4\u0DCF \u0DBA\u0DDD\u0DA2\u0DB1\u0DCF",
-          "Proposals for public comments",
-          "\u0BAA\u0BCA\u0BA4\u0BC1 \u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BB3\u0BC1\u0B95\u0BCD\u0B95\u0BBE\u0BA9 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAE\u0BCA\u0BB4\u0BBF\u0BB5\u0BC1\u0B95\u0BB3\u0BCD"
-        ],
-        icon: "fa-solid fa-file-lines",
-        height: "400px",
-        type: "proposal",
-        data: {
-          organization: {
-            type: "text",
-            maxlength: 100,
-            placeholder: [
-              "\u0D86\u0DBA\u0DAD\u0DB1\u0DBA",
-              "organization",
-              "\u0B85\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
-            ],
-            required: true,
-            translate: true
-          },
-          motive: {
-            type: "text",
-            maxlength: 300,
-            placeholder: [
-              "\u0D86\u0DBA\u0DAD\u0DB1\u0DBA\u0DDA \u0D85\u0DBB\u0DB8\u0DD4\u0DAB",
-              "organization's motive",
-              "\u0B85\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BBF\u0BA9\u0BCD \u0BA8\u0BCB\u0B95\u0BCD\u0B95\u0BAE\u0BCD"
-            ],
-            required: true,
-            translate: true
-          },
-          proposal: {
-            type: "html",
-            maxlength: 1e3,
-            placeholder: [
-              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A\u0DC0 \u0DBA\u0DDD\u0DA2\u0DB1\u0DCF\u0DC0",
-              "proposal in detail",
-              "\u0BB5\u0BBF\u0BB0\u0BBF\u0BB5\u0BBE\u0BA9 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAE\u0BCA\u0BB4\u0BBF\u0BB5\u0BC1"
-            ],
-            required: true,
-            translate: true
-          }
-        },
-        dataFormTitle: [
-          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "Create a bulletin",
-          "\u0B92\u0BB0\u0BC1 \u0BAA\u0BC1\u0BB2\u0BCD\u0BB2\u0B9F\u0BCD\u0B9F\u0BBF\u0BA9\u0BCD \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
-        ],
-        submitButton: [
-          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "create",
-          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
-        ],
-        cancelButton: [
-          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "cancel",
-          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
-        ],
-        filter: {
-          verified: true,
-          tags: [{
-            name: "mainstream",
-            strings: [
-              "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
-              "mainstream news",
-              "\u0BAE\u0BC1\u0B95\u0BCD\u0B95\u0BBF\u0BAF \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
-            ],
-            color: "#ffd492"
-          }, {
-            name: "aragala",
-            strings: [
-              "\u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
-              "aragala news",
-              "\u0B85\u0BB0\u0B95\u0BB2 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
-            ],
-            color: "#3cc1ff"
-          }, {
-            name: "economy",
-            strings: [
-              "\u0D86\u0DBB\u0DCA\u0DAE\u0DD2\u0D9A\u0DBA",
-              "economy",
-              "\u0BAA\u0BCA\u0BB0\u0BC1\u0BB3\u0BBE\u0BA4\u0BBE\u0BB0\u0BAE\u0BCD"
-            ],
-            color: "#c57dff"
-          }]
-        }
-      },
-      {
-        title: [
-          "\u0DB8\u0DAD \u0DC0\u0DD2\u0DB8\u0DC3\u0DD3\u0DB8\u0DCA",
-          "Opinion polls",
-          "\u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BCD \u0B95\u0BA3\u0BBF\u0BAA\u0BCD\u0BAA\u0BC1\u0B95\u0BB3\u0BCD"
-        ],
-        icon: "fa-solid fa-check-to-slot",
-        height: "500px",
-        type: "static",
-        static: [{
-          type: "wip",
-          service: [
-            `\u0DA1\u0DB1\u0DCA\u0DAF \u0DC0\u0DD2\u0DB8\u0DC3\u0DD3\u0DB8\u0DCA \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0D95\u0DB1\u0DD1\u0DB8 \u0D9A\u0DD9\u0DB1\u0DD9\u0D9A\u0DD4\u0DA7 \u0DB4\u0DDC\u0DAF\u0DD4 \u0DB8\u0DAD \u0DC0\u0DD2\u0DB8\u0DC3\u0DD4\u0DB8\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC3\u0DC4 \u0DB8\u0DD2\u0DB1\u0DD2\u0DC3\u0DD4\u0DB1\u0DCA\u0DA7 \u0D92 \u0DC3\u0DB3\u0DC4\u0DCF \u0DA1\u0DB1\u0DCA\u0DAF\u0DBA \u0DB4\u0DCA\u200D\u0DBB\u0D9A\u0DCF\u0DC1 \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DBD\u0DB6\u0DCF \u0DAF\u0DDA. \u0D85\u0DBB\u0D9C\u0DBD\u0DBA\u0DDA \u0DAF\u0DD2\u0DC1\u0DCF\u0DB1\u0DAD\u0DD2\u0DBA \u0D9C\u0DD0\u0DB1 \u0DB4\u0DCA\u200D\u0DBB\u0DA2\u0DCF\u0DAD\u0DB1\u0DCA\u0DAD\u0DCA\u200D\u0DBB\u0DC0\u0DCF\u0DAF\u0DD3\u0DC0 \u0DAD\u0DD3\u0DBB\u0DAB \u0D9C\u0DD0\u0DB1\u0DD3\u0DB8\u0DA7 \u0DB8\u0DD9\u0DBA \u0DBA\u0DDC\u0DAF\u0DCF\u0D9C\u0DAD \u0DC4\u0DD0\u0D9A.`,
-            `polls will allow anyone to create a public poll and allow anyone to create and vote for suggestions. this can be used to make democratic decisions about the direction of aragalaya.`,
-            `\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC6\u0B9F\u0BC1\u0BAA\u0BCD\u0BAA\u0BC1\u0B95\u0BB3\u0BCD \u0BAF\u0BBE\u0BB0\u0BC8\u0BAF\u0BC1\u0BAE\u0BCD \u0BAA\u0BCA\u0BA4\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC6\u0B9F\u0BC1\u0BAA\u0BCD\u0BAA\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD \u0BAE\u0BB1\u0BCD\u0BB1\u0BC1\u0BAE\u0BCD \u0BAE\u0B95\u0BCD\u0B95\u0BB3\u0BCD \u0B85\u0BA4\u0BB1\u0BCD\u0B95\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB3\u0BBF\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE\u0BB5\u0BBF\u0BA9\u0BCD \u0BA4\u0BBF\u0B9A\u0BC8\u0BAF\u0BC8\u0BAA\u0BCD \u0BAA\u0BB1\u0BCD\u0BB1\u0BBF \u0B9C\u0BA9\u0BA8\u0BBE\u0BAF\u0B95 \u0BAE\u0BC1\u0B9F\u0BBF\u0BB5\u0BC1\u0B95\u0BB3\u0BC8 \u0B8E\u0B9F\u0BC1\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4\u0BB2\u0BBE\u0BAE\u0BCD.`
-          ],
-          releaseDate: "29/08/2022"
-        }]
-      },
-      {
-        title: [
-          "\u0DC3\u0DCF\u0DB8\u0DD4\u0DC4\u0DD2\u0D9A \u0DBD\u0DDA\u0D9B\u0DB1",
-          "Collaborative documents",
-          "\u0B95\u0BC2\u0B9F\u0BCD\u0B9F\u0BC1 \u0B86\u0BB5\u0BA3\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
-        ],
-        icon: "fa-solid fa-file-signature",
-        height: "500px",
-        type: "static",
-        static: [{
-          type: "wip",
-          service: [
-            `\u0DB8\u0DD9\u0DB8 \u0DC3\u0DDA\u0DC0\u0DCF\u0DC0 \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0DC3\u0DCF\u0DB8\u0DD4\u0DC4\u0DD2\u0D9A\u0DC0 \u0DBD\u0DDA\u0D9B\u0DB1 \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DBD \u0DC4\u0DD0\u0D9A\u0DD2 \u0D85\u0DAD\u0DBB, \u0D91\u0DC4\u0DD2\u0DAF\u0DD3 \u0D87\u0DAD\u0DD2\u0DC0\u0DB1 \u0D9C\u0DD0\u0DA7\u0DD4\u0DB8\u0DCA \u0DA0\u0DB1\u0DCA\u0DAF\u0DBA\u0D9A\u0DCA \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0DC0\u0DD2\u0DC3\u0DB3\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DC3\u0DBD\u0DC3\u0DBA\u0DD2. \u0DB8\u0DD9\u0DBA \u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DCA\u200D\u0DBB\u0DA5\u0DB4\u0DCA\u0DAD\u0DD2\u0DBA\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC4\u0DCF \u0DB1\u0DC0 \u0DC0\u0DCA\u200D\u0DBA\u0DC0\u0DC3\u0DCA\u0DAE\u0DCF\u0DC0\u0D9A\u0DCA \u0DB4\u0DC0\u0DCF \u0DB4\u0DCA\u200D\u0DBB\u0DA2\u0DCF\u0DAD\u0DB1\u0DCA\u0DAD\u0DCA\u200D\u0DBB\u0DC0\u0DCF\u0DAF\u0DD2\u0DC0 \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DB7\u0DCF\u0DC0\u0DD2\u0DAD\u0DCF \u0D9A\u0DBD \u0DC4\u0DD0\u0D9A.`,
-            `this service will allow to create collaborative documents with conflicts resolved through voting. this can be used to create an aragala manifesto, or even a new constitution.`,
-            `\u0B87\u0BA8\u0BCD\u0BA4\u0B9A\u0BCD \u0B9A\u0BC7\u0BB5\u0BC8\u0BAF\u0BBE\u0BA9\u0BA4\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC1\u0BAA\u0BCD\u0BAA\u0BA4\u0BBF\u0BB5\u0BC1 \u0BAE\u0BC2\u0BB2\u0BAE\u0BCD \u0BA4\u0BC0\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BC1\u0BAE\u0BCD \u0BAE\u0BC1\u0BB0\u0BA3\u0BCD\u0BAA\u0BBE\u0B9F\u0BC1\u0B95\u0BB3\u0BC1\u0B9F\u0BA9\u0BCD \u0B95\u0BC2\u0B9F\u0BCD\u0B9F\u0BC1 \u0B86\u0BB5\u0BA3\u0B99\u0BCD\u0B95\u0BB3\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0B85\u0BB0\u0B95\u0BB2 \u0BAA\u0BBF\u0BB0\u0B95\u0B9F\u0BA9\u0BA4\u0BCD\u0BA4\u0BC8 \u0B85\u0BB2\u0BCD\u0BB2\u0BA4\u0BC1 \u0BAA\u0BC1\u0BA4\u0BBF\u0BAF \u0B85\u0BB0\u0B9A\u0BBF\u0BAF\u0BB2\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4\u0BB2\u0BBE\u0BAE\u0BCD.`
-          ],
-          releaseDate: "29/09/2022"
-        }]
-      },
-      {
-        title: [
-          "\u0DC0\u0DD2\u0DC0\u0DD4\u0DBB\u0DCA\u0DAD \u0D85\u0DBA\u0DC0\u0DD0\u0DBA",
-          "Open budgets",
-          "\u0BA4\u0BBF\u0BB1\u0BA8\u0BCD\u0BA4 \u0BAA\u0B9F\u0BCD\u0B9C\u0BC6\u0B9F\u0BCD"
-        ],
-        icon: "fa-solid fa-coins",
-        height: "410px",
-        type: "budget",
-        type: "static",
-        static: [{
-          type: "wip",
-          service: [
-            `\u0DC0\u0DD2\u0DB1\u0DD2\u0DC0\u0DD2\u0DAF \u0DB4\u0DD9\u0DB1\u0DD9\u0DB1 \u0D85\u0DBA\u0DC0\u0DD0\u0DBA \u0DB8\u0D9F\u0DD2\u0DB1\u0DCA \u0D95\u0DB1\u0DD1\u0DB8 \u0D85\u0DBB\u0D9C\u0DBD\u0DBA \u0DC0\u0DCA\u200D\u0DBA\u0DCF\u0DB4\u0DD8\u0DAD\u0DD2\u0DBA\u0D9A\u0DCA \u0DC3\u0DB3\u0DC4\u0DCF \u0DC0\u0DD2\u0DC0\u0DD8\u0DAD \u0D85\u0DBA\u0DC0\u0DD0\u0DBA\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DC3\u0DD0\u0DBD\u0DC3\u0DDA. \u0DB4\u0DC5\u0DB8\u0DD4 \u0DB4\u0DD2\u0DBA\u0DC0\u0DBB \u0DBD\u0DD9\u0DC3 \u0D85\u0DB4\u0DD2 aragalaya.online \u0DC0\u0DCA\u200D\u0DBA\u0DCF\u0DB4\u0DD8\u0DAD\u0DD2\u0DBA \u0DC3\u0DB3\u0DC4\u0DCF \u0D85\u0DBA\u0DC0\u0DD0\u0DBA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8 \u0DC3\u0DB3\u0DC4\u0DCF \u0DB8\u0DD9\u0DBA \u0DB7\u0DCF\u0DC0\u0DD2\u0DAD\u0DCF \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC3\u0DD0\u0DBD\u0DC3\u0DD4\u0DB8\u0DCA \u0D9A\u0DBB\u0DB8\u0DD4.`,
-            `transparent budgets will allow to create open budgets for any of the aragalaya projects. as first step we're planning to use this for creating the budget for the aragalaya.online project.`,
-            `\u0BB5\u0BC6\u0BB3\u0BBF\u0BAA\u0BCD\u0BAA\u0B9F\u0BC8\u0BAF\u0BBE\u0BA9 \u0BB5\u0BB0\u0BB5\u0BC1\u0B9A\u0BC6\u0BB2\u0BB5\u0BC1\u0BA4\u0BCD\u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0B8E\u0BA8\u0BCD\u0BA4\u0BB5\u0BCA\u0BB0\u0BC1 \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BC1\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD \u0BA4\u0BBF\u0BB1\u0BA8\u0BCD\u0BA4 \u0BB5\u0BB0\u0BB5\u0BC1 \u0B9A\u0BC6\u0BB2\u0BB5\u0BC1\u0BA4\u0BCD \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0BAE\u0BC1\u0BA4\u0BB2\u0BCD \u0B95\u0B9F\u0BCD\u0B9F\u0BAE\u0BBE\u0B95 \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE.\u0B86\u0BA9\u0BCD\u0BB2\u0BC8\u0BA9\u0BCD \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0BA4\u0BCD\u0BA4\u0BBF\u0BB1\u0BCD\u0B95\u0BBE\u0BA9 \u0BAA\u0B9F\u0BCD\u0B9C\u0BC6\u0B9F\u0BCD\u0B9F\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4 \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0BAE\u0BBF\u0B9F\u0BCD\u0B9F\u0BC1\u0BB3\u0BCD\u0BB3\u0BCB\u0BAE\u0BCD.`
-          ],
-          releaseDate: "29/09/2022"
-        }]
-      }
-    ];
-    COLUMN_COUNT = COLUMNS.length;
-  }
-});
-
 // node_modules/chroma-js/chroma.js
 var require_chroma = __commonJS({
   "node_modules/chroma-js/chroma.js"(exports2, module2) {
@@ -15689,12 +15277,12 @@ var require_chroma = __commonJS({
       var cos$2 = Math.cos;
       var sin$2 = Math.sin;
       var atan2$1 = Math.atan2;
-      var average = function(colors, mode, weights) {
+      var average = function(colors2, mode, weights) {
         if (mode === void 0)
           mode = "lrgb";
         if (weights === void 0)
           weights = null;
-        var l = colors.length;
+        var l = colors2.length;
         if (!weights) {
           weights = Array.from(new Array(l)).map(function() {
             return 1;
@@ -15706,13 +15294,13 @@ var require_chroma = __commonJS({
         weights.forEach(function(w2, i4) {
           weights[i4] *= k;
         });
-        colors = colors.map(function(c3) {
+        colors2 = colors2.map(function(c3) {
           return new Color$6(c3);
         });
         if (mode === "lrgb") {
-          return _average_lrgb(colors, weights);
+          return _average_lrgb(colors2, weights);
         }
-        var first = colors.shift();
+        var first = colors2.shift();
         var xyz = first.get(mode);
         var cnt = [];
         var dx = 0;
@@ -15727,7 +15315,7 @@ var require_chroma = __commonJS({
           }
         }
         var alpha = first.alpha() * weights[0];
-        colors.forEach(function(c3, ci) {
+        colors2.forEach(function(c3, ci) {
           var xyz2 = c3.get(mode);
           alpha += c3.alpha() * weights[ci + 1];
           for (var i4 = 0; i4 < xyz.length; i4++) {
@@ -15760,11 +15348,11 @@ var require_chroma = __commonJS({
         alpha /= l;
         return new Color$6(xyz, mode).alpha(alpha > 0.99999 ? 1 : alpha, true);
       };
-      var _average_lrgb = function(colors, weights) {
-        var l = colors.length;
+      var _average_lrgb = function(colors2, weights) {
+        var l = colors2.length;
         var xyz = [0, 0, 0, 0];
-        for (var i3 = 0; i3 < colors.length; i3++) {
-          var col = colors[i3];
+        for (var i3 = 0; i3 < colors2.length; i3++) {
+          var col = colors2[i3];
           var f5 = weights[i3] / l;
           var rgb2 = col._rgb;
           xyz[0] += pow$4(rgb2[0], 2) * f5;
@@ -15783,7 +15371,7 @@ var require_chroma = __commonJS({
       var chroma$4 = chroma_1;
       var type$2 = utils2.type;
       var pow$3 = Math.pow;
-      var scale$2 = function(colors) {
+      var scale$2 = function(colors2) {
         var _mode = "rgb";
         var _nacol = chroma$4("#ccc");
         var _spread = 0;
@@ -15799,26 +15387,26 @@ var require_chroma = __commonJS({
         var _colorCache = {};
         var _useCache = true;
         var _gamma = 1;
-        var setColors = function(colors2) {
-          colors2 = colors2 || ["#fff", "#000"];
-          if (colors2 && type$2(colors2) === "string" && chroma$4.brewer && chroma$4.brewer[colors2.toLowerCase()]) {
-            colors2 = chroma$4.brewer[colors2.toLowerCase()];
+        var setColors = function(colors3) {
+          colors3 = colors3 || ["#fff", "#000"];
+          if (colors3 && type$2(colors3) === "string" && chroma$4.brewer && chroma$4.brewer[colors3.toLowerCase()]) {
+            colors3 = chroma$4.brewer[colors3.toLowerCase()];
           }
-          if (type$2(colors2) === "array") {
-            if (colors2.length === 1) {
-              colors2 = [colors2[0], colors2[0]];
+          if (type$2(colors3) === "array") {
+            if (colors3.length === 1) {
+              colors3 = [colors3[0], colors3[0]];
             }
-            colors2 = colors2.slice(0);
-            for (var c3 = 0; c3 < colors2.length; c3++) {
-              colors2[c3] = chroma$4(colors2[c3]);
+            colors3 = colors3.slice(0);
+            for (var c3 = 0; c3 < colors3.length; c3++) {
+              colors3[c3] = chroma$4(colors3[c3]);
             }
             _pos.length = 0;
-            for (var c$1 = 0; c$1 < colors2.length; c$1++) {
-              _pos.push(c$1 / (colors2.length - 1));
+            for (var c$1 = 0; c$1 < colors3.length; c$1++) {
+              _pos.push(c$1 / (colors3.length - 1));
             }
           }
           resetCache();
-          return _colors = colors2;
+          return _colors = colors3;
         };
         var getClass = function(value) {
           if (_classes != null) {
@@ -15899,7 +15487,7 @@ var require_chroma = __commonJS({
         var resetCache = function() {
           return _colorCache = {};
         };
-        setColors(colors);
+        setColors(colors2);
         var f5 = function(v3) {
           var c3 = chroma$4(getColor(v3));
           if (_out && c3[_out]) {
@@ -15978,8 +15566,8 @@ var require_chroma = __commonJS({
           resetCache();
           return f5;
         };
-        f5.range = function(colors2, _pos2) {
-          setColors(colors2);
+        f5.range = function(colors3, _pos2) {
+          setColors(colors3);
           return f5;
         };
         f5.out = function(_o) {
@@ -16062,7 +15650,7 @@ var require_chroma = __commonJS({
               return f5(dm + i4 / (numColors - 1) * dd);
             });
           } else {
-            colors = [];
+            colors2 = [];
             var samples = [];
             if (_classes && _classes.length > 2) {
               for (var i3 = 1, end = _classes.length, asc = 1 <= end; asc ? i3 < end : i3 > end; asc ? i3++ : i3--) {
@@ -16130,14 +15718,14 @@ var require_chroma = __commonJS({
         }
         return row;
       };
-      var bezier = function(colors) {
+      var bezier = function(colors2) {
         var assign2, assign$1, assign$2;
         var I, lab0, lab1, lab2;
-        colors = colors.map(function(c3) {
+        colors2 = colors2.map(function(c3) {
           return new Color$5(c3);
         });
-        if (colors.length === 2) {
-          assign2 = colors.map(function(c3) {
+        if (colors2.length === 2) {
+          assign2 = colors2.map(function(c3) {
             return c3.lab();
           }), lab0 = assign2[0], lab1 = assign2[1];
           I = function(t2) {
@@ -16146,8 +15734,8 @@ var require_chroma = __commonJS({
             });
             return new Color$5(lab4, "lab");
           };
-        } else if (colors.length === 3) {
-          assign$1 = colors.map(function(c3) {
+        } else if (colors2.length === 3) {
+          assign$1 = colors2.map(function(c3) {
             return c3.lab();
           }), lab0 = assign$1[0], lab1 = assign$1[1], lab2 = assign$1[2];
           I = function(t2) {
@@ -16156,9 +15744,9 @@ var require_chroma = __commonJS({
             });
             return new Color$5(lab4, "lab");
           };
-        } else if (colors.length === 4) {
+        } else if (colors2.length === 4) {
           var lab3;
-          assign$2 = colors.map(function(c3) {
+          assign$2 = colors2.map(function(c3) {
             return c3.lab();
           }), lab0 = assign$2[0], lab1 = assign$2[1], lab2 = assign$2[2], lab3 = assign$2[3];
           I = function(t2) {
@@ -16167,12 +15755,12 @@ var require_chroma = __commonJS({
             });
             return new Color$5(lab4, "lab");
           };
-        } else if (colors.length >= 5) {
+        } else if (colors2.length >= 5) {
           var labs, row, n;
-          labs = colors.map(function(c3) {
+          labs = colors2.map(function(c3) {
             return c3.lab();
           });
-          n = colors.length - 1;
+          n = colors2.length - 1;
           row = binom_row(n);
           I = function(t2) {
             var u2 = 1 - t2;
@@ -16188,8 +15776,8 @@ var require_chroma = __commonJS({
         }
         return I;
       };
-      var bezier_1 = function(colors) {
-        var f5 = bezier(colors);
+      var bezier_1 = function(colors2) {
+        var f5 = bezier(colors2);
         f5.scale = function() {
           return scale$1(f5);
         };
@@ -16711,7 +16299,344 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/font-1a623370.js
+// .svelte-kit/output/server/_app/immutable/chunks/column-config-3324c527.js
+var COLUMNS, COLUMN_COUNT;
+var init_column_config_3324c527 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/column-config-3324c527.js"() {
+    init_shims();
+    COLUMNS = [
+      {
+        title: [
+          "\u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+          "News",
+          "\u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
+        ],
+        icon: "fa-solid fa-radio",
+        height: "200px",
+        type: "news",
+        verified: true,
+        tags: [
+          "mainstream",
+          "aragala",
+          "economy",
+          "political",
+          "legal",
+          "international",
+          "energy"
+        ],
+        data: {
+          title: {
+            type: "text",
+            maxlength: 100,
+            placeholder: [
+              "\u0DC1\u0DD3\u0DBB\u0DCA\u0DC2\u0DBA",
+              "title",
+              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
+            ],
+            required: true,
+            translate: true
+          },
+          description: {
+            type: "html",
+            maxlength: 100,
+            placeholder: [
+              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A \u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8 ",
+              "details",
+              "\u0BB5\u0BBF\u0BB5\u0BB0\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+            ],
+            required: true,
+            translate: true
+          }
+        },
+        dataFormTitle: [
+          "\u0DB4\u0DD4\u0DC0\u0DAD\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "Create a news article",
+          "\u0B92\u0BB0\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF \u0B95\u0B9F\u0BCD\u0B9F\u0BC1\u0BB0\u0BC8\u0BAF\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
+        ],
+        submitButton: [
+          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "create",
+          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
+        ],
+        cancelButton: [
+          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "cancel",
+          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
+        ]
+      },
+      {
+        title: [
+          "\u0DC3\u0DCF\u0D9A\u0DA0\u0DCA\u0DA1\u0DCF",
+          "Discussions",
+          "\u0BB5\u0BBF\u0BB5\u0BBE\u0BA4\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+        ],
+        icon: "fa-solid fa-comments",
+        height: "310px",
+        type: "video",
+        verified: true,
+        tags: [
+          "economy",
+          "political",
+          "legal",
+          "international",
+          "energy",
+          "philosophy",
+          "english",
+          "discussion"
+        ],
+        data: {
+          videoId: {
+            type: "text",
+            maxlength: 100,
+            placeholder: [
+              "https://www.youtube.com/watch?v=ueYFyWW8e5I",
+              "https://www.youtube.com/watch?v=ueYFyWW8e5I",
+              "https://www.youtube.com/watch?v=ueYFyWW8e5I"
+            ],
+            required: true,
+            validate: (val) => {
+              var videoIdRegexp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
+              let result = videoIdRegexp.exec(val);
+              return !result[1];
+            },
+            process: (val) => {
+              var videoIdRegexp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
+              let result = videoIdRegexp.exec(val);
+              return result[1];
+            }
+          },
+          title: {
+            type: "text",
+            maxlength: 300,
+            placeholder: [
+              "\u0DB8\u0DCF\u0DAD\u0DD8\u0D9A\u0DCF\u0DC0",
+              "title",
+              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
+            ],
+            required: true,
+            translate: true
+          },
+          shortDescription: {
+            type: "text",
+            maxlength: 300,
+            placeholder: [
+              "\u0D9A\u0DD9\u0DA7\u0DD2 \u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DBA",
+              "short description",
+              "\u0B95\u0BC1\u0BB1\u0BC1\u0B95\u0BBF\u0BAF \u0BB5\u0BBF\u0BB3\u0B95\u0BCD\u0B95\u0BAE\u0BCD"
+            ],
+            required: true,
+            translate: true
+          }
+        },
+        dataFormTitle: [
+          "\u0DC0\u0DD3\u0DA9\u0DD2\u0DBA\u0DDD\u0DC0\u0D9A\u0DCA \u0D91\u0D9A\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "Add a video",
+          "\u0B92\u0BB0\u0BC1 \u0BB5\u0BC0\u0B9F\u0BBF\u0BAF\u0BCB\u0BB5\u0BC8\u0B9A\u0BCD \u0B9A\u0BC7\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
+        ],
+        submitButton: [
+          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "submit",
+          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
+        ],
+        cancelButton: [
+          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "cancel",
+          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
+        ]
+      },
+      {
+        title: [
+          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0DCA \u0DB4\u0DD4\u0DC0\u0DBB\u0DD4\u0DC0",
+          "Bulletin board",
+          "\u0B85\u0BB1\u0BBF\u0BB5\u0BBF\u0BAA\u0BCD\u0BAA\u0BC1 \u0BAA\u0BB2\u0B95\u0BC8"
+        ],
+        icon: "fa-solid fa-calendar-days",
+        height: "300px",
+        type: "bulletin",
+        verified: true,
+        tags: [
+          "mainstream",
+          "aragala",
+          "economy",
+          "political",
+          "legal",
+          "international",
+          "energy"
+        ],
+        data: {
+          title: {
+            type: "text",
+            maxlength: 100,
+            placeholder: [
+              "\u0DC1\u0DD3\u0DBB\u0DCA\u0DC2\u0DBA",
+              "title",
+              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
+            ],
+            required: true,
+            translate: true
+          },
+          description: {
+            type: "html",
+            maxlength: 100,
+            placeholder: [
+              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A \u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8 ",
+              "details",
+              "\u0BB5\u0BBF\u0BB5\u0BB0\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+            ],
+            required: true,
+            translate: true
+          }
+        },
+        dataFormTitle: [
+          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "Create a bulletin",
+          "\u0B92\u0BB0\u0BC1 \u0BAA\u0BC1\u0BB2\u0BCD\u0BB2\u0B9F\u0BCD\u0B9F\u0BBF\u0BA9\u0BCD \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
+        ],
+        submitButton: [
+          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "create",
+          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
+        ],
+        cancelButton: [
+          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "cancel",
+          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
+        ]
+      },
+      {
+        title: [
+          "\u0DB8\u0DC4\u0DA2\u0DB1 \u0D85\u0DAF\u0DC4\u0DC3\u0DCA \u0DC3\u0DB3\u0DC4\u0DCF \u0DBA\u0DDD\u0DA2\u0DB1\u0DCF",
+          "Proposals for public comments",
+          "\u0BAA\u0BCA\u0BA4\u0BC1 \u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BB3\u0BC1\u0B95\u0BCD\u0B95\u0BBE\u0BA9 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAE\u0BCA\u0BB4\u0BBF\u0BB5\u0BC1\u0B95\u0BB3\u0BCD"
+        ],
+        icon: "fa-solid fa-file-lines",
+        height: "400px",
+        type: "proposal",
+        verified: true,
+        tags: [
+          "mainstream",
+          "aragala",
+          "economy",
+          "political",
+          "legal",
+          "international",
+          "energy"
+        ],
+        data: {
+          organization: {
+            type: "text",
+            maxlength: 100,
+            placeholder: [
+              "\u0D86\u0DBA\u0DAD\u0DB1\u0DBA",
+              "organization",
+              "\u0B85\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
+            ],
+            required: true,
+            translate: true
+          },
+          motive: {
+            type: "text",
+            maxlength: 300,
+            placeholder: [
+              "\u0D86\u0DBA\u0DAD\u0DB1\u0DBA\u0DDA \u0D85\u0DBB\u0DB8\u0DD4\u0DAB",
+              "organization's motive",
+              "\u0B85\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BBF\u0BA9\u0BCD \u0BA8\u0BCB\u0B95\u0BCD\u0B95\u0BAE\u0BCD"
+            ],
+            required: true,
+            translate: true
+          },
+          proposal: {
+            type: "html",
+            maxlength: 1e3,
+            placeholder: [
+              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A\u0DC0 \u0DBA\u0DDD\u0DA2\u0DB1\u0DCF\u0DC0",
+              "proposal in detail",
+              "\u0BB5\u0BBF\u0BB0\u0BBF\u0BB5\u0BBE\u0BA9 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAE\u0BCA\u0BB4\u0BBF\u0BB5\u0BC1"
+            ],
+            required: true,
+            translate: true
+          }
+        },
+        dataFormTitle: [
+          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "Create a bulletin",
+          "\u0B92\u0BB0\u0BC1 \u0BAA\u0BC1\u0BB2\u0BCD\u0BB2\u0B9F\u0BCD\u0B9F\u0BBF\u0BA9\u0BCD \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
+        ],
+        submitButton: [
+          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "create",
+          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
+        ],
+        cancelButton: [
+          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "cancel",
+          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
+        ]
+      },
+      {
+        title: [
+          "\u0DB8\u0DAD \u0DC0\u0DD2\u0DB8\u0DC3\u0DD3\u0DB8\u0DCA",
+          "Opinion polls",
+          "\u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BCD \u0B95\u0BA3\u0BBF\u0BAA\u0BCD\u0BAA\u0BC1\u0B95\u0BB3\u0BCD"
+        ],
+        icon: "fa-solid fa-check-to-slot",
+        height: "500px",
+        type: "static",
+        static: [{
+          type: "wip",
+          service: [
+            `\u0DA1\u0DB1\u0DCA\u0DAF \u0DC0\u0DD2\u0DB8\u0DC3\u0DD3\u0DB8\u0DCA \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0D95\u0DB1\u0DD1\u0DB8 \u0D9A\u0DD9\u0DB1\u0DD9\u0D9A\u0DD4\u0DA7 \u0DB4\u0DDC\u0DAF\u0DD4 \u0DB8\u0DAD \u0DC0\u0DD2\u0DB8\u0DC3\u0DD4\u0DB8\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC3\u0DC4 \u0DB8\u0DD2\u0DB1\u0DD2\u0DC3\u0DD4\u0DB1\u0DCA\u0DA7 \u0D92 \u0DC3\u0DB3\u0DC4\u0DCF \u0DA1\u0DB1\u0DCA\u0DAF\u0DBA \u0DB4\u0DCA\u200D\u0DBB\u0D9A\u0DCF\u0DC1 \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DBD\u0DB6\u0DCF \u0DAF\u0DDA. \u0D85\u0DBB\u0D9C\u0DBD\u0DBA\u0DDA \u0DAF\u0DD2\u0DC1\u0DCF\u0DB1\u0DAD\u0DD2\u0DBA \u0D9C\u0DD0\u0DB1 \u0DB4\u0DCA\u200D\u0DBB\u0DA2\u0DCF\u0DAD\u0DB1\u0DCA\u0DAD\u0DCA\u200D\u0DBB\u0DC0\u0DCF\u0DAF\u0DD3\u0DC0 \u0DAD\u0DD3\u0DBB\u0DAB \u0D9C\u0DD0\u0DB1\u0DD3\u0DB8\u0DA7 \u0DB8\u0DD9\u0DBA \u0DBA\u0DDC\u0DAF\u0DCF\u0D9C\u0DAD \u0DC4\u0DD0\u0D9A.`,
+            `polls will allow anyone to create a public poll and allow anyone to create and vote for suggestions. this can be used to make democratic decisions about the direction of aragalaya.`,
+            `\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC6\u0B9F\u0BC1\u0BAA\u0BCD\u0BAA\u0BC1\u0B95\u0BB3\u0BCD \u0BAF\u0BBE\u0BB0\u0BC8\u0BAF\u0BC1\u0BAE\u0BCD \u0BAA\u0BCA\u0BA4\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC6\u0B9F\u0BC1\u0BAA\u0BCD\u0BAA\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD \u0BAE\u0BB1\u0BCD\u0BB1\u0BC1\u0BAE\u0BCD \u0BAE\u0B95\u0BCD\u0B95\u0BB3\u0BCD \u0B85\u0BA4\u0BB1\u0BCD\u0B95\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB3\u0BBF\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE\u0BB5\u0BBF\u0BA9\u0BCD \u0BA4\u0BBF\u0B9A\u0BC8\u0BAF\u0BC8\u0BAA\u0BCD \u0BAA\u0BB1\u0BCD\u0BB1\u0BBF \u0B9C\u0BA9\u0BA8\u0BBE\u0BAF\u0B95 \u0BAE\u0BC1\u0B9F\u0BBF\u0BB5\u0BC1\u0B95\u0BB3\u0BC8 \u0B8E\u0B9F\u0BC1\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4\u0BB2\u0BBE\u0BAE\u0BCD.`
+          ],
+          releaseDate: "29/08/2022"
+        }]
+      },
+      {
+        title: [
+          "\u0DC3\u0DCF\u0DB8\u0DD4\u0DC4\u0DD2\u0D9A \u0DBD\u0DDA\u0D9B\u0DB1",
+          "Collaborative documents",
+          "\u0B95\u0BC2\u0B9F\u0BCD\u0B9F\u0BC1 \u0B86\u0BB5\u0BA3\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+        ],
+        icon: "fa-solid fa-file-signature",
+        height: "500px",
+        type: "static",
+        static: [{
+          type: "wip",
+          service: [
+            `\u0DB8\u0DD9\u0DB8 \u0DC3\u0DDA\u0DC0\u0DCF\u0DC0 \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0DC3\u0DCF\u0DB8\u0DD4\u0DC4\u0DD2\u0D9A\u0DC0 \u0DBD\u0DDA\u0D9B\u0DB1 \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DBD \u0DC4\u0DD0\u0D9A\u0DD2 \u0D85\u0DAD\u0DBB, \u0D91\u0DC4\u0DD2\u0DAF\u0DD3 \u0D87\u0DAD\u0DD2\u0DC0\u0DB1 \u0D9C\u0DD0\u0DA7\u0DD4\u0DB8\u0DCA \u0DA0\u0DB1\u0DCA\u0DAF\u0DBA\u0D9A\u0DCA \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0DC0\u0DD2\u0DC3\u0DB3\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DC3\u0DBD\u0DC3\u0DBA\u0DD2. \u0DB8\u0DD9\u0DBA \u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DCA\u200D\u0DBB\u0DA5\u0DB4\u0DCA\u0DAD\u0DD2\u0DBA\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC4\u0DCF \u0DB1\u0DC0 \u0DC0\u0DCA\u200D\u0DBA\u0DC0\u0DC3\u0DCA\u0DAE\u0DCF\u0DC0\u0D9A\u0DCA \u0DB4\u0DC0\u0DCF \u0DB4\u0DCA\u200D\u0DBB\u0DA2\u0DCF\u0DAD\u0DB1\u0DCA\u0DAD\u0DCA\u200D\u0DBB\u0DC0\u0DCF\u0DAF\u0DD2\u0DC0 \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DB7\u0DCF\u0DC0\u0DD2\u0DAD\u0DCF \u0D9A\u0DBD \u0DC4\u0DD0\u0D9A.`,
+            `this service will allow to create collaborative documents with conflicts resolved through voting. this can be used to create an aragala manifesto, or even a new constitution.`,
+            `\u0B87\u0BA8\u0BCD\u0BA4\u0B9A\u0BCD \u0B9A\u0BC7\u0BB5\u0BC8\u0BAF\u0BBE\u0BA9\u0BA4\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC1\u0BAA\u0BCD\u0BAA\u0BA4\u0BBF\u0BB5\u0BC1 \u0BAE\u0BC2\u0BB2\u0BAE\u0BCD \u0BA4\u0BC0\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BC1\u0BAE\u0BCD \u0BAE\u0BC1\u0BB0\u0BA3\u0BCD\u0BAA\u0BBE\u0B9F\u0BC1\u0B95\u0BB3\u0BC1\u0B9F\u0BA9\u0BCD \u0B95\u0BC2\u0B9F\u0BCD\u0B9F\u0BC1 \u0B86\u0BB5\u0BA3\u0B99\u0BCD\u0B95\u0BB3\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0B85\u0BB0\u0B95\u0BB2 \u0BAA\u0BBF\u0BB0\u0B95\u0B9F\u0BA9\u0BA4\u0BCD\u0BA4\u0BC8 \u0B85\u0BB2\u0BCD\u0BB2\u0BA4\u0BC1 \u0BAA\u0BC1\u0BA4\u0BBF\u0BAF \u0B85\u0BB0\u0B9A\u0BBF\u0BAF\u0BB2\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4\u0BB2\u0BBE\u0BAE\u0BCD.`
+          ],
+          releaseDate: "29/09/2022"
+        }]
+      },
+      {
+        title: [
+          "\u0DC0\u0DD2\u0DC0\u0DD4\u0DBB\u0DCA\u0DAD \u0D85\u0DBA\u0DC0\u0DD0\u0DBA",
+          "Open budgets",
+          "\u0BA4\u0BBF\u0BB1\u0BA8\u0BCD\u0BA4 \u0BAA\u0B9F\u0BCD\u0B9C\u0BC6\u0B9F\u0BCD"
+        ],
+        icon: "fa-solid fa-coins",
+        height: "410px",
+        type: "budget",
+        type: "static",
+        static: [{
+          type: "wip",
+          service: [
+            `\u0DC0\u0DD2\u0DB1\u0DD2\u0DC0\u0DD2\u0DAF \u0DB4\u0DD9\u0DB1\u0DD9\u0DB1 \u0D85\u0DBA\u0DC0\u0DD0\u0DBA \u0DB8\u0D9F\u0DD2\u0DB1\u0DCA \u0D95\u0DB1\u0DD1\u0DB8 \u0D85\u0DBB\u0D9C\u0DBD\u0DBA \u0DC0\u0DCA\u200D\u0DBA\u0DCF\u0DB4\u0DD8\u0DAD\u0DD2\u0DBA\u0D9A\u0DCA \u0DC3\u0DB3\u0DC4\u0DCF \u0DC0\u0DD2\u0DC0\u0DD8\u0DAD \u0D85\u0DBA\u0DC0\u0DD0\u0DBA\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DC3\u0DD0\u0DBD\u0DC3\u0DDA. \u0DB4\u0DC5\u0DB8\u0DD4 \u0DB4\u0DD2\u0DBA\u0DC0\u0DBB \u0DBD\u0DD9\u0DC3 \u0D85\u0DB4\u0DD2 aragalaya.online \u0DC0\u0DCA\u200D\u0DBA\u0DCF\u0DB4\u0DD8\u0DAD\u0DD2\u0DBA \u0DC3\u0DB3\u0DC4\u0DCF \u0D85\u0DBA\u0DC0\u0DD0\u0DBA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8 \u0DC3\u0DB3\u0DC4\u0DCF \u0DB8\u0DD9\u0DBA \u0DB7\u0DCF\u0DC0\u0DD2\u0DAD\u0DCF \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC3\u0DD0\u0DBD\u0DC3\u0DD4\u0DB8\u0DCA \u0D9A\u0DBB\u0DB8\u0DD4.`,
+            `transparent budgets will allow to create open budgets for any of the aragalaya projects. as first step we're planning to use this for creating the budget for the aragalaya.online project.`,
+            `\u0BB5\u0BC6\u0BB3\u0BBF\u0BAA\u0BCD\u0BAA\u0B9F\u0BC8\u0BAF\u0BBE\u0BA9 \u0BB5\u0BB0\u0BB5\u0BC1\u0B9A\u0BC6\u0BB2\u0BB5\u0BC1\u0BA4\u0BCD\u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0B8E\u0BA8\u0BCD\u0BA4\u0BB5\u0BCA\u0BB0\u0BC1 \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BC1\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD \u0BA4\u0BBF\u0BB1\u0BA8\u0BCD\u0BA4 \u0BB5\u0BB0\u0BB5\u0BC1 \u0B9A\u0BC6\u0BB2\u0BB5\u0BC1\u0BA4\u0BCD \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0BAE\u0BC1\u0BA4\u0BB2\u0BCD \u0B95\u0B9F\u0BCD\u0B9F\u0BAE\u0BBE\u0B95 \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE.\u0B86\u0BA9\u0BCD\u0BB2\u0BC8\u0BA9\u0BCD \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0BA4\u0BCD\u0BA4\u0BBF\u0BB1\u0BCD\u0B95\u0BBE\u0BA9 \u0BAA\u0B9F\u0BCD\u0B9C\u0BC6\u0B9F\u0BCD\u0B9F\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4 \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0BAE\u0BBF\u0B9F\u0BCD\u0B9F\u0BC1\u0BB3\u0BCD\u0BB3\u0BCB\u0BAE\u0BCD.`
+          ],
+          releaseDate: "29/09/2022"
+        }]
+      }
+    ];
+    COLUMN_COUNT = COLUMNS.length;
+  }
+});
+
+// .svelte-kit/output/server/_app/immutable/chunks/tags-1019e4aa.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -16753,13 +16678,13 @@ function writable2(value, start2 = noop2) {
   }
   return { set, update, subscribe: subscribe2 };
 }
-var import_chroma_js, subscriber_queue2, _lang, _currentTheme, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _authStateChecked, _redirected, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, Font;
-var init_font_1a623370 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/font-1a623370.js"() {
+var import_chroma_js, subscriber_queue2, _lang, _currentTheme, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _authStateChecked, _redirected, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, Font, tagConfig, colors, TAGS, css, Tags;
+var init_tags_1019e4aa = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/tags-1019e4aa.js"() {
     init_shims();
     init_index_19a73778();
-    init_column_config_10f4cf42();
     import_chroma_js = __toESM(require_chroma(), 1);
+    init_column_config_3324c527();
     subscriber_queue2 = [];
     _lang = writable2(0);
     _currentTheme = writable2(void 0);
@@ -16895,6 +16820,104 @@ var init_font_1a623370 = __esm({
 
 
 <div style="${"font-family: " + escape(fontFamily, true) + "; font-size: " + escape(fontSize, true) + "px; color: " + escape(color || "inherit", true) + "; display: " + escape(inline ? "inline-block" : "block", true) + "; " + escape(style, true)}">${slots.default ? slots.default({}) : ``}</div>`;
+    });
+    tagConfig = {
+      mainstream: [
+        "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+        "mainstream news",
+        "\u0BAE\u0BC1\u0B95\u0BCD\u0B95\u0BBF\u0BAF \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
+      ],
+      aragala: [
+        "\u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+        "aragala news",
+        "\u0B85\u0BB0\u0B95\u0BB2 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
+      ],
+      economy: [
+        "\u0D86\u0DBB\u0DCA\u0DAE\u0DD2\u0D9A",
+        "economy",
+        "\u0BAA\u0BCA\u0BB0\u0BC1\u0BB3\u0BBE\u0BA4\u0BBE\u0BB0\u0BAE\u0BCD"
+      ],
+      political: [
+        "\u0DAF\u0DDA\u0DC1\u0DB4\u0DCF\u0DBD\u0DB1",
+        "political",
+        "\u0B85\u0BB0\u0B9A\u0BBF\u0BAF\u0BB2\u0BCD"
+      ],
+      legal: [
+        "\u0D85\u0DB0\u0DD2\u0D9A\u0DBB\u0DAB",
+        "judicial",
+        "\u0BA8\u0BC0\u0BA4\u0BBF\u0BA4\u0BCD\u0BA4\u0BC1\u0BB1\u0BC8"
+      ],
+      international: [
+        "\u0DA2\u0DCF\u0DAD\u0DCA\u200D\u0DBA\u0DB1\u0DCA\u0DAD\u0DBB",
+        "international",
+        "\u0B9A\u0BB0\u0BCD\u0BB5\u0BA4\u0BC7\u0B9A"
+      ],
+      energy: [
+        "\u0DB6\u0DBD\u0DC1\u0D9A\u0DCA\u0DAD\u0DD2",
+        "power & energy",
+        "\u0B86\u0BB1\u0BCD\u0BB1\u0BB2\u0BCD"
+      ],
+      philosophy: [
+        "\u0DAF\u0DBB\u0DCA\u0DC1\u0DB1\u0DBA",
+        "philosophy",
+        "\u0BA4\u0BA4\u0BCD\u0BA4\u0BC1\u0BB5\u0BAE\u0BCD"
+      ],
+      english: [
+        "\u0D89\u0D82\u0D9C\u0DCA\u200D\u0DBB\u0DD3\u0DC3\u0DD2",
+        "english",
+        "\u0B86\u0B99\u0BCD\u0B95\u0BBF\u0BB2\u0BAE\u0BCD"
+      ],
+      discussion: [
+        "\u0DC3\u0DCF\u0D9A\u0DA0\u0DCA\u0DA1\u0DCF",
+        "discussion",
+        "\u0BB5\u0BBF\u0BB5\u0BBE\u0BA4\u0BAE\u0BCD"
+      ]
+    };
+    colors = import_chroma_js.default.scale(["#6f3dc0", "#d22fa4", "#ff4d7e", "#ff875d", "#ffc152", "#f9f871"]).colors(Object.keys(tagConfig).length);
+    TAGS = Object.keys(tagConfig).reduce((object, key2, _i) => {
+      object[key2] = {
+        name: key2,
+        strings: tagConfig[key2],
+        color: (0, import_chroma_js.default)(colors[_i]).luminance(0.4).hex()
+      };
+      return object;
+    }, {});
+    css = {
+      code: ".tag.s-AT3XvDln3Ibo{border:var(--s2px) solid #a5a5a5;border-radius:var(--s3px);padding:0 var(--s3px);margin-right:var(--s3px);margin-bottom:var(--s3px)}.tag.s-AT3XvDln3Ibo:hover{cursor:pointer}.s-AT3XvDln3Ibo{}",
+      map: null
+    };
+    Tags = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $_lang2, $$unsubscribe__lang;
+      validate_store(_lang, "_lang");
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
+      let { tags } = $$props;
+      let { style = "" } = $$props;
+      if (!tags)
+        tags = [];
+      createEventDispatcher();
+      if ($$props.tags === void 0 && $$bindings.tags && tags !== void 0)
+        $$bindings.tags(tags);
+      if ($$props.style === void 0 && $$bindings.style && style !== void 0)
+        $$bindings.style(style);
+      $$result.css.add(css);
+      $$unsubscribe__lang();
+      return `${validate_component(Font, "Font").$$render(
+        $$result,
+        {
+          font: 0,
+          size: 0.75,
+          style: "\n        display: flex;\n        width: calc(90% - 4px);\n        flex-wrap: wrap;" + style
+        },
+        {},
+        {
+          default: () => {
+            return `${each(tags, (tag, _i) => {
+              return `<span class="${"tag s-AT3XvDln3Ibo"}" style="${"background-color: " + escape(TAGS[tag].color, true) + ";"}">${escape(TAGS[tag].strings[$_lang2])}
+    </span>`;
+            })}`;
+          }
+        }
+      )}`;
     });
   }
 });
@@ -58875,10 +58898,10 @@ var init_dist3 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/database-88f2b9f9.js
+// .svelte-kit/output/server/_app/immutable/chunks/database-ed1149e0.js
 var firebaseConfig, app, dev, db, _createError2, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord;
-var init_database_88f2b9f9 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/database-88f2b9f9.js"() {
+var init_database_ed1149e0 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/database-ed1149e0.js"() {
     init_shims();
     init_dist();
     init_dist2();
@@ -58891,16 +58914,6 @@ var init_database_88f2b9f9 = __esm({
       messagingSenderId: "15533282305",
       appId: "1:15533282305:web:a807d2c4f789c046a71c00"
     };
-    {
-      firebaseConfig = {
-        apiKey: "AIzaSyAIFR7IVXYjG_8lyPyfHxsdx_kaRz4z3SM",
-        authDomain: "aragalaya-online-prod.firebaseapp.com",
-        projectId: "aragalaya-online-prod",
-        storageBucket: "aragalaya-online-prod.appspot.com",
-        messagingSenderId: "730227179317",
-        appId: "1:730227179317:web:59771460444f98ae52567c"
-      };
-    }
     app = initializeApp(firebaseConfig);
     dev = false;
     db = getFirestore(app);
@@ -69438,17 +69451,16 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/tags-b295157c.js
-var import_rxjs, events, _emitEvent, _eventListener, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, css, Tags;
-var init_tags_b295157c = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/tags-b295157c.js"() {
+// .svelte-kit/output/server/_app/immutable/chunks/storage-7df316a2.js
+var import_rxjs, events, _emitEvent, _eventListener, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword;
+var init_storage_7df316a2 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/storage-7df316a2.js"() {
     init_shims();
-    init_database_88f2b9f9();
+    init_database_ed1149e0();
     init_dist4();
     init_dist3();
     import_rxjs = __toESM(require_cjs(), 1);
-    init_font_1a623370();
-    init_index_19a73778();
+    init_tags_1019e4aa();
     events = [];
     _emitEvent = (tag, value) => {
       let event = events.find((event2) => tag == event2.tag);
@@ -69541,43 +69553,6 @@ var init_tags_b295157c = __esm({
       }
     });
     getStorage(app);
-    css = {
-      code: ".tag.s-AT3XvDln3Ibo{border:var(--s2px) solid #a5a5a5;border-radius:var(--s3px);padding:0 var(--s3px);margin-right:var(--s3px);margin-bottom:var(--s3px)}.tag.s-AT3XvDln3Ibo:hover{cursor:pointer}.s-AT3XvDln3Ibo{}",
-      map: null
-    };
-    Tags = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang2, $$unsubscribe__lang;
-      validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
-      let { tags } = $$props;
-      let { style = "" } = $$props;
-      if (!tags)
-        tags = [];
-      createEventDispatcher();
-      if ($$props.tags === void 0 && $$bindings.tags && tags !== void 0)
-        $$bindings.tags(tags);
-      if ($$props.style === void 0 && $$bindings.style && style !== void 0)
-        $$bindings.style(style);
-      $$result.css.add(css);
-      $$unsubscribe__lang();
-      return `${validate_component(Font, "Font").$$render(
-        $$result,
-        {
-          font: 0,
-          size: 0.75,
-          style: "\n        display: flex;\n        width: calc(90% - 4px);\n        flex-wrap: wrap;" + style
-        },
-        {},
-        {
-          default: () => {
-            return `${each(tags, (tag, _i) => {
-              return `<span class="${"tag s-AT3XvDln3Ibo"}" style="${"background-color: " + escape(tag.color, true) + ";"}">${escape(tag.strings[$_lang2])}
-    </span>`;
-            })}`;
-          }
-        }
-      )}`;
-    });
   }
 });
 
@@ -88047,10 +88022,10 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_font_1a623370();
-    init_tags_b295157c();
-    init_database_88f2b9f9();
-    init_column_config_10f4cf42();
+    init_tags_1019e4aa();
+    init_storage_7df316a2();
+    init_database_ed1149e0();
+    init_column_config_3324c527();
     init_dist5();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
     import_extension_bold = __toESM(require_tiptap_extension_bold_cjs(), 1);
@@ -88509,10 +88484,9 @@ var init_layout_svelte = __esm({
       let showForm = false;
       let columnIndex = 0;
       let data = {};
-      let tags = COLUMNS[columnIndex].filter && COLUMNS[columnIndex].filter.tags;
-      let selectedTags = [];
       const addDocumentEvent = _eventListener("show-add-document-form").subscribe((event) => {
         columnIndex = event.columnIndex;
+        unselectedTagNames = COLUMNS[columnIndex].tags;
         showForm = true;
       });
       onDestroy(() => {
@@ -88546,7 +88520,7 @@ var init_layout_svelte = __esm({
           ...data,
           ...fieldTypes,
           ...fieldTranslated,
-          tags: selectedTags,
+          tags: selectedTagNames,
           createdOn: new Date().getTime(),
           createdBy: user2.uid,
           createdByName: user2.name,
@@ -88562,9 +88536,11 @@ var init_layout_svelte = __esm({
       };
       const cancelDocument = async () => {
         data = {};
-        selectTags = [];
+        selectedTagNames = [];
         showForm = false;
       };
+      let unselectedTagNames = [];
+      let selectedTagNames = [];
       $$result.css.add(css$5);
       fields = Object.keys(COLUMNS[columnIndex].data);
       fieldConfigs = fields.map((f5) => {
@@ -88607,12 +88583,12 @@ var init_layout_svelte = __esm({
           {}
         )}`;
       })}
-            ${validate_component(Tags, "Tags").$$render($$result, { tags: selectedTags }, {}, {})}
+            ${validate_component(Tags, "Tags").$$render($$result, { tags: selectedTagNames }, {}, {})}
             ${validate_component(Select, "Select").$$render(
         $$result,
         {
           placeholder: "select tags",
-          options: tags
+          options: unselectedTagNames.map((tag) => TAGS[tag])
         },
         {},
         {}
@@ -88800,7 +88776,7 @@ ${validate_component(Toasts, "Toasts").$$render($$result, {}, {}, {})}
 		</div>
 		<div class="${"online s-PoaHcXV6SIWL"}">.online
 		</div>
-        <div class="${"beta s-PoaHcXV6SIWL"}">${escape("(beta)")}</div></div>
+        <div class="${"beta s-PoaHcXV6SIWL"}">${escape("(dev-beta)")}</div></div>
 	<ul class="${"header-right s-PoaHcXV6SIWL"}">${!$_isMobile ? `<li class="${"s-PoaHcXV6SIWL"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
 		</li>
 		<li class="${"s-PoaHcXV6SIWL"}">English 
@@ -88838,8 +88814,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-f738e105.js";
-    imports = ["_app/immutable/pages/__layout.svelte-f738e105.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-0a5a4e4e.js", "_app/immutable/chunks/index-732fa142.js", "_app/immutable/chunks/font-411d0258.js", "_app/immutable/chunks/tags-ed49fe61.js"];
+    file2 = "_app/immutable/pages/__layout.svelte-9fdbc640.js";
+    imports = ["_app/immutable/pages/__layout.svelte-9fdbc640.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-dd0fe126.js", "_app/immutable/chunks/index-732fa142.js", "_app/immutable/chunks/tags-696d3895.js", "_app/immutable/chunks/storage-b19c3026.js"];
     stylesheets = ["_app/immutable/assets/__layout-1e18029f.css", "_app/immutable/assets/tags-14381ee9.css"];
   }
 });
@@ -90947,13 +90923,13 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/proposal-968909ff.js
+// .svelte-kit/output/server/_app/immutable/chunks/proposal-5229ea5d.js
 var css$32, Card, strings$3, Timestamp2, strings$2, css$22, Content, css$12, Preview, strings$1, css3, Toolbar, strings2, Proposal;
-var init_proposal_968909ff = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/proposal-968909ff.js"() {
+var init_proposal_5229ea5d = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/proposal-5229ea5d.js"() {
     init_shims();
     init_index_19a73778();
-    init_font_1a623370();
+    init_tags_1019e4aa();
     init_string_strip_html_esm();
     css$32 = {
       code: ".card-container.s-Hio59jcNIlCL{padding:var(--theme-cardseparationhalf)}.card.s-Hio59jcNIlCL{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.s-Hio59jcNIlCL{}",
@@ -91359,6 +91335,17 @@ var init_proposal_968909ff = __esm({
               }
             }
           )}
+        
+        ${validate_component(Tags, "Tags").$$render(
+            $$result,
+            {
+              tags: data.tags,
+              style: "margin-top: var(--s10px)"
+            },
+            {},
+            {}
+          )}
+        
         ${validate_component(Toolbar, "Toolbar").$$render($$result, { data }, {}, {})}`;
         }
       })}</div>`;
@@ -91485,12 +91472,12 @@ var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_column_config_10f4cf42();
-    init_font_1a623370();
+    init_column_config_3324c527();
+    init_tags_1019e4aa();
     init_string_strip_html_esm();
-    init_tags_b295157c();
-    init_database_88f2b9f9();
-    init_proposal_968909ff();
+    init_storage_7df316a2();
+    init_database_ed1149e0();
+    init_proposal_5229ea5d();
     import_chroma_js3 = __toESM(require_chroma(), 1);
     init_dist4();
     init_dist3();
@@ -91904,6 +91891,16 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
     
     ${validate_component(Mt, "MT").$$render($$result, { data }, {}, {})}
     
+    ${validate_component(Tags, "Tags").$$render(
+            $$result,
+            {
+              tags: data.tags,
+              style: "margin-top: var(--s10px)"
+            },
+            {},
+            {}
+          )}
+    
     ${validate_component(Toolbar, "Toolbar").$$render($$result, { data }, {}, {})}`;
         }
       })}`;
@@ -91957,7 +91954,10 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
       $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
       let { show } = $$props;
       let { columnId } = $$props;
-      const configTags = COLUMNS[columnId].filter && COLUMNS[columnId].filter.tags || [];
+      let configTags = [];
+      if (COLUMNS[columnId].tags) {
+        configTags = COLUMNS[columnId].tags.map((tag) => TAGS[tag]);
+      }
       configTags.map((_2) => _2.name);
       let selected = Array(configTags.length).fill(true);
       if ($$props.show === void 0 && $$bindings.show && show !== void 0)
@@ -91983,7 +91983,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
               default: () => {
                 return `<span class="${["tag verified s-BJo09dFzrlwu", "selected"].join(" ").trim()}">${escape(strings$12["verified"][$_lang2])}</span>
             <span class="${["tag not-verified s-BJo09dFzrlwu", ""].join(" ").trim()}">${escape(strings$12["not_verified"][$_lang2])}</span>
-            ${each(COLUMNS[columnId].filter.tags, (tag, _i) => {
+            ${each(configTags, (tag, _i) => {
                   return `<span class="${["tag s-BJo09dFzrlwu", selected[_i] ? "selected" : ""].join(" ").trim()}" style="${"background-color: " + escape(tag.color, true) + ";"}">${escape(tag.strings[$_lang2])}
             </span>`;
                 })}`;
@@ -92258,9 +92258,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    file4 = "_app/immutable/pages/index.svelte-4bff66c5.js";
-    imports3 = ["_app/immutable/pages/index.svelte-4bff66c5.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/font-411d0258.js", "_app/immutable/chunks/store-0a5a4e4e.js", "_app/immutable/chunks/index-732fa142.js", "_app/immutable/chunks/proposal-c59421b5.js", "_app/immutable/chunks/tags-ed49fe61.js"];
-    stylesheets3 = ["_app/immutable/assets/index-7e00bd92.css", "_app/immutable/assets/proposal-62aca3cb.css", "_app/immutable/assets/tags-14381ee9.css"];
+    file4 = "_app/immutable/pages/index.svelte-7f423338.js";
+    imports3 = ["_app/immutable/pages/index.svelte-7f423338.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/tags-696d3895.js", "_app/immutable/chunks/store-dd0fe126.js", "_app/immutable/chunks/index-732fa142.js", "_app/immutable/chunks/proposal-c5bc5aee.js", "_app/immutable/chunks/storage-b19c3026.js"];
+    stylesheets3 = ["_app/immutable/assets/index-7e00bd92.css", "_app/immutable/assets/tags-14381ee9.css", "_app/immutable/assets/proposal-62aca3cb.css"];
   }
 });
 
@@ -92274,10 +92274,10 @@ var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_proposal_968909ff();
-    init_font_1a623370();
-    init_column_config_10f4cf42();
+    init_proposal_5229ea5d();
+    init_tags_1019e4aa();
     import_chroma_js4 = __toESM(require_chroma(), 1);
+    init_column_config_3324c527();
     init_string_strip_html_esm();
     css5 = {
       code: ".preview.s-nkO0SViUUGe1{display:flex;justify-content:center;background-color:var(--theme-columnbackground);width:100%;height:100vh}.column-container.s-nkO0SViUUGe1{padding:var(--theme-cardseparationhalf);height:100%}.column.s-nkO0SViUUGe1{display:flex;align-items:center;justify-content:center;flex-direction:column;width:var(--theme-columnwidth);height:100%;padding:0 var(--theme-cardseparationhalf)}.s-nkO0SViUUGe1{}",
@@ -92324,9 +92324,9 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 3;
-    file5 = "_app/immutable/pages/post_preview.svelte-e2b83fde.js";
-    imports4 = ["_app/immutable/pages/post_preview.svelte-e2b83fde.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/proposal-c59421b5.js", "_app/immutable/chunks/store-0a5a4e4e.js", "_app/immutable/chunks/index-732fa142.js", "_app/immutable/chunks/font-411d0258.js"];
-    stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-62aca3cb.css"];
+    file5 = "_app/immutable/pages/post_preview.svelte-3fd716c4.js";
+    imports4 = ["_app/immutable/pages/post_preview.svelte-3fd716c4.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/proposal-c5bc5aee.js", "_app/immutable/chunks/store-dd0fe126.js", "_app/immutable/chunks/index-732fa142.js", "_app/immutable/chunks/tags-696d3895.js"];
+    stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-62aca3cb.css", "_app/immutable/assets/tags-14381ee9.css"];
   }
 });
 
@@ -92413,8 +92413,8 @@ var init__6 = __esm({
     init_shims();
     init_facebook_svelte();
     index6 = 5;
-    file7 = "_app/immutable/pages/share/facebook.svelte-aee57c27.js";
-    imports6 = ["_app/immutable/pages/share/facebook.svelte-aee57c27.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-0a5a4e4e.js", "_app/immutable/chunks/index-732fa142.js"];
+    file7 = "_app/immutable/pages/share/facebook.svelte-76a9585b.js";
+    imports6 = ["_app/immutable/pages/share/facebook.svelte-76a9585b.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-dd0fe126.js", "_app/immutable/chunks/index-732fa142.js"];
     stylesheets6 = ["_app/immutable/assets/facebook-5ae6a916.css"];
   }
 });
@@ -92458,8 +92458,8 @@ var init__7 = __esm({
     init_shims();
     init_reddit_svelte();
     index7 = 6;
-    file8 = "_app/immutable/pages/share/reddit.svelte-f8340350.js";
-    imports7 = ["_app/immutable/pages/share/reddit.svelte-f8340350.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-0a5a4e4e.js", "_app/immutable/chunks/index-732fa142.js"];
+    file8 = "_app/immutable/pages/share/reddit.svelte-ceba2d44.js";
+    imports7 = ["_app/immutable/pages/share/reddit.svelte-ceba2d44.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-dd0fe126.js", "_app/immutable/chunks/index-732fa142.js"];
     stylesheets7 = ["_app/immutable/assets/reddit-07daef39.css"];
   }
 });
@@ -92503,8 +92503,8 @@ var init__8 = __esm({
     init_shims();
     init_twitter_svelte();
     index8 = 7;
-    file9 = "_app/immutable/pages/share/twitter.svelte-ec0cc667.js";
-    imports8 = ["_app/immutable/pages/share/twitter.svelte-ec0cc667.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-0a5a4e4e.js", "_app/immutable/chunks/index-732fa142.js"];
+    file9 = "_app/immutable/pages/share/twitter.svelte-3c0e1318.js";
+    imports8 = ["_app/immutable/pages/share/twitter.svelte-3c0e1318.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-dd0fe126.js", "_app/immutable/chunks/index-732fa142.js"];
     stylesheets8 = ["_app/immutable/assets/twitter-dafdce4f.css"];
   }
 });
@@ -92548,8 +92548,8 @@ var init__9 = __esm({
     init_shims();
     init_whatsapp_svelte();
     index9 = 8;
-    file10 = "_app/immutable/pages/share/whatsapp.svelte-6d42c361.js";
-    imports9 = ["_app/immutable/pages/share/whatsapp.svelte-6d42c361.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-0a5a4e4e.js", "_app/immutable/chunks/index-732fa142.js"];
+    file10 = "_app/immutable/pages/share/whatsapp.svelte-b8a87bb3.js";
+    imports9 = ["_app/immutable/pages/share/whatsapp.svelte-b8a87bb3.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-dd0fe126.js", "_app/immutable/chunks/index-732fa142.js"];
     stylesheets9 = ["_app/immutable/assets/whatsapp-15a937dd.css"];
   }
 });
@@ -92563,8 +92563,8 @@ var GET;
 var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
-    init_column_config_10f4cf42();
-    init_database_88f2b9f9();
+    init_column_config_3324c527();
+    init_database_ed1149e0();
     init_dist();
     init_dist2();
     init_dist3();
@@ -95218,7 +95218,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-dc2ec2a0.js", "imports": ["_app/immutable/start-dc2ec2a0.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/index-732fa142.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-66d01c18.js", "imports": ["_app/immutable/start-66d01c18.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/index-732fa142.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
