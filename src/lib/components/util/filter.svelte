@@ -15,16 +15,17 @@
     export let columnId;
 
     const configTags = (COLUMNS[columnId].filter && COLUMNS[columnId].filter.tags) || [];
-    let showTags = configTags.length;
 
     let verified = true;
     let notVerified = false;
-    let tags = [];
+    let tags = configTags.map(_ => _.name);
     let selected = Array(configTags.length).fill(true);
 
     const tagSelect = (tag) => {
         if(tags.includes(tag)) {
-            tags.splice(tags.indexOf(tag), 1);
+            if(tags.length > 1) {
+                tags.splice(tags.indexOf(tag), 1);
+            }
         } else {
             tags.push(tag);
         }
@@ -34,13 +35,31 @@
     const clearAll = () => {
         verified = true;
         notVerified = false;
+        tags = [configTags[0].name];
         selected = selected.map((_,_i) => (_i == 0));
     }
 
     const selectAll = () => {
         verified = true;
         notVerified = true;
+        tags = configTags.map(_ => _.name);
         selected = selected.map((_,_i) => (_i > -1));
+    }
+
+    const verifiedClick = () => {
+        if(verified && notVerified) {
+            verified = false;
+        } else if(!verified) {
+            verified = true;
+        }
+    }
+
+    const notVerifiedClick = () => {
+        if(notVerified && verified) {
+            notVerified = false;
+        } else if(!notVerified) {
+            notVerified = true;
+        }
     }
 </script>
 
@@ -58,13 +77,13 @@
             <span
                 class="tag verified" 
                 class:selected={verified}
-                on:click={() => verified = !verified}>
+                on:click={verifiedClick}>
                 {_strings['verified'][$_lang]}
             </span>
             <span 
                 class="tag not-verified"
                 class:selected={notVerified}
-                on:click={() => notVerified = !notVerified}>
+                on:click={notVerifiedClick}>
                 {_strings['not_verified'][$_lang]}
             </span>
             {#each COLUMNS[columnId].filter.tags as tag, _i}
