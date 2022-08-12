@@ -112,7 +112,7 @@
         padding: 0 var(--s3px);
         margin-right: var(--s5px);
         filter: grayscale(0.8);
-        margin-bottom: var(--s5px);
+        margin-bottom: var(--s6px);
     }
     .tag:hover {
         cursor: pointer;
@@ -137,7 +137,7 @@
         justify-content: center;
         align-items: center;
         margin-right: var(--s5px);
-        padding: var(--s5px);
+        padding: var(--s7px);
         background-color: rgb(199, 226, 249);
         border-radius: var(--s3px);
         width: var(--s30px);

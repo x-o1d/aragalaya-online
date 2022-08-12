@@ -81,7 +81,7 @@ export const COLUMNS = [
                     'mainstream news',
                     'முக்கிய செய்தி'
                 ],
-                color: '#ffd492'
+                color: '#9b77d5'
             },{
                 name: 'aragala',
                 strings: [
@@ -89,7 +89,7 @@ export const COLUMNS = [
                     'aragala news',
                     'அரகல செய்தி'
                 ],
-                color: '#3cc1ff'
+                color: '#d22fa4'
             },{
                 name: 'economy',
                 strings: [
@@ -97,7 +97,7 @@ export const COLUMNS = [
                     'economy',
                     'பொருளாதாரம்'
                 ],
-                color: '#c57dff'
+                color: '#ff4d7e'
             },{
                 name: 'political',
                 strings: [
@@ -105,7 +105,7 @@ export const COLUMNS = [
                     'political',
                     'அரசியல்'
                 ],
-                color: '#a57dff'
+                color: '#ff875d'
             },{
                 name: 'legal',
                 strings: [
@@ -113,7 +113,7 @@ export const COLUMNS = [
                     'judicial',
                     'நீதித்துறை'
                 ],
-                color: '#b57dff'
+                color: '#ffc152'
             },{
                 name: 'international',
                 strings: [
@@ -121,7 +121,7 @@ export const COLUMNS = [
                     'international',
                     'சர்வதேச'
                 ],
-                color: '#b57dff'
+                color: '#f9f871'
             },{
                 name: 'energy',
                 strings: [
@@ -129,7 +129,7 @@ export const COLUMNS = [
                     'power & energy',
                     'ஆற்றல்'
                 ],
-                color: '#c57dff'
+                color: '#ff92a7'
             }]
         }
         // END - filter properties
