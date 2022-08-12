@@ -19,7 +19,7 @@ if you'd like to contribute, follow the below steps to set up your development e
 
 ### software requirements
 
-Node 16.x LTS (https://nodejs.org/en/download/)
+Node 18.x LTS (https://nodejs.org/en/download/)
 
 #### get the files
 
