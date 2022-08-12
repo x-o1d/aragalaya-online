@@ -3,7 +3,7 @@
     import { onMount } from "svelte";
     // services
     import { _eventListener } from "$lib/services/events";
-    import { _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _authStateChecked } from "$lib/services/store";
+    import { _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _authStateChecked, _redirected } from "$lib/services/store";
     // components
     import PreloadingIndicator from "$lib/components/util/preloading-indicator.svelte";
 
@@ -55,8 +55,12 @@
                 // if scaled pixel value css variables have been set
                 $_scaledPixelsReady &&
                 // if the window 'load' event has been fired
-                ((location.href.includes('/share/')) || $_appContentReady) &&
+                // this is ignored in the share redirect pages, onload sometimes
+                // doesn't trigger until the redirected page is loaded.
+                ($_redirected || $_appContentReady) &&
                 // check if the auth state has been checked
+                // auth might be in a state where an auth change is not triggered
+                // stop checking for it after 4 seconds
                 ((executionCount > 9) || $_authStateChecked)
             ) {
                 loadingComplete = true;

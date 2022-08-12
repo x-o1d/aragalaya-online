@@ -1,18 +1,20 @@
 <script>
     import { onMount } from "svelte";
+    import { _redirected, _shareURL } from '$lib/services/store';
 
     export let postId;
 
     onMount(() => {
-        let redirectURL = `https://wa.me/?text=https%3A%2F%2Faragalaya-online.web.app%2F%3Fpost%3D${postId}`;
+        let redirectURL = `https://wa.me/?text=${_shareURL}${postId}`;
         location.href = redirectURL;
+        _redirected.set(true);
     });
 </script>
 
-<div class="facebook-share">Redirecting to whatsapp..</div>
+<div class="redirect">Redirecting to whatsapp..</div>
 
 <style>
-    .facebook-share {
+    .redirect {
         display: flex;
         align-items: center;
         justify-content: center;

@@ -1,18 +1,20 @@
 <script>
     import { onMount } from "svelte";
+    import { _redirected, _shareURL } from '$lib/services/store';
 
     export let postId;
 
     onMount(() => {
-        let redirectURL = `https://reddit.com/submit?url=https%3A%2F%2Faragalaya-online.web.app%2F%3Fpost%3D${postId}`;
+        let redirectURL = `https://reddit.com/submit?url=${_shareURL}${postId}`;
         location.href = redirectURL;
+        _redirected.set(true);
     });
 </script>
 
-<div class="facebook-share">Redirecting to reddit..</div>
+<div class="redirect">Redirecting to reddit..</div>
 
 <style>
-    .facebook-share {
+    .redirect {
         display: flex;
         align-items: center;
         justify-content: center;
