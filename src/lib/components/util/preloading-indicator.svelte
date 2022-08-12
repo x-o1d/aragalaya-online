@@ -23,10 +23,6 @@
 	</div>
 {/if}
 
-{#if p >= 0.6}
-	<div class="fade" />
-{/if}
-
 <style>
 	.progress-container {
 		position: absolute;
@@ -46,15 +42,6 @@
 		transition: width 0.4s;
 	}
 
-	.fade {
-		position: fixed;
-		width: 100%;
-		height: 100%;
-		background-color: rgba(255, 255, 255, 0.8);
-		pointer-events: none;
-		z-index: 998;
-		animation: fade 0.4s;
-	}
 
 	@keyframes fade {
 		from {

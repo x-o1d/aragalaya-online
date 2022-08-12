@@ -10,6 +10,7 @@
     import Content from '$lib/components/display/content.svelte';
     import MT from '$lib/components/util/mt.svelte';
     import Toolbar from '$lib/components/util/toolbar.svelte';
+    import Tags from '$lib/components/util/tags.svelte';
 
     export let data;
     
@@ -54,6 +55,10 @@
             expanded={data._expanded}
             on:expandPost={() => data._expanded = true}/>
     </Font>
+    <!-- post tags -->
+    <Tags 
+        tags={data.tags}
+        style="margin-top: var(--s10px)"/>
     <!-- machine translated indication
     ---- the _viewOriginal property of data has to be updated
     ---- from the viewOriginal event so that svelte can reactively

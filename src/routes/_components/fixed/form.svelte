@@ -13,10 +13,15 @@
     import Button from '$lib/components/input/button.svelte';
     import Font from '$lib/components/display/font.svelte';
     import Select from '$lib/components/input/select.svelte';   
+    import Tags from '$lib/components/util/tags.svelte';  
     
     let showForm = false;
     let columnIndex = 0;
     let data = {};
+
+    let tags = COLUMNS[columnIndex].filter &&
+                COLUMNS[columnIndex].filter.tags;
+    let selectedTags = [];
 
     // listen to the add document event and display the form in an overlay
     // add-document event is triggered by clicking on a + icon in the column 
@@ -101,6 +106,7 @@
             ...data,
             ...fieldTypes,
             ...fieldTranslated,
+            tags: selectedTags,
             createdOn: (new Date()).getTime(),
             createdBy: user.uid,
             createdByName: user.name,
@@ -122,22 +128,30 @@
     const cancelDocument = async () => {
         // reset data and close form
         data = {};
+        selectTags = [];
         showForm = false;
     }
 
-    let tags = COLUMNS[columnIndex].filter &&
-                COLUMNS[columnIndex].filter.tags;
+    const selectTag = (tag) => {
+        tags.splice(tags.findIndex(t => (t.name == tag.name)), 1);
+        selectedTags.push(tag);
+        // for reactivity
+        selectedTags = selectedTags;
+    }
 
-    let selectedTags = [];
+    const clickTag = (tag) => {
+        tags.push(tag);
+        selectedTags.splice(selectedTags.findIndex(t => (t.name == tag.index)), 1);
+        // for reactivity
+        selectedTags = selectedTags;
+    }
 
 </script>
 
 {#if showForm}
 <div 
     class="overlay"
-    on:click|self={(e) => {
-        showForm = false;
-    }}>
+    on:click|self={cancelDocument}>
     <div class="form_c">
         <div class="form">
             <Font
@@ -155,29 +169,13 @@
                     data={data}
                     error={errors[_i]}/>
             {/each}
-            <Font
-                font={0}
-                size={0.75}
-                style="
-                    display: inline-flex;
-                    margin-bottom: var(--s10px);
-                    width: calc(90% - 4px);">
-                {#each selectedTags as tag, _i}
-                <span 
-                    class="tag"
-                    on:click={() => {}}
-                    style="background-color: {tag.color};">
-                    {tag.strings[$_lang]}
-                </span>
-                {/each}
-            </Font>
+            <Tags  
+                tags={selectedTags}
+                on:tagclick={(e) => clickTag(e.detail)}/>
             <Select
                 placeholder="select tags"
                 options={tags}
-                on:select={(e) => {
-                    selectedTags.push(e.detail);
-                    selectedTags = selectedTags;
-                }}/>
+                on:select={(e) => selectTag(e.detail)}/>
             <Button
                 form
                 onclick={submitDocument}
@@ -232,15 +230,5 @@
         background-color: #f0f0f0;
         border-radius: var(--s15px);
         border: var(--s1px) solid #707070;
-    }
-
-    .tag {
-        border: var(--s2px) solid #a5a5a5;
-        border-radius: var(--s3px);
-        padding: 0 var(--s3px);
-        margin-right: var(--s3px);
-    }
-    .tag:hover {
-        cursor: pointer;
     }
 </style>
