@@ -16679,7 +16679,7 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/font-be8713a2.js
+// .svelte-kit/output/server/_app/immutable/chunks/font-7eb66553.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -16722,8 +16722,8 @@ function writable2(value, start2 = noop2) {
   return { set, update, subscribe: subscribe2 };
 }
 var import_chroma_js, subscriber_queue2, _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _authStateChecked, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, Font;
-var init_font_be8713a2 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/font-be8713a2.js"() {
+var init_font_7eb66553 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/font-7eb66553.js"() {
     init_shims();
     init_index_19a73778();
     init_column_config_811d46bc();
@@ -24010,7 +24010,7 @@ var require_namespace = __commonJS({
       }
       return this;
     };
-    Namespace.prototype.get = function get3(name7) {
+    Namespace.prototype.get = function get(name7) {
       return this.nested && this.nested[name7] || null;
     };
     Namespace.prototype.getEnum = function getEnum(name7) {
@@ -24418,7 +24418,7 @@ var require_service2 = __commonJS({
       service._methodsArray = null;
       return service;
     }
-    Service.prototype.get = function get3(name7) {
+    Service.prototype.get = function get(name7) {
       return this.methods[name7] || Namespace.prototype.get.call(this, name7);
     };
     Service.prototype.resolveAll = function resolveAll() {
@@ -25074,7 +25074,7 @@ var require_type = __commonJS({
         oneofs[i2++].resolve();
       return Namespace.prototype.resolveAll.call(this);
     };
-    Type.prototype.get = function get3(name7) {
+    Type.prototype.get = function get(name7) {
       return this.fields[name7] || this.oneofs && this.oneofs[name7] || this.nested && this.nested[name7] || null;
     };
     Type.prototype.add = function add(object) {
@@ -26878,7 +26878,7 @@ var require_common = __commonJS({
         }
       }
     });
-    common.get = function get3(file10) {
+    common.get = function get(file10) {
       return common[file10] || null;
     };
   }
@@ -36021,7 +36021,7 @@ var require_namespace2 = __commonJS({
       }
       return this;
     };
-    Namespace.prototype.get = function get3(name7) {
+    Namespace.prototype.get = function get(name7) {
       return this.nested && this.nested[name7] || null;
     };
     Namespace.prototype.getEnum = function getEnum(name7) {
@@ -36329,7 +36329,7 @@ var require_service4 = __commonJS({
       service._methodsArray = null;
       return service;
     }
-    Service.prototype.get = function get3(name7) {
+    Service.prototype.get = function get(name7) {
       return this.methods[name7] || Namespace.prototype.get.call(this, name7);
     };
     Service.prototype.resolveAll = function resolveAll() {
@@ -36985,7 +36985,7 @@ var require_type3 = __commonJS({
         oneofs[i2++].resolve();
       return Namespace.prototype.resolveAll.call(this);
     };
-    Type.prototype.get = function get3(name7) {
+    Type.prototype.get = function get(name7) {
       return this.fields[name7] || this.oneofs && this.oneofs[name7] || this.nested && this.nested[name7] || null;
     };
     Type.prototype.add = function add(object) {
@@ -38764,7 +38764,7 @@ var require_common2 = __commonJS({
         }
       }
     });
-    common.get = function get3(file10) {
+    common.get = function get(file10) {
       return common[file10] || null;
     };
   }
@@ -44159,6 +44159,61 @@ function parseSetData(userDataReader, methodName, targetDoc, input, hasConverter
   }
   return new ParsedSetData(new ObjectValue(updateData), fieldMask, fieldTransforms);
 }
+function parseUpdateData(userDataReader, methodName, targetDoc, input) {
+  const context = userDataReader.createContext(1, methodName, targetDoc);
+  validatePlainObject("Data must be an object, but it was:", context, input);
+  const fieldMaskPaths = [];
+  const updateData = ObjectValue.empty();
+  forEach(input, (key2, value) => {
+    const path = fieldPathFromDotSeparatedString(methodName, key2, targetDoc);
+    value = getModularInstance(value);
+    const childContext = context.childContextForFieldPath(path);
+    if (value instanceof DeleteFieldValueImpl) {
+      fieldMaskPaths.push(path);
+    } else {
+      const parsedValue = parseData(value, childContext);
+      if (parsedValue != null) {
+        fieldMaskPaths.push(path);
+        updateData.set(path, parsedValue);
+      }
+    }
+  });
+  const mask = new FieldMask(fieldMaskPaths);
+  return new ParsedUpdateData(updateData, mask, context.fieldTransforms);
+}
+function parseUpdateVarargs(userDataReader, methodName, targetDoc, field, value, moreFieldsAndValues) {
+  const context = userDataReader.createContext(1, methodName, targetDoc);
+  const keys = [fieldPathFromArgument$1(methodName, field, targetDoc)];
+  const values = [value];
+  if (moreFieldsAndValues.length % 2 !== 0) {
+    throw new FirestoreError(Code.INVALID_ARGUMENT, `Function ${methodName}() needs to be called with an even number of arguments that alternate between field names and values.`);
+  }
+  for (let i2 = 0; i2 < moreFieldsAndValues.length; i2 += 2) {
+    keys.push(fieldPathFromArgument$1(methodName, moreFieldsAndValues[i2]));
+    values.push(moreFieldsAndValues[i2 + 1]);
+  }
+  const fieldMaskPaths = [];
+  const updateData = ObjectValue.empty();
+  for (let i2 = keys.length - 1; i2 >= 0; --i2) {
+    if (!fieldMaskContains(fieldMaskPaths, keys[i2])) {
+      const path = keys[i2];
+      let value2 = values[i2];
+      value2 = getModularInstance(value2);
+      const childContext = context.childContextForFieldPath(path);
+      if (value2 instanceof DeleteFieldValueImpl) {
+        fieldMaskPaths.push(path);
+      } else {
+        const parsedValue = parseData(value2, childContext);
+        if (parsedValue != null) {
+          fieldMaskPaths.push(path);
+          updateData.set(path, parsedValue);
+        }
+      }
+    }
+  }
+  const mask = new FieldMask(fieldMaskPaths);
+  return new ParsedUpdateData(updateData, mask, context.fieldTransforms);
+}
 function parseQueryValue(userDataReader, methodName, input, allowArrays = false) {
   const context = userDataReader.createContext(allowArrays ? 4 : 3, methodName);
   const parsed = parseData(input, context);
@@ -44599,6 +44654,20 @@ function setDoc(reference, data, options) {
   const mutation = parsed.toMutation(reference._key, Precondition.none());
   return executeWrite(firestore, [mutation]);
 }
+function updateDoc(reference, fieldOrUpdateData, value, ...moreFieldsAndValues) {
+  reference = cast(reference, DocumentReference);
+  const firestore = cast(reference.firestore, Firestore);
+  const dataReader = newUserDataReader(firestore);
+  fieldOrUpdateData = getModularInstance(fieldOrUpdateData);
+  let parsed;
+  if (typeof fieldOrUpdateData === "string" || fieldOrUpdateData instanceof FieldPath) {
+    parsed = parseUpdateVarargs(dataReader, "updateDoc", reference._key, fieldOrUpdateData, value, moreFieldsAndValues);
+  } else {
+    parsed = parseUpdateData(dataReader, "updateDoc", reference._key, fieldOrUpdateData);
+  }
+  const mutation = parsed.toMutation(reference._key, Precondition.exists(true));
+  return executeWrite(firestore, [mutation]);
+}
 function addDoc(reference, data) {
   const firestore = cast(reference.firestore, Firestore);
   const docRef = doc(reference);
@@ -44617,7 +44686,7 @@ function convertToDocSnapshot(firestore, ref, snapshot) {
   const userDataWriter = new ExpUserDataWriter(firestore);
   return new DocumentSnapshot(firestore, userDataWriter, ref._key, doc2, new SnapshotMetadata(snapshot.hasPendingWrites, snapshot.fromCache), ref.converter);
 }
-var import_util5, import_crypto2, grpc, protoLoader, name3, version$12, User, version3, SDK_VERSION2, logClient, Code, FirestoreError, Deferred2, OAuthToken, EmptyAuthCredentialsProvider, FirebaseAuthCredentialsProvider, FirstPartyToken, FirstPartyAuthCredentialsProvider, AppCheckToken, FirebaseAppCheckTokenProvider, AutoId, MIN_SECONDS, MS_TO_NANOS, Timestamp, SnapshotVersion, DOCUMENT_KEY_NAME, BasePath, ResourcePath, identifierRegExp, FieldPath$1, DocumentKey, INITIAL_LARGEST_BATCH_ID, FieldIndex, IndexOffset, PRIMARY_LEASE_LOST_ERROR_MSG, PersistenceTransaction, PersistencePromise, ListenSequence, DbRemoteDocumentStore$1, DbPrimaryClientStore, DbMutationQueueStore, DbMutationBatchStore, DbDocumentMutationStore, DbRemoteDocumentStore, DbRemoteDocumentGlobalStore, DbTargetStore, DbTargetDocumentStore, DbTargetGlobalStore, DbCollectionParentStore, DbClientMetadataStore, DbBundleStore, DbNamedQueryStore, DbIndexConfigurationStore, DbIndexStateStore, DbIndexEntryStore, DbDocumentOverlayStore, V1_STORES, V3_STORES, V4_STORES, V6_STORES, V8_STORES, V11_STORES, V12_STORES, V13_STORES, V14_STORES, V15_STORES, SortedMap, SortedMapIterator, LLRBNode, LLRBEmptyNode, SortedSet, SortedSetIterator, FieldMask, ByteString, ISO_TIMESTAMP_REG_EXP, SERVER_TIMESTAMP_SENTINEL, TYPE_KEY, PREVIOUS_VALUE_KEY, LOCAL_WRITE_TIME_KEY, DatabaseInfo, DEFAULT_DATABASE_NAME, DatabaseId, BATCHID_UNKNOWN, MAX_VALUE_TYPE, MAX_VALUE, ObjectValue, MutableDocument, TargetImpl, Filter, FieldFilter, KeyFieldFilter, KeyFieldInFilter, KeyFieldNotInFilter, ArrayContainsFilter, InFilter, NotInFilter, ArrayContainsAnyFilter, Bound, OrderBy, QueryImpl, ObjectMap, EMPTY_MUTABLE_DOCUMENT_MAP, EMPTY_DOCUMENT_MAP, EMPTY_DOCUMENT_VERSION_MAP, EMPTY_DOCUMENT_KEY_SET, EMPTY_TARGET_ID_SET, TransformOperation, ServerTimestampTransform, ArrayUnionTransformOperation, ArrayRemoveTransformOperation, NumericIncrementTransformOperation, MutationResult, Precondition, Mutation, SetMutation, PatchMutation, DeleteMutation, VerifyMutation, MutationBatch, MutationBatchResult, Overlay, ExistenceFilter, RpcCode, RemoteEvent, TargetChange, DocumentWatchChange, ExistenceFilterChange, WatchTargetChange, TargetState, LOG_TAG$g, WatchChangeAggregator, DIRECTIONS, OPERATORS, JsonProtoSerializer, TargetData, LocalSerializer, INDEX_TYPE_NULL, INDEX_TYPE_BOOLEAN, INDEX_TYPE_NAN, INDEX_TYPE_NUMBER, INDEX_TYPE_TIMESTAMP, INDEX_TYPE_STRING, INDEX_TYPE_BLOB, INDEX_TYPE_REFERENCE, INDEX_TYPE_GEOPOINT, INDEX_TYPE_ARRAY, INDEX_TYPE_MAP, INDEX_TYPE_REFERENCE_SEGMENT, NOT_TRUNCATED, FirestoreIndexValueWriter, MemoryIndexManager, MemoryCollectionParentIndex, EMPTY_VALUE, OFFSET, TargetIdGenerator, LRU_COLLECTION_DISABLED, LRU_DEFAULT_CACHE_SIZE_BYTES, LruParams, LRU_MINIMUM_CACHE_SIZE_BYTES, INITIAL_GC_DELAY_MS, REGULAR_GC_DELAY_MS, RemoteDocumentChangeBuffer, OverlayedDocument, LocalDocumentsView, MemoryBundleCache, MemoryDocumentOverlayCache, ReferenceSet, DocReference, MemoryMutationQueue, MemoryRemoteDocumentCacheImpl, MemoryRemoteDocumentChangeBuffer, MemoryTargetCache, LOG_TAG$d, MemoryPersistence, MemoryTransaction, MemoryEagerDelegate, MAX_CLIENT_AGE_MS, LOG_TAG$b, RESUME_TOKEN_MAX_AGE_MICROS, LocalStoreImpl, QueryEngine, LocalClientState, MemorySharedClientState, NoopConnectivityMonitor, StreamBridge, grpcVersion, LOG_TAG$9, X_GOOG_API_CLIENT_VALUE, GrpcConnection, nested, protos, protos$1, protoLoaderOptions, LOG_TAG$8, DEFAULT_BACKOFF_INITIAL_DELAY_MS, DEFAULT_BACKOFF_FACTOR, DEFAULT_BACKOFF_MAX_DELAY_MS, ExponentialBackoff, LOG_TAG$7, IDLE_TIMEOUT_MS, HEALTHY_TIMEOUT_MS, PersistentStream, PersistentListenStream, PersistentWriteStream, Datastore, DatastoreImpl, LOG_TAG$6, MAX_WATCH_STREAM_FAILURES, ONLINE_STATE_TIMEOUT_MS, OnlineStateTracker, LOG_TAG$5, MAX_PENDING_WRITES, RemoteStoreImpl, LOG_TAG$4, DelayedOperation, DocumentSet, DocumentChangeSet, ViewSnapshot, QueryListenersInfo, EventManagerImpl, QueryListener, LocalViewChanges, AddedLimboDocument, RemovedLimboDocument, View, LOG_TAG$3, QueryView, LimboResolution, SyncEngineImpl, MemoryOfflineComponentProvider, OnlineComponentProvider, AsyncObserver, LOG_TAG$2, MAX_CONCURRENT_LIMBO_RESOLUTIONS, FirestoreClient, LOG_TAG$1, datastoreInstances, DEFAULT_HOST, DEFAULT_SSL, FirestoreSettingsImpl, Firestore$1, DocumentReference, Query, CollectionReference, LOG_TAG, AsyncQueueImpl, Firestore, FieldPath, Bytes, FieldValue, GeoPoint, RESERVED_FIELD_REGEX, ParsedSetData, ParseContextImpl, UserDataReader, FIELD_PATH_RESERVED, DocumentSnapshot$1, QueryDocumentSnapshot$1, SnapshotMetadata, DocumentSnapshot, QueryDocumentSnapshot, QuerySnapshot, QueryConstraint, QueryFilterConstraint, QueryOrderByConstraint, QueryLimitConstraint, AbstractUserDataWriter, ExpUserDataWriter;
+var import_util5, import_crypto2, grpc, protoLoader, name3, version$12, User, version3, SDK_VERSION2, logClient, Code, FirestoreError, Deferred2, OAuthToken, EmptyAuthCredentialsProvider, FirebaseAuthCredentialsProvider, FirstPartyToken, FirstPartyAuthCredentialsProvider, AppCheckToken, FirebaseAppCheckTokenProvider, AutoId, MIN_SECONDS, MS_TO_NANOS, Timestamp, SnapshotVersion, DOCUMENT_KEY_NAME, BasePath, ResourcePath, identifierRegExp, FieldPath$1, DocumentKey, INITIAL_LARGEST_BATCH_ID, FieldIndex, IndexOffset, PRIMARY_LEASE_LOST_ERROR_MSG, PersistenceTransaction, PersistencePromise, ListenSequence, DbRemoteDocumentStore$1, DbPrimaryClientStore, DbMutationQueueStore, DbMutationBatchStore, DbDocumentMutationStore, DbRemoteDocumentStore, DbRemoteDocumentGlobalStore, DbTargetStore, DbTargetDocumentStore, DbTargetGlobalStore, DbCollectionParentStore, DbClientMetadataStore, DbBundleStore, DbNamedQueryStore, DbIndexConfigurationStore, DbIndexStateStore, DbIndexEntryStore, DbDocumentOverlayStore, V1_STORES, V3_STORES, V4_STORES, V6_STORES, V8_STORES, V11_STORES, V12_STORES, V13_STORES, V14_STORES, V15_STORES, SortedMap, SortedMapIterator, LLRBNode, LLRBEmptyNode, SortedSet, SortedSetIterator, FieldMask, ByteString, ISO_TIMESTAMP_REG_EXP, SERVER_TIMESTAMP_SENTINEL, TYPE_KEY, PREVIOUS_VALUE_KEY, LOCAL_WRITE_TIME_KEY, DatabaseInfo, DEFAULT_DATABASE_NAME, DatabaseId, BATCHID_UNKNOWN, MAX_VALUE_TYPE, MAX_VALUE, ObjectValue, MutableDocument, TargetImpl, Filter, FieldFilter, KeyFieldFilter, KeyFieldInFilter, KeyFieldNotInFilter, ArrayContainsFilter, InFilter, NotInFilter, ArrayContainsAnyFilter, Bound, OrderBy, QueryImpl, ObjectMap, EMPTY_MUTABLE_DOCUMENT_MAP, EMPTY_DOCUMENT_MAP, EMPTY_DOCUMENT_VERSION_MAP, EMPTY_DOCUMENT_KEY_SET, EMPTY_TARGET_ID_SET, TransformOperation, ServerTimestampTransform, ArrayUnionTransformOperation, ArrayRemoveTransformOperation, NumericIncrementTransformOperation, MutationResult, Precondition, Mutation, SetMutation, PatchMutation, DeleteMutation, VerifyMutation, MutationBatch, MutationBatchResult, Overlay, ExistenceFilter, RpcCode, RemoteEvent, TargetChange, DocumentWatchChange, ExistenceFilterChange, WatchTargetChange, TargetState, LOG_TAG$g, WatchChangeAggregator, DIRECTIONS, OPERATORS, JsonProtoSerializer, TargetData, LocalSerializer, INDEX_TYPE_NULL, INDEX_TYPE_BOOLEAN, INDEX_TYPE_NAN, INDEX_TYPE_NUMBER, INDEX_TYPE_TIMESTAMP, INDEX_TYPE_STRING, INDEX_TYPE_BLOB, INDEX_TYPE_REFERENCE, INDEX_TYPE_GEOPOINT, INDEX_TYPE_ARRAY, INDEX_TYPE_MAP, INDEX_TYPE_REFERENCE_SEGMENT, NOT_TRUNCATED, FirestoreIndexValueWriter, MemoryIndexManager, MemoryCollectionParentIndex, EMPTY_VALUE, OFFSET, TargetIdGenerator, LRU_COLLECTION_DISABLED, LRU_DEFAULT_CACHE_SIZE_BYTES, LruParams, LRU_MINIMUM_CACHE_SIZE_BYTES, INITIAL_GC_DELAY_MS, REGULAR_GC_DELAY_MS, RemoteDocumentChangeBuffer, OverlayedDocument, LocalDocumentsView, MemoryBundleCache, MemoryDocumentOverlayCache, ReferenceSet, DocReference, MemoryMutationQueue, MemoryRemoteDocumentCacheImpl, MemoryRemoteDocumentChangeBuffer, MemoryTargetCache, LOG_TAG$d, MemoryPersistence, MemoryTransaction, MemoryEagerDelegate, MAX_CLIENT_AGE_MS, LOG_TAG$b, RESUME_TOKEN_MAX_AGE_MICROS, LocalStoreImpl, QueryEngine, LocalClientState, MemorySharedClientState, NoopConnectivityMonitor, StreamBridge, grpcVersion, LOG_TAG$9, X_GOOG_API_CLIENT_VALUE, GrpcConnection, nested, protos, protos$1, protoLoaderOptions, LOG_TAG$8, DEFAULT_BACKOFF_INITIAL_DELAY_MS, DEFAULT_BACKOFF_FACTOR, DEFAULT_BACKOFF_MAX_DELAY_MS, ExponentialBackoff, LOG_TAG$7, IDLE_TIMEOUT_MS, HEALTHY_TIMEOUT_MS, PersistentStream, PersistentListenStream, PersistentWriteStream, Datastore, DatastoreImpl, LOG_TAG$6, MAX_WATCH_STREAM_FAILURES, ONLINE_STATE_TIMEOUT_MS, OnlineStateTracker, LOG_TAG$5, MAX_PENDING_WRITES, RemoteStoreImpl, LOG_TAG$4, DelayedOperation, DocumentSet, DocumentChangeSet, ViewSnapshot, QueryListenersInfo, EventManagerImpl, QueryListener, LocalViewChanges, AddedLimboDocument, RemovedLimboDocument, View, LOG_TAG$3, QueryView, LimboResolution, SyncEngineImpl, MemoryOfflineComponentProvider, OnlineComponentProvider, AsyncObserver, LOG_TAG$2, MAX_CONCURRENT_LIMBO_RESOLUTIONS, FirestoreClient, LOG_TAG$1, datastoreInstances, DEFAULT_HOST, DEFAULT_SSL, FirestoreSettingsImpl, Firestore$1, DocumentReference, Query, CollectionReference, LOG_TAG, AsyncQueueImpl, Firestore, FieldPath, Bytes, FieldValue, GeoPoint, RESERVED_FIELD_REGEX, ParsedSetData, ParsedUpdateData, ParseContextImpl, UserDataReader, DeleteFieldValueImpl, FIELD_PATH_RESERVED, DocumentSnapshot$1, QueryDocumentSnapshot$1, SnapshotMetadata, DocumentSnapshot, QueryDocumentSnapshot, QuerySnapshot, QueryConstraint, QueryFilterConstraint, QueryOrderByConstraint, QueryLimitConstraint, AbstractUserDataWriter, ExpUserDataWriter;
 var init_index_node = __esm({
   "node_modules/@firebase/firestore/dist/index.node.mjs"() {
     init_shims();
@@ -52936,6 +53005,16 @@ This typically indicates that your device does not have a healthy Internet conne
         }
       }
     };
+    ParsedUpdateData = class {
+      constructor(data, fieldMask, fieldTransforms) {
+        this.data = data;
+        this.fieldMask = fieldMask;
+        this.fieldTransforms = fieldTransforms;
+      }
+      toMutation(key2, precondition) {
+        return new PatchMutation(key2, this.data, this.fieldMask, precondition, this.fieldTransforms);
+      }
+    };
     ParseContextImpl = class {
       constructor(settings, databaseId, serializer, ignoreUndefinedProperties, fieldTransforms, fieldMask) {
         this.settings = settings;
@@ -53012,6 +53091,21 @@ This typically indicates that your device does not have a healthy Internet conne
           arrayElement: false,
           hasConverter
         }, this.databaseId, this.serializer, this.ignoreUndefinedProperties);
+      }
+    };
+    DeleteFieldValueImpl = class extends FieldValue {
+      _toFieldTransform(context) {
+        if (context.dataSource === 2) {
+          context.fieldMask.push(context.path);
+        } else if (context.dataSource === 1) {
+          throw context.createError(`${this._methodName}() can only appear at the top level of your update data`);
+        } else {
+          throw context.createError(`${this._methodName}() cannot be used with set() unless you pass {merge:true}`);
+        }
+        return null;
+      }
+      isEqual(other) {
+        return other instanceof DeleteFieldValueImpl;
       }
     };
     FIELD_PATH_RESERVED = new RegExp("[~\\*/\\[\\]]");
@@ -53285,106 +53379,480 @@ var init_dist2 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/database-e087c939.js
-var firebaseConfig, app, db, _createError, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord;
-var init_database_e087c939 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/database-e087c939.js"() {
+// node_modules/tslib/tslib.js
+var require_tslib = __commonJS({
+  "node_modules/tslib/tslib.js"(exports2, module2) {
     init_shims();
-    init_dist();
-    init_dist2();
-    firebaseConfig = {
-      apiKey: "AIzaSyCFIhFlai5zMvE-9eeSiaL4ZiGiSvpg0yY",
-      authDomain: "aragalaya-online.firebaseapp.com",
-      projectId: "aragalaya-online",
-      storageBucket: "aragalaya-online.appspot.com",
-      messagingSenderId: "15533282305",
-      appId: "1:15533282305:web:a807d2c4f789c046a71c00"
-    };
-    {
-      firebaseConfig = {
-        apiKey: "AIzaSyAIFR7IVXYjG_8lyPyfHxsdx_kaRz4z3SM",
-        authDomain: "aragalaya-online-prod.firebaseapp.com",
-        projectId: "aragalaya-online-prod",
-        storageBucket: "aragalaya-online-prod.appspot.com",
-        messagingSenderId: "730227179317",
-        appId: "1:730227179317:web:59771460444f98ae52567c"
-      };
-    }
-    app = initializeApp(firebaseConfig);
-    db = getFirestore(app);
-    _createError = async (error2, caller, data) => {
-      try {
-        console.log("Uncaught error in: ", caller);
-        console.log("Error: ", error2);
-        if (data) {
-          console.log("Data: ", data);
-        }
-        if (true) {
-          const docRef = await addDoc(collection(db, "Errors"), {
-            message: error2.message,
-            code: error2.code,
-            caller,
-            signedin: getAuth().currentUser != null,
-            time: new Date().getTime()
-          });
-          console.log(docRef);
-        }
-      } catch (error22) {
-        console.log(`Couldn't save error:`, error22);
-      }
-    };
-    _getPosts = async (type) => {
-      try {
-        const c3 = collection(db, "Posts");
-        const q = query(c3, orderBy("createdOn", "desc"), where("type", "==", type), limit(10));
-        const qs = await getDocs(q);
-        const items = [];
-        qs.docs.forEach((doc2) => {
-          if (doc2.id !== "0" && doc2.exists()) {
-            items.push(doc2.data());
-          }
+    var __extends2;
+    var __assign2;
+    var __rest2;
+    var __decorate2;
+    var __param2;
+    var __metadata2;
+    var __awaiter2;
+    var __generator2;
+    var __exportStar2;
+    var __values2;
+    var __read2;
+    var __spread2;
+    var __spreadArrays2;
+    var __spreadArray2;
+    var __await2;
+    var __asyncGenerator2;
+    var __asyncDelegator2;
+    var __asyncValues2;
+    var __makeTemplateObject2;
+    var __importStar2;
+    var __importDefault2;
+    var __classPrivateFieldGet2;
+    var __classPrivateFieldSet2;
+    var __classPrivateFieldIn2;
+    var __createBinding2;
+    (function(factory2) {
+      var root = typeof global === "object" ? global : typeof self === "object" ? self : typeof this === "object" ? this : {};
+      if (typeof define === "function" && define.amd) {
+        define("tslib", ["exports"], function(exports3) {
+          factory2(createExporter(root, createExporter(exports3)));
         });
-        return items;
-      } catch (error2) {
-        _createError(error2, "DBService:getBulletins");
-        return [];
+      } else if (typeof module2 === "object" && typeof module2.exports === "object") {
+        factory2(createExporter(root, createExporter(module2.exports)));
+      } else {
+        factory2(createExporter(root));
       }
-    };
-    _getPost = async (id) => {
-      try {
-        const docRef = doc(collection(db, "Posts"), id);
-        return (await getDoc(docRef)).data();
-      } catch (error2) {
-        _createError(error2, "DBService:getPost");
+      function createExporter(exports3, previous) {
+        if (exports3 !== root) {
+          if (typeof Object.create === "function") {
+            Object.defineProperty(exports3, "__esModule", { value: true });
+          } else {
+            exports3.__esModule = true;
+          }
+        }
+        return function(id, v3) {
+          return exports3[id] = previous ? previous(id, v3) : v3;
+        };
       }
-    };
-    _createUserRecord = async (user2) => {
-      try {
-        const docRef = doc(collection(db, "Users"), user2.uid);
-        user2.id = user2.uid;
-        await setDoc(docRef, user2);
-        return { user: user2 };
-      } catch (error2) {
-        _createError(error2, "DBService:createUserRecord");
-      }
-    };
-    _setUserTheme = async (user2, theme) => {
-      try {
-        const docRef = doc(collection(db, "Users"), user2.uid);
-        const result = await updateDoc(docRef, { theme });
+    })(function(exporter) {
+      var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d3, b4) {
+        d3.__proto__ = b4;
+      } || function(d3, b4) {
+        for (var p2 in b4)
+          if (Object.prototype.hasOwnProperty.call(b4, p2))
+            d3[p2] = b4[p2];
+      };
+      __extends2 = function(d3, b4) {
+        if (typeof b4 !== "function" && b4 !== null)
+          throw new TypeError("Class extends value " + String(b4) + " is not a constructor or null");
+        extendStatics(d3, b4);
+        function __() {
+          this.constructor = d3;
+        }
+        d3.prototype = b4 === null ? Object.create(b4) : (__.prototype = b4.prototype, new __());
+      };
+      __assign2 = Object.assign || function(t2) {
+        for (var s3, i2 = 1, n = arguments.length; i2 < n; i2++) {
+          s3 = arguments[i2];
+          for (var p2 in s3)
+            if (Object.prototype.hasOwnProperty.call(s3, p2))
+              t2[p2] = s3[p2];
+        }
+        return t2;
+      };
+      __rest2 = function(s3, e2) {
+        var t2 = {};
+        for (var p2 in s3)
+          if (Object.prototype.hasOwnProperty.call(s3, p2) && e2.indexOf(p2) < 0)
+            t2[p2] = s3[p2];
+        if (s3 != null && typeof Object.getOwnPropertySymbols === "function")
+          for (var i2 = 0, p2 = Object.getOwnPropertySymbols(s3); i2 < p2.length; i2++) {
+            if (e2.indexOf(p2[i2]) < 0 && Object.prototype.propertyIsEnumerable.call(s3, p2[i2]))
+              t2[p2[i2]] = s3[p2[i2]];
+          }
+        return t2;
+      };
+      __decorate2 = function(decorators, target, key2, desc) {
+        var c3 = arguments.length, r2 = c3 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d3;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+          r2 = Reflect.decorate(decorators, target, key2, desc);
+        else
+          for (var i2 = decorators.length - 1; i2 >= 0; i2--)
+            if (d3 = decorators[i2])
+              r2 = (c3 < 3 ? d3(r2) : c3 > 3 ? d3(target, key2, r2) : d3(target, key2)) || r2;
+        return c3 > 3 && r2 && Object.defineProperty(target, key2, r2), r2;
+      };
+      __param2 = function(paramIndex, decorator) {
+        return function(target, key2) {
+          decorator(target, key2, paramIndex);
+        };
+      };
+      __metadata2 = function(metadataKey, metadataValue) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+          return Reflect.metadata(metadataKey, metadataValue);
+      };
+      __awaiter2 = function(thisArg, _arguments, P2, generator) {
+        function adopt(value) {
+          return value instanceof P2 ? value : new P2(function(resolve2) {
+            resolve2(value);
+          });
+        }
+        return new (P2 || (P2 = Promise))(function(resolve2, reject) {
+          function fulfilled(value) {
+            try {
+              step(generator.next(value));
+            } catch (e2) {
+              reject(e2);
+            }
+          }
+          function rejected(value) {
+            try {
+              step(generator["throw"](value));
+            } catch (e2) {
+              reject(e2);
+            }
+          }
+          function step(result) {
+            result.done ? resolve2(result.value) : adopt(result.value).then(fulfilled, rejected);
+          }
+          step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+      };
+      __generator2 = function(thisArg, body2) {
+        var _2 = { label: 0, sent: function() {
+          if (t2[0] & 1)
+            throw t2[1];
+          return t2[1];
+        }, trys: [], ops: [] }, f5, y, t2, g2;
+        return g2 = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g2[Symbol.iterator] = function() {
+          return this;
+        }), g2;
+        function verb(n) {
+          return function(v3) {
+            return step([n, v3]);
+          };
+        }
+        function step(op) {
+          if (f5)
+            throw new TypeError("Generator is already executing.");
+          while (_2)
+            try {
+              if (f5 = 1, y && (t2 = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t2 = y["return"]) && t2.call(y), 0) : y.next) && !(t2 = t2.call(y, op[1])).done)
+                return t2;
+              if (y = 0, t2)
+                op = [op[0] & 2, t2.value];
+              switch (op[0]) {
+                case 0:
+                case 1:
+                  t2 = op;
+                  break;
+                case 4:
+                  _2.label++;
+                  return { value: op[1], done: false };
+                case 5:
+                  _2.label++;
+                  y = op[1];
+                  op = [0];
+                  continue;
+                case 7:
+                  op = _2.ops.pop();
+                  _2.trys.pop();
+                  continue;
+                default:
+                  if (!(t2 = _2.trys, t2 = t2.length > 0 && t2[t2.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+                    _2 = 0;
+                    continue;
+                  }
+                  if (op[0] === 3 && (!t2 || op[1] > t2[0] && op[1] < t2[3])) {
+                    _2.label = op[1];
+                    break;
+                  }
+                  if (op[0] === 6 && _2.label < t2[1]) {
+                    _2.label = t2[1];
+                    t2 = op;
+                    break;
+                  }
+                  if (t2 && _2.label < t2[2]) {
+                    _2.label = t2[2];
+                    _2.ops.push(op);
+                    break;
+                  }
+                  if (t2[2])
+                    _2.ops.pop();
+                  _2.trys.pop();
+                  continue;
+              }
+              op = body2.call(thisArg, _2);
+            } catch (e2) {
+              op = [6, e2];
+              y = 0;
+            } finally {
+              f5 = t2 = 0;
+            }
+          if (op[0] & 5)
+            throw op[1];
+          return { value: op[0] ? op[1] : void 0, done: true };
+        }
+      };
+      __exportStar2 = function(m3, o) {
+        for (var p2 in m3)
+          if (p2 !== "default" && !Object.prototype.hasOwnProperty.call(o, p2))
+            __createBinding2(o, m3, p2);
+      };
+      __createBinding2 = Object.create ? function(o, m3, k, k2) {
+        if (k2 === void 0)
+          k2 = k;
+        var desc = Object.getOwnPropertyDescriptor(m3, k);
+        if (!desc || ("get" in desc ? !m3.__esModule : desc.writable || desc.configurable)) {
+          desc = { enumerable: true, get: function() {
+            return m3[k];
+          } };
+        }
+        Object.defineProperty(o, k2, desc);
+      } : function(o, m3, k, k2) {
+        if (k2 === void 0)
+          k2 = k;
+        o[k2] = m3[k];
+      };
+      __values2 = function(o) {
+        var s3 = typeof Symbol === "function" && Symbol.iterator, m3 = s3 && o[s3], i2 = 0;
+        if (m3)
+          return m3.call(o);
+        if (o && typeof o.length === "number")
+          return {
+            next: function() {
+              if (o && i2 >= o.length)
+                o = void 0;
+              return { value: o && o[i2++], done: !o };
+            }
+          };
+        throw new TypeError(s3 ? "Object is not iterable." : "Symbol.iterator is not defined.");
+      };
+      __read2 = function(o, n) {
+        var m3 = typeof Symbol === "function" && o[Symbol.iterator];
+        if (!m3)
+          return o;
+        var i2 = m3.call(o), r2, ar = [], e2;
+        try {
+          while ((n === void 0 || n-- > 0) && !(r2 = i2.next()).done)
+            ar.push(r2.value);
+        } catch (error2) {
+          e2 = { error: error2 };
+        } finally {
+          try {
+            if (r2 && !r2.done && (m3 = i2["return"]))
+              m3.call(i2);
+          } finally {
+            if (e2)
+              throw e2.error;
+          }
+        }
+        return ar;
+      };
+      __spread2 = function() {
+        for (var ar = [], i2 = 0; i2 < arguments.length; i2++)
+          ar = ar.concat(__read2(arguments[i2]));
+        return ar;
+      };
+      __spreadArrays2 = function() {
+        for (var s3 = 0, i2 = 0, il = arguments.length; i2 < il; i2++)
+          s3 += arguments[i2].length;
+        for (var r2 = Array(s3), k = 0, i2 = 0; i2 < il; i2++)
+          for (var a = arguments[i2], j2 = 0, jl = a.length; j2 < jl; j2++, k++)
+            r2[k] = a[j2];
+        return r2;
+      };
+      __spreadArray2 = function(to, from, pack) {
+        if (pack || arguments.length === 2)
+          for (var i2 = 0, l = from.length, ar; i2 < l; i2++) {
+            if (ar || !(i2 in from)) {
+              if (!ar)
+                ar = Array.prototype.slice.call(from, 0, i2);
+              ar[i2] = from[i2];
+            }
+          }
+        return to.concat(ar || Array.prototype.slice.call(from));
+      };
+      __await2 = function(v3) {
+        return this instanceof __await2 ? (this.v = v3, this) : new __await2(v3);
+      };
+      __asyncGenerator2 = function(thisArg, _arguments, generator) {
+        if (!Symbol.asyncIterator)
+          throw new TypeError("Symbol.asyncIterator is not defined.");
+        var g2 = generator.apply(thisArg, _arguments || []), i2, q = [];
+        return i2 = {}, verb("next"), verb("throw"), verb("return"), i2[Symbol.asyncIterator] = function() {
+          return this;
+        }, i2;
+        function verb(n) {
+          if (g2[n])
+            i2[n] = function(v3) {
+              return new Promise(function(a, b4) {
+                q.push([n, v3, a, b4]) > 1 || resume2(n, v3);
+              });
+            };
+        }
+        function resume2(n, v3) {
+          try {
+            step(g2[n](v3));
+          } catch (e2) {
+            settle(q[0][3], e2);
+          }
+        }
+        function step(r2) {
+          r2.value instanceof __await2 ? Promise.resolve(r2.value.v).then(fulfill, reject) : settle(q[0][2], r2);
+        }
+        function fulfill(value) {
+          resume2("next", value);
+        }
+        function reject(value) {
+          resume2("throw", value);
+        }
+        function settle(f5, v3) {
+          if (f5(v3), q.shift(), q.length)
+            resume2(q[0][0], q[0][1]);
+        }
+      };
+      __asyncDelegator2 = function(o) {
+        var i2, p2;
+        return i2 = {}, verb("next"), verb("throw", function(e2) {
+          throw e2;
+        }), verb("return"), i2[Symbol.iterator] = function() {
+          return this;
+        }, i2;
+        function verb(n, f5) {
+          i2[n] = o[n] ? function(v3) {
+            return (p2 = !p2) ? { value: __await2(o[n](v3)), done: n === "return" } : f5 ? f5(v3) : v3;
+          } : f5;
+        }
+      };
+      __asyncValues2 = function(o) {
+        if (!Symbol.asyncIterator)
+          throw new TypeError("Symbol.asyncIterator is not defined.");
+        var m3 = o[Symbol.asyncIterator], i2;
+        return m3 ? m3.call(o) : (o = typeof __values2 === "function" ? __values2(o) : o[Symbol.iterator](), i2 = {}, verb("next"), verb("throw"), verb("return"), i2[Symbol.asyncIterator] = function() {
+          return this;
+        }, i2);
+        function verb(n) {
+          i2[n] = o[n] && function(v3) {
+            return new Promise(function(resolve2, reject) {
+              v3 = o[n](v3), settle(resolve2, reject, v3.done, v3.value);
+            });
+          };
+        }
+        function settle(resolve2, reject, d3, v3) {
+          Promise.resolve(v3).then(function(v4) {
+            resolve2({ value: v4, done: d3 });
+          }, reject);
+        }
+      };
+      __makeTemplateObject2 = function(cooked, raw) {
+        if (Object.defineProperty) {
+          Object.defineProperty(cooked, "raw", { value: raw });
+        } else {
+          cooked.raw = raw;
+        }
+        return cooked;
+      };
+      var __setModuleDefault = Object.create ? function(o, v3) {
+        Object.defineProperty(o, "default", { enumerable: true, value: v3 });
+      } : function(o, v3) {
+        o["default"] = v3;
+      };
+      __importStar2 = function(mod2) {
+        if (mod2 && mod2.__esModule)
+          return mod2;
+        var result = {};
+        if (mod2 != null) {
+          for (var k in mod2)
+            if (k !== "default" && Object.prototype.hasOwnProperty.call(mod2, k))
+              __createBinding2(result, mod2, k);
+        }
+        __setModuleDefault(result, mod2);
         return result;
-      } catch (error2) {
-        _createError(error2, "DBService:createUserRecord");
-      }
-    };
-    _getUserRecord = async (uid) => {
-      try {
-        const docRef = doc(collection(db, "Users"), uid);
-        return (await getDoc(docRef)).data();
-      } catch (error2) {
-        _createError(error2, "DBService:getUserRecord");
-      }
-    };
+      };
+      __importDefault2 = function(mod2) {
+        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      };
+      __classPrivateFieldGet2 = function(receiver, state, kind, f5) {
+        if (kind === "a" && !f5)
+          throw new TypeError("Private accessor was defined without a getter");
+        if (typeof state === "function" ? receiver !== state || !f5 : !state.has(receiver))
+          throw new TypeError("Cannot read private member from an object whose class did not declare it");
+        return kind === "m" ? f5 : kind === "a" ? f5.call(receiver) : f5 ? f5.value : state.get(receiver);
+      };
+      __classPrivateFieldSet2 = function(receiver, state, value, kind, f5) {
+        if (kind === "m")
+          throw new TypeError("Private method is not writable");
+        if (kind === "a" && !f5)
+          throw new TypeError("Private accessor was defined without a setter");
+        if (typeof state === "function" ? receiver !== state || !f5 : !state.has(receiver))
+          throw new TypeError("Cannot write private member to an object whose class did not declare it");
+        return kind === "a" ? f5.call(receiver, value) : f5 ? f5.value = value : state.set(receiver, value), value;
+      };
+      __classPrivateFieldIn2 = function(state, receiver) {
+        if (receiver === null || typeof receiver !== "object" && typeof receiver !== "function")
+          throw new TypeError("Cannot use 'in' operator on non-object");
+        return typeof state === "function" ? receiver === state : state.has(receiver);
+      };
+      exporter("__extends", __extends2);
+      exporter("__assign", __assign2);
+      exporter("__rest", __rest2);
+      exporter("__decorate", __decorate2);
+      exporter("__param", __param2);
+      exporter("__metadata", __metadata2);
+      exporter("__awaiter", __awaiter2);
+      exporter("__generator", __generator2);
+      exporter("__exportStar", __exportStar2);
+      exporter("__createBinding", __createBinding2);
+      exporter("__values", __values2);
+      exporter("__read", __read2);
+      exporter("__spread", __spread2);
+      exporter("__spreadArrays", __spreadArrays2);
+      exporter("__spreadArray", __spreadArray2);
+      exporter("__await", __await2);
+      exporter("__asyncGenerator", __asyncGenerator2);
+      exporter("__asyncDelegator", __asyncDelegator2);
+      exporter("__asyncValues", __asyncValues2);
+      exporter("__makeTemplateObject", __makeTemplateObject2);
+      exporter("__importStar", __importStar2);
+      exporter("__importDefault", __importDefault2);
+      exporter("__classPrivateFieldGet", __classPrivateFieldGet2);
+      exporter("__classPrivateFieldSet", __classPrivateFieldSet2);
+      exporter("__classPrivateFieldIn", __classPrivateFieldIn2);
+    });
+  }
+});
+
+// node_modules/tslib/modules/index.js
+var import_tslib, __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __exportStar, __createBinding, __values, __read, __spread, __spreadArrays, __spreadArray, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault, __classPrivateFieldGet, __classPrivateFieldSet, __classPrivateFieldIn;
+var init_modules = __esm({
+  "node_modules/tslib/modules/index.js"() {
+    init_shims();
+    import_tslib = __toESM(require_tslib(), 1);
+    ({
+      __extends,
+      __assign,
+      __rest,
+      __decorate,
+      __param,
+      __metadata,
+      __awaiter,
+      __generator,
+      __exportStar,
+      __createBinding,
+      __values,
+      __read,
+      __spread,
+      __spreadArrays,
+      __spreadArray,
+      __await,
+      __asyncGenerator,
+      __asyncDelegator,
+      __asyncValues,
+      __makeTemplateObject,
+      __importStar,
+      __importDefault,
+      __classPrivateFieldGet,
+      __classPrivateFieldSet,
+      __classPrivateFieldIn
+    } = import_tslib.default);
   }
 });
 
@@ -56244,1128 +56712,6 @@ var require_lib2 = __commonJS({
   }
 });
 
-// node_modules/@firebase/storage/dist/node-esm/index.node.esm.js
-function prependCode(code) {
-  return "storage/" + code;
-}
-function unknown() {
-  const message = "An unknown error occurred, please check the error payload for server response.";
-  return new StorageError("unknown", message);
-}
-function retryLimitExceeded() {
-  return new StorageError("retry-limit-exceeded", "Max retry time for operation exceeded, please try again.");
-}
-function canceled() {
-  return new StorageError("canceled", "User canceled the upload/download.");
-}
-function invalidUrl(url) {
-  return new StorageError("invalid-url", "Invalid URL '" + url + "'.");
-}
-function invalidDefaultBucket(bucket) {
-  return new StorageError("invalid-default-bucket", "Invalid default bucket '" + bucket + "'.");
-}
-function invalidArgument(message) {
-  return new StorageError("invalid-argument", message);
-}
-function appDeleted() {
-  return new StorageError("app-deleted", "The Firebase app was deleted.");
-}
-function invalidRootOperation(name7) {
-  return new StorageError("invalid-root-operation", "The operation '" + name7 + "' cannot be performed on a root reference, create a non-root reference using child, such as .child('file.png').");
-}
-function start(f5, callback, timeout) {
-  let waitSeconds = 1;
-  let retryTimeoutId = null;
-  let globalTimeoutId = null;
-  let hitTimeout = false;
-  let cancelState = 0;
-  function canceled2() {
-    return cancelState === 2;
-  }
-  let triggeredCallback = false;
-  function triggerCallback(...args) {
-    if (!triggeredCallback) {
-      triggeredCallback = true;
-      callback.apply(null, args);
-    }
-  }
-  function callWithDelay(millis) {
-    retryTimeoutId = setTimeout(() => {
-      retryTimeoutId = null;
-      f5(handler, canceled2());
-    }, millis);
-  }
-  function clearGlobalTimeout() {
-    if (globalTimeoutId) {
-      clearTimeout(globalTimeoutId);
-    }
-  }
-  function handler(success, ...args) {
-    if (triggeredCallback) {
-      clearGlobalTimeout();
-      return;
-    }
-    if (success) {
-      clearGlobalTimeout();
-      triggerCallback.call(null, success, ...args);
-      return;
-    }
-    const mustStop = canceled2() || hitTimeout;
-    if (mustStop) {
-      clearGlobalTimeout();
-      triggerCallback.call(null, success, ...args);
-      return;
-    }
-    if (waitSeconds < 64) {
-      waitSeconds *= 2;
-    }
-    let waitMillis;
-    if (cancelState === 1) {
-      cancelState = 2;
-      waitMillis = 0;
-    } else {
-      waitMillis = (waitSeconds + Math.random()) * 1e3;
-    }
-    callWithDelay(waitMillis);
-  }
-  let stopped = false;
-  function stop2(wasTimeout) {
-    if (stopped) {
-      return;
-    }
-    stopped = true;
-    clearGlobalTimeout();
-    if (triggeredCallback) {
-      return;
-    }
-    if (retryTimeoutId !== null) {
-      if (!wasTimeout) {
-        cancelState = 2;
-      }
-      clearTimeout(retryTimeoutId);
-      callWithDelay(0);
-    } else {
-      if (!wasTimeout) {
-        cancelState = 1;
-      }
-    }
-  }
-  callWithDelay(0);
-  globalTimeoutId = setTimeout(() => {
-    hitTimeout = true;
-    stop2(true);
-  }, timeout);
-  return stop2;
-}
-function stop(id) {
-  id(false);
-}
-function isJustDef(p2) {
-  return p2 !== void 0;
-}
-function validateNumber(argument, minValue, maxValue, value) {
-  if (value < minValue) {
-    throw invalidArgument(`Invalid value for '${argument}'. Expected ${minValue} or greater.`);
-  }
-  if (value > maxValue) {
-    throw invalidArgument(`Invalid value for '${argument}'. Expected ${maxValue} or less.`);
-  }
-}
-function makeQueryString(params) {
-  const encode4 = encodeURIComponent;
-  let queryPart = "?";
-  for (const key2 in params) {
-    if (params.hasOwnProperty(key2)) {
-      const nextPart = encode4(key2) + "=" + encode4(params[key2]);
-      queryPart = queryPart + nextPart + "&";
-    }
-  }
-  queryPart = queryPart.slice(0, -1);
-  return queryPart;
-}
-function addAuthHeader_(headers2, authToken) {
-  if (authToken !== null && authToken.length > 0) {
-    headers2["Authorization"] = "Firebase " + authToken;
-  }
-}
-function addVersionHeader_(headers2, firebaseVersion) {
-  headers2["X-Firebase-Storage-Version"] = "webjs/" + (firebaseVersion !== null && firebaseVersion !== void 0 ? firebaseVersion : "AppManager");
-}
-function addGmpidHeader_(headers2, appId) {
-  if (appId) {
-    headers2["X-Firebase-GMPID"] = appId;
-  }
-}
-function addAppCheckHeader_(headers2, appCheckToken) {
-  if (appCheckToken !== null) {
-    headers2["X-Firebase-AppCheck"] = appCheckToken;
-  }
-}
-function makeRequest(requestInfo, appId, authToken, appCheckToken, requestFactory, firebaseVersion) {
-  const queryPart = makeQueryString(requestInfo.urlParams);
-  const url = requestInfo.url + queryPart;
-  const headers2 = Object.assign({}, requestInfo.headers);
-  addGmpidHeader_(headers2, appId);
-  addAuthHeader_(headers2, authToken);
-  addVersionHeader_(headers2, firebaseVersion);
-  addAppCheckHeader_(headers2, appCheckToken);
-  return new NetworkRequest(url, requestInfo.method, headers2, requestInfo.body, requestInfo.successCodes, requestInfo.additionalRetryCodes, requestInfo.handler, requestInfo.errorHandler, requestInfo.timeout, requestInfo.progressCallback, requestFactory);
-}
-function parent(path) {
-  if (path.length === 0) {
-    return null;
-  }
-  const index9 = path.lastIndexOf("/");
-  if (index9 === -1) {
-    return "";
-  }
-  const newPath = path.slice(0, index9);
-  return newPath;
-}
-function lastComponent(path) {
-  const index9 = path.lastIndexOf("/", path.length - 2);
-  if (index9 === -1) {
-    return path;
-  } else {
-    return path.slice(index9 + 1);
-  }
-}
-function extractBucket(host, config) {
-  const bucketString = config === null || config === void 0 ? void 0 : config[CONFIG_STORAGE_BUCKET_KEY];
-  if (bucketString == null) {
-    return null;
-  }
-  return Location.makeFromBucketSpec(bucketString, host);
-}
-function getStorage(app2 = getApp(), bucketUrl) {
-  app2 = getModularInstance(app2);
-  const storageProvider = _getProvider(app2, STORAGE_TYPE);
-  const storageInstance = storageProvider.getImmediate({
-    identifier: bucketUrl
-  });
-  return storageInstance;
-}
-function factory(container, { instanceIdentifier: url }) {
-  const app2 = container.getProvider("app").getImmediate();
-  const authProvider = container.getProvider("auth-internal");
-  const appCheckProvider = container.getProvider("app-check-internal");
-  return new FirebaseStorageImpl(app2, authProvider, appCheckProvider, url, SDK_VERSION);
-}
-function registerStorage() {
-  _registerComponent(new Component(STORAGE_TYPE, factory, "PUBLIC").setMultipleInstances(true));
-  registerVersion(name4, version4);
-}
-var import_node_fetch, DEFAULT_HOST2, CONFIG_STORAGE_BUCKET_KEY, DEFAULT_MAX_OPERATION_RETRY_TIME, DEFAULT_MAX_UPLOAD_RETRY_TIME, StorageError, Location, FailRequest, ErrorCode, NetworkRequest, RequestEndStatus, RESUMABLE_UPLOAD_CHUNK_SIZE, Reference, FirebaseStorageImpl, name4, version4, STORAGE_TYPE;
-var init_index_node_esm2 = __esm({
-  "node_modules/@firebase/storage/dist/node-esm/index.node.esm.js"() {
-    init_shims();
-    init_index_esm20173();
-    init_index_node_esm();
-    import_node_fetch = __toESM(require_lib2(), 1);
-    init_index_esm2017();
-    DEFAULT_HOST2 = "firebasestorage.googleapis.com";
-    CONFIG_STORAGE_BUCKET_KEY = "storageBucket";
-    DEFAULT_MAX_OPERATION_RETRY_TIME = 2 * 60 * 1e3;
-    DEFAULT_MAX_UPLOAD_RETRY_TIME = 10 * 60 * 1e3;
-    StorageError = class extends FirebaseError {
-      constructor(code, message) {
-        super(prependCode(code), `Firebase Storage: ${message} (${prependCode(code)})`);
-        this.customData = { serverResponse: null };
-        this._baseMessage = this.message;
-        Object.setPrototypeOf(this, StorageError.prototype);
-      }
-      _codeEquals(code) {
-        return prependCode(code) === this.code;
-      }
-      get serverResponse() {
-        return this.customData.serverResponse;
-      }
-      set serverResponse(serverResponse) {
-        this.customData.serverResponse = serverResponse;
-        if (this.customData.serverResponse) {
-          this.message = `${this._baseMessage}
-${this.customData.serverResponse}`;
-        } else {
-          this.message = this._baseMessage;
-        }
-      }
-    };
-    Location = class {
-      constructor(bucket, path) {
-        this.bucket = bucket;
-        this.path_ = path;
-      }
-      get path() {
-        return this.path_;
-      }
-      get isRoot() {
-        return this.path.length === 0;
-      }
-      fullServerUrl() {
-        const encode4 = encodeURIComponent;
-        return "/b/" + encode4(this.bucket) + "/o/" + encode4(this.path);
-      }
-      bucketOnlyServerUrl() {
-        const encode4 = encodeURIComponent;
-        return "/b/" + encode4(this.bucket) + "/o";
-      }
-      static makeFromBucketSpec(bucketString, host) {
-        let bucketLocation;
-        try {
-          bucketLocation = Location.makeFromUrl(bucketString, host);
-        } catch (e2) {
-          return new Location(bucketString, "");
-        }
-        if (bucketLocation.path === "") {
-          return bucketLocation;
-        } else {
-          throw invalidDefaultBucket(bucketString);
-        }
-      }
-      static makeFromUrl(url, host) {
-        let location = null;
-        const bucketDomain = "([A-Za-z0-9.\\-_]+)";
-        function gsModify(loc) {
-          if (loc.path.charAt(loc.path.length - 1) === "/") {
-            loc.path_ = loc.path_.slice(0, -1);
-          }
-        }
-        const gsPath = "(/(.*))?$";
-        const gsRegex = new RegExp("^gs://" + bucketDomain + gsPath, "i");
-        const gsIndices = { bucket: 1, path: 3 };
-        function httpModify(loc) {
-          loc.path_ = decodeURIComponent(loc.path);
-        }
-        const version7 = "v[A-Za-z0-9_]+";
-        const firebaseStorageHost = host.replace(/[.]/g, "\\.");
-        const firebaseStoragePath = "(/([^?#]*).*)?$";
-        const firebaseStorageRegExp = new RegExp(`^https?://${firebaseStorageHost}/${version7}/b/${bucketDomain}/o${firebaseStoragePath}`, "i");
-        const firebaseStorageIndices = { bucket: 1, path: 3 };
-        const cloudStorageHost = host === DEFAULT_HOST2 ? "(?:storage.googleapis.com|storage.cloud.google.com)" : host;
-        const cloudStoragePath = "([^?#]*)";
-        const cloudStorageRegExp = new RegExp(`^https?://${cloudStorageHost}/${bucketDomain}/${cloudStoragePath}`, "i");
-        const cloudStorageIndices = { bucket: 1, path: 2 };
-        const groups = [
-          { regex: gsRegex, indices: gsIndices, postModify: gsModify },
-          {
-            regex: firebaseStorageRegExp,
-            indices: firebaseStorageIndices,
-            postModify: httpModify
-          },
-          {
-            regex: cloudStorageRegExp,
-            indices: cloudStorageIndices,
-            postModify: httpModify
-          }
-        ];
-        for (let i2 = 0; i2 < groups.length; i2++) {
-          const group = groups[i2];
-          const captures = group.regex.exec(url);
-          if (captures) {
-            const bucketValue = captures[group.indices.bucket];
-            let pathValue = captures[group.indices.path];
-            if (!pathValue) {
-              pathValue = "";
-            }
-            location = new Location(bucketValue, pathValue);
-            group.postModify(location);
-            break;
-          }
-        }
-        if (location == null) {
-          throw invalidUrl(url);
-        }
-        return location;
-      }
-    };
-    FailRequest = class {
-      constructor(error2) {
-        this.promise_ = Promise.reject(error2);
-      }
-      getPromise() {
-        return this.promise_;
-      }
-      cancel(_appDelete = false) {
-      }
-    };
-    (function(ErrorCode2) {
-      ErrorCode2[ErrorCode2["NO_ERROR"] = 0] = "NO_ERROR";
-      ErrorCode2[ErrorCode2["NETWORK_ERROR"] = 1] = "NETWORK_ERROR";
-      ErrorCode2[ErrorCode2["ABORT"] = 2] = "ABORT";
-    })(ErrorCode || (ErrorCode = {}));
-    NetworkRequest = class {
-      constructor(url_, method_, headers_, body_, successCodes_, additionalRetryCodes_, callback_, errorCallback_, timeout_, progressCallback_, connectionFactory_) {
-        this.url_ = url_;
-        this.method_ = method_;
-        this.headers_ = headers_;
-        this.body_ = body_;
-        this.successCodes_ = successCodes_;
-        this.additionalRetryCodes_ = additionalRetryCodes_;
-        this.callback_ = callback_;
-        this.errorCallback_ = errorCallback_;
-        this.timeout_ = timeout_;
-        this.progressCallback_ = progressCallback_;
-        this.connectionFactory_ = connectionFactory_;
-        this.pendingConnection_ = null;
-        this.backoffId_ = null;
-        this.canceled_ = false;
-        this.appDelete_ = false;
-        this.promise_ = new Promise((resolve2, reject) => {
-          this.resolve_ = resolve2;
-          this.reject_ = reject;
-          this.start_();
-        });
-      }
-      start_() {
-        const doTheRequest = (backoffCallback, canceled2) => {
-          if (canceled2) {
-            backoffCallback(false, new RequestEndStatus(false, null, true));
-            return;
-          }
-          const connection = this.connectionFactory_();
-          this.pendingConnection_ = connection;
-          const progressListener = (progressEvent) => {
-            const loaded = progressEvent.loaded;
-            const total = progressEvent.lengthComputable ? progressEvent.total : -1;
-            if (this.progressCallback_ !== null) {
-              this.progressCallback_(loaded, total);
-            }
-          };
-          if (this.progressCallback_ !== null) {
-            connection.addUploadProgressListener(progressListener);
-          }
-          connection.send(this.url_, this.method_, this.body_, this.headers_).then(() => {
-            if (this.progressCallback_ !== null) {
-              connection.removeUploadProgressListener(progressListener);
-            }
-            this.pendingConnection_ = null;
-            const hitServer = connection.getErrorCode() === ErrorCode.NO_ERROR;
-            const status = connection.getStatus();
-            if (!hitServer || this.isRetryStatusCode_(status)) {
-              const wasCanceled = connection.getErrorCode() === ErrorCode.ABORT;
-              backoffCallback(false, new RequestEndStatus(false, null, wasCanceled));
-              return;
-            }
-            const successCode = this.successCodes_.indexOf(status) !== -1;
-            backoffCallback(true, new RequestEndStatus(successCode, connection));
-          });
-        };
-        const backoffDone = (requestWentThrough, status) => {
-          const resolve2 = this.resolve_;
-          const reject = this.reject_;
-          const connection = status.connection;
-          if (status.wasSuccessCode) {
-            try {
-              const result = this.callback_(connection, connection.getResponse());
-              if (isJustDef(result)) {
-                resolve2(result);
-              } else {
-                resolve2();
-              }
-            } catch (e2) {
-              reject(e2);
-            }
-          } else {
-            if (connection !== null) {
-              const err = unknown();
-              err.serverResponse = connection.getErrorText();
-              if (this.errorCallback_) {
-                reject(this.errorCallback_(connection, err));
-              } else {
-                reject(err);
-              }
-            } else {
-              if (status.canceled) {
-                const err = this.appDelete_ ? appDeleted() : canceled();
-                reject(err);
-              } else {
-                const err = retryLimitExceeded();
-                reject(err);
-              }
-            }
-          }
-        };
-        if (this.canceled_) {
-          backoffDone(false, new RequestEndStatus(false, null, true));
-        } else {
-          this.backoffId_ = start(doTheRequest, backoffDone, this.timeout_);
-        }
-      }
-      getPromise() {
-        return this.promise_;
-      }
-      cancel(appDelete) {
-        this.canceled_ = true;
-        this.appDelete_ = appDelete || false;
-        if (this.backoffId_ !== null) {
-          stop(this.backoffId_);
-        }
-        if (this.pendingConnection_ !== null) {
-          this.pendingConnection_.abort();
-        }
-      }
-      isRetryStatusCode_(status) {
-        const isFiveHundredCode = status >= 500 && status < 600;
-        const extraRetryCodes = [
-          408,
-          429
-        ];
-        const isExtraRetryCode = extraRetryCodes.indexOf(status) !== -1;
-        const isRequestSpecificRetryCode = this.additionalRetryCodes_.indexOf(status) !== -1;
-        return isFiveHundredCode || isExtraRetryCode || isRequestSpecificRetryCode;
-      }
-    };
-    RequestEndStatus = class {
-      constructor(wasSuccessCode, connection, canceled2) {
-        this.wasSuccessCode = wasSuccessCode;
-        this.connection = connection;
-        this.canceled = !!canceled2;
-      }
-    };
-    RESUMABLE_UPLOAD_CHUNK_SIZE = 256 * 1024;
-    Reference = class {
-      constructor(_service, location) {
-        this._service = _service;
-        if (location instanceof Location) {
-          this._location = location;
-        } else {
-          this._location = Location.makeFromUrl(location, _service.host);
-        }
-      }
-      toString() {
-        return "gs://" + this._location.bucket + "/" + this._location.path;
-      }
-      _newRef(service, location) {
-        return new Reference(service, location);
-      }
-      get root() {
-        const location = new Location(this._location.bucket, "");
-        return this._newRef(this._service, location);
-      }
-      get bucket() {
-        return this._location.bucket;
-      }
-      get fullPath() {
-        return this._location.path;
-      }
-      get name() {
-        return lastComponent(this._location.path);
-      }
-      get storage() {
-        return this._service;
-      }
-      get parent() {
-        const newPath = parent(this._location.path);
-        if (newPath === null) {
-          return null;
-        }
-        const location = new Location(this._location.bucket, newPath);
-        return new Reference(this._service, location);
-      }
-      _throwIfRoot(name7) {
-        if (this._location.path === "") {
-          throw invalidRootOperation(name7);
-        }
-      }
-    };
-    FirebaseStorageImpl = class {
-      constructor(app2, _authProvider, _appCheckProvider, _url, _firebaseVersion) {
-        this.app = app2;
-        this._authProvider = _authProvider;
-        this._appCheckProvider = _appCheckProvider;
-        this._url = _url;
-        this._firebaseVersion = _firebaseVersion;
-        this._bucket = null;
-        this._host = DEFAULT_HOST2;
-        this._protocol = "https";
-        this._appId = null;
-        this._deleted = false;
-        this._maxOperationRetryTime = DEFAULT_MAX_OPERATION_RETRY_TIME;
-        this._maxUploadRetryTime = DEFAULT_MAX_UPLOAD_RETRY_TIME;
-        this._requests = /* @__PURE__ */ new Set();
-        if (_url != null) {
-          this._bucket = Location.makeFromBucketSpec(_url, this._host);
-        } else {
-          this._bucket = extractBucket(this._host, this.app.options);
-        }
-      }
-      get host() {
-        return this._host;
-      }
-      set host(host) {
-        this._host = host;
-        if (this._url != null) {
-          this._bucket = Location.makeFromBucketSpec(this._url, host);
-        } else {
-          this._bucket = extractBucket(host, this.app.options);
-        }
-      }
-      get maxUploadRetryTime() {
-        return this._maxUploadRetryTime;
-      }
-      set maxUploadRetryTime(time) {
-        validateNumber(
-          "time",
-          0,
-          Number.POSITIVE_INFINITY,
-          time
-        );
-        this._maxUploadRetryTime = time;
-      }
-      get maxOperationRetryTime() {
-        return this._maxOperationRetryTime;
-      }
-      set maxOperationRetryTime(time) {
-        validateNumber(
-          "time",
-          0,
-          Number.POSITIVE_INFINITY,
-          time
-        );
-        this._maxOperationRetryTime = time;
-      }
-      async _getAuthToken() {
-        if (this._overrideAuthToken) {
-          return this._overrideAuthToken;
-        }
-        const auth2 = this._authProvider.getImmediate({ optional: true });
-        if (auth2) {
-          const tokenData = await auth2.getToken();
-          if (tokenData !== null) {
-            return tokenData.accessToken;
-          }
-        }
-        return null;
-      }
-      async _getAppCheckToken() {
-        const appCheck = this._appCheckProvider.getImmediate({ optional: true });
-        if (appCheck) {
-          const result = await appCheck.getToken();
-          return result.token;
-        }
-        return null;
-      }
-      _delete() {
-        if (!this._deleted) {
-          this._deleted = true;
-          this._requests.forEach((request2) => request2.cancel());
-          this._requests.clear();
-        }
-        return Promise.resolve();
-      }
-      _makeStorageReference(loc) {
-        return new Reference(this, loc);
-      }
-      _makeRequest(requestInfo, requestFactory, authToken, appCheckToken) {
-        if (!this._deleted) {
-          const request2 = makeRequest(requestInfo, this._appId, authToken, appCheckToken, requestFactory, this._firebaseVersion);
-          this._requests.add(request2);
-          request2.getPromise().then(() => this._requests.delete(request2), () => this._requests.delete(request2));
-          return request2;
-        } else {
-          return new FailRequest(appDeleted());
-        }
-      }
-      async makeRequestWithTokens(requestInfo, requestFactory) {
-        const [authToken, appCheckToken] = await Promise.all([
-          this._getAuthToken(),
-          this._getAppCheckToken()
-        ]);
-        return this._makeRequest(requestInfo, requestFactory, authToken, appCheckToken).getPromise();
-      }
-    };
-    name4 = "@firebase/storage";
-    version4 = "0.9.9";
-    STORAGE_TYPE = "storage";
-    registerStorage();
-  }
-});
-
-// node_modules/firebase/storage/dist/index.mjs
-var init_dist3 = __esm({
-  "node_modules/firebase/storage/dist/index.mjs"() {
-    init_shims();
-    init_index_node_esm2();
-  }
-});
-
-// node_modules/tslib/tslib.js
-var require_tslib = __commonJS({
-  "node_modules/tslib/tslib.js"(exports2, module2) {
-    init_shims();
-    var __extends2;
-    var __assign2;
-    var __rest2;
-    var __decorate2;
-    var __param2;
-    var __metadata2;
-    var __awaiter2;
-    var __generator2;
-    var __exportStar2;
-    var __values2;
-    var __read2;
-    var __spread2;
-    var __spreadArrays2;
-    var __spreadArray2;
-    var __await2;
-    var __asyncGenerator2;
-    var __asyncDelegator2;
-    var __asyncValues2;
-    var __makeTemplateObject2;
-    var __importStar2;
-    var __importDefault2;
-    var __classPrivateFieldGet2;
-    var __classPrivateFieldSet2;
-    var __classPrivateFieldIn2;
-    var __createBinding2;
-    (function(factory2) {
-      var root = typeof global === "object" ? global : typeof self === "object" ? self : typeof this === "object" ? this : {};
-      if (typeof define === "function" && define.amd) {
-        define("tslib", ["exports"], function(exports3) {
-          factory2(createExporter(root, createExporter(exports3)));
-        });
-      } else if (typeof module2 === "object" && typeof module2.exports === "object") {
-        factory2(createExporter(root, createExporter(module2.exports)));
-      } else {
-        factory2(createExporter(root));
-      }
-      function createExporter(exports3, previous) {
-        if (exports3 !== root) {
-          if (typeof Object.create === "function") {
-            Object.defineProperty(exports3, "__esModule", { value: true });
-          } else {
-            exports3.__esModule = true;
-          }
-        }
-        return function(id, v3) {
-          return exports3[id] = previous ? previous(id, v3) : v3;
-        };
-      }
-    })(function(exporter) {
-      var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d3, b4) {
-        d3.__proto__ = b4;
-      } || function(d3, b4) {
-        for (var p2 in b4)
-          if (Object.prototype.hasOwnProperty.call(b4, p2))
-            d3[p2] = b4[p2];
-      };
-      __extends2 = function(d3, b4) {
-        if (typeof b4 !== "function" && b4 !== null)
-          throw new TypeError("Class extends value " + String(b4) + " is not a constructor or null");
-        extendStatics(d3, b4);
-        function __() {
-          this.constructor = d3;
-        }
-        d3.prototype = b4 === null ? Object.create(b4) : (__.prototype = b4.prototype, new __());
-      };
-      __assign2 = Object.assign || function(t2) {
-        for (var s3, i2 = 1, n = arguments.length; i2 < n; i2++) {
-          s3 = arguments[i2];
-          for (var p2 in s3)
-            if (Object.prototype.hasOwnProperty.call(s3, p2))
-              t2[p2] = s3[p2];
-        }
-        return t2;
-      };
-      __rest2 = function(s3, e2) {
-        var t2 = {};
-        for (var p2 in s3)
-          if (Object.prototype.hasOwnProperty.call(s3, p2) && e2.indexOf(p2) < 0)
-            t2[p2] = s3[p2];
-        if (s3 != null && typeof Object.getOwnPropertySymbols === "function")
-          for (var i2 = 0, p2 = Object.getOwnPropertySymbols(s3); i2 < p2.length; i2++) {
-            if (e2.indexOf(p2[i2]) < 0 && Object.prototype.propertyIsEnumerable.call(s3, p2[i2]))
-              t2[p2[i2]] = s3[p2[i2]];
-          }
-        return t2;
-      };
-      __decorate2 = function(decorators, target, key2, desc) {
-        var c3 = arguments.length, r2 = c3 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d3;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-          r2 = Reflect.decorate(decorators, target, key2, desc);
-        else
-          for (var i2 = decorators.length - 1; i2 >= 0; i2--)
-            if (d3 = decorators[i2])
-              r2 = (c3 < 3 ? d3(r2) : c3 > 3 ? d3(target, key2, r2) : d3(target, key2)) || r2;
-        return c3 > 3 && r2 && Object.defineProperty(target, key2, r2), r2;
-      };
-      __param2 = function(paramIndex, decorator) {
-        return function(target, key2) {
-          decorator(target, key2, paramIndex);
-        };
-      };
-      __metadata2 = function(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-          return Reflect.metadata(metadataKey, metadataValue);
-      };
-      __awaiter2 = function(thisArg, _arguments, P2, generator) {
-        function adopt(value) {
-          return value instanceof P2 ? value : new P2(function(resolve2) {
-            resolve2(value);
-          });
-        }
-        return new (P2 || (P2 = Promise))(function(resolve2, reject) {
-          function fulfilled(value) {
-            try {
-              step(generator.next(value));
-            } catch (e2) {
-              reject(e2);
-            }
-          }
-          function rejected(value) {
-            try {
-              step(generator["throw"](value));
-            } catch (e2) {
-              reject(e2);
-            }
-          }
-          function step(result) {
-            result.done ? resolve2(result.value) : adopt(result.value).then(fulfilled, rejected);
-          }
-          step((generator = generator.apply(thisArg, _arguments || [])).next());
-        });
-      };
-      __generator2 = function(thisArg, body2) {
-        var _2 = { label: 0, sent: function() {
-          if (t2[0] & 1)
-            throw t2[1];
-          return t2[1];
-        }, trys: [], ops: [] }, f5, y, t2, g2;
-        return g2 = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g2[Symbol.iterator] = function() {
-          return this;
-        }), g2;
-        function verb(n) {
-          return function(v3) {
-            return step([n, v3]);
-          };
-        }
-        function step(op) {
-          if (f5)
-            throw new TypeError("Generator is already executing.");
-          while (_2)
-            try {
-              if (f5 = 1, y && (t2 = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t2 = y["return"]) && t2.call(y), 0) : y.next) && !(t2 = t2.call(y, op[1])).done)
-                return t2;
-              if (y = 0, t2)
-                op = [op[0] & 2, t2.value];
-              switch (op[0]) {
-                case 0:
-                case 1:
-                  t2 = op;
-                  break;
-                case 4:
-                  _2.label++;
-                  return { value: op[1], done: false };
-                case 5:
-                  _2.label++;
-                  y = op[1];
-                  op = [0];
-                  continue;
-                case 7:
-                  op = _2.ops.pop();
-                  _2.trys.pop();
-                  continue;
-                default:
-                  if (!(t2 = _2.trys, t2 = t2.length > 0 && t2[t2.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-                    _2 = 0;
-                    continue;
-                  }
-                  if (op[0] === 3 && (!t2 || op[1] > t2[0] && op[1] < t2[3])) {
-                    _2.label = op[1];
-                    break;
-                  }
-                  if (op[0] === 6 && _2.label < t2[1]) {
-                    _2.label = t2[1];
-                    t2 = op;
-                    break;
-                  }
-                  if (t2 && _2.label < t2[2]) {
-                    _2.label = t2[2];
-                    _2.ops.push(op);
-                    break;
-                  }
-                  if (t2[2])
-                    _2.ops.pop();
-                  _2.trys.pop();
-                  continue;
-              }
-              op = body2.call(thisArg, _2);
-            } catch (e2) {
-              op = [6, e2];
-              y = 0;
-            } finally {
-              f5 = t2 = 0;
-            }
-          if (op[0] & 5)
-            throw op[1];
-          return { value: op[0] ? op[1] : void 0, done: true };
-        }
-      };
-      __exportStar2 = function(m3, o) {
-        for (var p2 in m3)
-          if (p2 !== "default" && !Object.prototype.hasOwnProperty.call(o, p2))
-            __createBinding2(o, m3, p2);
-      };
-      __createBinding2 = Object.create ? function(o, m3, k, k2) {
-        if (k2 === void 0)
-          k2 = k;
-        var desc = Object.getOwnPropertyDescriptor(m3, k);
-        if (!desc || ("get" in desc ? !m3.__esModule : desc.writable || desc.configurable)) {
-          desc = { enumerable: true, get: function() {
-            return m3[k];
-          } };
-        }
-        Object.defineProperty(o, k2, desc);
-      } : function(o, m3, k, k2) {
-        if (k2 === void 0)
-          k2 = k;
-        o[k2] = m3[k];
-      };
-      __values2 = function(o) {
-        var s3 = typeof Symbol === "function" && Symbol.iterator, m3 = s3 && o[s3], i2 = 0;
-        if (m3)
-          return m3.call(o);
-        if (o && typeof o.length === "number")
-          return {
-            next: function() {
-              if (o && i2 >= o.length)
-                o = void 0;
-              return { value: o && o[i2++], done: !o };
-            }
-          };
-        throw new TypeError(s3 ? "Object is not iterable." : "Symbol.iterator is not defined.");
-      };
-      __read2 = function(o, n) {
-        var m3 = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m3)
-          return o;
-        var i2 = m3.call(o), r2, ar = [], e2;
-        try {
-          while ((n === void 0 || n-- > 0) && !(r2 = i2.next()).done)
-            ar.push(r2.value);
-        } catch (error2) {
-          e2 = { error: error2 };
-        } finally {
-          try {
-            if (r2 && !r2.done && (m3 = i2["return"]))
-              m3.call(i2);
-          } finally {
-            if (e2)
-              throw e2.error;
-          }
-        }
-        return ar;
-      };
-      __spread2 = function() {
-        for (var ar = [], i2 = 0; i2 < arguments.length; i2++)
-          ar = ar.concat(__read2(arguments[i2]));
-        return ar;
-      };
-      __spreadArrays2 = function() {
-        for (var s3 = 0, i2 = 0, il = arguments.length; i2 < il; i2++)
-          s3 += arguments[i2].length;
-        for (var r2 = Array(s3), k = 0, i2 = 0; i2 < il; i2++)
-          for (var a = arguments[i2], j2 = 0, jl = a.length; j2 < jl; j2++, k++)
-            r2[k] = a[j2];
-        return r2;
-      };
-      __spreadArray2 = function(to, from, pack) {
-        if (pack || arguments.length === 2)
-          for (var i2 = 0, l = from.length, ar; i2 < l; i2++) {
-            if (ar || !(i2 in from)) {
-              if (!ar)
-                ar = Array.prototype.slice.call(from, 0, i2);
-              ar[i2] = from[i2];
-            }
-          }
-        return to.concat(ar || Array.prototype.slice.call(from));
-      };
-      __await2 = function(v3) {
-        return this instanceof __await2 ? (this.v = v3, this) : new __await2(v3);
-      };
-      __asyncGenerator2 = function(thisArg, _arguments, generator) {
-        if (!Symbol.asyncIterator)
-          throw new TypeError("Symbol.asyncIterator is not defined.");
-        var g2 = generator.apply(thisArg, _arguments || []), i2, q = [];
-        return i2 = {}, verb("next"), verb("throw"), verb("return"), i2[Symbol.asyncIterator] = function() {
-          return this;
-        }, i2;
-        function verb(n) {
-          if (g2[n])
-            i2[n] = function(v3) {
-              return new Promise(function(a, b4) {
-                q.push([n, v3, a, b4]) > 1 || resume2(n, v3);
-              });
-            };
-        }
-        function resume2(n, v3) {
-          try {
-            step(g2[n](v3));
-          } catch (e2) {
-            settle(q[0][3], e2);
-          }
-        }
-        function step(r2) {
-          r2.value instanceof __await2 ? Promise.resolve(r2.value.v).then(fulfill, reject) : settle(q[0][2], r2);
-        }
-        function fulfill(value) {
-          resume2("next", value);
-        }
-        function reject(value) {
-          resume2("throw", value);
-        }
-        function settle(f5, v3) {
-          if (f5(v3), q.shift(), q.length)
-            resume2(q[0][0], q[0][1]);
-        }
-      };
-      __asyncDelegator2 = function(o) {
-        var i2, p2;
-        return i2 = {}, verb("next"), verb("throw", function(e2) {
-          throw e2;
-        }), verb("return"), i2[Symbol.iterator] = function() {
-          return this;
-        }, i2;
-        function verb(n, f5) {
-          i2[n] = o[n] ? function(v3) {
-            return (p2 = !p2) ? { value: __await2(o[n](v3)), done: n === "return" } : f5 ? f5(v3) : v3;
-          } : f5;
-        }
-      };
-      __asyncValues2 = function(o) {
-        if (!Symbol.asyncIterator)
-          throw new TypeError("Symbol.asyncIterator is not defined.");
-        var m3 = o[Symbol.asyncIterator], i2;
-        return m3 ? m3.call(o) : (o = typeof __values2 === "function" ? __values2(o) : o[Symbol.iterator](), i2 = {}, verb("next"), verb("throw"), verb("return"), i2[Symbol.asyncIterator] = function() {
-          return this;
-        }, i2);
-        function verb(n) {
-          i2[n] = o[n] && function(v3) {
-            return new Promise(function(resolve2, reject) {
-              v3 = o[n](v3), settle(resolve2, reject, v3.done, v3.value);
-            });
-          };
-        }
-        function settle(resolve2, reject, d3, v3) {
-          Promise.resolve(v3).then(function(v4) {
-            resolve2({ value: v4, done: d3 });
-          }, reject);
-        }
-      };
-      __makeTemplateObject2 = function(cooked, raw) {
-        if (Object.defineProperty) {
-          Object.defineProperty(cooked, "raw", { value: raw });
-        } else {
-          cooked.raw = raw;
-        }
-        return cooked;
-      };
-      var __setModuleDefault = Object.create ? function(o, v3) {
-        Object.defineProperty(o, "default", { enumerable: true, value: v3 });
-      } : function(o, v3) {
-        o["default"] = v3;
-      };
-      __importStar2 = function(mod2) {
-        if (mod2 && mod2.__esModule)
-          return mod2;
-        var result = {};
-        if (mod2 != null) {
-          for (var k in mod2)
-            if (k !== "default" && Object.prototype.hasOwnProperty.call(mod2, k))
-              __createBinding2(result, mod2, k);
-        }
-        __setModuleDefault(result, mod2);
-        return result;
-      };
-      __importDefault2 = function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
-      };
-      __classPrivateFieldGet2 = function(receiver, state, kind, f5) {
-        if (kind === "a" && !f5)
-          throw new TypeError("Private accessor was defined without a getter");
-        if (typeof state === "function" ? receiver !== state || !f5 : !state.has(receiver))
-          throw new TypeError("Cannot read private member from an object whose class did not declare it");
-        return kind === "m" ? f5 : kind === "a" ? f5.call(receiver) : f5 ? f5.value : state.get(receiver);
-      };
-      __classPrivateFieldSet2 = function(receiver, state, value, kind, f5) {
-        if (kind === "m")
-          throw new TypeError("Private method is not writable");
-        if (kind === "a" && !f5)
-          throw new TypeError("Private accessor was defined without a setter");
-        if (typeof state === "function" ? receiver !== state || !f5 : !state.has(receiver))
-          throw new TypeError("Cannot write private member to an object whose class did not declare it");
-        return kind === "a" ? f5.call(receiver, value) : f5 ? f5.value = value : state.set(receiver, value), value;
-      };
-      __classPrivateFieldIn2 = function(state, receiver) {
-        if (receiver === null || typeof receiver !== "object" && typeof receiver !== "function")
-          throw new TypeError("Cannot use 'in' operator on non-object");
-        return typeof state === "function" ? receiver === state : state.has(receiver);
-      };
-      exporter("__extends", __extends2);
-      exporter("__assign", __assign2);
-      exporter("__rest", __rest2);
-      exporter("__decorate", __decorate2);
-      exporter("__param", __param2);
-      exporter("__metadata", __metadata2);
-      exporter("__awaiter", __awaiter2);
-      exporter("__generator", __generator2);
-      exporter("__exportStar", __exportStar2);
-      exporter("__createBinding", __createBinding2);
-      exporter("__values", __values2);
-      exporter("__read", __read2);
-      exporter("__spread", __spread2);
-      exporter("__spreadArrays", __spreadArrays2);
-      exporter("__spreadArray", __spreadArray2);
-      exporter("__await", __await2);
-      exporter("__asyncGenerator", __asyncGenerator2);
-      exporter("__asyncDelegator", __asyncDelegator2);
-      exporter("__asyncValues", __asyncValues2);
-      exporter("__makeTemplateObject", __makeTemplateObject2);
-      exporter("__importStar", __importStar2);
-      exporter("__importDefault", __importDefault2);
-      exporter("__classPrivateFieldGet", __classPrivateFieldGet2);
-      exporter("__classPrivateFieldSet", __classPrivateFieldSet2);
-      exporter("__classPrivateFieldIn", __classPrivateFieldIn2);
-    });
-  }
-});
-
-// node_modules/tslib/modules/index.js
-var import_tslib, __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __exportStar, __createBinding, __values, __read, __spread, __spreadArrays, __spreadArray, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault, __classPrivateFieldGet, __classPrivateFieldSet, __classPrivateFieldIn;
-var init_modules = __esm({
-  "node_modules/tslib/modules/index.js"() {
-    init_shims();
-    import_tslib = __toESM(require_tslib(), 1);
-    ({
-      __extends,
-      __assign,
-      __rest,
-      __decorate,
-      __param,
-      __metadata,
-      __awaiter,
-      __generator,
-      __exportStar,
-      __createBinding,
-      __values,
-      __read,
-      __spread,
-      __spreadArrays,
-      __spreadArray,
-      __await,
-      __asyncGenerator,
-      __asyncDelegator,
-      __asyncValues,
-      __makeTemplateObject,
-      __importStar,
-      __importDefault,
-      __classPrivateFieldGet,
-      __classPrivateFieldSet,
-      __classPrivateFieldIn
-    } = import_tslib.default);
-  }
-});
-
 // node_modules/@firebase/auth/dist/node-esm/index-f3c5e390.js
 function _prodErrorMap() {
   return {
@@ -57380,7 +56726,7 @@ function _logError(msg, ...args) {
 function _fail(authOrCode, ...rest) {
   throw createErrorInternal(authOrCode, ...rest);
 }
-function _createError2(authOrCode, ...rest) {
+function _createError(authOrCode, ...rest) {
   return createErrorInternal(authOrCode, ...rest);
 }
 function _errorWithCustomMessage(auth2, code, message) {
@@ -57575,7 +56921,7 @@ function _makeTaggedError(auth2, code, response2) {
   if (response2.phoneNumber) {
     errorParams.phoneNumber = response2.phoneNumber;
   }
-  const error2 = _createError2(auth2, code, errorParams);
+  const error2 = _createError(auth2, code, errorParams);
   error2.customData._tokenResponse = response2;
   return error2;
 }
@@ -58006,17 +57352,17 @@ function registerAuth(clientPlatform) {
     const auth2 = _castAuth(container.getProvider("auth").getImmediate());
     return ((auth3) => new AuthInterop(auth3))(auth2);
   }, "PRIVATE").setInstantiationMode("EXPLICIT"));
-  registerVersion(name5, version5, getVersionForPlatform(clientPlatform));
-  registerVersion(name5, version5, "esm2017");
+  registerVersion(name4, version4, getVersionForPlatform(clientPlatform));
+  registerVersion(name4, version4, "esm2017");
 }
-function getAuth2(app2 = getApp()) {
+function getAuth(app2 = getApp()) {
   const provider = _getProvider(app2, "auth");
   if (provider.isInitialized()) {
     return provider.getImmediate();
   }
   return initializeAuth(app2);
 }
-var fetchImpl, prodErrorMap, _DEFAULT_AUTH_ERROR_FACTORY, logClient2, instanceCache, Delay, FetchProvider, SERVER_ERROR_MAP, DEFAULT_API_TIMEOUT_MS, NetworkTimeout, ProactiveRefresh, UserMetadata, StsTokenManager, UserImpl, InMemoryPersistence, inMemoryPersistence, PersistenceUserManager, AuthMiddlewareQueue, AuthImpl, Subscription, AuthCredential, EmailAuthCredential, IDP_REQUEST_URI$1, OAuthCredential, ActionCodeURL, EmailAuthProvider, FederatedAuthProvider, BaseOAuthProvider, FacebookAuthProvider, GoogleAuthProvider, GithubAuthProvider, TwitterAuthProvider, UserCredentialImpl, MultiFactorError, name5, version5, AuthInterop, NOT_AVAILABLE_ERROR;
+var fetchImpl, prodErrorMap, _DEFAULT_AUTH_ERROR_FACTORY, logClient2, instanceCache, Delay, FetchProvider, SERVER_ERROR_MAP, DEFAULT_API_TIMEOUT_MS, NetworkTimeout, ProactiveRefresh, UserMetadata, StsTokenManager, UserImpl, InMemoryPersistence, inMemoryPersistence, PersistenceUserManager, AuthMiddlewareQueue, AuthImpl, Subscription, AuthCredential, EmailAuthCredential, IDP_REQUEST_URI$1, OAuthCredential, ActionCodeURL, EmailAuthProvider, FederatedAuthProvider, BaseOAuthProvider, FacebookAuthProvider, GoogleAuthProvider, GithubAuthProvider, TwitterAuthProvider, UserCredentialImpl, MultiFactorError, name4, version4, AuthInterop, NOT_AVAILABLE_ERROR;
 var init_index_f3c5e390 = __esm({
   "node_modules/@firebase/auth/dist/node-esm/index-f3c5e390.js"() {
     init_shims();
@@ -58129,7 +57475,7 @@ var init_index_f3c5e390 = __esm({
         this.timer = null;
         this.promise = new Promise((_2, reject) => {
           this.timer = setTimeout(() => {
-            return reject(_createError2(this.auth, "network-request-failed"));
+            return reject(_createError(this.auth, "network-request-failed"));
           }, DEFAULT_API_TIMEOUT_MS.get());
         });
       }
@@ -59410,8 +58756,8 @@ var init_index_f3c5e390 = __esm({
         return new MultiFactorError(auth2, error2, operationType, user2);
       }
     };
-    name5 = "@firebase/auth";
-    version5 = "0.20.5";
+    name4 = "@firebase/auth";
+    version4 = "0.20.5";
     AuthInterop = class {
       constructor(auth2) {
         this.auth = auth2;
@@ -59466,14 +58812,14 @@ var init_index_f3c5e390 = __esm({
     };
     FetchProvider.initialize(fetchImpl.default, fetchImpl.Headers, fetchImpl.Response);
     registerAuth("Node");
-    NOT_AVAILABLE_ERROR = _createError2("operation-not-supported-in-this-environment");
+    NOT_AVAILABLE_ERROR = _createError("operation-not-supported-in-this-environment");
     AuthImpl.prototype.setPersistence = async () => {
     };
   }
 });
 
 // node_modules/@firebase/auth/dist/node-esm/index.js
-var import_node_fetch2;
+var import_node_fetch;
 var init_node_esm = __esm({
   "node_modules/@firebase/auth/dist/node-esm/index.js"() {
     init_shims();
@@ -59483,15 +58829,764 @@ var init_node_esm = __esm({
     init_modules();
     init_index_esm20172();
     init_index_esm2017();
-    import_node_fetch2 = __toESM(require_lib2(), 1);
+    import_node_fetch = __toESM(require_lib2(), 1);
   }
 });
 
 // node_modules/firebase/auth/dist/index.mjs
-var init_dist4 = __esm({
+var init_dist3 = __esm({
   "node_modules/firebase/auth/dist/index.mjs"() {
     init_shims();
     init_node_esm();
+  }
+});
+
+// .svelte-kit/output/server/_app/immutable/chunks/database-135c367c.js
+var firebaseConfig, app, dev, db, _createError2, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord;
+var init_database_135c367c = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/database-135c367c.js"() {
+    init_shims();
+    init_dist();
+    init_dist2();
+    init_dist3();
+    firebaseConfig = {
+      apiKey: "AIzaSyCFIhFlai5zMvE-9eeSiaL4ZiGiSvpg0yY",
+      authDomain: "aragalaya-online.firebaseapp.com",
+      projectId: "aragalaya-online",
+      storageBucket: "aragalaya-online.appspot.com",
+      messagingSenderId: "15533282305",
+      appId: "1:15533282305:web:a807d2c4f789c046a71c00"
+    };
+    {
+      firebaseConfig = {
+        apiKey: "AIzaSyAIFR7IVXYjG_8lyPyfHxsdx_kaRz4z3SM",
+        authDomain: "aragalaya-online-prod.firebaseapp.com",
+        projectId: "aragalaya-online-prod",
+        storageBucket: "aragalaya-online-prod.appspot.com",
+        messagingSenderId: "730227179317",
+        appId: "1:730227179317:web:59771460444f98ae52567c"
+      };
+    }
+    app = initializeApp(firebaseConfig);
+    dev = false;
+    db = getFirestore(app);
+    _createError2 = async (error2, caller, data) => {
+      try {
+        console.log("Uncaught error in: ", caller);
+        console.log("Error: ", error2);
+        if (data) {
+          console.log("Data: ", data);
+        }
+        if (!dev) {
+          await addDoc(collection(db, "Errors"), {
+            message: error2.message,
+            code: error2.code,
+            caller,
+            signedin: getAuth().currentUser != null,
+            time: new Date().getTime()
+          });
+        }
+      } catch (error22) {
+        console.log(`Couldn't save error:`, error22);
+      }
+    };
+    _getPosts = async (type) => {
+      try {
+        const c3 = collection(db, "Posts");
+        const q = query(c3, orderBy("createdOn", "desc"), where("type", "==", type), limit(10));
+        const qs = await getDocs(q);
+        const items = [];
+        qs.docs.forEach((doc2) => {
+          if (doc2.id !== "0" && doc2.exists()) {
+            items.push(doc2.data());
+          }
+        });
+        return items;
+      } catch (error2) {
+        _createError2(error2, "DBService:getBulletins");
+        return [];
+      }
+    };
+    _getPost = async (id) => {
+      try {
+        const docRef = doc(collection(db, "Posts"), id);
+        return (await getDoc(docRef)).data();
+      } catch (error2) {
+        _createError2(error2, "DBService:getPost");
+      }
+    };
+    _createUserRecord = async (user2) => {
+      try {
+        const docRef = doc(collection(db, "Users"), user2.uid);
+        user2.id = user2.uid;
+        await setDoc(docRef, user2);
+        return { user: user2 };
+      } catch (error2) {
+        _createError2(error2, "DBService:createUserRecord");
+      }
+    };
+    _setUserTheme = async (user2, theme) => {
+      try {
+        const docRef = doc(collection(db, "Users"), user2.uid);
+        const result = await updateDoc(docRef, { theme });
+        return result;
+      } catch (error2) {
+        _createError2(error2, "DBService:createUserRecord");
+      }
+    };
+    _getUserRecord = async (uid) => {
+      try {
+        const docRef = doc(collection(db, "Users"), uid);
+        return (await getDoc(docRef)).data();
+      } catch (error2) {
+        _createError2(error2, "DBService:getUserRecord");
+      }
+    };
+  }
+});
+
+// node_modules/@firebase/storage/dist/node-esm/index.node.esm.js
+function prependCode(code) {
+  return "storage/" + code;
+}
+function unknown() {
+  const message = "An unknown error occurred, please check the error payload for server response.";
+  return new StorageError("unknown", message);
+}
+function retryLimitExceeded() {
+  return new StorageError("retry-limit-exceeded", "Max retry time for operation exceeded, please try again.");
+}
+function canceled() {
+  return new StorageError("canceled", "User canceled the upload/download.");
+}
+function invalidUrl(url) {
+  return new StorageError("invalid-url", "Invalid URL '" + url + "'.");
+}
+function invalidDefaultBucket(bucket) {
+  return new StorageError("invalid-default-bucket", "Invalid default bucket '" + bucket + "'.");
+}
+function invalidArgument(message) {
+  return new StorageError("invalid-argument", message);
+}
+function appDeleted() {
+  return new StorageError("app-deleted", "The Firebase app was deleted.");
+}
+function invalidRootOperation(name7) {
+  return new StorageError("invalid-root-operation", "The operation '" + name7 + "' cannot be performed on a root reference, create a non-root reference using child, such as .child('file.png').");
+}
+function start(f5, callback, timeout) {
+  let waitSeconds = 1;
+  let retryTimeoutId = null;
+  let globalTimeoutId = null;
+  let hitTimeout = false;
+  let cancelState = 0;
+  function canceled2() {
+    return cancelState === 2;
+  }
+  let triggeredCallback = false;
+  function triggerCallback(...args) {
+    if (!triggeredCallback) {
+      triggeredCallback = true;
+      callback.apply(null, args);
+    }
+  }
+  function callWithDelay(millis) {
+    retryTimeoutId = setTimeout(() => {
+      retryTimeoutId = null;
+      f5(handler, canceled2());
+    }, millis);
+  }
+  function clearGlobalTimeout() {
+    if (globalTimeoutId) {
+      clearTimeout(globalTimeoutId);
+    }
+  }
+  function handler(success, ...args) {
+    if (triggeredCallback) {
+      clearGlobalTimeout();
+      return;
+    }
+    if (success) {
+      clearGlobalTimeout();
+      triggerCallback.call(null, success, ...args);
+      return;
+    }
+    const mustStop = canceled2() || hitTimeout;
+    if (mustStop) {
+      clearGlobalTimeout();
+      triggerCallback.call(null, success, ...args);
+      return;
+    }
+    if (waitSeconds < 64) {
+      waitSeconds *= 2;
+    }
+    let waitMillis;
+    if (cancelState === 1) {
+      cancelState = 2;
+      waitMillis = 0;
+    } else {
+      waitMillis = (waitSeconds + Math.random()) * 1e3;
+    }
+    callWithDelay(waitMillis);
+  }
+  let stopped = false;
+  function stop2(wasTimeout) {
+    if (stopped) {
+      return;
+    }
+    stopped = true;
+    clearGlobalTimeout();
+    if (triggeredCallback) {
+      return;
+    }
+    if (retryTimeoutId !== null) {
+      if (!wasTimeout) {
+        cancelState = 2;
+      }
+      clearTimeout(retryTimeoutId);
+      callWithDelay(0);
+    } else {
+      if (!wasTimeout) {
+        cancelState = 1;
+      }
+    }
+  }
+  callWithDelay(0);
+  globalTimeoutId = setTimeout(() => {
+    hitTimeout = true;
+    stop2(true);
+  }, timeout);
+  return stop2;
+}
+function stop(id) {
+  id(false);
+}
+function isJustDef(p2) {
+  return p2 !== void 0;
+}
+function validateNumber(argument, minValue, maxValue, value) {
+  if (value < minValue) {
+    throw invalidArgument(`Invalid value for '${argument}'. Expected ${minValue} or greater.`);
+  }
+  if (value > maxValue) {
+    throw invalidArgument(`Invalid value for '${argument}'. Expected ${maxValue} or less.`);
+  }
+}
+function makeQueryString(params) {
+  const encode4 = encodeURIComponent;
+  let queryPart = "?";
+  for (const key2 in params) {
+    if (params.hasOwnProperty(key2)) {
+      const nextPart = encode4(key2) + "=" + encode4(params[key2]);
+      queryPart = queryPart + nextPart + "&";
+    }
+  }
+  queryPart = queryPart.slice(0, -1);
+  return queryPart;
+}
+function addAuthHeader_(headers2, authToken) {
+  if (authToken !== null && authToken.length > 0) {
+    headers2["Authorization"] = "Firebase " + authToken;
+  }
+}
+function addVersionHeader_(headers2, firebaseVersion) {
+  headers2["X-Firebase-Storage-Version"] = "webjs/" + (firebaseVersion !== null && firebaseVersion !== void 0 ? firebaseVersion : "AppManager");
+}
+function addGmpidHeader_(headers2, appId) {
+  if (appId) {
+    headers2["X-Firebase-GMPID"] = appId;
+  }
+}
+function addAppCheckHeader_(headers2, appCheckToken) {
+  if (appCheckToken !== null) {
+    headers2["X-Firebase-AppCheck"] = appCheckToken;
+  }
+}
+function makeRequest(requestInfo, appId, authToken, appCheckToken, requestFactory, firebaseVersion) {
+  const queryPart = makeQueryString(requestInfo.urlParams);
+  const url = requestInfo.url + queryPart;
+  const headers2 = Object.assign({}, requestInfo.headers);
+  addGmpidHeader_(headers2, appId);
+  addAuthHeader_(headers2, authToken);
+  addVersionHeader_(headers2, firebaseVersion);
+  addAppCheckHeader_(headers2, appCheckToken);
+  return new NetworkRequest(url, requestInfo.method, headers2, requestInfo.body, requestInfo.successCodes, requestInfo.additionalRetryCodes, requestInfo.handler, requestInfo.errorHandler, requestInfo.timeout, requestInfo.progressCallback, requestFactory);
+}
+function parent(path) {
+  if (path.length === 0) {
+    return null;
+  }
+  const index9 = path.lastIndexOf("/");
+  if (index9 === -1) {
+    return "";
+  }
+  const newPath = path.slice(0, index9);
+  return newPath;
+}
+function lastComponent(path) {
+  const index9 = path.lastIndexOf("/", path.length - 2);
+  if (index9 === -1) {
+    return path;
+  } else {
+    return path.slice(index9 + 1);
+  }
+}
+function extractBucket(host, config) {
+  const bucketString = config === null || config === void 0 ? void 0 : config[CONFIG_STORAGE_BUCKET_KEY];
+  if (bucketString == null) {
+    return null;
+  }
+  return Location.makeFromBucketSpec(bucketString, host);
+}
+function getStorage(app2 = getApp(), bucketUrl) {
+  app2 = getModularInstance(app2);
+  const storageProvider = _getProvider(app2, STORAGE_TYPE);
+  const storageInstance = storageProvider.getImmediate({
+    identifier: bucketUrl
+  });
+  return storageInstance;
+}
+function factory(container, { instanceIdentifier: url }) {
+  const app2 = container.getProvider("app").getImmediate();
+  const authProvider = container.getProvider("auth-internal");
+  const appCheckProvider = container.getProvider("app-check-internal");
+  return new FirebaseStorageImpl(app2, authProvider, appCheckProvider, url, SDK_VERSION);
+}
+function registerStorage() {
+  _registerComponent(new Component(STORAGE_TYPE, factory, "PUBLIC").setMultipleInstances(true));
+  registerVersion(name5, version5);
+}
+var import_node_fetch2, DEFAULT_HOST2, CONFIG_STORAGE_BUCKET_KEY, DEFAULT_MAX_OPERATION_RETRY_TIME, DEFAULT_MAX_UPLOAD_RETRY_TIME, StorageError, Location, FailRequest, ErrorCode, NetworkRequest, RequestEndStatus, RESUMABLE_UPLOAD_CHUNK_SIZE, Reference, FirebaseStorageImpl, name5, version5, STORAGE_TYPE;
+var init_index_node_esm2 = __esm({
+  "node_modules/@firebase/storage/dist/node-esm/index.node.esm.js"() {
+    init_shims();
+    init_index_esm20173();
+    init_index_node_esm();
+    import_node_fetch2 = __toESM(require_lib2(), 1);
+    init_index_esm2017();
+    DEFAULT_HOST2 = "firebasestorage.googleapis.com";
+    CONFIG_STORAGE_BUCKET_KEY = "storageBucket";
+    DEFAULT_MAX_OPERATION_RETRY_TIME = 2 * 60 * 1e3;
+    DEFAULT_MAX_UPLOAD_RETRY_TIME = 10 * 60 * 1e3;
+    StorageError = class extends FirebaseError {
+      constructor(code, message) {
+        super(prependCode(code), `Firebase Storage: ${message} (${prependCode(code)})`);
+        this.customData = { serverResponse: null };
+        this._baseMessage = this.message;
+        Object.setPrototypeOf(this, StorageError.prototype);
+      }
+      _codeEquals(code) {
+        return prependCode(code) === this.code;
+      }
+      get serverResponse() {
+        return this.customData.serverResponse;
+      }
+      set serverResponse(serverResponse) {
+        this.customData.serverResponse = serverResponse;
+        if (this.customData.serverResponse) {
+          this.message = `${this._baseMessage}
+${this.customData.serverResponse}`;
+        } else {
+          this.message = this._baseMessage;
+        }
+      }
+    };
+    Location = class {
+      constructor(bucket, path) {
+        this.bucket = bucket;
+        this.path_ = path;
+      }
+      get path() {
+        return this.path_;
+      }
+      get isRoot() {
+        return this.path.length === 0;
+      }
+      fullServerUrl() {
+        const encode4 = encodeURIComponent;
+        return "/b/" + encode4(this.bucket) + "/o/" + encode4(this.path);
+      }
+      bucketOnlyServerUrl() {
+        const encode4 = encodeURIComponent;
+        return "/b/" + encode4(this.bucket) + "/o";
+      }
+      static makeFromBucketSpec(bucketString, host) {
+        let bucketLocation;
+        try {
+          bucketLocation = Location.makeFromUrl(bucketString, host);
+        } catch (e2) {
+          return new Location(bucketString, "");
+        }
+        if (bucketLocation.path === "") {
+          return bucketLocation;
+        } else {
+          throw invalidDefaultBucket(bucketString);
+        }
+      }
+      static makeFromUrl(url, host) {
+        let location = null;
+        const bucketDomain = "([A-Za-z0-9.\\-_]+)";
+        function gsModify(loc) {
+          if (loc.path.charAt(loc.path.length - 1) === "/") {
+            loc.path_ = loc.path_.slice(0, -1);
+          }
+        }
+        const gsPath = "(/(.*))?$";
+        const gsRegex = new RegExp("^gs://" + bucketDomain + gsPath, "i");
+        const gsIndices = { bucket: 1, path: 3 };
+        function httpModify(loc) {
+          loc.path_ = decodeURIComponent(loc.path);
+        }
+        const version7 = "v[A-Za-z0-9_]+";
+        const firebaseStorageHost = host.replace(/[.]/g, "\\.");
+        const firebaseStoragePath = "(/([^?#]*).*)?$";
+        const firebaseStorageRegExp = new RegExp(`^https?://${firebaseStorageHost}/${version7}/b/${bucketDomain}/o${firebaseStoragePath}`, "i");
+        const firebaseStorageIndices = { bucket: 1, path: 3 };
+        const cloudStorageHost = host === DEFAULT_HOST2 ? "(?:storage.googleapis.com|storage.cloud.google.com)" : host;
+        const cloudStoragePath = "([^?#]*)";
+        const cloudStorageRegExp = new RegExp(`^https?://${cloudStorageHost}/${bucketDomain}/${cloudStoragePath}`, "i");
+        const cloudStorageIndices = { bucket: 1, path: 2 };
+        const groups = [
+          { regex: gsRegex, indices: gsIndices, postModify: gsModify },
+          {
+            regex: firebaseStorageRegExp,
+            indices: firebaseStorageIndices,
+            postModify: httpModify
+          },
+          {
+            regex: cloudStorageRegExp,
+            indices: cloudStorageIndices,
+            postModify: httpModify
+          }
+        ];
+        for (let i2 = 0; i2 < groups.length; i2++) {
+          const group = groups[i2];
+          const captures = group.regex.exec(url);
+          if (captures) {
+            const bucketValue = captures[group.indices.bucket];
+            let pathValue = captures[group.indices.path];
+            if (!pathValue) {
+              pathValue = "";
+            }
+            location = new Location(bucketValue, pathValue);
+            group.postModify(location);
+            break;
+          }
+        }
+        if (location == null) {
+          throw invalidUrl(url);
+        }
+        return location;
+      }
+    };
+    FailRequest = class {
+      constructor(error2) {
+        this.promise_ = Promise.reject(error2);
+      }
+      getPromise() {
+        return this.promise_;
+      }
+      cancel(_appDelete = false) {
+      }
+    };
+    (function(ErrorCode2) {
+      ErrorCode2[ErrorCode2["NO_ERROR"] = 0] = "NO_ERROR";
+      ErrorCode2[ErrorCode2["NETWORK_ERROR"] = 1] = "NETWORK_ERROR";
+      ErrorCode2[ErrorCode2["ABORT"] = 2] = "ABORT";
+    })(ErrorCode || (ErrorCode = {}));
+    NetworkRequest = class {
+      constructor(url_, method_, headers_, body_, successCodes_, additionalRetryCodes_, callback_, errorCallback_, timeout_, progressCallback_, connectionFactory_) {
+        this.url_ = url_;
+        this.method_ = method_;
+        this.headers_ = headers_;
+        this.body_ = body_;
+        this.successCodes_ = successCodes_;
+        this.additionalRetryCodes_ = additionalRetryCodes_;
+        this.callback_ = callback_;
+        this.errorCallback_ = errorCallback_;
+        this.timeout_ = timeout_;
+        this.progressCallback_ = progressCallback_;
+        this.connectionFactory_ = connectionFactory_;
+        this.pendingConnection_ = null;
+        this.backoffId_ = null;
+        this.canceled_ = false;
+        this.appDelete_ = false;
+        this.promise_ = new Promise((resolve2, reject) => {
+          this.resolve_ = resolve2;
+          this.reject_ = reject;
+          this.start_();
+        });
+      }
+      start_() {
+        const doTheRequest = (backoffCallback, canceled2) => {
+          if (canceled2) {
+            backoffCallback(false, new RequestEndStatus(false, null, true));
+            return;
+          }
+          const connection = this.connectionFactory_();
+          this.pendingConnection_ = connection;
+          const progressListener = (progressEvent) => {
+            const loaded = progressEvent.loaded;
+            const total = progressEvent.lengthComputable ? progressEvent.total : -1;
+            if (this.progressCallback_ !== null) {
+              this.progressCallback_(loaded, total);
+            }
+          };
+          if (this.progressCallback_ !== null) {
+            connection.addUploadProgressListener(progressListener);
+          }
+          connection.send(this.url_, this.method_, this.body_, this.headers_).then(() => {
+            if (this.progressCallback_ !== null) {
+              connection.removeUploadProgressListener(progressListener);
+            }
+            this.pendingConnection_ = null;
+            const hitServer = connection.getErrorCode() === ErrorCode.NO_ERROR;
+            const status = connection.getStatus();
+            if (!hitServer || this.isRetryStatusCode_(status)) {
+              const wasCanceled = connection.getErrorCode() === ErrorCode.ABORT;
+              backoffCallback(false, new RequestEndStatus(false, null, wasCanceled));
+              return;
+            }
+            const successCode = this.successCodes_.indexOf(status) !== -1;
+            backoffCallback(true, new RequestEndStatus(successCode, connection));
+          });
+        };
+        const backoffDone = (requestWentThrough, status) => {
+          const resolve2 = this.resolve_;
+          const reject = this.reject_;
+          const connection = status.connection;
+          if (status.wasSuccessCode) {
+            try {
+              const result = this.callback_(connection, connection.getResponse());
+              if (isJustDef(result)) {
+                resolve2(result);
+              } else {
+                resolve2();
+              }
+            } catch (e2) {
+              reject(e2);
+            }
+          } else {
+            if (connection !== null) {
+              const err = unknown();
+              err.serverResponse = connection.getErrorText();
+              if (this.errorCallback_) {
+                reject(this.errorCallback_(connection, err));
+              } else {
+                reject(err);
+              }
+            } else {
+              if (status.canceled) {
+                const err = this.appDelete_ ? appDeleted() : canceled();
+                reject(err);
+              } else {
+                const err = retryLimitExceeded();
+                reject(err);
+              }
+            }
+          }
+        };
+        if (this.canceled_) {
+          backoffDone(false, new RequestEndStatus(false, null, true));
+        } else {
+          this.backoffId_ = start(doTheRequest, backoffDone, this.timeout_);
+        }
+      }
+      getPromise() {
+        return this.promise_;
+      }
+      cancel(appDelete) {
+        this.canceled_ = true;
+        this.appDelete_ = appDelete || false;
+        if (this.backoffId_ !== null) {
+          stop(this.backoffId_);
+        }
+        if (this.pendingConnection_ !== null) {
+          this.pendingConnection_.abort();
+        }
+      }
+      isRetryStatusCode_(status) {
+        const isFiveHundredCode = status >= 500 && status < 600;
+        const extraRetryCodes = [
+          408,
+          429
+        ];
+        const isExtraRetryCode = extraRetryCodes.indexOf(status) !== -1;
+        const isRequestSpecificRetryCode = this.additionalRetryCodes_.indexOf(status) !== -1;
+        return isFiveHundredCode || isExtraRetryCode || isRequestSpecificRetryCode;
+      }
+    };
+    RequestEndStatus = class {
+      constructor(wasSuccessCode, connection, canceled2) {
+        this.wasSuccessCode = wasSuccessCode;
+        this.connection = connection;
+        this.canceled = !!canceled2;
+      }
+    };
+    RESUMABLE_UPLOAD_CHUNK_SIZE = 256 * 1024;
+    Reference = class {
+      constructor(_service, location) {
+        this._service = _service;
+        if (location instanceof Location) {
+          this._location = location;
+        } else {
+          this._location = Location.makeFromUrl(location, _service.host);
+        }
+      }
+      toString() {
+        return "gs://" + this._location.bucket + "/" + this._location.path;
+      }
+      _newRef(service, location) {
+        return new Reference(service, location);
+      }
+      get root() {
+        const location = new Location(this._location.bucket, "");
+        return this._newRef(this._service, location);
+      }
+      get bucket() {
+        return this._location.bucket;
+      }
+      get fullPath() {
+        return this._location.path;
+      }
+      get name() {
+        return lastComponent(this._location.path);
+      }
+      get storage() {
+        return this._service;
+      }
+      get parent() {
+        const newPath = parent(this._location.path);
+        if (newPath === null) {
+          return null;
+        }
+        const location = new Location(this._location.bucket, newPath);
+        return new Reference(this._service, location);
+      }
+      _throwIfRoot(name7) {
+        if (this._location.path === "") {
+          throw invalidRootOperation(name7);
+        }
+      }
+    };
+    FirebaseStorageImpl = class {
+      constructor(app2, _authProvider, _appCheckProvider, _url, _firebaseVersion) {
+        this.app = app2;
+        this._authProvider = _authProvider;
+        this._appCheckProvider = _appCheckProvider;
+        this._url = _url;
+        this._firebaseVersion = _firebaseVersion;
+        this._bucket = null;
+        this._host = DEFAULT_HOST2;
+        this._protocol = "https";
+        this._appId = null;
+        this._deleted = false;
+        this._maxOperationRetryTime = DEFAULT_MAX_OPERATION_RETRY_TIME;
+        this._maxUploadRetryTime = DEFAULT_MAX_UPLOAD_RETRY_TIME;
+        this._requests = /* @__PURE__ */ new Set();
+        if (_url != null) {
+          this._bucket = Location.makeFromBucketSpec(_url, this._host);
+        } else {
+          this._bucket = extractBucket(this._host, this.app.options);
+        }
+      }
+      get host() {
+        return this._host;
+      }
+      set host(host) {
+        this._host = host;
+        if (this._url != null) {
+          this._bucket = Location.makeFromBucketSpec(this._url, host);
+        } else {
+          this._bucket = extractBucket(host, this.app.options);
+        }
+      }
+      get maxUploadRetryTime() {
+        return this._maxUploadRetryTime;
+      }
+      set maxUploadRetryTime(time) {
+        validateNumber(
+          "time",
+          0,
+          Number.POSITIVE_INFINITY,
+          time
+        );
+        this._maxUploadRetryTime = time;
+      }
+      get maxOperationRetryTime() {
+        return this._maxOperationRetryTime;
+      }
+      set maxOperationRetryTime(time) {
+        validateNumber(
+          "time",
+          0,
+          Number.POSITIVE_INFINITY,
+          time
+        );
+        this._maxOperationRetryTime = time;
+      }
+      async _getAuthToken() {
+        if (this._overrideAuthToken) {
+          return this._overrideAuthToken;
+        }
+        const auth2 = this._authProvider.getImmediate({ optional: true });
+        if (auth2) {
+          const tokenData = await auth2.getToken();
+          if (tokenData !== null) {
+            return tokenData.accessToken;
+          }
+        }
+        return null;
+      }
+      async _getAppCheckToken() {
+        const appCheck = this._appCheckProvider.getImmediate({ optional: true });
+        if (appCheck) {
+          const result = await appCheck.getToken();
+          return result.token;
+        }
+        return null;
+      }
+      _delete() {
+        if (!this._deleted) {
+          this._deleted = true;
+          this._requests.forEach((request2) => request2.cancel());
+          this._requests.clear();
+        }
+        return Promise.resolve();
+      }
+      _makeStorageReference(loc) {
+        return new Reference(this, loc);
+      }
+      _makeRequest(requestInfo, requestFactory, authToken, appCheckToken) {
+        if (!this._deleted) {
+          const request2 = makeRequest(requestInfo, this._appId, authToken, appCheckToken, requestFactory, this._firebaseVersion);
+          this._requests.add(request2);
+          request2.getPromise().then(() => this._requests.delete(request2), () => this._requests.delete(request2));
+          return request2;
+        } else {
+          return new FailRequest(appDeleted());
+        }
+      }
+      async makeRequestWithTokens(requestInfo, requestFactory) {
+        const [authToken, appCheckToken] = await Promise.all([
+          this._getAuthToken(),
+          this._getAppCheckToken()
+        ]);
+        return this._makeRequest(requestInfo, requestFactory, authToken, appCheckToken).getPromise();
+      }
+    };
+    name5 = "@firebase/storage";
+    version5 = "0.9.9";
+    STORAGE_TYPE = "storage";
+    registerStorage();
+  }
+});
+
+// node_modules/firebase/storage/dist/index.mjs
+var init_dist4 = __esm({
+  "node_modules/firebase/storage/dist/index.mjs"() {
+    init_shims();
+    init_index_node_esm2();
   }
 });
 
@@ -69307,16 +69402,16 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/storage-5c476c37.js
+// .svelte-kit/output/server/_app/immutable/chunks/storage-4d199e5a.js
 var import_rxjs, events, _emitEvent, _eventListener, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, css, Button;
-var init_storage_5c476c37 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/storage-5c476c37.js"() {
+var init_storage_4d199e5a = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/storage-4d199e5a.js"() {
     init_shims();
     init_index_19a73778();
-    init_font_be8713a2();
-    init_database_e087c939();
-    init_dist3();
+    init_font_7eb66553();
+    init_database_135c367c();
     init_dist4();
+    init_dist3();
     import_rxjs = __toESM(require_cjs(), 1);
     events = [];
     _emitEvent = (tag, value) => {
@@ -69339,7 +69434,7 @@ var init_storage_5c476c37 = __esm({
       }
       return subject;
     };
-    auth = getAuth2(app);
+    auth = getAuth(app);
     onAuthStateChanged(auth, async (authUser) => {
       if (authUser) {
         if (user && user.uid != authUser.uid || !user) {
@@ -69347,12 +69442,14 @@ var init_storage_5c476c37 = __esm({
         }
         if (!user) {
           _emitEvent("user-ready", void 0);
-          await _createError({
+          await _createError2({
             error: "invalid-user",
             authUser
           }, "authService::onAuthStateChanged");
         } else {
           _emitEvent("user-ready", user);
+          _emitEvent("theme-changed", user.theme);
+          _lang.set(user.language);
         }
       } else {
         _emitEvent("user-ready", void 0);
@@ -69360,7 +69457,7 @@ var init_storage_5c476c37 = __esm({
       _authStateChecked.set(true);
     });
     _userSignedIn = () => {
-      let authUser = getAuth2().currentUser;
+      let authUser = getAuth().currentUser;
       return authUser && user && authUser.uid == user.uid && user;
     };
     _emailSignup = (email, password) => new Promise(async (resolve2) => {
@@ -69376,7 +69473,7 @@ var init_storage_5c476c37 = __esm({
           resolve2(error2);
           return;
         }
-        _createError(error2, "authService::_emailSignup");
+        _createError2(error2, "authService::_emailSignup");
       }
     });
     _emailSignin = (email, password) => new Promise(async (resolve2) => {
@@ -69391,12 +69488,12 @@ var init_storage_5c476c37 = __esm({
           resolve2(error2);
           return;
         }
-        _createError(error2, "authService::_emailSignin");
+        _createError2(error2, "authService::_emailSignin");
       }
     });
     _changePassword = (newPassword, name7, email) => new Promise(async (resolve2) => {
       try {
-        let authUser = getAuth2().currentUser;
+        let authUser = getAuth().currentUser;
         user = await _createUserRecord({
           name: name7,
           email,
@@ -69407,7 +69504,7 @@ var init_storage_5c476c37 = __esm({
         let result = await updatePassword(authUser, newPassword);
         resolve2(result);
       } catch (error2) {
-        _createError(error2);
+        _createError2(error2);
       }
     });
     css = {
@@ -70306,17 +70403,17 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "firstChild",
-        get: function get3() {
+        get: function get() {
           return this.content.length ? this.content[0] : null;
         }
       }, {
         key: "lastChild",
-        get: function get3() {
+        get: function get() {
           return this.content.length ? this.content[this.content.length - 1] : null;
         }
       }, {
         key: "childCount",
-        get: function get3() {
+        get: function get() {
           return this.content.length;
         }
       }, {
@@ -70601,7 +70698,7 @@ var require_dist2 = __commonJS({
       }
       _createClass(Slice2, [{
         key: "size",
-        get: function get3() {
+        get: function get() {
           return this.content.size - this.openStart - this.openEnd;
         }
       }, {
@@ -70807,12 +70904,12 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "parent",
-        get: function get3() {
+        get: function get() {
           return this.node(this.depth);
         }
       }, {
         key: "doc",
-        get: function get3() {
+        get: function get() {
           return this.node(0);
         }
       }, {
@@ -70861,12 +70958,12 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "textOffset",
-        get: function get3() {
+        get: function get() {
           return this.pos - this.path[this.path.length - 1];
         }
       }, {
         key: "nodeAfter",
-        get: function get3() {
+        get: function get() {
           var parent2 = this.parent, index9 = this.index(this.depth);
           if (index9 == parent2.childCount)
             return null;
@@ -70875,7 +70972,7 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "nodeBefore",
-        get: function get3() {
+        get: function get() {
           var index9 = this.index(this.depth);
           var dOff = this.pos - this.path[this.path.length - 1];
           if (dOff)
@@ -71020,27 +71117,27 @@ var require_dist2 = __commonJS({
       }
       _createClass(NodeRange2, [{
         key: "start",
-        get: function get3() {
+        get: function get() {
           return this.$from.before(this.depth + 1);
         }
       }, {
         key: "end",
-        get: function get3() {
+        get: function get() {
           return this.$to.after(this.depth + 1);
         }
       }, {
         key: "parent",
-        get: function get3() {
+        get: function get() {
           return this.$from.node(this.depth);
         }
       }, {
         key: "startIndex",
-        get: function get3() {
+        get: function get() {
           return this.$from.index(this.depth);
         }
       }, {
         key: "endIndex",
-        get: function get3() {
+        get: function get() {
           return this.$to.indexAfter(this.depth);
         }
       }]);
@@ -71058,12 +71155,12 @@ var require_dist2 = __commonJS({
       }
       _createClass(Node2, [{
         key: "nodeSize",
-        get: function get3() {
+        get: function get() {
           return this.isLeaf ? 1 : 2 + this.content.size;
         }
       }, {
         key: "childCount",
-        get: function get3() {
+        get: function get() {
           return this.content.childCount;
         }
       }, {
@@ -71094,7 +71191,7 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "textContent",
-        get: function get3() {
+        get: function get() {
           return this.isLeaf && this.type.spec.leafText ? this.type.spec.leafText(this) : this.textBetween(0, this.content.size, "");
         }
       }, {
@@ -71104,12 +71201,12 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "firstChild",
-        get: function get3() {
+        get: function get() {
           return this.content.firstChild;
         }
       }, {
         key: "lastChild",
-        get: function get3() {
+        get: function get() {
           return this.content.lastChild;
         }
       }, {
@@ -71236,37 +71333,37 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "isBlock",
-        get: function get3() {
+        get: function get() {
           return this.type.isBlock;
         }
       }, {
         key: "isTextblock",
-        get: function get3() {
+        get: function get() {
           return this.type.isTextblock;
         }
       }, {
         key: "inlineContent",
-        get: function get3() {
+        get: function get() {
           return this.type.inlineContent;
         }
       }, {
         key: "isInline",
-        get: function get3() {
+        get: function get() {
           return this.type.isInline;
         }
       }, {
         key: "isText",
-        get: function get3() {
+        get: function get() {
           return this.type.isText;
         }
       }, {
         key: "isLeaf",
-        get: function get3() {
+        get: function get() {
           return this.type.isLeaf;
         }
       }, {
         key: "isAtom",
-        get: function get3() {
+        get: function get() {
           return this.type.isAtom;
         }
       }, {
@@ -71399,7 +71496,7 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "textContent",
-        get: function get3() {
+        get: function get() {
           return this.text;
         }
       }, {
@@ -71409,7 +71506,7 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "nodeSize",
-        get: function get3() {
+        get: function get() {
           return this.text.length;
         }
       }, {
@@ -71483,12 +71580,12 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "inlineContent",
-        get: function get3() {
+        get: function get() {
           return this.next.length && this.next[0].type.isInline;
         }
       }, {
         key: "defaultType",
-        get: function get3() {
+        get: function get() {
           for (var i2 = 0; i2 < this.next.length; i2++) {
             var type = this.next[i2].type;
             if (!(type.isText || type.hasRequiredAttrs()))
@@ -71576,7 +71673,7 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "edgeCount",
-        get: function get3() {
+        get: function get() {
           return this.next.length;
         }
       }, {
@@ -71638,7 +71735,7 @@ var require_dist2 = __commonJS({
       }
       _createClass(TokenStream2, [{
         key: "next",
-        get: function get3() {
+        get: function get() {
           return this.tokens[this.pos];
         }
       }, {
@@ -71950,27 +72047,27 @@ var require_dist2 = __commonJS({
       }
       _createClass(NodeType2, [{
         key: "isInline",
-        get: function get3() {
+        get: function get() {
           return !this.isBlock;
         }
       }, {
         key: "isTextblock",
-        get: function get3() {
+        get: function get() {
           return this.isBlock && this.inlineContent;
         }
       }, {
         key: "isLeaf",
-        get: function get3() {
+        get: function get() {
           return this.contentMatch == ContentMatch.empty;
         }
       }, {
         key: "isAtom",
-        get: function get3() {
+        get: function get() {
           return this.isLeaf || !!this.spec.atom;
         }
       }, {
         key: "whitespace",
-        get: function get3() {
+        get: function get() {
           return this.spec.whitespace || (this.spec.code ? "pre" : "normal");
         }
       }, {
@@ -72108,7 +72205,7 @@ var require_dist2 = __commonJS({
       }
       _createClass(Attribute2, [{
         key: "isRequired",
-        get: function get3() {
+        get: function get() {
           return !this.hasDefault;
         }
       }]);
@@ -72538,7 +72635,7 @@ var require_dist2 = __commonJS({
       }
       _createClass(ParseContext2, [{
         key: "top",
-        get: function get3() {
+        get: function get() {
           return this.nodes[this.open];
         }
       }, {
@@ -72808,7 +72905,7 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "currentPos",
-        get: function get3() {
+        get: function get() {
           this.closeExtra();
           var pos = 0;
           for (var i2 = this.open; i2 >= 0; i2--) {
@@ -73357,22 +73454,22 @@ var require_dist3 = __commonJS({
       }
       _createClass(MapResult2, [{
         key: "deleted",
-        get: function get3() {
+        get: function get() {
           return (this.delInfo & DEL_SIDE) > 0;
         }
       }, {
         key: "deletedBefore",
-        get: function get3() {
+        get: function get() {
           return (this.delInfo & (DEL_BEFORE | DEL_ACROSS)) > 0;
         }
       }, {
         key: "deletedAfter",
-        get: function get3() {
+        get: function get() {
           return (this.delInfo & (DEL_AFTER | DEL_ACROSS)) > 0;
         }
       }, {
         key: "deletedAcross",
-        get: function get3() {
+        get: function get() {
           return (this.delInfo & DEL_ACROSS) > 0;
         }
       }]);
@@ -74348,7 +74445,7 @@ var require_dist3 = __commonJS({
       }
       _createClass(Fitter2, [{
         key: "depth",
-        get: function get3() {
+        get: function get() {
           return this.frontier.length - 1;
         }
       }, {
@@ -74747,7 +74844,7 @@ var require_dist3 = __commonJS({
       }
       _createClass(Transform2, [{
         key: "before",
-        get: function get3() {
+        get: function get() {
           return this.docs.length ? this.docs[0] : this.doc;
         }
       }, {
@@ -74768,7 +74865,7 @@ var require_dist3 = __commonJS({
         }
       }, {
         key: "docChanged",
-        get: function get3() {
+        get: function get() {
           return this.steps.length > 0;
         }
       }, {
@@ -75048,37 +75145,37 @@ var require_dist4 = __commonJS({
       }
       _createClass(Selection2, [{
         key: "anchor",
-        get: function get3() {
+        get: function get() {
           return this.$anchor.pos;
         }
       }, {
         key: "head",
-        get: function get3() {
+        get: function get() {
           return this.$head.pos;
         }
       }, {
         key: "from",
-        get: function get3() {
+        get: function get() {
           return this.$from.pos;
         }
       }, {
         key: "to",
-        get: function get3() {
+        get: function get() {
           return this.$to.pos;
         }
       }, {
         key: "$from",
-        get: function get3() {
+        get: function get() {
           return this.ranges[0].$from;
         }
       }, {
         key: "$to",
-        get: function get3() {
+        get: function get() {
           return this.ranges[0].$to;
         }
       }, {
         key: "empty",
-        get: function get3() {
+        get: function get() {
           var ranges = this.ranges;
           for (var i2 = 0; i2 < ranges.length; i2++) {
             if (ranges[i2].$from.pos != ranges[i2].$to.pos)
@@ -75205,7 +75302,7 @@ var require_dist4 = __commonJS({
       }
       _createClass(TextSelection2, [{
         key: "$cursor",
-        get: function get3() {
+        get: function get() {
           return this.$anchor.pos == this.$head.pos ? this.$head : null;
         }
       }, {
@@ -75506,7 +75603,7 @@ var require_dist4 = __commonJS({
       }
       _createClass(Transaction2, [{
         key: "selection",
-        get: function get3() {
+        get: function get() {
           if (this.curSelectionFor < this.steps.length) {
             this.curSelection = this.curSelection.map(this.doc, this.mapping.slice(this.curSelectionFor));
             this.curSelectionFor = this.steps.length;
@@ -75526,7 +75623,7 @@ var require_dist4 = __commonJS({
         }
       }, {
         key: "selectionSet",
-        get: function get3() {
+        get: function get() {
           return (this.updated & UPDATED_SEL) > 0;
         }
       }, {
@@ -75555,7 +75652,7 @@ var require_dist4 = __commonJS({
         }
       }, {
         key: "storedMarksSet",
-        get: function get3() {
+        get: function get() {
           return (this.updated & UPDATED_MARKS) > 0;
         }
       }, {
@@ -75631,7 +75728,7 @@ var require_dist4 = __commonJS({
         }
       }, {
         key: "isGeneric",
-        get: function get3() {
+        get: function get() {
           for (var _2 in this.meta) {
             return false;
           }
@@ -75645,7 +75742,7 @@ var require_dist4 = __commonJS({
         }
       }, {
         key: "scrolledIntoView",
-        get: function get3() {
+        get: function get() {
           return (this.updated & UPDATED_SCROLL) > 0;
         }
       }]);
@@ -75713,12 +75810,12 @@ var require_dist4 = __commonJS({
       }
       _createClass(EditorState2, [{
         key: "schema",
-        get: function get3() {
+        get: function get() {
           return this.config.schema;
         }
       }, {
         key: "plugins",
-        get: function get3() {
+        get: function get() {
           return this.config.plugins;
         }
       }, {
@@ -75801,7 +75898,7 @@ var require_dist4 = __commonJS({
         }
       }, {
         key: "tr",
-        get: function get3() {
+        get: function get() {
           return new Transaction(this);
         }
       }, {
@@ -75923,7 +76020,7 @@ var require_dist4 = __commonJS({
       }
       _createClass(PluginKey2, [{
         key: "get",
-        value: function get3(state) {
+        value: function get(state) {
           return state.config.pluginsByKey[this.key];
         }
       }, {
@@ -76696,7 +76793,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "size",
-        get: function get3() {
+        get: function get() {
           var size = 0;
           for (var i2 = 0; i2 < this.children.length; i2++) {
             size += this.children[i2].size;
@@ -76705,7 +76802,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "border",
-        get: function get3() {
+        get: function get() {
           return 0;
         }
       }, {
@@ -76730,22 +76827,22 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "posBefore",
-        get: function get3() {
+        get: function get() {
           return this.parent.posBeforeChild(this);
         }
       }, {
         key: "posAtStart",
-        get: function get3() {
+        get: function get() {
           return this.parent ? this.parent.posBeforeChild(this) + this.border : 0;
         }
       }, {
         key: "posAfter",
-        get: function get3() {
+        get: function get() {
           return this.posBefore + this.size;
         }
       }, {
         key: "posAtEnd",
-        get: function get3() {
+        get: function get() {
           return this.posAtStart + this.size - 2 * this.border;
         }
       }, {
@@ -77056,7 +77153,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "contentLost",
-        get: function get3() {
+        get: function get() {
           return this.contentDOM && this.contentDOM != this.dom && !this.dom.contains(this.contentDOM);
         }
       }, {
@@ -77093,12 +77190,12 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "domAtom",
-        get: function get3() {
+        get: function get() {
           return false;
         }
       }, {
         key: "ignoreForCoords",
-        get: function get3() {
+        get: function get() {
           return false;
         }
       }]);
@@ -77164,12 +77261,12 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "domAtom",
-        get: function get3() {
+        get: function get() {
           return true;
         }
       }, {
         key: "side",
-        get: function get3() {
+        get: function get() {
           return this.widget.type.side;
         }
       }]);
@@ -77188,7 +77285,7 @@ var require_dist5 = __commonJS({
       }
       _createClass(CompositionViewDesc2, [{
         key: "size",
-        get: function get3() {
+        get: function get() {
           return this.text.length;
         }
       }, {
@@ -77336,12 +77433,12 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "size",
-        get: function get3() {
+        get: function get() {
           return this.node.nodeSize;
         }
       }, {
         key: "border",
-        get: function get3() {
+        get: function get() {
           return this.node.isLeaf ? 0 : 1;
         }
       }, {
@@ -77484,7 +77581,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "domAtom",
-        get: function get3() {
+        get: function get() {
           return this.node.isAtom;
         }
       }], [{
@@ -77608,7 +77705,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "domAtom",
-        get: function get3() {
+        get: function get() {
           return false;
         }
       }]);
@@ -77635,12 +77732,12 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "domAtom",
-        get: function get3() {
+        get: function get() {
           return true;
         }
       }, {
         key: "ignoreForCoords",
-        get: function get3() {
+        get: function get() {
           return this.dom.nodeName == "IMG";
         }
       }]);
@@ -79741,12 +79838,12 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "spec",
-        get: function get3() {
+        get: function get() {
           return this.type.spec;
         }
       }, {
         key: "inline",
-        get: function get3() {
+        get: function get() {
           return this.type instanceof InlineType;
         }
       }], [{
@@ -80896,12 +80993,12 @@ var require_dist5 = __commonJS({
       }
       _createClass(EditorView2, [{
         key: "composing",
-        get: function get3() {
+        get: function get() {
           return this.input.composing;
         }
       }, {
         key: "props",
-        get: function get3() {
+        get: function get() {
           if (this._props.state != this.state) {
             var prev = this._props;
             this._props = {};
@@ -81077,7 +81174,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "root",
-        get: function get3() {
+        get: function get() {
           var _this17 = this;
           var cached = this._root;
           if (cached == null) {
@@ -81155,7 +81252,7 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "isDestroyed",
-        get: function get3() {
+        get: function get() {
           return this.docView == null;
         }
       }, {
@@ -87254,7 +87351,7 @@ var require_linkify = __commonJS({
       check: function check(token) {
         return this.get("validate", token.toString(), token);
       },
-      get: function get3(key2, operator, token) {
+      get: function get(key2, operator, token) {
         var option = this[key2];
         if (!option) {
           return option;
@@ -87915,9 +88012,9 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_storage_5c476c37();
-    init_database_e087c939();
-    init_font_be8713a2();
+    init_storage_4d199e5a();
+    init_database_135c367c();
+    init_font_7eb66553();
     init_column_config_811d46bc();
     init_dist5();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
@@ -87934,8 +88031,8 @@ var init_layout_svelte = __esm({
     import_extension_heading = __toESM(require_tiptap_extension_heading_cjs(), 1);
     import_extension_placeholder = __toESM(require_tiptap_extension_placeholder_cjs(), 1);
     import_extension_link = __toESM(require_tiptap_extension_link_cjs(), 1);
-    init_dist3();
     init_dist4();
+    init_dist3();
     init_dist();
     init_dist2();
     import_chroma_js2 = __toESM(require_chroma(), 1);
@@ -88493,8 +88590,12 @@ var init_layout_svelte = __esm({
     Theme_selector = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let themeSelect;
       let themePanel;
-      let currentTheme = 0;
       let showPanel = false;
+      let currentTheme = 0;
+      const themeChangedEvent = _eventListener("theme-changed").subscribe((theme) => {
+        currentTheme = theme;
+      });
+      onDestroy(() => themeChangedEvent.unsubscribe());
       const globalClickEvent = _eventListener("global-click").subscribe((event) => {
         if (event.srcElement.id != "theme-button") {
           showPanel = false;
@@ -88677,8 +88778,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-e3315db2.js";
-    imports = ["_app/immutable/pages/__layout.svelte-e3315db2.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-115a06ea.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-2594e690.js"];
+    file2 = "_app/immutable/pages/__layout.svelte-b15b9958.js";
+    imports = ["_app/immutable/pages/__layout.svelte-b15b9958.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-2f67a6b1.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-a87819f1.js"];
     stylesheets = ["_app/immutable/assets/__layout-8855faea.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
@@ -90786,13 +90887,13 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/proposal-42704181.js
+// .svelte-kit/output/server/_app/immutable/chunks/proposal-eb3235f0.js
 var css$32, Card, strings$3, Timestamp2, strings$2, css$22, Content, css$12, Preview, strings$1, css3, Toolbar, strings2, Proposal;
-var init_proposal_42704181 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/proposal-42704181.js"() {
+var init_proposal_eb3235f0 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/proposal-eb3235f0.js"() {
     init_shims();
     init_index_19a73778();
-    init_font_be8713a2();
+    init_font_7eb66553();
     init_string_strip_html_esm();
     css$32 = {
       code: ".card-container.s-Hio59jcNIlCL{padding:var(--theme-cardseparationhalf)}.card.s-Hio59jcNIlCL{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.s-Hio59jcNIlCL{}",
@@ -91052,10 +91153,10 @@ var init_proposal_42704181 = __esm({
 <div class="${"toolbar s-A62t8M1ucyij"}"><div class="${"toolbar-left s-A62t8M1ucyij"}"><div class="${["icon _clickable s-A62t8M1ucyij", data._expanded ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-down s-A62t8M1ucyij"}"></i></div>
         <div class="${["icon _clickable s-A62t8M1ucyij", data._singlePostView ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-right-and-down-left-from-center s-A62t8M1ucyij"}"></i></div>
         <div class="${"icon _clickable s-A62t8M1ucyij"}"><i class="${"fa-solid fa-share-nodes s-A62t8M1ucyij"}"></i></div>
-        ${`<div class="${"icon facebook _clickable s-A62t8M1ucyij"}"><a href="${"/share/facebook_share?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-facebook s-A62t8M1ucyij"}"></i></a></div>
-        <div class="${"icon twitter _clickable s-A62t8M1ucyij"}"><a href="${"/share/twitter_share?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-twitter s-A62t8M1ucyij"}"></i></a></div>
-        <div class="${"icon whatsapp _clickable s-A62t8M1ucyij"}"><a href="${"/share/whatsapp_share?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-whatsapp s-A62t8M1ucyij"}"></i></a></div>
-        <div class="${"icon reddit _clickable s-A62t8M1ucyij"}"><a href="${"/share/reddit_share?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-reddit s-A62t8M1ucyij"}"></i></a></div>`}</div>
+        ${`<div class="${"icon facebook _clickable s-A62t8M1ucyij"}"><a href="${"/share/facebook?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-facebook s-A62t8M1ucyij"}"></i></a></div>
+        <div class="${"icon twitter _clickable s-A62t8M1ucyij"}"><a href="${"/share/twitter?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-twitter s-A62t8M1ucyij"}"></i></a></div>
+        <div class="${"icon whatsapp _clickable s-A62t8M1ucyij"}"><a href="${"/share/whatsapp?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-whatsapp s-A62t8M1ucyij"}"></i></a></div>
+        <div class="${"icon reddit _clickable s-A62t8M1ucyij"}"><a href="${"/share/reddit?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-reddit s-A62t8M1ucyij"}"></i></a></div>`}</div>
     <div class="${"toolbar-right s-A62t8M1ucyij"}">${validate_component(Font, "Font").$$render(
         $$result,
         {
@@ -91325,14 +91426,14 @@ var init_index_svelte = __esm({
     init_shims();
     init_index_19a73778();
     init_column_config_811d46bc();
-    init_font_be8713a2();
+    init_font_7eb66553();
     init_string_strip_html_esm();
-    init_storage_5c476c37();
-    init_database_e087c939();
-    init_proposal_42704181();
+    init_storage_4d199e5a();
+    init_database_135c367c();
+    init_proposal_eb3235f0();
     import_chroma_js3 = __toESM(require_chroma(), 1);
-    init_dist3();
     init_dist4();
+    init_dist3();
     init_dist();
     init_dist2();
     Array(COLUMN_COUNT).fill(0);
@@ -92128,8 +92229,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    file4 = "_app/immutable/pages/index.svelte-f53623cd.js";
-    imports3 = ["_app/immutable/pages/index.svelte-f53623cd.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-115a06ea.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/proposal-e6f79caa.js", "_app/immutable/chunks/storage-2594e690.js"];
+    file4 = "_app/immutable/pages/index.svelte-b1253cb8.js";
+    imports3 = ["_app/immutable/pages/index.svelte-b1253cb8.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-2f67a6b1.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/proposal-f0a0921b.js", "_app/immutable/chunks/storage-a87819f1.js"];
     stylesheets3 = ["_app/immutable/assets/index-2968e32a.css", "_app/immutable/assets/proposal-62aca3cb.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
@@ -92144,8 +92245,8 @@ var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_proposal_42704181();
-    init_font_be8713a2();
+    init_proposal_eb3235f0();
+    init_font_7eb66553();
     init_column_config_811d46bc();
     import_chroma_js4 = __toESM(require_chroma(), 1);
     init_string_strip_html_esm();
@@ -92194,32 +92295,32 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 3;
-    file5 = "_app/immutable/pages/post_preview.svelte-4182d122.js";
-    imports4 = ["_app/immutable/pages/post_preview.svelte-4182d122.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/proposal-e6f79caa.js", "_app/immutable/chunks/font-115a06ea.js", "_app/immutable/chunks/index-cc16aad1.js"];
+    file5 = "_app/immutable/pages/post_preview.svelte-ba201e02.js";
+    imports4 = ["_app/immutable/pages/post_preview.svelte-ba201e02.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/proposal-f0a0921b.js", "_app/immutable/chunks/font-2f67a6b1.js", "_app/immutable/chunks/index-cc16aad1.js"];
     stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-62aca3cb.css"];
   }
 });
 
-// .svelte-kit/output/server/entries/pages/share/facebook_share.svelte.js
-var facebook_share_svelte_exports = {};
-__export(facebook_share_svelte_exports, {
-  default: () => Facebook_share
+// .svelte-kit/output/server/entries/pages/share/facebook.svelte.js
+var facebook_svelte_exports = {};
+__export(facebook_svelte_exports, {
+  default: () => Facebook
 });
-var css6, Facebook_share;
-var init_facebook_share_svelte = __esm({
-  ".svelte-kit/output/server/entries/pages/share/facebook_share.svelte.js"() {
+var css6, Facebook;
+var init_facebook_svelte = __esm({
+  ".svelte-kit/output/server/entries/pages/share/facebook.svelte.js"() {
     init_shims();
     init_index_19a73778();
     css6 = {
-      code: ".facebook-share.s-Y2yE5XWdqTsh{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-Y2yE5XWdqTsh{}",
+      code: ".facebook-share.s-uPWWvh_Oaxdy{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-uPWWvh_Oaxdy{}",
       map: null
     };
-    Facebook_share = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+    Facebook = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { postId } = $$props;
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
       $$result.css.add(css6);
-      return `<div class="${"facebook-share s-Y2yE5XWdqTsh"}">Redirecting to facebook..</div>`;
+      return `<div class="${"facebook-share s-uPWWvh_Oaxdy"}">Redirecting to facebook..</div>`;
     });
   }
 });
@@ -92230,41 +92331,41 @@ __export(__exports5, {
   file: () => file6,
   imports: () => imports5,
   index: () => index5,
-  module: () => facebook_share_svelte_exports,
+  module: () => facebook_svelte_exports,
   stylesheets: () => stylesheets5
 });
 var index5, file6, imports5, stylesheets5;
 var init__5 = __esm({
   ".svelte-kit/output/server/nodes/4.js"() {
     init_shims();
-    init_facebook_share_svelte();
+    init_facebook_svelte();
     index5 = 4;
-    file6 = "_app/immutable/pages/share/facebook_share.svelte-b9d11038.js";
-    imports5 = ["_app/immutable/pages/share/facebook_share.svelte-b9d11038.js", "_app/immutable/chunks/index-08fc9de4.js"];
-    stylesheets5 = ["_app/immutable/assets/facebook_share-6fbde549.css"];
+    file6 = "_app/immutable/pages/share/facebook.svelte-e3ce8d8f.js";
+    imports5 = ["_app/immutable/pages/share/facebook.svelte-e3ce8d8f.js", "_app/immutable/chunks/index-08fc9de4.js"];
+    stylesheets5 = ["_app/immutable/assets/facebook-84d8a170.css"];
   }
 });
 
-// .svelte-kit/output/server/entries/pages/share/reddit_share.svelte.js
-var reddit_share_svelte_exports = {};
-__export(reddit_share_svelte_exports, {
-  default: () => Reddit_share
+// .svelte-kit/output/server/entries/pages/share/reddit.svelte.js
+var reddit_svelte_exports = {};
+__export(reddit_svelte_exports, {
+  default: () => Reddit
 });
-var css7, Reddit_share;
-var init_reddit_share_svelte = __esm({
-  ".svelte-kit/output/server/entries/pages/share/reddit_share.svelte.js"() {
+var css7, Reddit;
+var init_reddit_svelte = __esm({
+  ".svelte-kit/output/server/entries/pages/share/reddit.svelte.js"() {
     init_shims();
     init_index_19a73778();
     css7 = {
-      code: ".facebook-share.s-l_DnS_RvsRGt{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-l_DnS_RvsRGt{}",
+      code: ".facebook-share.s-t6VgelH33f8J{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-t6VgelH33f8J{}",
       map: null
     };
-    Reddit_share = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+    Reddit = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { postId } = $$props;
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
       $$result.css.add(css7);
-      return `<div class="${"facebook-share s-l_DnS_RvsRGt"}">Redirecting to reddit..</div>`;
+      return `<div class="${"facebook-share s-t6VgelH33f8J"}">Redirecting to reddit..</div>`;
     });
   }
 });
@@ -92275,41 +92376,41 @@ __export(__exports6, {
   file: () => file7,
   imports: () => imports6,
   index: () => index6,
-  module: () => reddit_share_svelte_exports,
+  module: () => reddit_svelte_exports,
   stylesheets: () => stylesheets6
 });
 var index6, file7, imports6, stylesheets6;
 var init__6 = __esm({
   ".svelte-kit/output/server/nodes/5.js"() {
     init_shims();
-    init_reddit_share_svelte();
+    init_reddit_svelte();
     index6 = 5;
-    file7 = "_app/immutable/pages/share/reddit_share.svelte-dd5252da.js";
-    imports6 = ["_app/immutable/pages/share/reddit_share.svelte-dd5252da.js", "_app/immutable/chunks/index-08fc9de4.js"];
-    stylesheets6 = ["_app/immutable/assets/reddit_share-3dd88e29.css"];
+    file7 = "_app/immutable/pages/share/reddit.svelte-82788a9f.js";
+    imports6 = ["_app/immutable/pages/share/reddit.svelte-82788a9f.js", "_app/immutable/chunks/index-08fc9de4.js"];
+    stylesheets6 = ["_app/immutable/assets/reddit-eb475735.css"];
   }
 });
 
-// .svelte-kit/output/server/entries/pages/share/twitter_share.svelte.js
-var twitter_share_svelte_exports = {};
-__export(twitter_share_svelte_exports, {
-  default: () => Twitter_share
+// .svelte-kit/output/server/entries/pages/share/twitter.svelte.js
+var twitter_svelte_exports = {};
+__export(twitter_svelte_exports, {
+  default: () => Twitter
 });
-var css8, Twitter_share;
-var init_twitter_share_svelte = __esm({
-  ".svelte-kit/output/server/entries/pages/share/twitter_share.svelte.js"() {
+var css8, Twitter;
+var init_twitter_svelte = __esm({
+  ".svelte-kit/output/server/entries/pages/share/twitter.svelte.js"() {
     init_shims();
     init_index_19a73778();
     css8 = {
-      code: ".facebook-share.s-vR9NkJeIefn4{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-vR9NkJeIefn4{}",
+      code: ".facebook-share.s-1wq-66mPpMC5{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-1wq-66mPpMC5{}",
       map: null
     };
-    Twitter_share = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+    Twitter = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { postId } = $$props;
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
       $$result.css.add(css8);
-      return `<div class="${"facebook-share s-vR9NkJeIefn4"}">Redirecting to twitter..</div>`;
+      return `<div class="${"facebook-share s-1wq-66mPpMC5"}">Redirecting to twitter..</div>`;
     });
   }
 });
@@ -92320,41 +92421,41 @@ __export(__exports7, {
   file: () => file8,
   imports: () => imports7,
   index: () => index7,
-  module: () => twitter_share_svelte_exports,
+  module: () => twitter_svelte_exports,
   stylesheets: () => stylesheets7
 });
 var index7, file8, imports7, stylesheets7;
 var init__7 = __esm({
   ".svelte-kit/output/server/nodes/6.js"() {
     init_shims();
-    init_twitter_share_svelte();
+    init_twitter_svelte();
     index7 = 6;
-    file8 = "_app/immutable/pages/share/twitter_share.svelte-d446fd80.js";
-    imports7 = ["_app/immutable/pages/share/twitter_share.svelte-d446fd80.js", "_app/immutable/chunks/index-08fc9de4.js"];
-    stylesheets7 = ["_app/immutable/assets/twitter_share-0f85283c.css"];
+    file8 = "_app/immutable/pages/share/twitter.svelte-df0b02e3.js";
+    imports7 = ["_app/immutable/pages/share/twitter.svelte-df0b02e3.js", "_app/immutable/chunks/index-08fc9de4.js"];
+    stylesheets7 = ["_app/immutable/assets/twitter-39c3d85c.css"];
   }
 });
 
-// .svelte-kit/output/server/entries/pages/share/whatsapp_share.svelte.js
-var whatsapp_share_svelte_exports = {};
-__export(whatsapp_share_svelte_exports, {
-  default: () => Whatsapp_share
+// .svelte-kit/output/server/entries/pages/share/whatsapp.svelte.js
+var whatsapp_svelte_exports = {};
+__export(whatsapp_svelte_exports, {
+  default: () => Whatsapp
 });
-var css9, Whatsapp_share;
-var init_whatsapp_share_svelte = __esm({
-  ".svelte-kit/output/server/entries/pages/share/whatsapp_share.svelte.js"() {
+var css9, Whatsapp;
+var init_whatsapp_svelte = __esm({
+  ".svelte-kit/output/server/entries/pages/share/whatsapp.svelte.js"() {
     init_shims();
     init_index_19a73778();
     css9 = {
-      code: ".facebook-share.s-HdrvzUZ97c4e{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-HdrvzUZ97c4e{}",
+      code: ".facebook-share.s-mE7g6kYsnsCp{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-mE7g6kYsnsCp{}",
       map: null
     };
-    Whatsapp_share = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+    Whatsapp = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { postId } = $$props;
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
       $$result.css.add(css9);
-      return `<div class="${"facebook-share s-HdrvzUZ97c4e"}">Redirecting to whatsapp..</div>`;
+      return `<div class="${"facebook-share s-mE7g6kYsnsCp"}">Redirecting to whatsapp..</div>`;
     });
   }
 });
@@ -92365,18 +92466,18 @@ __export(__exports8, {
   file: () => file9,
   imports: () => imports8,
   index: () => index8,
-  module: () => whatsapp_share_svelte_exports,
+  module: () => whatsapp_svelte_exports,
   stylesheets: () => stylesheets8
 });
 var index8, file9, imports8, stylesheets8;
 var init__8 = __esm({
   ".svelte-kit/output/server/nodes/7.js"() {
     init_shims();
-    init_whatsapp_share_svelte();
+    init_whatsapp_svelte();
     index8 = 7;
-    file9 = "_app/immutable/pages/share/whatsapp_share.svelte-106e71e4.js";
-    imports8 = ["_app/immutable/pages/share/whatsapp_share.svelte-106e71e4.js", "_app/immutable/chunks/index-08fc9de4.js"];
-    stylesheets8 = ["_app/immutable/assets/whatsapp_share-863c989e.css"];
+    file9 = "_app/immutable/pages/share/whatsapp.svelte-8476fee2.js";
+    imports8 = ["_app/immutable/pages/share/whatsapp.svelte-8476fee2.js", "_app/immutable/chunks/index-08fc9de4.js"];
+    stylesheets8 = ["_app/immutable/assets/whatsapp-e9fa7054.css"];
   }
 });
 
@@ -92390,9 +92491,10 @@ var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
     init_column_config_811d46bc();
-    init_database_e087c939();
+    init_database_135c367c();
     init_dist();
     init_dist2();
+    init_dist3();
     GET = async ({ url }) => {
       let postData;
       if (url.search.includes("=")) {
@@ -92421,14 +92523,14 @@ var init_endpoints = __esm({
   }
 });
 
-// .svelte-kit/output/server/entries/endpoints/share/facebook_share.js
-var facebook_share_exports = {};
-__export(facebook_share_exports, {
+// .svelte-kit/output/server/entries/endpoints/share/facebook.js
+var facebook_exports = {};
+__export(facebook_exports, {
   GET: () => GET2
 });
 var GET2;
-var init_facebook_share = __esm({
-  ".svelte-kit/output/server/entries/endpoints/share/facebook_share.js"() {
+var init_facebook = __esm({
+  ".svelte-kit/output/server/entries/endpoints/share/facebook.js"() {
     init_shims();
     GET2 = async ({ url }) => {
       let postId;
@@ -92446,39 +92548,14 @@ var init_facebook_share = __esm({
   }
 });
 
-// .svelte-kit/output/server/entries/endpoints/share/reddit_share.js
-var reddit_share_exports = {};
-__export(reddit_share_exports, {
-  get: () => get
-});
-var get;
-var init_reddit_share = __esm({
-  ".svelte-kit/output/server/entries/endpoints/share/reddit_share.js"() {
-    init_shims();
-    get = async ({ url }) => {
-      let postId;
-      if (url.search.includes("=")) {
-        postId = url.search.split("=")[1];
-      }
-      return {
-        status: 200,
-        headers: {},
-        body: {
-          postId
-        }
-      };
-    };
-  }
-});
-
-// .svelte-kit/output/server/entries/endpoints/share/twitter_share.js
-var twitter_share_exports = {};
-__export(twitter_share_exports, {
+// .svelte-kit/output/server/entries/endpoints/share/reddit.js
+var reddit_exports = {};
+__export(reddit_exports, {
   GET: () => GET3
 });
 var GET3;
-var init_twitter_share = __esm({
-  ".svelte-kit/output/server/entries/endpoints/share/twitter_share.js"() {
+var init_reddit = __esm({
+  ".svelte-kit/output/server/entries/endpoints/share/reddit.js"() {
     init_shims();
     GET3 = async ({ url }) => {
       let postId;
@@ -92496,16 +92573,41 @@ var init_twitter_share = __esm({
   }
 });
 
-// .svelte-kit/output/server/entries/endpoints/share/whatsapp_share.js
-var whatsapp_share_exports = {};
-__export(whatsapp_share_exports, {
-  get: () => get2
+// .svelte-kit/output/server/entries/endpoints/share/twitter.js
+var twitter_exports = {};
+__export(twitter_exports, {
+  GET: () => GET4
 });
-var get2;
-var init_whatsapp_share = __esm({
-  ".svelte-kit/output/server/entries/endpoints/share/whatsapp_share.js"() {
+var GET4;
+var init_twitter = __esm({
+  ".svelte-kit/output/server/entries/endpoints/share/twitter.js"() {
     init_shims();
-    get2 = async ({ url }) => {
+    GET4 = async ({ url }) => {
+      let postId;
+      if (url.search.includes("=")) {
+        postId = url.search.split("=")[1];
+      }
+      return {
+        status: 200,
+        headers: {},
+        body: {
+          postId
+        }
+      };
+    };
+  }
+});
+
+// .svelte-kit/output/server/entries/endpoints/share/whatsapp.js
+var whatsapp_exports = {};
+__export(whatsapp_exports, {
+  GET: () => GET5
+});
+var GET5;
+var init_whatsapp = __esm({
+  ".svelte-kit/output/server/entries/endpoints/share/whatsapp.js"() {
+    init_shims();
+    GET5 = async ({ url }) => {
       let postId;
       if (url.search.includes("=")) {
         postId = url.search.split("=")[1];
@@ -93239,11 +93341,11 @@ var BaseProvider = class {
   #script_src;
   #style_src;
   #nonce;
-  constructor(use_hashes, directives, nonce, dev) {
+  constructor(use_hashes, directives, nonce, dev2) {
     this.#use_hashes = use_hashes;
-    this.#directives = dev ? { ...directives } : directives;
+    this.#directives = dev2 ? { ...directives } : directives;
     const d3 = this.#directives;
-    if (dev) {
+    if (dev2) {
       const effective_style_src2 = d3["style-src"] || d3["default-src"];
       if (effective_style_src2 && !effective_style_src2.includes("unsafe-inline")) {
         d3["style-src"] = [...effective_style_src2, "unsafe-inline"];
@@ -93254,7 +93356,7 @@ var BaseProvider = class {
     const effective_script_src = d3["script-src"] || d3["default-src"];
     const effective_style_src = d3["style-src"] || d3["default-src"];
     this.#script_needs_csp = !!effective_script_src && effective_script_src.filter((value) => value !== "unsafe-inline").length > 0;
-    this.#style_needs_csp = !dev && !!effective_style_src && effective_style_src.filter((value) => value !== "unsafe-inline").length > 0;
+    this.#style_needs_csp = !dev2 && !!effective_style_src && effective_style_src.filter((value) => value !== "unsafe-inline").length > 0;
     this.script_needs_nonce = this.#script_needs_csp && !this.#use_hashes;
     this.style_needs_nonce = this.#style_needs_csp && !this.#use_hashes;
     this.#nonce = nonce;
@@ -93321,9 +93423,9 @@ var CspProvider = class extends BaseProvider {
   }
 };
 var CspReportOnlyProvider = class extends BaseProvider {
-  constructor(use_hashes, directives, nonce, dev) {
+  constructor(use_hashes, directives, nonce, dev2) {
     var _a, _b;
-    super(use_hashes, directives, nonce, dev);
+    super(use_hashes, directives, nonce, dev2);
     if (Object.values(directives).filter((v3) => !!v3).length > 0) {
       const has_report_to = ((_a = directives["report-to"]) == null ? void 0 : _a.length) ?? 0 > 0;
       const has_report_uri = ((_b = directives["report-uri"]) == null ? void 0 : _b.length) ?? 0 > 0;
@@ -93339,10 +93441,10 @@ var Csp = class {
   nonce = generate_nonce();
   csp_provider;
   report_only_provider;
-  constructor({ mode, directives, reportOnly }, { prerender, dev }) {
+  constructor({ mode, directives, reportOnly }, { prerender, dev: dev2 }) {
     const use_hashes = mode === "hash" || mode === "auto" && prerender;
-    this.csp_provider = new CspProvider(use_hashes, directives, this.nonce, dev);
-    this.report_only_provider = new CspReportOnlyProvider(use_hashes, reportOnly, this.nonce, dev);
+    this.csp_provider = new CspProvider(use_hashes, directives, this.nonce, dev2);
+    this.report_only_provider = new CspReportOnlyProvider(use_hashes, reportOnly, this.nonce, dev2);
   }
   get script_needs_nonce() {
     return this.csp_provider.script_needs_nonce || this.report_only_provider.script_needs_nonce;
@@ -94313,9 +94415,9 @@ async function load_shadow_data(route, event, options, prerender) {
       }
       data.body = body2;
     }
-    const get3 = method === "HEAD" && mod2.HEAD || mod2.GET;
-    if (get3) {
-      const { status, headers: headers2, body: body2 } = validate_shadow_output(await get3(event));
+    const get = method === "HEAD" && mod2.HEAD || mod2.GET;
+    if (get) {
+      const { status, headers: headers2, body: body2 } = validate_shadow_output(await get(event));
       add_cookies(data.cookies, headers2);
       if (body2 instanceof Error) {
         if (status < 400) {
@@ -95043,7 +95145,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-d408efdd.js", "imports": ["_app/immutable/start-d408efdd.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-fa294660.js", "imports": ["_app/immutable/start-fa294660.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
@@ -95079,45 +95181,45 @@ var manifest = {
       },
       {
         type: "page",
-        id: "share/facebook_share",
-        pattern: /^\/share\/facebook_share\/?$/,
+        id: "share/facebook",
+        pattern: /^\/share\/facebook\/?$/,
         names: [],
         types: [],
-        path: "/share/facebook_share",
-        shadow: () => Promise.resolve().then(() => (init_facebook_share(), facebook_share_exports)),
+        path: "/share/facebook",
+        shadow: () => Promise.resolve().then(() => (init_facebook(), facebook_exports)),
         a: [0, 4],
         b: [1]
       },
       {
         type: "page",
-        id: "share/reddit_share",
-        pattern: /^\/share\/reddit_share\/?$/,
+        id: "share/reddit",
+        pattern: /^\/share\/reddit\/?$/,
         names: [],
         types: [],
-        path: "/share/reddit_share",
-        shadow: () => Promise.resolve().then(() => (init_reddit_share(), reddit_share_exports)),
+        path: "/share/reddit",
+        shadow: () => Promise.resolve().then(() => (init_reddit(), reddit_exports)),
         a: [0, 5],
         b: [1]
       },
       {
         type: "page",
-        id: "share/twitter_share",
-        pattern: /^\/share\/twitter_share\/?$/,
+        id: "share/twitter",
+        pattern: /^\/share\/twitter\/?$/,
         names: [],
         types: [],
-        path: "/share/twitter_share",
-        shadow: () => Promise.resolve().then(() => (init_twitter_share(), twitter_share_exports)),
+        path: "/share/twitter",
+        shadow: () => Promise.resolve().then(() => (init_twitter(), twitter_exports)),
         a: [0, 6],
         b: [1]
       },
       {
         type: "page",
-        id: "share/whatsapp_share",
-        pattern: /^\/share\/whatsapp_share\/?$/,
+        id: "share/whatsapp",
+        pattern: /^\/share\/whatsapp\/?$/,
         names: [],
         types: [],
-        path: "/share/whatsapp_share",
-        shadow: () => Promise.resolve().then(() => (init_whatsapp_share(), whatsapp_share_exports)),
+        path: "/share/whatsapp",
+        shadow: () => Promise.resolve().then(() => (init_whatsapp(), whatsapp_exports)),
         a: [0, 7],
         b: [1]
       }

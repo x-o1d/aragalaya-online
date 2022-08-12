@@ -5,7 +5,7 @@
     // services
 	import { _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady } from '$lib/services/store';
 	import { _eventListener, _emitEvent } from '$lib/services/events';
-    import { _setUserTheme } from '$lib/services/database';
+    import { _setUserLanguage, _setUserTheme } from '$lib/services/database';
     import { _userLogout } from '$lib/services/auth';
     import { _themes, _fontGroups, _fontSizes, _getSizeConfig, _isMobile } from '$lib/services/theme';
     
@@ -43,7 +43,7 @@
         _themeColorsReady.set(true);
 	})
 
-    // set theme color properties on theme change
+    // set theme color properties and update user default theme on theme change
     const themeChangedEvent = _eventListener('theme-changed').subscribe(value => {
         setThemeColors(_themes[value], '--theme');
         if(user) {
@@ -52,6 +52,15 @@
     })
     // clear subscription
     onDestroy(() => themeChangedEvent.unsubscribe());
+
+    // update user default language on language change
+    const langChangeUnsubscribe = _lang.subscribe((language) => {
+        if(user) {
+            _setUserLanguage(user, language);
+        }
+    });
+    // clear subscription
+    onDestroy(langChangeUnsubscribe);
 
     // set all size configuration values as css variables
     const setThemeSizes = (object, styleName) => {

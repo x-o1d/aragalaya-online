@@ -14,7 +14,7 @@ import {
 
 import { _createUserRecord, _getUserRecord, _createError } from '$lib/services/database';
 import { _emitEvent } from '$lib/services/events';
-import { _authStateChecked } from './store';
+import { _authStateChecked, _lang } from './store';
 
 const auth = getAuth(app);
 
@@ -35,8 +35,12 @@ onAuthStateChanged(auth, async (authUser) => {
                 authUser
             }, 'authService::onAuthStateChanged');
         } else {
+            // emit user event so that the login status can be updated
             _emitEvent('user-ready', user);
+            // change the theme to user's default
             _emitEvent('theme-changed', user.theme);
+            // set the user's languages
+            _lang.set(user.language);
         }
     } else {
         _emitEvent('user-ready', undefined);
