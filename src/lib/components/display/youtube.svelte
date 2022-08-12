@@ -15,7 +15,7 @@
         const sizeConfig = _getSizeConfig();
         if (window.YTapiReady) {
             playerLoaded = true;
-            player = new YT.Player('player-' + data.videoId, {
+            player = new YT.Player('player-' + data.id, {
                 height: sizeConfig.previewHeight.toString(),
                 width: (sizeConfig.columnWidth
                         - sizeConfig.cardSeparation 
@@ -49,7 +49,7 @@
     class="youtube"
     class:youtube-preview={preview}
     style={youtubeStyles}>
-	<div id="player-{data.videoId}" />
+	<div id="player-{data.id}" />
     {#if preview}
     <div 
         class="youtube-overlay"
