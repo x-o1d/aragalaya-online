@@ -1,7 +1,12 @@
 # aragalaya-online
 
 this is the public repository for the aragalaya.online project, an open-source collective effort to support the aragalaya movement in sri lanka.
+
+development environment:
 https://aragalaya-online.web.app
+
+production environment: (currently beta)
+https://aragalaya.online
 
 you can see our kanban board here,
 https://trello.com/b/6ArJOe4u/aragalayaonline-kanban-board
