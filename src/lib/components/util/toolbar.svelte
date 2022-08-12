@@ -84,22 +84,22 @@ EXAMPLE:
         </div>
         {#if !navigatorShareAvailable}
         <div class="icon facebook _clickable">
-            <a href="/share/facebook_share?post={data.id}" target="_blank">
+            <a href="/share/facebook?post={data.id}" target="_blank">
                 <i class="fa-brands fa-facebook"></i>
             </a>
         </div>
         <div class="icon twitter _clickable">
-            <a href="/share/twitter_share?post={data.id}" target="_blank">
+            <a href="/share/twitter?post={data.id}" target="_blank">
                 <i class="fa-brands fa-twitter"></i>
             </a>
         </div>
         <div class="icon whatsapp _clickable">
-            <a href="/share/whatsapp_share?post={data.id}" target="_blank">
+            <a href="/share/whatsapp?post={data.id}" target="_blank">
                 <i class="fa-brands fa-whatsapp"></i>
             </a>
         </div>
         <div class="icon reddit _clickable">
-            <a href="/share/reddit_share?post={data.id}" target="_blank">
+            <a href="/share/reddit?post={data.id}" target="_blank">
                 <i class="fa-brands fa-reddit"></i>
             </a>
         </div>

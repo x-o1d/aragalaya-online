@@ -53285,10 +53285,10 @@ var init_dist2 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/database-8e0ce6fe.js
+// .svelte-kit/output/server/_app/immutable/chunks/database-e087c939.js
 var firebaseConfig, app, db, _createError, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord;
-var init_database_8e0ce6fe = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/database-8e0ce6fe.js"() {
+var init_database_e087c939 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/database-e087c939.js"() {
     init_shims();
     init_dist();
     init_dist2();
@@ -53300,6 +53300,16 @@ var init_database_8e0ce6fe = __esm({
       messagingSenderId: "15533282305",
       appId: "1:15533282305:web:a807d2c4f789c046a71c00"
     };
+    {
+      firebaseConfig = {
+        apiKey: "AIzaSyAIFR7IVXYjG_8lyPyfHxsdx_kaRz4z3SM",
+        authDomain: "aragalaya-online-prod.firebaseapp.com",
+        projectId: "aragalaya-online-prod",
+        storageBucket: "aragalaya-online-prod.appspot.com",
+        messagingSenderId: "730227179317",
+        appId: "1:730227179317:web:59771460444f98ae52567c"
+      };
+    }
     app = initializeApp(firebaseConfig);
     db = getFirestore(app);
     _createError = async (error2, caller, data) => {
@@ -69297,14 +69307,14 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/storage-777b7d41.js
+// .svelte-kit/output/server/_app/immutable/chunks/storage-5c476c37.js
 var import_rxjs, events, _emitEvent, _eventListener, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, css, Button;
-var init_storage_777b7d41 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/storage-777b7d41.js"() {
+var init_storage_5c476c37 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/storage-5c476c37.js"() {
     init_shims();
     init_index_19a73778();
     init_font_be8713a2();
-    init_database_8e0ce6fe();
+    init_database_e087c939();
     init_dist3();
     init_dist4();
     import_rxjs = __toESM(require_cjs(), 1);
@@ -87905,8 +87915,8 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_storage_777b7d41();
-    init_database_8e0ce6fe();
+    init_storage_5c476c37();
+    init_database_e087c939();
     init_font_be8713a2();
     init_column_config_811d46bc();
     init_dist5();
@@ -88629,7 +88639,7 @@ ${validate_component(Toasts, "Toasts").$$render($$result, {}, {}, {})}
 		</div>
 		<div class="${"online s-PoaHcXV6SIWL"}">.online
 		</div>
-        <div class="${"beta s-PoaHcXV6SIWL"}">${escape("(dev-beta)")}</div></div>
+        <div class="${"beta s-PoaHcXV6SIWL"}">${escape("(beta)")}</div></div>
 	<ul class="${"header-right s-PoaHcXV6SIWL"}">${!$_isMobile ? `<li class="${"s-PoaHcXV6SIWL"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
 		</li>
 		<li class="${"s-PoaHcXV6SIWL"}">English 
@@ -88667,8 +88677,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-e31aa80b.js";
-    imports = ["_app/immutable/pages/__layout.svelte-e31aa80b.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-115a06ea.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-c43f69e7.js"];
+    file2 = "_app/immutable/pages/__layout.svelte-e3315db2.js";
+    imports = ["_app/immutable/pages/__layout.svelte-e3315db2.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-115a06ea.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-2594e690.js"];
     stylesheets = ["_app/immutable/assets/__layout-8855faea.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
@@ -91317,8 +91327,8 @@ var init_index_svelte = __esm({
     init_column_config_811d46bc();
     init_font_be8713a2();
     init_string_strip_html_esm();
-    init_storage_777b7d41();
-    init_database_8e0ce6fe();
+    init_storage_5c476c37();
+    init_database_e087c939();
     init_proposal_42704181();
     import_chroma_js3 = __toESM(require_chroma(), 1);
     init_dist3();
@@ -92118,8 +92128,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    file4 = "_app/immutable/pages/index.svelte-6b6ffcba.js";
-    imports3 = ["_app/immutable/pages/index.svelte-6b6ffcba.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-115a06ea.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/proposal-abd2a858.js", "_app/immutable/chunks/storage-c43f69e7.js"];
+    file4 = "_app/immutable/pages/index.svelte-f53623cd.js";
+    imports3 = ["_app/immutable/pages/index.svelte-f53623cd.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-115a06ea.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/proposal-e6f79caa.js", "_app/immutable/chunks/storage-2594e690.js"];
     stylesheets3 = ["_app/immutable/assets/index-2968e32a.css", "_app/immutable/assets/proposal-62aca3cb.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
@@ -92184,8 +92194,8 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 3;
-    file5 = "_app/immutable/pages/post_preview.svelte-20b1e059.js";
-    imports4 = ["_app/immutable/pages/post_preview.svelte-20b1e059.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/proposal-abd2a858.js", "_app/immutable/chunks/font-115a06ea.js", "_app/immutable/chunks/index-cc16aad1.js"];
+    file5 = "_app/immutable/pages/post_preview.svelte-4182d122.js";
+    imports4 = ["_app/immutable/pages/post_preview.svelte-4182d122.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/proposal-e6f79caa.js", "_app/immutable/chunks/font-115a06ea.js", "_app/immutable/chunks/index-cc16aad1.js"];
     stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-62aca3cb.css"];
   }
 });
@@ -92380,7 +92390,7 @@ var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
     init_column_config_811d46bc();
-    init_database_8e0ce6fe();
+    init_database_e087c939();
     init_dist();
     init_dist2();
     GET = async ({ url }) => {
@@ -95033,7 +95043,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-46c66916.js", "imports": ["_app/immutable/start-46c66916.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-d408efdd.js", "imports": ["_app/immutable/start-d408efdd.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
