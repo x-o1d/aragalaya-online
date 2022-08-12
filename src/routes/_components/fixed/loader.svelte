@@ -1,6 +1,6 @@
 <script>
     // npm modules
-    import { onDestroy, onMount } from "svelte";
+    import { onMount } from "svelte";
     // services
     import { _eventListener } from "$lib/services/events";
     import { _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _authStateChecked } from "$lib/services/store";
@@ -55,14 +55,14 @@
                 // if scaled pixel value css variables have been set
                 $_scaledPixelsReady &&
                 // if the window 'load' event has been fired
-                $_appContentReady &&
+                ((location.href.includes('/share/')) || $_appContentReady) &&
                 // check if the auth state has been checked
-                $_authStateChecked
+                ((executionCount > 9) || $_authStateChecked)
             ) {
                 loadingComplete = true;
                 clearInterval(checkLoadedInterval);
             } 
-            if(executionCount > 4) {
+            if(executionCount > 10 && !(executionCount%10)) {
                 if(!normalizeCssLoaded) {
                     console.log('normalize.css pending..');
                 }
@@ -72,15 +72,15 @@
                 if(!$_themeColorsReady || !$_themeSizesReady || !$_scaledPixelsReady) {
                     console.log('css variables pending..');
                 }
-                if(!$_appContentReady) {
+                if(!$_appContentReady && !location.href.includes('/share/')) {
                     console.log('window onload() pending..');
                 }
                 if(!$_authStateChecked) {
-                    console.log('auth state pending..');
+                    console.log('auth state not changed after 4 seconds, ignoring..');
                 }
             }
             executionCount++;
-        }, 800);
+        }, 400);
     });
 </script>
 

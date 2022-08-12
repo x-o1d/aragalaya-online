@@ -17,7 +17,7 @@
     import Toasts from './_components/fixed/toasts.svelte';
 
 
-    let user = null;
+    let user;
     // update user status on auth state change
     // if a user record is found set language and theme to user preference
     const userReadyEvent = _eventListener('user-ready').subscribe((userData) => {
@@ -66,7 +66,9 @@
 
     // set theme color properties and update user default theme on theme change
     const currentThemeUnsubscribe = _currentTheme.subscribe(value => {
-        if(value) {
+        // ignore _currentTheme store triggers in ssr
+        // in ssr _currentTheme remains undefined
+        if(value !== undefined) {
             setThemeColors(_themes[value], '--theme');
             localStorage.setItem('theme', value);
             _setUserTheme(user, value);

@@ -16679,7 +16679,7 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/font-7eb66553.js
+// .svelte-kit/output/server/_app/immutable/chunks/font-559a52b8.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -16721,15 +16721,16 @@ function writable2(value, start2 = noop2) {
   }
   return { set, update, subscribe: subscribe2 };
 }
-var import_chroma_js, subscriber_queue2, _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _authStateChecked, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, Font;
-var init_font_7eb66553 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/font-7eb66553.js"() {
+var import_chroma_js, subscriber_queue2, _lang, _currentTheme, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _authStateChecked, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, Font;
+var init_font_559a52b8 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/font-559a52b8.js"() {
     init_shims();
     init_index_19a73778();
     init_column_config_811d46bc();
     import_chroma_js = __toESM(require_chroma(), 1);
     subscriber_queue2 = [];
     _lang = writable2(0);
+    _currentTheme = writable2(void 0);
     _themeColorsReady = writable2(false);
     _themeSizesReady = writable2(false);
     _scaledPixelsReady = writable2(false);
@@ -16835,9 +16836,9 @@ var init_font_7eb66553 = __esm({
     Font = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let fontSize;
       let fontFamily;
-      let $_lang, $$unsubscribe__lang;
+      let $_lang2, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
       let { font = 0 } = $$props;
       let { size = 1 } = $$props;
       let { color = "" } = $$props;
@@ -16854,8 +16855,8 @@ var init_font_7eb66553 = __esm({
         $$bindings.style(style);
       if ($$props.inline === void 0 && $$bindings.inline && inline !== void 0)
         $$bindings.inline(inline);
-      fontSize = _fontSizes[font][$_lang] * size * 16 / devicePixelRatio;
-      fontFamily = _fontGroups[font][$_lang];
+      fontSize = _fontSizes[font][$_lang2] * size * 16 / devicePixelRatio;
+      fontFamily = _fontGroups[font][$_lang2];
       $$unsubscribe__lang();
       return `
 
@@ -58841,10 +58842,10 @@ var init_dist3 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/database-6abd6618.js
-var firebaseConfig, app, dev, db, _createError2, _getPosts, _getPost, _createUserRecord, _setUserTheme, _setUserLanguage, _getUserRecord;
-var init_database_6abd6618 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/database-6abd6618.js"() {
+// .svelte-kit/output/server/_app/immutable/chunks/database-88f2b9f9.js
+var firebaseConfig, app, dev, db, _createError2, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord;
+var init_database_88f2b9f9 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/database-88f2b9f9.js"() {
     init_shims();
     init_dist();
     init_dist2();
@@ -58926,21 +58927,14 @@ var init_database_6abd6618 = __esm({
       }
     };
     _setUserTheme = async (user2, theme) => {
+      if (!user2)
+        return;
       try {
         const docRef = doc(collection(db, "Users"), user2.uid);
         const result = await updateDoc(docRef, { theme });
         return result;
       } catch (error2) {
-        _createError2(error2, "DBService:createUserRecord");
-      }
-    };
-    _setUserLanguage = async (user2, language) => {
-      try {
-        const docRef = doc(collection(db, "Users"), user2.uid);
-        const result = await updateDoc(docRef, { language });
-        return result;
-      } catch (error2) {
-        _createError2(error2, "DBService:createUserRecord");
+        _createError2(error2, "DBService:_setUserTheme");
       }
     };
     _getUserRecord = async (uid) => {
@@ -69411,14 +69405,14 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/storage-5ad5ee5c.js
+// .svelte-kit/output/server/_app/immutable/chunks/storage-a5cb739e.js
 var import_rxjs, events, _emitEvent, _eventListener, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, css, Button;
-var init_storage_5ad5ee5c = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/storage-5ad5ee5c.js"() {
+var init_storage_a5cb739e = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/storage-a5cb739e.js"() {
     init_shims();
     init_index_19a73778();
-    init_font_7eb66553();
-    init_database_6abd6618();
+    init_font_559a52b8();
+    init_database_88f2b9f9();
     init_dist4();
     init_dist3();
     import_rxjs = __toESM(require_cjs(), 1);
@@ -69445,24 +69439,22 @@ var init_storage_5ad5ee5c = __esm({
     };
     auth = getAuth(app);
     onAuthStateChanged(auth, async (authUser) => {
+      console.log("auth state");
       if (authUser) {
         if (user && user.uid != authUser.uid || !user) {
           user = await _getUserRecord(authUser.uid);
         }
         if (!user) {
-          _emitEvent("user-ready", void 0);
           await _createError2({
             error: "invalid-user",
             authUser
           }, "authService::onAuthStateChanged");
         } else {
           _emitEvent("user-ready", user);
-          _emitEvent("theme-changed", user.theme);
-          _lang.set(user.language);
+          return;
         }
-      } else {
-        _emitEvent("user-ready", void 0);
       }
+      _emitEvent("user-ready", void 0);
       _authStateChecked.set(true);
     });
     _userSignedIn = () => {
@@ -69507,8 +69499,8 @@ var init_storage_5ad5ee5c = __esm({
           name: name7,
           email,
           uid: authUser.uid,
-          language: 0,
-          theme: 0
+          language: $_lang || 0,
+          theme: $_currentTheme || 0
         });
         let result = await updatePassword(authUser, newPassword);
         resolve2(result);
@@ -69521,9 +69513,9 @@ var init_storage_5ad5ee5c = __esm({
       map: null
     };
     Button = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang, $$unsubscribe__lang;
+      let $_lang2, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
       let { onclick } = $$props;
       let { text } = $$props;
       let { cancel } = $$props;
@@ -69546,7 +69538,7 @@ var init_storage_5ad5ee5c = __esm({
       $$unsubscribe__lang();
       return `<div class="${["button s-d9-80eNJ_c8b", (cancel ? "cancel" : "") + " " + (form ? "form" : "")].join(" ").trim()}"${add_attribute("style", style, 0)}>${`${validate_component(Font, "Font").$$render($$result, { font: 0, size: fontSize || 1 }, {}, {
         default: () => {
-          return `${escape(text[$_lang])}`;
+          return `${escape(text[$_lang2])}`;
         }
       })}`}
 </div>`;
@@ -88021,9 +88013,9 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_font_7eb66553();
-    init_storage_5ad5ee5c();
-    init_database_6abd6618();
+    init_font_559a52b8();
+    init_storage_a5cb739e();
+    init_database_88f2b9f9();
     init_column_config_811d46bc();
     init_dist5();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
@@ -88087,9 +88079,9 @@ var init_layout_svelte = __esm({
       map: null
     };
     Text_input = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang, $$unsubscribe__lang;
+      let $_lang2, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
       let { disabled } = $$props;
       let { config } = $$props;
       let { data } = $$props;
@@ -88107,7 +88099,7 @@ var init_layout_svelte = __esm({
       return `<div class="${"text-input s-Rc61XWFQtAVh"}">${validate_component(Font, "Font").$$render($$result, { font: 0, size: 1 }, {}, {
         default: () => {
           return `
-        ${config.type !== "password" ? `<input type="${"text"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["s-Rc61XWFQtAVh", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>` : `<input type="${"password"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["s-Rc61XWFQtAVh", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>`}
+        ${config.type !== "password" ? `<input type="${"text"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang2], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["s-Rc61XWFQtAVh", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>` : `<input type="${"password"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang2], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["s-Rc61XWFQtAVh", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>`}
         
         ${typeof error2 === "string" ? `<span class="${"s-Rc61XWFQtAVh"}">${validate_component(Font, "Font").$$render($$result, { font: 0, remSize: 0.8 }, {}, {
             default: () => {
@@ -88123,9 +88115,9 @@ var init_layout_svelte = __esm({
       map: null
     };
     Login = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang, $$unsubscribe__lang;
+      let $_lang2, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
       let showLogin = false;
       let user2 = {};
       let emailError, nameError, passwordError, repeatPasswordError;
@@ -88224,7 +88216,7 @@ var init_layout_svelte = __esm({
         {},
         {
           default: () => {
-            return `${escape(strings["enter"][$_lang])}`;
+            return `${escape(strings["enter"][$_lang2])}`;
           }
         }
       )}
@@ -88310,7 +88302,7 @@ var init_layout_svelte = __esm({
         {},
         {
           default: () => {
-            return `${escape(strings["or"][$_lang])}`;
+            return `${escape(strings["or"][$_lang2])}`;
           }
         }
       )}
@@ -88442,9 +88434,9 @@ var init_layout_svelte = __esm({
       let fields;
       let fieldConfigs;
       let errors2;
-      let $_lang, $$unsubscribe__lang;
+      let $_lang2, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
       let showForm = false;
       let columnIndex = 0;
       let data = {};
@@ -88528,7 +88520,7 @@ var init_layout_svelte = __esm({
         {},
         {
           default: () => {
-            return `${escape(COLUMNS[columnIndex].dataFormTitle[$_lang])}`;
+            return `${escape(COLUMNS[columnIndex].dataFormTitle[$_lang2])}`;
           }
         }
       )}
@@ -88555,7 +88547,7 @@ var init_layout_svelte = __esm({
         {
           default: () => {
             return `${each(selectedTags, (tag, _i) => {
-              return `<span class="${"tag s-mtBDmpwXHSHy"}" style="${"background-color: " + escape(tag.color, true) + ";"}">${escape(tag.strings[$_lang])}
+              return `<span class="${"tag s-mtBDmpwXHSHy"}" style="${"background-color: " + escape(tag.color, true) + ";"}">${escape(tag.strings[$_lang2])}
                 </span>`;
             })}`;
           }
@@ -88597,14 +88589,12 @@ var init_layout_svelte = __esm({
       map: null
     };
     Theme_selector = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $_currentTheme2, $$unsubscribe__currentTheme;
+      validate_store(_currentTheme, "_currentTheme");
+      $$unsubscribe__currentTheme = subscribe(_currentTheme, (value) => $_currentTheme2 = value);
       let themeSelect;
       let themePanel;
       let showPanel = false;
-      let currentTheme = 0;
-      const themeChangedEvent = _eventListener("theme-changed").subscribe((theme) => {
-        currentTheme = theme;
-      });
-      onDestroy(() => themeChangedEvent.unsubscribe());
       const globalClickEvent = _eventListener("global-click").subscribe((event) => {
         if (event.srcElement.id != "theme-button") {
           showPanel = false;
@@ -88612,10 +88602,11 @@ var init_layout_svelte = __esm({
       });
       onDestroy(() => globalClickEvent.unsubscribe());
       $$result.css.add(css$4);
+      $$unsubscribe__currentTheme();
       return `<div id="${"theme-button"}" style="${"--theme-1: var(--theme-columns-0); --theme-2: var(--theme-columns-2); --theme-3: var(--theme-columns-4); --theme-4: var(--theme-columns-6);"}" class="${"s-LohSOtP4JF2y"}"${add_attribute("this", themeSelect, 0)}></div>
 
 <span style="${"display: " + escape(showPanel ? "block" : "none", true) + ";"}" class="${"s-LohSOtP4JF2y"}"${add_attribute("this", themePanel, 0)}>${each(_themes, (theme, _i) => {
-        return `${_i != currentTheme ? `<div style="${"--theme-1: " + escape(theme.columns[0], true) + "; --theme-2: " + escape(theme.columns[2], true) + "; --theme-3: " + escape(theme.columns[4], true) + "; --theme-4: " + escape(theme.columns[6], true) + ";"}" class="${"s-LohSOtP4JF2y"}"></div>` : ``}`;
+        return `${_i != ($_currentTheme2 || 0) ? `<div style="${"--theme-1: " + escape(theme.columns[0], true) + "; --theme-2: " + escape(theme.columns[2], true) + "; --theme-3: " + escape(theme.columns[4], true) + "; --theme-4: " + escape(theme.columns[6], true) + ";"}" class="${"s-LohSOtP4JF2y"}"></div>` : ``}`;
       })}
 </span>`;
     });
@@ -88664,15 +88655,15 @@ ${``}`;
       map: null
     };
     Toasts = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang, $$unsubscribe__lang;
+      let $_lang2, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
       let showText = void 0;
       let event = void 0;
       const showToastEvent = _eventListener("show-toast").subscribe((data) => {
         event = data.event;
         if (Array.isArray(data.text)) {
-          showText = data.text[$_lang];
+          showText = data.text[$_lang2];
         } else {
           showText = data.text;
         }
@@ -88700,14 +88691,18 @@ ${showText ? `<div class="${["toast-container s-F3BFPhrY-hZv", event ? "event" :
       map: null
     };
     _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let user2;
-      let $userReady, $$unsubscribe_userReady;
       let $_isMobile, $$unsubscribe__isMobile;
       validate_store(_isMobile, "_isMobile");
       $$unsubscribe__isMobile = subscribe(_isMobile, (value) => $_isMobile = value);
-      const userReady = _eventListener("user-ready");
-      validate_store(userReady, "userReady");
-      $$unsubscribe_userReady = subscribe(userReady, (value) => $userReady = value);
+      let user2;
+      const userReadyEvent = _eventListener("user-ready").subscribe((userData) => {
+        user2 = userData;
+        if (user2) {
+          _currentTheme.set(user2.theme);
+          _lang.set(user2.language);
+        }
+      });
+      onDestroy(() => userReadyEvent.unsubscribe());
       const setThemeColors = (object, styleName) => {
         Object.keys(object).map((prop) => {
           const newStyleName = styleName + "-" + prop.toLowerCase();
@@ -88720,15 +88715,14 @@ ${showText ? `<div class="${["toast-container s-F3BFPhrY-hZv", event ? "event" :
           }
         });
       };
-      const themeChangedEvent = _eventListener("theme-changed").subscribe((value) => {
-        setThemeColors(_themes[value], "--theme");
-        _setUserTheme(user2, value);
+      const currentThemeUnsubscribe = _currentTheme.subscribe((value) => {
+        if (value) {
+          setThemeColors(_themes[value], "--theme");
+          localStorage.setItem("theme", value);
+          _setUserTheme(user2, value);
+        }
       });
-      onDestroy(() => themeChangedEvent.unsubscribe());
-      const langChangeUnsubscribe = _lang.subscribe((language) => {
-        _setUserLanguage(user2, language);
-      });
-      onDestroy(langChangeUnsubscribe);
+      onDestroy(currentThemeUnsubscribe);
       let showLanguageSelect = false;
       const globalClickEvent = _eventListener("global-click").subscribe((event) => {
         if (event.target.id != "language-button" && (event.target.parentElement && event.target.parentElement.id) != "language-button") {
@@ -88737,8 +88731,6 @@ ${showText ? `<div class="${["toast-container s-F3BFPhrY-hZv", event ? "event" :
       });
       onDestroy(() => globalClickEvent.unsubscribe());
       $$result.css.add(css2);
-      user2 = $userReady;
-      $$unsubscribe_userReady();
       $$unsubscribe__isMobile();
       return `
 
@@ -88789,8 +88781,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-f78cee27.js";
-    imports = ["_app/immutable/pages/__layout.svelte-f78cee27.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-2f67a6b1.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-c9364bdc.js"];
+    file2 = "_app/immutable/pages/__layout.svelte-6a061f66.js";
+    imports = ["_app/immutable/pages/__layout.svelte-6a061f66.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/store-ad489a28.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/font-4f362b2c.js", "_app/immutable/chunks/storage-38fb81a1.js"];
     stylesheets = ["_app/immutable/assets/__layout-8855faea.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
@@ -90898,13 +90890,13 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/proposal-eb3235f0.js
+// .svelte-kit/output/server/_app/immutable/chunks/proposal-1511f66c.js
 var css$32, Card, strings$3, Timestamp2, strings$2, css$22, Content, css$12, Preview, strings$1, css3, Toolbar, strings2, Proposal;
-var init_proposal_eb3235f0 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/proposal-eb3235f0.js"() {
+var init_proposal_1511f66c = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/proposal-1511f66c.js"() {
     init_shims();
     init_index_19a73778();
-    init_font_7eb66553();
+    init_font_559a52b8();
     init_string_strip_html_esm();
     css$32 = {
       code: ".card-container.s-Hio59jcNIlCL{padding:var(--theme-cardseparationhalf)}.card.s-Hio59jcNIlCL{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.s-Hio59jcNIlCL{}",
@@ -91070,9 +91062,9 @@ var init_proposal_eb3235f0 = __esm({
     };
     css$22 = { code: ".s-DkLwbhZttZVG{}", map: null };
     Content = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang, $$unsubscribe__lang;
+      let $_lang2, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
       let { data } = $$props;
       let { contentField } = $$props;
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
@@ -91085,7 +91077,7 @@ var init_proposal_eb3235f0 = __esm({
 
 
 <div class="${"s-DkLwbhZttZVG"}">
-    <!-- HTML_TAG_START -->${data[contentField][data._viewOriginal ? 3 : $_lang]}<!-- HTML_TAG_END -->  
+    <!-- HTML_TAG_START -->${data[contentField][data._viewOriginal ? 3 : $_lang2]}<!-- HTML_TAG_END -->  
 </div>`;
     });
     css$12 = {
@@ -91095,9 +91087,9 @@ var init_proposal_eb3235f0 = __esm({
     Preview = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let contentString;
       let images;
-      let $_lang, $$unsubscribe__lang;
+      let $_lang2, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
       let { data } = $$props;
       let { contentField } = $$props;
       let { limit: limit2 } = $$props;
@@ -91118,7 +91110,7 @@ var init_proposal_eb3235f0 = __esm({
       if ($$props.expanded === void 0 && $$bindings.expanded && expanded !== void 0)
         $$bindings.expanded(expanded);
       $$result.css.add(css$12);
-      contentString = Array.isArray(content) ? content[data._viewOriginal ? 3 : $_lang] : content;
+      contentString = Array.isArray(content) ? content[data._viewOriginal ? 3 : $_lang2] : content;
       images = contentString.match(/src="([\w\W]+?)"/g);
       images = images && images.map((src, _i) => {
         return src.replace('src="', "").replace('"', "").replace("&amp;", "&");
@@ -91132,7 +91124,7 @@ var init_proposal_eb3235f0 = __esm({
 
 
 <div class="${"preview s-Aln3qbhUrjzf"}">${expanded ? `${validate_component(Content, "Content").$$render($$result, { data, contentField }, {}, {})}` : `<div class="${"_clickable s-Aln3qbhUrjzf"}">${escape(croppedText)}
-            ${croppedFlag ? `<span style="${"font-weight:bold; text-decoration:underline"}" class="${"s-Aln3qbhUrjzf"}">${escape(strings$2["read_more"][$_lang])}</span>
+            ${croppedFlag ? `<span style="${"font-weight:bold; text-decoration:underline"}" class="${"s-Aln3qbhUrjzf"}">${escape(strings$2["read_more"][$_lang2])}</span>
                 ${images ? `<div class="${"preview-container s-Aln3qbhUrjzf"}"><div class="${"preview-image s-Aln3qbhUrjzf"}" style="${"--url: url(" + escape(images[0], true) + ")"}"></div>
                     <div class="${"preview-overlay s-Aln3qbhUrjzf"}"></div></div>` : ``}` : ``}</div>`}
 </div>`;
@@ -91149,9 +91141,9 @@ var init_proposal_eb3235f0 = __esm({
       map: null
     };
     Toolbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang, $$unsubscribe__lang;
+      let $_lang2, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
       let { data } = $$props;
       createEventDispatcher();
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
@@ -91178,7 +91170,7 @@ var init_proposal_eb3235f0 = __esm({
         {},
         {
           default: () => {
-            return `${escape(strings$1["verified"][$_lang])}`;
+            return `${escape(strings$1["verified"][$_lang2])}`;
           }
         }
       )}
@@ -91198,9 +91190,9 @@ var init_proposal_eb3235f0 = __esm({
       ]
     };
     Proposal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang, $$unsubscribe__lang;
+      let $_lang2, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
       let { data } = $$props;
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
@@ -91249,7 +91241,7 @@ var init_proposal_eb3235f0 = __esm({
             {},
             {
               default: () => {
-                return `${escape(strings2["motive"][$_lang])}`;
+                return `${escape(strings2["motive"][$_lang2])}`;
               }
             }
           )}
@@ -91281,7 +91273,7 @@ var init_proposal_eb3235f0 = __esm({
             {},
             {
               default: () => {
-                return `${escape(strings2["proposal"][$_lang])}`;
+                return `${escape(strings2["proposal"][$_lang2])}`;
               }
             }
           )}
@@ -91437,11 +91429,11 @@ var init_index_svelte = __esm({
     init_shims();
     init_index_19a73778();
     init_column_config_811d46bc();
-    init_font_7eb66553();
+    init_font_559a52b8();
     init_string_strip_html_esm();
-    init_storage_5ad5ee5c();
-    init_database_6abd6618();
-    init_proposal_eb3235f0();
+    init_storage_a5cb739e();
+    init_database_88f2b9f9();
+    init_proposal_1511f66c();
     import_chroma_js3 = __toESM(require_chroma(), 1);
     init_dist4();
     init_dist3();
@@ -91544,9 +91536,9 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
     };
     Mt = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let machineTranslated;
-      let $_lang, $$unsubscribe__lang;
+      let $_lang2, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
       createEventDispatcher();
       let { data } = $$props;
       let objectProps = Object.keys(data);
@@ -91554,7 +91546,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
       $$result.css.add(css$52);
-      machineTranslated = objectFields.some((key2) => data[key2][$_lang]);
+      machineTranslated = objectFields.some((key2) => data[key2][$_lang2]);
       $$unsubscribe__lang();
       return `
 
@@ -91569,7 +91561,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         {},
         {
           default: () => {
-            return `${`<i class="${"fa-solid fa-globe s-Q7XEqeLz3oYK"}"></i> ${escape(strings$22["machine_translated"][$_lang])}`}`;
+            return `${`<i class="${"fa-solid fa-globe s-Q7XEqeLz3oYK"}"></i> ${escape(strings$22["machine_translated"][$_lang2])}`}`;
           }
         }
       )}</div>` : ``}`;
@@ -91883,9 +91875,9 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
       map: null
     };
     Filter2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang, $$unsubscribe__lang;
+      let $_lang2, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
       let { show } = $$props;
       let { columnId } = $$props;
       const configTags = COLUMNS[columnId].filter && COLUMNS[columnId].filter.tags || [];
@@ -91912,7 +91904,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             {},
             {
               default: () => {
-                return `${escape(strings$12["verified_status"][$_lang])}`;
+                return `${escape(strings$12["verified_status"][$_lang2])}`;
               }
             }
           )}
@@ -91926,8 +91918,8 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             {},
             {
               default: () => {
-                return `<span class="${["tag green s-BJo09dFzrlwu", "selected"].join(" ").trim()}">${escape(strings$12["verified"][$_lang])}</span>
-            <span class="${["tag red s-BJo09dFzrlwu", ""].join(" ").trim()}">${escape(strings$12["not_verified"][$_lang])}</span>`;
+                return `<span class="${["tag green s-BJo09dFzrlwu", "selected"].join(" ").trim()}">${escape(strings$12["verified"][$_lang2])}</span>
+            <span class="${["tag red s-BJo09dFzrlwu", ""].join(" ").trim()}">${escape(strings$12["not_verified"][$_lang2])}</span>`;
               }
             }
           )}
@@ -91942,7 +91934,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             {},
             {
               default: () => {
-                return `${escape(strings$12["tags"][$_lang])}`;
+                return `${escape(strings$12["tags"][$_lang2])}`;
               }
             }
           )}
@@ -91957,7 +91949,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             {
               default: () => {
                 return `${each(COLUMNS[columnId].filter.tags, (tag, _i) => {
-                  return `<span class="${["tag s-BJo09dFzrlwu", selected[_i] ? "selected" : ""].join(" ").trim()}" style="${"background-color: " + escape(tag.color, true) + ";"}">${escape(tag.strings[$_lang])}
+                  return `<span class="${["tag s-BJo09dFzrlwu", selected[_i] ? "selected" : ""].join(" ").trim()}" style="${"background-color: " + escape(tag.color, true) + ";"}">${escape(tag.strings[$_lang2])}
             </span>`;
                 })}`;
               }
@@ -92001,9 +91993,9 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
       map: null
     };
     Wip = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang, $$unsubscribe__lang;
+      let $_lang2, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
       let { data } = $$props;
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
@@ -92023,7 +92015,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             {},
             {
               default: () => {
-                return `${escape(strings3["wip"][$_lang])}`;
+                return `${escape(strings3["wip"][$_lang2])}`;
               }
             }
           )}
@@ -92038,7 +92030,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             {},
             {
               default: () => {
-                return `${escape(data.service[$_lang])}`;
+                return `${escape(data.service[$_lang2])}`;
               }
             }
           )}
@@ -92054,7 +92046,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             {},
             {
               default: () => {
-                return `${escape(strings3["release"][$_lang] + ": " + data.releaseDate)}`;
+                return `${escape(strings3["release"][$_lang2] + ": " + data.releaseDate)}`;
               }
             }
           )}`;
@@ -92074,11 +92066,11 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
     };
     Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $_isMobile, $$unsubscribe__isMobile;
-      let $_lang, $$unsubscribe__lang;
+      let $_lang2, $$unsubscribe__lang;
       validate_store(_isMobile, "_isMobile");
       $$unsubscribe__isMobile = subscribe(_isMobile, (value) => $_isMobile = value);
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
       let { columnData } = $$props;
       let { postData = void 0 } = $$props;
       let showFilters = Array(COLUMN_COUNT).fill(false);
@@ -92198,7 +92190,7 @@ ${validate_component(Nav, "Nav").$$render($$result, {}, {}, {})}
           {},
           {
             default: () => {
-              return `${escape(column.title[$_lang])}
+              return `${escape(column.title[$_lang2])}
                             `;
             }
           }
@@ -92240,8 +92232,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    file4 = "_app/immutable/pages/index.svelte-f143f256.js";
-    imports3 = ["_app/immutable/pages/index.svelte-f143f256.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-2f67a6b1.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/proposal-f0a0921b.js", "_app/immutable/chunks/storage-c9364bdc.js"];
+    file4 = "_app/immutable/pages/index.svelte-3d18d1c9.js";
+    imports3 = ["_app/immutable/pages/index.svelte-3d18d1c9.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-4f362b2c.js", "_app/immutable/chunks/store-ad489a28.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/proposal-35e46b78.js", "_app/immutable/chunks/storage-38fb81a1.js"];
     stylesheets3 = ["_app/immutable/assets/index-2968e32a.css", "_app/immutable/assets/proposal-62aca3cb.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
@@ -92256,8 +92248,8 @@ var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_proposal_eb3235f0();
-    init_font_7eb66553();
+    init_proposal_1511f66c();
+    init_font_559a52b8();
     init_column_config_811d46bc();
     import_chroma_js4 = __toESM(require_chroma(), 1);
     init_string_strip_html_esm();
@@ -92306,8 +92298,8 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 3;
-    file5 = "_app/immutable/pages/post_preview.svelte-ba201e02.js";
-    imports4 = ["_app/immutable/pages/post_preview.svelte-ba201e02.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/proposal-f0a0921b.js", "_app/immutable/chunks/font-2f67a6b1.js", "_app/immutable/chunks/index-cc16aad1.js"];
+    file5 = "_app/immutable/pages/post_preview.svelte-ecfeb892.js";
+    imports4 = ["_app/immutable/pages/post_preview.svelte-ecfeb892.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/proposal-35e46b78.js", "_app/immutable/chunks/store-ad489a28.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/font-4f362b2c.js"];
     stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-62aca3cb.css"];
   }
 });
@@ -92351,8 +92343,8 @@ var init__5 = __esm({
     init_shims();
     init_facebook_svelte();
     index5 = 4;
-    file6 = "_app/immutable/pages/share/facebook.svelte-e3ce8d8f.js";
-    imports5 = ["_app/immutable/pages/share/facebook.svelte-e3ce8d8f.js", "_app/immutable/chunks/index-08fc9de4.js"];
+    file6 = "_app/immutable/pages/share/facebook.svelte-723a6b68.js";
+    imports5 = ["_app/immutable/pages/share/facebook.svelte-723a6b68.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/store-ad489a28.js", "_app/immutable/chunks/index-cc16aad1.js"];
     stylesheets5 = ["_app/immutable/assets/facebook-84d8a170.css"];
   }
 });
@@ -92502,7 +92494,7 @@ var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
     init_column_config_811d46bc();
-    init_database_6abd6618();
+    init_database_88f2b9f9();
     init_dist();
     init_dist2();
     init_dist3();
@@ -95156,7 +95148,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-d22f40b7.js", "imports": ["_app/immutable/start-d22f40b7.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-a64d7d97.js", "imports": ["_app/immutable/start-a64d7d97.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

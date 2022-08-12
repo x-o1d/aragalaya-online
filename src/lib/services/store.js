@@ -15,3 +15,5 @@ export const _themeSizesReady = writable(false);
 export const _scaledPixelsReady = writable(false);
 export const _appContentReady = writable(false);
 export const _authStateChecked = writable(false);
+
+export const _shareURL = (import.meta.env.MODE == 'prod')? 'https%3A%2F%2Faragalaya.online%2F%3Fpost%3D': 'https%3A%2F%2Faragalaya-online.web.app%2F%3Fpost%3D';
