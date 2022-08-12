@@ -3,7 +3,7 @@
 	import { onMount, onDestroy } from 'svelte';
 
     // services
-	import { _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady } from '$lib/services/store';
+	import { _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _authStateChecked, _currentTheme } from '$lib/services/store';
 	import { _eventListener, _emitEvent } from '$lib/services/events';
     import { _setUserLanguage, _setUserTheme } from '$lib/services/database';
     import { _userLogout } from '$lib/services/auth';
@@ -17,9 +17,19 @@
     import Toasts from './_components/fixed/toasts.svelte';
 
 
-    // listen to if the user is signed in
-    const userReady = _eventListener('user-ready');
-	$: user = $userReady;
+    let user = null;
+    // update user status on auth state change
+    // if a user record is found set language and theme to user preference
+    const userReadyEvent = _eventListener('user-ready').subscribe((userData) => {
+        user = userData;
+        if(user) {
+            // change the theme to user's default
+            _currentTheme.set(user.theme);
+            // set the user's languages
+            _lang.set(user.language);
+        } 
+    });
+    onDestroy(() => userReadyEvent.unsubscribe());
 
 	// set all the theme variables as css variables
     // refer theme.js comments
@@ -37,30 +47,46 @@
     }
     // set default theme color properties
 	onMount(() => {
-        setThemeColors(_themes[0], '--theme');
+        // if a theme isn't stored in local storage default to 0
+        let localStorageTheme = localStorage.getItem('theme') || 0;
+        _currentTheme.set(localStorageTheme);
+
+        setThemeColors(_themes[localStorageTheme], '--theme');
         // let the Loader component know that theme color variables have
         // been set
         _themeColorsReady.set(true);
 	})
 
+    // set default language
+    onMount(() => {
+        // if a language isn't stored in local storage default to sinhala
+        let localStorageLanguage = localStorage.getItem('language') || 0;
+        _lang.set(localStorageLanguage);
+    })
+
     // set theme color properties and update user default theme on theme change
-    const themeChangedEvent = _eventListener('theme-changed').subscribe(value => {
-        setThemeColors(_themes[value], '--theme');
-        if(user) {
+    const currentThemeUnsubscribe = _currentTheme.subscribe(value => {
+        if(value) {
+            setThemeColors(_themes[value], '--theme');
+            localStorage.setItem('theme', value);
             _setUserTheme(user, value);
         }
     })
     // clear subscription
-    onDestroy(() => themeChangedEvent.unsubscribe());
+    onDestroy(currentThemeUnsubscribe);
 
     // update user default language on language change
-    const langChangeUnsubscribe = _lang.subscribe((language) => {
-        if(user) {
+    // subscribing inside an onMount to prevent local storage access
+    // in ssr
+    // NOTE: this subscription isn't unsubscribed, should be fine since it's
+    // only subscribed once per layout, should look into a better solution
+    onMount(() => {
+        _lang.subscribe((language) => {
+            localStorage.setItem('language', language);
             _setUserLanguage(user, language);
-        }
+        });
     });
-    // clear subscription
-    onDestroy(langChangeUnsubscribe);
+
 
     // set all size configuration values as css variables
     const setThemeSizes = (object, styleName) => {

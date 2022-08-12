@@ -29,22 +29,20 @@ onAuthStateChanged(auth, async (authUser) => {
             user = await _getUserRecord(authUser.uid);
         }
         if(!user) {
-            _emitEvent('user-ready', undefined);
+            // in this instance firebase auth returns an authUser
+            // but there's no correlating user record
+            // this get's logged in the Error collection
+            // because a data correction is necessary
             await _createError({
                 error: 'invalid-user',
                 authUser
             }, 'authService::onAuthStateChanged');
         } else {
-            // emit user event so that the login status can be updated
             _emitEvent('user-ready', user);
-            // change the theme to user's default
-            _emitEvent('theme-changed', user.theme);
-            // set the user's languages
-            _lang.set(user.language);
+            return;
         }
-    } else {
-        _emitEvent('user-ready', undefined);
     }
+    _emitEvent('user-ready', undefined);
     _authStateChecked.set(true);
 });
 
@@ -137,8 +135,8 @@ export const _changePassword = (newPassword, name, email) => new Promise(async (
             name,
             email,
             uid: authUser.uid,
-            language: 0,
-            theme: 0
+            language: $_lang || 0,
+            theme: $_currentTheme || 0
         });
         let result = await updatePassword(authUser, newPassword);
         resolve(result);

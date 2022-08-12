@@ -5,22 +5,15 @@
     // services
     import { _themes } from '$lib/services/theme';
     import { _eventListener, _emitEvent } from '$lib/services/events';
+    import { _currentTheme } from '$lib/services/store';
 
     let themeSelect;
     let themePanel;
 
     let showPanel = false;
 
-    let currentTheme = 0;
-
-    // listen to theme changed events and update the current theme
-    const themeChangedEvent = _eventListener('theme-changed').subscribe((theme) => {
-        currentTheme = theme;
-    })
-    // clear subscription
-    onDestroy(() => themeChangedEvent.unsubscribe());
-
     // listen to global click events and hide the theme options
+    // if you click anywhere else on the screen the theme options should collapse
     const globalClickEvent = _eventListener('global-click').subscribe((event) => {
         // if the source isn't the theme button hide the theme options
         if(event.srcElement.id != 'theme-button') {
@@ -42,7 +35,7 @@
     }
 
     const selectTheme = (index) => {
-        _emitEvent('theme-changed', index);
+        _currentTheme.set(index);
     }
 </script>
 
@@ -62,7 +55,7 @@
     style="display: {showPanel? 'block': 'none'};">
 
     {#each _themes as theme, _i}
-    {#if (_i != currentTheme)}
+    {#if (_i != ($_currentTheme || 0))}
     <div 
         on:click={() => selectTheme(_i)}
         style="

@@ -58841,10 +58841,10 @@ var init_dist3 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/database-135c367c.js
-var firebaseConfig, app, dev, db, _createError2, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord;
-var init_database_135c367c = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/database-135c367c.js"() {
+// .svelte-kit/output/server/_app/immutable/chunks/database-6abd6618.js
+var firebaseConfig, app, dev, db, _createError2, _getPosts, _getPost, _createUserRecord, _setUserTheme, _setUserLanguage, _getUserRecord;
+var init_database_6abd6618 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/database-6abd6618.js"() {
     init_shims();
     init_dist();
     init_dist2();
@@ -58929,6 +58929,15 @@ var init_database_135c367c = __esm({
       try {
         const docRef = doc(collection(db, "Users"), user2.uid);
         const result = await updateDoc(docRef, { theme });
+        return result;
+      } catch (error2) {
+        _createError2(error2, "DBService:createUserRecord");
+      }
+    };
+    _setUserLanguage = async (user2, language) => {
+      try {
+        const docRef = doc(collection(db, "Users"), user2.uid);
+        const result = await updateDoc(docRef, { language });
         return result;
       } catch (error2) {
         _createError2(error2, "DBService:createUserRecord");
@@ -69402,14 +69411,14 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/storage-4d199e5a.js
+// .svelte-kit/output/server/_app/immutable/chunks/storage-5ad5ee5c.js
 var import_rxjs, events, _emitEvent, _eventListener, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword, css, Button;
-var init_storage_4d199e5a = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/storage-4d199e5a.js"() {
+var init_storage_5ad5ee5c = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/storage-5ad5ee5c.js"() {
     init_shims();
     init_index_19a73778();
     init_font_7eb66553();
-    init_database_135c367c();
+    init_database_6abd6618();
     init_dist4();
     init_dist3();
     import_rxjs = __toESM(require_cjs(), 1);
@@ -88012,9 +88021,9 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_storage_4d199e5a();
-    init_database_135c367c();
     init_font_7eb66553();
+    init_storage_5ad5ee5c();
+    init_database_6abd6618();
     init_column_config_811d46bc();
     init_dist5();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
@@ -88031,11 +88040,11 @@ var init_layout_svelte = __esm({
     import_extension_heading = __toESM(require_tiptap_extension_heading_cjs(), 1);
     import_extension_placeholder = __toESM(require_tiptap_extension_placeholder_cjs(), 1);
     import_extension_link = __toESM(require_tiptap_extension_link_cjs(), 1);
+    import_chroma_js2 = __toESM(require_chroma(), 1);
     init_dist4();
     init_dist3();
     init_dist();
     init_dist2();
-    import_chroma_js2 = __toESM(require_chroma(), 1);
     strings = {
       enter: [
         "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA\u0DC0\u0DB1\u0DCA\u0DB1",
@@ -88713,11 +88722,13 @@ ${showText ? `<div class="${["toast-container s-F3BFPhrY-hZv", event ? "event" :
       };
       const themeChangedEvent = _eventListener("theme-changed").subscribe((value) => {
         setThemeColors(_themes[value], "--theme");
-        if (user2) {
-          _setUserTheme(user2, value);
-        }
+        _setUserTheme(user2, value);
       });
       onDestroy(() => themeChangedEvent.unsubscribe());
+      const langChangeUnsubscribe = _lang.subscribe((language) => {
+        _setUserLanguage(user2, language);
+      });
+      onDestroy(langChangeUnsubscribe);
       let showLanguageSelect = false;
       const globalClickEvent = _eventListener("global-click").subscribe((event) => {
         if (event.target.id != "language-button" && (event.target.parentElement && event.target.parentElement.id) != "language-button") {
@@ -88778,8 +88789,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-b15b9958.js";
-    imports = ["_app/immutable/pages/__layout.svelte-b15b9958.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-2f67a6b1.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-a87819f1.js"];
+    file2 = "_app/immutable/pages/__layout.svelte-f78cee27.js";
+    imports = ["_app/immutable/pages/__layout.svelte-f78cee27.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-2f67a6b1.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/storage-c9364bdc.js"];
     stylesheets = ["_app/immutable/assets/__layout-8855faea.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
@@ -91428,8 +91439,8 @@ var init_index_svelte = __esm({
     init_column_config_811d46bc();
     init_font_7eb66553();
     init_string_strip_html_esm();
-    init_storage_4d199e5a();
-    init_database_135c367c();
+    init_storage_5ad5ee5c();
+    init_database_6abd6618();
     init_proposal_eb3235f0();
     import_chroma_js3 = __toESM(require_chroma(), 1);
     init_dist4();
@@ -92229,8 +92240,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    file4 = "_app/immutable/pages/index.svelte-b1253cb8.js";
-    imports3 = ["_app/immutable/pages/index.svelte-b1253cb8.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-2f67a6b1.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/proposal-f0a0921b.js", "_app/immutable/chunks/storage-a87819f1.js"];
+    file4 = "_app/immutable/pages/index.svelte-f143f256.js";
+    imports3 = ["_app/immutable/pages/index.svelte-f143f256.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/font-2f67a6b1.js", "_app/immutable/chunks/index-cc16aad1.js", "_app/immutable/chunks/proposal-f0a0921b.js", "_app/immutable/chunks/storage-c9364bdc.js"];
     stylesheets3 = ["_app/immutable/assets/index-2968e32a.css", "_app/immutable/assets/proposal-62aca3cb.css", "_app/immutable/assets/storage-c7057ab9.css"];
   }
 });
@@ -92491,7 +92502,7 @@ var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
     init_column_config_811d46bc();
-    init_database_135c367c();
+    init_database_6abd6618();
     init_dist();
     init_dist2();
     init_dist3();
@@ -95145,7 +95156,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-fa294660.js", "imports": ["_app/immutable/start-fa294660.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-d22f40b7.js", "imports": ["_app/immutable/start-d22f40b7.js", "_app/immutable/chunks/index-08fc9de4.js", "_app/immutable/chunks/index-cc16aad1.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

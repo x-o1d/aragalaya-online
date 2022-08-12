@@ -7,6 +7,7 @@ import { writable } from "svelte/store";
 
 // dynamic user variables
 export const _lang = writable(0);
+export const _currentTheme = writable(undefined);
 
 // stores used by the Loader component
 export const _themeColorsReady = writable(false);

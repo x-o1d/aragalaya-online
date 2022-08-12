@@ -90,6 +90,7 @@ export const _createUserRecord = async (user) => {
 }
 
 export const _setUserTheme = async (user, theme) => {
+    if(!user) return;
     try {
         const docRef = doc(collection(db, 'Users'), user.uid);
         // as convention, the id of the document is added to 
@@ -97,11 +98,12 @@ export const _setUserTheme = async (user, theme) => {
         const result = await updateDoc(docRef, {theme});
         return result;
     } catch (error) {
-        _createError(error, 'DBService:createUserRecord');
+        _createError(error, 'DBService:_setUserTheme');
     }
 }
 
 export const _setUserLanguage = async (user, language) => {
+    if(!user) return;
     try {
         const docRef = doc(collection(db, 'Users'), user.uid);
         // as convention, the id of the document is added to 
@@ -109,7 +111,7 @@ export const _setUserLanguage = async (user, language) => {
         const result = await updateDoc(docRef, {language});
         return result;
     } catch (error) {
-        _createError(error, 'DBService:createUserRecord');
+        _createError(error, 'DBService:_setUserLanguage');
     }
 }
 
