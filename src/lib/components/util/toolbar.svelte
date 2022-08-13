@@ -15,7 +15,7 @@ EXAMPLE:
     import { createEventDispatcher, onMount } from 'svelte';
 
     // services
-    import { _lang, _shareURL } from '$lib/services/store';
+    import { _lang, _shareLink } from '$lib/services/store';
     import _strings from './toolbar-strings';
     import { _emitEvent } from '$lib/services/events';
 
@@ -49,7 +49,7 @@ EXAMPLE:
     }
 
     const shareButtonClick = (e) => {
-        let link = _shareURL + data.id;
+        let link = _shareLink + data.id;
         if(navigator.share) {
             navigator.share({url: link})
         } else {

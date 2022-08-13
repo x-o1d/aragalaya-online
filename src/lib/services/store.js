@@ -18,3 +18,5 @@ export const _authStateChecked = writable(false);
 export const _redirected = writable(false);
 
 export const _shareURL = (import.meta.env.MODE == 'prod')? 'https%3A%2F%2Faragalaya.online%2F%3Fpost%3D': 'https%3A%2F%2Faragalaya-online.web.app%2F%3Fpost%3D';
+export const _shareLink = (import.meta.env.MODE == 'prod')? 'https://aragalaya.online/?post=': 'https://aragalaya-online.web.app/?post=';
+
