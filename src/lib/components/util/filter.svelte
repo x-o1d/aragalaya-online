@@ -47,7 +47,7 @@
     const clearAll = () => {
         verified = true;
         notVerified = false;
-        tagNames = [configTags[0].name];
+        tagNames = [configTags[0].name, configTags[1].name];
         selectedTags = selectedTags.map((_,_i) => (_i < 2));
     }
 
