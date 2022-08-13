@@ -68,6 +68,15 @@
     // this flag determines if a column filters are visible or not
     let showFilters = Array(COLUMN_COUNT).fill(false);
 
+    let updateCount = 0;
+    const updateColumnEvent = _eventListener('update-column').subscribe((data) => {
+        updateCount++;
+        columnData[data.column] = data.posts;
+        console.log(columnData);
+        // reactively updata
+        columnData = columnData;
+    })
+
     // triggered by the Toolbar component when show post button is clicked
     // this assigns the post data 
     const showPostEvent = _eventListener('show-post').subscribe((data) => {
@@ -334,11 +343,13 @@
                         </div>
                         <div>
                             <!-- filter button -->
+                            {#if column.verified || column.tagsr}
                             <div 
                                 class='icon-button'
                                 on:click|stopPropagation={(e) => showFilters[_i] = !showFilters[_i]}>
                                 <i class="fa-solid fa-arrow-down-wide-short"></i>
                             </div>
+                            {/if}
                             <!-- add document button -->
                             <div 
                                 class='icon-button'
@@ -355,7 +366,7 @@
                 <div 
                     class="cards"
                     on:scroll|stopPropagation={(e) => __handleVerticalScroll(e, _i, vScrollAnimation)}>
-                    {#each columnData[_i] as item, _i (item.id)}
+                    {#each columnData[_i] as item, _i (item.id + updateCount)}
                     <div>
                         <svelte:component 
                             this={COMPONENTS[item.type] || Empty}

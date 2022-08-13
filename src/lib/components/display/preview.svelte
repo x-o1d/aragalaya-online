@@ -121,6 +121,7 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+        border-radius: 3px;
 
         margin-top: 5px;
 

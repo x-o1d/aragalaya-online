@@ -29,7 +29,7 @@ export const COLUMNS = [
         type: 'news',
         verified: true,
         tags: ['mainstream', 'aragala', 'economy', 'political', 'legal',
-                    'international', 'energy'],
+                    'international', 'energy', 'downloads'],
         // END - column properties
         // START - input form field properties
         data: {
@@ -163,7 +163,7 @@ export const COLUMNS = [
         type: 'bulletin',
         verified: true,
         tags: ['mainstream', 'aragala', 'economy', 'political', 'legal',
-                    'international', 'energy'],
+                    'international', 'energy', 'downloads'],
         // START - input form field properties
         data: {
             title: {
@@ -219,7 +219,7 @@ export const COLUMNS = [
         type: 'proposal',
         verified: true,
         tags: ['mainstream', 'aragala', 'economy', 'political', 'legal',
-                    'international', 'energy'],
+                    'international', 'energy', 'downloads'],
         // START - input form field properties
         data: {
             organization: {

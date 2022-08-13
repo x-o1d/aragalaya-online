@@ -12,6 +12,41 @@
                 "order": "DESCENDING"
             }
         ]
+    },
+    {
+        "collectionGroup": "Posts",
+        "queryScope": "COLLECTION",
+        "fields": [
+            {
+                "fieldPath": "tags",
+                "arrayConfig": "CONTAINS"
+            },{
+                "fieldPath": "type",
+                "order": "ASCENDING"
+            },{
+                "fieldPath": "verified",
+                "order": "ASCENDING"
+            },{
+                "fieldPath": "createdOn",
+                "order": "DESCENDING"
+            }
+        ]
+    },
+    {
+        "collectionGroup": "Posts",
+        "queryScope": "COLLECTION",
+        "fields": [
+            {
+                "fieldPath": "tags",
+                "arrayConfig": "CONTAINS"
+            },{
+                "fieldPath": "type",
+                "order": "ASCENDING"
+            },{
+                "fieldPath": "createdOn",
+                "order": "DESCENDING"
+            }
+        ]
     }
   ],
   "fieldOverrides": []

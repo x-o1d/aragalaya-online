@@ -6,10 +6,11 @@
     import { createEventDispatcher } from 'svelte';
 
     export let tags;
+    export let clickable = undefined;
     export let style = '';
 
     if(!tags) tags = [];
-    
+    console.log(tags);
     // event dispatcher
     const dispatch = createEventDispatcher();
 </script>
@@ -23,7 +24,7 @@
         flex-wrap: wrap;{style}">
     {#each tags as tag, _i}
     <span 
-        class="tag"
+        class="tag {clickable? '_clickable': ''}"
         on:click={() => dispatch('tagclick', tag)}
         style="background-color: {TAGS[tag].color};">
         {TAGS[tag].strings[$_lang]}
@@ -38,8 +39,5 @@
         padding: 0 var(--s3px);
         margin-right: var(--s3px);
         margin-bottom: var(--s3px);
-    }
-    .tag:hover {
-        cursor: pointer;
     }
 </style>

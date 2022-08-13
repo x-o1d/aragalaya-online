@@ -67,6 +67,39 @@ export const _getPosts = async (type) => {
     }
 }
 
+export const _getFilteredPosts = async (type, verified, tags) => {
+    console.log(type, verified, tags);
+    try {
+        const c = collection(db, 'Posts');
+        let q;
+        if(verified) {
+            q = query(c, orderBy("createdOn", "desc"), 
+            where("type", "==", type), 
+            where("verified", "==", true), 
+            where("tags", "array-contains-any", tags)
+            ,limit(10));
+        } else {
+            q = query(c, orderBy("createdOn", "desc"), 
+            where("type", "==", type),
+            where("tags", "array-contains-any", tags)
+            ,limit(10));
+        }
+        
+        const qs = await getDocs(q);
+
+        const items = [];
+        qs.docs.forEach(doc => {
+            if(doc.id !== '0' && doc.exists()) {
+                items.push(doc.data());
+            }
+        });
+        return items;
+    } catch (error) {
+        _createError(error, 'DBService:getBulletins');
+        return [];
+    }
+}
+
 export const _getPost = async (id) => {
     try {
         const docRef = doc(collection(db, 'Posts'), id);

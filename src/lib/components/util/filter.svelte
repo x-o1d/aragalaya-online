@@ -3,14 +3,19 @@
 ---- and tags specified for that specific column
 --->
 <script>
+    // configs
     import { COLUMNS } from '$lib/config/column-config';
     import { TAGS } from '$lib/config/tag-config';
 
+    // services
     import _strings from './filter-strings';
     import { _lang } from '$lib/services/store';
+    import { _getFilteredPosts } from '$lib/services/database';
 
+    // components
     import Card from '$lib/components/util/card.svelte';
     import Font from '$lib/components/display/font.svelte';
+    import { _emitEvent } from '$lib/services/events';
 
     export let show;
     export let columnId;
@@ -23,31 +28,31 @@
     let verified = true;
     let notVerified = false;
     let tagNames = configTags.map(_ => _.name);
-    let selected = Array(configTags.length).fill(true);
+    let selectedTags = Array(configTags.length).fill(true);
 
     const tagSelect = (tag) => {
         if(tagNames.includes(tag)) {
-            if(tags.length > 1) {
-                tags.splice(tags.indexOf(tag), 1);
+            if(tagNames.length > 1) {
+                tagNames.splice(tagNames.indexOf(tag), 1);
             }
         } else {
             tagNames.push(tag);
         }
-        selected = selected.map((_,_i) => tags.includes(configTags[_i].name));
+        selectedTags = selectedTags.map((_,_i) => tagNames.includes(configTags[_i].name));
     }
 
     const clearAll = () => {
         verified = true;
         notVerified = false;
         tagNames = [configTags[0].name];
-        selected = selected.map((_,_i) => (_i == 0));
+        selectedTags = selectedTags.map((_,_i) => (_i < 2));
     }
 
     const selectAll = () => {
         verified = true;
         notVerified = true;
         tagNames = configTags.map(_ => _.name);
-        selected = selected.map((_,_i) => (_i > -1));
+        selectedTags = selectedTags.map((_,_i) => (_i > -1));
     }
 
     const verifiedClick = () => {
@@ -65,6 +70,14 @@
             notVerified = true;
         }
     }
+
+    const filterPosts = async () => {
+        const posts = await _getFilteredPosts(COLUMNS[columnId].type, verified && !notVerified, tagNames);
+        _emitEvent('update-column', {
+            column: columnId,
+            posts: posts
+        })
+    }
 </script>
 
 {#if show}
@@ -80,22 +93,22 @@
                 flex-wrap: wrap;">
             <span
                 class="tag verified" 
-                class:selected={verified}
+                class:selectedTags={verified}
                 on:click={verifiedClick}>
                 {_strings['verified'][$_lang]}
             </span>
             <span 
                 class="tag not-verified"
-                class:selected={notVerified}
+                class:selectedTags={notVerified}
                 on:click={notVerifiedClick}>
                 {_strings['not_verified'][$_lang]}
             </span>
             {#each configTags as tag, _i}
             <span 
                 class="tag"
-                class:selected={selected[_i]}
+                class:selectedTags={selectedTags[_i]}
                 on:click={() => tagSelect(tag.name)}
-                style="background-color: {tag.color};">
+                style="--color: {tag.color};">
                 {tag.strings[$_lang]}
             </span>
             {/each}
@@ -109,12 +122,22 @@
             <div 
                 class="button"
                 on:click={clearAll}>
+                <i class="fa-solid fa-ellipsis"></i>
+            </div>
+            <div 
+                class="button filter"
+                on:click={filterPosts}>
+                <Font 
+                    font={0}
+                    size={0.9}>
+                    {_strings['filter'][$_lang]}
+                </Font>
+            </div>
+            <div 
+                class="button"
+                on:click={() => show = false}>
                 <i class="fa-solid fa-xmark"></i>
             </div>
-            <div class="button filter">
-                {_strings['filter'][$_lang]}
-            </div>
-            
         </div>
         <!-- filter button -->
         
@@ -130,7 +153,8 @@
         padding: var(--theme-cardseparationhalf) 0 0 0;
     }
     .tag {
-        border: var(--s2px) solid #a5a5a5;
+        background-color: var(--color);
+        border: var(--s1px) solid #cfcfcf;
         border-radius: var(--s3px);
         padding: 0 var(--s3px);
         margin-right: var(--s5px);
@@ -140,12 +164,12 @@
     .tag:hover {
         cursor: pointer;
     }
-    .selected {
-        border: var(--s2px) solid black;
+    .selectedTags {
+        border-bottom: var(--s3px) solid black;
         filter: none;
     }
     .verified {
-        background-color: #9cff6f;
+        background-color: #48bb6b;
     }
     .not-verified {
         background-color: #ff8181;

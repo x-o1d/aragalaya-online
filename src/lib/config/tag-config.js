@@ -50,10 +50,15 @@ const tagConfig = {
         'සාකච්ඡා',
         'discussion',
         'விவாதம்'
+    ],
+    downloads: [
+        'බාගත කිරීම්',
+        'downloads',
+        'பதிவிறக்கங்கள்'
     ]
 };
 
-const colors = chroma.scale(['#6f3dc0', '#d22fa4', '#ff4d7e', '#ff875d', '#ffc152', '#f9f871'])
+const colors = chroma.scale(['#c1f437', '#00e0ff', '#ff6161', '#ffca99', '#ff58d3'])
     .colors(Object.keys(tagConfig).length);
 
 export const TAGS = Object.keys(tagConfig).reduce((object, key, _i) => { 

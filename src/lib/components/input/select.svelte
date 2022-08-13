@@ -1,5 +1,6 @@
 <script>
     import { createEventDispatcher } from 'svelte';
+
     import { _lang } from '$lib/services/store';
     import Font from "../display/font.svelte";
 
@@ -7,6 +8,7 @@
     export let value;
     export let placeholder;
     export let options;
+    export let error;
 
     if(!options) options = [];
 
@@ -17,6 +19,7 @@
 
     const clickOption = (value) => {
         dispatch('select', value);
+        error = false;
         showOptions = false;
     }
 
@@ -27,6 +30,7 @@
     style={style}>
     <div 
         class="select-box"
+        class:error={error}
         on:click={() => showOptions = !showOptions}>
         <Font
             font={0}
@@ -67,6 +71,10 @@
         padding: var(--s10px);
         border: var(--s1px) solid var(--theme-defaultbutton);
         background-color: white;
+    }
+    .error {
+        border-width: 2px;
+        border-color: #c02e46;
     }
     .select-options {
         position: absolute;

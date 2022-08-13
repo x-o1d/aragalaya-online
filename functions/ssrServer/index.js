@@ -58898,10 +58898,10 @@ var init_dist3 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/database-ed1149e0.js
+// .svelte-kit/output/server/_app/immutable/chunks/database-88f2b9f9.js
 var firebaseConfig, app, dev, db, _createError2, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord;
-var init_database_ed1149e0 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/database-ed1149e0.js"() {
+var init_database_88f2b9f9 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/database-88f2b9f9.js"() {
     init_shims();
     init_dist();
     init_dist2();
@@ -58914,6 +58914,16 @@ var init_database_ed1149e0 = __esm({
       messagingSenderId: "15533282305",
       appId: "1:15533282305:web:a807d2c4f789c046a71c00"
     };
+    {
+      firebaseConfig = {
+        apiKey: "AIzaSyAIFR7IVXYjG_8lyPyfHxsdx_kaRz4z3SM",
+        authDomain: "aragalaya-online-prod.firebaseapp.com",
+        projectId: "aragalaya-online-prod",
+        storageBucket: "aragalaya-online-prod.appspot.com",
+        messagingSenderId: "730227179317",
+        appId: "1:730227179317:web:59771460444f98ae52567c"
+      };
+    }
     app = initializeApp(firebaseConfig);
     dev = false;
     db = getFirestore(app);
@@ -69451,12 +69461,12 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/storage-7df316a2.js
+// .svelte-kit/output/server/_app/immutable/chunks/storage-141b070e.js
 var import_rxjs, events, _emitEvent, _eventListener, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword;
-var init_storage_7df316a2 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/storage-7df316a2.js"() {
+var init_storage_141b070e = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/storage-141b070e.js"() {
     init_shims();
-    init_database_ed1149e0();
+    init_database_88f2b9f9();
     init_dist4();
     init_dist3();
     import_rxjs = __toESM(require_cjs(), 1);
@@ -88023,8 +88033,8 @@ var init_layout_svelte = __esm({
     init_shims();
     init_index_19a73778();
     init_tags_1019e4aa();
-    init_storage_7df316a2();
-    init_database_ed1149e0();
+    init_storage_141b070e();
+    init_database_88f2b9f9();
     init_column_config_3324c527();
     init_dist5();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
@@ -88776,7 +88786,7 @@ ${validate_component(Toasts, "Toasts").$$render($$result, {}, {}, {})}
 		</div>
 		<div class="${"online s-PoaHcXV6SIWL"}">.online
 		</div>
-        <div class="${"beta s-PoaHcXV6SIWL"}">${escape("(dev-beta)")}</div></div>
+        <div class="${"beta s-PoaHcXV6SIWL"}">${escape("(beta)")}</div></div>
 	<ul class="${"header-right s-PoaHcXV6SIWL"}">${!$_isMobile ? `<li class="${"s-PoaHcXV6SIWL"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
 		</li>
 		<li class="${"s-PoaHcXV6SIWL"}">English 
@@ -88814,8 +88824,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-9fdbc640.js";
-    imports = ["_app/immutable/pages/__layout.svelte-9fdbc640.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-dd0fe126.js", "_app/immutable/chunks/index-732fa142.js", "_app/immutable/chunks/tags-696d3895.js", "_app/immutable/chunks/storage-b19c3026.js"];
+    file2 = "_app/immutable/pages/__layout.svelte-f154347e.js";
+    imports = ["_app/immutable/pages/__layout.svelte-f154347e.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-0a5a4e4e.js", "_app/immutable/chunks/index-732fa142.js", "_app/immutable/chunks/tags-76192194.js", "_app/immutable/chunks/storage-9139eb70.js"];
     stylesheets = ["_app/immutable/assets/__layout-1e18029f.css", "_app/immutable/assets/tags-14381ee9.css"];
   }
 });
@@ -91475,8 +91485,8 @@ var init_index_svelte = __esm({
     init_column_config_3324c527();
     init_tags_1019e4aa();
     init_string_strip_html_esm();
-    init_storage_7df316a2();
-    init_database_ed1149e0();
+    init_storage_141b070e();
+    init_database_88f2b9f9();
     init_proposal_5229ea5d();
     import_chroma_js3 = __toESM(require_chroma(), 1);
     init_dist4();
@@ -91889,8 +91899,6 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
             }
           )}
     
-    ${validate_component(Mt, "MT").$$render($$result, { data }, {}, {})}
-    
     ${validate_component(Tags, "Tags").$$render(
             $$result,
             {
@@ -91900,6 +91908,8 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
             {},
             {}
           )}
+    
+    ${validate_component(Mt, "MT").$$render($$result, { data }, {}, {})}
     
     ${validate_component(Toolbar, "Toolbar").$$render($$result, { data }, {}, {})}`;
         }
@@ -92258,8 +92268,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    file4 = "_app/immutable/pages/index.svelte-7f423338.js";
-    imports3 = ["_app/immutable/pages/index.svelte-7f423338.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/tags-696d3895.js", "_app/immutable/chunks/store-dd0fe126.js", "_app/immutable/chunks/index-732fa142.js", "_app/immutable/chunks/proposal-c5bc5aee.js", "_app/immutable/chunks/storage-b19c3026.js"];
+    file4 = "_app/immutable/pages/index.svelte-42dd9a08.js";
+    imports3 = ["_app/immutable/pages/index.svelte-42dd9a08.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/tags-76192194.js", "_app/immutable/chunks/store-0a5a4e4e.js", "_app/immutable/chunks/index-732fa142.js", "_app/immutable/chunks/proposal-d5623b81.js", "_app/immutable/chunks/storage-9139eb70.js"];
     stylesheets3 = ["_app/immutable/assets/index-7e00bd92.css", "_app/immutable/assets/tags-14381ee9.css", "_app/immutable/assets/proposal-62aca3cb.css"];
   }
 });
@@ -92324,8 +92334,8 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 3;
-    file5 = "_app/immutable/pages/post_preview.svelte-3fd716c4.js";
-    imports4 = ["_app/immutable/pages/post_preview.svelte-3fd716c4.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/proposal-c5bc5aee.js", "_app/immutable/chunks/store-dd0fe126.js", "_app/immutable/chunks/index-732fa142.js", "_app/immutable/chunks/tags-696d3895.js"];
+    file5 = "_app/immutable/pages/post_preview.svelte-9d0bbc72.js";
+    imports4 = ["_app/immutable/pages/post_preview.svelte-9d0bbc72.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/proposal-d5623b81.js", "_app/immutable/chunks/store-0a5a4e4e.js", "_app/immutable/chunks/index-732fa142.js", "_app/immutable/chunks/tags-76192194.js"];
     stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-62aca3cb.css", "_app/immutable/assets/tags-14381ee9.css"];
   }
 });
@@ -92413,8 +92423,8 @@ var init__6 = __esm({
     init_shims();
     init_facebook_svelte();
     index6 = 5;
-    file7 = "_app/immutable/pages/share/facebook.svelte-76a9585b.js";
-    imports6 = ["_app/immutable/pages/share/facebook.svelte-76a9585b.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-dd0fe126.js", "_app/immutable/chunks/index-732fa142.js"];
+    file7 = "_app/immutable/pages/share/facebook.svelte-aee57c27.js";
+    imports6 = ["_app/immutable/pages/share/facebook.svelte-aee57c27.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-0a5a4e4e.js", "_app/immutable/chunks/index-732fa142.js"];
     stylesheets6 = ["_app/immutable/assets/facebook-5ae6a916.css"];
   }
 });
@@ -92458,8 +92468,8 @@ var init__7 = __esm({
     init_shims();
     init_reddit_svelte();
     index7 = 6;
-    file8 = "_app/immutable/pages/share/reddit.svelte-ceba2d44.js";
-    imports7 = ["_app/immutable/pages/share/reddit.svelte-ceba2d44.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-dd0fe126.js", "_app/immutable/chunks/index-732fa142.js"];
+    file8 = "_app/immutable/pages/share/reddit.svelte-f8340350.js";
+    imports7 = ["_app/immutable/pages/share/reddit.svelte-f8340350.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-0a5a4e4e.js", "_app/immutable/chunks/index-732fa142.js"];
     stylesheets7 = ["_app/immutable/assets/reddit-07daef39.css"];
   }
 });
@@ -92503,8 +92513,8 @@ var init__8 = __esm({
     init_shims();
     init_twitter_svelte();
     index8 = 7;
-    file9 = "_app/immutable/pages/share/twitter.svelte-3c0e1318.js";
-    imports8 = ["_app/immutable/pages/share/twitter.svelte-3c0e1318.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-dd0fe126.js", "_app/immutable/chunks/index-732fa142.js"];
+    file9 = "_app/immutable/pages/share/twitter.svelte-ec0cc667.js";
+    imports8 = ["_app/immutable/pages/share/twitter.svelte-ec0cc667.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-0a5a4e4e.js", "_app/immutable/chunks/index-732fa142.js"];
     stylesheets8 = ["_app/immutable/assets/twitter-dafdce4f.css"];
   }
 });
@@ -92548,8 +92558,8 @@ var init__9 = __esm({
     init_shims();
     init_whatsapp_svelte();
     index9 = 8;
-    file10 = "_app/immutable/pages/share/whatsapp.svelte-b8a87bb3.js";
-    imports9 = ["_app/immutable/pages/share/whatsapp.svelte-b8a87bb3.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-dd0fe126.js", "_app/immutable/chunks/index-732fa142.js"];
+    file10 = "_app/immutable/pages/share/whatsapp.svelte-6d42c361.js";
+    imports9 = ["_app/immutable/pages/share/whatsapp.svelte-6d42c361.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/store-0a5a4e4e.js", "_app/immutable/chunks/index-732fa142.js"];
     stylesheets9 = ["_app/immutable/assets/whatsapp-15a937dd.css"];
   }
 });
@@ -92564,7 +92574,7 @@ var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
     init_column_config_3324c527();
-    init_database_ed1149e0();
+    init_database_88f2b9f9();
     init_dist();
     init_dist2();
     init_dist3();
@@ -95218,7 +95228,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-66d01c18.js", "imports": ["_app/immutable/start-66d01c18.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/index-732fa142.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-c7bb3c39.js", "imports": ["_app/immutable/start-c7bb3c39.js", "_app/immutable/chunks/index-148eb2cc.js", "_app/immutable/chunks/index-732fa142.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

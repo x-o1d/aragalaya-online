@@ -8,6 +8,7 @@
     import { _emitEvent, _eventListener } from '$lib/services/events'
     import { _createPost } from '$lib/services/functions';
     import { _userSignedIn } from '$lib/services/auth';
+    import _strings from './form-strings'
 
     import TextInput from '$lib/components/input/text-input.svelte';
     import HtmlInput from '$lib/components/input/html-input.svelte';
@@ -60,6 +61,7 @@
 
     // error flags for each field
     $: errors = Array(fields.length).fill(false);
+    let tagError = false;
 
     // map field types to input components
     const COMPONENTS = {
@@ -69,6 +71,8 @@
 
     const submitDocument = async () => {
         // validate fields
+        // check if a value is assigned if 'required' is true in the column conig
+        // call the validation function if it's specified in the conlumn config
         errors = fieldConfigs.map(config => {
             if(config.required) {
                 if(!data[config.name] || 
@@ -84,8 +88,12 @@
             }
         });
         
-        if(errors.some(e => e)) return;
+        // set tagError if no tags are selected
+        tagError = !selectedTagNames.length;
 
+        if(errors.some(e => e) || tagError) return;
+
+        // call the process function if it's defined in the config
         fieldConfigs.map(config => {
             if(config.process) {
                 data[config.name] = config.process(data[config.name]);
@@ -173,12 +181,14 @@
                     error={errors[_i]}/>
             {/each}
             <Tags  
+                clickable
                 tags={selectedTagNames}
                 on:tagclick={(e) => clickTag(e.detail)}/>
             <Select
-                placeholder="select tags"
+                placeholder={_strings['tags'][$_lang]}
                 options={unselectedTagNames.map(tag => TAGS[tag])}
-                on:select={(e) => selectTag(e.detail)}/>
+                on:select={(e) => selectTag(e.detail)}
+                error={tagError}/>
             <Button
                 form
                 onclick={submitDocument}
