@@ -347,7 +347,7 @@
                             <div 
                                 class='icon-button'
                                 on:click|stopPropagation={(e) => showFilters[_i] = !showFilters[_i]}>
-                                <i class="fa-solid fa-filter-list"></i>
+                                <i class="fa-solid fa-filter-circle-xmark"></i>
                             </div>
                             {/if}
                             <!-- add document button -->
