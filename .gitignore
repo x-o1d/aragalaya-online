@@ -10,3 +10,4 @@ node_modules
 !sensitive/
 sensitive/*
 !sensitive/readme.md
+*.cache
