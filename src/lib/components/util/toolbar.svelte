@@ -106,6 +106,7 @@ EXAMPLE:
         {/if}
     </div>
     <div class="toolbar-right">
+        {#if data.verified}
         <Font
             font={0}
             size={0.75}
@@ -115,6 +116,17 @@ EXAMPLE:
         <div class="icon verified">
             <i class="fa-solid fa-check"></i>
         </div>
+        {:else}
+        <Font
+            font={0}
+            size={0.75}
+            style="margin-right: var(--s5px);">
+            {_strings['not_verified'][$_lang]}
+        </Font>
+        <div class="icon not-verified">
+            <i class="fa-solid fa-exclamation"></i>
+        </div>
+        {/if}
     </div>
 </div>
 
@@ -154,6 +166,11 @@ EXAMPLE:
     }
     .verified {
         background-color: #48bb6b;
+        color: white;
+        margin-right: 0;
+    }
+    .not-verified {
+        background-color: #e44e4e;
         color: white;
         margin-right: 0;
     }

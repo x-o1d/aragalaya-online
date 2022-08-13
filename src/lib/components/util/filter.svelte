@@ -44,7 +44,7 @@
         selectedTags = selectedTags.map((_,_i) => tagNames.includes(configTags[_i].name));
     }
 
-    const clearAll = () => {
+    const selectBasic = () => {
         verified = true;
         notVerified = false;
         tagNames = [configTags[0].name, configTags[1].name];
@@ -128,7 +128,7 @@
             <!-- select basics button -->
             <div 
                 class="button"
-                on:click={clearAll}>
+                on:click={selectBasic}>
                 <i class="fa-solid fa-ellipsis"></i>
             </div>
             <!-- filter button -->
