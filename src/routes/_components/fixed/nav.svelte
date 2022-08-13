@@ -81,15 +81,6 @@
                     <i class={column.icon}/>
                 </div>
             {/each}
-            <!-- <div 
-                class="toggle icon _clickable" 
-                on:click={() => showNames = !showNames}>
-                {#if !showNames}
-                    <i class="fa-solid fa-toggle-off"/>
-                {:else}
-                    <i class="fa-solid fa-toggle-on"/>
-                {/if}
-            </div> -->
             <div 
                 class="scroll"
                 style="
@@ -140,6 +131,7 @@
         flex-direction: column;
         background-color: black;
         border-radius: var(--s6px);
+        border: var(--s0_5px) solid white;
     }
     .animated {
         position: relative;
