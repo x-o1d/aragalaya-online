@@ -2,6 +2,7 @@
     export let move = 4;
     export let length = 3;
     export let delay = 300;
+    export let style = '';
 
     let position = 0;
     let direction = false;
@@ -33,7 +34,9 @@
     }, delay);
 </script>
 
-<div class="progress">
+<div 
+    class="progress"
+    style={style}>
     {progress}
 </div>
 

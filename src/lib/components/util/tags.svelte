@@ -10,7 +10,7 @@
     export let style = '';
 
     if(!tags) tags = [];
-    console.log(tags);
+
     // event dispatcher
     const dispatch = createEventDispatcher();
 </script>

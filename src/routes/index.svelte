@@ -343,7 +343,7 @@
                         </div>
                         <div>
                             <!-- filter button -->
-                            {#if column.verified || column.tagsr}
+                            {#if column.verified || column.tags}
                             <div 
                                 class='icon-button'
                                 on:click|stopPropagation={(e) => showFilters[_i] = !showFilters[_i]}>
@@ -351,11 +351,13 @@
                             </div>
                             {/if}
                             <!-- add document button -->
+                            {#if !column.static}
                             <div 
                                 class='icon-button'
                                 on:click|stopPropagation={(e) => addDocument(e, _i)}>
                                 <i class="fa-solid fa-add"></i>
                             </div>
+                            {/if}
                         </div>
                     </div>
                 </div>

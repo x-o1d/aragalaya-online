@@ -16,9 +16,12 @@
     import Card from '$lib/components/util/card.svelte';
     import Font from '$lib/components/display/font.svelte';
     import { _emitEvent } from '$lib/services/events';
+    import Progress from './progress.svelte';
 
     export let show;
     export let columnId;
+
+    let filterProgress = false;
 
     let configTags = [];
     if(COLUMNS[columnId].tags) {
@@ -72,11 +75,13 @@
     }
 
     const filterPosts = async () => {
+        filterProgress = true;
         const posts = await _getFilteredPosts(COLUMNS[columnId].type, verified && !notVerified, tagNames);
         _emitEvent('update-column', {
             column: columnId,
             posts: posts
         })
+        filterProgress = false;
     }
 </script>
 
@@ -114,34 +119,39 @@
             {/each}
         </Font>
         <div class="button-container">
+            <!-- select all button -->
             <div 
                 class="button"
                 on:click={selectAll}>
                 <i class="fa-solid fa-grip"></i>
             </div>
+            <!-- select basics button -->
             <div 
                 class="button"
                 on:click={clearAll}>
                 <i class="fa-solid fa-ellipsis"></i>
             </div>
+            <!-- filter button -->
             <div 
                 class="button filter"
                 on:click={filterPosts}>
                 <Font 
                     font={0}
                     size={0.9}>
+                    {#if !filterProgress}
                     {_strings['filter'][$_lang]}
+                    {:else}
+                    <Progress delay={200}/>
+                    {/if}
                 </Font>
             </div>
+            <!-- hide filter button -->
             <div 
                 class="button"
                 on:click={() => show = false}>
                 <i class="fa-solid fa-xmark"></i>
             </div>
         </div>
-        <!-- filter button -->
-        
-        
     </Card>
 </div>
 {/if}
@@ -195,6 +205,6 @@
     .filter {
         background-color: rgb(127, 191, 247);
         padding: var(--s5px) var(--s10px);
-        width: auto;
+        width: var(--s150px);
     }
 </style>
