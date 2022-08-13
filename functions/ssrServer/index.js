@@ -16639,7 +16639,7 @@ var init_column_config_ed3a8d78 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/tags-702d573f.js
+// .svelte-kit/output/server/_app/immutable/chunks/tags-0c38ec88.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -16681,9 +16681,9 @@ function writable2(value, start2 = noop2) {
   }
   return { set, update, subscribe: subscribe2 };
 }
-var import_chroma_js, subscriber_queue2, _lang, _currentTheme, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _authStateChecked, _redirected, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, Font, tagConfig, colors, TAGS, css, Tags;
-var init_tags_702d573f = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/tags-702d573f.js"() {
+var import_chroma_js, subscriber_queue2, _lang, _currentTheme, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _authStateChecked, _redirected, _shareLink, _URL, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, Font, tagConfig, colors, TAGS, css, Tags;
+var init_tags_0c38ec88 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/tags-0c38ec88.js"() {
     init_shims();
     init_index_19a73778();
     import_chroma_js = __toESM(require_chroma(), 1);
@@ -16697,6 +16697,8 @@ var init_tags_702d573f = __esm({
     _appContentReady = writable2(false);
     _authStateChecked = writable2(false);
     _redirected = writable2(false);
+    _shareLink = "https://aragalaya.online/?post=";
+    _URL = "https://aragalaya.online";
     _isMobile = writable2(false);
     _fontGroups = [
       [
@@ -69472,16 +69474,16 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/storage-9c988426.js
+// .svelte-kit/output/server/_app/immutable/chunks/storage-47dbcc97.js
 var import_rxjs, events, _emitEvent, _eventListener, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword;
-var init_storage_9c988426 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/storage-9c988426.js"() {
+var init_storage_47dbcc97 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/storage-47dbcc97.js"() {
     init_shims();
     init_database_88f2b9f9();
     init_dist4();
     init_dist3();
     import_rxjs = __toESM(require_cjs(), 1);
-    init_tags_702d573f();
+    init_tags_0c38ec88();
     events = [];
     _emitEvent = (tag, value) => {
       let event = events.find((event2) => tag == event2.tag);
@@ -88043,8 +88045,8 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_tags_702d573f();
-    init_storage_9c988426();
+    init_tags_0c38ec88();
+    init_storage_47dbcc97();
     init_database_88f2b9f9();
     init_column_config_ed3a8d78();
     init_dist5();
@@ -88848,8 +88850,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-f748d7ae.js";
-    imports = ["_app/immutable/pages/__layout.svelte-f748d7ae.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/store-757fc86c.js", "_app/immutable/chunks/index-09267728.js", "_app/immutable/chunks/tags-e9225c51.js", "_app/immutable/chunks/storage-b503558f.js"];
+    file2 = "_app/immutable/pages/__layout.svelte-fbd453d9.js";
+    imports = ["_app/immutable/pages/__layout.svelte-fbd453d9.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/store-0aecff84.js", "_app/immutable/chunks/index-09267728.js", "_app/immutable/chunks/tags-532662c3.js", "_app/immutable/chunks/storage-aff0b961.js"];
     stylesheets = ["_app/immutable/assets/__layout-737c78a1.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/storage-491479b0.css"];
   }
 });
@@ -90957,13 +90959,13 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/proposal-fcf26bd9.js
+// .svelte-kit/output/server/_app/immutable/chunks/proposal-c929a7c3.js
 var css$32, Card, strings$3, Timestamp2, strings$2, css$22, Content, css$12, Preview, strings$12, css3, Toolbar, strings2, Proposal;
-var init_proposal_fcf26bd9 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/proposal-fcf26bd9.js"() {
+var init_proposal_c929a7c3 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/proposal-c929a7c3.js"() {
     init_shims();
     init_index_19a73778();
-    init_tags_702d573f();
+    init_tags_0c38ec88();
     init_string_strip_html_esm();
     css$32 = {
       code: ".card-container.s-Hio59jcNIlCL{padding:var(--theme-cardseparationhalf)}.card.s-Hio59jcNIlCL{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.s-Hio59jcNIlCL{}",
@@ -91228,10 +91230,10 @@ var init_proposal_fcf26bd9 = __esm({
 <div class="${"toolbar s-A62t8M1ucyij"}"><div class="${"toolbar-left s-A62t8M1ucyij"}"><div class="${["icon _clickable s-A62t8M1ucyij", data._expanded ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-down s-A62t8M1ucyij"}"></i></div>
         <div class="${["icon _clickable s-A62t8M1ucyij", data._singlePostView ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-right-and-down-left-from-center s-A62t8M1ucyij"}"></i></div>
         <div class="${"icon _clickable s-A62t8M1ucyij"}"><i class="${"fa-solid fa-share-nodes s-A62t8M1ucyij"}"></i></div>
-        ${`<div class="${"icon facebook _clickable s-A62t8M1ucyij"}"><a href="${"/share/facebook?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-facebook s-A62t8M1ucyij"}"></i></a></div>
-        <div class="${"icon twitter _clickable s-A62t8M1ucyij"}"><a href="${"/share/twitter?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-twitter s-A62t8M1ucyij"}"></i></a></div>
-        <div class="${"icon whatsapp _clickable s-A62t8M1ucyij"}"><a href="${"/share/whatsapp?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-whatsapp s-A62t8M1ucyij"}"></i></a></div>
-        <div class="${"icon reddit _clickable s-A62t8M1ucyij"}"><a href="${"/share/reddit?post=" + escape(data.id, true)}" target="${"_blank"}" class="${"s-A62t8M1ucyij"}"><i class="${"fa-brands fa-reddit s-A62t8M1ucyij"}"></i></a></div>`}</div>
+        <div class="${"icon facebook _clickable s-A62t8M1ucyij"}"><i class="${"fa-brands fa-facebook s-A62t8M1ucyij"}"></i></div>
+        <div class="${"icon twitter _clickable s-A62t8M1ucyij"}"><i class="${"fa-brands fa-twitter s-A62t8M1ucyij"}"></i></div>
+        <div class="${"icon whatsapp _clickable s-A62t8M1ucyij"}"><i class="${"fa-brands fa-whatsapp s-A62t8M1ucyij"}"></i></div>
+        <div class="${"icon reddit _clickable s-A62t8M1ucyij"}"><i class="${"fa-brands fa-reddit s-A62t8M1ucyij"}"></i></div></div>
     <div class="${"toolbar-right s-A62t8M1ucyij"}">${data.verified ? `${validate_component(Font, "Font").$$render(
         $$result,
         {
@@ -91526,11 +91528,11 @@ var init_index_svelte = __esm({
     init_shims();
     init_index_19a73778();
     init_column_config_ed3a8d78();
-    init_tags_702d573f();
+    init_tags_0c38ec88();
     init_string_strip_html_esm();
-    init_storage_9c988426();
+    init_storage_47dbcc97();
     init_database_88f2b9f9();
-    init_proposal_fcf26bd9();
+    init_proposal_c929a7c3();
     import_chroma_js3 = __toESM(require_chroma(), 1);
     init_dist4();
     init_dist3();
@@ -92183,14 +92185,14 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
       });
       onDestroy(() => hidePostEvent.unsubscribe());
       let title = "\u0D85\u0DBB\u0D9C\u0DBD\u0DBA.online";
-      let url = "https://aragalaya-online.web.app";
+      let url = _URL;
       let description = "The online portal for the aragalaya movement in Sri Lanka";
       let type = "website";
       let imagex = "https://firebasestorage.googleapis.com/v0/b/aragalaya-online.appspot.com/o/aragalaya-image.jpeg?alt=media&token=46171892-7f2f-49bb-8424-65ca7411271e";
       if (postData) {
         postData._expanded = true;
         title = postData.title && postData.title[0] || postData.organization && postData.organization[0] || "\u0D85\u0DBB\u0D9C\u0DBD\u0DBA.online";
-        url = "https://aragalaya-online.web.app/?post=" + postData.id;
+        url = _shareLink + postData.id;
         description = ge(postData.description && postData.description[0] || postData.shortDescription && postData.shortDescription[0] || postData.proposal && postData.proposal[0]).result;
         type = "article";
         let images = [];
@@ -92328,8 +92330,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 2;
-    file4 = "_app/immutable/pages/index.svelte-ec18f3b3.js";
-    imports3 = ["_app/immutable/pages/index.svelte-ec18f3b3.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/tags-e9225c51.js", "_app/immutable/chunks/store-757fc86c.js", "_app/immutable/chunks/index-09267728.js", "_app/immutable/chunks/proposal-fce1da71.js", "_app/immutable/chunks/storage-b503558f.js"];
+    file4 = "_app/immutable/pages/index.svelte-7cd40934.js";
+    imports3 = ["_app/immutable/pages/index.svelte-7cd40934.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/tags-532662c3.js", "_app/immutable/chunks/store-0aecff84.js", "_app/immutable/chunks/index-09267728.js", "_app/immutable/chunks/proposal-bbbb48dc.js", "_app/immutable/chunks/storage-aff0b961.js"];
     stylesheets3 = ["_app/immutable/assets/index-d79e3fbd.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/proposal-8f53a606.css", "_app/immutable/assets/storage-491479b0.css"];
   }
 });
@@ -92344,8 +92346,8 @@ var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_19a73778();
-    init_proposal_fcf26bd9();
-    init_tags_702d573f();
+    init_proposal_c929a7c3();
+    init_tags_0c38ec88();
     import_chroma_js4 = __toESM(require_chroma(), 1);
     init_column_config_ed3a8d78();
     init_string_strip_html_esm();
@@ -92394,8 +92396,8 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 3;
-    file5 = "_app/immutable/pages/post_preview.svelte-2049b17d.js";
-    imports4 = ["_app/immutable/pages/post_preview.svelte-2049b17d.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/proposal-fce1da71.js", "_app/immutable/chunks/store-757fc86c.js", "_app/immutable/chunks/index-09267728.js", "_app/immutable/chunks/tags-e9225c51.js"];
+    file5 = "_app/immutable/pages/post_preview.svelte-c48191b6.js";
+    imports4 = ["_app/immutable/pages/post_preview.svelte-c48191b6.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/proposal-bbbb48dc.js", "_app/immutable/chunks/store-0aecff84.js", "_app/immutable/chunks/index-09267728.js", "_app/immutable/chunks/tags-532662c3.js"];
     stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-8f53a606.css", "_app/immutable/assets/tags-95a7f94d.css"];
   }
 });
@@ -92483,8 +92485,8 @@ var init__6 = __esm({
     init_shims();
     init_facebook_svelte();
     index6 = 5;
-    file7 = "_app/immutable/pages/share/facebook.svelte-082937d6.js";
-    imports6 = ["_app/immutable/pages/share/facebook.svelte-082937d6.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/store-757fc86c.js", "_app/immutable/chunks/index-09267728.js"];
+    file7 = "_app/immutable/pages/share/facebook.svelte-84038ea7.js";
+    imports6 = ["_app/immutable/pages/share/facebook.svelte-84038ea7.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/store-0aecff84.js", "_app/immutable/chunks/index-09267728.js"];
     stylesheets6 = ["_app/immutable/assets/facebook-5ae6a916.css"];
   }
 });
@@ -92528,8 +92530,8 @@ var init__7 = __esm({
     init_shims();
     init_reddit_svelte();
     index7 = 6;
-    file8 = "_app/immutable/pages/share/reddit.svelte-f3234b29.js";
-    imports7 = ["_app/immutable/pages/share/reddit.svelte-f3234b29.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/store-757fc86c.js", "_app/immutable/chunks/index-09267728.js"];
+    file8 = "_app/immutable/pages/share/reddit.svelte-151f35b8.js";
+    imports7 = ["_app/immutable/pages/share/reddit.svelte-151f35b8.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/store-0aecff84.js", "_app/immutable/chunks/index-09267728.js"];
     stylesheets7 = ["_app/immutable/assets/reddit-07daef39.css"];
   }
 });
@@ -92573,8 +92575,8 @@ var init__8 = __esm({
     init_shims();
     init_twitter_svelte();
     index8 = 7;
-    file9 = "_app/immutable/pages/share/twitter.svelte-2140e8f8.js";
-    imports8 = ["_app/immutable/pages/share/twitter.svelte-2140e8f8.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/store-757fc86c.js", "_app/immutable/chunks/index-09267728.js"];
+    file9 = "_app/immutable/pages/share/twitter.svelte-3c881253.js";
+    imports8 = ["_app/immutable/pages/share/twitter.svelte-3c881253.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/store-0aecff84.js", "_app/immutable/chunks/index-09267728.js"];
     stylesheets8 = ["_app/immutable/assets/twitter-dafdce4f.css"];
   }
 });
@@ -92618,8 +92620,8 @@ var init__9 = __esm({
     init_shims();
     init_whatsapp_svelte();
     index9 = 8;
-    file10 = "_app/immutable/pages/share/whatsapp.svelte-bd6b8678.js";
-    imports9 = ["_app/immutable/pages/share/whatsapp.svelte-bd6b8678.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/store-757fc86c.js", "_app/immutable/chunks/index-09267728.js"];
+    file10 = "_app/immutable/pages/share/whatsapp.svelte-ccffb030.js";
+    imports9 = ["_app/immutable/pages/share/whatsapp.svelte-ccffb030.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/store-0aecff84.js", "_app/immutable/chunks/index-09267728.js"];
     stylesheets9 = ["_app/immutable/assets/whatsapp-15a937dd.css"];
   }
 });
@@ -95288,7 +95290,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-e07b20ba.js", "imports": ["_app/immutable/start-e07b20ba.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/index-09267728.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-58640ffa.js", "imports": ["_app/immutable/start-58640ffa.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/index-09267728.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

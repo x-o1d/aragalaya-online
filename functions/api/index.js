@@ -13,6 +13,14 @@ admin.initializeApp();
 const firestore = new Firestore();
 const translate = new Translate();
 
+var Facebook = require('facebook-node-sdk');
+
+var facebook = new Facebook({ appID: 'Y420214326726915', secret: '420214326726915' });
+
+facebook.api('/amachang', function(err, data) {
+  console.log(data); // => { id: ... }
+});
+
 // fetch the thumbnail for any videoId properties in data
 // so that it can be specified in og:image tag for video post
 // social shares
