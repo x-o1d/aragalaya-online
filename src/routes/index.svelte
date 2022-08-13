@@ -35,7 +35,7 @@
     
     // services
     import { _eventListener, _emitEvent } from '$lib/services/events';
-    import { _lang } from '$lib/services/store';
+    import { _lang, _shareLink, _URL } from '$lib/services/store';
     import { _userSignedIn } from '$lib/services/auth';
     import { _themes, _isMobile, _getSizeConfig } from '$lib/services/theme';
     import { _getPost } from '$lib/services/database';
@@ -108,7 +108,7 @@
     // default values for the opengraph meta tags
     // these will be added to the page in SSR
     let title = 'අරගලය.online';
-    let url = 'https://aragalaya-online.web.app';
+    let url = _URL;
     let description = 'The online portal for the aragalaya movement in Sri Lanka';
     let type = 'website';
     let imagex = 'https://firebasestorage.googleapis.com/v0/b/aragalaya-online.appspot.com/o/aragalaya-image.jpeg?alt=media&token=46171892-7f2f-49bb-8424-65ca7411271e';
@@ -125,7 +125,7 @@
         title = (postData.title && postData.title[0]) || 
                     (postData.organization && postData.organization[0]) ||
                         'අරගලය.online';
-        url = 'https://aragalaya-online.web.app/?post=' + postData.id;
+        url = _shareLink + postData.id;
         description = stripHtml(
                 (postData.description && postData.description[0]) ||
                     (postData.shortDescription && postData.shortDescription[0]) || 

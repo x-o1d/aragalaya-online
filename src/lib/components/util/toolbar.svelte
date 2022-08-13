@@ -50,7 +50,7 @@ EXAMPLE:
 
     const shareButtonClick = (e) => {
         let link = _shareLink + data.id;
-        if(navigator.share) {
+        if(navigatorShareAvailable) {
             navigator.share({url: link})
         } else {
             navigator.clipboard.writeText(link);
@@ -58,6 +58,42 @@ EXAMPLE:
                 text: 'Link copied!',
                 event: e
             });
+        }
+    }
+
+    const facebookShare = () => {
+        let link = _shareLink + data.id;
+        if(navigatorShareAvailable) {
+            navigator.share({url: link})
+        } else {
+            window.open(`/share/facebook?post=${data.id}`, '_blank');
+        }
+    }
+
+    const twitterShare = () => {
+        let link = _shareLink + data.id;
+        if(navigatorShareAvailable) {
+            navigator.share({url: link})
+        } else {
+            window.open(`/share/twitter?post=${data.id}`, '_blank');
+        }
+    }
+
+    const whatsappShare = () => {
+        let link = _shareLink + data.id;
+        if(navigatorShareAvailable) {
+            navigator.share({url: link})
+        } else {
+            window.open(`/share/whatsapp?post=${data.id}`, '_blank');
+        }
+    }
+
+    const redditShare = () => {
+        let link = _shareLink + data.id;
+        if(navigatorShareAvailable) {
+            navigator.share({url: link})
+        } else {
+            window.open(`/share/reddit?post=${data.id}`, '_blank');
         }
     }
 
@@ -82,28 +118,26 @@ EXAMPLE:
             on:click={shareButtonClick}>
             <i class="fa-solid fa-share-nodes"></i>
         </div>
-        {#if !navigatorShareAvailable}
-        <div class="icon facebook _clickable">
-            <a href="/share/facebook?post={data.id}" target="_blank">
-                <i class="fa-brands fa-facebook"></i>
-            </a>
+        <div 
+            class="icon facebook _clickable"
+            on:click={facebookShare}>
+            <i class="fa-brands fa-facebook"></i>
         </div>
-        <div class="icon twitter _clickable">
-            <a href="/share/twitter?post={data.id}" target="_blank">
-                <i class="fa-brands fa-twitter"></i>
-            </a>
+        <div 
+            class="icon twitter _clickable"
+            on:click={twitterShare}>
+            <i class="fa-brands fa-twitter"></i>
         </div>
-        <div class="icon whatsapp _clickable">
-            <a href="/share/whatsapp?post={data.id}" target="_blank">
-                <i class="fa-brands fa-whatsapp"></i>
-            </a>
+        <div 
+            class="icon whatsapp _clickable"
+            on:click={whatsappShare}>
+            <i class="fa-brands fa-whatsapp"></i>
         </div>
-        <div class="icon reddit _clickable">
-            <a href="/share/reddit?post={data.id}" target="_blank">
-                <i class="fa-brands fa-reddit"></i>
-            </a>
+        <div 
+            class="icon reddit _clickable"
+            on:click={redditShare}>
+            <i class="fa-brands fa-reddit"></i>
         </div>
-        {/if}
     </div>
     <div class="toolbar-right">
         {#if data.verified}
