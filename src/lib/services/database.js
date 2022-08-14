@@ -20,6 +20,7 @@ import { getAuth } from 'firebase/auth';
 const db = getFirestore(app);
 
 import { dev } from '$app/env';
+import { _userLogout } from './auth';
 
 // --
 // properties exposed from services (export const xx) are prepended with
@@ -28,10 +29,12 @@ import { dev } from '$app/env';
 
 export const _createError = async (error, caller, data) => {
     try {
-        console.log('Uncaught error in: ',caller);
-        console.log('Error: ', error);
-        if(data) {
-            console.log('Data: ', data);
+        if(dev) {
+            console.log('Uncaught error in: ',caller);
+            console.log('Error: ', error);
+            if(data) {
+                console.log('Data: ', data);
+            }
         }
         if(!dev) {
             await addDoc(collection(db, 'Errors'), {
@@ -44,7 +47,12 @@ export const _createError = async (error, caller, data) => {
         }
         
     } catch (error) {
-        console.log(`Couldn't save error:`, error);
+        // if the token is not accepted by the backend call _userLogout
+        // to clear the token
+        if(error.code == 'permission-denied') {
+            _userLogout();
+            return;
+        }
     }
 }
 
@@ -62,6 +70,10 @@ export const _getPosts = async (type) => {
         });
         return items;
     } catch (error) {
+        if(error.code == 'permission-denied') {
+            _userLogout();
+            return;
+        }
         _createError(error, 'DBService:getBulletins');
         return [];
     }
@@ -95,6 +107,10 @@ export const _getFilteredPosts = async (type, verified, tags) => {
         });
         return items;
     } catch (error) {
+        if(error.code == 'permission-denied') {
+            _userLogout();
+            return;
+        }
         _createError(error, 'DBService:getBulletins');
         return [];
     }
@@ -105,6 +121,10 @@ export const _getPost = async (id) => {
         const docRef = doc(collection(db, 'Posts'), id);
         return (await getDoc(docRef)).data();
     } catch (error) {
+        if(error.code == 'permission-denied') {
+            _userLogout();
+            return;
+        }
         _createError(error, 'DBService:getPost');
     }
 }
@@ -118,6 +138,10 @@ export const _createUserRecord = async (user) => {
         await setDoc(docRef, user);
         return {user};
     } catch (error) {
+        if(error.code == 'permission-denied') {
+            _userLogout();
+            return;
+        }
         _createError(error, 'DBService:createUserRecord');
     }
 }
@@ -131,6 +155,10 @@ export const _setUserTheme = async (user, theme) => {
         const result = await updateDoc(docRef, {theme});
         return result;
     } catch (error) {
+        if(error.code == 'permission-denied') {
+            _userLogout();
+            return;
+        }
         _createError(error, 'DBService:_setUserTheme');
     }
 }
@@ -144,6 +172,10 @@ export const _setUserLanguage = async (user, language) => {
         const result = await updateDoc(docRef, {language});
         return result;
     } catch (error) {
+        if(error.code == 'permission-denied') {
+            _userLogout();
+            return;
+        }
         _createError(error, 'DBService:_setUserLanguage');
     }
 }
@@ -153,6 +185,10 @@ export const _getUserRecord = async (uid) => {
         const docRef = doc(collection(db, 'Users'), uid);
         return (await getDoc(docRef)).data();
     } catch (error) {
-        _createError(error, 'DBService:getUserRecord');
+        if(error.code == 'permission-denied') {
+            _userLogout();
+            return;
+        }
+        _createError(error, 'DBService:getUserRecord', uid);
     }
 }

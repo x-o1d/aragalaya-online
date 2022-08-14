@@ -13,16 +13,19 @@
     import { _createError } from '$lib/services/database';
     import Font from '$lib/components/display/font.svelte';
 
+    // admin page - don't allow sign up
+    export let admin;
+
     let showLogin = false;
     let user = {};
     let emailError, nameError, passwordError, repeatPasswordError;
-
+    
     let signinOrSignup = 0; // 0: enter_email, 1: signin, 2: signup
 
     // show or hide the login overlay on show-hide-login events
     // TODO:: try automatic subscribe
-    const showHideEvent =_eventListener('show-hide-login').subscribe((v) => {
-        showLogin = v;
+    const showHideEvent =_eventListener('show-hide-login').subscribe((value) => {
+        showLogin = value;
     })
     // clear subscription
     onDestroy(() => {
@@ -52,12 +55,27 @@
                 user.uid = result.authUser.uid;
             }
 
-            // if email already in use, proceed to the sign in step
-            if(result.code == 'auth/email-already-in-use') {
-                signinOrSignup = 1;
+            // if email already in use, 
+            // and the event doesn't specify to force-signup proceed to the sign in step
+
+            if((result.code == 'auth/email-already-in-use')) {
+                if(showLogin == 'forse-signup') {
+                    signinOrSignup = 2;
+                } else {
+                    signinOrSignup = 1;
+                }
             // else proceed to the sign up step
             } else {
-                signinOrSignup = 2;
+                // sign up is not allowed in admin routes
+                if(showLogin !== 'admin') {
+                    signinOrSignup = 2;
+                } else {
+                    emailError = [
+                        'වලංගු පරිශීලකයෙක් නොවේ',
+                        'not a valid user',
+                        'தவறான பயனர்'
+                    ];
+                }
             }
 
             return;
@@ -78,11 +96,9 @@
                 passwordError = true;
                 return;
             }
-
             if(result.user) {
-                showLogin = false;
-                _emitEvent('user-ready', result.user);
-                reset();
+                _emitEvent('user-changed', result.user);
+                closeLogin();
             }
             return;
         }
@@ -123,9 +139,8 @@
             // it is later updated to the value the user entered
             let result = await _changePassword(user.password, user.name, user.email);
             if(!result) {
-                showLogin = false;
-                _emitEvent('user-ready', user);
-                reset();
+                _emitEvent('user-changed', user);
+                closeLogin();
             }
             return;
         }
@@ -136,6 +151,7 @@
         showLogin = false;
     };
 
+    // reset login form
     const reset = () => {
         user = {};
         nameError = false;
@@ -155,7 +171,7 @@
                 font={2}
                 size={1.3}
                 style="margin-bottom: var(--s20px);">
-                {_strings['enter'][$_lang]}
+                {_strings['enter'][$_lang]}{showLogin}
             </Font>
             <TextInput
                 disabled={signinOrSignup}

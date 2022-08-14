@@ -20,7 +20,7 @@
     let user;
     // update user status on auth state change
     // if a user record is found set language and theme to user preference
-    const userReadyEvent = _eventListener('user-ready').subscribe((userData) => {
+    const userReadyEvent = _eventListener('user-changed').subscribe((userData) => {
         user = userData;
         if(user) {
             // change the theme to user's default

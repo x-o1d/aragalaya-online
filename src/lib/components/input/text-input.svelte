@@ -23,7 +23,7 @@
             placeholder={config.placeholder[$_lang]}
             maxlength={config.maxlength}
             autocomplete={config.autocomplete}
-            on:change={() => (error = false)}
+            on:keyup={() => (error = false)}
             bind:value={data[config.name]}/>
         {:else}
         <input 
@@ -33,14 +33,14 @@
             placeholder={config.placeholder[$_lang]}
             maxlength={config.maxlength}
             autocomplete={config.autocomplete}
-            on:change={() => (error = false)}
+            on:keyup={() => (error = false)}
             bind:value={data[config.name]}/>
         {/if}
         <!-- if error is a string show the error -->
-        {#if typeof error === 'string'}
+        {#if error && typeof error != 'boolean'}
         <span>
-            <Font font={0} remSize={0.8}>
-                {error}
+            <Font font={0} size={0.8}>
+                {Array.isArray(error)? error[$_lang]: error}
             </Font>
         </span>
         {/if}

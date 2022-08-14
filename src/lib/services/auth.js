@@ -25,24 +25,24 @@ let user;
 // record
 onAuthStateChanged(auth, async (authUser) => {
     if (authUser) {
-        if((user && (user.uid != authUser.uid)) || !user) {
+        // if there's no existing user record
+        // or if the existing user records uid doesn't match the auth credentials uid
+        // fetch the user record
+        if(!user || (user && (user.uid != authUser.uid))) {
             user = await _getUserRecord(authUser.uid);
         }
+        // if a valid token is found on the browser but no correlating user 
+        // record is found, it's a stranded user (this can happen due to failed network 
+        // requests or other edge cases)
+        // force user to re-enter signup data
         if(!user) {
-            // in this instance firebase auth returns an authUser
-            // but there's no correlating user record
-            // this get's logged in the Error collection
-            // because a data correction is necessary
-            await _createError({
-                error: 'invalid-user',
-                authUser
-            }, 'authService::onAuthStateChanged');
+            // _emitEvent('show-hide-login', 'force-signup');
         } else {
-            _emitEvent('user-ready', user);
+            _emitEvent('user-changed', user);
             return;
         }
     }
-    _emitEvent('user-ready', undefined);
+    _emitEvent('user-changed', undefined);
     _authStateChecked.set(true);
 });
 
@@ -148,5 +148,5 @@ export const _changePassword = (newPassword, name, email) => new Promise(async (
 export const _userLogout = () => {
     signOut(auth);
     user = undefined;
-    _emitEvent('user-ready', undefined);
+    _emitEvent('user-changed', undefined);
 }

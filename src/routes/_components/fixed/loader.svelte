@@ -63,8 +63,9 @@
                 // stop checking for it after 4 seconds
                 ((executionCount > 9) || $_authStateChecked)
             ) {
-                loadingComplete = true;
                 clearInterval(checkLoadedInterval);
+                loadingComplete = true;
+                return;
             } 
             if(executionCount > 10 && !(executionCount%10)) {
                 if(!normalizeCssLoaded) {
@@ -76,7 +77,7 @@
                 if(!$_themeColorsReady || !$_themeSizesReady || !$_scaledPixelsReady) {
                     console.log('css variables pending..');
                 }
-                if(!$_appContentReady && !location.href.includes('/share/')) {
+                if(!$_appContentReady && $_redirected) {
                     console.log('window onload() pending..');
                 }
                 if(!$_authStateChecked) {
