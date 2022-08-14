@@ -119,7 +119,7 @@
                     claims = {}
                 }
 
-                const hasAdminAccess = (result.user.super && claims.super) || (result.user.admin && claims.admin);
+                const hasAdminAccess = (result.user.super && claims.super);
                 if(!hasAdminAccess) {
                     passwordError = [
                         'ප්රවේශය ප්රතික්ෂේප විණි',
@@ -204,7 +204,7 @@
 {#if showLogin}
 <div 
     class="overlay"
-    on:click|self={closeLogin}>
+    on:click|self={() => !adminLogin && closeLogin()}>
     <div class="login_c">
         <div class="login">
             <Font

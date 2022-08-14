@@ -1,3 +1,29 @@
+<!-- Input component creates a styled text input component similar
+---- to the native input tag
+---- if formData is passed as it's data object and the config 'name' is 'title'
+---- it'll modify the formData.title property.
+---- 'type' can be either 'text' or 'password'.
+---- when used inside the form.svelte component, it will automatically execute
+---- the validate and process functions when the form is submitted.
+
+USAGE:
+<Input
+    config={{
+        name: 'title',
+        type: 'text',
+        maxlength: 100,
+        placeholder: [
+            'මාතෘකාව',
+            'title',
+            'தலைப்பு'
+        ],
+        required: true,
+        validate: (val) => true,
+        process: (val) => val,
+    }}
+    data={formData}
+    on:enter={getUser}/>
+--->
 <script>
     import { _lang } from '$lib/services/store';
     import Font from '$lib/components/display/font.svelte';

@@ -49,7 +49,9 @@ onAuthStateChanged(auth, async (authUser) => {
         // requests or other edge cases)
         // force user to re-enter signup data
         if(!user) {
-            _emitEvent('show-hide-login', 'force-signup');
+            if(!location.href.includes('admin')) {
+                _emitEvent('show-hide-login', 'force-signup');
+            }
         } else {
             _emitEvent('user-changed', user);
             return;

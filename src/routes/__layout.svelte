@@ -84,8 +84,10 @@
     // only subscribed once per layout, should look into a better solution
     onMount(() => {
         _lang.subscribe((language) => {
-            localStorage.setItem('language', language);
-            _setUserLanguage(user, language);
+            if(language !== undefined) {
+                localStorage.setItem('language', language);
+                _setUserLanguage(user, language);
+            }
         });
     });
 

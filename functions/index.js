@@ -19,4 +19,6 @@ exports.ssrServer = functions.region('us-central1').runWith(runtimeOpts).
 });
 
 exports.addpost = require('./api/index').addpost;
+exports.admingetuser = require('./api/index').admingetuser;
+exports.adminchangerole = require('./api/index').adminchangerole;
 

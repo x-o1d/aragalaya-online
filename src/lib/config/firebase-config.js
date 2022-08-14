@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 import { getAuth, connectAuthEmulator } from "firebase/auth";
 import { getFunctions, connectFunctionsEmulator } from "firebase/functions";
+import { getStorage, connectStorageEmulator } from "firebase/storage";
 
 
 // SECURITY:
@@ -41,5 +42,6 @@ if(import.meta.env.MODE == 'localhost') {
     connectFirestoreEmulator(getFirestore(), 'localhost', 8080);
     connectAuthEmulator(getAuth(app), "http://localhost:9099");
     connectFunctionsEmulator(getFunctions(app), "localhost", 5001);
+    connectStorageEmulator(getStorage(app), "localhost", 9199);
 }
 

@@ -7,6 +7,7 @@ const admin = require('firebase-admin');
 const service = google.youtube('v3');
 const { API_KEY } = require('../sensitive/google-apikey.cjs');
 const { API_KEY_PROD } = require('../sensitive/google-apikey-prod.cjs');
+const { user } = require('firebase-functions/v1/auth');
 
 admin.initializeApp();
 
@@ -131,7 +132,36 @@ exports.addpost = functions.runWith(runtimeOpts).https.onCall(async (data, conte
     return translatedData;
 });
 
-exports.adminGetUser = functions.runWith(runtimeOpts).https.onCall(async (data, context) => {
+exports.admingetuser = functions.runWith(runtimeOpts).https.onCall(async (email, context) => {
+    logger.info('Input email :', email);
+
+    if (!context.auth) {
+        throw new HttpsError('failed-precondition', 'The function must be ' +
+            'called while authenticated.');
+    }
+
+    let collection = firestore.collection('Users');
+
+    let adminRecord;
+    const qs1 = await collection.where('email', '==', context.auth.token.email).get();
+    adminRecord = qs1.docs[0].data();
+    
+    if(!(context.auth.token.super && adminRecord.super)) {
+        logger.info('not-authorized');
+        return { error: 'not-authorized', message: 'this incident will be reported as a potential infiltration attempt' }
+    }
+
+    let userRecord;
+    const qs2 = await collection.where('email', '==', email).get();
+    if(qs2.docs[0]) {
+        userRecord = qs2.docs[0].data();
+    }
+
+    
+    return userRecord;
+});
+
+exports.adminchangerole = functions.runWith(runtimeOpts).https.onCall(async (data, context) => {
     logger.info('Input data :', data);
 
     if (!context.auth) {
@@ -139,14 +169,25 @@ exports.adminGetUser = functions.runWith(runtimeOpts).https.onCall(async (data, 
             'called while authenticated.');
     }
 
-    let translatedData = await translateData(data);
-    translatedData = await getThumbnail(translatedData);
-    logger.info('Translated data :', translatedData);
+    let collection = firestore.collection('Users');
 
-    // Enter new data into the document.
-    let document = firestore.collection('Posts').doc();
-    translatedData.id = document.id;
-    await document.set(translatedData);
+    let adminRecord;
+    const adminDoc = await collection.doc(context.auth.token.uid).get();
+    adminRecord = adminDoc.data();
+    
+    if(!(context.auth.token.super && adminRecord.super)) {
+        logger.info('not-authorized');
+        return { error: 'not-authorized', message: 'this incident will be reported as a potential infiltration attempt' }
+    }
 
-    return translatedData;
+    const roles = {
+        super: (data.role == 'super'),
+        admin: (data.role == 'admin'),
+        verified: (data.role == 'verified'),
+    }
+    
+    await admin.auth().setCustomUserClaims(data.uid, roles);
+    let userRecord = await collection.doc(data.uid).update(roles);
+
+    return userRecord;
 });

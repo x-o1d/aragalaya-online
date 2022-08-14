@@ -1,10 +1,12 @@
+<!-- Select component creates a styled drop down menu similar to the
+---- native html select component -->
 <script>
     import { createEventDispatcher } from 'svelte';
 
     import { _lang } from '$lib/services/store';
     import Font from "../display/font.svelte";
 
-    export let style = undefined;
+    export let style = '';
     export let value;
     export let placeholder;
     export let options;
@@ -22,7 +24,6 @@
         error = false;
         showOptions = false;
     }
-
 </script>
 
 <div 
@@ -49,7 +50,7 @@
                 font={0}
                 size={0.9}
                 color={value? 'black': '#767676'}>
-                {option.strings[$_lang]}
+                {Array.isArray(option.strings)? option.strings[$_lang]: option.strings}
             </Font>
         </div>
         {/each}

@@ -1,0 +1,20 @@
+{
+  "name": "images/b6cc4477-b972-43e1-8758-b102f2a90478",
+  "bucket": "aragalaya-online.appspot.com",
+  "contentType": "image/png",
+  "metageneration": 1,
+  "generation": 1660496976503,
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "cacheControl": "public, max-age=3600",
+  "contentEncoding": "identity",
+  "downloadTokens": [
+    "03e5a7ea-41f0-462f-b466-eaaabe683420"
+  ],
+  "etag": "6aOgeYR4p3p6hh3vBXRMlkM+0AQ",
+  "timeCreated": "2022-08-14T17:09:36.502Z",
+  "updated": "2022-08-14T17:09:36.504Z",
+  "size": 171417,
+  "md5Hash": "US40NT2L7fu5gmFa3tAJzg==",
+  "crc32c": "2270967213"
+}

@@ -72,10 +72,11 @@
     const updateColumnEvent = _eventListener('update-column').subscribe((data) => {
         updateCount++;
         columnData[data.column] = data.posts;
-        console.log(columnData);
         // reactively updata
         columnData = columnData;
     })
+    // clear subscription
+    onDestroy(() => updateColumnEvent.unsubscribe());
 
     // triggered by the Toolbar component when show post button is clicked
     // this assigns the post data 
