@@ -98,20 +98,22 @@
                 flex-wrap: wrap;">
             <span
                 class="tag verified" 
-                class:selectedTags={verified}
+                class:selected-tags={verified}
+                style="--color: #48bb6b"
                 on:click={verifiedClick}>
                 {_strings['verified'][$_lang]}
             </span>
             <span 
                 class="tag not-verified"
-                class:selectedTags={notVerified}
+                class:selected-tags={notVerified}
+                style="--color: #e44e4e"
                 on:click={notVerifiedClick}>
                 {_strings['not_verified'][$_lang]}
             </span>
             {#each configTags as tag, _i}
             <span 
                 class="tag"
-                class:selectedTags={selectedTags[_i]}
+                class:selected-tags={selectedTags[_i]}
                 on:click={() => tagSelect(tag.name)}
                 style="--color: {tag.color};">
                 {tag.strings[$_lang]}
@@ -163,10 +165,10 @@
         padding: var(--theme-cardseparationhalf) 0 0 0;
     }
     .tag {
-        background-color: var(--color);
+        background-color: white;
         border: var(--s1px) solid #cfcfcf;
         border-radius: var(--s3px);
-        padding: 0 var(--s3px);
+        padding: var(--s3px) var(--s3px);
         margin-right: var(--s5px);
         filter: grayscale(0.8);
         margin-bottom: var(--s6px);
@@ -174,16 +176,9 @@
     .tag:hover {
         cursor: pointer;
     }
-    .selectedTags {
-        border-bottom: var(--s3px) solid black;
+    .selected-tags {
+        background-color: var(--color);
         filter: none;
-    }
-    .verified {
-        background-color: #48bb6b;
-    }
-    .not-verified {
-        background-color: #ff8181;
-        
     }
     .button-container {
         display: flex;
