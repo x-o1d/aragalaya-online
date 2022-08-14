@@ -59,16 +59,18 @@
     }
 
     const verifiedClick = () => {
-        if(verified && notVerified) {
+        if(verified) {
             verified = false;
+            notVerified = true;
         } else if(!verified) {
             verified = true;
         }
     }
 
     const notVerifiedClick = () => {
-        if(notVerified && verified) {
+        if(notVerified) {
             notVerified = false;
+            verified = true;
         } else if(!notVerified) {
             notVerified = true;
         }
@@ -96,20 +98,25 @@
                 margin-bottom: var(--s5px);
                 justify-content: center;
                 flex-wrap: wrap;">
+            <!-- verified tag -->
             <span
-                class="tag verified" 
+                class="tag" 
                 class:selected-tags={verified}
-                style="--color: #48bb6b"
+                style="--color: #48bb6b;"
                 on:click={verifiedClick}>
                 {_strings['verified'][$_lang]}
             </span>
+            <!-- not verified tag -->
             <span 
-                class="tag not-verified"
+                class="tag"
                 class:selected-tags={notVerified}
-                style="--color: #e44e4e"
+                style="
+                    --color: #e44e4e;"
                 on:click={notVerifiedClick}>
                 {_strings['not_verified'][$_lang]}
             </span>
+            <span class="separator">-</span>
+            <!-- other tags -->
             {#each configTags as tag, _i}
             <span 
                 class="tag"
@@ -175,6 +182,10 @@
     }
     .tag:hover {
         cursor: pointer;
+    }
+    .separator {
+        padding: var(--s3px) var(--s3px);
+        margin-right: var(--s5px);
     }
     .selected-tags {
         background-color: var(--color);
