@@ -1,5 +1,4 @@
 import admin from "firebase-admin";
-import fs from "fs";
 import serviceAccount from '../../sensitive/aragalaya-online-firebase-adminsdk-zcdt4-22ed1d0de0.js';
 // import serviceAccount from '../../sensitive/aragalaya-online-prod-0479312d2de7.js';
 
