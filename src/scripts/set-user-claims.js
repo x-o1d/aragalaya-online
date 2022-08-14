@@ -9,15 +9,14 @@ let app = admin.initializeApp({
 let uid = '8A78JjD299cw90gfwHlgbZFhqGo2'
 
 const claims = {
-    super: 'value',
+    super: true,
 }
   
-admin.auth().setCustomUserClaims(uid, claims) 
-
 const firestore = admin.firestore(app);
 const collection = firestore.collection('Users');
 
 const setData = async () => {
+    await admin.auth().setCustomUserClaims(uid, claims);
     let docRef = collection.doc(uid);
     await docRef.update({
         ...claims

@@ -1,10 +1,13 @@
 <script>
     import { _lang } from '$lib/services/store';
     import Font from '$lib/components/display/font.svelte';
+    import { createEventDispatcher } from 'svelte';
 
-    export let disabled;
+    export let disabled = false;
     export let config;
     export let data;
+
+    const dispatch = createEventDispatcher();
 
     export let error;
     
@@ -24,6 +27,9 @@
             maxlength={config.maxlength}
             autocomplete={config.autocomplete}
             on:keyup={() => (error = false)}
+            on:keydown={(e) => {
+                if(e.keyCode == 13) dispatch('enter')
+            }}
             bind:value={data[config.name]}/>
         {:else}
         <input 
@@ -34,6 +40,9 @@
             maxlength={config.maxlength}
             autocomplete={config.autocomplete}
             on:keyup={() => (error = false)}
+            on:keydown={(e) => {
+                if(e.keyCode == 13) dispatch('enter')
+            }}
             bind:value={data[config.name]}/>
         {/if}
         <!-- if error is a string show the error -->

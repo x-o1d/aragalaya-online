@@ -14,21 +14,34 @@ import {
 
 import { _createUserRecord, _getUserRecord, _createError } from '$lib/services/database';
 import { _emitEvent } from '$lib/services/events';
-import { _authStateChecked, _lang } from './store';
+import { _authStateChecked, _currentTheme, _lang, _signUpInProgress } from './store';
 
 const auth = getAuth(app);
 
 // holds the user record for the session
 let user;
 
-// listens to auth state changes and updates the local user 
-// record
+// check if a signin/signup is in progress to ignore auth state changes
+let signUpInProgress = false;
+_signUpInProgress.subscribe((v) => signUpInProgress = v);
+
+// get current user language
+let language = 0;
+_lang.subscribe((v) => language = v);
+
+// get current user language
+let theme = 0;
+_currentTheme.subscribe((v) => theme = v);
+
+// listens to auth state changes and updates the local user record
 onAuthStateChanged(auth, async (authUser) => {
+    if(signUpInProgress) return;
     if (authUser) {
         // if there's no existing user record
         // or if the existing user records uid doesn't match the auth credentials uid
         // fetch the user record
         if(!user || (user && (user.uid != authUser.uid))) {
+            console.log('getting user record');
             user = await _getUserRecord(authUser.uid);
         }
         // if a valid token is found on the browser but no correlating user 
@@ -36,7 +49,7 @@ onAuthStateChanged(auth, async (authUser) => {
         // requests or other edge cases)
         // force user to re-enter signup data
         if(!user) {
-            // _emitEvent('show-hide-login', 'force-signup');
+            _emitEvent('show-hide-login', 'force-signup');
         } else {
             _emitEvent('user-changed', user);
             return;
@@ -128,17 +141,22 @@ export const _emailSignin = (email, password) => new Promise(async (resolve) => 
 //     error: error code
 //     message: error message
 // }>
-export const _changePassword = (newPassword, name, email) => new Promise(async (resolve) => {
+export const _changePassword = (newPassword, name, email, authUserExists) => new Promise(async (resolve) => {
     try {
         let authUser = getAuth().currentUser;
         user = await _createUserRecord({
             name,
             email,
             uid: authUser.uid,
-            language: $_lang || 0,
-            theme: $_currentTheme || 0
+            language: language || 0,
+            theme: theme || 0
         });
-        let result = await updatePassword(authUser, newPassword);
+
+        let result;
+        if(!authUserExists) {
+            result = await updatePassword(authUser, newPassword);
+        }
+        
         resolve(result);
     } catch (error) {
         _createError(error);
@@ -146,6 +164,7 @@ export const _changePassword = (newPassword, name, email) => new Promise(async (
 });
 
 export const _userLogout = () => {
+    console.log('signing out');
     signOut(auth);
     user = undefined;
     _emitEvent('user-changed', undefined);

@@ -185,10 +185,6 @@ export const _getUserRecord = async (uid) => {
         const docRef = doc(collection(db, 'Users'), uid);
         return (await getDoc(docRef)).data();
     } catch (error) {
-        if(error.code == 'permission-denied') {
-            _userLogout();
-            return;
-        }
-        _createError(error, 'DBService:getUserRecord', uid);
+        return undefined;
     }
 }

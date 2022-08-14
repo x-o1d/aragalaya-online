@@ -1,22 +1,24 @@
 <script>
+    // npm modules
     import { onDestroy } from 'svelte';
+    import { getAuth } from 'firebase/auth';
 
+    // services
     import { _themes } from '$lib/services/theme';
     import { _eventListener, _emitEvent } from '$lib/services/events';
-    import { _lang } from '$lib/services/store';
-    import { _facebookSignin, _emailSignup, _emailSignin, _changePassword } from '$lib/services/auth';
-
+    import { _createError, _createUserRecord } from '$lib/services/database';
+    import { _lang, _signUpInProgress } from '$lib/services/store';
+    import { _facebookSignin, _emailSignup, _emailSignin, _changePassword, _userLogout } from '$lib/services/auth';
     import _strings from './login-strings';
    
+    // components
     import Button from '$lib/components/input/button.svelte';
     import TextInput from '$lib/components/input/text-input.svelte';
-    import { _createError } from '$lib/services/database';
     import Font from '$lib/components/display/font.svelte';
 
-    // admin page - don't allow sign up
-    export let admin;
-
     let showLogin = false;
+    let adminLogin = false;
+    let forceEnterName = false;
     let user = {};
     let emailError, nameError, passwordError, repeatPasswordError;
     
@@ -26,6 +28,12 @@
     // TODO:: try automatic subscribe
     const showHideEvent =_eventListener('show-hide-login').subscribe((value) => {
         showLogin = value;
+        adminLogin = showLogin == 'admin-login';
+        forceEnterName = showLogin == 'force-signup';
+        if(forceEnterName) {
+            user.email = getAuth().currentUser.email;
+        }
+        _signUpInProgress.set(true);
     })
     // clear subscription
     onDestroy(() => {
@@ -57,9 +65,8 @@
 
             // if email already in use, 
             // and the event doesn't specify to force-signup proceed to the sign in step
-
             if((result.code == 'auth/email-already-in-use')) {
-                if(showLogin == 'forse-signup') {
+                if(forceEnterName) {
                     signinOrSignup = 2;
                 } else {
                     signinOrSignup = 1;
@@ -77,7 +84,6 @@
                     ];
                 }
             }
-
             return;
         }
         
@@ -96,6 +102,34 @@
                 passwordError = true;
                 return;
             }
+
+            // if user record is not return set forceEnterName to create a user record
+            if(!result.user) {
+                forceEnterName = true;
+                signinOrSignup = 2;
+                return;
+            }
+            
+            // verify user role for admin login
+            if(adminLogin) {
+                let claims;
+                try {
+                    claims = JSON.parse(getAuth().currentUser.reloadUserInfo.customAttributes);
+                } catch {
+                    claims = {}
+                }
+
+                const hasAdminAccess = (result.user.super && claims.super) || (result.user.admin && claims.admin);
+                if(!hasAdminAccess) {
+                    passwordError = [
+                        'ප්රවේශය ප්රතික්ෂේප විණි',
+                        'access denied',
+                        'அணுகல் மறுக்கப்பட்டது'
+                    ];
+                    return;
+                }
+            }
+
             if(result.user) {
                 _emitEvent('user-changed', result.user);
                 closeLogin();
@@ -114,22 +148,24 @@
             }
 
             // password mucst be atleast 6 characters
-            if(!user.password) {
-                passwordError = true;
-            } else if(user.password.length < 6) {
-                passwordError = 'should be atlest 6 characters';
-            } else {
-                passwordError = false;
-            }
+            if(!forceEnterName) {
+                if(!user.password) {
+                    passwordError = true;
+                } else if(user.password.length < 6) {
+                    passwordError = 'should be atlest 6 characters';
+                } else {
+                    passwordError = false;
+                }
 
-            // passwords should match
-            if((user.password != user.repeatPassword) && !passwordError) {
-                repeatPasswordError = true;
-                passwordError = true;
-            } else {
-                repeatPasswordError = false;
+                // passwords should match
+                if((user.password != user.repeatPassword) && !passwordError) {
+                    repeatPasswordError = true;
+                    passwordError = true;
+                } else {
+                    repeatPasswordError = false;
+                }
             }
-
+            
             // validation check
             if(nameError || passwordError || repeatPasswordError) {
                 return;
@@ -137,7 +173,8 @@
 
             // NOTE:: since a user is already created with a mock password
             // it is later updated to the value the user entered
-            let result = await _changePassword(user.password, user.name, user.email);
+            let result = await _changePassword(user.password, user.name, user.email, forceEnterName);
+            
             if(!result) {
                 _emitEvent('user-changed', user);
                 closeLogin();
@@ -147,13 +184,16 @@
     }
 
     const closeLogin = () => {
+        _signUpInProgress.set(false);
         reset();
         showLogin = false;
     };
 
     // reset login form
     const reset = () => {
+        forceEnterName = false;
         user = {};
+        adminLogin = false;
         nameError = false;
         passwordError = false;
         repeatPasswordError = false;
@@ -171,7 +211,7 @@
                 font={2}
                 size={1.3}
                 style="margin-bottom: var(--s20px);">
-                {_strings['enter'][$_lang]}
+                {_strings[forceEnterName? 'enter_name': 'enter'][$_lang]}
             </Font>
             <TextInput
                 disabled={signinOrSignup}
@@ -182,7 +222,8 @@
                     name: 'email',
                     type: 'text',
                     autocomplete: 'username'
-                }}/>
+                }}
+                on:enter={continueEmailSignin}/>
             {#if signinOrSignup == 2}
             <TextInput
                 error={nameError}
@@ -194,7 +235,7 @@
                     autocomplete: 'name'
                 }}/>
             {/if}
-            {#if signinOrSignup}
+            {#if signinOrSignup && !forceEnterName}
             <TextInput
                 error={passwordError}
                 data={user}
@@ -206,7 +247,7 @@
                         'current-password': undefined,
                 }}/>
             {/if}
-            {#if signinOrSignup == 2}
+            {#if signinOrSignup == 2 && !forceEnterName}
             <TextInput
                 error={repeatPasswordError}
                 data={user}
