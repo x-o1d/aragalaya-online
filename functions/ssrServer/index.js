@@ -70,8 +70,8 @@ async function toFormData(Body2, ct) {
     entryChunks.push(ui8a);
   };
   const appendFileToFormData = () => {
-    const file11 = new File(entryChunks, filename, { type: contentType });
-    formData.append(entryName, file11);
+    const file12 = new File(entryChunks, filename, { type: contentType });
+    formData.append(entryName, file12);
   };
   const appendEntryToFormData = () => {
     formData.append(entryName, entryValue);
@@ -179,7 +179,7 @@ var init_multipart_parser = __esm({
         let i2 = 0;
         const length_ = data.length;
         let previousIndex = this.index;
-        let { lookbehind, boundary, boundaryChars, index: index10, state, flags } = this;
+        let { lookbehind, boundary, boundaryChars, index: index11, state, flags } = this;
         const boundaryLength = this.boundary.length;
         const boundaryEnd = boundaryLength - 1;
         const bufferLength = data.length;
@@ -213,20 +213,20 @@ var init_multipart_parser = __esm({
           c3 = data[i2];
           switch (state) {
             case S.START_BOUNDARY:
-              if (index10 === boundary.length - 2) {
+              if (index11 === boundary.length - 2) {
                 if (c3 === HYPHEN) {
                   flags |= F.LAST_BOUNDARY;
                 } else if (c3 !== CR) {
                   return;
                 }
-                index10++;
+                index11++;
                 break;
-              } else if (index10 - 1 === boundary.length - 2) {
+              } else if (index11 - 1 === boundary.length - 2) {
                 if (flags & F.LAST_BOUNDARY && c3 === HYPHEN) {
                   state = S.END;
                   flags = 0;
                 } else if (!(flags & F.LAST_BOUNDARY) && c3 === LF) {
-                  index10 = 0;
+                  index11 = 0;
                   callback("onPartBegin");
                   state = S.HEADER_FIELD_START;
                 } else {
@@ -234,29 +234,29 @@ var init_multipart_parser = __esm({
                 }
                 break;
               }
-              if (c3 !== boundary[index10 + 2]) {
-                index10 = -2;
+              if (c3 !== boundary[index11 + 2]) {
+                index11 = -2;
               }
-              if (c3 === boundary[index10 + 2]) {
-                index10++;
+              if (c3 === boundary[index11 + 2]) {
+                index11++;
               }
               break;
             case S.HEADER_FIELD_START:
               state = S.HEADER_FIELD;
               mark("onHeaderField");
-              index10 = 0;
+              index11 = 0;
             case S.HEADER_FIELD:
               if (c3 === CR) {
                 clear("onHeaderField");
                 state = S.HEADERS_ALMOST_DONE;
                 break;
               }
-              index10++;
+              index11++;
               if (c3 === HYPHEN) {
                 break;
               }
               if (c3 === COLON) {
-                if (index10 === 1) {
+                if (index11 === 1) {
                   return;
                 }
                 dataCallback("onHeaderField", true);
@@ -298,8 +298,8 @@ var init_multipart_parser = __esm({
               state = S.PART_DATA;
               mark("onPartData");
             case S.PART_DATA:
-              previousIndex = index10;
-              if (index10 === 0) {
+              previousIndex = index11;
+              if (index11 === 0) {
                 i2 += boundaryEnd;
                 while (i2 < bufferLength && !(data[i2] in boundaryChars)) {
                   i2 += boundaryLength;
@@ -307,27 +307,27 @@ var init_multipart_parser = __esm({
                 i2 -= boundaryEnd;
                 c3 = data[i2];
               }
-              if (index10 < boundary.length) {
-                if (boundary[index10] === c3) {
-                  if (index10 === 0) {
+              if (index11 < boundary.length) {
+                if (boundary[index11] === c3) {
+                  if (index11 === 0) {
                     dataCallback("onPartData", true);
                   }
-                  index10++;
+                  index11++;
                 } else {
-                  index10 = 0;
+                  index11 = 0;
                 }
-              } else if (index10 === boundary.length) {
-                index10++;
+              } else if (index11 === boundary.length) {
+                index11++;
                 if (c3 === CR) {
                   flags |= F.PART_BOUNDARY;
                 } else if (c3 === HYPHEN) {
                   flags |= F.LAST_BOUNDARY;
                 } else {
-                  index10 = 0;
+                  index11 = 0;
                 }
-              } else if (index10 - 1 === boundary.length) {
+              } else if (index11 - 1 === boundary.length) {
                 if (flags & F.PART_BOUNDARY) {
-                  index10 = 0;
+                  index11 = 0;
                   if (c3 === LF) {
                     flags &= ~F.PART_BOUNDARY;
                     callback("onPartEnd");
@@ -341,14 +341,14 @@ var init_multipart_parser = __esm({
                     state = S.END;
                     flags = 0;
                   } else {
-                    index10 = 0;
+                    index11 = 0;
                   }
                 } else {
-                  index10 = 0;
+                  index11 = 0;
                 }
               }
-              if (index10 > 0) {
-                lookbehind[index10 - 1] = c3;
+              if (index11 > 0) {
+                lookbehind[index11 - 1] = c3;
               } else if (previousIndex > 0) {
                 const _lookbehind = new Uint8Array(lookbehind.buffer, lookbehind.byteOffset, lookbehind.byteLength);
                 callback("onPartData", 0, previousIndex, _lookbehind);
@@ -366,7 +366,7 @@ var init_multipart_parser = __esm({
         dataCallback("onHeaderField");
         dataCallback("onHeaderValue");
         dataCallback("onPartData");
-        this.index = index10;
+        this.index = index11;
         this.state = state;
         this.flags = flags;
       }
@@ -13045,7 +13045,7 @@ var init_shims = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/index-19a73778.js
+// .svelte-kit/output/server/_app/immutable/chunks/index-d732e872.js
 function noop2() {
 }
 function assign(tar, src) {
@@ -13207,8 +13207,8 @@ function add_attribute(name7, value, boolean) {
   return ` ${name7}${assignment}`;
 }
 var identity, is_client, now, raf, tasks, current_component, ATTR_REGEX, CONTENT_REGEX, missing_component, on_destroy;
-var init_index_19a73778 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/index-19a73778.js"() {
+var init_index_d732e872 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/index-d732e872.js"() {
     init_shims();
     identity = (x2) => x2;
     is_client = typeof window !== "undefined";
@@ -13232,3414 +13232,7 @@ var init_hooks_bced8853 = __esm({
   }
 });
 
-// node_modules/chroma-js/chroma.js
-var require_chroma = __commonJS({
-  "node_modules/chroma-js/chroma.js"(exports2, module2) {
-    init_shims();
-    (function(global2, factory2) {
-      typeof exports2 === "object" && typeof module2 !== "undefined" ? module2.exports = factory2() : typeof define === "function" && define.amd ? define(factory2) : (global2 = typeof globalThis !== "undefined" ? globalThis : global2 || self, global2.chroma = factory2());
-    })(exports2, function() {
-      "use strict";
-      var limit$2 = function(x2, min2, max2) {
-        if (min2 === void 0)
-          min2 = 0;
-        if (max2 === void 0)
-          max2 = 1;
-        return x2 < min2 ? min2 : x2 > max2 ? max2 : x2;
-      };
-      var limit$1 = limit$2;
-      var clip_rgb$3 = function(rgb2) {
-        rgb2._clipped = false;
-        rgb2._unclipped = rgb2.slice(0);
-        for (var i3 = 0; i3 <= 3; i3++) {
-          if (i3 < 3) {
-            if (rgb2[i3] < 0 || rgb2[i3] > 255) {
-              rgb2._clipped = true;
-            }
-            rgb2[i3] = limit$1(rgb2[i3], 0, 255);
-          } else if (i3 === 3) {
-            rgb2[i3] = limit$1(rgb2[i3], 0, 1);
-          }
-        }
-        return rgb2;
-      };
-      var classToType = {};
-      for (var i$1 = 0, list$1 = ["Boolean", "Number", "String", "Function", "Array", "Date", "RegExp", "Undefined", "Null"]; i$1 < list$1.length; i$1 += 1) {
-        var name7 = list$1[i$1];
-        classToType["[object " + name7 + "]"] = name7.toLowerCase();
-      }
-      var type$p = function(obj) {
-        return classToType[Object.prototype.toString.call(obj)] || "object";
-      };
-      var type$o = type$p;
-      var unpack$B = function(args, keyOrder) {
-        if (keyOrder === void 0)
-          keyOrder = null;
-        if (args.length >= 3) {
-          return Array.prototype.slice.call(args);
-        }
-        if (type$o(args[0]) == "object" && keyOrder) {
-          return keyOrder.split("").filter(function(k) {
-            return args[0][k] !== void 0;
-          }).map(function(k) {
-            return args[0][k];
-          });
-        }
-        return args[0];
-      };
-      var type$n = type$p;
-      var last$4 = function(args) {
-        if (args.length < 2) {
-          return null;
-        }
-        var l = args.length - 1;
-        if (type$n(args[l]) == "string") {
-          return args[l].toLowerCase();
-        }
-        return null;
-      };
-      var PI$2 = Math.PI;
-      var utils2 = {
-        clip_rgb: clip_rgb$3,
-        limit: limit$2,
-        type: type$p,
-        unpack: unpack$B,
-        last: last$4,
-        PI: PI$2,
-        TWOPI: PI$2 * 2,
-        PITHIRD: PI$2 / 3,
-        DEG2RAD: PI$2 / 180,
-        RAD2DEG: 180 / PI$2
-      };
-      var input$h = {
-        format: {},
-        autodetect: []
-      };
-      var last$3 = utils2.last;
-      var clip_rgb$2 = utils2.clip_rgb;
-      var type$m = utils2.type;
-      var _input = input$h;
-      var Color$D = function Color2() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var me = this;
-        if (type$m(args[0]) === "object" && args[0].constructor && args[0].constructor === this.constructor) {
-          return args[0];
-        }
-        var mode = last$3(args);
-        var autodetect = false;
-        if (!mode) {
-          autodetect = true;
-          if (!_input.sorted) {
-            _input.autodetect = _input.autodetect.sort(function(a, b4) {
-              return b4.p - a.p;
-            });
-            _input.sorted = true;
-          }
-          for (var i3 = 0, list2 = _input.autodetect; i3 < list2.length; i3 += 1) {
-            var chk = list2[i3];
-            mode = chk.test.apply(chk, args);
-            if (mode) {
-              break;
-            }
-          }
-        }
-        if (_input.format[mode]) {
-          var rgb2 = _input.format[mode].apply(null, autodetect ? args : args.slice(0, -1));
-          me._rgb = clip_rgb$2(rgb2);
-        } else {
-          throw new Error("unknown format: " + args);
-        }
-        if (me._rgb.length === 3) {
-          me._rgb.push(1);
-        }
-      };
-      Color$D.prototype.toString = function toString() {
-        if (type$m(this.hex) == "function") {
-          return this.hex();
-        }
-        return "[" + this._rgb.join(",") + "]";
-      };
-      var Color_1 = Color$D;
-      var chroma$k = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(chroma$k.Color, [null].concat(args)))();
-      };
-      chroma$k.Color = Color_1;
-      chroma$k.version = "2.4.2";
-      var chroma_1 = chroma$k;
-      var unpack$A = utils2.unpack;
-      var max$2 = Math.max;
-      var rgb2cmyk$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$A(args, "rgb");
-        var r2 = ref[0];
-        var g2 = ref[1];
-        var b4 = ref[2];
-        r2 = r2 / 255;
-        g2 = g2 / 255;
-        b4 = b4 / 255;
-        var k = 1 - max$2(r2, max$2(g2, b4));
-        var f5 = k < 1 ? 1 / (1 - k) : 0;
-        var c3 = (1 - r2 - k) * f5;
-        var m3 = (1 - g2 - k) * f5;
-        var y = (1 - b4 - k) * f5;
-        return [c3, m3, y, k];
-      };
-      var rgb2cmyk_1 = rgb2cmyk$1;
-      var unpack$z = utils2.unpack;
-      var cmyk2rgb = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$z(args, "cmyk");
-        var c3 = args[0];
-        var m3 = args[1];
-        var y = args[2];
-        var k = args[3];
-        var alpha = args.length > 4 ? args[4] : 1;
-        if (k === 1) {
-          return [0, 0, 0, alpha];
-        }
-        return [
-          c3 >= 1 ? 0 : 255 * (1 - c3) * (1 - k),
-          m3 >= 1 ? 0 : 255 * (1 - m3) * (1 - k),
-          y >= 1 ? 0 : 255 * (1 - y) * (1 - k),
-          alpha
-        ];
-      };
-      var cmyk2rgb_1 = cmyk2rgb;
-      var chroma$j = chroma_1;
-      var Color$C = Color_1;
-      var input$g = input$h;
-      var unpack$y = utils2.unpack;
-      var type$l = utils2.type;
-      var rgb2cmyk = rgb2cmyk_1;
-      Color$C.prototype.cmyk = function() {
-        return rgb2cmyk(this._rgb);
-      };
-      chroma$j.cmyk = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$C, [null].concat(args, ["cmyk"])))();
-      };
-      input$g.format.cmyk = cmyk2rgb_1;
-      input$g.autodetect.push({
-        p: 2,
-        test: function() {
-          var args = [], len = arguments.length;
-          while (len--)
-            args[len] = arguments[len];
-          args = unpack$y(args, "cmyk");
-          if (type$l(args) === "array" && args.length === 4) {
-            return "cmyk";
-          }
-        }
-      });
-      var unpack$x = utils2.unpack;
-      var last$2 = utils2.last;
-      var rnd = function(a) {
-        return Math.round(a * 100) / 100;
-      };
-      var hsl2css$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var hsla = unpack$x(args, "hsla");
-        var mode = last$2(args) || "lsa";
-        hsla[0] = rnd(hsla[0] || 0);
-        hsla[1] = rnd(hsla[1] * 100) + "%";
-        hsla[2] = rnd(hsla[2] * 100) + "%";
-        if (mode === "hsla" || hsla.length > 3 && hsla[3] < 1) {
-          hsla[3] = hsla.length > 3 ? hsla[3] : 1;
-          mode = "hsla";
-        } else {
-          hsla.length = 3;
-        }
-        return mode + "(" + hsla.join(",") + ")";
-      };
-      var hsl2css_1 = hsl2css$1;
-      var unpack$w = utils2.unpack;
-      var rgb2hsl$3 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$w(args, "rgba");
-        var r2 = args[0];
-        var g2 = args[1];
-        var b4 = args[2];
-        r2 /= 255;
-        g2 /= 255;
-        b4 /= 255;
-        var min2 = Math.min(r2, g2, b4);
-        var max2 = Math.max(r2, g2, b4);
-        var l = (max2 + min2) / 2;
-        var s3, h3;
-        if (max2 === min2) {
-          s3 = 0;
-          h3 = Number.NaN;
-        } else {
-          s3 = l < 0.5 ? (max2 - min2) / (max2 + min2) : (max2 - min2) / (2 - max2 - min2);
-        }
-        if (r2 == max2) {
-          h3 = (g2 - b4) / (max2 - min2);
-        } else if (g2 == max2) {
-          h3 = 2 + (b4 - r2) / (max2 - min2);
-        } else if (b4 == max2) {
-          h3 = 4 + (r2 - g2) / (max2 - min2);
-        }
-        h3 *= 60;
-        if (h3 < 0) {
-          h3 += 360;
-        }
-        if (args.length > 3 && args[3] !== void 0) {
-          return [h3, s3, l, args[3]];
-        }
-        return [h3, s3, l];
-      };
-      var rgb2hsl_1 = rgb2hsl$3;
-      var unpack$v = utils2.unpack;
-      var last$1 = utils2.last;
-      var hsl2css = hsl2css_1;
-      var rgb2hsl$2 = rgb2hsl_1;
-      var round$6 = Math.round;
-      var rgb2css$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var rgba = unpack$v(args, "rgba");
-        var mode = last$1(args) || "rgb";
-        if (mode.substr(0, 3) == "hsl") {
-          return hsl2css(rgb2hsl$2(rgba), mode);
-        }
-        rgba[0] = round$6(rgba[0]);
-        rgba[1] = round$6(rgba[1]);
-        rgba[2] = round$6(rgba[2]);
-        if (mode === "rgba" || rgba.length > 3 && rgba[3] < 1) {
-          rgba[3] = rgba.length > 3 ? rgba[3] : 1;
-          mode = "rgba";
-        }
-        return mode + "(" + rgba.slice(0, mode === "rgb" ? 3 : 4).join(",") + ")";
-      };
-      var rgb2css_1 = rgb2css$1;
-      var unpack$u = utils2.unpack;
-      var round$5 = Math.round;
-      var hsl2rgb$1 = function() {
-        var assign2;
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$u(args, "hsl");
-        var h3 = args[0];
-        var s3 = args[1];
-        var l = args[2];
-        var r2, g2, b4;
-        if (s3 === 0) {
-          r2 = g2 = b4 = l * 255;
-        } else {
-          var t3 = [0, 0, 0];
-          var c3 = [0, 0, 0];
-          var t2 = l < 0.5 ? l * (1 + s3) : l + s3 - l * s3;
-          var t1 = 2 * l - t2;
-          var h_ = h3 / 360;
-          t3[0] = h_ + 1 / 3;
-          t3[1] = h_;
-          t3[2] = h_ - 1 / 3;
-          for (var i3 = 0; i3 < 3; i3++) {
-            if (t3[i3] < 0) {
-              t3[i3] += 1;
-            }
-            if (t3[i3] > 1) {
-              t3[i3] -= 1;
-            }
-            if (6 * t3[i3] < 1) {
-              c3[i3] = t1 + (t2 - t1) * 6 * t3[i3];
-            } else if (2 * t3[i3] < 1) {
-              c3[i3] = t2;
-            } else if (3 * t3[i3] < 2) {
-              c3[i3] = t1 + (t2 - t1) * (2 / 3 - t3[i3]) * 6;
-            } else {
-              c3[i3] = t1;
-            }
-          }
-          assign2 = [round$5(c3[0] * 255), round$5(c3[1] * 255), round$5(c3[2] * 255)], r2 = assign2[0], g2 = assign2[1], b4 = assign2[2];
-        }
-        if (args.length > 3) {
-          return [r2, g2, b4, args[3]];
-        }
-        return [r2, g2, b4, 1];
-      };
-      var hsl2rgb_1 = hsl2rgb$1;
-      var hsl2rgb = hsl2rgb_1;
-      var input$f = input$h;
-      var RE_RGB = /^rgb\(\s*(-?\d+),\s*(-?\d+)\s*,\s*(-?\d+)\s*\)$/;
-      var RE_RGBA = /^rgba\(\s*(-?\d+),\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*([01]|[01]?\.\d+)\)$/;
-      var RE_RGB_PCT = /^rgb\(\s*(-?\d+(?:\.\d+)?)%,\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*\)$/;
-      var RE_RGBA_PCT = /^rgba\(\s*(-?\d+(?:\.\d+)?)%,\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*,\s*([01]|[01]?\.\d+)\)$/;
-      var RE_HSL = /^hsl\(\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*\)$/;
-      var RE_HSLA = /^hsla\(\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*,\s*([01]|[01]?\.\d+)\)$/;
-      var round$4 = Math.round;
-      var css2rgb$1 = function(css11) {
-        css11 = css11.toLowerCase().trim();
-        var m3;
-        if (input$f.format.named) {
-          try {
-            return input$f.format.named(css11);
-          } catch (e2) {
-          }
-        }
-        if (m3 = css11.match(RE_RGB)) {
-          var rgb2 = m3.slice(1, 4);
-          for (var i3 = 0; i3 < 3; i3++) {
-            rgb2[i3] = +rgb2[i3];
-          }
-          rgb2[3] = 1;
-          return rgb2;
-        }
-        if (m3 = css11.match(RE_RGBA)) {
-          var rgb$1 = m3.slice(1, 5);
-          for (var i$12 = 0; i$12 < 4; i$12++) {
-            rgb$1[i$12] = +rgb$1[i$12];
-          }
-          return rgb$1;
-        }
-        if (m3 = css11.match(RE_RGB_PCT)) {
-          var rgb$2 = m3.slice(1, 4);
-          for (var i$2 = 0; i$2 < 3; i$2++) {
-            rgb$2[i$2] = round$4(rgb$2[i$2] * 2.55);
-          }
-          rgb$2[3] = 1;
-          return rgb$2;
-        }
-        if (m3 = css11.match(RE_RGBA_PCT)) {
-          var rgb$3 = m3.slice(1, 5);
-          for (var i$3 = 0; i$3 < 3; i$3++) {
-            rgb$3[i$3] = round$4(rgb$3[i$3] * 2.55);
-          }
-          rgb$3[3] = +rgb$3[3];
-          return rgb$3;
-        }
-        if (m3 = css11.match(RE_HSL)) {
-          var hsl2 = m3.slice(1, 4);
-          hsl2[1] *= 0.01;
-          hsl2[2] *= 0.01;
-          var rgb$4 = hsl2rgb(hsl2);
-          rgb$4[3] = 1;
-          return rgb$4;
-        }
-        if (m3 = css11.match(RE_HSLA)) {
-          var hsl$1 = m3.slice(1, 4);
-          hsl$1[1] *= 0.01;
-          hsl$1[2] *= 0.01;
-          var rgb$5 = hsl2rgb(hsl$1);
-          rgb$5[3] = +m3[4];
-          return rgb$5;
-        }
-      };
-      css2rgb$1.test = function(s3) {
-        return RE_RGB.test(s3) || RE_RGBA.test(s3) || RE_RGB_PCT.test(s3) || RE_RGBA_PCT.test(s3) || RE_HSL.test(s3) || RE_HSLA.test(s3);
-      };
-      var css2rgb_1 = css2rgb$1;
-      var chroma$i = chroma_1;
-      var Color$B = Color_1;
-      var input$e = input$h;
-      var type$k = utils2.type;
-      var rgb2css = rgb2css_1;
-      var css2rgb = css2rgb_1;
-      Color$B.prototype.css = function(mode) {
-        return rgb2css(this._rgb, mode);
-      };
-      chroma$i.css = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$B, [null].concat(args, ["css"])))();
-      };
-      input$e.format.css = css2rgb;
-      input$e.autodetect.push({
-        p: 5,
-        test: function(h3) {
-          var rest = [], len = arguments.length - 1;
-          while (len-- > 0)
-            rest[len] = arguments[len + 1];
-          if (!rest.length && type$k(h3) === "string" && css2rgb.test(h3)) {
-            return "css";
-          }
-        }
-      });
-      var Color$A = Color_1;
-      var chroma$h = chroma_1;
-      var input$d = input$h;
-      var unpack$t = utils2.unpack;
-      input$d.format.gl = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var rgb2 = unpack$t(args, "rgba");
-        rgb2[0] *= 255;
-        rgb2[1] *= 255;
-        rgb2[2] *= 255;
-        return rgb2;
-      };
-      chroma$h.gl = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$A, [null].concat(args, ["gl"])))();
-      };
-      Color$A.prototype.gl = function() {
-        var rgb2 = this._rgb;
-        return [rgb2[0] / 255, rgb2[1] / 255, rgb2[2] / 255, rgb2[3]];
-      };
-      var unpack$s = utils2.unpack;
-      var rgb2hcg$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$s(args, "rgb");
-        var r2 = ref[0];
-        var g2 = ref[1];
-        var b4 = ref[2];
-        var min2 = Math.min(r2, g2, b4);
-        var max2 = Math.max(r2, g2, b4);
-        var delta = max2 - min2;
-        var c3 = delta * 100 / 255;
-        var _g = min2 / (255 - delta) * 100;
-        var h3;
-        if (delta === 0) {
-          h3 = Number.NaN;
-        } else {
-          if (r2 === max2) {
-            h3 = (g2 - b4) / delta;
-          }
-          if (g2 === max2) {
-            h3 = 2 + (b4 - r2) / delta;
-          }
-          if (b4 === max2) {
-            h3 = 4 + (r2 - g2) / delta;
-          }
-          h3 *= 60;
-          if (h3 < 0) {
-            h3 += 360;
-          }
-        }
-        return [h3, c3, _g];
-      };
-      var rgb2hcg_1 = rgb2hcg$1;
-      var unpack$r = utils2.unpack;
-      var floor$3 = Math.floor;
-      var hcg2rgb = function() {
-        var assign2, assign$1, assign$2, assign$3, assign$4, assign$5;
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$r(args, "hcg");
-        var h3 = args[0];
-        var c3 = args[1];
-        var _g = args[2];
-        var r2, g2, b4;
-        _g = _g * 255;
-        var _c = c3 * 255;
-        if (c3 === 0) {
-          r2 = g2 = b4 = _g;
-        } else {
-          if (h3 === 360) {
-            h3 = 0;
-          }
-          if (h3 > 360) {
-            h3 -= 360;
-          }
-          if (h3 < 0) {
-            h3 += 360;
-          }
-          h3 /= 60;
-          var i3 = floor$3(h3);
-          var f5 = h3 - i3;
-          var p2 = _g * (1 - c3);
-          var q = p2 + _c * (1 - f5);
-          var t2 = p2 + _c * f5;
-          var v3 = p2 + _c;
-          switch (i3) {
-            case 0:
-              assign2 = [v3, t2, p2], r2 = assign2[0], g2 = assign2[1], b4 = assign2[2];
-              break;
-            case 1:
-              assign$1 = [q, v3, p2], r2 = assign$1[0], g2 = assign$1[1], b4 = assign$1[2];
-              break;
-            case 2:
-              assign$2 = [p2, v3, t2], r2 = assign$2[0], g2 = assign$2[1], b4 = assign$2[2];
-              break;
-            case 3:
-              assign$3 = [p2, q, v3], r2 = assign$3[0], g2 = assign$3[1], b4 = assign$3[2];
-              break;
-            case 4:
-              assign$4 = [t2, p2, v3], r2 = assign$4[0], g2 = assign$4[1], b4 = assign$4[2];
-              break;
-            case 5:
-              assign$5 = [v3, p2, q], r2 = assign$5[0], g2 = assign$5[1], b4 = assign$5[2];
-              break;
-          }
-        }
-        return [r2, g2, b4, args.length > 3 ? args[3] : 1];
-      };
-      var hcg2rgb_1 = hcg2rgb;
-      var unpack$q = utils2.unpack;
-      var type$j = utils2.type;
-      var chroma$g = chroma_1;
-      var Color$z = Color_1;
-      var input$c = input$h;
-      var rgb2hcg = rgb2hcg_1;
-      Color$z.prototype.hcg = function() {
-        return rgb2hcg(this._rgb);
-      };
-      chroma$g.hcg = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$z, [null].concat(args, ["hcg"])))();
-      };
-      input$c.format.hcg = hcg2rgb_1;
-      input$c.autodetect.push({
-        p: 1,
-        test: function() {
-          var args = [], len = arguments.length;
-          while (len--)
-            args[len] = arguments[len];
-          args = unpack$q(args, "hcg");
-          if (type$j(args) === "array" && args.length === 3) {
-            return "hcg";
-          }
-        }
-      });
-      var unpack$p = utils2.unpack;
-      var last = utils2.last;
-      var round$3 = Math.round;
-      var rgb2hex$2 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$p(args, "rgba");
-        var r2 = ref[0];
-        var g2 = ref[1];
-        var b4 = ref[2];
-        var a = ref[3];
-        var mode = last(args) || "auto";
-        if (a === void 0) {
-          a = 1;
-        }
-        if (mode === "auto") {
-          mode = a < 1 ? "rgba" : "rgb";
-        }
-        r2 = round$3(r2);
-        g2 = round$3(g2);
-        b4 = round$3(b4);
-        var u2 = r2 << 16 | g2 << 8 | b4;
-        var str = "000000" + u2.toString(16);
-        str = str.substr(str.length - 6);
-        var hxa = "0" + round$3(a * 255).toString(16);
-        hxa = hxa.substr(hxa.length - 2);
-        switch (mode.toLowerCase()) {
-          case "rgba":
-            return "#" + str + hxa;
-          case "argb":
-            return "#" + hxa + str;
-          default:
-            return "#" + str;
-        }
-      };
-      var rgb2hex_1 = rgb2hex$2;
-      var RE_HEX = /^#?([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
-      var RE_HEXA = /^#?([A-Fa-f0-9]{8}|[A-Fa-f0-9]{4})$/;
-      var hex2rgb$1 = function(hex) {
-        if (hex.match(RE_HEX)) {
-          if (hex.length === 4 || hex.length === 7) {
-            hex = hex.substr(1);
-          }
-          if (hex.length === 3) {
-            hex = hex.split("");
-            hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-          }
-          var u2 = parseInt(hex, 16);
-          var r2 = u2 >> 16;
-          var g2 = u2 >> 8 & 255;
-          var b4 = u2 & 255;
-          return [r2, g2, b4, 1];
-        }
-        if (hex.match(RE_HEXA)) {
-          if (hex.length === 5 || hex.length === 9) {
-            hex = hex.substr(1);
-          }
-          if (hex.length === 4) {
-            hex = hex.split("");
-            hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2] + hex[3] + hex[3];
-          }
-          var u$1 = parseInt(hex, 16);
-          var r$1 = u$1 >> 24 & 255;
-          var g$1 = u$1 >> 16 & 255;
-          var b$1 = u$1 >> 8 & 255;
-          var a = Math.round((u$1 & 255) / 255 * 100) / 100;
-          return [r$1, g$1, b$1, a];
-        }
-        throw new Error("unknown hex color: " + hex);
-      };
-      var hex2rgb_1 = hex2rgb$1;
-      var chroma$f = chroma_1;
-      var Color$y = Color_1;
-      var type$i = utils2.type;
-      var input$b = input$h;
-      var rgb2hex$1 = rgb2hex_1;
-      Color$y.prototype.hex = function(mode) {
-        return rgb2hex$1(this._rgb, mode);
-      };
-      chroma$f.hex = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$y, [null].concat(args, ["hex"])))();
-      };
-      input$b.format.hex = hex2rgb_1;
-      input$b.autodetect.push({
-        p: 4,
-        test: function(h3) {
-          var rest = [], len = arguments.length - 1;
-          while (len-- > 0)
-            rest[len] = arguments[len + 1];
-          if (!rest.length && type$i(h3) === "string" && [3, 4, 5, 6, 7, 8, 9].indexOf(h3.length) >= 0) {
-            return "hex";
-          }
-        }
-      });
-      var unpack$o = utils2.unpack;
-      var TWOPI$2 = utils2.TWOPI;
-      var min$2 = Math.min;
-      var sqrt$4 = Math.sqrt;
-      var acos = Math.acos;
-      var rgb2hsi$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$o(args, "rgb");
-        var r2 = ref[0];
-        var g2 = ref[1];
-        var b4 = ref[2];
-        r2 /= 255;
-        g2 /= 255;
-        b4 /= 255;
-        var h3;
-        var min_ = min$2(r2, g2, b4);
-        var i3 = (r2 + g2 + b4) / 3;
-        var s3 = i3 > 0 ? 1 - min_ / i3 : 0;
-        if (s3 === 0) {
-          h3 = NaN;
-        } else {
-          h3 = (r2 - g2 + (r2 - b4)) / 2;
-          h3 /= sqrt$4((r2 - g2) * (r2 - g2) + (r2 - b4) * (g2 - b4));
-          h3 = acos(h3);
-          if (b4 > g2) {
-            h3 = TWOPI$2 - h3;
-          }
-          h3 /= TWOPI$2;
-        }
-        return [h3 * 360, s3, i3];
-      };
-      var rgb2hsi_1 = rgb2hsi$1;
-      var unpack$n = utils2.unpack;
-      var limit2 = utils2.limit;
-      var TWOPI$1 = utils2.TWOPI;
-      var PITHIRD = utils2.PITHIRD;
-      var cos$4 = Math.cos;
-      var hsi2rgb = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$n(args, "hsi");
-        var h3 = args[0];
-        var s3 = args[1];
-        var i3 = args[2];
-        var r2, g2, b4;
-        if (isNaN(h3)) {
-          h3 = 0;
-        }
-        if (isNaN(s3)) {
-          s3 = 0;
-        }
-        if (h3 > 360) {
-          h3 -= 360;
-        }
-        if (h3 < 0) {
-          h3 += 360;
-        }
-        h3 /= 360;
-        if (h3 < 1 / 3) {
-          b4 = (1 - s3) / 3;
-          r2 = (1 + s3 * cos$4(TWOPI$1 * h3) / cos$4(PITHIRD - TWOPI$1 * h3)) / 3;
-          g2 = 1 - (b4 + r2);
-        } else if (h3 < 2 / 3) {
-          h3 -= 1 / 3;
-          r2 = (1 - s3) / 3;
-          g2 = (1 + s3 * cos$4(TWOPI$1 * h3) / cos$4(PITHIRD - TWOPI$1 * h3)) / 3;
-          b4 = 1 - (r2 + g2);
-        } else {
-          h3 -= 2 / 3;
-          g2 = (1 - s3) / 3;
-          b4 = (1 + s3 * cos$4(TWOPI$1 * h3) / cos$4(PITHIRD - TWOPI$1 * h3)) / 3;
-          r2 = 1 - (g2 + b4);
-        }
-        r2 = limit2(i3 * r2 * 3);
-        g2 = limit2(i3 * g2 * 3);
-        b4 = limit2(i3 * b4 * 3);
-        return [r2 * 255, g2 * 255, b4 * 255, args.length > 3 ? args[3] : 1];
-      };
-      var hsi2rgb_1 = hsi2rgb;
-      var unpack$m = utils2.unpack;
-      var type$h = utils2.type;
-      var chroma$e = chroma_1;
-      var Color$x = Color_1;
-      var input$a = input$h;
-      var rgb2hsi = rgb2hsi_1;
-      Color$x.prototype.hsi = function() {
-        return rgb2hsi(this._rgb);
-      };
-      chroma$e.hsi = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$x, [null].concat(args, ["hsi"])))();
-      };
-      input$a.format.hsi = hsi2rgb_1;
-      input$a.autodetect.push({
-        p: 2,
-        test: function() {
-          var args = [], len = arguments.length;
-          while (len--)
-            args[len] = arguments[len];
-          args = unpack$m(args, "hsi");
-          if (type$h(args) === "array" && args.length === 3) {
-            return "hsi";
-          }
-        }
-      });
-      var unpack$l = utils2.unpack;
-      var type$g = utils2.type;
-      var chroma$d = chroma_1;
-      var Color$w = Color_1;
-      var input$9 = input$h;
-      var rgb2hsl$1 = rgb2hsl_1;
-      Color$w.prototype.hsl = function() {
-        return rgb2hsl$1(this._rgb);
-      };
-      chroma$d.hsl = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$w, [null].concat(args, ["hsl"])))();
-      };
-      input$9.format.hsl = hsl2rgb_1;
-      input$9.autodetect.push({
-        p: 2,
-        test: function() {
-          var args = [], len = arguments.length;
-          while (len--)
-            args[len] = arguments[len];
-          args = unpack$l(args, "hsl");
-          if (type$g(args) === "array" && args.length === 3) {
-            return "hsl";
-          }
-        }
-      });
-      var unpack$k = utils2.unpack;
-      var min$1 = Math.min;
-      var max$1 = Math.max;
-      var rgb2hsl = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$k(args, "rgb");
-        var r2 = args[0];
-        var g2 = args[1];
-        var b4 = args[2];
-        var min_ = min$1(r2, g2, b4);
-        var max_ = max$1(r2, g2, b4);
-        var delta = max_ - min_;
-        var h3, s3, v3;
-        v3 = max_ / 255;
-        if (max_ === 0) {
-          h3 = Number.NaN;
-          s3 = 0;
-        } else {
-          s3 = delta / max_;
-          if (r2 === max_) {
-            h3 = (g2 - b4) / delta;
-          }
-          if (g2 === max_) {
-            h3 = 2 + (b4 - r2) / delta;
-          }
-          if (b4 === max_) {
-            h3 = 4 + (r2 - g2) / delta;
-          }
-          h3 *= 60;
-          if (h3 < 0) {
-            h3 += 360;
-          }
-        }
-        return [h3, s3, v3];
-      };
-      var rgb2hsv$1 = rgb2hsl;
-      var unpack$j = utils2.unpack;
-      var floor$2 = Math.floor;
-      var hsv2rgb = function() {
-        var assign2, assign$1, assign$2, assign$3, assign$4, assign$5;
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$j(args, "hsv");
-        var h3 = args[0];
-        var s3 = args[1];
-        var v3 = args[2];
-        var r2, g2, b4;
-        v3 *= 255;
-        if (s3 === 0) {
-          r2 = g2 = b4 = v3;
-        } else {
-          if (h3 === 360) {
-            h3 = 0;
-          }
-          if (h3 > 360) {
-            h3 -= 360;
-          }
-          if (h3 < 0) {
-            h3 += 360;
-          }
-          h3 /= 60;
-          var i3 = floor$2(h3);
-          var f5 = h3 - i3;
-          var p2 = v3 * (1 - s3);
-          var q = v3 * (1 - s3 * f5);
-          var t2 = v3 * (1 - s3 * (1 - f5));
-          switch (i3) {
-            case 0:
-              assign2 = [v3, t2, p2], r2 = assign2[0], g2 = assign2[1], b4 = assign2[2];
-              break;
-            case 1:
-              assign$1 = [q, v3, p2], r2 = assign$1[0], g2 = assign$1[1], b4 = assign$1[2];
-              break;
-            case 2:
-              assign$2 = [p2, v3, t2], r2 = assign$2[0], g2 = assign$2[1], b4 = assign$2[2];
-              break;
-            case 3:
-              assign$3 = [p2, q, v3], r2 = assign$3[0], g2 = assign$3[1], b4 = assign$3[2];
-              break;
-            case 4:
-              assign$4 = [t2, p2, v3], r2 = assign$4[0], g2 = assign$4[1], b4 = assign$4[2];
-              break;
-            case 5:
-              assign$5 = [v3, p2, q], r2 = assign$5[0], g2 = assign$5[1], b4 = assign$5[2];
-              break;
-          }
-        }
-        return [r2, g2, b4, args.length > 3 ? args[3] : 1];
-      };
-      var hsv2rgb_1 = hsv2rgb;
-      var unpack$i = utils2.unpack;
-      var type$f = utils2.type;
-      var chroma$c = chroma_1;
-      var Color$v = Color_1;
-      var input$8 = input$h;
-      var rgb2hsv = rgb2hsv$1;
-      Color$v.prototype.hsv = function() {
-        return rgb2hsv(this._rgb);
-      };
-      chroma$c.hsv = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$v, [null].concat(args, ["hsv"])))();
-      };
-      input$8.format.hsv = hsv2rgb_1;
-      input$8.autodetect.push({
-        p: 2,
-        test: function() {
-          var args = [], len = arguments.length;
-          while (len--)
-            args[len] = arguments[len];
-          args = unpack$i(args, "hsv");
-          if (type$f(args) === "array" && args.length === 3) {
-            return "hsv";
-          }
-        }
-      });
-      var labConstants = {
-        Kn: 18,
-        Xn: 0.95047,
-        Yn: 1,
-        Zn: 1.08883,
-        t0: 0.137931034,
-        t1: 0.206896552,
-        t2: 0.12841855,
-        t3: 8856452e-9
-      };
-      var LAB_CONSTANTS$3 = labConstants;
-      var unpack$h = utils2.unpack;
-      var pow$a = Math.pow;
-      var rgb2lab$2 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$h(args, "rgb");
-        var r2 = ref[0];
-        var g2 = ref[1];
-        var b4 = ref[2];
-        var ref$1 = rgb2xyz(r2, g2, b4);
-        var x2 = ref$1[0];
-        var y = ref$1[1];
-        var z = ref$1[2];
-        var l = 116 * y - 16;
-        return [l < 0 ? 0 : l, 500 * (x2 - y), 200 * (y - z)];
-      };
-      var rgb_xyz = function(r2) {
-        if ((r2 /= 255) <= 0.04045) {
-          return r2 / 12.92;
-        }
-        return pow$a((r2 + 0.055) / 1.055, 2.4);
-      };
-      var xyz_lab = function(t2) {
-        if (t2 > LAB_CONSTANTS$3.t3) {
-          return pow$a(t2, 1 / 3);
-        }
-        return t2 / LAB_CONSTANTS$3.t2 + LAB_CONSTANTS$3.t0;
-      };
-      var rgb2xyz = function(r2, g2, b4) {
-        r2 = rgb_xyz(r2);
-        g2 = rgb_xyz(g2);
-        b4 = rgb_xyz(b4);
-        var x2 = xyz_lab((0.4124564 * r2 + 0.3575761 * g2 + 0.1804375 * b4) / LAB_CONSTANTS$3.Xn);
-        var y = xyz_lab((0.2126729 * r2 + 0.7151522 * g2 + 0.072175 * b4) / LAB_CONSTANTS$3.Yn);
-        var z = xyz_lab((0.0193339 * r2 + 0.119192 * g2 + 0.9503041 * b4) / LAB_CONSTANTS$3.Zn);
-        return [x2, y, z];
-      };
-      var rgb2lab_1 = rgb2lab$2;
-      var LAB_CONSTANTS$2 = labConstants;
-      var unpack$g = utils2.unpack;
-      var pow$9 = Math.pow;
-      var lab2rgb$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$g(args, "lab");
-        var l = args[0];
-        var a = args[1];
-        var b4 = args[2];
-        var x2, y, z, r2, g2, b_;
-        y = (l + 16) / 116;
-        x2 = isNaN(a) ? y : y + a / 500;
-        z = isNaN(b4) ? y : y - b4 / 200;
-        y = LAB_CONSTANTS$2.Yn * lab_xyz(y);
-        x2 = LAB_CONSTANTS$2.Xn * lab_xyz(x2);
-        z = LAB_CONSTANTS$2.Zn * lab_xyz(z);
-        r2 = xyz_rgb(3.2404542 * x2 - 1.5371385 * y - 0.4985314 * z);
-        g2 = xyz_rgb(-0.969266 * x2 + 1.8760108 * y + 0.041556 * z);
-        b_ = xyz_rgb(0.0556434 * x2 - 0.2040259 * y + 1.0572252 * z);
-        return [r2, g2, b_, args.length > 3 ? args[3] : 1];
-      };
-      var xyz_rgb = function(r2) {
-        return 255 * (r2 <= 304e-5 ? 12.92 * r2 : 1.055 * pow$9(r2, 1 / 2.4) - 0.055);
-      };
-      var lab_xyz = function(t2) {
-        return t2 > LAB_CONSTANTS$2.t1 ? t2 * t2 * t2 : LAB_CONSTANTS$2.t2 * (t2 - LAB_CONSTANTS$2.t0);
-      };
-      var lab2rgb_1 = lab2rgb$1;
-      var unpack$f = utils2.unpack;
-      var type$e = utils2.type;
-      var chroma$b = chroma_1;
-      var Color$u = Color_1;
-      var input$7 = input$h;
-      var rgb2lab$1 = rgb2lab_1;
-      Color$u.prototype.lab = function() {
-        return rgb2lab$1(this._rgb);
-      };
-      chroma$b.lab = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$u, [null].concat(args, ["lab"])))();
-      };
-      input$7.format.lab = lab2rgb_1;
-      input$7.autodetect.push({
-        p: 2,
-        test: function() {
-          var args = [], len = arguments.length;
-          while (len--)
-            args[len] = arguments[len];
-          args = unpack$f(args, "lab");
-          if (type$e(args) === "array" && args.length === 3) {
-            return "lab";
-          }
-        }
-      });
-      var unpack$e = utils2.unpack;
-      var RAD2DEG = utils2.RAD2DEG;
-      var sqrt$3 = Math.sqrt;
-      var atan2$2 = Math.atan2;
-      var round$2 = Math.round;
-      var lab2lch$2 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$e(args, "lab");
-        var l = ref[0];
-        var a = ref[1];
-        var b4 = ref[2];
-        var c3 = sqrt$3(a * a + b4 * b4);
-        var h3 = (atan2$2(b4, a) * RAD2DEG + 360) % 360;
-        if (round$2(c3 * 1e4) === 0) {
-          h3 = Number.NaN;
-        }
-        return [l, c3, h3];
-      };
-      var lab2lch_1 = lab2lch$2;
-      var unpack$d = utils2.unpack;
-      var rgb2lab = rgb2lab_1;
-      var lab2lch$1 = lab2lch_1;
-      var rgb2lch$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$d(args, "rgb");
-        var r2 = ref[0];
-        var g2 = ref[1];
-        var b4 = ref[2];
-        var ref$1 = rgb2lab(r2, g2, b4);
-        var l = ref$1[0];
-        var a = ref$1[1];
-        var b_ = ref$1[2];
-        return lab2lch$1(l, a, b_);
-      };
-      var rgb2lch_1 = rgb2lch$1;
-      var unpack$c = utils2.unpack;
-      var DEG2RAD = utils2.DEG2RAD;
-      var sin$3 = Math.sin;
-      var cos$3 = Math.cos;
-      var lch2lab$2 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$c(args, "lch");
-        var l = ref[0];
-        var c3 = ref[1];
-        var h3 = ref[2];
-        if (isNaN(h3)) {
-          h3 = 0;
-        }
-        h3 = h3 * DEG2RAD;
-        return [l, cos$3(h3) * c3, sin$3(h3) * c3];
-      };
-      var lch2lab_1 = lch2lab$2;
-      var unpack$b = utils2.unpack;
-      var lch2lab$1 = lch2lab_1;
-      var lab2rgb = lab2rgb_1;
-      var lch2rgb$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$b(args, "lch");
-        var l = args[0];
-        var c3 = args[1];
-        var h3 = args[2];
-        var ref = lch2lab$1(l, c3, h3);
-        var L = ref[0];
-        var a = ref[1];
-        var b_ = ref[2];
-        var ref$1 = lab2rgb(L, a, b_);
-        var r2 = ref$1[0];
-        var g2 = ref$1[1];
-        var b4 = ref$1[2];
-        return [r2, g2, b4, args.length > 3 ? args[3] : 1];
-      };
-      var lch2rgb_1 = lch2rgb$1;
-      var unpack$a = utils2.unpack;
-      var lch2rgb = lch2rgb_1;
-      var hcl2rgb = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var hcl = unpack$a(args, "hcl").reverse();
-        return lch2rgb.apply(void 0, hcl);
-      };
-      var hcl2rgb_1 = hcl2rgb;
-      var unpack$9 = utils2.unpack;
-      var type$d = utils2.type;
-      var chroma$a = chroma_1;
-      var Color$t = Color_1;
-      var input$6 = input$h;
-      var rgb2lch = rgb2lch_1;
-      Color$t.prototype.lch = function() {
-        return rgb2lch(this._rgb);
-      };
-      Color$t.prototype.hcl = function() {
-        return rgb2lch(this._rgb).reverse();
-      };
-      chroma$a.lch = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$t, [null].concat(args, ["lch"])))();
-      };
-      chroma$a.hcl = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$t, [null].concat(args, ["hcl"])))();
-      };
-      input$6.format.lch = lch2rgb_1;
-      input$6.format.hcl = hcl2rgb_1;
-      ["lch", "hcl"].forEach(function(m3) {
-        return input$6.autodetect.push({
-          p: 2,
-          test: function() {
-            var args = [], len = arguments.length;
-            while (len--)
-              args[len] = arguments[len];
-            args = unpack$9(args, m3);
-            if (type$d(args) === "array" && args.length === 3) {
-              return m3;
-            }
-          }
-        });
-      });
-      var w3cx11$1 = {
-        aliceblue: "#f0f8ff",
-        antiquewhite: "#faebd7",
-        aqua: "#00ffff",
-        aquamarine: "#7fffd4",
-        azure: "#f0ffff",
-        beige: "#f5f5dc",
-        bisque: "#ffe4c4",
-        black: "#000000",
-        blanchedalmond: "#ffebcd",
-        blue: "#0000ff",
-        blueviolet: "#8a2be2",
-        brown: "#a52a2a",
-        burlywood: "#deb887",
-        cadetblue: "#5f9ea0",
-        chartreuse: "#7fff00",
-        chocolate: "#d2691e",
-        coral: "#ff7f50",
-        cornflower: "#6495ed",
-        cornflowerblue: "#6495ed",
-        cornsilk: "#fff8dc",
-        crimson: "#dc143c",
-        cyan: "#00ffff",
-        darkblue: "#00008b",
-        darkcyan: "#008b8b",
-        darkgoldenrod: "#b8860b",
-        darkgray: "#a9a9a9",
-        darkgreen: "#006400",
-        darkgrey: "#a9a9a9",
-        darkkhaki: "#bdb76b",
-        darkmagenta: "#8b008b",
-        darkolivegreen: "#556b2f",
-        darkorange: "#ff8c00",
-        darkorchid: "#9932cc",
-        darkred: "#8b0000",
-        darksalmon: "#e9967a",
-        darkseagreen: "#8fbc8f",
-        darkslateblue: "#483d8b",
-        darkslategray: "#2f4f4f",
-        darkslategrey: "#2f4f4f",
-        darkturquoise: "#00ced1",
-        darkviolet: "#9400d3",
-        deeppink: "#ff1493",
-        deepskyblue: "#00bfff",
-        dimgray: "#696969",
-        dimgrey: "#696969",
-        dodgerblue: "#1e90ff",
-        firebrick: "#b22222",
-        floralwhite: "#fffaf0",
-        forestgreen: "#228b22",
-        fuchsia: "#ff00ff",
-        gainsboro: "#dcdcdc",
-        ghostwhite: "#f8f8ff",
-        gold: "#ffd700",
-        goldenrod: "#daa520",
-        gray: "#808080",
-        green: "#008000",
-        greenyellow: "#adff2f",
-        grey: "#808080",
-        honeydew: "#f0fff0",
-        hotpink: "#ff69b4",
-        indianred: "#cd5c5c",
-        indigo: "#4b0082",
-        ivory: "#fffff0",
-        khaki: "#f0e68c",
-        laserlemon: "#ffff54",
-        lavender: "#e6e6fa",
-        lavenderblush: "#fff0f5",
-        lawngreen: "#7cfc00",
-        lemonchiffon: "#fffacd",
-        lightblue: "#add8e6",
-        lightcoral: "#f08080",
-        lightcyan: "#e0ffff",
-        lightgoldenrod: "#fafad2",
-        lightgoldenrodyellow: "#fafad2",
-        lightgray: "#d3d3d3",
-        lightgreen: "#90ee90",
-        lightgrey: "#d3d3d3",
-        lightpink: "#ffb6c1",
-        lightsalmon: "#ffa07a",
-        lightseagreen: "#20b2aa",
-        lightskyblue: "#87cefa",
-        lightslategray: "#778899",
-        lightslategrey: "#778899",
-        lightsteelblue: "#b0c4de",
-        lightyellow: "#ffffe0",
-        lime: "#00ff00",
-        limegreen: "#32cd32",
-        linen: "#faf0e6",
-        magenta: "#ff00ff",
-        maroon: "#800000",
-        maroon2: "#7f0000",
-        maroon3: "#b03060",
-        mediumaquamarine: "#66cdaa",
-        mediumblue: "#0000cd",
-        mediumorchid: "#ba55d3",
-        mediumpurple: "#9370db",
-        mediumseagreen: "#3cb371",
-        mediumslateblue: "#7b68ee",
-        mediumspringgreen: "#00fa9a",
-        mediumturquoise: "#48d1cc",
-        mediumvioletred: "#c71585",
-        midnightblue: "#191970",
-        mintcream: "#f5fffa",
-        mistyrose: "#ffe4e1",
-        moccasin: "#ffe4b5",
-        navajowhite: "#ffdead",
-        navy: "#000080",
-        oldlace: "#fdf5e6",
-        olive: "#808000",
-        olivedrab: "#6b8e23",
-        orange: "#ffa500",
-        orangered: "#ff4500",
-        orchid: "#da70d6",
-        palegoldenrod: "#eee8aa",
-        palegreen: "#98fb98",
-        paleturquoise: "#afeeee",
-        palevioletred: "#db7093",
-        papayawhip: "#ffefd5",
-        peachpuff: "#ffdab9",
-        peru: "#cd853f",
-        pink: "#ffc0cb",
-        plum: "#dda0dd",
-        powderblue: "#b0e0e6",
-        purple: "#800080",
-        purple2: "#7f007f",
-        purple3: "#a020f0",
-        rebeccapurple: "#663399",
-        red: "#ff0000",
-        rosybrown: "#bc8f8f",
-        royalblue: "#4169e1",
-        saddlebrown: "#8b4513",
-        salmon: "#fa8072",
-        sandybrown: "#f4a460",
-        seagreen: "#2e8b57",
-        seashell: "#fff5ee",
-        sienna: "#a0522d",
-        silver: "#c0c0c0",
-        skyblue: "#87ceeb",
-        slateblue: "#6a5acd",
-        slategray: "#708090",
-        slategrey: "#708090",
-        snow: "#fffafa",
-        springgreen: "#00ff7f",
-        steelblue: "#4682b4",
-        tan: "#d2b48c",
-        teal: "#008080",
-        thistle: "#d8bfd8",
-        tomato: "#ff6347",
-        turquoise: "#40e0d0",
-        violet: "#ee82ee",
-        wheat: "#f5deb3",
-        white: "#ffffff",
-        whitesmoke: "#f5f5f5",
-        yellow: "#ffff00",
-        yellowgreen: "#9acd32"
-      };
-      var w3cx11_1 = w3cx11$1;
-      var Color$s = Color_1;
-      var input$5 = input$h;
-      var type$c = utils2.type;
-      var w3cx11 = w3cx11_1;
-      var hex2rgb = hex2rgb_1;
-      var rgb2hex = rgb2hex_1;
-      Color$s.prototype.name = function() {
-        var hex = rgb2hex(this._rgb, "rgb");
-        for (var i3 = 0, list2 = Object.keys(w3cx11); i3 < list2.length; i3 += 1) {
-          var n = list2[i3];
-          if (w3cx11[n] === hex) {
-            return n.toLowerCase();
-          }
-        }
-        return hex;
-      };
-      input$5.format.named = function(name8) {
-        name8 = name8.toLowerCase();
-        if (w3cx11[name8]) {
-          return hex2rgb(w3cx11[name8]);
-        }
-        throw new Error("unknown color name: " + name8);
-      };
-      input$5.autodetect.push({
-        p: 5,
-        test: function(h3) {
-          var rest = [], len = arguments.length - 1;
-          while (len-- > 0)
-            rest[len] = arguments[len + 1];
-          if (!rest.length && type$c(h3) === "string" && w3cx11[h3.toLowerCase()]) {
-            return "named";
-          }
-        }
-      });
-      var unpack$8 = utils2.unpack;
-      var rgb2num$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$8(args, "rgb");
-        var r2 = ref[0];
-        var g2 = ref[1];
-        var b4 = ref[2];
-        return (r2 << 16) + (g2 << 8) + b4;
-      };
-      var rgb2num_1 = rgb2num$1;
-      var type$b = utils2.type;
-      var num2rgb = function(num2) {
-        if (type$b(num2) == "number" && num2 >= 0 && num2 <= 16777215) {
-          var r2 = num2 >> 16;
-          var g2 = num2 >> 8 & 255;
-          var b4 = num2 & 255;
-          return [r2, g2, b4, 1];
-        }
-        throw new Error("unknown num color: " + num2);
-      };
-      var num2rgb_1 = num2rgb;
-      var chroma$9 = chroma_1;
-      var Color$r = Color_1;
-      var input$4 = input$h;
-      var type$a = utils2.type;
-      var rgb2num = rgb2num_1;
-      Color$r.prototype.num = function() {
-        return rgb2num(this._rgb);
-      };
-      chroma$9.num = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$r, [null].concat(args, ["num"])))();
-      };
-      input$4.format.num = num2rgb_1;
-      input$4.autodetect.push({
-        p: 5,
-        test: function() {
-          var args = [], len = arguments.length;
-          while (len--)
-            args[len] = arguments[len];
-          if (args.length === 1 && type$a(args[0]) === "number" && args[0] >= 0 && args[0] <= 16777215) {
-            return "num";
-          }
-        }
-      });
-      var chroma$8 = chroma_1;
-      var Color$q = Color_1;
-      var input$3 = input$h;
-      var unpack$7 = utils2.unpack;
-      var type$9 = utils2.type;
-      var round$1 = Math.round;
-      Color$q.prototype.rgb = function(rnd2) {
-        if (rnd2 === void 0)
-          rnd2 = true;
-        if (rnd2 === false) {
-          return this._rgb.slice(0, 3);
-        }
-        return this._rgb.slice(0, 3).map(round$1);
-      };
-      Color$q.prototype.rgba = function(rnd2) {
-        if (rnd2 === void 0)
-          rnd2 = true;
-        return this._rgb.slice(0, 4).map(function(v3, i3) {
-          return i3 < 3 ? rnd2 === false ? v3 : round$1(v3) : v3;
-        });
-      };
-      chroma$8.rgb = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$q, [null].concat(args, ["rgb"])))();
-      };
-      input$3.format.rgb = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var rgba = unpack$7(args, "rgba");
-        if (rgba[3] === void 0) {
-          rgba[3] = 1;
-        }
-        return rgba;
-      };
-      input$3.autodetect.push({
-        p: 3,
-        test: function() {
-          var args = [], len = arguments.length;
-          while (len--)
-            args[len] = arguments[len];
-          args = unpack$7(args, "rgba");
-          if (type$9(args) === "array" && (args.length === 3 || args.length === 4 && type$9(args[3]) == "number" && args[3] >= 0 && args[3] <= 1)) {
-            return "rgb";
-          }
-        }
-      });
-      var log$1 = Math.log;
-      var temperature2rgb$1 = function(kelvin) {
-        var temp = kelvin / 100;
-        var r2, g2, b4;
-        if (temp < 66) {
-          r2 = 255;
-          g2 = temp < 6 ? 0 : -155.25485562709179 - 0.44596950469579133 * (g2 = temp - 2) + 104.49216199393888 * log$1(g2);
-          b4 = temp < 20 ? 0 : -254.76935184120902 + 0.8274096064007395 * (b4 = temp - 10) + 115.67994401066147 * log$1(b4);
-        } else {
-          r2 = 351.97690566805693 + 0.114206453784165 * (r2 = temp - 55) - 40.25366309332127 * log$1(r2);
-          g2 = 325.4494125711974 + 0.07943456536662342 * (g2 = temp - 50) - 28.0852963507957 * log$1(g2);
-          b4 = 255;
-        }
-        return [r2, g2, b4, 1];
-      };
-      var temperature2rgb_1 = temperature2rgb$1;
-      var temperature2rgb = temperature2rgb_1;
-      var unpack$6 = utils2.unpack;
-      var round = Math.round;
-      var rgb2temperature$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var rgb2 = unpack$6(args, "rgb");
-        var r2 = rgb2[0], b4 = rgb2[2];
-        var minTemp = 1e3;
-        var maxTemp = 4e4;
-        var eps = 0.4;
-        var temp;
-        while (maxTemp - minTemp > eps) {
-          temp = (maxTemp + minTemp) * 0.5;
-          var rgb$1 = temperature2rgb(temp);
-          if (rgb$1[2] / rgb$1[0] >= b4 / r2) {
-            maxTemp = temp;
-          } else {
-            minTemp = temp;
-          }
-        }
-        return round(temp);
-      };
-      var rgb2temperature_1 = rgb2temperature$1;
-      var chroma$7 = chroma_1;
-      var Color$p = Color_1;
-      var input$2 = input$h;
-      var rgb2temperature = rgb2temperature_1;
-      Color$p.prototype.temp = Color$p.prototype.kelvin = Color$p.prototype.temperature = function() {
-        return rgb2temperature(this._rgb);
-      };
-      chroma$7.temp = chroma$7.kelvin = chroma$7.temperature = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$p, [null].concat(args, ["temp"])))();
-      };
-      input$2.format.temp = input$2.format.kelvin = input$2.format.temperature = temperature2rgb_1;
-      var unpack$5 = utils2.unpack;
-      var cbrt = Math.cbrt;
-      var pow$8 = Math.pow;
-      var sign$1 = Math.sign;
-      var rgb2oklab$2 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$5(args, "rgb");
-        var r2 = ref[0];
-        var g2 = ref[1];
-        var b4 = ref[2];
-        var ref$1 = [rgb2lrgb(r2 / 255), rgb2lrgb(g2 / 255), rgb2lrgb(b4 / 255)];
-        var lr = ref$1[0];
-        var lg = ref$1[1];
-        var lb = ref$1[2];
-        var l = cbrt(0.4122214708 * lr + 0.5363325363 * lg + 0.0514459929 * lb);
-        var m3 = cbrt(0.2119034982 * lr + 0.6806995451 * lg + 0.1073969566 * lb);
-        var s3 = cbrt(0.0883024619 * lr + 0.2817188376 * lg + 0.6299787005 * lb);
-        return [
-          0.2104542553 * l + 0.793617785 * m3 - 0.0040720468 * s3,
-          1.9779984951 * l - 2.428592205 * m3 + 0.4505937099 * s3,
-          0.0259040371 * l + 0.7827717662 * m3 - 0.808675766 * s3
-        ];
-      };
-      var rgb2oklab_1 = rgb2oklab$2;
-      function rgb2lrgb(c3) {
-        var abs2 = Math.abs(c3);
-        if (abs2 < 0.04045) {
-          return c3 / 12.92;
-        }
-        return (sign$1(c3) || 1) * pow$8((abs2 + 0.055) / 1.055, 2.4);
-      }
-      var unpack$4 = utils2.unpack;
-      var pow$7 = Math.pow;
-      var sign = Math.sign;
-      var oklab2rgb$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$4(args, "lab");
-        var L = args[0];
-        var a = args[1];
-        var b4 = args[2];
-        var l = pow$7(L + 0.3963377774 * a + 0.2158037573 * b4, 3);
-        var m3 = pow$7(L - 0.1055613458 * a - 0.0638541728 * b4, 3);
-        var s3 = pow$7(L - 0.0894841775 * a - 1.291485548 * b4, 3);
-        return [
-          255 * lrgb2rgb(4.0767416621 * l - 3.3077115913 * m3 + 0.2309699292 * s3),
-          255 * lrgb2rgb(-1.2684380046 * l + 2.6097574011 * m3 - 0.3413193965 * s3),
-          255 * lrgb2rgb(-0.0041960863 * l - 0.7034186147 * m3 + 1.707614701 * s3),
-          args.length > 3 ? args[3] : 1
-        ];
-      };
-      var oklab2rgb_1 = oklab2rgb$1;
-      function lrgb2rgb(c3) {
-        var abs2 = Math.abs(c3);
-        if (abs2 > 31308e-7) {
-          return (sign(c3) || 1) * (1.055 * pow$7(abs2, 1 / 2.4) - 0.055);
-        }
-        return c3 * 12.92;
-      }
-      var unpack$3 = utils2.unpack;
-      var type$8 = utils2.type;
-      var chroma$6 = chroma_1;
-      var Color$o = Color_1;
-      var input$1 = input$h;
-      var rgb2oklab$1 = rgb2oklab_1;
-      Color$o.prototype.oklab = function() {
-        return rgb2oklab$1(this._rgb);
-      };
-      chroma$6.oklab = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$o, [null].concat(args, ["oklab"])))();
-      };
-      input$1.format.oklab = oklab2rgb_1;
-      input$1.autodetect.push({
-        p: 3,
-        test: function() {
-          var args = [], len = arguments.length;
-          while (len--)
-            args[len] = arguments[len];
-          args = unpack$3(args, "oklab");
-          if (type$8(args) === "array" && args.length === 3) {
-            return "oklab";
-          }
-        }
-      });
-      var unpack$2 = utils2.unpack;
-      var rgb2oklab = rgb2oklab_1;
-      var lab2lch = lab2lch_1;
-      var rgb2oklch$1 = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        var ref = unpack$2(args, "rgb");
-        var r2 = ref[0];
-        var g2 = ref[1];
-        var b4 = ref[2];
-        var ref$1 = rgb2oklab(r2, g2, b4);
-        var l = ref$1[0];
-        var a = ref$1[1];
-        var b_ = ref$1[2];
-        return lab2lch(l, a, b_);
-      };
-      var rgb2oklch_1 = rgb2oklch$1;
-      var unpack$1 = utils2.unpack;
-      var lch2lab = lch2lab_1;
-      var oklab2rgb = oklab2rgb_1;
-      var oklch2rgb = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        args = unpack$1(args, "lch");
-        var l = args[0];
-        var c3 = args[1];
-        var h3 = args[2];
-        var ref = lch2lab(l, c3, h3);
-        var L = ref[0];
-        var a = ref[1];
-        var b_ = ref[2];
-        var ref$1 = oklab2rgb(L, a, b_);
-        var r2 = ref$1[0];
-        var g2 = ref$1[1];
-        var b4 = ref$1[2];
-        return [r2, g2, b4, args.length > 3 ? args[3] : 1];
-      };
-      var oklch2rgb_1 = oklch2rgb;
-      var unpack = utils2.unpack;
-      var type$7 = utils2.type;
-      var chroma$5 = chroma_1;
-      var Color$n = Color_1;
-      var input = input$h;
-      var rgb2oklch = rgb2oklch_1;
-      Color$n.prototype.oklch = function() {
-        return rgb2oklch(this._rgb);
-      };
-      chroma$5.oklch = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        return new (Function.prototype.bind.apply(Color$n, [null].concat(args, ["oklch"])))();
-      };
-      input.format.oklch = oklch2rgb_1;
-      input.autodetect.push({
-        p: 3,
-        test: function() {
-          var args = [], len = arguments.length;
-          while (len--)
-            args[len] = arguments[len];
-          args = unpack(args, "oklch");
-          if (type$7(args) === "array" && args.length === 3) {
-            return "oklch";
-          }
-        }
-      });
-      var Color$m = Color_1;
-      var type$6 = utils2.type;
-      Color$m.prototype.alpha = function(a, mutate) {
-        if (mutate === void 0)
-          mutate = false;
-        if (a !== void 0 && type$6(a) === "number") {
-          if (mutate) {
-            this._rgb[3] = a;
-            return this;
-          }
-          return new Color$m([this._rgb[0], this._rgb[1], this._rgb[2], a], "rgb");
-        }
-        return this._rgb[3];
-      };
-      var Color$l = Color_1;
-      Color$l.prototype.clipped = function() {
-        return this._rgb._clipped || false;
-      };
-      var Color$k = Color_1;
-      var LAB_CONSTANTS$1 = labConstants;
-      Color$k.prototype.darken = function(amount) {
-        if (amount === void 0)
-          amount = 1;
-        var me = this;
-        var lab2 = me.lab();
-        lab2[0] -= LAB_CONSTANTS$1.Kn * amount;
-        return new Color$k(lab2, "lab").alpha(me.alpha(), true);
-      };
-      Color$k.prototype.brighten = function(amount) {
-        if (amount === void 0)
-          amount = 1;
-        return this.darken(-amount);
-      };
-      Color$k.prototype.darker = Color$k.prototype.darken;
-      Color$k.prototype.brighter = Color$k.prototype.brighten;
-      var Color$j = Color_1;
-      Color$j.prototype.get = function(mc) {
-        var ref = mc.split(".");
-        var mode = ref[0];
-        var channel = ref[1];
-        var src = this[mode]();
-        if (channel) {
-          var i3 = mode.indexOf(channel) - (mode.substr(0, 2) === "ok" ? 2 : 0);
-          if (i3 > -1) {
-            return src[i3];
-          }
-          throw new Error("unknown channel " + channel + " in mode " + mode);
-        } else {
-          return src;
-        }
-      };
-      var Color$i = Color_1;
-      var type$5 = utils2.type;
-      var pow$6 = Math.pow;
-      var EPS = 1e-7;
-      var MAX_ITER = 20;
-      Color$i.prototype.luminance = function(lum) {
-        if (lum !== void 0 && type$5(lum) === "number") {
-          if (lum === 0) {
-            return new Color$i([0, 0, 0, this._rgb[3]], "rgb");
-          }
-          if (lum === 1) {
-            return new Color$i([255, 255, 255, this._rgb[3]], "rgb");
-          }
-          var cur_lum = this.luminance();
-          var mode = "rgb";
-          var max_iter = MAX_ITER;
-          var test = function(low, high) {
-            var mid = low.interpolate(high, 0.5, mode);
-            var lm = mid.luminance();
-            if (Math.abs(lum - lm) < EPS || !max_iter--) {
-              return mid;
-            }
-            return lm > lum ? test(low, mid) : test(mid, high);
-          };
-          var rgb2 = (cur_lum > lum ? test(new Color$i([0, 0, 0]), this) : test(this, new Color$i([255, 255, 255]))).rgb();
-          return new Color$i(rgb2.concat([this._rgb[3]]));
-        }
-        return rgb2luminance.apply(void 0, this._rgb.slice(0, 3));
-      };
-      var rgb2luminance = function(r2, g2, b4) {
-        r2 = luminance_x(r2);
-        g2 = luminance_x(g2);
-        b4 = luminance_x(b4);
-        return 0.2126 * r2 + 0.7152 * g2 + 0.0722 * b4;
-      };
-      var luminance_x = function(x2) {
-        x2 /= 255;
-        return x2 <= 0.03928 ? x2 / 12.92 : pow$6((x2 + 0.055) / 1.055, 2.4);
-      };
-      var interpolator$1 = {};
-      var Color$h = Color_1;
-      var type$4 = utils2.type;
-      var interpolator = interpolator$1;
-      var mix$1 = function(col1, col2, f5) {
-        if (f5 === void 0)
-          f5 = 0.5;
-        var rest = [], len = arguments.length - 3;
-        while (len-- > 0)
-          rest[len] = arguments[len + 3];
-        var mode = rest[0] || "lrgb";
-        if (!interpolator[mode] && !rest.length) {
-          mode = Object.keys(interpolator)[0];
-        }
-        if (!interpolator[mode]) {
-          throw new Error("interpolation mode " + mode + " is not defined");
-        }
-        if (type$4(col1) !== "object") {
-          col1 = new Color$h(col1);
-        }
-        if (type$4(col2) !== "object") {
-          col2 = new Color$h(col2);
-        }
-        return interpolator[mode](col1, col2, f5).alpha(col1.alpha() + f5 * (col2.alpha() - col1.alpha()));
-      };
-      var Color$g = Color_1;
-      var mix = mix$1;
-      Color$g.prototype.mix = Color$g.prototype.interpolate = function(col2, f5) {
-        if (f5 === void 0)
-          f5 = 0.5;
-        var rest = [], len = arguments.length - 2;
-        while (len-- > 0)
-          rest[len] = arguments[len + 2];
-        return mix.apply(void 0, [this, col2, f5].concat(rest));
-      };
-      var Color$f = Color_1;
-      Color$f.prototype.premultiply = function(mutate) {
-        if (mutate === void 0)
-          mutate = false;
-        var rgb2 = this._rgb;
-        var a = rgb2[3];
-        if (mutate) {
-          this._rgb = [rgb2[0] * a, rgb2[1] * a, rgb2[2] * a, a];
-          return this;
-        } else {
-          return new Color$f([rgb2[0] * a, rgb2[1] * a, rgb2[2] * a, a], "rgb");
-        }
-      };
-      var Color$e = Color_1;
-      var LAB_CONSTANTS = labConstants;
-      Color$e.prototype.saturate = function(amount) {
-        if (amount === void 0)
-          amount = 1;
-        var me = this;
-        var lch2 = me.lch();
-        lch2[1] += LAB_CONSTANTS.Kn * amount;
-        if (lch2[1] < 0) {
-          lch2[1] = 0;
-        }
-        return new Color$e(lch2, "lch").alpha(me.alpha(), true);
-      };
-      Color$e.prototype.desaturate = function(amount) {
-        if (amount === void 0)
-          amount = 1;
-        return this.saturate(-amount);
-      };
-      var Color$d = Color_1;
-      var type$3 = utils2.type;
-      Color$d.prototype.set = function(mc, value, mutate) {
-        if (mutate === void 0)
-          mutate = false;
-        var ref = mc.split(".");
-        var mode = ref[0];
-        var channel = ref[1];
-        var src = this[mode]();
-        if (channel) {
-          var i3 = mode.indexOf(channel) - (mode.substr(0, 2) === "ok" ? 2 : 0);
-          if (i3 > -1) {
-            if (type$3(value) == "string") {
-              switch (value.charAt(0)) {
-                case "+":
-                  src[i3] += +value;
-                  break;
-                case "-":
-                  src[i3] += +value;
-                  break;
-                case "*":
-                  src[i3] *= +value.substr(1);
-                  break;
-                case "/":
-                  src[i3] /= +value.substr(1);
-                  break;
-                default:
-                  src[i3] = +value;
-              }
-            } else if (type$3(value) === "number") {
-              src[i3] = value;
-            } else {
-              throw new Error("unsupported value for Color.set");
-            }
-            var out = new Color$d(src, mode);
-            if (mutate) {
-              this._rgb = out._rgb;
-              return this;
-            }
-            return out;
-          }
-          throw new Error("unknown channel " + channel + " in mode " + mode);
-        } else {
-          return src;
-        }
-      };
-      var Color$c = Color_1;
-      var rgb = function(col1, col2, f5) {
-        var xyz0 = col1._rgb;
-        var xyz1 = col2._rgb;
-        return new Color$c(
-          xyz0[0] + f5 * (xyz1[0] - xyz0[0]),
-          xyz0[1] + f5 * (xyz1[1] - xyz0[1]),
-          xyz0[2] + f5 * (xyz1[2] - xyz0[2]),
-          "rgb"
-        );
-      };
-      interpolator$1.rgb = rgb;
-      var Color$b = Color_1;
-      var sqrt$2 = Math.sqrt;
-      var pow$5 = Math.pow;
-      var lrgb = function(col1, col2, f5) {
-        var ref = col1._rgb;
-        var x1 = ref[0];
-        var y1 = ref[1];
-        var z1 = ref[2];
-        var ref$1 = col2._rgb;
-        var x2 = ref$1[0];
-        var y2 = ref$1[1];
-        var z2 = ref$1[2];
-        return new Color$b(
-          sqrt$2(pow$5(x1, 2) * (1 - f5) + pow$5(x2, 2) * f5),
-          sqrt$2(pow$5(y1, 2) * (1 - f5) + pow$5(y2, 2) * f5),
-          sqrt$2(pow$5(z1, 2) * (1 - f5) + pow$5(z2, 2) * f5),
-          "rgb"
-        );
-      };
-      interpolator$1.lrgb = lrgb;
-      var Color$a = Color_1;
-      var lab = function(col1, col2, f5) {
-        var xyz0 = col1.lab();
-        var xyz1 = col2.lab();
-        return new Color$a(
-          xyz0[0] + f5 * (xyz1[0] - xyz0[0]),
-          xyz0[1] + f5 * (xyz1[1] - xyz0[1]),
-          xyz0[2] + f5 * (xyz1[2] - xyz0[2]),
-          "lab"
-        );
-      };
-      interpolator$1.lab = lab;
-      var Color$9 = Color_1;
-      var _hsx = function(col1, col2, f5, m3) {
-        var assign2, assign$1;
-        var xyz0, xyz1;
-        if (m3 === "hsl") {
-          xyz0 = col1.hsl();
-          xyz1 = col2.hsl();
-        } else if (m3 === "hsv") {
-          xyz0 = col1.hsv();
-          xyz1 = col2.hsv();
-        } else if (m3 === "hcg") {
-          xyz0 = col1.hcg();
-          xyz1 = col2.hcg();
-        } else if (m3 === "hsi") {
-          xyz0 = col1.hsi();
-          xyz1 = col2.hsi();
-        } else if (m3 === "lch" || m3 === "hcl") {
-          m3 = "hcl";
-          xyz0 = col1.hcl();
-          xyz1 = col2.hcl();
-        } else if (m3 === "oklch") {
-          xyz0 = col1.oklch().reverse();
-          xyz1 = col2.oklch().reverse();
-        }
-        var hue0, hue1, sat0, sat1, lbv0, lbv1;
-        if (m3.substr(0, 1) === "h" || m3 === "oklch") {
-          assign2 = xyz0, hue0 = assign2[0], sat0 = assign2[1], lbv0 = assign2[2];
-          assign$1 = xyz1, hue1 = assign$1[0], sat1 = assign$1[1], lbv1 = assign$1[2];
-        }
-        var sat, hue, lbv, dh;
-        if (!isNaN(hue0) && !isNaN(hue1)) {
-          if (hue1 > hue0 && hue1 - hue0 > 180) {
-            dh = hue1 - (hue0 + 360);
-          } else if (hue1 < hue0 && hue0 - hue1 > 180) {
-            dh = hue1 + 360 - hue0;
-          } else {
-            dh = hue1 - hue0;
-          }
-          hue = hue0 + f5 * dh;
-        } else if (!isNaN(hue0)) {
-          hue = hue0;
-          if ((lbv1 == 1 || lbv1 == 0) && m3 != "hsv") {
-            sat = sat0;
-          }
-        } else if (!isNaN(hue1)) {
-          hue = hue1;
-          if ((lbv0 == 1 || lbv0 == 0) && m3 != "hsv") {
-            sat = sat1;
-          }
-        } else {
-          hue = Number.NaN;
-        }
-        if (sat === void 0) {
-          sat = sat0 + f5 * (sat1 - sat0);
-        }
-        lbv = lbv0 + f5 * (lbv1 - lbv0);
-        return m3 === "oklch" ? new Color$9([lbv, sat, hue], m3) : new Color$9([hue, sat, lbv], m3);
-      };
-      var interpolate_hsx$5 = _hsx;
-      var lch = function(col1, col2, f5) {
-        return interpolate_hsx$5(col1, col2, f5, "lch");
-      };
-      interpolator$1.lch = lch;
-      interpolator$1.hcl = lch;
-      var Color$8 = Color_1;
-      var num = function(col1, col2, f5) {
-        var c1 = col1.num();
-        var c22 = col2.num();
-        return new Color$8(c1 + f5 * (c22 - c1), "num");
-      };
-      interpolator$1.num = num;
-      var interpolate_hsx$4 = _hsx;
-      var hcg = function(col1, col2, f5) {
-        return interpolate_hsx$4(col1, col2, f5, "hcg");
-      };
-      interpolator$1.hcg = hcg;
-      var interpolate_hsx$3 = _hsx;
-      var hsi = function(col1, col2, f5) {
-        return interpolate_hsx$3(col1, col2, f5, "hsi");
-      };
-      interpolator$1.hsi = hsi;
-      var interpolate_hsx$2 = _hsx;
-      var hsl = function(col1, col2, f5) {
-        return interpolate_hsx$2(col1, col2, f5, "hsl");
-      };
-      interpolator$1.hsl = hsl;
-      var interpolate_hsx$1 = _hsx;
-      var hsv = function(col1, col2, f5) {
-        return interpolate_hsx$1(col1, col2, f5, "hsv");
-      };
-      interpolator$1.hsv = hsv;
-      var Color$7 = Color_1;
-      var oklab = function(col1, col2, f5) {
-        var xyz0 = col1.oklab();
-        var xyz1 = col2.oklab();
-        return new Color$7(
-          xyz0[0] + f5 * (xyz1[0] - xyz0[0]),
-          xyz0[1] + f5 * (xyz1[1] - xyz0[1]),
-          xyz0[2] + f5 * (xyz1[2] - xyz0[2]),
-          "oklab"
-        );
-      };
-      interpolator$1.oklab = oklab;
-      var interpolate_hsx = _hsx;
-      var oklch = function(col1, col2, f5) {
-        return interpolate_hsx(col1, col2, f5, "oklch");
-      };
-      interpolator$1.oklch = oklch;
-      var Color$6 = Color_1;
-      var clip_rgb$1 = utils2.clip_rgb;
-      var pow$4 = Math.pow;
-      var sqrt$1 = Math.sqrt;
-      var PI$1 = Math.PI;
-      var cos$2 = Math.cos;
-      var sin$2 = Math.sin;
-      var atan2$1 = Math.atan2;
-      var average = function(colors2, mode, weights) {
-        if (mode === void 0)
-          mode = "lrgb";
-        if (weights === void 0)
-          weights = null;
-        var l = colors2.length;
-        if (!weights) {
-          weights = Array.from(new Array(l)).map(function() {
-            return 1;
-          });
-        }
-        var k = l / weights.reduce(function(a, b4) {
-          return a + b4;
-        });
-        weights.forEach(function(w2, i4) {
-          weights[i4] *= k;
-        });
-        colors2 = colors2.map(function(c3) {
-          return new Color$6(c3);
-        });
-        if (mode === "lrgb") {
-          return _average_lrgb(colors2, weights);
-        }
-        var first = colors2.shift();
-        var xyz = first.get(mode);
-        var cnt = [];
-        var dx = 0;
-        var dy = 0;
-        for (var i3 = 0; i3 < xyz.length; i3++) {
-          xyz[i3] = (xyz[i3] || 0) * weights[0];
-          cnt.push(isNaN(xyz[i3]) ? 0 : weights[0]);
-          if (mode.charAt(i3) === "h" && !isNaN(xyz[i3])) {
-            var A2 = xyz[i3] / 180 * PI$1;
-            dx += cos$2(A2) * weights[0];
-            dy += sin$2(A2) * weights[0];
-          }
-        }
-        var alpha = first.alpha() * weights[0];
-        colors2.forEach(function(c3, ci) {
-          var xyz2 = c3.get(mode);
-          alpha += c3.alpha() * weights[ci + 1];
-          for (var i4 = 0; i4 < xyz.length; i4++) {
-            if (!isNaN(xyz2[i4])) {
-              cnt[i4] += weights[ci + 1];
-              if (mode.charAt(i4) === "h") {
-                var A3 = xyz2[i4] / 180 * PI$1;
-                dx += cos$2(A3) * weights[ci + 1];
-                dy += sin$2(A3) * weights[ci + 1];
-              } else {
-                xyz[i4] += xyz2[i4] * weights[ci + 1];
-              }
-            }
-          }
-        });
-        for (var i$12 = 0; i$12 < xyz.length; i$12++) {
-          if (mode.charAt(i$12) === "h") {
-            var A$1 = atan2$1(dy / cnt[i$12], dx / cnt[i$12]) / PI$1 * 180;
-            while (A$1 < 0) {
-              A$1 += 360;
-            }
-            while (A$1 >= 360) {
-              A$1 -= 360;
-            }
-            xyz[i$12] = A$1;
-          } else {
-            xyz[i$12] = xyz[i$12] / cnt[i$12];
-          }
-        }
-        alpha /= l;
-        return new Color$6(xyz, mode).alpha(alpha > 0.99999 ? 1 : alpha, true);
-      };
-      var _average_lrgb = function(colors2, weights) {
-        var l = colors2.length;
-        var xyz = [0, 0, 0, 0];
-        for (var i3 = 0; i3 < colors2.length; i3++) {
-          var col = colors2[i3];
-          var f5 = weights[i3] / l;
-          var rgb2 = col._rgb;
-          xyz[0] += pow$4(rgb2[0], 2) * f5;
-          xyz[1] += pow$4(rgb2[1], 2) * f5;
-          xyz[2] += pow$4(rgb2[2], 2) * f5;
-          xyz[3] += rgb2[3] * f5;
-        }
-        xyz[0] = sqrt$1(xyz[0]);
-        xyz[1] = sqrt$1(xyz[1]);
-        xyz[2] = sqrt$1(xyz[2]);
-        if (xyz[3] > 0.9999999) {
-          xyz[3] = 1;
-        }
-        return new Color$6(clip_rgb$1(xyz));
-      };
-      var chroma$4 = chroma_1;
-      var type$2 = utils2.type;
-      var pow$3 = Math.pow;
-      var scale$2 = function(colors2) {
-        var _mode = "rgb";
-        var _nacol = chroma$4("#ccc");
-        var _spread = 0;
-        var _domain = [0, 1];
-        var _pos = [];
-        var _padding = [0, 0];
-        var _classes = false;
-        var _colors = [];
-        var _out = false;
-        var _min = 0;
-        var _max = 1;
-        var _correctLightness = false;
-        var _colorCache = {};
-        var _useCache = true;
-        var _gamma = 1;
-        var setColors = function(colors3) {
-          colors3 = colors3 || ["#fff", "#000"];
-          if (colors3 && type$2(colors3) === "string" && chroma$4.brewer && chroma$4.brewer[colors3.toLowerCase()]) {
-            colors3 = chroma$4.brewer[colors3.toLowerCase()];
-          }
-          if (type$2(colors3) === "array") {
-            if (colors3.length === 1) {
-              colors3 = [colors3[0], colors3[0]];
-            }
-            colors3 = colors3.slice(0);
-            for (var c3 = 0; c3 < colors3.length; c3++) {
-              colors3[c3] = chroma$4(colors3[c3]);
-            }
-            _pos.length = 0;
-            for (var c$1 = 0; c$1 < colors3.length; c$1++) {
-              _pos.push(c$1 / (colors3.length - 1));
-            }
-          }
-          resetCache();
-          return _colors = colors3;
-        };
-        var getClass = function(value) {
-          if (_classes != null) {
-            var n = _classes.length - 1;
-            var i3 = 0;
-            while (i3 < n && value >= _classes[i3]) {
-              i3++;
-            }
-            return i3 - 1;
-          }
-          return 0;
-        };
-        var tMapLightness = function(t2) {
-          return t2;
-        };
-        var tMapDomain = function(t2) {
-          return t2;
-        };
-        var getColor = function(val, bypassMap) {
-          var col, t2;
-          if (bypassMap == null) {
-            bypassMap = false;
-          }
-          if (isNaN(val) || val === null) {
-            return _nacol;
-          }
-          if (!bypassMap) {
-            if (_classes && _classes.length > 2) {
-              var c3 = getClass(val);
-              t2 = c3 / (_classes.length - 2);
-            } else if (_max !== _min) {
-              t2 = (val - _min) / (_max - _min);
-            } else {
-              t2 = 1;
-            }
-          } else {
-            t2 = val;
-          }
-          t2 = tMapDomain(t2);
-          if (!bypassMap) {
-            t2 = tMapLightness(t2);
-          }
-          if (_gamma !== 1) {
-            t2 = pow$3(t2, _gamma);
-          }
-          t2 = _padding[0] + t2 * (1 - _padding[0] - _padding[1]);
-          t2 = Math.min(1, Math.max(0, t2));
-          var k = Math.floor(t2 * 1e4);
-          if (_useCache && _colorCache[k]) {
-            col = _colorCache[k];
-          } else {
-            if (type$2(_colors) === "array") {
-              for (var i3 = 0; i3 < _pos.length; i3++) {
-                var p2 = _pos[i3];
-                if (t2 <= p2) {
-                  col = _colors[i3];
-                  break;
-                }
-                if (t2 >= p2 && i3 === _pos.length - 1) {
-                  col = _colors[i3];
-                  break;
-                }
-                if (t2 > p2 && t2 < _pos[i3 + 1]) {
-                  t2 = (t2 - p2) / (_pos[i3 + 1] - p2);
-                  col = chroma$4.interpolate(_colors[i3], _colors[i3 + 1], t2, _mode);
-                  break;
-                }
-              }
-            } else if (type$2(_colors) === "function") {
-              col = _colors(t2);
-            }
-            if (_useCache) {
-              _colorCache[k] = col;
-            }
-          }
-          return col;
-        };
-        var resetCache = function() {
-          return _colorCache = {};
-        };
-        setColors(colors2);
-        var f5 = function(v3) {
-          var c3 = chroma$4(getColor(v3));
-          if (_out && c3[_out]) {
-            return c3[_out]();
-          } else {
-            return c3;
-          }
-        };
-        f5.classes = function(classes) {
-          if (classes != null) {
-            if (type$2(classes) === "array") {
-              _classes = classes;
-              _domain = [classes[0], classes[classes.length - 1]];
-            } else {
-              var d3 = chroma$4.analyze(_domain);
-              if (classes === 0) {
-                _classes = [d3.min, d3.max];
-              } else {
-                _classes = chroma$4.limits(d3, "e", classes);
-              }
-            }
-            return f5;
-          }
-          return _classes;
-        };
-        f5.domain = function(domain) {
-          if (!arguments.length) {
-            return _domain;
-          }
-          _min = domain[0];
-          _max = domain[domain.length - 1];
-          _pos = [];
-          var k = _colors.length;
-          if (domain.length === k && _min !== _max) {
-            for (var i3 = 0, list2 = Array.from(domain); i3 < list2.length; i3 += 1) {
-              var d3 = list2[i3];
-              _pos.push((d3 - _min) / (_max - _min));
-            }
-          } else {
-            for (var c3 = 0; c3 < k; c3++) {
-              _pos.push(c3 / (k - 1));
-            }
-            if (domain.length > 2) {
-              var tOut = domain.map(function(d4, i4) {
-                return i4 / (domain.length - 1);
-              });
-              var tBreaks = domain.map(function(d4) {
-                return (d4 - _min) / (_max - _min);
-              });
-              if (!tBreaks.every(function(val, i4) {
-                return tOut[i4] === val;
-              })) {
-                tMapDomain = function(t2) {
-                  if (t2 <= 0 || t2 >= 1) {
-                    return t2;
-                  }
-                  var i4 = 0;
-                  while (t2 >= tBreaks[i4 + 1]) {
-                    i4++;
-                  }
-                  var f6 = (t2 - tBreaks[i4]) / (tBreaks[i4 + 1] - tBreaks[i4]);
-                  var out = tOut[i4] + f6 * (tOut[i4 + 1] - tOut[i4]);
-                  return out;
-                };
-              }
-            }
-          }
-          _domain = [_min, _max];
-          return f5;
-        };
-        f5.mode = function(_m) {
-          if (!arguments.length) {
-            return _mode;
-          }
-          _mode = _m;
-          resetCache();
-          return f5;
-        };
-        f5.range = function(colors3, _pos2) {
-          setColors(colors3);
-          return f5;
-        };
-        f5.out = function(_o) {
-          _out = _o;
-          return f5;
-        };
-        f5.spread = function(val) {
-          if (!arguments.length) {
-            return _spread;
-          }
-          _spread = val;
-          return f5;
-        };
-        f5.correctLightness = function(v3) {
-          if (v3 == null) {
-            v3 = true;
-          }
-          _correctLightness = v3;
-          resetCache();
-          if (_correctLightness) {
-            tMapLightness = function(t2) {
-              var L0 = getColor(0, true).lab()[0];
-              var L1 = getColor(1, true).lab()[0];
-              var pol = L0 > L1;
-              var L_actual = getColor(t2, true).lab()[0];
-              var L_ideal = L0 + (L1 - L0) * t2;
-              var L_diff = L_actual - L_ideal;
-              var t0 = 0;
-              var t1 = 1;
-              var max_iter = 20;
-              while (Math.abs(L_diff) > 0.01 && max_iter-- > 0) {
-                (function() {
-                  if (pol) {
-                    L_diff *= -1;
-                  }
-                  if (L_diff < 0) {
-                    t0 = t2;
-                    t2 += (t1 - t2) * 0.5;
-                  } else {
-                    t1 = t2;
-                    t2 += (t0 - t2) * 0.5;
-                  }
-                  L_actual = getColor(t2, true).lab()[0];
-                  return L_diff = L_actual - L_ideal;
-                })();
-              }
-              return t2;
-            };
-          } else {
-            tMapLightness = function(t2) {
-              return t2;
-            };
-          }
-          return f5;
-        };
-        f5.padding = function(p2) {
-          if (p2 != null) {
-            if (type$2(p2) === "number") {
-              p2 = [p2, p2];
-            }
-            _padding = p2;
-            return f5;
-          } else {
-            return _padding;
-          }
-        };
-        f5.colors = function(numColors, out) {
-          if (arguments.length < 2) {
-            out = "hex";
-          }
-          var result = [];
-          if (arguments.length === 0) {
-            result = _colors.slice(0);
-          } else if (numColors === 1) {
-            result = [f5(0.5)];
-          } else if (numColors > 1) {
-            var dm = _domain[0];
-            var dd = _domain[1] - dm;
-            result = __range__(0, numColors, false).map(function(i4) {
-              return f5(dm + i4 / (numColors - 1) * dd);
-            });
-          } else {
-            colors2 = [];
-            var samples = [];
-            if (_classes && _classes.length > 2) {
-              for (var i3 = 1, end = _classes.length, asc = 1 <= end; asc ? i3 < end : i3 > end; asc ? i3++ : i3--) {
-                samples.push((_classes[i3 - 1] + _classes[i3]) * 0.5);
-              }
-            } else {
-              samples = _domain;
-            }
-            result = samples.map(function(v3) {
-              return f5(v3);
-            });
-          }
-          if (chroma$4[out]) {
-            result = result.map(function(c3) {
-              return c3[out]();
-            });
-          }
-          return result;
-        };
-        f5.cache = function(c3) {
-          if (c3 != null) {
-            _useCache = c3;
-            return f5;
-          } else {
-            return _useCache;
-          }
-        };
-        f5.gamma = function(g2) {
-          if (g2 != null) {
-            _gamma = g2;
-            return f5;
-          } else {
-            return _gamma;
-          }
-        };
-        f5.nodata = function(d3) {
-          if (d3 != null) {
-            _nacol = chroma$4(d3);
-            return f5;
-          } else {
-            return _nacol;
-          }
-        };
-        return f5;
-      };
-      function __range__(left, right, inclusive) {
-        var range = [];
-        var ascending = left < right;
-        var end = !inclusive ? right : ascending ? right + 1 : right - 1;
-        for (var i3 = left; ascending ? i3 < end : i3 > end; ascending ? i3++ : i3--) {
-          range.push(i3);
-        }
-        return range;
-      }
-      var Color$5 = Color_1;
-      var scale$1 = scale$2;
-      var binom_row = function(n) {
-        var row = [1, 1];
-        for (var i3 = 1; i3 < n; i3++) {
-          var newrow = [1];
-          for (var j2 = 1; j2 <= row.length; j2++) {
-            newrow[j2] = (row[j2] || 0) + row[j2 - 1];
-          }
-          row = newrow;
-        }
-        return row;
-      };
-      var bezier = function(colors2) {
-        var assign2, assign$1, assign$2;
-        var I, lab0, lab1, lab2;
-        colors2 = colors2.map(function(c3) {
-          return new Color$5(c3);
-        });
-        if (colors2.length === 2) {
-          assign2 = colors2.map(function(c3) {
-            return c3.lab();
-          }), lab0 = assign2[0], lab1 = assign2[1];
-          I = function(t2) {
-            var lab4 = [0, 1, 2].map(function(i3) {
-              return lab0[i3] + t2 * (lab1[i3] - lab0[i3]);
-            });
-            return new Color$5(lab4, "lab");
-          };
-        } else if (colors2.length === 3) {
-          assign$1 = colors2.map(function(c3) {
-            return c3.lab();
-          }), lab0 = assign$1[0], lab1 = assign$1[1], lab2 = assign$1[2];
-          I = function(t2) {
-            var lab4 = [0, 1, 2].map(function(i3) {
-              return (1 - t2) * (1 - t2) * lab0[i3] + 2 * (1 - t2) * t2 * lab1[i3] + t2 * t2 * lab2[i3];
-            });
-            return new Color$5(lab4, "lab");
-          };
-        } else if (colors2.length === 4) {
-          var lab3;
-          assign$2 = colors2.map(function(c3) {
-            return c3.lab();
-          }), lab0 = assign$2[0], lab1 = assign$2[1], lab2 = assign$2[2], lab3 = assign$2[3];
-          I = function(t2) {
-            var lab4 = [0, 1, 2].map(function(i3) {
-              return (1 - t2) * (1 - t2) * (1 - t2) * lab0[i3] + 3 * (1 - t2) * (1 - t2) * t2 * lab1[i3] + 3 * (1 - t2) * t2 * t2 * lab2[i3] + t2 * t2 * t2 * lab3[i3];
-            });
-            return new Color$5(lab4, "lab");
-          };
-        } else if (colors2.length >= 5) {
-          var labs, row, n;
-          labs = colors2.map(function(c3) {
-            return c3.lab();
-          });
-          n = colors2.length - 1;
-          row = binom_row(n);
-          I = function(t2) {
-            var u2 = 1 - t2;
-            var lab4 = [0, 1, 2].map(function(i3) {
-              return labs.reduce(function(sum, el, j2) {
-                return sum + row[j2] * Math.pow(u2, n - j2) * Math.pow(t2, j2) * el[i3];
-              }, 0);
-            });
-            return new Color$5(lab4, "lab");
-          };
-        } else {
-          throw new RangeError("No point in running bezier with only one color.");
-        }
-        return I;
-      };
-      var bezier_1 = function(colors2) {
-        var f5 = bezier(colors2);
-        f5.scale = function() {
-          return scale$1(f5);
-        };
-        return f5;
-      };
-      var chroma$3 = chroma_1;
-      var blend = function(bottom, top, mode) {
-        if (!blend[mode]) {
-          throw new Error("unknown blend mode " + mode);
-        }
-        return blend[mode](bottom, top);
-      };
-      var blend_f = function(f5) {
-        return function(bottom, top) {
-          var c0 = chroma$3(top).rgb();
-          var c1 = chroma$3(bottom).rgb();
-          return chroma$3.rgb(f5(c0, c1));
-        };
-      };
-      var each2 = function(f5) {
-        return function(c0, c1) {
-          var out = [];
-          out[0] = f5(c0[0], c1[0]);
-          out[1] = f5(c0[1], c1[1]);
-          out[2] = f5(c0[2], c1[2]);
-          return out;
-        };
-      };
-      var normal = function(a) {
-        return a;
-      };
-      var multiply = function(a, b4) {
-        return a * b4 / 255;
-      };
-      var darken = function(a, b4) {
-        return a > b4 ? b4 : a;
-      };
-      var lighten = function(a, b4) {
-        return a > b4 ? a : b4;
-      };
-      var screen = function(a, b4) {
-        return 255 * (1 - (1 - a / 255) * (1 - b4 / 255));
-      };
-      var overlay = function(a, b4) {
-        return b4 < 128 ? 2 * a * b4 / 255 : 255 * (1 - 2 * (1 - a / 255) * (1 - b4 / 255));
-      };
-      var burn = function(a, b4) {
-        return 255 * (1 - (1 - b4 / 255) / (a / 255));
-      };
-      var dodge = function(a, b4) {
-        if (a === 255) {
-          return 255;
-        }
-        a = 255 * (b4 / 255) / (1 - a / 255);
-        return a > 255 ? 255 : a;
-      };
-      blend.normal = blend_f(each2(normal));
-      blend.multiply = blend_f(each2(multiply));
-      blend.screen = blend_f(each2(screen));
-      blend.overlay = blend_f(each2(overlay));
-      blend.darken = blend_f(each2(darken));
-      blend.lighten = blend_f(each2(lighten));
-      blend.dodge = blend_f(each2(dodge));
-      blend.burn = blend_f(each2(burn));
-      var blend_1 = blend;
-      var type$1 = utils2.type;
-      var clip_rgb = utils2.clip_rgb;
-      var TWOPI = utils2.TWOPI;
-      var pow$2 = Math.pow;
-      var sin$1 = Math.sin;
-      var cos$1 = Math.cos;
-      var chroma$2 = chroma_1;
-      var cubehelix = function(start2, rotations, hue, gamma, lightness) {
-        if (start2 === void 0)
-          start2 = 300;
-        if (rotations === void 0)
-          rotations = -1.5;
-        if (hue === void 0)
-          hue = 1;
-        if (gamma === void 0)
-          gamma = 1;
-        if (lightness === void 0)
-          lightness = [0, 1];
-        var dh = 0, dl;
-        if (type$1(lightness) === "array") {
-          dl = lightness[1] - lightness[0];
-        } else {
-          dl = 0;
-          lightness = [lightness, lightness];
-        }
-        var f5 = function(fract) {
-          var a = TWOPI * ((start2 + 120) / 360 + rotations * fract);
-          var l = pow$2(lightness[0] + dl * fract, gamma);
-          var h3 = dh !== 0 ? hue[0] + fract * dh : hue;
-          var amp = h3 * l * (1 - l) / 2;
-          var cos_a = cos$1(a);
-          var sin_a = sin$1(a);
-          var r2 = l + amp * (-0.14861 * cos_a + 1.78277 * sin_a);
-          var g2 = l + amp * (-0.29227 * cos_a - 0.90649 * sin_a);
-          var b4 = l + amp * (1.97294 * cos_a);
-          return chroma$2(clip_rgb([r2 * 255, g2 * 255, b4 * 255, 1]));
-        };
-        f5.start = function(s3) {
-          if (s3 == null) {
-            return start2;
-          }
-          start2 = s3;
-          return f5;
-        };
-        f5.rotations = function(r2) {
-          if (r2 == null) {
-            return rotations;
-          }
-          rotations = r2;
-          return f5;
-        };
-        f5.gamma = function(g2) {
-          if (g2 == null) {
-            return gamma;
-          }
-          gamma = g2;
-          return f5;
-        };
-        f5.hue = function(h3) {
-          if (h3 == null) {
-            return hue;
-          }
-          hue = h3;
-          if (type$1(hue) === "array") {
-            dh = hue[1] - hue[0];
-            if (dh === 0) {
-              hue = hue[1];
-            }
-          } else {
-            dh = 0;
-          }
-          return f5;
-        };
-        f5.lightness = function(h3) {
-          if (h3 == null) {
-            return lightness;
-          }
-          if (type$1(h3) === "array") {
-            lightness = h3;
-            dl = h3[1] - h3[0];
-          } else {
-            lightness = [h3, h3];
-            dl = 0;
-          }
-          return f5;
-        };
-        f5.scale = function() {
-          return chroma$2.scale(f5);
-        };
-        f5.hue(hue);
-        return f5;
-      };
-      var Color$4 = Color_1;
-      var digits = "0123456789abcdef";
-      var floor$1 = Math.floor;
-      var random = Math.random;
-      var random_1 = function() {
-        var code = "#";
-        for (var i3 = 0; i3 < 6; i3++) {
-          code += digits.charAt(floor$1(random() * 16));
-        }
-        return new Color$4(code, "hex");
-      };
-      var type = type$p;
-      var log = Math.log;
-      var pow$1 = Math.pow;
-      var floor = Math.floor;
-      var abs$1 = Math.abs;
-      var analyze = function(data, key3) {
-        if (key3 === void 0)
-          key3 = null;
-        var r2 = {
-          min: Number.MAX_VALUE,
-          max: Number.MAX_VALUE * -1,
-          sum: 0,
-          values: [],
-          count: 0
-        };
-        if (type(data) === "object") {
-          data = Object.values(data);
-        }
-        data.forEach(function(val) {
-          if (key3 && type(val) === "object") {
-            val = val[key3];
-          }
-          if (val !== void 0 && val !== null && !isNaN(val)) {
-            r2.values.push(val);
-            r2.sum += val;
-            if (val < r2.min) {
-              r2.min = val;
-            }
-            if (val > r2.max) {
-              r2.max = val;
-            }
-            r2.count += 1;
-          }
-        });
-        r2.domain = [r2.min, r2.max];
-        r2.limits = function(mode, num2) {
-          return limits(r2, mode, num2);
-        };
-        return r2;
-      };
-      var limits = function(data, mode, num2) {
-        if (mode === void 0)
-          mode = "equal";
-        if (num2 === void 0)
-          num2 = 7;
-        if (type(data) == "array") {
-          data = analyze(data);
-        }
-        var min2 = data.min;
-        var max2 = data.max;
-        var values = data.values.sort(function(a, b4) {
-          return a - b4;
-        });
-        if (num2 === 1) {
-          return [min2, max2];
-        }
-        var limits2 = [];
-        if (mode.substr(0, 1) === "c") {
-          limits2.push(min2);
-          limits2.push(max2);
-        }
-        if (mode.substr(0, 1) === "e") {
-          limits2.push(min2);
-          for (var i3 = 1; i3 < num2; i3++) {
-            limits2.push(min2 + i3 / num2 * (max2 - min2));
-          }
-          limits2.push(max2);
-        } else if (mode.substr(0, 1) === "l") {
-          if (min2 <= 0) {
-            throw new Error("Logarithmic scales are only possible for values > 0");
-          }
-          var min_log = Math.LOG10E * log(min2);
-          var max_log = Math.LOG10E * log(max2);
-          limits2.push(min2);
-          for (var i$12 = 1; i$12 < num2; i$12++) {
-            limits2.push(pow$1(10, min_log + i$12 / num2 * (max_log - min_log)));
-          }
-          limits2.push(max2);
-        } else if (mode.substr(0, 1) === "q") {
-          limits2.push(min2);
-          for (var i$2 = 1; i$2 < num2; i$2++) {
-            var p2 = (values.length - 1) * i$2 / num2;
-            var pb = floor(p2);
-            if (pb === p2) {
-              limits2.push(values[pb]);
-            } else {
-              var pr = p2 - pb;
-              limits2.push(values[pb] * (1 - pr) + values[pb + 1] * pr);
-            }
-          }
-          limits2.push(max2);
-        } else if (mode.substr(0, 1) === "k") {
-          var cluster;
-          var n = values.length;
-          var assignments = new Array(n);
-          var clusterSizes = new Array(num2);
-          var repeat = true;
-          var nb_iters = 0;
-          var centroids = null;
-          centroids = [];
-          centroids.push(min2);
-          for (var i$3 = 1; i$3 < num2; i$3++) {
-            centroids.push(min2 + i$3 / num2 * (max2 - min2));
-          }
-          centroids.push(max2);
-          while (repeat) {
-            for (var j2 = 0; j2 < num2; j2++) {
-              clusterSizes[j2] = 0;
-            }
-            for (var i$4 = 0; i$4 < n; i$4++) {
-              var value = values[i$4];
-              var mindist = Number.MAX_VALUE;
-              var best = void 0;
-              for (var j$1 = 0; j$1 < num2; j$1++) {
-                var dist = abs$1(centroids[j$1] - value);
-                if (dist < mindist) {
-                  mindist = dist;
-                  best = j$1;
-                }
-                clusterSizes[best]++;
-                assignments[i$4] = best;
-              }
-            }
-            var newCentroids = new Array(num2);
-            for (var j$2 = 0; j$2 < num2; j$2++) {
-              newCentroids[j$2] = null;
-            }
-            for (var i$5 = 0; i$5 < n; i$5++) {
-              cluster = assignments[i$5];
-              if (newCentroids[cluster] === null) {
-                newCentroids[cluster] = values[i$5];
-              } else {
-                newCentroids[cluster] += values[i$5];
-              }
-            }
-            for (var j$3 = 0; j$3 < num2; j$3++) {
-              newCentroids[j$3] *= 1 / clusterSizes[j$3];
-            }
-            repeat = false;
-            for (var j$4 = 0; j$4 < num2; j$4++) {
-              if (newCentroids[j$4] !== centroids[j$4]) {
-                repeat = true;
-                break;
-              }
-            }
-            centroids = newCentroids;
-            nb_iters++;
-            if (nb_iters > 200) {
-              repeat = false;
-            }
-          }
-          var kClusters = {};
-          for (var j$5 = 0; j$5 < num2; j$5++) {
-            kClusters[j$5] = [];
-          }
-          for (var i$6 = 0; i$6 < n; i$6++) {
-            cluster = assignments[i$6];
-            kClusters[cluster].push(values[i$6]);
-          }
-          var tmpKMeansBreaks = [];
-          for (var j$6 = 0; j$6 < num2; j$6++) {
-            tmpKMeansBreaks.push(kClusters[j$6][0]);
-            tmpKMeansBreaks.push(kClusters[j$6][kClusters[j$6].length - 1]);
-          }
-          tmpKMeansBreaks = tmpKMeansBreaks.sort(function(a, b4) {
-            return a - b4;
-          });
-          limits2.push(tmpKMeansBreaks[0]);
-          for (var i$7 = 1; i$7 < tmpKMeansBreaks.length; i$7 += 2) {
-            var v3 = tmpKMeansBreaks[i$7];
-            if (!isNaN(v3) && limits2.indexOf(v3) === -1) {
-              limits2.push(v3);
-            }
-          }
-        }
-        return limits2;
-      };
-      var analyze_1 = { analyze, limits };
-      var Color$3 = Color_1;
-      var contrast = function(a, b4) {
-        a = new Color$3(a);
-        b4 = new Color$3(b4);
-        var l1 = a.luminance();
-        var l2 = b4.luminance();
-        return l1 > l2 ? (l1 + 0.05) / (l2 + 0.05) : (l2 + 0.05) / (l1 + 0.05);
-      };
-      var Color$2 = Color_1;
-      var sqrt = Math.sqrt;
-      var pow = Math.pow;
-      var min = Math.min;
-      var max = Math.max;
-      var atan2 = Math.atan2;
-      var abs = Math.abs;
-      var cos = Math.cos;
-      var sin = Math.sin;
-      var exp = Math.exp;
-      var PI = Math.PI;
-      var deltaE = function(a, b4, Kl, Kc, Kh) {
-        if (Kl === void 0)
-          Kl = 1;
-        if (Kc === void 0)
-          Kc = 1;
-        if (Kh === void 0)
-          Kh = 1;
-        var rad2deg = function(rad) {
-          return 360 * rad / (2 * PI);
-        };
-        var deg2rad = function(deg) {
-          return 2 * PI * deg / 360;
-        };
-        a = new Color$2(a);
-        b4 = new Color$2(b4);
-        var ref = Array.from(a.lab());
-        var L1 = ref[0];
-        var a1 = ref[1];
-        var b1 = ref[2];
-        var ref$1 = Array.from(b4.lab());
-        var L2 = ref$1[0];
-        var a2 = ref$1[1];
-        var b22 = ref$1[2];
-        var avgL = (L1 + L2) / 2;
-        var C1 = sqrt(pow(a1, 2) + pow(b1, 2));
-        var C2 = sqrt(pow(a2, 2) + pow(b22, 2));
-        var avgC = (C1 + C2) / 2;
-        var G2 = 0.5 * (1 - sqrt(pow(avgC, 7) / (pow(avgC, 7) + pow(25, 7))));
-        var a1p = a1 * (1 + G2);
-        var a2p = a2 * (1 + G2);
-        var C1p = sqrt(pow(a1p, 2) + pow(b1, 2));
-        var C2p = sqrt(pow(a2p, 2) + pow(b22, 2));
-        var avgCp = (C1p + C2p) / 2;
-        var arctan1 = rad2deg(atan2(b1, a1p));
-        var arctan2 = rad2deg(atan2(b22, a2p));
-        var h1p = arctan1 >= 0 ? arctan1 : arctan1 + 360;
-        var h2p = arctan2 >= 0 ? arctan2 : arctan2 + 360;
-        var avgHp = abs(h1p - h2p) > 180 ? (h1p + h2p + 360) / 2 : (h1p + h2p) / 2;
-        var T2 = 1 - 0.17 * cos(deg2rad(avgHp - 30)) + 0.24 * cos(deg2rad(2 * avgHp)) + 0.32 * cos(deg2rad(3 * avgHp + 6)) - 0.2 * cos(deg2rad(4 * avgHp - 63));
-        var deltaHp = h2p - h1p;
-        deltaHp = abs(deltaHp) <= 180 ? deltaHp : h2p <= h1p ? deltaHp + 360 : deltaHp - 360;
-        deltaHp = 2 * sqrt(C1p * C2p) * sin(deg2rad(deltaHp) / 2);
-        var deltaL = L2 - L1;
-        var deltaCp = C2p - C1p;
-        var sl = 1 + 0.015 * pow(avgL - 50, 2) / sqrt(20 + pow(avgL - 50, 2));
-        var sc = 1 + 0.045 * avgCp;
-        var sh = 1 + 0.015 * avgCp * T2;
-        var deltaTheta = 30 * exp(-pow((avgHp - 275) / 25, 2));
-        var Rc = 2 * sqrt(pow(avgCp, 7) / (pow(avgCp, 7) + pow(25, 7)));
-        var Rt = -Rc * sin(2 * deg2rad(deltaTheta));
-        var result = sqrt(pow(deltaL / (Kl * sl), 2) + pow(deltaCp / (Kc * sc), 2) + pow(deltaHp / (Kh * sh), 2) + Rt * (deltaCp / (Kc * sc)) * (deltaHp / (Kh * sh)));
-        return max(0, min(100, result));
-      };
-      var Color$1 = Color_1;
-      var distance = function(a, b4, mode) {
-        if (mode === void 0)
-          mode = "lab";
-        a = new Color$1(a);
-        b4 = new Color$1(b4);
-        var l1 = a.get(mode);
-        var l2 = b4.get(mode);
-        var sum_sq = 0;
-        for (var i3 in l1) {
-          var d3 = (l1[i3] || 0) - (l2[i3] || 0);
-          sum_sq += d3 * d3;
-        }
-        return Math.sqrt(sum_sq);
-      };
-      var Color = Color_1;
-      var valid = function() {
-        var args = [], len = arguments.length;
-        while (len--)
-          args[len] = arguments[len];
-        try {
-          new (Function.prototype.bind.apply(Color, [null].concat(args)))();
-          return true;
-        } catch (e2) {
-          return false;
-        }
-      };
-      var chroma$1 = chroma_1;
-      var scale = scale$2;
-      var scales = {
-        cool: function cool() {
-          return scale([chroma$1.hsl(180, 1, 0.9), chroma$1.hsl(250, 0.7, 0.4)]);
-        },
-        hot: function hot() {
-          return scale(["#000", "#f00", "#ff0", "#fff"]).mode("rgb");
-        }
-      };
-      var colorbrewer = {
-        OrRd: ["#fff7ec", "#fee8c8", "#fdd49e", "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#b30000", "#7f0000"],
-        PuBu: ["#fff7fb", "#ece7f2", "#d0d1e6", "#a6bddb", "#74a9cf", "#3690c0", "#0570b0", "#045a8d", "#023858"],
-        BuPu: ["#f7fcfd", "#e0ecf4", "#bfd3e6", "#9ebcda", "#8c96c6", "#8c6bb1", "#88419d", "#810f7c", "#4d004b"],
-        Oranges: ["#fff5eb", "#fee6ce", "#fdd0a2", "#fdae6b", "#fd8d3c", "#f16913", "#d94801", "#a63603", "#7f2704"],
-        BuGn: ["#f7fcfd", "#e5f5f9", "#ccece6", "#99d8c9", "#66c2a4", "#41ae76", "#238b45", "#006d2c", "#00441b"],
-        YlOrBr: ["#ffffe5", "#fff7bc", "#fee391", "#fec44f", "#fe9929", "#ec7014", "#cc4c02", "#993404", "#662506"],
-        YlGn: ["#ffffe5", "#f7fcb9", "#d9f0a3", "#addd8e", "#78c679", "#41ab5d", "#238443", "#006837", "#004529"],
-        Reds: ["#fff5f0", "#fee0d2", "#fcbba1", "#fc9272", "#fb6a4a", "#ef3b2c", "#cb181d", "#a50f15", "#67000d"],
-        RdPu: ["#fff7f3", "#fde0dd", "#fcc5c0", "#fa9fb5", "#f768a1", "#dd3497", "#ae017e", "#7a0177", "#49006a"],
-        Greens: ["#f7fcf5", "#e5f5e0", "#c7e9c0", "#a1d99b", "#74c476", "#41ab5d", "#238b45", "#006d2c", "#00441b"],
-        YlGnBu: ["#ffffd9", "#edf8b1", "#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#253494", "#081d58"],
-        Purples: ["#fcfbfd", "#efedf5", "#dadaeb", "#bcbddc", "#9e9ac8", "#807dba", "#6a51a3", "#54278f", "#3f007d"],
-        GnBu: ["#f7fcf0", "#e0f3db", "#ccebc5", "#a8ddb5", "#7bccc4", "#4eb3d3", "#2b8cbe", "#0868ac", "#084081"],
-        Greys: ["#ffffff", "#f0f0f0", "#d9d9d9", "#bdbdbd", "#969696", "#737373", "#525252", "#252525", "#000000"],
-        YlOrRd: ["#ffffcc", "#ffeda0", "#fed976", "#feb24c", "#fd8d3c", "#fc4e2a", "#e31a1c", "#bd0026", "#800026"],
-        PuRd: ["#f7f4f9", "#e7e1ef", "#d4b9da", "#c994c7", "#df65b0", "#e7298a", "#ce1256", "#980043", "#67001f"],
-        Blues: ["#f7fbff", "#deebf7", "#c6dbef", "#9ecae1", "#6baed6", "#4292c6", "#2171b5", "#08519c", "#08306b"],
-        PuBuGn: ["#fff7fb", "#ece2f0", "#d0d1e6", "#a6bddb", "#67a9cf", "#3690c0", "#02818a", "#016c59", "#014636"],
-        Viridis: ["#440154", "#482777", "#3f4a8a", "#31678e", "#26838f", "#1f9d8a", "#6cce5a", "#b6de2b", "#fee825"],
-        Spectral: ["#9e0142", "#d53e4f", "#f46d43", "#fdae61", "#fee08b", "#ffffbf", "#e6f598", "#abdda4", "#66c2a5", "#3288bd", "#5e4fa2"],
-        RdYlGn: ["#a50026", "#d73027", "#f46d43", "#fdae61", "#fee08b", "#ffffbf", "#d9ef8b", "#a6d96a", "#66bd63", "#1a9850", "#006837"],
-        RdBu: ["#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#f7f7f7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061"],
-        PiYG: ["#8e0152", "#c51b7d", "#de77ae", "#f1b6da", "#fde0ef", "#f7f7f7", "#e6f5d0", "#b8e186", "#7fbc41", "#4d9221", "#276419"],
-        PRGn: ["#40004b", "#762a83", "#9970ab", "#c2a5cf", "#e7d4e8", "#f7f7f7", "#d9f0d3", "#a6dba0", "#5aae61", "#1b7837", "#00441b"],
-        RdYlBu: ["#a50026", "#d73027", "#f46d43", "#fdae61", "#fee090", "#ffffbf", "#e0f3f8", "#abd9e9", "#74add1", "#4575b4", "#313695"],
-        BrBG: ["#543005", "#8c510a", "#bf812d", "#dfc27d", "#f6e8c3", "#f5f5f5", "#c7eae5", "#80cdc1", "#35978f", "#01665e", "#003c30"],
-        RdGy: ["#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#ffffff", "#e0e0e0", "#bababa", "#878787", "#4d4d4d", "#1a1a1a"],
-        PuOr: ["#7f3b08", "#b35806", "#e08214", "#fdb863", "#fee0b6", "#f7f7f7", "#d8daeb", "#b2abd2", "#8073ac", "#542788", "#2d004b"],
-        Set2: ["#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f", "#e5c494", "#b3b3b3"],
-        Accent: ["#7fc97f", "#beaed4", "#fdc086", "#ffff99", "#386cb0", "#f0027f", "#bf5b17", "#666666"],
-        Set1: ["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#ffff33", "#a65628", "#f781bf", "#999999"],
-        Set3: ["#8dd3c7", "#ffffb3", "#bebada", "#fb8072", "#80b1d3", "#fdb462", "#b3de69", "#fccde5", "#d9d9d9", "#bc80bd", "#ccebc5", "#ffed6f"],
-        Dark2: ["#1b9e77", "#d95f02", "#7570b3", "#e7298a", "#66a61e", "#e6ab02", "#a6761d", "#666666"],
-        Paired: ["#a6cee3", "#1f78b4", "#b2df8a", "#33a02c", "#fb9a99", "#e31a1c", "#fdbf6f", "#ff7f00", "#cab2d6", "#6a3d9a", "#ffff99", "#b15928"],
-        Pastel2: ["#b3e2cd", "#fdcdac", "#cbd5e8", "#f4cae4", "#e6f5c9", "#fff2ae", "#f1e2cc", "#cccccc"],
-        Pastel1: ["#fbb4ae", "#b3cde3", "#ccebc5", "#decbe4", "#fed9a6", "#ffffcc", "#e5d8bd", "#fddaec", "#f2f2f2"]
-      };
-      for (var i2 = 0, list = Object.keys(colorbrewer); i2 < list.length; i2 += 1) {
-        var key2 = list[i2];
-        colorbrewer[key2.toLowerCase()] = colorbrewer[key2];
-      }
-      var colorbrewer_1 = colorbrewer;
-      var chroma2 = chroma_1;
-      chroma2.average = average;
-      chroma2.bezier = bezier_1;
-      chroma2.blend = blend_1;
-      chroma2.cubehelix = cubehelix;
-      chroma2.mix = chroma2.interpolate = mix$1;
-      chroma2.random = random_1;
-      chroma2.scale = scale$2;
-      chroma2.analyze = analyze_1.analyze;
-      chroma2.contrast = contrast;
-      chroma2.deltaE = deltaE;
-      chroma2.distance = distance;
-      chroma2.limits = analyze_1.limits;
-      chroma2.valid = valid;
-      chroma2.scales = scales;
-      chroma2.colors = w3cx11_1;
-      chroma2.brewer = colorbrewer_1;
-      var chroma_js = chroma2;
-      return chroma_js;
-    });
-  }
-});
-
-// .svelte-kit/output/server/_app/immutable/chunks/column-config-ed3a8d78.js
-var COLUMNS, COLUMN_COUNT;
-var init_column_config_ed3a8d78 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/column-config-ed3a8d78.js"() {
-    init_shims();
-    COLUMNS = [
-      {
-        title: [
-          "\u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
-          "News",
-          "\u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
-        ],
-        icon: "fa-solid fa-radio",
-        height: "200px",
-        type: "news",
-        verified: true,
-        tags: [
-          "mainstream",
-          "aragala",
-          "economy",
-          "political",
-          "legal",
-          "international",
-          "energy",
-          "downloads"
-        ],
-        data: {
-          title: {
-            type: "text",
-            maxlength: 100,
-            placeholder: [
-              "\u0DC1\u0DD3\u0DBB\u0DCA\u0DC2\u0DBA",
-              "title",
-              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
-            ],
-            required: true,
-            translate: true
-          },
-          description: {
-            type: "html",
-            maxlength: 100,
-            placeholder: [
-              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A \u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8 ",
-              "details",
-              "\u0BB5\u0BBF\u0BB5\u0BB0\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
-            ],
-            required: true,
-            translate: true
-          }
-        },
-        dataFormTitle: [
-          "\u0DB4\u0DD4\u0DC0\u0DAD\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "Create a news article",
-          "\u0B92\u0BB0\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF \u0B95\u0B9F\u0BCD\u0B9F\u0BC1\u0BB0\u0BC8\u0BAF\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
-        ],
-        submitButton: [
-          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "create",
-          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
-        ],
-        cancelButton: [
-          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "cancel",
-          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
-        ]
-      },
-      {
-        title: [
-          "\u0DC3\u0DCF\u0D9A\u0DA0\u0DCA\u0DA1\u0DCF",
-          "Discussions",
-          "\u0BB5\u0BBF\u0BB5\u0BBE\u0BA4\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
-        ],
-        icon: "fa-solid fa-comments",
-        height: "310px",
-        type: "video",
-        verified: true,
-        tags: [
-          "economy",
-          "political",
-          "legal",
-          "international",
-          "energy",
-          "philosophy",
-          "english",
-          "discussion"
-        ],
-        data: {
-          videoId: {
-            type: "text",
-            maxlength: 100,
-            placeholder: [
-              "https://www.youtube.com/watch?v=ueYFyWW8e5I",
-              "https://www.youtube.com/watch?v=ueYFyWW8e5I",
-              "https://www.youtube.com/watch?v=ueYFyWW8e5I"
-            ],
-            required: true,
-            validate: (val) => {
-              var videoIdRegexp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
-              let result = videoIdRegexp.exec(val);
-              return !result[1];
-            },
-            process: (val) => {
-              var videoIdRegexp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
-              let result = videoIdRegexp.exec(val);
-              return result[1];
-            }
-          },
-          title: {
-            type: "text",
-            maxlength: 300,
-            placeholder: [
-              "\u0DB8\u0DCF\u0DAD\u0DD8\u0D9A\u0DCF\u0DC0",
-              "title",
-              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
-            ],
-            required: true,
-            translate: true
-          },
-          shortDescription: {
-            type: "text",
-            maxlength: 300,
-            placeholder: [
-              "\u0D9A\u0DD9\u0DA7\u0DD2 \u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DBA",
-              "short description",
-              "\u0B95\u0BC1\u0BB1\u0BC1\u0B95\u0BBF\u0BAF \u0BB5\u0BBF\u0BB3\u0B95\u0BCD\u0B95\u0BAE\u0BCD"
-            ],
-            required: true,
-            translate: true
-          }
-        },
-        dataFormTitle: [
-          "\u0DC0\u0DD3\u0DA9\u0DD2\u0DBA\u0DDD\u0DC0\u0D9A\u0DCA \u0D91\u0D9A\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "Add a video",
-          "\u0B92\u0BB0\u0BC1 \u0BB5\u0BC0\u0B9F\u0BBF\u0BAF\u0BCB\u0BB5\u0BC8\u0B9A\u0BCD \u0B9A\u0BC7\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
-        ],
-        submitButton: [
-          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "submit",
-          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
-        ],
-        cancelButton: [
-          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "cancel",
-          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
-        ]
-      },
-      {
-        title: [
-          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0DCA \u0DB4\u0DD4\u0DC0\u0DBB\u0DD4\u0DC0",
-          "Bulletin board",
-          "\u0B85\u0BB1\u0BBF\u0BB5\u0BBF\u0BAA\u0BCD\u0BAA\u0BC1 \u0BAA\u0BB2\u0B95\u0BC8"
-        ],
-        icon: "fa-solid fa-calendar-days",
-        height: "300px",
-        type: "bulletin",
-        verified: true,
-        tags: [
-          "mainstream",
-          "aragala",
-          "economy",
-          "political",
-          "legal",
-          "international",
-          "energy",
-          "downloads"
-        ],
-        data: {
-          title: {
-            type: "text",
-            maxlength: 100,
-            placeholder: [
-              "\u0DC1\u0DD3\u0DBB\u0DCA\u0DC2\u0DBA",
-              "title",
-              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
-            ],
-            required: true,
-            translate: true
-          },
-          description: {
-            type: "html",
-            maxlength: 100,
-            placeholder: [
-              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A \u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8 ",
-              "details",
-              "\u0BB5\u0BBF\u0BB5\u0BB0\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
-            ],
-            required: true,
-            translate: true
-          }
-        },
-        dataFormTitle: [
-          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "Create a bulletin",
-          "\u0B92\u0BB0\u0BC1 \u0BAA\u0BC1\u0BB2\u0BCD\u0BB2\u0B9F\u0BCD\u0B9F\u0BBF\u0BA9\u0BCD \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
-        ],
-        submitButton: [
-          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "create",
-          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
-        ],
-        cancelButton: [
-          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "cancel",
-          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
-        ]
-      },
-      {
-        title: [
-          "\u0DB8\u0DC4\u0DA2\u0DB1 \u0D85\u0DAF\u0DC4\u0DC3\u0DCA \u0DC3\u0DB3\u0DC4\u0DCF \u0DBA\u0DDD\u0DA2\u0DB1\u0DCF",
-          "Proposals for public comments",
-          "\u0BAA\u0BCA\u0BA4\u0BC1 \u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BB3\u0BC1\u0B95\u0BCD\u0B95\u0BBE\u0BA9 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAE\u0BCA\u0BB4\u0BBF\u0BB5\u0BC1\u0B95\u0BB3\u0BCD"
-        ],
-        icon: "fa-solid fa-file-lines",
-        height: "400px",
-        type: "proposal",
-        verified: true,
-        tags: [
-          "mainstream",
-          "aragala",
-          "economy",
-          "political",
-          "legal",
-          "international",
-          "energy",
-          "downloads"
-        ],
-        data: {
-          organization: {
-            type: "text",
-            maxlength: 100,
-            placeholder: [
-              "\u0D86\u0DBA\u0DAD\u0DB1\u0DBA",
-              "organization",
-              "\u0B85\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
-            ],
-            required: true,
-            translate: true
-          },
-          motive: {
-            type: "text",
-            maxlength: 300,
-            placeholder: [
-              "\u0D86\u0DBA\u0DAD\u0DB1\u0DBA\u0DDA \u0D85\u0DBB\u0DB8\u0DD4\u0DAB",
-              "organization's motive",
-              "\u0B85\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BBF\u0BA9\u0BCD \u0BA8\u0BCB\u0B95\u0BCD\u0B95\u0BAE\u0BCD"
-            ],
-            required: true,
-            translate: true
-          },
-          proposal: {
-            type: "html",
-            maxlength: 1e3,
-            placeholder: [
-              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A\u0DC0 \u0DBA\u0DDD\u0DA2\u0DB1\u0DCF\u0DC0",
-              "proposal in detail",
-              "\u0BB5\u0BBF\u0BB0\u0BBF\u0BB5\u0BBE\u0BA9 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAE\u0BCA\u0BB4\u0BBF\u0BB5\u0BC1"
-            ],
-            required: true,
-            translate: true
-          }
-        },
-        dataFormTitle: [
-          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "Create a bulletin",
-          "\u0B92\u0BB0\u0BC1 \u0BAA\u0BC1\u0BB2\u0BCD\u0BB2\u0B9F\u0BCD\u0B9F\u0BBF\u0BA9\u0BCD \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
-        ],
-        submitButton: [
-          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "create",
-          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
-        ],
-        cancelButton: [
-          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "cancel",
-          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
-        ]
-      },
-      {
-        title: [
-          "\u0DB8\u0DAD \u0DC0\u0DD2\u0DB8\u0DC3\u0DD3\u0DB8\u0DCA",
-          "Opinion polls",
-          "\u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BCD \u0B95\u0BA3\u0BBF\u0BAA\u0BCD\u0BAA\u0BC1\u0B95\u0BB3\u0BCD"
-        ],
-        icon: "fa-solid fa-check-to-slot",
-        height: "500px",
-        type: "static",
-        static: [{
-          type: "wip",
-          service: [
-            `\u0DA1\u0DB1\u0DCA\u0DAF \u0DC0\u0DD2\u0DB8\u0DC3\u0DD3\u0DB8\u0DCA \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0D95\u0DB1\u0DD1\u0DB8 \u0D9A\u0DD9\u0DB1\u0DD9\u0D9A\u0DD4\u0DA7 \u0DB4\u0DDC\u0DAF\u0DD4 \u0DB8\u0DAD \u0DC0\u0DD2\u0DB8\u0DC3\u0DD4\u0DB8\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC3\u0DC4 \u0DB8\u0DD2\u0DB1\u0DD2\u0DC3\u0DD4\u0DB1\u0DCA\u0DA7 \u0D92 \u0DC3\u0DB3\u0DC4\u0DCF \u0DA1\u0DB1\u0DCA\u0DAF\u0DBA \u0DB4\u0DCA\u200D\u0DBB\u0D9A\u0DCF\u0DC1 \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DBD\u0DB6\u0DCF \u0DAF\u0DDA. \u0D85\u0DBB\u0D9C\u0DBD\u0DBA\u0DDA \u0DAF\u0DD2\u0DC1\u0DCF\u0DB1\u0DAD\u0DD2\u0DBA \u0D9C\u0DD0\u0DB1 \u0DB4\u0DCA\u200D\u0DBB\u0DA2\u0DCF\u0DAD\u0DB1\u0DCA\u0DAD\u0DCA\u200D\u0DBB\u0DC0\u0DCF\u0DAF\u0DD3\u0DC0 \u0DAD\u0DD3\u0DBB\u0DAB \u0D9C\u0DD0\u0DB1\u0DD3\u0DB8\u0DA7 \u0DB8\u0DD9\u0DBA \u0DBA\u0DDC\u0DAF\u0DCF\u0D9C\u0DAD \u0DC4\u0DD0\u0D9A.`,
-            `polls will allow anyone to create a public poll and allow anyone to create and vote for suggestions. this can be used to make democratic decisions about the direction of aragalaya.`,
-            `\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC6\u0B9F\u0BC1\u0BAA\u0BCD\u0BAA\u0BC1\u0B95\u0BB3\u0BCD \u0BAF\u0BBE\u0BB0\u0BC8\u0BAF\u0BC1\u0BAE\u0BCD \u0BAA\u0BCA\u0BA4\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC6\u0B9F\u0BC1\u0BAA\u0BCD\u0BAA\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD \u0BAE\u0BB1\u0BCD\u0BB1\u0BC1\u0BAE\u0BCD \u0BAE\u0B95\u0BCD\u0B95\u0BB3\u0BCD \u0B85\u0BA4\u0BB1\u0BCD\u0B95\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB3\u0BBF\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE\u0BB5\u0BBF\u0BA9\u0BCD \u0BA4\u0BBF\u0B9A\u0BC8\u0BAF\u0BC8\u0BAA\u0BCD \u0BAA\u0BB1\u0BCD\u0BB1\u0BBF \u0B9C\u0BA9\u0BA8\u0BBE\u0BAF\u0B95 \u0BAE\u0BC1\u0B9F\u0BBF\u0BB5\u0BC1\u0B95\u0BB3\u0BC8 \u0B8E\u0B9F\u0BC1\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4\u0BB2\u0BBE\u0BAE\u0BCD.`
-          ],
-          releaseDate: "29/08/2022"
-        }]
-      },
-      {
-        title: [
-          "\u0DC3\u0DCF\u0DB8\u0DD4\u0DC4\u0DD2\u0D9A \u0DBD\u0DDA\u0D9B\u0DB1",
-          "Collaborative documents",
-          "\u0B95\u0BC2\u0B9F\u0BCD\u0B9F\u0BC1 \u0B86\u0BB5\u0BA3\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
-        ],
-        icon: "fa-solid fa-file-signature",
-        height: "500px",
-        type: "static",
-        static: [{
-          type: "wip",
-          service: [
-            `\u0DB8\u0DD9\u0DB8 \u0DC3\u0DDA\u0DC0\u0DCF\u0DC0 \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0DC3\u0DCF\u0DB8\u0DD4\u0DC4\u0DD2\u0D9A\u0DC0 \u0DBD\u0DDA\u0D9B\u0DB1 \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DBD \u0DC4\u0DD0\u0D9A\u0DD2 \u0D85\u0DAD\u0DBB, \u0D91\u0DC4\u0DD2\u0DAF\u0DD3 \u0D87\u0DAD\u0DD2\u0DC0\u0DB1 \u0D9C\u0DD0\u0DA7\u0DD4\u0DB8\u0DCA \u0DA0\u0DB1\u0DCA\u0DAF\u0DBA\u0D9A\u0DCA \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0DC0\u0DD2\u0DC3\u0DB3\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DC3\u0DBD\u0DC3\u0DBA\u0DD2. \u0DB8\u0DD9\u0DBA \u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DCA\u200D\u0DBB\u0DA5\u0DB4\u0DCA\u0DAD\u0DD2\u0DBA\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC4\u0DCF \u0DB1\u0DC0 \u0DC0\u0DCA\u200D\u0DBA\u0DC0\u0DC3\u0DCA\u0DAE\u0DCF\u0DC0\u0D9A\u0DCA \u0DB4\u0DC0\u0DCF \u0DB4\u0DCA\u200D\u0DBB\u0DA2\u0DCF\u0DAD\u0DB1\u0DCA\u0DAD\u0DCA\u200D\u0DBB\u0DC0\u0DCF\u0DAF\u0DD2\u0DC0 \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DB7\u0DCF\u0DC0\u0DD2\u0DAD\u0DCF \u0D9A\u0DBD \u0DC4\u0DD0\u0D9A.`,
-            `this service will allow to create collaborative documents with conflicts resolved through voting. this can be used to create an aragala manifesto, or even a new constitution.`,
-            `\u0B87\u0BA8\u0BCD\u0BA4\u0B9A\u0BCD \u0B9A\u0BC7\u0BB5\u0BC8\u0BAF\u0BBE\u0BA9\u0BA4\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC1\u0BAA\u0BCD\u0BAA\u0BA4\u0BBF\u0BB5\u0BC1 \u0BAE\u0BC2\u0BB2\u0BAE\u0BCD \u0BA4\u0BC0\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BC1\u0BAE\u0BCD \u0BAE\u0BC1\u0BB0\u0BA3\u0BCD\u0BAA\u0BBE\u0B9F\u0BC1\u0B95\u0BB3\u0BC1\u0B9F\u0BA9\u0BCD \u0B95\u0BC2\u0B9F\u0BCD\u0B9F\u0BC1 \u0B86\u0BB5\u0BA3\u0B99\u0BCD\u0B95\u0BB3\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0B85\u0BB0\u0B95\u0BB2 \u0BAA\u0BBF\u0BB0\u0B95\u0B9F\u0BA9\u0BA4\u0BCD\u0BA4\u0BC8 \u0B85\u0BB2\u0BCD\u0BB2\u0BA4\u0BC1 \u0BAA\u0BC1\u0BA4\u0BBF\u0BAF \u0B85\u0BB0\u0B9A\u0BBF\u0BAF\u0BB2\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4\u0BB2\u0BBE\u0BAE\u0BCD.`
-          ],
-          releaseDate: "29/09/2022"
-        }]
-      },
-      {
-        title: [
-          "\u0DC0\u0DD2\u0DC0\u0DD4\u0DBB\u0DCA\u0DAD \u0D85\u0DBA\u0DC0\u0DD0\u0DBA",
-          "Open budgets",
-          "\u0BA4\u0BBF\u0BB1\u0BA8\u0BCD\u0BA4 \u0BAA\u0B9F\u0BCD\u0B9C\u0BC6\u0B9F\u0BCD"
-        ],
-        icon: "fa-solid fa-coins",
-        height: "410px",
-        type: "budget",
-        type: "static",
-        static: [{
-          type: "wip",
-          service: [
-            `\u0DC0\u0DD2\u0DB1\u0DD2\u0DC0\u0DD2\u0DAF \u0DB4\u0DD9\u0DB1\u0DD9\u0DB1 \u0D85\u0DBA\u0DC0\u0DD0\u0DBA \u0DB8\u0D9F\u0DD2\u0DB1\u0DCA \u0D95\u0DB1\u0DD1\u0DB8 \u0D85\u0DBB\u0D9C\u0DBD\u0DBA \u0DC0\u0DCA\u200D\u0DBA\u0DCF\u0DB4\u0DD8\u0DAD\u0DD2\u0DBA\u0D9A\u0DCA \u0DC3\u0DB3\u0DC4\u0DCF \u0DC0\u0DD2\u0DC0\u0DD8\u0DAD \u0D85\u0DBA\u0DC0\u0DD0\u0DBA\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DC3\u0DD0\u0DBD\u0DC3\u0DDA. \u0DB4\u0DC5\u0DB8\u0DD4 \u0DB4\u0DD2\u0DBA\u0DC0\u0DBB \u0DBD\u0DD9\u0DC3 \u0D85\u0DB4\u0DD2 aragalaya.online \u0DC0\u0DCA\u200D\u0DBA\u0DCF\u0DB4\u0DD8\u0DAD\u0DD2\u0DBA \u0DC3\u0DB3\u0DC4\u0DCF \u0D85\u0DBA\u0DC0\u0DD0\u0DBA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8 \u0DC3\u0DB3\u0DC4\u0DCF \u0DB8\u0DD9\u0DBA \u0DB7\u0DCF\u0DC0\u0DD2\u0DAD\u0DCF \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC3\u0DD0\u0DBD\u0DC3\u0DD4\u0DB8\u0DCA \u0D9A\u0DBB\u0DB8\u0DD4.`,
-            `transparent budgets will allow to create open budgets for any of the aragalaya projects. as first step we're planning to use this for creating the budget for the aragalaya.online project.`,
-            `\u0BB5\u0BC6\u0BB3\u0BBF\u0BAA\u0BCD\u0BAA\u0B9F\u0BC8\u0BAF\u0BBE\u0BA9 \u0BB5\u0BB0\u0BB5\u0BC1\u0B9A\u0BC6\u0BB2\u0BB5\u0BC1\u0BA4\u0BCD\u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0B8E\u0BA8\u0BCD\u0BA4\u0BB5\u0BCA\u0BB0\u0BC1 \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BC1\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD \u0BA4\u0BBF\u0BB1\u0BA8\u0BCD\u0BA4 \u0BB5\u0BB0\u0BB5\u0BC1 \u0B9A\u0BC6\u0BB2\u0BB5\u0BC1\u0BA4\u0BCD \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0BAE\u0BC1\u0BA4\u0BB2\u0BCD \u0B95\u0B9F\u0BCD\u0B9F\u0BAE\u0BBE\u0B95 \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE.\u0B86\u0BA9\u0BCD\u0BB2\u0BC8\u0BA9\u0BCD \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0BA4\u0BCD\u0BA4\u0BBF\u0BB1\u0BCD\u0B95\u0BBE\u0BA9 \u0BAA\u0B9F\u0BCD\u0B9C\u0BC6\u0B9F\u0BCD\u0B9F\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4 \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0BAE\u0BBF\u0B9F\u0BCD\u0B9F\u0BC1\u0BB3\u0BCD\u0BB3\u0BCB\u0BAE\u0BCD.`
-          ],
-          releaseDate: "29/09/2022"
-        }]
-      }
-    ];
-    COLUMN_COUNT = COLUMNS.length;
-  }
-});
-
-// .svelte-kit/output/server/_app/immutable/chunks/tags-0c38ec88.js
+// .svelte-kit/output/server/_app/immutable/chunks/store-21b4cd20.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -16681,13 +13274,11 @@ function writable2(value, start2 = noop2) {
   }
   return { set, update, subscribe: subscribe2 };
 }
-var import_chroma_js, subscriber_queue2, _lang, _currentTheme, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _authStateChecked, _redirected, _shareLink, _URL, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, Font, tagConfig, colors, TAGS, css, Tags;
-var init_tags_0c38ec88 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/tags-0c38ec88.js"() {
+var subscriber_queue2, _lang, _currentTheme, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _authStateChecked, _redirected, _signUpInProgress, _shareLink, _URL;
+var init_store_21b4cd20 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/store-21b4cd20.js"() {
     init_shims();
-    init_index_19a73778();
-    import_chroma_js = __toESM(require_chroma(), 1);
-    init_column_config_ed3a8d78();
+    init_index_d732e872();
     subscriber_queue2 = [];
     _lang = writable2(0);
     _currentTheme = writable2(void 0);
@@ -16697,241 +13288,9 @@ var init_tags_0c38ec88 = __esm({
     _appContentReady = writable2(false);
     _authStateChecked = writable2(false);
     _redirected = writable2(false);
+    _signUpInProgress = writable2(false);
     _shareLink = "https://aragalaya.online/?post=";
     _URL = "https://aragalaya.online";
-    _isMobile = writable2(false);
-    _fontGroups = [
-      [
-        "'Abhaya Libre', serif",
-        "'Nunito', sans-serif",
-        "'Hind Madurai', sans-serif"
-      ],
-      [
-        "'Noto Serif Sinhala', serif",
-        "'Source Sans Pro', sans-serif",
-        "'Pavanam', sans-serif"
-      ],
-      [
-        "'Noto Sans Sinhala', sans-serif",
-        "'Open Sans', sans-serif",
-        "'Mukta Malar', sans-serif"
-      ],
-      [
-        "'Roboto', sans-serif",
-        "'Roboto', sans-serif",
-        "'Roboto', sans-serif"
-      ]
-    ];
-    _fontSizes = [
-      [1.2, 1, 0.85],
-      [0.8, 1, 1],
-      [0.9, 1, 1],
-      [1, 1, 1]
-    ];
-    pallettes = [
-      ["#274654", "#299d8f", "#e9c46a", "#f4a261", "#e76f51"],
-      ["#9A031A", "#e26413", "#fb8b24", "#0f4C5C", "#5f0f41"],
-      ["#E63A46", "#e12f7d", "#bf47af", "#7f63d1", "#0076dc"],
-      ["#E96491", "#bd629f", "#8b629f", "#5d5e90", "#3c5576"],
-      ["#fffe00", "#85e757", "#00c484", "#009b95", "#007184"],
-      ["#6f3cb1", "#ca369c", "#ff537c", "#ff885f", "#ffc154"]
-    ];
-    _headerFontColor = "#ffffff";
-    _previewOpacity = "0.3";
-    _themes = pallettes.map((pallette, i2) => {
-      const columns = import_chroma_js.default.scale(pallette).mode("lch").colors(COLUMN_COUNT + 2, "hex");
-      const navigation = columns.map((c3, _i) => {
-        return (0, import_chroma_js.default)(c3).luminance(0.3).hex();
-      });
-      const headerBackground = "white";
-      const columnBackground = import_chroma_js.default.scale(["black", "white"])(0.92).hex();
-      const columnBackgroundAlternate = import_chroma_js.default.scale(["black", "white"])(0.86).hex();
-      const defaultButton = navigation[0];
-      const cancelButton = navigation[1];
-      const headerFontColor = _headerFontColor;
-      const previewOpacity = _previewOpacity;
-      return {
-        columns,
-        navigation,
-        headerBackground,
-        columnBackground,
-        columnBackgroundAlternate,
-        defaultButton,
-        cancelButton,
-        headerFontColor,
-        previewOpacity
-      };
-    });
-    layoutHeaderHeight = 50;
-    columnWidth = 500;
-    columnHeaderHeight = 50;
-    cardSeparation = 12;
-    cardPadding = 12;
-    navSize = 60;
-    previewHeight = (columnWidth - cardSeparation - cardPadding * 2) * 9 / 16;
-    toolbarButtonSize = 20;
-    _getSizeConfig = () => {
-      let devicePixelRatio = window && window.innerWidth > 600 ? window.devicePixelRatio : 1;
-      let _columnWidth = columnWidth;
-      let _previewHeight = previewHeight;
-      let _navSize = navSize;
-      let _toolbarButtonSize = toolbarButtonSize;
-      if (window && window.innerWidth < 600) {
-        _isMobile.set(true);
-        _columnWidth = window.innerWidth;
-        _previewHeight = (_columnWidth - cardSeparation - cardPadding * 2) * 9 / 16;
-        _navSize = 50;
-        _toolbarButtonSize = 26;
-      }
-      return {
-        layoutHeaderHeight: layoutHeaderHeight / devicePixelRatio,
-        columnWidth: _columnWidth / devicePixelRatio,
-        columnHeaderHeight: columnHeaderHeight / devicePixelRatio,
-        cardSeparation: cardSeparation / devicePixelRatio,
-        cardSeparationHalf: cardSeparation / 2 / devicePixelRatio,
-        cardPadding: cardPadding / devicePixelRatio,
-        previewHeight: _previewHeight / devicePixelRatio,
-        navSize: _navSize / devicePixelRatio,
-        navIconSize: _navSize / 3 / devicePixelRatio,
-        toolbarButtonSize: _toolbarButtonSize / devicePixelRatio
-      };
-    };
-    Font = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let fontSize;
-      let fontFamily;
-      let $_lang2, $$unsubscribe__lang;
-      validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
-      let { font = 0 } = $$props;
-      let { size = 1 } = $$props;
-      let { color = "" } = $$props;
-      let { style = "" } = $$props;
-      let { inline = false } = $$props;
-      let devicePixelRatio = 1;
-      if ($$props.font === void 0 && $$bindings.font && font !== void 0)
-        $$bindings.font(font);
-      if ($$props.size === void 0 && $$bindings.size && size !== void 0)
-        $$bindings.size(size);
-      if ($$props.color === void 0 && $$bindings.color && color !== void 0)
-        $$bindings.color(color);
-      if ($$props.style === void 0 && $$bindings.style && style !== void 0)
-        $$bindings.style(style);
-      if ($$props.inline === void 0 && $$bindings.inline && inline !== void 0)
-        $$bindings.inline(inline);
-      fontSize = _fontSizes[font][$_lang2] * size * 16 / devicePixelRatio;
-      fontFamily = _fontGroups[font][$_lang2];
-      $$unsubscribe__lang();
-      return `
-
-
-<div style="${"font-family: " + escape(fontFamily, true) + "; font-size: " + escape(fontSize, true) + "px; color: " + escape(color || "inherit", true) + "; display: " + escape(inline ? "inline-block" : "block", true) + "; " + escape(style, true)}">${slots.default ? slots.default({}) : ``}</div>`;
-    });
-    tagConfig = {
-      mainstream: [
-        "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
-        "mainstream news",
-        "\u0BAE\u0BC1\u0B95\u0BCD\u0B95\u0BBF\u0BAF \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
-      ],
-      aragala: [
-        "\u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
-        "aragala news",
-        "\u0B85\u0BB0\u0B95\u0BB2 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
-      ],
-      economy: [
-        "\u0D86\u0DBB\u0DCA\u0DAE\u0DD2\u0D9A",
-        "economy",
-        "\u0BAA\u0BCA\u0BB0\u0BC1\u0BB3\u0BBE\u0BA4\u0BBE\u0BB0\u0BAE\u0BCD"
-      ],
-      political: [
-        "\u0DAF\u0DDA\u0DC1\u0DB4\u0DCF\u0DBD\u0DB1",
-        "political",
-        "\u0B85\u0BB0\u0B9A\u0BBF\u0BAF\u0BB2\u0BCD"
-      ],
-      legal: [
-        "\u0D85\u0DB0\u0DD2\u0D9A\u0DBB\u0DAB",
-        "judicial",
-        "\u0BA8\u0BC0\u0BA4\u0BBF\u0BA4\u0BCD\u0BA4\u0BC1\u0BB1\u0BC8"
-      ],
-      international: [
-        "\u0DA2\u0DCF\u0DAD\u0DCA\u200D\u0DBA\u0DB1\u0DCA\u0DAD\u0DBB",
-        "international",
-        "\u0B9A\u0BB0\u0BCD\u0BB5\u0BA4\u0BC7\u0B9A"
-      ],
-      energy: [
-        "\u0DB6\u0DBD\u0DC1\u0D9A\u0DCA\u0DAD\u0DD2",
-        "power & energy",
-        "\u0B86\u0BB1\u0BCD\u0BB1\u0BB2\u0BCD"
-      ],
-      philosophy: [
-        "\u0DAF\u0DBB\u0DCA\u0DC1\u0DB1\u0DBA",
-        "philosophy",
-        "\u0BA4\u0BA4\u0BCD\u0BA4\u0BC1\u0BB5\u0BAE\u0BCD"
-      ],
-      english: [
-        "\u0D89\u0D82\u0D9C\u0DCA\u200D\u0DBB\u0DD3\u0DC3\u0DD2",
-        "english",
-        "\u0B86\u0B99\u0BCD\u0B95\u0BBF\u0BB2\u0BAE\u0BCD"
-      ],
-      discussion: [
-        "\u0DC3\u0DCF\u0D9A\u0DA0\u0DCA\u0DA1\u0DCF",
-        "discussion",
-        "\u0BB5\u0BBF\u0BB5\u0BBE\u0BA4\u0BAE\u0BCD"
-      ],
-      downloads: [
-        "\u0DB6\u0DCF\u0D9C\u0DAD \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DCA",
-        "downloads",
-        "\u0BAA\u0BA4\u0BBF\u0BB5\u0BBF\u0BB1\u0B95\u0BCD\u0B95\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
-      ]
-    };
-    colors = import_chroma_js.default.scale(["#c1f437", "#00e0ff", "#ff6161", "#ffca99", "#ff58d3"]).colors(Object.keys(tagConfig).length);
-    TAGS = Object.keys(tagConfig).reduce((object, key2, _i) => {
-      object[key2] = {
-        name: key2,
-        strings: tagConfig[key2],
-        color: (0, import_chroma_js.default)(colors[_i]).luminance(0.4).hex()
-      };
-      return object;
-    }, {});
-    css = {
-      code: ".tag.s-AT3XvDln3Ibo{border:var(--s2px) solid #a5a5a5;border-radius:var(--s3px);padding:0 var(--s3px);margin-right:var(--s3px);margin-bottom:var(--s3px)}.s-AT3XvDln3Ibo{}",
-      map: null
-    };
-    Tags = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang2, $$unsubscribe__lang;
-      validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
-      let { tags } = $$props;
-      let { clickable = void 0 } = $$props;
-      let { style = "" } = $$props;
-      if (!tags)
-        tags = [];
-      createEventDispatcher();
-      if ($$props.tags === void 0 && $$bindings.tags && tags !== void 0)
-        $$bindings.tags(tags);
-      if ($$props.clickable === void 0 && $$bindings.clickable && clickable !== void 0)
-        $$bindings.clickable(clickable);
-      if ($$props.style === void 0 && $$bindings.style && style !== void 0)
-        $$bindings.style(style);
-      $$result.css.add(css);
-      $$unsubscribe__lang();
-      return `${validate_component(Font, "Font").$$render(
-        $$result,
-        {
-          font: 0,
-          size: 0.75,
-          style: "\n        display: flex;\n        width: calc(90% - 4px);\n        flex-wrap: wrap;" + style
-        },
-        {},
-        {
-          default: () => {
-            return `${each(tags, (tag, _i) => {
-              return `<span class="${"tag " + escape(clickable ? "_clickable" : "", true) + " s-AT3XvDln3Ibo"}" style="${"background-color: " + escape(TAGS[tag].color, true) + ";"}">${escape(TAGS[tag].strings[$_lang2])}
-    </span>`;
-            })}`;
-          }
-        }
-      )}`;
-    });
   }
 });
 
@@ -18851,7 +15210,7 @@ var require_call_credentials = __commonJS({
           return true;
         }
         if (other instanceof ComposedCallCredentials) {
-          return this.creds.every((value, index10) => value._equals(other.creds[index10]));
+          return this.creds.every((value, index11) => value._equals(other.creds[index11]));
         } else {
           return false;
         }
@@ -19970,8 +16329,8 @@ var require_service_config = __commonJS({
         }
         if (Array.isArray(validatedConfig.clientLanguage)) {
           let languageMatched = false;
-          for (const language of validatedConfig.clientLanguage) {
-            if (language === CLIENT_LANGUAGE_STRING) {
+          for (const language2 of validatedConfig.clientLanguage) {
+            if (language2 === CLIENT_LANGUAGE_STRING) {
               languageMatched = true;
             }
           }
@@ -22123,12 +18482,12 @@ var require_lodash = __commonJS({
     var freeSelf = typeof self == "object" && self && self.Object === Object && self;
     var root = freeGlobal || freeSelf || Function("return this")();
     function arrayReduce(array2, iteratee, accumulator, initAccum) {
-      var index10 = -1, length = array2 ? array2.length : 0;
+      var index11 = -1, length = array2 ? array2.length : 0;
       if (initAccum && length) {
-        accumulator = array2[++index10];
+        accumulator = array2[++index11];
       }
-      while (++index10 < length) {
-        accumulator = iteratee(accumulator, array2[index10], index10, array2);
+      while (++index11 < length) {
+        accumulator = iteratee(accumulator, array2[index11], index11, array2);
       }
       return accumulator;
     }
@@ -22165,7 +18524,7 @@ var require_lodash = __commonJS({
     var symbolProto = Symbol2 ? Symbol2.prototype : void 0;
     var symbolToString = symbolProto ? symbolProto.toString : void 0;
     function baseSlice(array2, start2, end) {
-      var index10 = -1, length = array2.length;
+      var index11 = -1, length = array2.length;
       if (start2 < 0) {
         start2 = -start2 > length ? 0 : length + start2;
       }
@@ -22176,8 +18535,8 @@ var require_lodash = __commonJS({
       length = start2 > end ? 0 : end - start2 >>> 0;
       start2 >>>= 0;
       var result = Array(length);
-      while (++index10 < length) {
-        result[index10] = array2[index10 + start2];
+      while (++index11 < length) {
+        result[index11] = array2[index11 + start2];
       }
       return result;
     }
@@ -22219,9 +18578,9 @@ var require_lodash = __commonJS({
     function toString(value) {
       return value == null ? "" : baseToString(value);
     }
-    var camelCase = createCompounder(function(result, word, index10) {
+    var camelCase = createCompounder(function(result, word, index11) {
       word = word.toLowerCase();
-      return result + (index10 ? capitalize(word) : word);
+      return result + (index11 ? capitalize(word) : word);
     });
     function capitalize(string) {
       return upperFirst(toString(string).toLowerCase());
@@ -22250,9 +18609,9 @@ var require_aspromise = __commonJS({
     init_shims();
     module2.exports = asPromise;
     function asPromise(fn, ctx) {
-      var params = new Array(arguments.length - 1), offset = 0, index10 = 2, pending = true;
-      while (index10 < arguments.length)
-        params[offset++] = arguments[index10++];
+      var params = new Array(arguments.length - 1), offset = 0, index11 = 2, pending = true;
+      while (index11 < arguments.length)
+        params[offset++] = arguments[index11++];
       return new Promise(function executor(resolve2, reject) {
         params[offset] = function callback(err) {
           if (pending) {
@@ -24271,13 +20630,13 @@ var require_oneof = __commonJS({
     OneOf.prototype.remove = function remove(field) {
       if (!(field instanceof Field))
         throw TypeError("field must be a Field");
-      var index10 = this.fieldsArray.indexOf(field);
-      if (index10 < 0)
+      var index11 = this.fieldsArray.indexOf(field);
+      if (index11 < 0)
         throw Error(field + " is not a member of " + this);
-      this.fieldsArray.splice(index10, 1);
-      index10 = this.oneof.indexOf(field.name);
-      if (index10 > -1)
-        this.oneof.splice(index10, 1);
+      this.fieldsArray.splice(index11, 1);
+      index11 = this.oneof.indexOf(field.name);
+      if (index11 > -1)
+        this.oneof.splice(index11, 1);
       field.partOf = null;
       return this;
     };
@@ -24300,9 +20659,9 @@ var require_oneof = __commonJS({
       ReflectionObject.prototype.onRemove.call(this, parent2);
     };
     OneOf.d = function decorateOneOf() {
-      var fieldNames = new Array(arguments.length), index10 = 0;
-      while (index10 < arguments.length)
-        fieldNames[index10] = arguments[index10++];
+      var fieldNames = new Array(arguments.length), index11 = 0;
+      while (index11 < arguments.length)
+        fieldNames[index11] = arguments[index11++];
       return function oneOfDecorator(prototype, oneofName) {
         util2.decorateType(prototype.constructor).add(new OneOf(oneofName, fieldNames));
         Object.defineProperty(prototype, oneofName, {
@@ -24903,20 +21262,20 @@ var require_converter = __commonJS({
       }
       var hasKs2 = false;
       for (i2 = 0; i2 < fields.length; ++i2) {
-        var field = fields[i2], index10 = mtype._fieldsArray.indexOf(field), prop = util2.safeProp(field.name);
+        var field = fields[i2], index11 = mtype._fieldsArray.indexOf(field), prop = util2.safeProp(field.name);
         if (field.map) {
           if (!hasKs2) {
             hasKs2 = true;
             gen("var ks2");
           }
           gen("if(m%s&&(ks2=Object.keys(m%s)).length){", prop, prop)("d%s={}", prop)("for(var j=0;j<ks2.length;++j){");
-          genValuePartial_toObject(gen, field, index10, prop + "[ks2[j]]")("}");
+          genValuePartial_toObject(gen, field, index11, prop + "[ks2[j]]")("}");
         } else if (field.repeated) {
           gen("if(m%s&&m%s.length){", prop, prop)("d%s=[]", prop)("for(var j=0;j<m%s.length;++j){", prop);
-          genValuePartial_toObject(gen, field, index10, prop + "[j]")("}");
+          genValuePartial_toObject(gen, field, index11, prop + "[j]")("}");
         } else {
           gen("if(m%s!=null&&m.hasOwnProperty(%j)){", prop, field.name);
-          genValuePartial_toObject(gen, field, index10, prop);
+          genValuePartial_toObject(gen, field, index11, prop);
           if (field.partOf)
             gen("if(o.oneofs)")("d%s=%j", util2.safeProp(field.partOf.name), field.name);
         }
@@ -25460,9 +21819,9 @@ var require_root = __commonJS({
             object.extensionField.parent.remove(object.extensionField);
             object.extensionField = null;
           } else {
-            var index10 = this.deferred.indexOf(object);
-            if (index10 > -1)
-              this.deferred.splice(index10, 1);
+            var index11 = this.deferred.indexOf(object);
+            if (index11 > -1)
+              this.deferred.splice(index11, 1);
           }
         }
       } else if (object instanceof Enum) {
@@ -25498,17 +21857,17 @@ var require_util = __commonJS({
     util2.fs = util2.inquire("fs");
     util2.toArray = function toArray(object) {
       if (object) {
-        var keys = Object.keys(object), array2 = new Array(keys.length), index10 = 0;
-        while (index10 < keys.length)
-          array2[index10] = object[keys[index10++]];
+        var keys = Object.keys(object), array2 = new Array(keys.length), index11 = 0;
+        while (index11 < keys.length)
+          array2[index11] = object[keys[index11++]];
         return array2;
       }
       return [];
     };
     util2.toObject = function toObject(array2) {
-      var object = {}, index10 = 0;
-      while (index10 < array2.length) {
-        var key2 = array2[index10++], val = array2[index10++];
+      var object = {}, index11 = 0;
+      while (index11 < array2.length) {
+        var key2 = array2[index11++], val = array2[index11++];
         if (val !== void 0)
           object[key2] = val;
       }
@@ -25818,12 +22177,12 @@ var require_encoder = __commonJS({
       var i2, ref;
       var fields = mtype.fieldsArray.slice().sort(util2.compareFieldsById);
       for (var i2 = 0; i2 < fields.length; ++i2) {
-        var field = fields[i2].resolve(), index10 = mtype._fieldsArray.indexOf(field), type = field.resolvedType instanceof Enum ? "int32" : field.type, wireType = types2.basic[type];
+        var field = fields[i2].resolve(), index11 = mtype._fieldsArray.indexOf(field), type = field.resolvedType instanceof Enum ? "int32" : field.type, wireType = types2.basic[type];
         ref = "m" + util2.safeProp(field.name);
         if (field.map) {
           gen("if(%s!=null&&Object.hasOwnProperty.call(m,%j)){", ref, field.name)("for(var ks=Object.keys(%s),i=0;i<ks.length;++i){", ref)("w.uint32(%i).fork().uint32(%i).%s(ks[i])", (field.id << 3 | 2) >>> 0, 8 | types2.mapKey[field.keyType], field.keyType);
           if (wireType === void 0)
-            gen("types[%i].encode(%s[ks[i]],w.uint32(18).fork()).ldelim().ldelim()", index10, ref);
+            gen("types[%i].encode(%s[ks[i]],w.uint32(18).fork()).ldelim().ldelim()", index11, ref);
           else
             gen(".uint32(%i).%s(%s[ks[i]]).ldelim()", 16 | wireType, type, ref);
           gen("}")("}");
@@ -25834,7 +22193,7 @@ var require_encoder = __commonJS({
           } else {
             gen("for(var i=0;i<%s.length;++i)", ref);
             if (wireType === void 0)
-              genTypePartial(gen, field, index10, ref + "[i]");
+              genTypePartial(gen, field, index11, ref + "[i]");
             else
               gen("w.uint32(%i).%s(%s[i])", (field.id << 3 | wireType) >>> 0, type, ref);
           }
@@ -25843,7 +22202,7 @@ var require_encoder = __commonJS({
           if (field.optional)
             gen("if(%s!=null&&Object.hasOwnProperty.call(m,%j))", ref, field.name);
           if (wireType === void 0)
-            genTypePartial(gen, field, index10, ref);
+            genTypePartial(gen, field, index11, ref);
           else
             gen("w.uint32(%i).%s(%s)", (field.id << 3 | wireType) >>> 0, type, ref);
         }
@@ -26186,7 +22545,7 @@ var require_parse = __commonJS({
         options = parse2.defaults;
       var preferTrailingComment = options.preferTrailingComment || false;
       var tn = tokenize(source, options.alternateCommentMode || false), next = tn.next, push = tn.push, peek = tn.peek, skip = tn.skip, cmnt = tn.cmnt;
-      var head = true, pkg, imports10, weakImports, syntax, isProto3 = false;
+      var head = true, pkg, imports11, weakImports, syntax, isProto3 = false;
       var ptr = root;
       var applyCase = options.keepCase ? function(name7) {
         return name7;
@@ -26308,7 +22667,7 @@ var require_parse = __commonJS({
           case "public":
             next();
           default:
-            whichImports = imports10 || (imports10 = []);
+            whichImports = imports11 || (imports11 = []);
             break;
         }
         token2 = readString();
@@ -26738,7 +23097,7 @@ var require_parse = __commonJS({
       parse2.filename = null;
       return {
         "package": pkg,
-        "imports": imports10,
+        "imports": imports11,
         weakImports,
         syntax,
         root
@@ -26948,8 +23307,8 @@ var require_common = __commonJS({
         }
       }
     });
-    common.get = function get(file11) {
-      return common[file11] || null;
+    common.get = function get(file12) {
+      return common[file12] || null;
     };
   }
 });
@@ -27778,25 +24137,25 @@ var require_descriptor2 = __commonJS({
       return set;
     };
     function Root_toDescriptorRecursive(ns, files, syntax) {
-      var file11 = exports2.FileDescriptorProto.create({ name: ns.filename || (ns.fullName.substring(1).replace(/\./g, "_") || "root") + ".proto" });
+      var file12 = exports2.FileDescriptorProto.create({ name: ns.filename || (ns.fullName.substring(1).replace(/\./g, "_") || "root") + ".proto" });
       if (syntax)
-        file11.syntax = syntax;
+        file12.syntax = syntax;
       if (!(ns instanceof Root2))
-        file11["package"] = ns.fullName.substring(1);
+        file12["package"] = ns.fullName.substring(1);
       for (var i2 = 0, nested2; i2 < ns.nestedArray.length; ++i2)
         if ((nested2 = ns._nestedArray[i2]) instanceof Type)
-          file11.messageType.push(nested2.toDescriptor(syntax));
+          file12.messageType.push(nested2.toDescriptor(syntax));
         else if (nested2 instanceof Enum)
-          file11.enumType.push(nested2.toDescriptor());
+          file12.enumType.push(nested2.toDescriptor());
         else if (nested2 instanceof Field)
-          file11.extension.push(nested2.toDescriptor(syntax));
+          file12.extension.push(nested2.toDescriptor(syntax));
         else if (nested2 instanceof Service)
-          file11.service.push(nested2.toDescriptor());
+          file12.service.push(nested2.toDescriptor());
         else if (nested2 instanceof Namespace)
           Root_toDescriptorRecursive(nested2, files, syntax);
-      file11.options = toDescriptorOptions(ns.options, exports2.FileOptions);
-      if (file11.messageType.length + file11.enumType.length + file11.extension.length + file11.service.length)
-        files.push(file11);
+      file12.options = toDescriptorOptions(ns.options, exports2.FileOptions);
+      if (file12.messageType.length + file12.enumType.length + file12.extension.length + file12.service.length)
+        files.push(file12);
     }
     var unnamedMessageIndex = 0;
     Type.fromDescriptor = function fromDescriptor(descriptor, syntax) {
@@ -33479,9 +29838,9 @@ var require_load_balancer_outlier_detection = __commonJS({
         this.refCount -= 1;
         if (this.refCount <= 0) {
           if (this.mapEntry) {
-            const index10 = this.mapEntry.subchannelWrappers.indexOf(this);
-            if (index10 >= 0) {
-              this.mapEntry.subchannelWrappers.splice(index10, 1);
+            const index11 = this.mapEntry.subchannelWrappers.indexOf(this);
+            if (index11 >= 0) {
+              this.mapEntry.subchannelWrappers.splice(index11, 1);
             }
           }
         }
@@ -34383,11 +30742,11 @@ var require_load_balancer_pick_first = __commonJS({
         if (this.triedAllSubchannels) {
           return;
         }
-        for (const [index10, subchannel] of this.subchannels.entries()) {
-          if (index10 > this.currentSubchannelIndex) {
+        for (const [index11, subchannel] of this.subchannels.entries()) {
+          if (index11 > this.currentSubchannelIndex) {
             const subchannelState = subchannel.getConnectivityState();
             if (subchannelState === connectivity_state_1.ConnectivityState.IDLE || subchannelState === connectivity_state_1.ConnectivityState.CONNECTING) {
-              this.startConnecting(index10);
+              this.startConnecting(index11);
               return;
             }
           }
@@ -34462,10 +30821,10 @@ var require_load_balancer_pick_first = __commonJS({
             return;
           }
         }
-        for (const [index10, subchannel] of this.subchannels.entries()) {
+        for (const [index11, subchannel] of this.subchannels.entries()) {
           const subchannelState = subchannel.getConnectivityState();
           if (subchannelState === connectivity_state_1.ConnectivityState.IDLE || subchannelState === connectivity_state_1.ConnectivityState.CONNECTING) {
-            this.startConnecting(index10);
+            this.startConnecting(index11);
             if (this.currentPick === null) {
               this.updateState(connectivity_state_1.ConnectivityState.CONNECTING, new picker_1.QueuePicker(this));
             }
@@ -34477,7 +30836,7 @@ var require_load_balancer_pick_first = __commonJS({
         }
       }
       updateAddressList(addressList, lbConfig) {
-        if (this.subchannels.length === 0 || !this.latestAddressList.every((value, index10) => addressList[index10] === value)) {
+        if (this.subchannels.length === 0 || !this.latestAddressList.every((value, index11) => addressList[index11] === value)) {
           this.latestAddressList = addressList;
           this.connectToAddressList();
         }
@@ -34598,14 +30957,14 @@ var require_load_balancer_round_robin = __commonJS({
       calculateAndUpdateState() {
         if (this.subchannelStateCounts[connectivity_state_1.ConnectivityState.READY] > 0) {
           const readySubchannels = this.subchannels.filter((subchannel) => subchannel.getConnectivityState() === connectivity_state_1.ConnectivityState.READY);
-          let index10 = 0;
+          let index11 = 0;
           if (this.currentReadyPicker !== null) {
-            index10 = readySubchannels.indexOf(this.currentReadyPicker.peekNextSubchannel());
-            if (index10 < 0) {
-              index10 = 0;
+            index11 = readySubchannels.indexOf(this.currentReadyPicker.peekNextSubchannel());
+            if (index11 < 0) {
+              index11 = 0;
             }
           }
-          this.updateState(connectivity_state_1.ConnectivityState.READY, new RoundRobinPicker(readySubchannels, index10));
+          this.updateState(connectivity_state_1.ConnectivityState.READY, new RoundRobinPicker(readySubchannels, index11));
         } else if (this.subchannelStateCounts[connectivity_state_1.ConnectivityState.CONNECTING] > 0) {
           this.updateState(connectivity_state_1.ConnectivityState.CONNECTING, new picker_1.QueuePicker(this));
         } else if (this.subchannelStateCounts[connectivity_state_1.ConnectivityState.TRANSIENT_FAILURE] > 0) {
@@ -35972,13 +32331,13 @@ var require_oneof2 = __commonJS({
     OneOf.prototype.remove = function remove(field) {
       if (!(field instanceof Field))
         throw TypeError("field must be a Field");
-      var index10 = this.fieldsArray.indexOf(field);
-      if (index10 < 0)
+      var index11 = this.fieldsArray.indexOf(field);
+      if (index11 < 0)
         throw Error(field + " is not a member of " + this);
-      this.fieldsArray.splice(index10, 1);
-      index10 = this.oneof.indexOf(field.name);
-      if (index10 > -1)
-        this.oneof.splice(index10, 1);
+      this.fieldsArray.splice(index11, 1);
+      index11 = this.oneof.indexOf(field.name);
+      if (index11 > -1)
+        this.oneof.splice(index11, 1);
       field.partOf = null;
       return this;
     };
@@ -36001,9 +32360,9 @@ var require_oneof2 = __commonJS({
       ReflectionObject.prototype.onRemove.call(this, parent2);
     };
     OneOf.d = function decorateOneOf() {
-      var fieldNames = new Array(arguments.length), index10 = 0;
-      while (index10 < arguments.length)
-        fieldNames[index10] = arguments[index10++];
+      var fieldNames = new Array(arguments.length), index11 = 0;
+      while (index11 < arguments.length)
+        fieldNames[index11] = arguments[index11++];
       return function oneOfDecorator(prototype, oneofName) {
         util2.decorateType(prototype.constructor).add(new OneOf(oneofName, fieldNames));
         Object.defineProperty(prototype, oneofName, {
@@ -36814,20 +33173,20 @@ var require_converter2 = __commonJS({
       }
       var hasKs2 = false;
       for (i2 = 0; i2 < fields.length; ++i2) {
-        var field = fields[i2], index10 = mtype._fieldsArray.indexOf(field), prop = util2.safeProp(field.name);
+        var field = fields[i2], index11 = mtype._fieldsArray.indexOf(field), prop = util2.safeProp(field.name);
         if (field.map) {
           if (!hasKs2) {
             hasKs2 = true;
             gen("var ks2");
           }
           gen("if(m%s&&(ks2=Object.keys(m%s)).length){", prop, prop)("d%s={}", prop)("for(var j=0;j<ks2.length;++j){");
-          genValuePartial_toObject(gen, field, index10, prop + "[ks2[j]]")("}");
+          genValuePartial_toObject(gen, field, index11, prop + "[ks2[j]]")("}");
         } else if (field.repeated) {
           gen("if(m%s&&m%s.length){", prop, prop)("d%s=[]", prop)("for(var j=0;j<m%s.length;++j){", prop);
-          genValuePartial_toObject(gen, field, index10, prop + "[j]")("}");
+          genValuePartial_toObject(gen, field, index11, prop + "[j]")("}");
         } else {
           gen("if(m%s!=null&&m.hasOwnProperty(%j)){", prop, field.name);
-          genValuePartial_toObject(gen, field, index10, prop);
+          genValuePartial_toObject(gen, field, index11, prop);
           if (field.partOf)
             gen("if(o.oneofs)")("d%s=%j", util2.safeProp(field.partOf.name), field.name);
         }
@@ -37371,9 +33730,9 @@ var require_root2 = __commonJS({
             object.extensionField.parent.remove(object.extensionField);
             object.extensionField = null;
           } else {
-            var index10 = this.deferred.indexOf(object);
-            if (index10 > -1)
-              this.deferred.splice(index10, 1);
+            var index11 = this.deferred.indexOf(object);
+            if (index11 > -1)
+              this.deferred.splice(index11, 1);
           }
         }
       } else if (object instanceof Enum) {
@@ -37409,17 +33768,17 @@ var require_util3 = __commonJS({
     util2.fs = util2.inquire("fs");
     util2.toArray = function toArray(object) {
       if (object) {
-        var keys = Object.keys(object), array2 = new Array(keys.length), index10 = 0;
-        while (index10 < keys.length)
-          array2[index10] = object[keys[index10++]];
+        var keys = Object.keys(object), array2 = new Array(keys.length), index11 = 0;
+        while (index11 < keys.length)
+          array2[index11] = object[keys[index11++]];
         return array2;
       }
       return [];
     };
     util2.toObject = function toObject(array2) {
-      var object = {}, index10 = 0;
-      while (index10 < array2.length) {
-        var key2 = array2[index10++], val = array2[index10++];
+      var object = {}, index11 = 0;
+      while (index11 < array2.length) {
+        var key2 = array2[index11++], val = array2[index11++];
         if (val !== void 0)
           object[key2] = val;
       }
@@ -37729,12 +34088,12 @@ var require_encoder2 = __commonJS({
       var i2, ref;
       var fields = mtype.fieldsArray.slice().sort(util2.compareFieldsById);
       for (var i2 = 0; i2 < fields.length; ++i2) {
-        var field = fields[i2].resolve(), index10 = mtype._fieldsArray.indexOf(field), type = field.resolvedType instanceof Enum ? "int32" : field.type, wireType = types2.basic[type];
+        var field = fields[i2].resolve(), index11 = mtype._fieldsArray.indexOf(field), type = field.resolvedType instanceof Enum ? "int32" : field.type, wireType = types2.basic[type];
         ref = "m" + util2.safeProp(field.name);
         if (field.map) {
           gen("if(%s!=null&&Object.hasOwnProperty.call(m,%j)){", ref, field.name)("for(var ks=Object.keys(%s),i=0;i<ks.length;++i){", ref)("w.uint32(%i).fork().uint32(%i).%s(ks[i])", (field.id << 3 | 2) >>> 0, 8 | types2.mapKey[field.keyType], field.keyType);
           if (wireType === void 0)
-            gen("types[%i].encode(%s[ks[i]],w.uint32(18).fork()).ldelim().ldelim()", index10, ref);
+            gen("types[%i].encode(%s[ks[i]],w.uint32(18).fork()).ldelim().ldelim()", index11, ref);
           else
             gen(".uint32(%i).%s(%s[ks[i]]).ldelim()", 16 | wireType, type, ref);
           gen("}")("}");
@@ -37745,7 +34104,7 @@ var require_encoder2 = __commonJS({
           } else {
             gen("for(var i=0;i<%s.length;++i)", ref);
             if (wireType === void 0)
-              genTypePartial(gen, field, index10, ref + "[i]");
+              genTypePartial(gen, field, index11, ref + "[i]");
             else
               gen("w.uint32(%i).%s(%s[i])", (field.id << 3 | wireType) >>> 0, type, ref);
           }
@@ -37754,7 +34113,7 @@ var require_encoder2 = __commonJS({
           if (field.optional)
             gen("if(%s!=null&&Object.hasOwnProperty.call(m,%j))", ref, field.name);
           if (wireType === void 0)
-            genTypePartial(gen, field, index10, ref);
+            genTypePartial(gen, field, index11, ref);
           else
             gen("w.uint32(%i).%s(%s)", (field.id << 3 | wireType) >>> 0, type, ref);
         }
@@ -38083,7 +34442,7 @@ var require_parse2 = __commonJS({
         options = parse2.defaults;
       var preferTrailingComment = options.preferTrailingComment || false;
       var tn = tokenize(source, options.alternateCommentMode || false), next = tn.next, push = tn.push, peek = tn.peek, skip = tn.skip, cmnt = tn.cmnt;
-      var head = true, pkg, imports10, weakImports, syntax, isProto3 = false;
+      var head = true, pkg, imports11, weakImports, syntax, isProto3 = false;
       var ptr = root;
       var applyCase = options.keepCase ? function(name7) {
         return name7;
@@ -38205,7 +34564,7 @@ var require_parse2 = __commonJS({
           case "public":
             next();
           default:
-            whichImports = imports10 || (imports10 = []);
+            whichImports = imports11 || (imports11 = []);
             break;
         }
         token2 = readString();
@@ -38624,7 +34983,7 @@ var require_parse2 = __commonJS({
       parse2.filename = null;
       return {
         "package": pkg,
-        "imports": imports10,
+        "imports": imports11,
         weakImports,
         syntax,
         root
@@ -38834,8 +35193,8 @@ var require_common2 = __commonJS({
         }
       }
     });
-    common.get = function get(file11) {
-      return common[file11] || null;
+    common.get = function get(file12) {
+      return common[file12] || null;
     };
   }
 });
@@ -39664,25 +36023,25 @@ var require_descriptor4 = __commonJS({
       return set;
     };
     function Root_toDescriptorRecursive(ns, files, syntax) {
-      var file11 = exports2.FileDescriptorProto.create({ name: ns.filename || (ns.fullName.substring(1).replace(/\./g, "_") || "root") + ".proto" });
+      var file12 = exports2.FileDescriptorProto.create({ name: ns.filename || (ns.fullName.substring(1).replace(/\./g, "_") || "root") + ".proto" });
       if (syntax)
-        file11.syntax = syntax;
+        file12.syntax = syntax;
       if (!(ns instanceof Root2))
-        file11["package"] = ns.fullName.substring(1);
+        file12["package"] = ns.fullName.substring(1);
       for (var i2 = 0, nested2; i2 < ns.nestedArray.length; ++i2)
         if ((nested2 = ns._nestedArray[i2]) instanceof Type)
-          file11.messageType.push(nested2.toDescriptor(syntax));
+          file12.messageType.push(nested2.toDescriptor(syntax));
         else if (nested2 instanceof Enum)
-          file11.enumType.push(nested2.toDescriptor());
+          file12.enumType.push(nested2.toDescriptor());
         else if (nested2 instanceof Field)
-          file11.extension.push(nested2.toDescriptor(syntax));
+          file12.extension.push(nested2.toDescriptor(syntax));
         else if (nested2 instanceof Service)
-          file11.service.push(nested2.toDescriptor());
+          file12.service.push(nested2.toDescriptor());
         else if (nested2 instanceof Namespace)
           Root_toDescriptorRecursive(nested2, files, syntax);
-      file11.options = toDescriptorOptions(ns.options, exports2.FileOptions);
-      if (file11.messageType.length + file11.enumType.length + file11.extension.length + file11.service.length)
-        files.push(file11);
+      file12.options = toDescriptorOptions(ns.options, exports2.FileOptions);
+      if (file12.messageType.length + file12.enumType.length + file12.extension.length + file12.service.length)
+        files.push(file12);
     }
     var unnamedMessageIndex = 0;
     Type.fromDescriptor = function fromDescriptor(descriptor, syntax) {
@@ -40776,7 +37135,7 @@ function arrayEquals(left, right, comparator) {
   if (left.length !== right.length) {
     return false;
   }
-  return left.every((value, index10) => comparator(value, right[index10]));
+  return left.every((value, index11) => comparator(value, right[index11]));
 }
 function newIndexOffsetSuccessorFromReadTime(readTime, largestBatchId) {
   const successorSeconds = readTime.toTimestamp().seconds;
@@ -44484,14 +40843,14 @@ function fieldPathFromArgument(methodName, arg) {
 }
 function changesFromSnapshot(querySnapshot, includeMetadataChanges) {
   if (querySnapshot._snapshot.oldDocs.isEmpty()) {
-    let index10 = 0;
+    let index11 = 0;
     return querySnapshot._snapshot.docChanges.map((change) => {
       const doc2 = new QueryDocumentSnapshot(querySnapshot._firestore, querySnapshot._userDataWriter, change.doc.key, change.doc, new SnapshotMetadata(querySnapshot._snapshot.mutatedKeys.has(change.doc.key), querySnapshot._snapshot.fromCache), querySnapshot.query.converter);
       return {
         type: "added",
         doc: doc2,
         oldIndex: -1,
-        newIndex: index10++
+        newIndex: index11++
       };
     });
   } else {
@@ -45197,8 +41556,8 @@ var init_index_node = __esm({
       lastSegment() {
         return this.get(this.length - 1);
       }
-      get(index10) {
-        return this.segments[this.offset + index10];
+      get(index11) {
+        return this.segments[this.offset + index11];
       }
       isEmpty() {
         return this.length === 0;
@@ -47412,10 +43771,10 @@ var init_index_node = __esm({
       getCollectionParents(transaction, collectionId) {
         return PersistencePromise.resolve(this.collectionParentIndex.getEntries(collectionId));
       }
-      addFieldIndex(transaction, index10) {
+      addFieldIndex(transaction, index11) {
         return PersistencePromise.resolve();
       }
-      deleteFieldIndex(transaction, index10) {
+      deleteFieldIndex(transaction, index11) {
         return PersistencePromise.resolve();
       }
       getDocumentsMatchingTarget(transaction, target) {
@@ -47960,8 +44319,8 @@ var init_index_node = __esm({
       getNextMutationBatchAfterBatchId(transaction, batchId) {
         const nextBatchId = batchId + 1;
         const rawIndex = this.indexOfBatchId(nextBatchId);
-        const index10 = rawIndex < 0 ? 0 : rawIndex;
-        return PersistencePromise.resolve(this.mutationQueue.length > index10 ? this.mutationQueue[index10] : null);
+        const index11 = rawIndex < 0 ? 0 : rawIndex;
+        return PersistencePromise.resolve(this.mutationQueue.length > index11 ? this.mutationQueue[index11] : null);
       }
       getHighestUnacknowledgedBatchId() {
         return PersistencePromise.resolve(this.mutationQueue.length === 0 ? BATCHID_UNKNOWN : this.nextBatchId - 1);
@@ -48048,8 +44407,8 @@ var init_index_node = __esm({
         return PersistencePromise.resolve();
       }
       indexOfExistingBatchId(batchId, action) {
-        const index10 = this.indexOfBatchId(batchId);
-        return index10;
+        const index11 = this.indexOfBatchId(batchId);
+        return index11;
       }
       indexOfBatchId(batchId) {
         if (this.mutationQueue.length === 0) {
@@ -48059,11 +44418,11 @@ var init_index_node = __esm({
         return batchId - firstBatchId;
       }
       findMutationBatch(batchId) {
-        const index10 = this.indexOfBatchId(batchId);
-        if (index10 < 0 || index10 >= this.mutationQueue.length) {
+        const index11 = this.indexOfBatchId(batchId);
+        if (index11 < 0 || index11 >= this.mutationQueue.length) {
           return null;
         }
-        const batch = this.mutationQueue[index10];
+        const batch = this.mutationQueue[index11];
         return batch;
       }
     };
@@ -52970,8 +49329,8 @@ This typically indicates that your device does not have a healthy Internet conne
         this.timerIdsToSkip.push(timerId);
       }
       removeDelayedOperation(op) {
-        const index10 = this.delayedOperations.indexOf(op);
-        this.delayedOperations.splice(index10, 1);
+        const index11 = this.delayedOperations.indexOf(op);
+        this.delayedOperations.splice(index11, 1);
       }
     };
     Firestore = class extends Firestore$1 {
@@ -53120,7 +49479,7 @@ This typically indicates that your device does not have a healthy Internet conne
         context.validatePath();
         return context;
       }
-      childContextForArray(index10) {
+      childContextForArray(index11) {
         return this.contextWith({ path: void 0, arrayElement: true });
       }
       createError(reason) {
@@ -56306,18 +52665,18 @@ var require_lib2 = __commonJS({
           throw new TypeError("Value of `this` is not a HeadersIterator");
         }
         var _INTERNAL = this[INTERNAL];
-        const target = _INTERNAL.target, kind = _INTERNAL.kind, index10 = _INTERNAL.index;
+        const target = _INTERNAL.target, kind = _INTERNAL.kind, index11 = _INTERNAL.index;
         const values = getHeaders(target, kind);
         const len = values.length;
-        if (index10 >= len) {
+        if (index11 >= len) {
           return {
             value: void 0,
             done: true
           };
         }
-        this[INTERNAL].index = index10 + 1;
+        this[INTERNAL].index = index11 + 1;
         return {
-          value: values[index10],
+          value: values[index11],
           done: false
         };
       }
@@ -57377,6 +53736,9 @@ async function updateEmailOrPassword(user2, email, password) {
 function onAuthStateChanged(auth2, nextOrObserver, error2, completed) {
   return getModularInstance(auth2).onAuthStateChanged(nextOrObserver, error2, completed);
 }
+function signOut(auth2) {
+  return getModularInstance(auth2).signOut();
+}
 function getVersionForPlatform(clientPlatform) {
   switch (clientPlatform) {
     case "Node":
@@ -58018,9 +54380,9 @@ var init_index_f3c5e390 = __esm({
         });
         wrappedCallback.onAbort = onAbort;
         this.queue.push(wrappedCallback);
-        const index10 = this.queue.length - 1;
+        const index11 = this.queue.length - 1;
         return () => {
-          this.queue[index10] = () => Promise.resolve();
+          this.queue[index11] = () => Promise.resolve();
         };
       }
       async runMiddleware(nextUser) {
@@ -58911,757 +55273,6 @@ var init_dist3 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/database-88f2b9f9.js
-var firebaseConfig, app, dev, db, _createError2, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord;
-var init_database_88f2b9f9 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/database-88f2b9f9.js"() {
-    init_shims();
-    init_dist();
-    init_dist2();
-    init_dist3();
-    firebaseConfig = {
-      apiKey: "AIzaSyCFIhFlai5zMvE-9eeSiaL4ZiGiSvpg0yY",
-      authDomain: "aragalaya-online.firebaseapp.com",
-      projectId: "aragalaya-online",
-      storageBucket: "aragalaya-online.appspot.com",
-      messagingSenderId: "15533282305",
-      appId: "1:15533282305:web:a807d2c4f789c046a71c00"
-    };
-    {
-      firebaseConfig = {
-        apiKey: "AIzaSyAIFR7IVXYjG_8lyPyfHxsdx_kaRz4z3SM",
-        authDomain: "aragalaya-online-prod.firebaseapp.com",
-        projectId: "aragalaya-online-prod",
-        storageBucket: "aragalaya-online-prod.appspot.com",
-        messagingSenderId: "730227179317",
-        appId: "1:730227179317:web:59771460444f98ae52567c"
-      };
-    }
-    app = initializeApp(firebaseConfig);
-    dev = false;
-    db = getFirestore(app);
-    _createError2 = async (error2, caller, data) => {
-      try {
-        console.log("Uncaught error in: ", caller);
-        console.log("Error: ", error2);
-        if (data) {
-          console.log("Data: ", data);
-        }
-        if (!dev) {
-          await addDoc(collection(db, "Errors"), {
-            message: error2.message,
-            code: error2.code,
-            caller,
-            signedin: getAuth().currentUser != null,
-            time: new Date().getTime()
-          });
-        }
-      } catch (error22) {
-        console.log(`Couldn't save error:`, error22);
-      }
-    };
-    _getPosts = async (type) => {
-      try {
-        const c3 = collection(db, "Posts");
-        const q = query(c3, orderBy("createdOn", "desc"), where("type", "==", type), limit(10));
-        const qs = await getDocs(q);
-        const items = [];
-        qs.docs.forEach((doc2) => {
-          if (doc2.id !== "0" && doc2.exists()) {
-            items.push(doc2.data());
-          }
-        });
-        return items;
-      } catch (error2) {
-        _createError2(error2, "DBService:getBulletins");
-        return [];
-      }
-    };
-    _getPost = async (id) => {
-      try {
-        const docRef = doc(collection(db, "Posts"), id);
-        return (await getDoc(docRef)).data();
-      } catch (error2) {
-        _createError2(error2, "DBService:getPost");
-      }
-    };
-    _createUserRecord = async (user2) => {
-      try {
-        const docRef = doc(collection(db, "Users"), user2.uid);
-        user2.id = user2.uid;
-        await setDoc(docRef, user2);
-        return { user: user2 };
-      } catch (error2) {
-        _createError2(error2, "DBService:createUserRecord");
-      }
-    };
-    _setUserTheme = async (user2, theme) => {
-      if (!user2)
-        return;
-      try {
-        const docRef = doc(collection(db, "Users"), user2.uid);
-        const result = await updateDoc(docRef, { theme });
-        return result;
-      } catch (error2) {
-        _createError2(error2, "DBService:_setUserTheme");
-      }
-    };
-    _getUserRecord = async (uid) => {
-      try {
-        const docRef = doc(collection(db, "Users"), uid);
-        return (await getDoc(docRef)).data();
-      } catch (error2) {
-        _createError2(error2, "DBService:getUserRecord");
-      }
-    };
-  }
-});
-
-// node_modules/@firebase/storage/dist/node-esm/index.node.esm.js
-function prependCode(code) {
-  return "storage/" + code;
-}
-function unknown() {
-  const message = "An unknown error occurred, please check the error payload for server response.";
-  return new StorageError("unknown", message);
-}
-function retryLimitExceeded() {
-  return new StorageError("retry-limit-exceeded", "Max retry time for operation exceeded, please try again.");
-}
-function canceled() {
-  return new StorageError("canceled", "User canceled the upload/download.");
-}
-function invalidUrl(url) {
-  return new StorageError("invalid-url", "Invalid URL '" + url + "'.");
-}
-function invalidDefaultBucket(bucket) {
-  return new StorageError("invalid-default-bucket", "Invalid default bucket '" + bucket + "'.");
-}
-function invalidArgument(message) {
-  return new StorageError("invalid-argument", message);
-}
-function appDeleted() {
-  return new StorageError("app-deleted", "The Firebase app was deleted.");
-}
-function invalidRootOperation(name7) {
-  return new StorageError("invalid-root-operation", "The operation '" + name7 + "' cannot be performed on a root reference, create a non-root reference using child, such as .child('file.png').");
-}
-function start(f5, callback, timeout) {
-  let waitSeconds = 1;
-  let retryTimeoutId = null;
-  let globalTimeoutId = null;
-  let hitTimeout = false;
-  let cancelState = 0;
-  function canceled2() {
-    return cancelState === 2;
-  }
-  let triggeredCallback = false;
-  function triggerCallback(...args) {
-    if (!triggeredCallback) {
-      triggeredCallback = true;
-      callback.apply(null, args);
-    }
-  }
-  function callWithDelay(millis) {
-    retryTimeoutId = setTimeout(() => {
-      retryTimeoutId = null;
-      f5(handler, canceled2());
-    }, millis);
-  }
-  function clearGlobalTimeout() {
-    if (globalTimeoutId) {
-      clearTimeout(globalTimeoutId);
-    }
-  }
-  function handler(success, ...args) {
-    if (triggeredCallback) {
-      clearGlobalTimeout();
-      return;
-    }
-    if (success) {
-      clearGlobalTimeout();
-      triggerCallback.call(null, success, ...args);
-      return;
-    }
-    const mustStop = canceled2() || hitTimeout;
-    if (mustStop) {
-      clearGlobalTimeout();
-      triggerCallback.call(null, success, ...args);
-      return;
-    }
-    if (waitSeconds < 64) {
-      waitSeconds *= 2;
-    }
-    let waitMillis;
-    if (cancelState === 1) {
-      cancelState = 2;
-      waitMillis = 0;
-    } else {
-      waitMillis = (waitSeconds + Math.random()) * 1e3;
-    }
-    callWithDelay(waitMillis);
-  }
-  let stopped = false;
-  function stop2(wasTimeout) {
-    if (stopped) {
-      return;
-    }
-    stopped = true;
-    clearGlobalTimeout();
-    if (triggeredCallback) {
-      return;
-    }
-    if (retryTimeoutId !== null) {
-      if (!wasTimeout) {
-        cancelState = 2;
-      }
-      clearTimeout(retryTimeoutId);
-      callWithDelay(0);
-    } else {
-      if (!wasTimeout) {
-        cancelState = 1;
-      }
-    }
-  }
-  callWithDelay(0);
-  globalTimeoutId = setTimeout(() => {
-    hitTimeout = true;
-    stop2(true);
-  }, timeout);
-  return stop2;
-}
-function stop(id) {
-  id(false);
-}
-function isJustDef(p2) {
-  return p2 !== void 0;
-}
-function validateNumber(argument, minValue, maxValue, value) {
-  if (value < minValue) {
-    throw invalidArgument(`Invalid value for '${argument}'. Expected ${minValue} or greater.`);
-  }
-  if (value > maxValue) {
-    throw invalidArgument(`Invalid value for '${argument}'. Expected ${maxValue} or less.`);
-  }
-}
-function makeQueryString(params) {
-  const encode4 = encodeURIComponent;
-  let queryPart = "?";
-  for (const key2 in params) {
-    if (params.hasOwnProperty(key2)) {
-      const nextPart = encode4(key2) + "=" + encode4(params[key2]);
-      queryPart = queryPart + nextPart + "&";
-    }
-  }
-  queryPart = queryPart.slice(0, -1);
-  return queryPart;
-}
-function addAuthHeader_(headers2, authToken) {
-  if (authToken !== null && authToken.length > 0) {
-    headers2["Authorization"] = "Firebase " + authToken;
-  }
-}
-function addVersionHeader_(headers2, firebaseVersion) {
-  headers2["X-Firebase-Storage-Version"] = "webjs/" + (firebaseVersion !== null && firebaseVersion !== void 0 ? firebaseVersion : "AppManager");
-}
-function addGmpidHeader_(headers2, appId) {
-  if (appId) {
-    headers2["X-Firebase-GMPID"] = appId;
-  }
-}
-function addAppCheckHeader_(headers2, appCheckToken) {
-  if (appCheckToken !== null) {
-    headers2["X-Firebase-AppCheck"] = appCheckToken;
-  }
-}
-function makeRequest(requestInfo, appId, authToken, appCheckToken, requestFactory, firebaseVersion) {
-  const queryPart = makeQueryString(requestInfo.urlParams);
-  const url = requestInfo.url + queryPart;
-  const headers2 = Object.assign({}, requestInfo.headers);
-  addGmpidHeader_(headers2, appId);
-  addAuthHeader_(headers2, authToken);
-  addVersionHeader_(headers2, firebaseVersion);
-  addAppCheckHeader_(headers2, appCheckToken);
-  return new NetworkRequest(url, requestInfo.method, headers2, requestInfo.body, requestInfo.successCodes, requestInfo.additionalRetryCodes, requestInfo.handler, requestInfo.errorHandler, requestInfo.timeout, requestInfo.progressCallback, requestFactory);
-}
-function parent(path) {
-  if (path.length === 0) {
-    return null;
-  }
-  const index10 = path.lastIndexOf("/");
-  if (index10 === -1) {
-    return "";
-  }
-  const newPath = path.slice(0, index10);
-  return newPath;
-}
-function lastComponent(path) {
-  const index10 = path.lastIndexOf("/", path.length - 2);
-  if (index10 === -1) {
-    return path;
-  } else {
-    return path.slice(index10 + 1);
-  }
-}
-function extractBucket(host, config) {
-  const bucketString = config === null || config === void 0 ? void 0 : config[CONFIG_STORAGE_BUCKET_KEY];
-  if (bucketString == null) {
-    return null;
-  }
-  return Location.makeFromBucketSpec(bucketString, host);
-}
-function getStorage(app2 = getApp(), bucketUrl) {
-  app2 = getModularInstance(app2);
-  const storageProvider = _getProvider(app2, STORAGE_TYPE);
-  const storageInstance = storageProvider.getImmediate({
-    identifier: bucketUrl
-  });
-  return storageInstance;
-}
-function factory(container, { instanceIdentifier: url }) {
-  const app2 = container.getProvider("app").getImmediate();
-  const authProvider = container.getProvider("auth-internal");
-  const appCheckProvider = container.getProvider("app-check-internal");
-  return new FirebaseStorageImpl(app2, authProvider, appCheckProvider, url, SDK_VERSION);
-}
-function registerStorage() {
-  _registerComponent(new Component(STORAGE_TYPE, factory, "PUBLIC").setMultipleInstances(true));
-  registerVersion(name5, version5);
-}
-var import_node_fetch2, DEFAULT_HOST2, CONFIG_STORAGE_BUCKET_KEY, DEFAULT_MAX_OPERATION_RETRY_TIME, DEFAULT_MAX_UPLOAD_RETRY_TIME, StorageError, Location, FailRequest, ErrorCode, NetworkRequest, RequestEndStatus, RESUMABLE_UPLOAD_CHUNK_SIZE, Reference, FirebaseStorageImpl, name5, version5, STORAGE_TYPE;
-var init_index_node_esm2 = __esm({
-  "node_modules/@firebase/storage/dist/node-esm/index.node.esm.js"() {
-    init_shims();
-    init_index_esm20173();
-    init_index_node_esm();
-    import_node_fetch2 = __toESM(require_lib2(), 1);
-    init_index_esm2017();
-    DEFAULT_HOST2 = "firebasestorage.googleapis.com";
-    CONFIG_STORAGE_BUCKET_KEY = "storageBucket";
-    DEFAULT_MAX_OPERATION_RETRY_TIME = 2 * 60 * 1e3;
-    DEFAULT_MAX_UPLOAD_RETRY_TIME = 10 * 60 * 1e3;
-    StorageError = class extends FirebaseError {
-      constructor(code, message) {
-        super(prependCode(code), `Firebase Storage: ${message} (${prependCode(code)})`);
-        this.customData = { serverResponse: null };
-        this._baseMessage = this.message;
-        Object.setPrototypeOf(this, StorageError.prototype);
-      }
-      _codeEquals(code) {
-        return prependCode(code) === this.code;
-      }
-      get serverResponse() {
-        return this.customData.serverResponse;
-      }
-      set serverResponse(serverResponse) {
-        this.customData.serverResponse = serverResponse;
-        if (this.customData.serverResponse) {
-          this.message = `${this._baseMessage}
-${this.customData.serverResponse}`;
-        } else {
-          this.message = this._baseMessage;
-        }
-      }
-    };
-    Location = class {
-      constructor(bucket, path) {
-        this.bucket = bucket;
-        this.path_ = path;
-      }
-      get path() {
-        return this.path_;
-      }
-      get isRoot() {
-        return this.path.length === 0;
-      }
-      fullServerUrl() {
-        const encode4 = encodeURIComponent;
-        return "/b/" + encode4(this.bucket) + "/o/" + encode4(this.path);
-      }
-      bucketOnlyServerUrl() {
-        const encode4 = encodeURIComponent;
-        return "/b/" + encode4(this.bucket) + "/o";
-      }
-      static makeFromBucketSpec(bucketString, host) {
-        let bucketLocation;
-        try {
-          bucketLocation = Location.makeFromUrl(bucketString, host);
-        } catch (e2) {
-          return new Location(bucketString, "");
-        }
-        if (bucketLocation.path === "") {
-          return bucketLocation;
-        } else {
-          throw invalidDefaultBucket(bucketString);
-        }
-      }
-      static makeFromUrl(url, host) {
-        let location = null;
-        const bucketDomain = "([A-Za-z0-9.\\-_]+)";
-        function gsModify(loc) {
-          if (loc.path.charAt(loc.path.length - 1) === "/") {
-            loc.path_ = loc.path_.slice(0, -1);
-          }
-        }
-        const gsPath = "(/(.*))?$";
-        const gsRegex = new RegExp("^gs://" + bucketDomain + gsPath, "i");
-        const gsIndices = { bucket: 1, path: 3 };
-        function httpModify(loc) {
-          loc.path_ = decodeURIComponent(loc.path);
-        }
-        const version7 = "v[A-Za-z0-9_]+";
-        const firebaseStorageHost = host.replace(/[.]/g, "\\.");
-        const firebaseStoragePath = "(/([^?#]*).*)?$";
-        const firebaseStorageRegExp = new RegExp(`^https?://${firebaseStorageHost}/${version7}/b/${bucketDomain}/o${firebaseStoragePath}`, "i");
-        const firebaseStorageIndices = { bucket: 1, path: 3 };
-        const cloudStorageHost = host === DEFAULT_HOST2 ? "(?:storage.googleapis.com|storage.cloud.google.com)" : host;
-        const cloudStoragePath = "([^?#]*)";
-        const cloudStorageRegExp = new RegExp(`^https?://${cloudStorageHost}/${bucketDomain}/${cloudStoragePath}`, "i");
-        const cloudStorageIndices = { bucket: 1, path: 2 };
-        const groups = [
-          { regex: gsRegex, indices: gsIndices, postModify: gsModify },
-          {
-            regex: firebaseStorageRegExp,
-            indices: firebaseStorageIndices,
-            postModify: httpModify
-          },
-          {
-            regex: cloudStorageRegExp,
-            indices: cloudStorageIndices,
-            postModify: httpModify
-          }
-        ];
-        for (let i2 = 0; i2 < groups.length; i2++) {
-          const group = groups[i2];
-          const captures = group.regex.exec(url);
-          if (captures) {
-            const bucketValue = captures[group.indices.bucket];
-            let pathValue = captures[group.indices.path];
-            if (!pathValue) {
-              pathValue = "";
-            }
-            location = new Location(bucketValue, pathValue);
-            group.postModify(location);
-            break;
-          }
-        }
-        if (location == null) {
-          throw invalidUrl(url);
-        }
-        return location;
-      }
-    };
-    FailRequest = class {
-      constructor(error2) {
-        this.promise_ = Promise.reject(error2);
-      }
-      getPromise() {
-        return this.promise_;
-      }
-      cancel(_appDelete = false) {
-      }
-    };
-    (function(ErrorCode2) {
-      ErrorCode2[ErrorCode2["NO_ERROR"] = 0] = "NO_ERROR";
-      ErrorCode2[ErrorCode2["NETWORK_ERROR"] = 1] = "NETWORK_ERROR";
-      ErrorCode2[ErrorCode2["ABORT"] = 2] = "ABORT";
-    })(ErrorCode || (ErrorCode = {}));
-    NetworkRequest = class {
-      constructor(url_, method_, headers_, body_, successCodes_, additionalRetryCodes_, callback_, errorCallback_, timeout_, progressCallback_, connectionFactory_) {
-        this.url_ = url_;
-        this.method_ = method_;
-        this.headers_ = headers_;
-        this.body_ = body_;
-        this.successCodes_ = successCodes_;
-        this.additionalRetryCodes_ = additionalRetryCodes_;
-        this.callback_ = callback_;
-        this.errorCallback_ = errorCallback_;
-        this.timeout_ = timeout_;
-        this.progressCallback_ = progressCallback_;
-        this.connectionFactory_ = connectionFactory_;
-        this.pendingConnection_ = null;
-        this.backoffId_ = null;
-        this.canceled_ = false;
-        this.appDelete_ = false;
-        this.promise_ = new Promise((resolve2, reject) => {
-          this.resolve_ = resolve2;
-          this.reject_ = reject;
-          this.start_();
-        });
-      }
-      start_() {
-        const doTheRequest = (backoffCallback, canceled2) => {
-          if (canceled2) {
-            backoffCallback(false, new RequestEndStatus(false, null, true));
-            return;
-          }
-          const connection = this.connectionFactory_();
-          this.pendingConnection_ = connection;
-          const progressListener = (progressEvent) => {
-            const loaded = progressEvent.loaded;
-            const total = progressEvent.lengthComputable ? progressEvent.total : -1;
-            if (this.progressCallback_ !== null) {
-              this.progressCallback_(loaded, total);
-            }
-          };
-          if (this.progressCallback_ !== null) {
-            connection.addUploadProgressListener(progressListener);
-          }
-          connection.send(this.url_, this.method_, this.body_, this.headers_).then(() => {
-            if (this.progressCallback_ !== null) {
-              connection.removeUploadProgressListener(progressListener);
-            }
-            this.pendingConnection_ = null;
-            const hitServer = connection.getErrorCode() === ErrorCode.NO_ERROR;
-            const status = connection.getStatus();
-            if (!hitServer || this.isRetryStatusCode_(status)) {
-              const wasCanceled = connection.getErrorCode() === ErrorCode.ABORT;
-              backoffCallback(false, new RequestEndStatus(false, null, wasCanceled));
-              return;
-            }
-            const successCode = this.successCodes_.indexOf(status) !== -1;
-            backoffCallback(true, new RequestEndStatus(successCode, connection));
-          });
-        };
-        const backoffDone = (requestWentThrough, status) => {
-          const resolve2 = this.resolve_;
-          const reject = this.reject_;
-          const connection = status.connection;
-          if (status.wasSuccessCode) {
-            try {
-              const result = this.callback_(connection, connection.getResponse());
-              if (isJustDef(result)) {
-                resolve2(result);
-              } else {
-                resolve2();
-              }
-            } catch (e2) {
-              reject(e2);
-            }
-          } else {
-            if (connection !== null) {
-              const err = unknown();
-              err.serverResponse = connection.getErrorText();
-              if (this.errorCallback_) {
-                reject(this.errorCallback_(connection, err));
-              } else {
-                reject(err);
-              }
-            } else {
-              if (status.canceled) {
-                const err = this.appDelete_ ? appDeleted() : canceled();
-                reject(err);
-              } else {
-                const err = retryLimitExceeded();
-                reject(err);
-              }
-            }
-          }
-        };
-        if (this.canceled_) {
-          backoffDone(false, new RequestEndStatus(false, null, true));
-        } else {
-          this.backoffId_ = start(doTheRequest, backoffDone, this.timeout_);
-        }
-      }
-      getPromise() {
-        return this.promise_;
-      }
-      cancel(appDelete) {
-        this.canceled_ = true;
-        this.appDelete_ = appDelete || false;
-        if (this.backoffId_ !== null) {
-          stop(this.backoffId_);
-        }
-        if (this.pendingConnection_ !== null) {
-          this.pendingConnection_.abort();
-        }
-      }
-      isRetryStatusCode_(status) {
-        const isFiveHundredCode = status >= 500 && status < 600;
-        const extraRetryCodes = [
-          408,
-          429
-        ];
-        const isExtraRetryCode = extraRetryCodes.indexOf(status) !== -1;
-        const isRequestSpecificRetryCode = this.additionalRetryCodes_.indexOf(status) !== -1;
-        return isFiveHundredCode || isExtraRetryCode || isRequestSpecificRetryCode;
-      }
-    };
-    RequestEndStatus = class {
-      constructor(wasSuccessCode, connection, canceled2) {
-        this.wasSuccessCode = wasSuccessCode;
-        this.connection = connection;
-        this.canceled = !!canceled2;
-      }
-    };
-    RESUMABLE_UPLOAD_CHUNK_SIZE = 256 * 1024;
-    Reference = class {
-      constructor(_service, location) {
-        this._service = _service;
-        if (location instanceof Location) {
-          this._location = location;
-        } else {
-          this._location = Location.makeFromUrl(location, _service.host);
-        }
-      }
-      toString() {
-        return "gs://" + this._location.bucket + "/" + this._location.path;
-      }
-      _newRef(service, location) {
-        return new Reference(service, location);
-      }
-      get root() {
-        const location = new Location(this._location.bucket, "");
-        return this._newRef(this._service, location);
-      }
-      get bucket() {
-        return this._location.bucket;
-      }
-      get fullPath() {
-        return this._location.path;
-      }
-      get name() {
-        return lastComponent(this._location.path);
-      }
-      get storage() {
-        return this._service;
-      }
-      get parent() {
-        const newPath = parent(this._location.path);
-        if (newPath === null) {
-          return null;
-        }
-        const location = new Location(this._location.bucket, newPath);
-        return new Reference(this._service, location);
-      }
-      _throwIfRoot(name7) {
-        if (this._location.path === "") {
-          throw invalidRootOperation(name7);
-        }
-      }
-    };
-    FirebaseStorageImpl = class {
-      constructor(app2, _authProvider, _appCheckProvider, _url, _firebaseVersion) {
-        this.app = app2;
-        this._authProvider = _authProvider;
-        this._appCheckProvider = _appCheckProvider;
-        this._url = _url;
-        this._firebaseVersion = _firebaseVersion;
-        this._bucket = null;
-        this._host = DEFAULT_HOST2;
-        this._protocol = "https";
-        this._appId = null;
-        this._deleted = false;
-        this._maxOperationRetryTime = DEFAULT_MAX_OPERATION_RETRY_TIME;
-        this._maxUploadRetryTime = DEFAULT_MAX_UPLOAD_RETRY_TIME;
-        this._requests = /* @__PURE__ */ new Set();
-        if (_url != null) {
-          this._bucket = Location.makeFromBucketSpec(_url, this._host);
-        } else {
-          this._bucket = extractBucket(this._host, this.app.options);
-        }
-      }
-      get host() {
-        return this._host;
-      }
-      set host(host) {
-        this._host = host;
-        if (this._url != null) {
-          this._bucket = Location.makeFromBucketSpec(this._url, host);
-        } else {
-          this._bucket = extractBucket(host, this.app.options);
-        }
-      }
-      get maxUploadRetryTime() {
-        return this._maxUploadRetryTime;
-      }
-      set maxUploadRetryTime(time) {
-        validateNumber(
-          "time",
-          0,
-          Number.POSITIVE_INFINITY,
-          time
-        );
-        this._maxUploadRetryTime = time;
-      }
-      get maxOperationRetryTime() {
-        return this._maxOperationRetryTime;
-      }
-      set maxOperationRetryTime(time) {
-        validateNumber(
-          "time",
-          0,
-          Number.POSITIVE_INFINITY,
-          time
-        );
-        this._maxOperationRetryTime = time;
-      }
-      async _getAuthToken() {
-        if (this._overrideAuthToken) {
-          return this._overrideAuthToken;
-        }
-        const auth2 = this._authProvider.getImmediate({ optional: true });
-        if (auth2) {
-          const tokenData = await auth2.getToken();
-          if (tokenData !== null) {
-            return tokenData.accessToken;
-          }
-        }
-        return null;
-      }
-      async _getAppCheckToken() {
-        const appCheck = this._appCheckProvider.getImmediate({ optional: true });
-        if (appCheck) {
-          const result = await appCheck.getToken();
-          return result.token;
-        }
-        return null;
-      }
-      _delete() {
-        if (!this._deleted) {
-          this._deleted = true;
-          this._requests.forEach((request2) => request2.cancel());
-          this._requests.clear();
-        }
-        return Promise.resolve();
-      }
-      _makeStorageReference(loc) {
-        return new Reference(this, loc);
-      }
-      _makeRequest(requestInfo, requestFactory, authToken, appCheckToken) {
-        if (!this._deleted) {
-          const request2 = makeRequest(requestInfo, this._appId, authToken, appCheckToken, requestFactory, this._firebaseVersion);
-          this._requests.add(request2);
-          request2.getPromise().then(() => this._requests.delete(request2), () => this._requests.delete(request2));
-          return request2;
-        } else {
-          return new FailRequest(appDeleted());
-        }
-      }
-      async makeRequestWithTokens(requestInfo, requestFactory) {
-        const [authToken, appCheckToken] = await Promise.all([
-          this._getAuthToken(),
-          this._getAppCheckToken()
-        ]);
-        return this._makeRequest(requestInfo, requestFactory, authToken, appCheckToken).getPromise();
-      }
-    };
-    name5 = "@firebase/storage";
-    version5 = "0.9.9";
-    STORAGE_TYPE = "storage";
-    registerStorage();
-  }
-});
-
-// node_modules/firebase/storage/dist/index.mjs
-var init_dist4 = __esm({
-  "node_modules/firebase/storage/dist/index.mjs"() {
-    init_shims();
-    init_index_node_esm2();
-  }
-});
-
 // node_modules/rxjs/dist/cjs/internal/util/isFunction.js
 var require_isFunction = __commonJS({
   "node_modules/rxjs/dist/cjs/internal/util/isFunction.js"(exports2) {
@@ -59727,8 +55338,8 @@ var require_arrRemove = __commonJS({
     exports2.arrRemove = void 0;
     function arrRemove(arr, item) {
       if (arr) {
-        var index10 = arr.indexOf(item);
-        0 <= index10 && arr.splice(index10, 1);
+        var index11 = arr.indexOf(item);
+        0 <= index11 && arr.splice(index11, 1);
       }
     }
     exports2.arrRemove = arrRemove;
@@ -62211,16 +57822,16 @@ var require_VirtualTimeScheduler = __commonJS({
     exports2.VirtualTimeScheduler = VirtualTimeScheduler;
     var VirtualAction = function(_super) {
       __extends2(VirtualAction2, _super);
-      function VirtualAction2(scheduler, work, index10) {
-        if (index10 === void 0) {
-          index10 = scheduler.index += 1;
+      function VirtualAction2(scheduler, work, index11) {
+        if (index11 === void 0) {
+          index11 = scheduler.index += 1;
         }
         var _this = _super.call(this, scheduler, work) || this;
         _this.scheduler = scheduler;
         _this.work = work;
-        _this.index = index10;
+        _this.index = index11;
         _this.active = true;
-        _this.index = scheduler.index = index10;
+        _this.index = scheduler.index = index11;
         return _this;
       }
       VirtualAction2.prototype.schedule = function(state, delay) {
@@ -63601,9 +59212,9 @@ var require_map = __commonJS({
     var OperatorSubscriber_1 = require_OperatorSubscriber();
     function map(project, thisArg) {
       return lift_1.operate(function(source, subscriber) {
-        var index10 = 0;
+        var index11 = 0;
         source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
-          subscriber.next(project.call(thisArg, value, index10++));
+          subscriber.next(project.call(thisArg, value, index11++));
         }));
       });
     }
@@ -63942,7 +59553,7 @@ var require_mergeInternals = __commonJS({
     function mergeInternals(source, subscriber, project, concurrent, onBeforeNext, expand, innerSubScheduler, additionalFinalizer) {
       var buffer = [];
       var active = 0;
-      var index10 = 0;
+      var index11 = 0;
       var isComplete = false;
       var checkComplete = function() {
         if (isComplete && !buffer.length && !active) {
@@ -63956,7 +59567,7 @@ var require_mergeInternals = __commonJS({
         expand && subscriber.next(value);
         active++;
         var innerComplete = false;
-        innerFrom_1.innerFrom(project(value, index10++)).subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(innerValue) {
+        innerFrom_1.innerFrom(project(value, index11++)).subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(innerValue) {
           onBeforeNext === null || onBeforeNext === void 0 ? void 0 : onBeforeNext(innerValue);
           if (expand) {
             outerNext(innerValue);
@@ -64732,8 +60343,8 @@ var require_not = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.not = void 0;
     function not(pred, thisArg) {
-      return function(value, index10) {
-        return !pred.call(thisArg, value, index10);
+      return function(value, index11) {
+        return !pred.call(thisArg, value, index11);
       };
     }
     exports2.not = not;
@@ -64751,9 +60362,9 @@ var require_filter2 = __commonJS({
     var OperatorSubscriber_1 = require_OperatorSubscriber();
     function filter(predicate, thisArg) {
       return lift_1.operate(function(source, subscriber) {
-        var index10 = 0;
+        var index11 = 0;
         source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
-          return predicate.call(thisArg, value, index10++) && subscriber.next(value);
+          return predicate.call(thisArg, value, index11++) && subscriber.next(value);
         }));
       });
     }
@@ -65455,9 +61066,9 @@ var require_scanInternals = __commonJS({
       return function(source, subscriber) {
         var hasState = hasSeed;
         var state = seed;
-        var index10 = 0;
+        var index11 = 0;
         source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
-          var i2 = index10++;
+          var i2 = index11++;
           state = hasState ? accumulator(state, value, i2) : (hasState = true, value);
           emitOnNext && subscriber.next(state);
         }, emitBeforeComplete && function() {
@@ -66061,8 +61672,8 @@ var require_delayWhen = __commonJS({
           return concat_1.concat(subscriptionDelay.pipe(take_1.take(1), ignoreElements_1.ignoreElements()), source.pipe(delayWhen(delayDurationSelector)));
         };
       }
-      return mergeMap_1.mergeMap(function(value, index10) {
-        return delayDurationSelector(value, index10).pipe(take_1.take(1), mapTo_1.mapTo(value));
+      return mergeMap_1.mergeMap(function(value, index11) {
+        return delayDurationSelector(value, index11).pipe(take_1.take(1), mapTo_1.mapTo(value));
       });
     }
     exports2.delayWhen = delayWhen;
@@ -66237,14 +61848,14 @@ var require_elementAt = __commonJS({
     var throwIfEmpty_1 = require_throwIfEmpty();
     var defaultIfEmpty_1 = require_defaultIfEmpty();
     var take_1 = require_take();
-    function elementAt(index10, defaultValue) {
-      if (index10 < 0) {
+    function elementAt(index11, defaultValue) {
+      if (index11 < 0) {
         throw new ArgumentOutOfRangeError_1.ArgumentOutOfRangeError();
       }
       var hasDefaultValue = arguments.length >= 2;
       return function(source) {
         return source.pipe(filter_1.filter(function(v3, i2) {
-          return i2 === index10;
+          return i2 === index11;
         }), take_1.take(1), hasDefaultValue ? defaultIfEmpty_1.defaultIfEmpty(defaultValue) : throwIfEmpty_1.throwIfEmpty(function() {
           return new ArgumentOutOfRangeError_1.ArgumentOutOfRangeError();
         }));
@@ -66313,9 +61924,9 @@ var require_every = __commonJS({
     var OperatorSubscriber_1 = require_OperatorSubscriber();
     function every(predicate, thisArg) {
       return lift_1.operate(function(source, subscriber) {
-        var index10 = 0;
+        var index11 = 0;
         source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
-          if (!predicate.call(thisArg, value, index10++, source)) {
+          if (!predicate.call(thisArg, value, index11++, source)) {
             subscriber.next(false);
             subscriber.complete();
           }
@@ -66351,7 +61962,7 @@ var require_exhaustMap = __commonJS({
         };
       }
       return lift_1.operate(function(source, subscriber) {
-        var index10 = 0;
+        var index11 = 0;
         var innerSub = null;
         var isComplete = false;
         source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(outerValue) {
@@ -66360,7 +61971,7 @@ var require_exhaustMap = __commonJS({
               innerSub = null;
               isComplete && subscriber.complete();
             });
-            innerFrom_1.innerFrom(project(outerValue, index10++)).subscribe(innerSub);
+            innerFrom_1.innerFrom(project(outerValue, index11++)).subscribe(innerSub);
           }
         }, function() {
           isComplete = true;
@@ -66459,9 +62070,9 @@ var require_find = __commonJS({
     function createFind(predicate, thisArg, emit) {
       var findIndex = emit === "index";
       return function(source, subscriber) {
-        var index10 = 0;
+        var index11 = 0;
         source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
-          var i2 = index10++;
+          var i2 = index11++;
           if (predicate.call(thisArg, value, i2, source)) {
             subscriber.next(findIndex ? i2 : value);
             subscriber.complete();
@@ -66816,8 +62427,8 @@ var require_mergeScan = __commonJS({
       }
       return lift_1.operate(function(source, subscriber) {
         var state = seed;
-        return mergeInternals_1.mergeInternals(source, subscriber, function(value, index10) {
-          return accumulator(state, value, index10);
+        return mergeInternals_1.mergeInternals(source, subscriber, function(value, index11) {
+          return accumulator(state, value, index11);
         }, concurrent, function(value) {
           state = value;
         }, false, void 0, function() {
@@ -67700,10 +63311,10 @@ var require_single = __commonJS({
         var hasValue = false;
         var singleValue;
         var seenValue = false;
-        var index10 = 0;
+        var index11 = 0;
         source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
           seenValue = true;
-          if (!predicate || predicate(value, index10++, source)) {
+          if (!predicate || predicate(value, index11++, source)) {
             hasValue && subscriber.error(new SequenceError_1.SequenceError("Too many matching values"));
             hasValue = true;
             singleValue = value;
@@ -67731,8 +63342,8 @@ var require_skip = __commonJS({
     exports2.skip = void 0;
     var filter_1 = require_filter2();
     function skip(count) {
-      return filter_1.filter(function(_2, index10) {
-        return count <= index10;
+      return filter_1.filter(function(_2, index11) {
+        return count <= index11;
       });
     }
     exports2.skip = skip;
@@ -67758,9 +63369,9 @@ var require_skipLast = __commonJS({
           if (valueIndex < skipCount) {
             ring[valueIndex] = value;
           } else {
-            var index10 = valueIndex % skipCount;
-            var oldValue = ring[index10];
-            ring[index10] = value;
+            var index11 = valueIndex % skipCount;
+            var oldValue = ring[index11];
+            ring[index11] = value;
             subscriber.next(oldValue);
           }
         }));
@@ -67813,9 +63424,9 @@ var require_skipWhile = __commonJS({
     function skipWhile(predicate) {
       return lift_1.operate(function(source, subscriber) {
         var taking = false;
-        var index10 = 0;
+        var index11 = 0;
         source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
-          return (taking || (taking = !predicate(value, index10++))) && subscriber.next(value);
+          return (taking || (taking = !predicate(value, index11++))) && subscriber.next(value);
         }));
       });
     }
@@ -67860,7 +63471,7 @@ var require_switchMap = __commonJS({
     function switchMap(project, resultSelector) {
       return lift_1.operate(function(source, subscriber) {
         var innerSubscriber = null;
-        var index10 = 0;
+        var index11 = 0;
         var isComplete = false;
         var checkComplete = function() {
           return isComplete && !innerSubscriber && subscriber.complete();
@@ -67868,7 +63479,7 @@ var require_switchMap = __commonJS({
         source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
           innerSubscriber === null || innerSubscriber === void 0 ? void 0 : innerSubscriber.unsubscribe();
           var innerIndex = 0;
-          var outerIndex = index10++;
+          var outerIndex = index11++;
           innerFrom_1.innerFrom(project(value, outerIndex)).subscribe(innerSubscriber = OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(innerValue) {
             return subscriber.next(resultSelector ? resultSelector(value, innerValue, outerIndex, innerIndex++) : innerValue);
           }, function() {
@@ -67933,8 +63544,8 @@ var require_switchScan = __commonJS({
     function switchScan(accumulator, seed) {
       return lift_1.operate(function(source, subscriber) {
         var state = seed;
-        switchMap_1.switchMap(function(value, index10) {
-          return accumulator(state, value, index10);
+        switchMap_1.switchMap(function(value, index11) {
+          return accumulator(state, value, index11);
         }, function(_2, innerValue) {
           return state = innerValue, innerValue;
         })(source).subscribe(subscriber);
@@ -67984,9 +63595,9 @@ var require_takeWhile = __commonJS({
         inclusive = false;
       }
       return lift_1.operate(function(source, subscriber) {
-        var index10 = 0;
+        var index11 = 0;
         source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
-          var result = predicate(value, index10++);
+          var result = predicate(value, index11++);
           (result || inclusive) && subscriber.next(value);
           !result && subscriber.complete();
         }));
@@ -69474,16 +65085,36 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/storage-47dbcc97.js
-var import_rxjs, events, _emitEvent, _eventListener, auth, user, _userSignedIn, _emailSignup, _emailSignin, _changePassword;
-var init_storage_47dbcc97 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/storage-47dbcc97.js"() {
+// .svelte-kit/output/server/_app/immutable/chunks/database-298aef9a.js
+var import_rxjs, firebaseConfig, app, dev, events, _emitEvent, _eventListener, auth, user, signUpInProgress, language, theme, _userSignedIn, _emailSignup, _emailSignin, _changePassword, _userLogout, db, _createError2, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord;
+var init_database_298aef9a = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/database-298aef9a.js"() {
     init_shims();
-    init_database_88f2b9f9();
-    init_dist4();
+    init_dist();
+    init_dist2();
     init_dist3();
     import_rxjs = __toESM(require_cjs(), 1);
-    init_tags_0c38ec88();
+    init_store_21b4cd20();
+    firebaseConfig = {
+      apiKey: "AIzaSyCFIhFlai5zMvE-9eeSiaL4ZiGiSvpg0yY",
+      authDomain: "aragalaya-online.firebaseapp.com",
+      projectId: "aragalaya-online",
+      storageBucket: "aragalaya-online.appspot.com",
+      messagingSenderId: "15533282305",
+      appId: "1:15533282305:web:a807d2c4f789c046a71c00"
+    };
+    {
+      firebaseConfig = {
+        apiKey: "AIzaSyAIFR7IVXYjG_8lyPyfHxsdx_kaRz4z3SM",
+        authDomain: "aragalaya-online-prod.firebaseapp.com",
+        projectId: "aragalaya-online-prod",
+        storageBucket: "aragalaya-online-prod.appspot.com",
+        messagingSenderId: "730227179317",
+        appId: "1:730227179317:web:59771460444f98ae52567c"
+      };
+    }
+    app = initializeApp(firebaseConfig);
+    dev = false;
     events = [];
     _emitEvent = (tag, value) => {
       let event = events.find((event2) => tag == event2.tag);
@@ -69506,22 +65137,28 @@ var init_storage_47dbcc97 = __esm({
       return subject;
     };
     auth = getAuth(app);
+    signUpInProgress = false;
+    _signUpInProgress.subscribe((v3) => signUpInProgress = v3);
+    language = 0;
+    _lang.subscribe((v3) => language = v3);
+    theme = 0;
+    _currentTheme.subscribe((v3) => theme = v3);
     onAuthStateChanged(auth, async (authUser) => {
+      if (signUpInProgress)
+        return;
       if (authUser) {
-        if (user && user.uid != authUser.uid || !user) {
+        if (!user || user && user.uid != authUser.uid) {
+          console.log("getting user record");
           user = await _getUserRecord(authUser.uid);
         }
         if (!user) {
-          await _createError2({
-            error: "invalid-user",
-            authUser
-          }, "authService::onAuthStateChanged");
+          _emitEvent("show-hide-login", "force-signup");
         } else {
-          _emitEvent("user-ready", user);
+          _emitEvent("user-changed", user);
           return;
         }
       }
-      _emitEvent("user-ready", void 0);
+      _emitEvent("user-changed", void 0);
       _authStateChecked.set(true);
     });
     _userSignedIn = () => {
@@ -69559,22 +65196,4428 @@ var init_storage_47dbcc97 = __esm({
         _createError2(error2, "authService::_emailSignin");
       }
     });
-    _changePassword = (newPassword, name7, email) => new Promise(async (resolve2) => {
+    _changePassword = (newPassword, name7, email, authUserExists) => new Promise(async (resolve2) => {
       try {
         let authUser = getAuth().currentUser;
         user = await _createUserRecord({
           name: name7,
           email,
           uid: authUser.uid,
-          language: $_lang || 0,
-          theme: $_currentTheme || 0
+          language: language || 0,
+          theme: theme || 0
         });
-        let result = await updatePassword(authUser, newPassword);
+        let result;
+        if (!authUserExists) {
+          result = await updatePassword(authUser, newPassword);
+        }
         resolve2(result);
       } catch (error2) {
         _createError2(error2);
       }
     });
+    _userLogout = () => {
+      console.log("signing out");
+      signOut(auth);
+      user = void 0;
+      _emitEvent("user-changed", void 0);
+    };
+    db = getFirestore(app);
+    _createError2 = async (error2, caller, data) => {
+      try {
+        if (dev)
+          ;
+        if (!dev) {
+          await addDoc(collection(db, "Errors"), {
+            message: error2.message,
+            code: error2.code,
+            caller,
+            signedin: getAuth().currentUser != null,
+            time: new Date().getTime()
+          });
+        }
+      } catch (error22) {
+        if (error22.code == "permission-denied") {
+          _userLogout();
+          return;
+        }
+      }
+    };
+    _getPosts = async (type) => {
+      try {
+        const c3 = collection(db, "Posts");
+        const q = query(c3, orderBy("createdOn", "desc"), where("type", "==", type), limit(10));
+        const qs = await getDocs(q);
+        const items = [];
+        qs.docs.forEach((doc2) => {
+          if (doc2.id !== "0" && doc2.exists()) {
+            items.push(doc2.data());
+          }
+        });
+        return items;
+      } catch (error2) {
+        if (error2.code == "permission-denied") {
+          _userLogout();
+          return;
+        }
+        _createError2(error2, "DBService:getBulletins");
+        return [];
+      }
+    };
+    _getPost = async (id) => {
+      try {
+        const docRef = doc(collection(db, "Posts"), id);
+        return (await getDoc(docRef)).data();
+      } catch (error2) {
+        if (error2.code == "permission-denied") {
+          _userLogout();
+          return;
+        }
+        _createError2(error2, "DBService:getPost");
+      }
+    };
+    _createUserRecord = async (user2) => {
+      try {
+        const docRef = doc(collection(db, "Users"), user2.uid);
+        user2.id = user2.uid;
+        await setDoc(docRef, user2);
+        return { user: user2 };
+      } catch (error2) {
+        if (error2.code == "permission-denied") {
+          _userLogout();
+          return;
+        }
+        _createError2(error2, "DBService:createUserRecord");
+      }
+    };
+    _setUserTheme = async (user2, theme2) => {
+      if (!user2)
+        return;
+      try {
+        const docRef = doc(collection(db, "Users"), user2.uid);
+        const result = await updateDoc(docRef, { theme: theme2 });
+        return result;
+      } catch (error2) {
+        if (error2.code == "permission-denied") {
+          _userLogout();
+          return;
+        }
+        _createError2(error2, "DBService:_setUserTheme");
+      }
+    };
+    _getUserRecord = async (uid) => {
+      try {
+        const docRef = doc(collection(db, "Users"), uid);
+        return (await getDoc(docRef)).data();
+      } catch (error2) {
+        return void 0;
+      }
+    };
+  }
+});
+
+// node_modules/chroma-js/chroma.js
+var require_chroma = __commonJS({
+  "node_modules/chroma-js/chroma.js"(exports2, module2) {
+    init_shims();
+    (function(global2, factory2) {
+      typeof exports2 === "object" && typeof module2 !== "undefined" ? module2.exports = factory2() : typeof define === "function" && define.amd ? define(factory2) : (global2 = typeof globalThis !== "undefined" ? globalThis : global2 || self, global2.chroma = factory2());
+    })(exports2, function() {
+      "use strict";
+      var limit$2 = function(x2, min2, max2) {
+        if (min2 === void 0)
+          min2 = 0;
+        if (max2 === void 0)
+          max2 = 1;
+        return x2 < min2 ? min2 : x2 > max2 ? max2 : x2;
+      };
+      var limit$1 = limit$2;
+      var clip_rgb$3 = function(rgb2) {
+        rgb2._clipped = false;
+        rgb2._unclipped = rgb2.slice(0);
+        for (var i3 = 0; i3 <= 3; i3++) {
+          if (i3 < 3) {
+            if (rgb2[i3] < 0 || rgb2[i3] > 255) {
+              rgb2._clipped = true;
+            }
+            rgb2[i3] = limit$1(rgb2[i3], 0, 255);
+          } else if (i3 === 3) {
+            rgb2[i3] = limit$1(rgb2[i3], 0, 1);
+          }
+        }
+        return rgb2;
+      };
+      var classToType = {};
+      for (var i$1 = 0, list$1 = ["Boolean", "Number", "String", "Function", "Array", "Date", "RegExp", "Undefined", "Null"]; i$1 < list$1.length; i$1 += 1) {
+        var name7 = list$1[i$1];
+        classToType["[object " + name7 + "]"] = name7.toLowerCase();
+      }
+      var type$p = function(obj) {
+        return classToType[Object.prototype.toString.call(obj)] || "object";
+      };
+      var type$o = type$p;
+      var unpack$B = function(args, keyOrder) {
+        if (keyOrder === void 0)
+          keyOrder = null;
+        if (args.length >= 3) {
+          return Array.prototype.slice.call(args);
+        }
+        if (type$o(args[0]) == "object" && keyOrder) {
+          return keyOrder.split("").filter(function(k) {
+            return args[0][k] !== void 0;
+          }).map(function(k) {
+            return args[0][k];
+          });
+        }
+        return args[0];
+      };
+      var type$n = type$p;
+      var last$4 = function(args) {
+        if (args.length < 2) {
+          return null;
+        }
+        var l = args.length - 1;
+        if (type$n(args[l]) == "string") {
+          return args[l].toLowerCase();
+        }
+        return null;
+      };
+      var PI$2 = Math.PI;
+      var utils2 = {
+        clip_rgb: clip_rgb$3,
+        limit: limit$2,
+        type: type$p,
+        unpack: unpack$B,
+        last: last$4,
+        PI: PI$2,
+        TWOPI: PI$2 * 2,
+        PITHIRD: PI$2 / 3,
+        DEG2RAD: PI$2 / 180,
+        RAD2DEG: 180 / PI$2
+      };
+      var input$h = {
+        format: {},
+        autodetect: []
+      };
+      var last$3 = utils2.last;
+      var clip_rgb$2 = utils2.clip_rgb;
+      var type$m = utils2.type;
+      var _input = input$h;
+      var Color$D = function Color2() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var me = this;
+        if (type$m(args[0]) === "object" && args[0].constructor && args[0].constructor === this.constructor) {
+          return args[0];
+        }
+        var mode = last$3(args);
+        var autodetect = false;
+        if (!mode) {
+          autodetect = true;
+          if (!_input.sorted) {
+            _input.autodetect = _input.autodetect.sort(function(a, b4) {
+              return b4.p - a.p;
+            });
+            _input.sorted = true;
+          }
+          for (var i3 = 0, list2 = _input.autodetect; i3 < list2.length; i3 += 1) {
+            var chk = list2[i3];
+            mode = chk.test.apply(chk, args);
+            if (mode) {
+              break;
+            }
+          }
+        }
+        if (_input.format[mode]) {
+          var rgb2 = _input.format[mode].apply(null, autodetect ? args : args.slice(0, -1));
+          me._rgb = clip_rgb$2(rgb2);
+        } else {
+          throw new Error("unknown format: " + args);
+        }
+        if (me._rgb.length === 3) {
+          me._rgb.push(1);
+        }
+      };
+      Color$D.prototype.toString = function toString() {
+        if (type$m(this.hex) == "function") {
+          return this.hex();
+        }
+        return "[" + this._rgb.join(",") + "]";
+      };
+      var Color_1 = Color$D;
+      var chroma$k = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(chroma$k.Color, [null].concat(args)))();
+      };
+      chroma$k.Color = Color_1;
+      chroma$k.version = "2.4.2";
+      var chroma_1 = chroma$k;
+      var unpack$A = utils2.unpack;
+      var max$2 = Math.max;
+      var rgb2cmyk$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$A(args, "rgb");
+        var r2 = ref[0];
+        var g2 = ref[1];
+        var b4 = ref[2];
+        r2 = r2 / 255;
+        g2 = g2 / 255;
+        b4 = b4 / 255;
+        var k = 1 - max$2(r2, max$2(g2, b4));
+        var f5 = k < 1 ? 1 / (1 - k) : 0;
+        var c3 = (1 - r2 - k) * f5;
+        var m3 = (1 - g2 - k) * f5;
+        var y = (1 - b4 - k) * f5;
+        return [c3, m3, y, k];
+      };
+      var rgb2cmyk_1 = rgb2cmyk$1;
+      var unpack$z = utils2.unpack;
+      var cmyk2rgb = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$z(args, "cmyk");
+        var c3 = args[0];
+        var m3 = args[1];
+        var y = args[2];
+        var k = args[3];
+        var alpha = args.length > 4 ? args[4] : 1;
+        if (k === 1) {
+          return [0, 0, 0, alpha];
+        }
+        return [
+          c3 >= 1 ? 0 : 255 * (1 - c3) * (1 - k),
+          m3 >= 1 ? 0 : 255 * (1 - m3) * (1 - k),
+          y >= 1 ? 0 : 255 * (1 - y) * (1 - k),
+          alpha
+        ];
+      };
+      var cmyk2rgb_1 = cmyk2rgb;
+      var chroma$j = chroma_1;
+      var Color$C = Color_1;
+      var input$g = input$h;
+      var unpack$y = utils2.unpack;
+      var type$l = utils2.type;
+      var rgb2cmyk = rgb2cmyk_1;
+      Color$C.prototype.cmyk = function() {
+        return rgb2cmyk(this._rgb);
+      };
+      chroma$j.cmyk = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$C, [null].concat(args, ["cmyk"])))();
+      };
+      input$g.format.cmyk = cmyk2rgb_1;
+      input$g.autodetect.push({
+        p: 2,
+        test: function() {
+          var args = [], len = arguments.length;
+          while (len--)
+            args[len] = arguments[len];
+          args = unpack$y(args, "cmyk");
+          if (type$l(args) === "array" && args.length === 4) {
+            return "cmyk";
+          }
+        }
+      });
+      var unpack$x = utils2.unpack;
+      var last$2 = utils2.last;
+      var rnd = function(a) {
+        return Math.round(a * 100) / 100;
+      };
+      var hsl2css$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var hsla = unpack$x(args, "hsla");
+        var mode = last$2(args) || "lsa";
+        hsla[0] = rnd(hsla[0] || 0);
+        hsla[1] = rnd(hsla[1] * 100) + "%";
+        hsla[2] = rnd(hsla[2] * 100) + "%";
+        if (mode === "hsla" || hsla.length > 3 && hsla[3] < 1) {
+          hsla[3] = hsla.length > 3 ? hsla[3] : 1;
+          mode = "hsla";
+        } else {
+          hsla.length = 3;
+        }
+        return mode + "(" + hsla.join(",") + ")";
+      };
+      var hsl2css_1 = hsl2css$1;
+      var unpack$w = utils2.unpack;
+      var rgb2hsl$3 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$w(args, "rgba");
+        var r2 = args[0];
+        var g2 = args[1];
+        var b4 = args[2];
+        r2 /= 255;
+        g2 /= 255;
+        b4 /= 255;
+        var min2 = Math.min(r2, g2, b4);
+        var max2 = Math.max(r2, g2, b4);
+        var l = (max2 + min2) / 2;
+        var s3, h3;
+        if (max2 === min2) {
+          s3 = 0;
+          h3 = Number.NaN;
+        } else {
+          s3 = l < 0.5 ? (max2 - min2) / (max2 + min2) : (max2 - min2) / (2 - max2 - min2);
+        }
+        if (r2 == max2) {
+          h3 = (g2 - b4) / (max2 - min2);
+        } else if (g2 == max2) {
+          h3 = 2 + (b4 - r2) / (max2 - min2);
+        } else if (b4 == max2) {
+          h3 = 4 + (r2 - g2) / (max2 - min2);
+        }
+        h3 *= 60;
+        if (h3 < 0) {
+          h3 += 360;
+        }
+        if (args.length > 3 && args[3] !== void 0) {
+          return [h3, s3, l, args[3]];
+        }
+        return [h3, s3, l];
+      };
+      var rgb2hsl_1 = rgb2hsl$3;
+      var unpack$v = utils2.unpack;
+      var last$1 = utils2.last;
+      var hsl2css = hsl2css_1;
+      var rgb2hsl$2 = rgb2hsl_1;
+      var round$6 = Math.round;
+      var rgb2css$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var rgba = unpack$v(args, "rgba");
+        var mode = last$1(args) || "rgb";
+        if (mode.substr(0, 3) == "hsl") {
+          return hsl2css(rgb2hsl$2(rgba), mode);
+        }
+        rgba[0] = round$6(rgba[0]);
+        rgba[1] = round$6(rgba[1]);
+        rgba[2] = round$6(rgba[2]);
+        if (mode === "rgba" || rgba.length > 3 && rgba[3] < 1) {
+          rgba[3] = rgba.length > 3 ? rgba[3] : 1;
+          mode = "rgba";
+        }
+        return mode + "(" + rgba.slice(0, mode === "rgb" ? 3 : 4).join(",") + ")";
+      };
+      var rgb2css_1 = rgb2css$1;
+      var unpack$u = utils2.unpack;
+      var round$5 = Math.round;
+      var hsl2rgb$1 = function() {
+        var assign2;
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$u(args, "hsl");
+        var h3 = args[0];
+        var s3 = args[1];
+        var l = args[2];
+        var r2, g2, b4;
+        if (s3 === 0) {
+          r2 = g2 = b4 = l * 255;
+        } else {
+          var t3 = [0, 0, 0];
+          var c3 = [0, 0, 0];
+          var t2 = l < 0.5 ? l * (1 + s3) : l + s3 - l * s3;
+          var t1 = 2 * l - t2;
+          var h_ = h3 / 360;
+          t3[0] = h_ + 1 / 3;
+          t3[1] = h_;
+          t3[2] = h_ - 1 / 3;
+          for (var i3 = 0; i3 < 3; i3++) {
+            if (t3[i3] < 0) {
+              t3[i3] += 1;
+            }
+            if (t3[i3] > 1) {
+              t3[i3] -= 1;
+            }
+            if (6 * t3[i3] < 1) {
+              c3[i3] = t1 + (t2 - t1) * 6 * t3[i3];
+            } else if (2 * t3[i3] < 1) {
+              c3[i3] = t2;
+            } else if (3 * t3[i3] < 2) {
+              c3[i3] = t1 + (t2 - t1) * (2 / 3 - t3[i3]) * 6;
+            } else {
+              c3[i3] = t1;
+            }
+          }
+          assign2 = [round$5(c3[0] * 255), round$5(c3[1] * 255), round$5(c3[2] * 255)], r2 = assign2[0], g2 = assign2[1], b4 = assign2[2];
+        }
+        if (args.length > 3) {
+          return [r2, g2, b4, args[3]];
+        }
+        return [r2, g2, b4, 1];
+      };
+      var hsl2rgb_1 = hsl2rgb$1;
+      var hsl2rgb = hsl2rgb_1;
+      var input$f = input$h;
+      var RE_RGB = /^rgb\(\s*(-?\d+),\s*(-?\d+)\s*,\s*(-?\d+)\s*\)$/;
+      var RE_RGBA = /^rgba\(\s*(-?\d+),\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*([01]|[01]?\.\d+)\)$/;
+      var RE_RGB_PCT = /^rgb\(\s*(-?\d+(?:\.\d+)?)%,\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*\)$/;
+      var RE_RGBA_PCT = /^rgba\(\s*(-?\d+(?:\.\d+)?)%,\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*,\s*([01]|[01]?\.\d+)\)$/;
+      var RE_HSL = /^hsl\(\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*\)$/;
+      var RE_HSLA = /^hsla\(\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*,\s*([01]|[01]?\.\d+)\)$/;
+      var round$4 = Math.round;
+      var css2rgb$1 = function(css11) {
+        css11 = css11.toLowerCase().trim();
+        var m3;
+        if (input$f.format.named) {
+          try {
+            return input$f.format.named(css11);
+          } catch (e2) {
+          }
+        }
+        if (m3 = css11.match(RE_RGB)) {
+          var rgb2 = m3.slice(1, 4);
+          for (var i3 = 0; i3 < 3; i3++) {
+            rgb2[i3] = +rgb2[i3];
+          }
+          rgb2[3] = 1;
+          return rgb2;
+        }
+        if (m3 = css11.match(RE_RGBA)) {
+          var rgb$1 = m3.slice(1, 5);
+          for (var i$12 = 0; i$12 < 4; i$12++) {
+            rgb$1[i$12] = +rgb$1[i$12];
+          }
+          return rgb$1;
+        }
+        if (m3 = css11.match(RE_RGB_PCT)) {
+          var rgb$2 = m3.slice(1, 4);
+          for (var i$2 = 0; i$2 < 3; i$2++) {
+            rgb$2[i$2] = round$4(rgb$2[i$2] * 2.55);
+          }
+          rgb$2[3] = 1;
+          return rgb$2;
+        }
+        if (m3 = css11.match(RE_RGBA_PCT)) {
+          var rgb$3 = m3.slice(1, 5);
+          for (var i$3 = 0; i$3 < 3; i$3++) {
+            rgb$3[i$3] = round$4(rgb$3[i$3] * 2.55);
+          }
+          rgb$3[3] = +rgb$3[3];
+          return rgb$3;
+        }
+        if (m3 = css11.match(RE_HSL)) {
+          var hsl2 = m3.slice(1, 4);
+          hsl2[1] *= 0.01;
+          hsl2[2] *= 0.01;
+          var rgb$4 = hsl2rgb(hsl2);
+          rgb$4[3] = 1;
+          return rgb$4;
+        }
+        if (m3 = css11.match(RE_HSLA)) {
+          var hsl$1 = m3.slice(1, 4);
+          hsl$1[1] *= 0.01;
+          hsl$1[2] *= 0.01;
+          var rgb$5 = hsl2rgb(hsl$1);
+          rgb$5[3] = +m3[4];
+          return rgb$5;
+        }
+      };
+      css2rgb$1.test = function(s3) {
+        return RE_RGB.test(s3) || RE_RGBA.test(s3) || RE_RGB_PCT.test(s3) || RE_RGBA_PCT.test(s3) || RE_HSL.test(s3) || RE_HSLA.test(s3);
+      };
+      var css2rgb_1 = css2rgb$1;
+      var chroma$i = chroma_1;
+      var Color$B = Color_1;
+      var input$e = input$h;
+      var type$k = utils2.type;
+      var rgb2css = rgb2css_1;
+      var css2rgb = css2rgb_1;
+      Color$B.prototype.css = function(mode) {
+        return rgb2css(this._rgb, mode);
+      };
+      chroma$i.css = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$B, [null].concat(args, ["css"])))();
+      };
+      input$e.format.css = css2rgb;
+      input$e.autodetect.push({
+        p: 5,
+        test: function(h3) {
+          var rest = [], len = arguments.length - 1;
+          while (len-- > 0)
+            rest[len] = arguments[len + 1];
+          if (!rest.length && type$k(h3) === "string" && css2rgb.test(h3)) {
+            return "css";
+          }
+        }
+      });
+      var Color$A = Color_1;
+      var chroma$h = chroma_1;
+      var input$d = input$h;
+      var unpack$t = utils2.unpack;
+      input$d.format.gl = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var rgb2 = unpack$t(args, "rgba");
+        rgb2[0] *= 255;
+        rgb2[1] *= 255;
+        rgb2[2] *= 255;
+        return rgb2;
+      };
+      chroma$h.gl = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$A, [null].concat(args, ["gl"])))();
+      };
+      Color$A.prototype.gl = function() {
+        var rgb2 = this._rgb;
+        return [rgb2[0] / 255, rgb2[1] / 255, rgb2[2] / 255, rgb2[3]];
+      };
+      var unpack$s = utils2.unpack;
+      var rgb2hcg$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$s(args, "rgb");
+        var r2 = ref[0];
+        var g2 = ref[1];
+        var b4 = ref[2];
+        var min2 = Math.min(r2, g2, b4);
+        var max2 = Math.max(r2, g2, b4);
+        var delta = max2 - min2;
+        var c3 = delta * 100 / 255;
+        var _g = min2 / (255 - delta) * 100;
+        var h3;
+        if (delta === 0) {
+          h3 = Number.NaN;
+        } else {
+          if (r2 === max2) {
+            h3 = (g2 - b4) / delta;
+          }
+          if (g2 === max2) {
+            h3 = 2 + (b4 - r2) / delta;
+          }
+          if (b4 === max2) {
+            h3 = 4 + (r2 - g2) / delta;
+          }
+          h3 *= 60;
+          if (h3 < 0) {
+            h3 += 360;
+          }
+        }
+        return [h3, c3, _g];
+      };
+      var rgb2hcg_1 = rgb2hcg$1;
+      var unpack$r = utils2.unpack;
+      var floor$3 = Math.floor;
+      var hcg2rgb = function() {
+        var assign2, assign$1, assign$2, assign$3, assign$4, assign$5;
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$r(args, "hcg");
+        var h3 = args[0];
+        var c3 = args[1];
+        var _g = args[2];
+        var r2, g2, b4;
+        _g = _g * 255;
+        var _c = c3 * 255;
+        if (c3 === 0) {
+          r2 = g2 = b4 = _g;
+        } else {
+          if (h3 === 360) {
+            h3 = 0;
+          }
+          if (h3 > 360) {
+            h3 -= 360;
+          }
+          if (h3 < 0) {
+            h3 += 360;
+          }
+          h3 /= 60;
+          var i3 = floor$3(h3);
+          var f5 = h3 - i3;
+          var p2 = _g * (1 - c3);
+          var q = p2 + _c * (1 - f5);
+          var t2 = p2 + _c * f5;
+          var v3 = p2 + _c;
+          switch (i3) {
+            case 0:
+              assign2 = [v3, t2, p2], r2 = assign2[0], g2 = assign2[1], b4 = assign2[2];
+              break;
+            case 1:
+              assign$1 = [q, v3, p2], r2 = assign$1[0], g2 = assign$1[1], b4 = assign$1[2];
+              break;
+            case 2:
+              assign$2 = [p2, v3, t2], r2 = assign$2[0], g2 = assign$2[1], b4 = assign$2[2];
+              break;
+            case 3:
+              assign$3 = [p2, q, v3], r2 = assign$3[0], g2 = assign$3[1], b4 = assign$3[2];
+              break;
+            case 4:
+              assign$4 = [t2, p2, v3], r2 = assign$4[0], g2 = assign$4[1], b4 = assign$4[2];
+              break;
+            case 5:
+              assign$5 = [v3, p2, q], r2 = assign$5[0], g2 = assign$5[1], b4 = assign$5[2];
+              break;
+          }
+        }
+        return [r2, g2, b4, args.length > 3 ? args[3] : 1];
+      };
+      var hcg2rgb_1 = hcg2rgb;
+      var unpack$q = utils2.unpack;
+      var type$j = utils2.type;
+      var chroma$g = chroma_1;
+      var Color$z = Color_1;
+      var input$c = input$h;
+      var rgb2hcg = rgb2hcg_1;
+      Color$z.prototype.hcg = function() {
+        return rgb2hcg(this._rgb);
+      };
+      chroma$g.hcg = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$z, [null].concat(args, ["hcg"])))();
+      };
+      input$c.format.hcg = hcg2rgb_1;
+      input$c.autodetect.push({
+        p: 1,
+        test: function() {
+          var args = [], len = arguments.length;
+          while (len--)
+            args[len] = arguments[len];
+          args = unpack$q(args, "hcg");
+          if (type$j(args) === "array" && args.length === 3) {
+            return "hcg";
+          }
+        }
+      });
+      var unpack$p = utils2.unpack;
+      var last = utils2.last;
+      var round$3 = Math.round;
+      var rgb2hex$2 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$p(args, "rgba");
+        var r2 = ref[0];
+        var g2 = ref[1];
+        var b4 = ref[2];
+        var a = ref[3];
+        var mode = last(args) || "auto";
+        if (a === void 0) {
+          a = 1;
+        }
+        if (mode === "auto") {
+          mode = a < 1 ? "rgba" : "rgb";
+        }
+        r2 = round$3(r2);
+        g2 = round$3(g2);
+        b4 = round$3(b4);
+        var u2 = r2 << 16 | g2 << 8 | b4;
+        var str = "000000" + u2.toString(16);
+        str = str.substr(str.length - 6);
+        var hxa = "0" + round$3(a * 255).toString(16);
+        hxa = hxa.substr(hxa.length - 2);
+        switch (mode.toLowerCase()) {
+          case "rgba":
+            return "#" + str + hxa;
+          case "argb":
+            return "#" + hxa + str;
+          default:
+            return "#" + str;
+        }
+      };
+      var rgb2hex_1 = rgb2hex$2;
+      var RE_HEX = /^#?([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+      var RE_HEXA = /^#?([A-Fa-f0-9]{8}|[A-Fa-f0-9]{4})$/;
+      var hex2rgb$1 = function(hex) {
+        if (hex.match(RE_HEX)) {
+          if (hex.length === 4 || hex.length === 7) {
+            hex = hex.substr(1);
+          }
+          if (hex.length === 3) {
+            hex = hex.split("");
+            hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+          }
+          var u2 = parseInt(hex, 16);
+          var r2 = u2 >> 16;
+          var g2 = u2 >> 8 & 255;
+          var b4 = u2 & 255;
+          return [r2, g2, b4, 1];
+        }
+        if (hex.match(RE_HEXA)) {
+          if (hex.length === 5 || hex.length === 9) {
+            hex = hex.substr(1);
+          }
+          if (hex.length === 4) {
+            hex = hex.split("");
+            hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2] + hex[3] + hex[3];
+          }
+          var u$1 = parseInt(hex, 16);
+          var r$1 = u$1 >> 24 & 255;
+          var g$1 = u$1 >> 16 & 255;
+          var b$1 = u$1 >> 8 & 255;
+          var a = Math.round((u$1 & 255) / 255 * 100) / 100;
+          return [r$1, g$1, b$1, a];
+        }
+        throw new Error("unknown hex color: " + hex);
+      };
+      var hex2rgb_1 = hex2rgb$1;
+      var chroma$f = chroma_1;
+      var Color$y = Color_1;
+      var type$i = utils2.type;
+      var input$b = input$h;
+      var rgb2hex$1 = rgb2hex_1;
+      Color$y.prototype.hex = function(mode) {
+        return rgb2hex$1(this._rgb, mode);
+      };
+      chroma$f.hex = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$y, [null].concat(args, ["hex"])))();
+      };
+      input$b.format.hex = hex2rgb_1;
+      input$b.autodetect.push({
+        p: 4,
+        test: function(h3) {
+          var rest = [], len = arguments.length - 1;
+          while (len-- > 0)
+            rest[len] = arguments[len + 1];
+          if (!rest.length && type$i(h3) === "string" && [3, 4, 5, 6, 7, 8, 9].indexOf(h3.length) >= 0) {
+            return "hex";
+          }
+        }
+      });
+      var unpack$o = utils2.unpack;
+      var TWOPI$2 = utils2.TWOPI;
+      var min$2 = Math.min;
+      var sqrt$4 = Math.sqrt;
+      var acos = Math.acos;
+      var rgb2hsi$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$o(args, "rgb");
+        var r2 = ref[0];
+        var g2 = ref[1];
+        var b4 = ref[2];
+        r2 /= 255;
+        g2 /= 255;
+        b4 /= 255;
+        var h3;
+        var min_ = min$2(r2, g2, b4);
+        var i3 = (r2 + g2 + b4) / 3;
+        var s3 = i3 > 0 ? 1 - min_ / i3 : 0;
+        if (s3 === 0) {
+          h3 = NaN;
+        } else {
+          h3 = (r2 - g2 + (r2 - b4)) / 2;
+          h3 /= sqrt$4((r2 - g2) * (r2 - g2) + (r2 - b4) * (g2 - b4));
+          h3 = acos(h3);
+          if (b4 > g2) {
+            h3 = TWOPI$2 - h3;
+          }
+          h3 /= TWOPI$2;
+        }
+        return [h3 * 360, s3, i3];
+      };
+      var rgb2hsi_1 = rgb2hsi$1;
+      var unpack$n = utils2.unpack;
+      var limit2 = utils2.limit;
+      var TWOPI$1 = utils2.TWOPI;
+      var PITHIRD = utils2.PITHIRD;
+      var cos$4 = Math.cos;
+      var hsi2rgb = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$n(args, "hsi");
+        var h3 = args[0];
+        var s3 = args[1];
+        var i3 = args[2];
+        var r2, g2, b4;
+        if (isNaN(h3)) {
+          h3 = 0;
+        }
+        if (isNaN(s3)) {
+          s3 = 0;
+        }
+        if (h3 > 360) {
+          h3 -= 360;
+        }
+        if (h3 < 0) {
+          h3 += 360;
+        }
+        h3 /= 360;
+        if (h3 < 1 / 3) {
+          b4 = (1 - s3) / 3;
+          r2 = (1 + s3 * cos$4(TWOPI$1 * h3) / cos$4(PITHIRD - TWOPI$1 * h3)) / 3;
+          g2 = 1 - (b4 + r2);
+        } else if (h3 < 2 / 3) {
+          h3 -= 1 / 3;
+          r2 = (1 - s3) / 3;
+          g2 = (1 + s3 * cos$4(TWOPI$1 * h3) / cos$4(PITHIRD - TWOPI$1 * h3)) / 3;
+          b4 = 1 - (r2 + g2);
+        } else {
+          h3 -= 2 / 3;
+          g2 = (1 - s3) / 3;
+          b4 = (1 + s3 * cos$4(TWOPI$1 * h3) / cos$4(PITHIRD - TWOPI$1 * h3)) / 3;
+          r2 = 1 - (g2 + b4);
+        }
+        r2 = limit2(i3 * r2 * 3);
+        g2 = limit2(i3 * g2 * 3);
+        b4 = limit2(i3 * b4 * 3);
+        return [r2 * 255, g2 * 255, b4 * 255, args.length > 3 ? args[3] : 1];
+      };
+      var hsi2rgb_1 = hsi2rgb;
+      var unpack$m = utils2.unpack;
+      var type$h = utils2.type;
+      var chroma$e = chroma_1;
+      var Color$x = Color_1;
+      var input$a = input$h;
+      var rgb2hsi = rgb2hsi_1;
+      Color$x.prototype.hsi = function() {
+        return rgb2hsi(this._rgb);
+      };
+      chroma$e.hsi = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$x, [null].concat(args, ["hsi"])))();
+      };
+      input$a.format.hsi = hsi2rgb_1;
+      input$a.autodetect.push({
+        p: 2,
+        test: function() {
+          var args = [], len = arguments.length;
+          while (len--)
+            args[len] = arguments[len];
+          args = unpack$m(args, "hsi");
+          if (type$h(args) === "array" && args.length === 3) {
+            return "hsi";
+          }
+        }
+      });
+      var unpack$l = utils2.unpack;
+      var type$g = utils2.type;
+      var chroma$d = chroma_1;
+      var Color$w = Color_1;
+      var input$9 = input$h;
+      var rgb2hsl$1 = rgb2hsl_1;
+      Color$w.prototype.hsl = function() {
+        return rgb2hsl$1(this._rgb);
+      };
+      chroma$d.hsl = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$w, [null].concat(args, ["hsl"])))();
+      };
+      input$9.format.hsl = hsl2rgb_1;
+      input$9.autodetect.push({
+        p: 2,
+        test: function() {
+          var args = [], len = arguments.length;
+          while (len--)
+            args[len] = arguments[len];
+          args = unpack$l(args, "hsl");
+          if (type$g(args) === "array" && args.length === 3) {
+            return "hsl";
+          }
+        }
+      });
+      var unpack$k = utils2.unpack;
+      var min$1 = Math.min;
+      var max$1 = Math.max;
+      var rgb2hsl = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$k(args, "rgb");
+        var r2 = args[0];
+        var g2 = args[1];
+        var b4 = args[2];
+        var min_ = min$1(r2, g2, b4);
+        var max_ = max$1(r2, g2, b4);
+        var delta = max_ - min_;
+        var h3, s3, v3;
+        v3 = max_ / 255;
+        if (max_ === 0) {
+          h3 = Number.NaN;
+          s3 = 0;
+        } else {
+          s3 = delta / max_;
+          if (r2 === max_) {
+            h3 = (g2 - b4) / delta;
+          }
+          if (g2 === max_) {
+            h3 = 2 + (b4 - r2) / delta;
+          }
+          if (b4 === max_) {
+            h3 = 4 + (r2 - g2) / delta;
+          }
+          h3 *= 60;
+          if (h3 < 0) {
+            h3 += 360;
+          }
+        }
+        return [h3, s3, v3];
+      };
+      var rgb2hsv$1 = rgb2hsl;
+      var unpack$j = utils2.unpack;
+      var floor$2 = Math.floor;
+      var hsv2rgb = function() {
+        var assign2, assign$1, assign$2, assign$3, assign$4, assign$5;
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$j(args, "hsv");
+        var h3 = args[0];
+        var s3 = args[1];
+        var v3 = args[2];
+        var r2, g2, b4;
+        v3 *= 255;
+        if (s3 === 0) {
+          r2 = g2 = b4 = v3;
+        } else {
+          if (h3 === 360) {
+            h3 = 0;
+          }
+          if (h3 > 360) {
+            h3 -= 360;
+          }
+          if (h3 < 0) {
+            h3 += 360;
+          }
+          h3 /= 60;
+          var i3 = floor$2(h3);
+          var f5 = h3 - i3;
+          var p2 = v3 * (1 - s3);
+          var q = v3 * (1 - s3 * f5);
+          var t2 = v3 * (1 - s3 * (1 - f5));
+          switch (i3) {
+            case 0:
+              assign2 = [v3, t2, p2], r2 = assign2[0], g2 = assign2[1], b4 = assign2[2];
+              break;
+            case 1:
+              assign$1 = [q, v3, p2], r2 = assign$1[0], g2 = assign$1[1], b4 = assign$1[2];
+              break;
+            case 2:
+              assign$2 = [p2, v3, t2], r2 = assign$2[0], g2 = assign$2[1], b4 = assign$2[2];
+              break;
+            case 3:
+              assign$3 = [p2, q, v3], r2 = assign$3[0], g2 = assign$3[1], b4 = assign$3[2];
+              break;
+            case 4:
+              assign$4 = [t2, p2, v3], r2 = assign$4[0], g2 = assign$4[1], b4 = assign$4[2];
+              break;
+            case 5:
+              assign$5 = [v3, p2, q], r2 = assign$5[0], g2 = assign$5[1], b4 = assign$5[2];
+              break;
+          }
+        }
+        return [r2, g2, b4, args.length > 3 ? args[3] : 1];
+      };
+      var hsv2rgb_1 = hsv2rgb;
+      var unpack$i = utils2.unpack;
+      var type$f = utils2.type;
+      var chroma$c = chroma_1;
+      var Color$v = Color_1;
+      var input$8 = input$h;
+      var rgb2hsv = rgb2hsv$1;
+      Color$v.prototype.hsv = function() {
+        return rgb2hsv(this._rgb);
+      };
+      chroma$c.hsv = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$v, [null].concat(args, ["hsv"])))();
+      };
+      input$8.format.hsv = hsv2rgb_1;
+      input$8.autodetect.push({
+        p: 2,
+        test: function() {
+          var args = [], len = arguments.length;
+          while (len--)
+            args[len] = arguments[len];
+          args = unpack$i(args, "hsv");
+          if (type$f(args) === "array" && args.length === 3) {
+            return "hsv";
+          }
+        }
+      });
+      var labConstants = {
+        Kn: 18,
+        Xn: 0.95047,
+        Yn: 1,
+        Zn: 1.08883,
+        t0: 0.137931034,
+        t1: 0.206896552,
+        t2: 0.12841855,
+        t3: 8856452e-9
+      };
+      var LAB_CONSTANTS$3 = labConstants;
+      var unpack$h = utils2.unpack;
+      var pow$a = Math.pow;
+      var rgb2lab$2 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$h(args, "rgb");
+        var r2 = ref[0];
+        var g2 = ref[1];
+        var b4 = ref[2];
+        var ref$1 = rgb2xyz(r2, g2, b4);
+        var x2 = ref$1[0];
+        var y = ref$1[1];
+        var z = ref$1[2];
+        var l = 116 * y - 16;
+        return [l < 0 ? 0 : l, 500 * (x2 - y), 200 * (y - z)];
+      };
+      var rgb_xyz = function(r2) {
+        if ((r2 /= 255) <= 0.04045) {
+          return r2 / 12.92;
+        }
+        return pow$a((r2 + 0.055) / 1.055, 2.4);
+      };
+      var xyz_lab = function(t2) {
+        if (t2 > LAB_CONSTANTS$3.t3) {
+          return pow$a(t2, 1 / 3);
+        }
+        return t2 / LAB_CONSTANTS$3.t2 + LAB_CONSTANTS$3.t0;
+      };
+      var rgb2xyz = function(r2, g2, b4) {
+        r2 = rgb_xyz(r2);
+        g2 = rgb_xyz(g2);
+        b4 = rgb_xyz(b4);
+        var x2 = xyz_lab((0.4124564 * r2 + 0.3575761 * g2 + 0.1804375 * b4) / LAB_CONSTANTS$3.Xn);
+        var y = xyz_lab((0.2126729 * r2 + 0.7151522 * g2 + 0.072175 * b4) / LAB_CONSTANTS$3.Yn);
+        var z = xyz_lab((0.0193339 * r2 + 0.119192 * g2 + 0.9503041 * b4) / LAB_CONSTANTS$3.Zn);
+        return [x2, y, z];
+      };
+      var rgb2lab_1 = rgb2lab$2;
+      var LAB_CONSTANTS$2 = labConstants;
+      var unpack$g = utils2.unpack;
+      var pow$9 = Math.pow;
+      var lab2rgb$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$g(args, "lab");
+        var l = args[0];
+        var a = args[1];
+        var b4 = args[2];
+        var x2, y, z, r2, g2, b_;
+        y = (l + 16) / 116;
+        x2 = isNaN(a) ? y : y + a / 500;
+        z = isNaN(b4) ? y : y - b4 / 200;
+        y = LAB_CONSTANTS$2.Yn * lab_xyz(y);
+        x2 = LAB_CONSTANTS$2.Xn * lab_xyz(x2);
+        z = LAB_CONSTANTS$2.Zn * lab_xyz(z);
+        r2 = xyz_rgb(3.2404542 * x2 - 1.5371385 * y - 0.4985314 * z);
+        g2 = xyz_rgb(-0.969266 * x2 + 1.8760108 * y + 0.041556 * z);
+        b_ = xyz_rgb(0.0556434 * x2 - 0.2040259 * y + 1.0572252 * z);
+        return [r2, g2, b_, args.length > 3 ? args[3] : 1];
+      };
+      var xyz_rgb = function(r2) {
+        return 255 * (r2 <= 304e-5 ? 12.92 * r2 : 1.055 * pow$9(r2, 1 / 2.4) - 0.055);
+      };
+      var lab_xyz = function(t2) {
+        return t2 > LAB_CONSTANTS$2.t1 ? t2 * t2 * t2 : LAB_CONSTANTS$2.t2 * (t2 - LAB_CONSTANTS$2.t0);
+      };
+      var lab2rgb_1 = lab2rgb$1;
+      var unpack$f = utils2.unpack;
+      var type$e = utils2.type;
+      var chroma$b = chroma_1;
+      var Color$u = Color_1;
+      var input$7 = input$h;
+      var rgb2lab$1 = rgb2lab_1;
+      Color$u.prototype.lab = function() {
+        return rgb2lab$1(this._rgb);
+      };
+      chroma$b.lab = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$u, [null].concat(args, ["lab"])))();
+      };
+      input$7.format.lab = lab2rgb_1;
+      input$7.autodetect.push({
+        p: 2,
+        test: function() {
+          var args = [], len = arguments.length;
+          while (len--)
+            args[len] = arguments[len];
+          args = unpack$f(args, "lab");
+          if (type$e(args) === "array" && args.length === 3) {
+            return "lab";
+          }
+        }
+      });
+      var unpack$e = utils2.unpack;
+      var RAD2DEG = utils2.RAD2DEG;
+      var sqrt$3 = Math.sqrt;
+      var atan2$2 = Math.atan2;
+      var round$2 = Math.round;
+      var lab2lch$2 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$e(args, "lab");
+        var l = ref[0];
+        var a = ref[1];
+        var b4 = ref[2];
+        var c3 = sqrt$3(a * a + b4 * b4);
+        var h3 = (atan2$2(b4, a) * RAD2DEG + 360) % 360;
+        if (round$2(c3 * 1e4) === 0) {
+          h3 = Number.NaN;
+        }
+        return [l, c3, h3];
+      };
+      var lab2lch_1 = lab2lch$2;
+      var unpack$d = utils2.unpack;
+      var rgb2lab = rgb2lab_1;
+      var lab2lch$1 = lab2lch_1;
+      var rgb2lch$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$d(args, "rgb");
+        var r2 = ref[0];
+        var g2 = ref[1];
+        var b4 = ref[2];
+        var ref$1 = rgb2lab(r2, g2, b4);
+        var l = ref$1[0];
+        var a = ref$1[1];
+        var b_ = ref$1[2];
+        return lab2lch$1(l, a, b_);
+      };
+      var rgb2lch_1 = rgb2lch$1;
+      var unpack$c = utils2.unpack;
+      var DEG2RAD = utils2.DEG2RAD;
+      var sin$3 = Math.sin;
+      var cos$3 = Math.cos;
+      var lch2lab$2 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$c(args, "lch");
+        var l = ref[0];
+        var c3 = ref[1];
+        var h3 = ref[2];
+        if (isNaN(h3)) {
+          h3 = 0;
+        }
+        h3 = h3 * DEG2RAD;
+        return [l, cos$3(h3) * c3, sin$3(h3) * c3];
+      };
+      var lch2lab_1 = lch2lab$2;
+      var unpack$b = utils2.unpack;
+      var lch2lab$1 = lch2lab_1;
+      var lab2rgb = lab2rgb_1;
+      var lch2rgb$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$b(args, "lch");
+        var l = args[0];
+        var c3 = args[1];
+        var h3 = args[2];
+        var ref = lch2lab$1(l, c3, h3);
+        var L = ref[0];
+        var a = ref[1];
+        var b_ = ref[2];
+        var ref$1 = lab2rgb(L, a, b_);
+        var r2 = ref$1[0];
+        var g2 = ref$1[1];
+        var b4 = ref$1[2];
+        return [r2, g2, b4, args.length > 3 ? args[3] : 1];
+      };
+      var lch2rgb_1 = lch2rgb$1;
+      var unpack$a = utils2.unpack;
+      var lch2rgb = lch2rgb_1;
+      var hcl2rgb = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var hcl = unpack$a(args, "hcl").reverse();
+        return lch2rgb.apply(void 0, hcl);
+      };
+      var hcl2rgb_1 = hcl2rgb;
+      var unpack$9 = utils2.unpack;
+      var type$d = utils2.type;
+      var chroma$a = chroma_1;
+      var Color$t = Color_1;
+      var input$6 = input$h;
+      var rgb2lch = rgb2lch_1;
+      Color$t.prototype.lch = function() {
+        return rgb2lch(this._rgb);
+      };
+      Color$t.prototype.hcl = function() {
+        return rgb2lch(this._rgb).reverse();
+      };
+      chroma$a.lch = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$t, [null].concat(args, ["lch"])))();
+      };
+      chroma$a.hcl = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$t, [null].concat(args, ["hcl"])))();
+      };
+      input$6.format.lch = lch2rgb_1;
+      input$6.format.hcl = hcl2rgb_1;
+      ["lch", "hcl"].forEach(function(m3) {
+        return input$6.autodetect.push({
+          p: 2,
+          test: function() {
+            var args = [], len = arguments.length;
+            while (len--)
+              args[len] = arguments[len];
+            args = unpack$9(args, m3);
+            if (type$d(args) === "array" && args.length === 3) {
+              return m3;
+            }
+          }
+        });
+      });
+      var w3cx11$1 = {
+        aliceblue: "#f0f8ff",
+        antiquewhite: "#faebd7",
+        aqua: "#00ffff",
+        aquamarine: "#7fffd4",
+        azure: "#f0ffff",
+        beige: "#f5f5dc",
+        bisque: "#ffe4c4",
+        black: "#000000",
+        blanchedalmond: "#ffebcd",
+        blue: "#0000ff",
+        blueviolet: "#8a2be2",
+        brown: "#a52a2a",
+        burlywood: "#deb887",
+        cadetblue: "#5f9ea0",
+        chartreuse: "#7fff00",
+        chocolate: "#d2691e",
+        coral: "#ff7f50",
+        cornflower: "#6495ed",
+        cornflowerblue: "#6495ed",
+        cornsilk: "#fff8dc",
+        crimson: "#dc143c",
+        cyan: "#00ffff",
+        darkblue: "#00008b",
+        darkcyan: "#008b8b",
+        darkgoldenrod: "#b8860b",
+        darkgray: "#a9a9a9",
+        darkgreen: "#006400",
+        darkgrey: "#a9a9a9",
+        darkkhaki: "#bdb76b",
+        darkmagenta: "#8b008b",
+        darkolivegreen: "#556b2f",
+        darkorange: "#ff8c00",
+        darkorchid: "#9932cc",
+        darkred: "#8b0000",
+        darksalmon: "#e9967a",
+        darkseagreen: "#8fbc8f",
+        darkslateblue: "#483d8b",
+        darkslategray: "#2f4f4f",
+        darkslategrey: "#2f4f4f",
+        darkturquoise: "#00ced1",
+        darkviolet: "#9400d3",
+        deeppink: "#ff1493",
+        deepskyblue: "#00bfff",
+        dimgray: "#696969",
+        dimgrey: "#696969",
+        dodgerblue: "#1e90ff",
+        firebrick: "#b22222",
+        floralwhite: "#fffaf0",
+        forestgreen: "#228b22",
+        fuchsia: "#ff00ff",
+        gainsboro: "#dcdcdc",
+        ghostwhite: "#f8f8ff",
+        gold: "#ffd700",
+        goldenrod: "#daa520",
+        gray: "#808080",
+        green: "#008000",
+        greenyellow: "#adff2f",
+        grey: "#808080",
+        honeydew: "#f0fff0",
+        hotpink: "#ff69b4",
+        indianred: "#cd5c5c",
+        indigo: "#4b0082",
+        ivory: "#fffff0",
+        khaki: "#f0e68c",
+        laserlemon: "#ffff54",
+        lavender: "#e6e6fa",
+        lavenderblush: "#fff0f5",
+        lawngreen: "#7cfc00",
+        lemonchiffon: "#fffacd",
+        lightblue: "#add8e6",
+        lightcoral: "#f08080",
+        lightcyan: "#e0ffff",
+        lightgoldenrod: "#fafad2",
+        lightgoldenrodyellow: "#fafad2",
+        lightgray: "#d3d3d3",
+        lightgreen: "#90ee90",
+        lightgrey: "#d3d3d3",
+        lightpink: "#ffb6c1",
+        lightsalmon: "#ffa07a",
+        lightseagreen: "#20b2aa",
+        lightskyblue: "#87cefa",
+        lightslategray: "#778899",
+        lightslategrey: "#778899",
+        lightsteelblue: "#b0c4de",
+        lightyellow: "#ffffe0",
+        lime: "#00ff00",
+        limegreen: "#32cd32",
+        linen: "#faf0e6",
+        magenta: "#ff00ff",
+        maroon: "#800000",
+        maroon2: "#7f0000",
+        maroon3: "#b03060",
+        mediumaquamarine: "#66cdaa",
+        mediumblue: "#0000cd",
+        mediumorchid: "#ba55d3",
+        mediumpurple: "#9370db",
+        mediumseagreen: "#3cb371",
+        mediumslateblue: "#7b68ee",
+        mediumspringgreen: "#00fa9a",
+        mediumturquoise: "#48d1cc",
+        mediumvioletred: "#c71585",
+        midnightblue: "#191970",
+        mintcream: "#f5fffa",
+        mistyrose: "#ffe4e1",
+        moccasin: "#ffe4b5",
+        navajowhite: "#ffdead",
+        navy: "#000080",
+        oldlace: "#fdf5e6",
+        olive: "#808000",
+        olivedrab: "#6b8e23",
+        orange: "#ffa500",
+        orangered: "#ff4500",
+        orchid: "#da70d6",
+        palegoldenrod: "#eee8aa",
+        palegreen: "#98fb98",
+        paleturquoise: "#afeeee",
+        palevioletred: "#db7093",
+        papayawhip: "#ffefd5",
+        peachpuff: "#ffdab9",
+        peru: "#cd853f",
+        pink: "#ffc0cb",
+        plum: "#dda0dd",
+        powderblue: "#b0e0e6",
+        purple: "#800080",
+        purple2: "#7f007f",
+        purple3: "#a020f0",
+        rebeccapurple: "#663399",
+        red: "#ff0000",
+        rosybrown: "#bc8f8f",
+        royalblue: "#4169e1",
+        saddlebrown: "#8b4513",
+        salmon: "#fa8072",
+        sandybrown: "#f4a460",
+        seagreen: "#2e8b57",
+        seashell: "#fff5ee",
+        sienna: "#a0522d",
+        silver: "#c0c0c0",
+        skyblue: "#87ceeb",
+        slateblue: "#6a5acd",
+        slategray: "#708090",
+        slategrey: "#708090",
+        snow: "#fffafa",
+        springgreen: "#00ff7f",
+        steelblue: "#4682b4",
+        tan: "#d2b48c",
+        teal: "#008080",
+        thistle: "#d8bfd8",
+        tomato: "#ff6347",
+        turquoise: "#40e0d0",
+        violet: "#ee82ee",
+        wheat: "#f5deb3",
+        white: "#ffffff",
+        whitesmoke: "#f5f5f5",
+        yellow: "#ffff00",
+        yellowgreen: "#9acd32"
+      };
+      var w3cx11_1 = w3cx11$1;
+      var Color$s = Color_1;
+      var input$5 = input$h;
+      var type$c = utils2.type;
+      var w3cx11 = w3cx11_1;
+      var hex2rgb = hex2rgb_1;
+      var rgb2hex = rgb2hex_1;
+      Color$s.prototype.name = function() {
+        var hex = rgb2hex(this._rgb, "rgb");
+        for (var i3 = 0, list2 = Object.keys(w3cx11); i3 < list2.length; i3 += 1) {
+          var n = list2[i3];
+          if (w3cx11[n] === hex) {
+            return n.toLowerCase();
+          }
+        }
+        return hex;
+      };
+      input$5.format.named = function(name8) {
+        name8 = name8.toLowerCase();
+        if (w3cx11[name8]) {
+          return hex2rgb(w3cx11[name8]);
+        }
+        throw new Error("unknown color name: " + name8);
+      };
+      input$5.autodetect.push({
+        p: 5,
+        test: function(h3) {
+          var rest = [], len = arguments.length - 1;
+          while (len-- > 0)
+            rest[len] = arguments[len + 1];
+          if (!rest.length && type$c(h3) === "string" && w3cx11[h3.toLowerCase()]) {
+            return "named";
+          }
+        }
+      });
+      var unpack$8 = utils2.unpack;
+      var rgb2num$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$8(args, "rgb");
+        var r2 = ref[0];
+        var g2 = ref[1];
+        var b4 = ref[2];
+        return (r2 << 16) + (g2 << 8) + b4;
+      };
+      var rgb2num_1 = rgb2num$1;
+      var type$b = utils2.type;
+      var num2rgb = function(num2) {
+        if (type$b(num2) == "number" && num2 >= 0 && num2 <= 16777215) {
+          var r2 = num2 >> 16;
+          var g2 = num2 >> 8 & 255;
+          var b4 = num2 & 255;
+          return [r2, g2, b4, 1];
+        }
+        throw new Error("unknown num color: " + num2);
+      };
+      var num2rgb_1 = num2rgb;
+      var chroma$9 = chroma_1;
+      var Color$r = Color_1;
+      var input$4 = input$h;
+      var type$a = utils2.type;
+      var rgb2num = rgb2num_1;
+      Color$r.prototype.num = function() {
+        return rgb2num(this._rgb);
+      };
+      chroma$9.num = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$r, [null].concat(args, ["num"])))();
+      };
+      input$4.format.num = num2rgb_1;
+      input$4.autodetect.push({
+        p: 5,
+        test: function() {
+          var args = [], len = arguments.length;
+          while (len--)
+            args[len] = arguments[len];
+          if (args.length === 1 && type$a(args[0]) === "number" && args[0] >= 0 && args[0] <= 16777215) {
+            return "num";
+          }
+        }
+      });
+      var chroma$8 = chroma_1;
+      var Color$q = Color_1;
+      var input$3 = input$h;
+      var unpack$7 = utils2.unpack;
+      var type$9 = utils2.type;
+      var round$1 = Math.round;
+      Color$q.prototype.rgb = function(rnd2) {
+        if (rnd2 === void 0)
+          rnd2 = true;
+        if (rnd2 === false) {
+          return this._rgb.slice(0, 3);
+        }
+        return this._rgb.slice(0, 3).map(round$1);
+      };
+      Color$q.prototype.rgba = function(rnd2) {
+        if (rnd2 === void 0)
+          rnd2 = true;
+        return this._rgb.slice(0, 4).map(function(v3, i3) {
+          return i3 < 3 ? rnd2 === false ? v3 : round$1(v3) : v3;
+        });
+      };
+      chroma$8.rgb = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$q, [null].concat(args, ["rgb"])))();
+      };
+      input$3.format.rgb = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var rgba = unpack$7(args, "rgba");
+        if (rgba[3] === void 0) {
+          rgba[3] = 1;
+        }
+        return rgba;
+      };
+      input$3.autodetect.push({
+        p: 3,
+        test: function() {
+          var args = [], len = arguments.length;
+          while (len--)
+            args[len] = arguments[len];
+          args = unpack$7(args, "rgba");
+          if (type$9(args) === "array" && (args.length === 3 || args.length === 4 && type$9(args[3]) == "number" && args[3] >= 0 && args[3] <= 1)) {
+            return "rgb";
+          }
+        }
+      });
+      var log$1 = Math.log;
+      var temperature2rgb$1 = function(kelvin) {
+        var temp = kelvin / 100;
+        var r2, g2, b4;
+        if (temp < 66) {
+          r2 = 255;
+          g2 = temp < 6 ? 0 : -155.25485562709179 - 0.44596950469579133 * (g2 = temp - 2) + 104.49216199393888 * log$1(g2);
+          b4 = temp < 20 ? 0 : -254.76935184120902 + 0.8274096064007395 * (b4 = temp - 10) + 115.67994401066147 * log$1(b4);
+        } else {
+          r2 = 351.97690566805693 + 0.114206453784165 * (r2 = temp - 55) - 40.25366309332127 * log$1(r2);
+          g2 = 325.4494125711974 + 0.07943456536662342 * (g2 = temp - 50) - 28.0852963507957 * log$1(g2);
+          b4 = 255;
+        }
+        return [r2, g2, b4, 1];
+      };
+      var temperature2rgb_1 = temperature2rgb$1;
+      var temperature2rgb = temperature2rgb_1;
+      var unpack$6 = utils2.unpack;
+      var round = Math.round;
+      var rgb2temperature$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var rgb2 = unpack$6(args, "rgb");
+        var r2 = rgb2[0], b4 = rgb2[2];
+        var minTemp = 1e3;
+        var maxTemp = 4e4;
+        var eps = 0.4;
+        var temp;
+        while (maxTemp - minTemp > eps) {
+          temp = (maxTemp + minTemp) * 0.5;
+          var rgb$1 = temperature2rgb(temp);
+          if (rgb$1[2] / rgb$1[0] >= b4 / r2) {
+            maxTemp = temp;
+          } else {
+            minTemp = temp;
+          }
+        }
+        return round(temp);
+      };
+      var rgb2temperature_1 = rgb2temperature$1;
+      var chroma$7 = chroma_1;
+      var Color$p = Color_1;
+      var input$2 = input$h;
+      var rgb2temperature = rgb2temperature_1;
+      Color$p.prototype.temp = Color$p.prototype.kelvin = Color$p.prototype.temperature = function() {
+        return rgb2temperature(this._rgb);
+      };
+      chroma$7.temp = chroma$7.kelvin = chroma$7.temperature = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$p, [null].concat(args, ["temp"])))();
+      };
+      input$2.format.temp = input$2.format.kelvin = input$2.format.temperature = temperature2rgb_1;
+      var unpack$5 = utils2.unpack;
+      var cbrt = Math.cbrt;
+      var pow$8 = Math.pow;
+      var sign$1 = Math.sign;
+      var rgb2oklab$2 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$5(args, "rgb");
+        var r2 = ref[0];
+        var g2 = ref[1];
+        var b4 = ref[2];
+        var ref$1 = [rgb2lrgb(r2 / 255), rgb2lrgb(g2 / 255), rgb2lrgb(b4 / 255)];
+        var lr = ref$1[0];
+        var lg = ref$1[1];
+        var lb = ref$1[2];
+        var l = cbrt(0.4122214708 * lr + 0.5363325363 * lg + 0.0514459929 * lb);
+        var m3 = cbrt(0.2119034982 * lr + 0.6806995451 * lg + 0.1073969566 * lb);
+        var s3 = cbrt(0.0883024619 * lr + 0.2817188376 * lg + 0.6299787005 * lb);
+        return [
+          0.2104542553 * l + 0.793617785 * m3 - 0.0040720468 * s3,
+          1.9779984951 * l - 2.428592205 * m3 + 0.4505937099 * s3,
+          0.0259040371 * l + 0.7827717662 * m3 - 0.808675766 * s3
+        ];
+      };
+      var rgb2oklab_1 = rgb2oklab$2;
+      function rgb2lrgb(c3) {
+        var abs2 = Math.abs(c3);
+        if (abs2 < 0.04045) {
+          return c3 / 12.92;
+        }
+        return (sign$1(c3) || 1) * pow$8((abs2 + 0.055) / 1.055, 2.4);
+      }
+      var unpack$4 = utils2.unpack;
+      var pow$7 = Math.pow;
+      var sign = Math.sign;
+      var oklab2rgb$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$4(args, "lab");
+        var L = args[0];
+        var a = args[1];
+        var b4 = args[2];
+        var l = pow$7(L + 0.3963377774 * a + 0.2158037573 * b4, 3);
+        var m3 = pow$7(L - 0.1055613458 * a - 0.0638541728 * b4, 3);
+        var s3 = pow$7(L - 0.0894841775 * a - 1.291485548 * b4, 3);
+        return [
+          255 * lrgb2rgb(4.0767416621 * l - 3.3077115913 * m3 + 0.2309699292 * s3),
+          255 * lrgb2rgb(-1.2684380046 * l + 2.6097574011 * m3 - 0.3413193965 * s3),
+          255 * lrgb2rgb(-0.0041960863 * l - 0.7034186147 * m3 + 1.707614701 * s3),
+          args.length > 3 ? args[3] : 1
+        ];
+      };
+      var oklab2rgb_1 = oklab2rgb$1;
+      function lrgb2rgb(c3) {
+        var abs2 = Math.abs(c3);
+        if (abs2 > 31308e-7) {
+          return (sign(c3) || 1) * (1.055 * pow$7(abs2, 1 / 2.4) - 0.055);
+        }
+        return c3 * 12.92;
+      }
+      var unpack$3 = utils2.unpack;
+      var type$8 = utils2.type;
+      var chroma$6 = chroma_1;
+      var Color$o = Color_1;
+      var input$1 = input$h;
+      var rgb2oklab$1 = rgb2oklab_1;
+      Color$o.prototype.oklab = function() {
+        return rgb2oklab$1(this._rgb);
+      };
+      chroma$6.oklab = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$o, [null].concat(args, ["oklab"])))();
+      };
+      input$1.format.oklab = oklab2rgb_1;
+      input$1.autodetect.push({
+        p: 3,
+        test: function() {
+          var args = [], len = arguments.length;
+          while (len--)
+            args[len] = arguments[len];
+          args = unpack$3(args, "oklab");
+          if (type$8(args) === "array" && args.length === 3) {
+            return "oklab";
+          }
+        }
+      });
+      var unpack$2 = utils2.unpack;
+      var rgb2oklab = rgb2oklab_1;
+      var lab2lch = lab2lch_1;
+      var rgb2oklch$1 = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        var ref = unpack$2(args, "rgb");
+        var r2 = ref[0];
+        var g2 = ref[1];
+        var b4 = ref[2];
+        var ref$1 = rgb2oklab(r2, g2, b4);
+        var l = ref$1[0];
+        var a = ref$1[1];
+        var b_ = ref$1[2];
+        return lab2lch(l, a, b_);
+      };
+      var rgb2oklch_1 = rgb2oklch$1;
+      var unpack$1 = utils2.unpack;
+      var lch2lab = lch2lab_1;
+      var oklab2rgb = oklab2rgb_1;
+      var oklch2rgb = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        args = unpack$1(args, "lch");
+        var l = args[0];
+        var c3 = args[1];
+        var h3 = args[2];
+        var ref = lch2lab(l, c3, h3);
+        var L = ref[0];
+        var a = ref[1];
+        var b_ = ref[2];
+        var ref$1 = oklab2rgb(L, a, b_);
+        var r2 = ref$1[0];
+        var g2 = ref$1[1];
+        var b4 = ref$1[2];
+        return [r2, g2, b4, args.length > 3 ? args[3] : 1];
+      };
+      var oklch2rgb_1 = oklch2rgb;
+      var unpack = utils2.unpack;
+      var type$7 = utils2.type;
+      var chroma$5 = chroma_1;
+      var Color$n = Color_1;
+      var input = input$h;
+      var rgb2oklch = rgb2oklch_1;
+      Color$n.prototype.oklch = function() {
+        return rgb2oklch(this._rgb);
+      };
+      chroma$5.oklch = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        return new (Function.prototype.bind.apply(Color$n, [null].concat(args, ["oklch"])))();
+      };
+      input.format.oklch = oklch2rgb_1;
+      input.autodetect.push({
+        p: 3,
+        test: function() {
+          var args = [], len = arguments.length;
+          while (len--)
+            args[len] = arguments[len];
+          args = unpack(args, "oklch");
+          if (type$7(args) === "array" && args.length === 3) {
+            return "oklch";
+          }
+        }
+      });
+      var Color$m = Color_1;
+      var type$6 = utils2.type;
+      Color$m.prototype.alpha = function(a, mutate) {
+        if (mutate === void 0)
+          mutate = false;
+        if (a !== void 0 && type$6(a) === "number") {
+          if (mutate) {
+            this._rgb[3] = a;
+            return this;
+          }
+          return new Color$m([this._rgb[0], this._rgb[1], this._rgb[2], a], "rgb");
+        }
+        return this._rgb[3];
+      };
+      var Color$l = Color_1;
+      Color$l.prototype.clipped = function() {
+        return this._rgb._clipped || false;
+      };
+      var Color$k = Color_1;
+      var LAB_CONSTANTS$1 = labConstants;
+      Color$k.prototype.darken = function(amount) {
+        if (amount === void 0)
+          amount = 1;
+        var me = this;
+        var lab2 = me.lab();
+        lab2[0] -= LAB_CONSTANTS$1.Kn * amount;
+        return new Color$k(lab2, "lab").alpha(me.alpha(), true);
+      };
+      Color$k.prototype.brighten = function(amount) {
+        if (amount === void 0)
+          amount = 1;
+        return this.darken(-amount);
+      };
+      Color$k.prototype.darker = Color$k.prototype.darken;
+      Color$k.prototype.brighter = Color$k.prototype.brighten;
+      var Color$j = Color_1;
+      Color$j.prototype.get = function(mc) {
+        var ref = mc.split(".");
+        var mode = ref[0];
+        var channel = ref[1];
+        var src = this[mode]();
+        if (channel) {
+          var i3 = mode.indexOf(channel) - (mode.substr(0, 2) === "ok" ? 2 : 0);
+          if (i3 > -1) {
+            return src[i3];
+          }
+          throw new Error("unknown channel " + channel + " in mode " + mode);
+        } else {
+          return src;
+        }
+      };
+      var Color$i = Color_1;
+      var type$5 = utils2.type;
+      var pow$6 = Math.pow;
+      var EPS = 1e-7;
+      var MAX_ITER = 20;
+      Color$i.prototype.luminance = function(lum) {
+        if (lum !== void 0 && type$5(lum) === "number") {
+          if (lum === 0) {
+            return new Color$i([0, 0, 0, this._rgb[3]], "rgb");
+          }
+          if (lum === 1) {
+            return new Color$i([255, 255, 255, this._rgb[3]], "rgb");
+          }
+          var cur_lum = this.luminance();
+          var mode = "rgb";
+          var max_iter = MAX_ITER;
+          var test = function(low, high) {
+            var mid = low.interpolate(high, 0.5, mode);
+            var lm = mid.luminance();
+            if (Math.abs(lum - lm) < EPS || !max_iter--) {
+              return mid;
+            }
+            return lm > lum ? test(low, mid) : test(mid, high);
+          };
+          var rgb2 = (cur_lum > lum ? test(new Color$i([0, 0, 0]), this) : test(this, new Color$i([255, 255, 255]))).rgb();
+          return new Color$i(rgb2.concat([this._rgb[3]]));
+        }
+        return rgb2luminance.apply(void 0, this._rgb.slice(0, 3));
+      };
+      var rgb2luminance = function(r2, g2, b4) {
+        r2 = luminance_x(r2);
+        g2 = luminance_x(g2);
+        b4 = luminance_x(b4);
+        return 0.2126 * r2 + 0.7152 * g2 + 0.0722 * b4;
+      };
+      var luminance_x = function(x2) {
+        x2 /= 255;
+        return x2 <= 0.03928 ? x2 / 12.92 : pow$6((x2 + 0.055) / 1.055, 2.4);
+      };
+      var interpolator$1 = {};
+      var Color$h = Color_1;
+      var type$4 = utils2.type;
+      var interpolator = interpolator$1;
+      var mix$1 = function(col1, col2, f5) {
+        if (f5 === void 0)
+          f5 = 0.5;
+        var rest = [], len = arguments.length - 3;
+        while (len-- > 0)
+          rest[len] = arguments[len + 3];
+        var mode = rest[0] || "lrgb";
+        if (!interpolator[mode] && !rest.length) {
+          mode = Object.keys(interpolator)[0];
+        }
+        if (!interpolator[mode]) {
+          throw new Error("interpolation mode " + mode + " is not defined");
+        }
+        if (type$4(col1) !== "object") {
+          col1 = new Color$h(col1);
+        }
+        if (type$4(col2) !== "object") {
+          col2 = new Color$h(col2);
+        }
+        return interpolator[mode](col1, col2, f5).alpha(col1.alpha() + f5 * (col2.alpha() - col1.alpha()));
+      };
+      var Color$g = Color_1;
+      var mix = mix$1;
+      Color$g.prototype.mix = Color$g.prototype.interpolate = function(col2, f5) {
+        if (f5 === void 0)
+          f5 = 0.5;
+        var rest = [], len = arguments.length - 2;
+        while (len-- > 0)
+          rest[len] = arguments[len + 2];
+        return mix.apply(void 0, [this, col2, f5].concat(rest));
+      };
+      var Color$f = Color_1;
+      Color$f.prototype.premultiply = function(mutate) {
+        if (mutate === void 0)
+          mutate = false;
+        var rgb2 = this._rgb;
+        var a = rgb2[3];
+        if (mutate) {
+          this._rgb = [rgb2[0] * a, rgb2[1] * a, rgb2[2] * a, a];
+          return this;
+        } else {
+          return new Color$f([rgb2[0] * a, rgb2[1] * a, rgb2[2] * a, a], "rgb");
+        }
+      };
+      var Color$e = Color_1;
+      var LAB_CONSTANTS = labConstants;
+      Color$e.prototype.saturate = function(amount) {
+        if (amount === void 0)
+          amount = 1;
+        var me = this;
+        var lch2 = me.lch();
+        lch2[1] += LAB_CONSTANTS.Kn * amount;
+        if (lch2[1] < 0) {
+          lch2[1] = 0;
+        }
+        return new Color$e(lch2, "lch").alpha(me.alpha(), true);
+      };
+      Color$e.prototype.desaturate = function(amount) {
+        if (amount === void 0)
+          amount = 1;
+        return this.saturate(-amount);
+      };
+      var Color$d = Color_1;
+      var type$3 = utils2.type;
+      Color$d.prototype.set = function(mc, value, mutate) {
+        if (mutate === void 0)
+          mutate = false;
+        var ref = mc.split(".");
+        var mode = ref[0];
+        var channel = ref[1];
+        var src = this[mode]();
+        if (channel) {
+          var i3 = mode.indexOf(channel) - (mode.substr(0, 2) === "ok" ? 2 : 0);
+          if (i3 > -1) {
+            if (type$3(value) == "string") {
+              switch (value.charAt(0)) {
+                case "+":
+                  src[i3] += +value;
+                  break;
+                case "-":
+                  src[i3] += +value;
+                  break;
+                case "*":
+                  src[i3] *= +value.substr(1);
+                  break;
+                case "/":
+                  src[i3] /= +value.substr(1);
+                  break;
+                default:
+                  src[i3] = +value;
+              }
+            } else if (type$3(value) === "number") {
+              src[i3] = value;
+            } else {
+              throw new Error("unsupported value for Color.set");
+            }
+            var out = new Color$d(src, mode);
+            if (mutate) {
+              this._rgb = out._rgb;
+              return this;
+            }
+            return out;
+          }
+          throw new Error("unknown channel " + channel + " in mode " + mode);
+        } else {
+          return src;
+        }
+      };
+      var Color$c = Color_1;
+      var rgb = function(col1, col2, f5) {
+        var xyz0 = col1._rgb;
+        var xyz1 = col2._rgb;
+        return new Color$c(
+          xyz0[0] + f5 * (xyz1[0] - xyz0[0]),
+          xyz0[1] + f5 * (xyz1[1] - xyz0[1]),
+          xyz0[2] + f5 * (xyz1[2] - xyz0[2]),
+          "rgb"
+        );
+      };
+      interpolator$1.rgb = rgb;
+      var Color$b = Color_1;
+      var sqrt$2 = Math.sqrt;
+      var pow$5 = Math.pow;
+      var lrgb = function(col1, col2, f5) {
+        var ref = col1._rgb;
+        var x1 = ref[0];
+        var y1 = ref[1];
+        var z1 = ref[2];
+        var ref$1 = col2._rgb;
+        var x2 = ref$1[0];
+        var y2 = ref$1[1];
+        var z2 = ref$1[2];
+        return new Color$b(
+          sqrt$2(pow$5(x1, 2) * (1 - f5) + pow$5(x2, 2) * f5),
+          sqrt$2(pow$5(y1, 2) * (1 - f5) + pow$5(y2, 2) * f5),
+          sqrt$2(pow$5(z1, 2) * (1 - f5) + pow$5(z2, 2) * f5),
+          "rgb"
+        );
+      };
+      interpolator$1.lrgb = lrgb;
+      var Color$a = Color_1;
+      var lab = function(col1, col2, f5) {
+        var xyz0 = col1.lab();
+        var xyz1 = col2.lab();
+        return new Color$a(
+          xyz0[0] + f5 * (xyz1[0] - xyz0[0]),
+          xyz0[1] + f5 * (xyz1[1] - xyz0[1]),
+          xyz0[2] + f5 * (xyz1[2] - xyz0[2]),
+          "lab"
+        );
+      };
+      interpolator$1.lab = lab;
+      var Color$9 = Color_1;
+      var _hsx = function(col1, col2, f5, m3) {
+        var assign2, assign$1;
+        var xyz0, xyz1;
+        if (m3 === "hsl") {
+          xyz0 = col1.hsl();
+          xyz1 = col2.hsl();
+        } else if (m3 === "hsv") {
+          xyz0 = col1.hsv();
+          xyz1 = col2.hsv();
+        } else if (m3 === "hcg") {
+          xyz0 = col1.hcg();
+          xyz1 = col2.hcg();
+        } else if (m3 === "hsi") {
+          xyz0 = col1.hsi();
+          xyz1 = col2.hsi();
+        } else if (m3 === "lch" || m3 === "hcl") {
+          m3 = "hcl";
+          xyz0 = col1.hcl();
+          xyz1 = col2.hcl();
+        } else if (m3 === "oklch") {
+          xyz0 = col1.oklch().reverse();
+          xyz1 = col2.oklch().reverse();
+        }
+        var hue0, hue1, sat0, sat1, lbv0, lbv1;
+        if (m3.substr(0, 1) === "h" || m3 === "oklch") {
+          assign2 = xyz0, hue0 = assign2[0], sat0 = assign2[1], lbv0 = assign2[2];
+          assign$1 = xyz1, hue1 = assign$1[0], sat1 = assign$1[1], lbv1 = assign$1[2];
+        }
+        var sat, hue, lbv, dh;
+        if (!isNaN(hue0) && !isNaN(hue1)) {
+          if (hue1 > hue0 && hue1 - hue0 > 180) {
+            dh = hue1 - (hue0 + 360);
+          } else if (hue1 < hue0 && hue0 - hue1 > 180) {
+            dh = hue1 + 360 - hue0;
+          } else {
+            dh = hue1 - hue0;
+          }
+          hue = hue0 + f5 * dh;
+        } else if (!isNaN(hue0)) {
+          hue = hue0;
+          if ((lbv1 == 1 || lbv1 == 0) && m3 != "hsv") {
+            sat = sat0;
+          }
+        } else if (!isNaN(hue1)) {
+          hue = hue1;
+          if ((lbv0 == 1 || lbv0 == 0) && m3 != "hsv") {
+            sat = sat1;
+          }
+        } else {
+          hue = Number.NaN;
+        }
+        if (sat === void 0) {
+          sat = sat0 + f5 * (sat1 - sat0);
+        }
+        lbv = lbv0 + f5 * (lbv1 - lbv0);
+        return m3 === "oklch" ? new Color$9([lbv, sat, hue], m3) : new Color$9([hue, sat, lbv], m3);
+      };
+      var interpolate_hsx$5 = _hsx;
+      var lch = function(col1, col2, f5) {
+        return interpolate_hsx$5(col1, col2, f5, "lch");
+      };
+      interpolator$1.lch = lch;
+      interpolator$1.hcl = lch;
+      var Color$8 = Color_1;
+      var num = function(col1, col2, f5) {
+        var c1 = col1.num();
+        var c22 = col2.num();
+        return new Color$8(c1 + f5 * (c22 - c1), "num");
+      };
+      interpolator$1.num = num;
+      var interpolate_hsx$4 = _hsx;
+      var hcg = function(col1, col2, f5) {
+        return interpolate_hsx$4(col1, col2, f5, "hcg");
+      };
+      interpolator$1.hcg = hcg;
+      var interpolate_hsx$3 = _hsx;
+      var hsi = function(col1, col2, f5) {
+        return interpolate_hsx$3(col1, col2, f5, "hsi");
+      };
+      interpolator$1.hsi = hsi;
+      var interpolate_hsx$2 = _hsx;
+      var hsl = function(col1, col2, f5) {
+        return interpolate_hsx$2(col1, col2, f5, "hsl");
+      };
+      interpolator$1.hsl = hsl;
+      var interpolate_hsx$1 = _hsx;
+      var hsv = function(col1, col2, f5) {
+        return interpolate_hsx$1(col1, col2, f5, "hsv");
+      };
+      interpolator$1.hsv = hsv;
+      var Color$7 = Color_1;
+      var oklab = function(col1, col2, f5) {
+        var xyz0 = col1.oklab();
+        var xyz1 = col2.oklab();
+        return new Color$7(
+          xyz0[0] + f5 * (xyz1[0] - xyz0[0]),
+          xyz0[1] + f5 * (xyz1[1] - xyz0[1]),
+          xyz0[2] + f5 * (xyz1[2] - xyz0[2]),
+          "oklab"
+        );
+      };
+      interpolator$1.oklab = oklab;
+      var interpolate_hsx = _hsx;
+      var oklch = function(col1, col2, f5) {
+        return interpolate_hsx(col1, col2, f5, "oklch");
+      };
+      interpolator$1.oklch = oklch;
+      var Color$6 = Color_1;
+      var clip_rgb$1 = utils2.clip_rgb;
+      var pow$4 = Math.pow;
+      var sqrt$1 = Math.sqrt;
+      var PI$1 = Math.PI;
+      var cos$2 = Math.cos;
+      var sin$2 = Math.sin;
+      var atan2$1 = Math.atan2;
+      var average = function(colors2, mode, weights) {
+        if (mode === void 0)
+          mode = "lrgb";
+        if (weights === void 0)
+          weights = null;
+        var l = colors2.length;
+        if (!weights) {
+          weights = Array.from(new Array(l)).map(function() {
+            return 1;
+          });
+        }
+        var k = l / weights.reduce(function(a, b4) {
+          return a + b4;
+        });
+        weights.forEach(function(w2, i4) {
+          weights[i4] *= k;
+        });
+        colors2 = colors2.map(function(c3) {
+          return new Color$6(c3);
+        });
+        if (mode === "lrgb") {
+          return _average_lrgb(colors2, weights);
+        }
+        var first = colors2.shift();
+        var xyz = first.get(mode);
+        var cnt = [];
+        var dx = 0;
+        var dy = 0;
+        for (var i3 = 0; i3 < xyz.length; i3++) {
+          xyz[i3] = (xyz[i3] || 0) * weights[0];
+          cnt.push(isNaN(xyz[i3]) ? 0 : weights[0]);
+          if (mode.charAt(i3) === "h" && !isNaN(xyz[i3])) {
+            var A2 = xyz[i3] / 180 * PI$1;
+            dx += cos$2(A2) * weights[0];
+            dy += sin$2(A2) * weights[0];
+          }
+        }
+        var alpha = first.alpha() * weights[0];
+        colors2.forEach(function(c3, ci) {
+          var xyz2 = c3.get(mode);
+          alpha += c3.alpha() * weights[ci + 1];
+          for (var i4 = 0; i4 < xyz.length; i4++) {
+            if (!isNaN(xyz2[i4])) {
+              cnt[i4] += weights[ci + 1];
+              if (mode.charAt(i4) === "h") {
+                var A3 = xyz2[i4] / 180 * PI$1;
+                dx += cos$2(A3) * weights[ci + 1];
+                dy += sin$2(A3) * weights[ci + 1];
+              } else {
+                xyz[i4] += xyz2[i4] * weights[ci + 1];
+              }
+            }
+          }
+        });
+        for (var i$12 = 0; i$12 < xyz.length; i$12++) {
+          if (mode.charAt(i$12) === "h") {
+            var A$1 = atan2$1(dy / cnt[i$12], dx / cnt[i$12]) / PI$1 * 180;
+            while (A$1 < 0) {
+              A$1 += 360;
+            }
+            while (A$1 >= 360) {
+              A$1 -= 360;
+            }
+            xyz[i$12] = A$1;
+          } else {
+            xyz[i$12] = xyz[i$12] / cnt[i$12];
+          }
+        }
+        alpha /= l;
+        return new Color$6(xyz, mode).alpha(alpha > 0.99999 ? 1 : alpha, true);
+      };
+      var _average_lrgb = function(colors2, weights) {
+        var l = colors2.length;
+        var xyz = [0, 0, 0, 0];
+        for (var i3 = 0; i3 < colors2.length; i3++) {
+          var col = colors2[i3];
+          var f5 = weights[i3] / l;
+          var rgb2 = col._rgb;
+          xyz[0] += pow$4(rgb2[0], 2) * f5;
+          xyz[1] += pow$4(rgb2[1], 2) * f5;
+          xyz[2] += pow$4(rgb2[2], 2) * f5;
+          xyz[3] += rgb2[3] * f5;
+        }
+        xyz[0] = sqrt$1(xyz[0]);
+        xyz[1] = sqrt$1(xyz[1]);
+        xyz[2] = sqrt$1(xyz[2]);
+        if (xyz[3] > 0.9999999) {
+          xyz[3] = 1;
+        }
+        return new Color$6(clip_rgb$1(xyz));
+      };
+      var chroma$4 = chroma_1;
+      var type$2 = utils2.type;
+      var pow$3 = Math.pow;
+      var scale$2 = function(colors2) {
+        var _mode = "rgb";
+        var _nacol = chroma$4("#ccc");
+        var _spread = 0;
+        var _domain = [0, 1];
+        var _pos = [];
+        var _padding = [0, 0];
+        var _classes = false;
+        var _colors = [];
+        var _out = false;
+        var _min = 0;
+        var _max = 1;
+        var _correctLightness = false;
+        var _colorCache = {};
+        var _useCache = true;
+        var _gamma = 1;
+        var setColors = function(colors3) {
+          colors3 = colors3 || ["#fff", "#000"];
+          if (colors3 && type$2(colors3) === "string" && chroma$4.brewer && chroma$4.brewer[colors3.toLowerCase()]) {
+            colors3 = chroma$4.brewer[colors3.toLowerCase()];
+          }
+          if (type$2(colors3) === "array") {
+            if (colors3.length === 1) {
+              colors3 = [colors3[0], colors3[0]];
+            }
+            colors3 = colors3.slice(0);
+            for (var c3 = 0; c3 < colors3.length; c3++) {
+              colors3[c3] = chroma$4(colors3[c3]);
+            }
+            _pos.length = 0;
+            for (var c$1 = 0; c$1 < colors3.length; c$1++) {
+              _pos.push(c$1 / (colors3.length - 1));
+            }
+          }
+          resetCache();
+          return _colors = colors3;
+        };
+        var getClass = function(value) {
+          if (_classes != null) {
+            var n = _classes.length - 1;
+            var i3 = 0;
+            while (i3 < n && value >= _classes[i3]) {
+              i3++;
+            }
+            return i3 - 1;
+          }
+          return 0;
+        };
+        var tMapLightness = function(t2) {
+          return t2;
+        };
+        var tMapDomain = function(t2) {
+          return t2;
+        };
+        var getColor = function(val, bypassMap) {
+          var col, t2;
+          if (bypassMap == null) {
+            bypassMap = false;
+          }
+          if (isNaN(val) || val === null) {
+            return _nacol;
+          }
+          if (!bypassMap) {
+            if (_classes && _classes.length > 2) {
+              var c3 = getClass(val);
+              t2 = c3 / (_classes.length - 2);
+            } else if (_max !== _min) {
+              t2 = (val - _min) / (_max - _min);
+            } else {
+              t2 = 1;
+            }
+          } else {
+            t2 = val;
+          }
+          t2 = tMapDomain(t2);
+          if (!bypassMap) {
+            t2 = tMapLightness(t2);
+          }
+          if (_gamma !== 1) {
+            t2 = pow$3(t2, _gamma);
+          }
+          t2 = _padding[0] + t2 * (1 - _padding[0] - _padding[1]);
+          t2 = Math.min(1, Math.max(0, t2));
+          var k = Math.floor(t2 * 1e4);
+          if (_useCache && _colorCache[k]) {
+            col = _colorCache[k];
+          } else {
+            if (type$2(_colors) === "array") {
+              for (var i3 = 0; i3 < _pos.length; i3++) {
+                var p2 = _pos[i3];
+                if (t2 <= p2) {
+                  col = _colors[i3];
+                  break;
+                }
+                if (t2 >= p2 && i3 === _pos.length - 1) {
+                  col = _colors[i3];
+                  break;
+                }
+                if (t2 > p2 && t2 < _pos[i3 + 1]) {
+                  t2 = (t2 - p2) / (_pos[i3 + 1] - p2);
+                  col = chroma$4.interpolate(_colors[i3], _colors[i3 + 1], t2, _mode);
+                  break;
+                }
+              }
+            } else if (type$2(_colors) === "function") {
+              col = _colors(t2);
+            }
+            if (_useCache) {
+              _colorCache[k] = col;
+            }
+          }
+          return col;
+        };
+        var resetCache = function() {
+          return _colorCache = {};
+        };
+        setColors(colors2);
+        var f5 = function(v3) {
+          var c3 = chroma$4(getColor(v3));
+          if (_out && c3[_out]) {
+            return c3[_out]();
+          } else {
+            return c3;
+          }
+        };
+        f5.classes = function(classes) {
+          if (classes != null) {
+            if (type$2(classes) === "array") {
+              _classes = classes;
+              _domain = [classes[0], classes[classes.length - 1]];
+            } else {
+              var d3 = chroma$4.analyze(_domain);
+              if (classes === 0) {
+                _classes = [d3.min, d3.max];
+              } else {
+                _classes = chroma$4.limits(d3, "e", classes);
+              }
+            }
+            return f5;
+          }
+          return _classes;
+        };
+        f5.domain = function(domain) {
+          if (!arguments.length) {
+            return _domain;
+          }
+          _min = domain[0];
+          _max = domain[domain.length - 1];
+          _pos = [];
+          var k = _colors.length;
+          if (domain.length === k && _min !== _max) {
+            for (var i3 = 0, list2 = Array.from(domain); i3 < list2.length; i3 += 1) {
+              var d3 = list2[i3];
+              _pos.push((d3 - _min) / (_max - _min));
+            }
+          } else {
+            for (var c3 = 0; c3 < k; c3++) {
+              _pos.push(c3 / (k - 1));
+            }
+            if (domain.length > 2) {
+              var tOut = domain.map(function(d4, i4) {
+                return i4 / (domain.length - 1);
+              });
+              var tBreaks = domain.map(function(d4) {
+                return (d4 - _min) / (_max - _min);
+              });
+              if (!tBreaks.every(function(val, i4) {
+                return tOut[i4] === val;
+              })) {
+                tMapDomain = function(t2) {
+                  if (t2 <= 0 || t2 >= 1) {
+                    return t2;
+                  }
+                  var i4 = 0;
+                  while (t2 >= tBreaks[i4 + 1]) {
+                    i4++;
+                  }
+                  var f6 = (t2 - tBreaks[i4]) / (tBreaks[i4 + 1] - tBreaks[i4]);
+                  var out = tOut[i4] + f6 * (tOut[i4 + 1] - tOut[i4]);
+                  return out;
+                };
+              }
+            }
+          }
+          _domain = [_min, _max];
+          return f5;
+        };
+        f5.mode = function(_m) {
+          if (!arguments.length) {
+            return _mode;
+          }
+          _mode = _m;
+          resetCache();
+          return f5;
+        };
+        f5.range = function(colors3, _pos2) {
+          setColors(colors3);
+          return f5;
+        };
+        f5.out = function(_o) {
+          _out = _o;
+          return f5;
+        };
+        f5.spread = function(val) {
+          if (!arguments.length) {
+            return _spread;
+          }
+          _spread = val;
+          return f5;
+        };
+        f5.correctLightness = function(v3) {
+          if (v3 == null) {
+            v3 = true;
+          }
+          _correctLightness = v3;
+          resetCache();
+          if (_correctLightness) {
+            tMapLightness = function(t2) {
+              var L0 = getColor(0, true).lab()[0];
+              var L1 = getColor(1, true).lab()[0];
+              var pol = L0 > L1;
+              var L_actual = getColor(t2, true).lab()[0];
+              var L_ideal = L0 + (L1 - L0) * t2;
+              var L_diff = L_actual - L_ideal;
+              var t0 = 0;
+              var t1 = 1;
+              var max_iter = 20;
+              while (Math.abs(L_diff) > 0.01 && max_iter-- > 0) {
+                (function() {
+                  if (pol) {
+                    L_diff *= -1;
+                  }
+                  if (L_diff < 0) {
+                    t0 = t2;
+                    t2 += (t1 - t2) * 0.5;
+                  } else {
+                    t1 = t2;
+                    t2 += (t0 - t2) * 0.5;
+                  }
+                  L_actual = getColor(t2, true).lab()[0];
+                  return L_diff = L_actual - L_ideal;
+                })();
+              }
+              return t2;
+            };
+          } else {
+            tMapLightness = function(t2) {
+              return t2;
+            };
+          }
+          return f5;
+        };
+        f5.padding = function(p2) {
+          if (p2 != null) {
+            if (type$2(p2) === "number") {
+              p2 = [p2, p2];
+            }
+            _padding = p2;
+            return f5;
+          } else {
+            return _padding;
+          }
+        };
+        f5.colors = function(numColors, out) {
+          if (arguments.length < 2) {
+            out = "hex";
+          }
+          var result = [];
+          if (arguments.length === 0) {
+            result = _colors.slice(0);
+          } else if (numColors === 1) {
+            result = [f5(0.5)];
+          } else if (numColors > 1) {
+            var dm = _domain[0];
+            var dd = _domain[1] - dm;
+            result = __range__(0, numColors, false).map(function(i4) {
+              return f5(dm + i4 / (numColors - 1) * dd);
+            });
+          } else {
+            colors2 = [];
+            var samples = [];
+            if (_classes && _classes.length > 2) {
+              for (var i3 = 1, end = _classes.length, asc = 1 <= end; asc ? i3 < end : i3 > end; asc ? i3++ : i3--) {
+                samples.push((_classes[i3 - 1] + _classes[i3]) * 0.5);
+              }
+            } else {
+              samples = _domain;
+            }
+            result = samples.map(function(v3) {
+              return f5(v3);
+            });
+          }
+          if (chroma$4[out]) {
+            result = result.map(function(c3) {
+              return c3[out]();
+            });
+          }
+          return result;
+        };
+        f5.cache = function(c3) {
+          if (c3 != null) {
+            _useCache = c3;
+            return f5;
+          } else {
+            return _useCache;
+          }
+        };
+        f5.gamma = function(g2) {
+          if (g2 != null) {
+            _gamma = g2;
+            return f5;
+          } else {
+            return _gamma;
+          }
+        };
+        f5.nodata = function(d3) {
+          if (d3 != null) {
+            _nacol = chroma$4(d3);
+            return f5;
+          } else {
+            return _nacol;
+          }
+        };
+        return f5;
+      };
+      function __range__(left, right, inclusive) {
+        var range = [];
+        var ascending = left < right;
+        var end = !inclusive ? right : ascending ? right + 1 : right - 1;
+        for (var i3 = left; ascending ? i3 < end : i3 > end; ascending ? i3++ : i3--) {
+          range.push(i3);
+        }
+        return range;
+      }
+      var Color$5 = Color_1;
+      var scale$1 = scale$2;
+      var binom_row = function(n) {
+        var row = [1, 1];
+        for (var i3 = 1; i3 < n; i3++) {
+          var newrow = [1];
+          for (var j2 = 1; j2 <= row.length; j2++) {
+            newrow[j2] = (row[j2] || 0) + row[j2 - 1];
+          }
+          row = newrow;
+        }
+        return row;
+      };
+      var bezier = function(colors2) {
+        var assign2, assign$1, assign$2;
+        var I, lab0, lab1, lab2;
+        colors2 = colors2.map(function(c3) {
+          return new Color$5(c3);
+        });
+        if (colors2.length === 2) {
+          assign2 = colors2.map(function(c3) {
+            return c3.lab();
+          }), lab0 = assign2[0], lab1 = assign2[1];
+          I = function(t2) {
+            var lab4 = [0, 1, 2].map(function(i3) {
+              return lab0[i3] + t2 * (lab1[i3] - lab0[i3]);
+            });
+            return new Color$5(lab4, "lab");
+          };
+        } else if (colors2.length === 3) {
+          assign$1 = colors2.map(function(c3) {
+            return c3.lab();
+          }), lab0 = assign$1[0], lab1 = assign$1[1], lab2 = assign$1[2];
+          I = function(t2) {
+            var lab4 = [0, 1, 2].map(function(i3) {
+              return (1 - t2) * (1 - t2) * lab0[i3] + 2 * (1 - t2) * t2 * lab1[i3] + t2 * t2 * lab2[i3];
+            });
+            return new Color$5(lab4, "lab");
+          };
+        } else if (colors2.length === 4) {
+          var lab3;
+          assign$2 = colors2.map(function(c3) {
+            return c3.lab();
+          }), lab0 = assign$2[0], lab1 = assign$2[1], lab2 = assign$2[2], lab3 = assign$2[3];
+          I = function(t2) {
+            var lab4 = [0, 1, 2].map(function(i3) {
+              return (1 - t2) * (1 - t2) * (1 - t2) * lab0[i3] + 3 * (1 - t2) * (1 - t2) * t2 * lab1[i3] + 3 * (1 - t2) * t2 * t2 * lab2[i3] + t2 * t2 * t2 * lab3[i3];
+            });
+            return new Color$5(lab4, "lab");
+          };
+        } else if (colors2.length >= 5) {
+          var labs, row, n;
+          labs = colors2.map(function(c3) {
+            return c3.lab();
+          });
+          n = colors2.length - 1;
+          row = binom_row(n);
+          I = function(t2) {
+            var u2 = 1 - t2;
+            var lab4 = [0, 1, 2].map(function(i3) {
+              return labs.reduce(function(sum, el, j2) {
+                return sum + row[j2] * Math.pow(u2, n - j2) * Math.pow(t2, j2) * el[i3];
+              }, 0);
+            });
+            return new Color$5(lab4, "lab");
+          };
+        } else {
+          throw new RangeError("No point in running bezier with only one color.");
+        }
+        return I;
+      };
+      var bezier_1 = function(colors2) {
+        var f5 = bezier(colors2);
+        f5.scale = function() {
+          return scale$1(f5);
+        };
+        return f5;
+      };
+      var chroma$3 = chroma_1;
+      var blend = function(bottom, top, mode) {
+        if (!blend[mode]) {
+          throw new Error("unknown blend mode " + mode);
+        }
+        return blend[mode](bottom, top);
+      };
+      var blend_f = function(f5) {
+        return function(bottom, top) {
+          var c0 = chroma$3(top).rgb();
+          var c1 = chroma$3(bottom).rgb();
+          return chroma$3.rgb(f5(c0, c1));
+        };
+      };
+      var each2 = function(f5) {
+        return function(c0, c1) {
+          var out = [];
+          out[0] = f5(c0[0], c1[0]);
+          out[1] = f5(c0[1], c1[1]);
+          out[2] = f5(c0[2], c1[2]);
+          return out;
+        };
+      };
+      var normal = function(a) {
+        return a;
+      };
+      var multiply = function(a, b4) {
+        return a * b4 / 255;
+      };
+      var darken = function(a, b4) {
+        return a > b4 ? b4 : a;
+      };
+      var lighten = function(a, b4) {
+        return a > b4 ? a : b4;
+      };
+      var screen = function(a, b4) {
+        return 255 * (1 - (1 - a / 255) * (1 - b4 / 255));
+      };
+      var overlay = function(a, b4) {
+        return b4 < 128 ? 2 * a * b4 / 255 : 255 * (1 - 2 * (1 - a / 255) * (1 - b4 / 255));
+      };
+      var burn = function(a, b4) {
+        return 255 * (1 - (1 - b4 / 255) / (a / 255));
+      };
+      var dodge = function(a, b4) {
+        if (a === 255) {
+          return 255;
+        }
+        a = 255 * (b4 / 255) / (1 - a / 255);
+        return a > 255 ? 255 : a;
+      };
+      blend.normal = blend_f(each2(normal));
+      blend.multiply = blend_f(each2(multiply));
+      blend.screen = blend_f(each2(screen));
+      blend.overlay = blend_f(each2(overlay));
+      blend.darken = blend_f(each2(darken));
+      blend.lighten = blend_f(each2(lighten));
+      blend.dodge = blend_f(each2(dodge));
+      blend.burn = blend_f(each2(burn));
+      var blend_1 = blend;
+      var type$1 = utils2.type;
+      var clip_rgb = utils2.clip_rgb;
+      var TWOPI = utils2.TWOPI;
+      var pow$2 = Math.pow;
+      var sin$1 = Math.sin;
+      var cos$1 = Math.cos;
+      var chroma$2 = chroma_1;
+      var cubehelix = function(start2, rotations, hue, gamma, lightness) {
+        if (start2 === void 0)
+          start2 = 300;
+        if (rotations === void 0)
+          rotations = -1.5;
+        if (hue === void 0)
+          hue = 1;
+        if (gamma === void 0)
+          gamma = 1;
+        if (lightness === void 0)
+          lightness = [0, 1];
+        var dh = 0, dl;
+        if (type$1(lightness) === "array") {
+          dl = lightness[1] - lightness[0];
+        } else {
+          dl = 0;
+          lightness = [lightness, lightness];
+        }
+        var f5 = function(fract) {
+          var a = TWOPI * ((start2 + 120) / 360 + rotations * fract);
+          var l = pow$2(lightness[0] + dl * fract, gamma);
+          var h3 = dh !== 0 ? hue[0] + fract * dh : hue;
+          var amp = h3 * l * (1 - l) / 2;
+          var cos_a = cos$1(a);
+          var sin_a = sin$1(a);
+          var r2 = l + amp * (-0.14861 * cos_a + 1.78277 * sin_a);
+          var g2 = l + amp * (-0.29227 * cos_a - 0.90649 * sin_a);
+          var b4 = l + amp * (1.97294 * cos_a);
+          return chroma$2(clip_rgb([r2 * 255, g2 * 255, b4 * 255, 1]));
+        };
+        f5.start = function(s3) {
+          if (s3 == null) {
+            return start2;
+          }
+          start2 = s3;
+          return f5;
+        };
+        f5.rotations = function(r2) {
+          if (r2 == null) {
+            return rotations;
+          }
+          rotations = r2;
+          return f5;
+        };
+        f5.gamma = function(g2) {
+          if (g2 == null) {
+            return gamma;
+          }
+          gamma = g2;
+          return f5;
+        };
+        f5.hue = function(h3) {
+          if (h3 == null) {
+            return hue;
+          }
+          hue = h3;
+          if (type$1(hue) === "array") {
+            dh = hue[1] - hue[0];
+            if (dh === 0) {
+              hue = hue[1];
+            }
+          } else {
+            dh = 0;
+          }
+          return f5;
+        };
+        f5.lightness = function(h3) {
+          if (h3 == null) {
+            return lightness;
+          }
+          if (type$1(h3) === "array") {
+            lightness = h3;
+            dl = h3[1] - h3[0];
+          } else {
+            lightness = [h3, h3];
+            dl = 0;
+          }
+          return f5;
+        };
+        f5.scale = function() {
+          return chroma$2.scale(f5);
+        };
+        f5.hue(hue);
+        return f5;
+      };
+      var Color$4 = Color_1;
+      var digits = "0123456789abcdef";
+      var floor$1 = Math.floor;
+      var random = Math.random;
+      var random_1 = function() {
+        var code = "#";
+        for (var i3 = 0; i3 < 6; i3++) {
+          code += digits.charAt(floor$1(random() * 16));
+        }
+        return new Color$4(code, "hex");
+      };
+      var type = type$p;
+      var log = Math.log;
+      var pow$1 = Math.pow;
+      var floor = Math.floor;
+      var abs$1 = Math.abs;
+      var analyze = function(data, key3) {
+        if (key3 === void 0)
+          key3 = null;
+        var r2 = {
+          min: Number.MAX_VALUE,
+          max: Number.MAX_VALUE * -1,
+          sum: 0,
+          values: [],
+          count: 0
+        };
+        if (type(data) === "object") {
+          data = Object.values(data);
+        }
+        data.forEach(function(val) {
+          if (key3 && type(val) === "object") {
+            val = val[key3];
+          }
+          if (val !== void 0 && val !== null && !isNaN(val)) {
+            r2.values.push(val);
+            r2.sum += val;
+            if (val < r2.min) {
+              r2.min = val;
+            }
+            if (val > r2.max) {
+              r2.max = val;
+            }
+            r2.count += 1;
+          }
+        });
+        r2.domain = [r2.min, r2.max];
+        r2.limits = function(mode, num2) {
+          return limits(r2, mode, num2);
+        };
+        return r2;
+      };
+      var limits = function(data, mode, num2) {
+        if (mode === void 0)
+          mode = "equal";
+        if (num2 === void 0)
+          num2 = 7;
+        if (type(data) == "array") {
+          data = analyze(data);
+        }
+        var min2 = data.min;
+        var max2 = data.max;
+        var values = data.values.sort(function(a, b4) {
+          return a - b4;
+        });
+        if (num2 === 1) {
+          return [min2, max2];
+        }
+        var limits2 = [];
+        if (mode.substr(0, 1) === "c") {
+          limits2.push(min2);
+          limits2.push(max2);
+        }
+        if (mode.substr(0, 1) === "e") {
+          limits2.push(min2);
+          for (var i3 = 1; i3 < num2; i3++) {
+            limits2.push(min2 + i3 / num2 * (max2 - min2));
+          }
+          limits2.push(max2);
+        } else if (mode.substr(0, 1) === "l") {
+          if (min2 <= 0) {
+            throw new Error("Logarithmic scales are only possible for values > 0");
+          }
+          var min_log = Math.LOG10E * log(min2);
+          var max_log = Math.LOG10E * log(max2);
+          limits2.push(min2);
+          for (var i$12 = 1; i$12 < num2; i$12++) {
+            limits2.push(pow$1(10, min_log + i$12 / num2 * (max_log - min_log)));
+          }
+          limits2.push(max2);
+        } else if (mode.substr(0, 1) === "q") {
+          limits2.push(min2);
+          for (var i$2 = 1; i$2 < num2; i$2++) {
+            var p2 = (values.length - 1) * i$2 / num2;
+            var pb = floor(p2);
+            if (pb === p2) {
+              limits2.push(values[pb]);
+            } else {
+              var pr = p2 - pb;
+              limits2.push(values[pb] * (1 - pr) + values[pb + 1] * pr);
+            }
+          }
+          limits2.push(max2);
+        } else if (mode.substr(0, 1) === "k") {
+          var cluster;
+          var n = values.length;
+          var assignments = new Array(n);
+          var clusterSizes = new Array(num2);
+          var repeat = true;
+          var nb_iters = 0;
+          var centroids = null;
+          centroids = [];
+          centroids.push(min2);
+          for (var i$3 = 1; i$3 < num2; i$3++) {
+            centroids.push(min2 + i$3 / num2 * (max2 - min2));
+          }
+          centroids.push(max2);
+          while (repeat) {
+            for (var j2 = 0; j2 < num2; j2++) {
+              clusterSizes[j2] = 0;
+            }
+            for (var i$4 = 0; i$4 < n; i$4++) {
+              var value = values[i$4];
+              var mindist = Number.MAX_VALUE;
+              var best = void 0;
+              for (var j$1 = 0; j$1 < num2; j$1++) {
+                var dist = abs$1(centroids[j$1] - value);
+                if (dist < mindist) {
+                  mindist = dist;
+                  best = j$1;
+                }
+                clusterSizes[best]++;
+                assignments[i$4] = best;
+              }
+            }
+            var newCentroids = new Array(num2);
+            for (var j$2 = 0; j$2 < num2; j$2++) {
+              newCentroids[j$2] = null;
+            }
+            for (var i$5 = 0; i$5 < n; i$5++) {
+              cluster = assignments[i$5];
+              if (newCentroids[cluster] === null) {
+                newCentroids[cluster] = values[i$5];
+              } else {
+                newCentroids[cluster] += values[i$5];
+              }
+            }
+            for (var j$3 = 0; j$3 < num2; j$3++) {
+              newCentroids[j$3] *= 1 / clusterSizes[j$3];
+            }
+            repeat = false;
+            for (var j$4 = 0; j$4 < num2; j$4++) {
+              if (newCentroids[j$4] !== centroids[j$4]) {
+                repeat = true;
+                break;
+              }
+            }
+            centroids = newCentroids;
+            nb_iters++;
+            if (nb_iters > 200) {
+              repeat = false;
+            }
+          }
+          var kClusters = {};
+          for (var j$5 = 0; j$5 < num2; j$5++) {
+            kClusters[j$5] = [];
+          }
+          for (var i$6 = 0; i$6 < n; i$6++) {
+            cluster = assignments[i$6];
+            kClusters[cluster].push(values[i$6]);
+          }
+          var tmpKMeansBreaks = [];
+          for (var j$6 = 0; j$6 < num2; j$6++) {
+            tmpKMeansBreaks.push(kClusters[j$6][0]);
+            tmpKMeansBreaks.push(kClusters[j$6][kClusters[j$6].length - 1]);
+          }
+          tmpKMeansBreaks = tmpKMeansBreaks.sort(function(a, b4) {
+            return a - b4;
+          });
+          limits2.push(tmpKMeansBreaks[0]);
+          for (var i$7 = 1; i$7 < tmpKMeansBreaks.length; i$7 += 2) {
+            var v3 = tmpKMeansBreaks[i$7];
+            if (!isNaN(v3) && limits2.indexOf(v3) === -1) {
+              limits2.push(v3);
+            }
+          }
+        }
+        return limits2;
+      };
+      var analyze_1 = { analyze, limits };
+      var Color$3 = Color_1;
+      var contrast = function(a, b4) {
+        a = new Color$3(a);
+        b4 = new Color$3(b4);
+        var l1 = a.luminance();
+        var l2 = b4.luminance();
+        return l1 > l2 ? (l1 + 0.05) / (l2 + 0.05) : (l2 + 0.05) / (l1 + 0.05);
+      };
+      var Color$2 = Color_1;
+      var sqrt = Math.sqrt;
+      var pow = Math.pow;
+      var min = Math.min;
+      var max = Math.max;
+      var atan2 = Math.atan2;
+      var abs = Math.abs;
+      var cos = Math.cos;
+      var sin = Math.sin;
+      var exp = Math.exp;
+      var PI = Math.PI;
+      var deltaE = function(a, b4, Kl, Kc, Kh) {
+        if (Kl === void 0)
+          Kl = 1;
+        if (Kc === void 0)
+          Kc = 1;
+        if (Kh === void 0)
+          Kh = 1;
+        var rad2deg = function(rad) {
+          return 360 * rad / (2 * PI);
+        };
+        var deg2rad = function(deg) {
+          return 2 * PI * deg / 360;
+        };
+        a = new Color$2(a);
+        b4 = new Color$2(b4);
+        var ref = Array.from(a.lab());
+        var L1 = ref[0];
+        var a1 = ref[1];
+        var b1 = ref[2];
+        var ref$1 = Array.from(b4.lab());
+        var L2 = ref$1[0];
+        var a2 = ref$1[1];
+        var b22 = ref$1[2];
+        var avgL = (L1 + L2) / 2;
+        var C1 = sqrt(pow(a1, 2) + pow(b1, 2));
+        var C2 = sqrt(pow(a2, 2) + pow(b22, 2));
+        var avgC = (C1 + C2) / 2;
+        var G2 = 0.5 * (1 - sqrt(pow(avgC, 7) / (pow(avgC, 7) + pow(25, 7))));
+        var a1p = a1 * (1 + G2);
+        var a2p = a2 * (1 + G2);
+        var C1p = sqrt(pow(a1p, 2) + pow(b1, 2));
+        var C2p = sqrt(pow(a2p, 2) + pow(b22, 2));
+        var avgCp = (C1p + C2p) / 2;
+        var arctan1 = rad2deg(atan2(b1, a1p));
+        var arctan2 = rad2deg(atan2(b22, a2p));
+        var h1p = arctan1 >= 0 ? arctan1 : arctan1 + 360;
+        var h2p = arctan2 >= 0 ? arctan2 : arctan2 + 360;
+        var avgHp = abs(h1p - h2p) > 180 ? (h1p + h2p + 360) / 2 : (h1p + h2p) / 2;
+        var T2 = 1 - 0.17 * cos(deg2rad(avgHp - 30)) + 0.24 * cos(deg2rad(2 * avgHp)) + 0.32 * cos(deg2rad(3 * avgHp + 6)) - 0.2 * cos(deg2rad(4 * avgHp - 63));
+        var deltaHp = h2p - h1p;
+        deltaHp = abs(deltaHp) <= 180 ? deltaHp : h2p <= h1p ? deltaHp + 360 : deltaHp - 360;
+        deltaHp = 2 * sqrt(C1p * C2p) * sin(deg2rad(deltaHp) / 2);
+        var deltaL = L2 - L1;
+        var deltaCp = C2p - C1p;
+        var sl = 1 + 0.015 * pow(avgL - 50, 2) / sqrt(20 + pow(avgL - 50, 2));
+        var sc = 1 + 0.045 * avgCp;
+        var sh = 1 + 0.015 * avgCp * T2;
+        var deltaTheta = 30 * exp(-pow((avgHp - 275) / 25, 2));
+        var Rc = 2 * sqrt(pow(avgCp, 7) / (pow(avgCp, 7) + pow(25, 7)));
+        var Rt = -Rc * sin(2 * deg2rad(deltaTheta));
+        var result = sqrt(pow(deltaL / (Kl * sl), 2) + pow(deltaCp / (Kc * sc), 2) + pow(deltaHp / (Kh * sh), 2) + Rt * (deltaCp / (Kc * sc)) * (deltaHp / (Kh * sh)));
+        return max(0, min(100, result));
+      };
+      var Color$1 = Color_1;
+      var distance = function(a, b4, mode) {
+        if (mode === void 0)
+          mode = "lab";
+        a = new Color$1(a);
+        b4 = new Color$1(b4);
+        var l1 = a.get(mode);
+        var l2 = b4.get(mode);
+        var sum_sq = 0;
+        for (var i3 in l1) {
+          var d3 = (l1[i3] || 0) - (l2[i3] || 0);
+          sum_sq += d3 * d3;
+        }
+        return Math.sqrt(sum_sq);
+      };
+      var Color = Color_1;
+      var valid = function() {
+        var args = [], len = arguments.length;
+        while (len--)
+          args[len] = arguments[len];
+        try {
+          new (Function.prototype.bind.apply(Color, [null].concat(args)))();
+          return true;
+        } catch (e2) {
+          return false;
+        }
+      };
+      var chroma$1 = chroma_1;
+      var scale = scale$2;
+      var scales = {
+        cool: function cool() {
+          return scale([chroma$1.hsl(180, 1, 0.9), chroma$1.hsl(250, 0.7, 0.4)]);
+        },
+        hot: function hot() {
+          return scale(["#000", "#f00", "#ff0", "#fff"]).mode("rgb");
+        }
+      };
+      var colorbrewer = {
+        OrRd: ["#fff7ec", "#fee8c8", "#fdd49e", "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#b30000", "#7f0000"],
+        PuBu: ["#fff7fb", "#ece7f2", "#d0d1e6", "#a6bddb", "#74a9cf", "#3690c0", "#0570b0", "#045a8d", "#023858"],
+        BuPu: ["#f7fcfd", "#e0ecf4", "#bfd3e6", "#9ebcda", "#8c96c6", "#8c6bb1", "#88419d", "#810f7c", "#4d004b"],
+        Oranges: ["#fff5eb", "#fee6ce", "#fdd0a2", "#fdae6b", "#fd8d3c", "#f16913", "#d94801", "#a63603", "#7f2704"],
+        BuGn: ["#f7fcfd", "#e5f5f9", "#ccece6", "#99d8c9", "#66c2a4", "#41ae76", "#238b45", "#006d2c", "#00441b"],
+        YlOrBr: ["#ffffe5", "#fff7bc", "#fee391", "#fec44f", "#fe9929", "#ec7014", "#cc4c02", "#993404", "#662506"],
+        YlGn: ["#ffffe5", "#f7fcb9", "#d9f0a3", "#addd8e", "#78c679", "#41ab5d", "#238443", "#006837", "#004529"],
+        Reds: ["#fff5f0", "#fee0d2", "#fcbba1", "#fc9272", "#fb6a4a", "#ef3b2c", "#cb181d", "#a50f15", "#67000d"],
+        RdPu: ["#fff7f3", "#fde0dd", "#fcc5c0", "#fa9fb5", "#f768a1", "#dd3497", "#ae017e", "#7a0177", "#49006a"],
+        Greens: ["#f7fcf5", "#e5f5e0", "#c7e9c0", "#a1d99b", "#74c476", "#41ab5d", "#238b45", "#006d2c", "#00441b"],
+        YlGnBu: ["#ffffd9", "#edf8b1", "#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#253494", "#081d58"],
+        Purples: ["#fcfbfd", "#efedf5", "#dadaeb", "#bcbddc", "#9e9ac8", "#807dba", "#6a51a3", "#54278f", "#3f007d"],
+        GnBu: ["#f7fcf0", "#e0f3db", "#ccebc5", "#a8ddb5", "#7bccc4", "#4eb3d3", "#2b8cbe", "#0868ac", "#084081"],
+        Greys: ["#ffffff", "#f0f0f0", "#d9d9d9", "#bdbdbd", "#969696", "#737373", "#525252", "#252525", "#000000"],
+        YlOrRd: ["#ffffcc", "#ffeda0", "#fed976", "#feb24c", "#fd8d3c", "#fc4e2a", "#e31a1c", "#bd0026", "#800026"],
+        PuRd: ["#f7f4f9", "#e7e1ef", "#d4b9da", "#c994c7", "#df65b0", "#e7298a", "#ce1256", "#980043", "#67001f"],
+        Blues: ["#f7fbff", "#deebf7", "#c6dbef", "#9ecae1", "#6baed6", "#4292c6", "#2171b5", "#08519c", "#08306b"],
+        PuBuGn: ["#fff7fb", "#ece2f0", "#d0d1e6", "#a6bddb", "#67a9cf", "#3690c0", "#02818a", "#016c59", "#014636"],
+        Viridis: ["#440154", "#482777", "#3f4a8a", "#31678e", "#26838f", "#1f9d8a", "#6cce5a", "#b6de2b", "#fee825"],
+        Spectral: ["#9e0142", "#d53e4f", "#f46d43", "#fdae61", "#fee08b", "#ffffbf", "#e6f598", "#abdda4", "#66c2a5", "#3288bd", "#5e4fa2"],
+        RdYlGn: ["#a50026", "#d73027", "#f46d43", "#fdae61", "#fee08b", "#ffffbf", "#d9ef8b", "#a6d96a", "#66bd63", "#1a9850", "#006837"],
+        RdBu: ["#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#f7f7f7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061"],
+        PiYG: ["#8e0152", "#c51b7d", "#de77ae", "#f1b6da", "#fde0ef", "#f7f7f7", "#e6f5d0", "#b8e186", "#7fbc41", "#4d9221", "#276419"],
+        PRGn: ["#40004b", "#762a83", "#9970ab", "#c2a5cf", "#e7d4e8", "#f7f7f7", "#d9f0d3", "#a6dba0", "#5aae61", "#1b7837", "#00441b"],
+        RdYlBu: ["#a50026", "#d73027", "#f46d43", "#fdae61", "#fee090", "#ffffbf", "#e0f3f8", "#abd9e9", "#74add1", "#4575b4", "#313695"],
+        BrBG: ["#543005", "#8c510a", "#bf812d", "#dfc27d", "#f6e8c3", "#f5f5f5", "#c7eae5", "#80cdc1", "#35978f", "#01665e", "#003c30"],
+        RdGy: ["#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#ffffff", "#e0e0e0", "#bababa", "#878787", "#4d4d4d", "#1a1a1a"],
+        PuOr: ["#7f3b08", "#b35806", "#e08214", "#fdb863", "#fee0b6", "#f7f7f7", "#d8daeb", "#b2abd2", "#8073ac", "#542788", "#2d004b"],
+        Set2: ["#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f", "#e5c494", "#b3b3b3"],
+        Accent: ["#7fc97f", "#beaed4", "#fdc086", "#ffff99", "#386cb0", "#f0027f", "#bf5b17", "#666666"],
+        Set1: ["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#ffff33", "#a65628", "#f781bf", "#999999"],
+        Set3: ["#8dd3c7", "#ffffb3", "#bebada", "#fb8072", "#80b1d3", "#fdb462", "#b3de69", "#fccde5", "#d9d9d9", "#bc80bd", "#ccebc5", "#ffed6f"],
+        Dark2: ["#1b9e77", "#d95f02", "#7570b3", "#e7298a", "#66a61e", "#e6ab02", "#a6761d", "#666666"],
+        Paired: ["#a6cee3", "#1f78b4", "#b2df8a", "#33a02c", "#fb9a99", "#e31a1c", "#fdbf6f", "#ff7f00", "#cab2d6", "#6a3d9a", "#ffff99", "#b15928"],
+        Pastel2: ["#b3e2cd", "#fdcdac", "#cbd5e8", "#f4cae4", "#e6f5c9", "#fff2ae", "#f1e2cc", "#cccccc"],
+        Pastel1: ["#fbb4ae", "#b3cde3", "#ccebc5", "#decbe4", "#fed9a6", "#ffffcc", "#e5d8bd", "#fddaec", "#f2f2f2"]
+      };
+      for (var i2 = 0, list = Object.keys(colorbrewer); i2 < list.length; i2 += 1) {
+        var key2 = list[i2];
+        colorbrewer[key2.toLowerCase()] = colorbrewer[key2];
+      }
+      var colorbrewer_1 = colorbrewer;
+      var chroma2 = chroma_1;
+      chroma2.average = average;
+      chroma2.bezier = bezier_1;
+      chroma2.blend = blend_1;
+      chroma2.cubehelix = cubehelix;
+      chroma2.mix = chroma2.interpolate = mix$1;
+      chroma2.random = random_1;
+      chroma2.scale = scale$2;
+      chroma2.analyze = analyze_1.analyze;
+      chroma2.contrast = contrast;
+      chroma2.deltaE = deltaE;
+      chroma2.distance = distance;
+      chroma2.limits = analyze_1.limits;
+      chroma2.valid = valid;
+      chroma2.scales = scales;
+      chroma2.colors = w3cx11_1;
+      chroma2.brewer = colorbrewer_1;
+      var chroma_js = chroma2;
+      return chroma_js;
+    });
+  }
+});
+
+// .svelte-kit/output/server/_app/immutable/chunks/column-config-ed3a8d78.js
+var COLUMNS, COLUMN_COUNT;
+var init_column_config_ed3a8d78 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/column-config-ed3a8d78.js"() {
+    init_shims();
+    COLUMNS = [
+      {
+        title: [
+          "\u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+          "News",
+          "\u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
+        ],
+        icon: "fa-solid fa-radio",
+        height: "200px",
+        type: "news",
+        verified: true,
+        tags: [
+          "mainstream",
+          "aragala",
+          "economy",
+          "political",
+          "legal",
+          "international",
+          "energy",
+          "downloads"
+        ],
+        data: {
+          title: {
+            type: "text",
+            maxlength: 100,
+            placeholder: [
+              "\u0DC1\u0DD3\u0DBB\u0DCA\u0DC2\u0DBA",
+              "title",
+              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
+            ],
+            required: true,
+            translate: true
+          },
+          description: {
+            type: "html",
+            maxlength: 100,
+            placeholder: [
+              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A \u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8 ",
+              "details",
+              "\u0BB5\u0BBF\u0BB5\u0BB0\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+            ],
+            required: true,
+            translate: true
+          }
+        },
+        dataFormTitle: [
+          "\u0DB4\u0DD4\u0DC0\u0DAD\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "Create a news article",
+          "\u0B92\u0BB0\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF \u0B95\u0B9F\u0BCD\u0B9F\u0BC1\u0BB0\u0BC8\u0BAF\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
+        ],
+        submitButton: [
+          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "create",
+          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
+        ],
+        cancelButton: [
+          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "cancel",
+          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
+        ]
+      },
+      {
+        title: [
+          "\u0DC3\u0DCF\u0D9A\u0DA0\u0DCA\u0DA1\u0DCF",
+          "Discussions",
+          "\u0BB5\u0BBF\u0BB5\u0BBE\u0BA4\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+        ],
+        icon: "fa-solid fa-comments",
+        height: "310px",
+        type: "video",
+        verified: true,
+        tags: [
+          "economy",
+          "political",
+          "legal",
+          "international",
+          "energy",
+          "philosophy",
+          "english",
+          "discussion"
+        ],
+        data: {
+          videoId: {
+            type: "text",
+            maxlength: 100,
+            placeholder: [
+              "https://www.youtube.com/watch?v=ueYFyWW8e5I",
+              "https://www.youtube.com/watch?v=ueYFyWW8e5I",
+              "https://www.youtube.com/watch?v=ueYFyWW8e5I"
+            ],
+            required: true,
+            validate: (val) => {
+              var videoIdRegexp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
+              let result = videoIdRegexp.exec(val);
+              return !result[1];
+            },
+            process: (val) => {
+              var videoIdRegexp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
+              let result = videoIdRegexp.exec(val);
+              return result[1];
+            }
+          },
+          title: {
+            type: "text",
+            maxlength: 300,
+            placeholder: [
+              "\u0DB8\u0DCF\u0DAD\u0DD8\u0D9A\u0DCF\u0DC0",
+              "title",
+              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
+            ],
+            required: true,
+            translate: true
+          },
+          shortDescription: {
+            type: "text",
+            maxlength: 300,
+            placeholder: [
+              "\u0D9A\u0DD9\u0DA7\u0DD2 \u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DBA",
+              "short description",
+              "\u0B95\u0BC1\u0BB1\u0BC1\u0B95\u0BBF\u0BAF \u0BB5\u0BBF\u0BB3\u0B95\u0BCD\u0B95\u0BAE\u0BCD"
+            ],
+            required: true,
+            translate: true
+          }
+        },
+        dataFormTitle: [
+          "\u0DC0\u0DD3\u0DA9\u0DD2\u0DBA\u0DDD\u0DC0\u0D9A\u0DCA \u0D91\u0D9A\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "Add a video",
+          "\u0B92\u0BB0\u0BC1 \u0BB5\u0BC0\u0B9F\u0BBF\u0BAF\u0BCB\u0BB5\u0BC8\u0B9A\u0BCD \u0B9A\u0BC7\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
+        ],
+        submitButton: [
+          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "submit",
+          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
+        ],
+        cancelButton: [
+          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "cancel",
+          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
+        ]
+      },
+      {
+        title: [
+          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0DCA \u0DB4\u0DD4\u0DC0\u0DBB\u0DD4\u0DC0",
+          "Bulletin board",
+          "\u0B85\u0BB1\u0BBF\u0BB5\u0BBF\u0BAA\u0BCD\u0BAA\u0BC1 \u0BAA\u0BB2\u0B95\u0BC8"
+        ],
+        icon: "fa-solid fa-calendar-days",
+        height: "300px",
+        type: "bulletin",
+        verified: true,
+        tags: [
+          "mainstream",
+          "aragala",
+          "economy",
+          "political",
+          "legal",
+          "international",
+          "energy",
+          "downloads"
+        ],
+        data: {
+          title: {
+            type: "text",
+            maxlength: 100,
+            placeholder: [
+              "\u0DC1\u0DD3\u0DBB\u0DCA\u0DC2\u0DBA",
+              "title",
+              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
+            ],
+            required: true,
+            translate: true
+          },
+          description: {
+            type: "html",
+            maxlength: 100,
+            placeholder: [
+              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A \u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8 ",
+              "details",
+              "\u0BB5\u0BBF\u0BB5\u0BB0\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+            ],
+            required: true,
+            translate: true
+          }
+        },
+        dataFormTitle: [
+          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "Create a bulletin",
+          "\u0B92\u0BB0\u0BC1 \u0BAA\u0BC1\u0BB2\u0BCD\u0BB2\u0B9F\u0BCD\u0B9F\u0BBF\u0BA9\u0BCD \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
+        ],
+        submitButton: [
+          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "create",
+          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
+        ],
+        cancelButton: [
+          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "cancel",
+          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
+        ]
+      },
+      {
+        title: [
+          "\u0DB8\u0DC4\u0DA2\u0DB1 \u0D85\u0DAF\u0DC4\u0DC3\u0DCA \u0DC3\u0DB3\u0DC4\u0DCF \u0DBA\u0DDD\u0DA2\u0DB1\u0DCF",
+          "Proposals for public comments",
+          "\u0BAA\u0BCA\u0BA4\u0BC1 \u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BB3\u0BC1\u0B95\u0BCD\u0B95\u0BBE\u0BA9 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAE\u0BCA\u0BB4\u0BBF\u0BB5\u0BC1\u0B95\u0BB3\u0BCD"
+        ],
+        icon: "fa-solid fa-file-lines",
+        height: "400px",
+        type: "proposal",
+        verified: true,
+        tags: [
+          "mainstream",
+          "aragala",
+          "economy",
+          "political",
+          "legal",
+          "international",
+          "energy",
+          "downloads"
+        ],
+        data: {
+          organization: {
+            type: "text",
+            maxlength: 100,
+            placeholder: [
+              "\u0D86\u0DBA\u0DAD\u0DB1\u0DBA",
+              "organization",
+              "\u0B85\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
+            ],
+            required: true,
+            translate: true
+          },
+          motive: {
+            type: "text",
+            maxlength: 300,
+            placeholder: [
+              "\u0D86\u0DBA\u0DAD\u0DB1\u0DBA\u0DDA \u0D85\u0DBB\u0DB8\u0DD4\u0DAB",
+              "organization's motive",
+              "\u0B85\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BBF\u0BA9\u0BCD \u0BA8\u0BCB\u0B95\u0BCD\u0B95\u0BAE\u0BCD"
+            ],
+            required: true,
+            translate: true
+          },
+          proposal: {
+            type: "html",
+            maxlength: 1e3,
+            placeholder: [
+              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A\u0DC0 \u0DBA\u0DDD\u0DA2\u0DB1\u0DCF\u0DC0",
+              "proposal in detail",
+              "\u0BB5\u0BBF\u0BB0\u0BBF\u0BB5\u0BBE\u0BA9 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAE\u0BCA\u0BB4\u0BBF\u0BB5\u0BC1"
+            ],
+            required: true,
+            translate: true
+          }
+        },
+        dataFormTitle: [
+          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "Create a bulletin",
+          "\u0B92\u0BB0\u0BC1 \u0BAA\u0BC1\u0BB2\u0BCD\u0BB2\u0B9F\u0BCD\u0B9F\u0BBF\u0BA9\u0BCD \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
+        ],
+        submitButton: [
+          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "create",
+          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
+        ],
+        cancelButton: [
+          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "cancel",
+          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
+        ]
+      },
+      {
+        title: [
+          "\u0DB8\u0DAD \u0DC0\u0DD2\u0DB8\u0DC3\u0DD3\u0DB8\u0DCA",
+          "Opinion polls",
+          "\u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BCD \u0B95\u0BA3\u0BBF\u0BAA\u0BCD\u0BAA\u0BC1\u0B95\u0BB3\u0BCD"
+        ],
+        icon: "fa-solid fa-check-to-slot",
+        height: "500px",
+        type: "static",
+        static: [{
+          type: "wip",
+          service: [
+            `\u0DA1\u0DB1\u0DCA\u0DAF \u0DC0\u0DD2\u0DB8\u0DC3\u0DD3\u0DB8\u0DCA \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0D95\u0DB1\u0DD1\u0DB8 \u0D9A\u0DD9\u0DB1\u0DD9\u0D9A\u0DD4\u0DA7 \u0DB4\u0DDC\u0DAF\u0DD4 \u0DB8\u0DAD \u0DC0\u0DD2\u0DB8\u0DC3\u0DD4\u0DB8\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC3\u0DC4 \u0DB8\u0DD2\u0DB1\u0DD2\u0DC3\u0DD4\u0DB1\u0DCA\u0DA7 \u0D92 \u0DC3\u0DB3\u0DC4\u0DCF \u0DA1\u0DB1\u0DCA\u0DAF\u0DBA \u0DB4\u0DCA\u200D\u0DBB\u0D9A\u0DCF\u0DC1 \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DBD\u0DB6\u0DCF \u0DAF\u0DDA. \u0D85\u0DBB\u0D9C\u0DBD\u0DBA\u0DDA \u0DAF\u0DD2\u0DC1\u0DCF\u0DB1\u0DAD\u0DD2\u0DBA \u0D9C\u0DD0\u0DB1 \u0DB4\u0DCA\u200D\u0DBB\u0DA2\u0DCF\u0DAD\u0DB1\u0DCA\u0DAD\u0DCA\u200D\u0DBB\u0DC0\u0DCF\u0DAF\u0DD3\u0DC0 \u0DAD\u0DD3\u0DBB\u0DAB \u0D9C\u0DD0\u0DB1\u0DD3\u0DB8\u0DA7 \u0DB8\u0DD9\u0DBA \u0DBA\u0DDC\u0DAF\u0DCF\u0D9C\u0DAD \u0DC4\u0DD0\u0D9A.`,
+            `polls will allow anyone to create a public poll and allow anyone to create and vote for suggestions. this can be used to make democratic decisions about the direction of aragalaya.`,
+            `\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC6\u0B9F\u0BC1\u0BAA\u0BCD\u0BAA\u0BC1\u0B95\u0BB3\u0BCD \u0BAF\u0BBE\u0BB0\u0BC8\u0BAF\u0BC1\u0BAE\u0BCD \u0BAA\u0BCA\u0BA4\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC6\u0B9F\u0BC1\u0BAA\u0BCD\u0BAA\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD \u0BAE\u0BB1\u0BCD\u0BB1\u0BC1\u0BAE\u0BCD \u0BAE\u0B95\u0BCD\u0B95\u0BB3\u0BCD \u0B85\u0BA4\u0BB1\u0BCD\u0B95\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB3\u0BBF\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE\u0BB5\u0BBF\u0BA9\u0BCD \u0BA4\u0BBF\u0B9A\u0BC8\u0BAF\u0BC8\u0BAA\u0BCD \u0BAA\u0BB1\u0BCD\u0BB1\u0BBF \u0B9C\u0BA9\u0BA8\u0BBE\u0BAF\u0B95 \u0BAE\u0BC1\u0B9F\u0BBF\u0BB5\u0BC1\u0B95\u0BB3\u0BC8 \u0B8E\u0B9F\u0BC1\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4\u0BB2\u0BBE\u0BAE\u0BCD.`
+          ],
+          releaseDate: "29/08/2022"
+        }]
+      },
+      {
+        title: [
+          "\u0DC3\u0DCF\u0DB8\u0DD4\u0DC4\u0DD2\u0D9A \u0DBD\u0DDA\u0D9B\u0DB1",
+          "Collaborative documents",
+          "\u0B95\u0BC2\u0B9F\u0BCD\u0B9F\u0BC1 \u0B86\u0BB5\u0BA3\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+        ],
+        icon: "fa-solid fa-file-signature",
+        height: "500px",
+        type: "static",
+        static: [{
+          type: "wip",
+          service: [
+            `\u0DB8\u0DD9\u0DB8 \u0DC3\u0DDA\u0DC0\u0DCF\u0DC0 \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0DC3\u0DCF\u0DB8\u0DD4\u0DC4\u0DD2\u0D9A\u0DC0 \u0DBD\u0DDA\u0D9B\u0DB1 \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DBD \u0DC4\u0DD0\u0D9A\u0DD2 \u0D85\u0DAD\u0DBB, \u0D91\u0DC4\u0DD2\u0DAF\u0DD3 \u0D87\u0DAD\u0DD2\u0DC0\u0DB1 \u0D9C\u0DD0\u0DA7\u0DD4\u0DB8\u0DCA \u0DA0\u0DB1\u0DCA\u0DAF\u0DBA\u0D9A\u0DCA \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0DC0\u0DD2\u0DC3\u0DB3\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DC3\u0DBD\u0DC3\u0DBA\u0DD2. \u0DB8\u0DD9\u0DBA \u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DCA\u200D\u0DBB\u0DA5\u0DB4\u0DCA\u0DAD\u0DD2\u0DBA\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC4\u0DCF \u0DB1\u0DC0 \u0DC0\u0DCA\u200D\u0DBA\u0DC0\u0DC3\u0DCA\u0DAE\u0DCF\u0DC0\u0D9A\u0DCA \u0DB4\u0DC0\u0DCF \u0DB4\u0DCA\u200D\u0DBB\u0DA2\u0DCF\u0DAD\u0DB1\u0DCA\u0DAD\u0DCA\u200D\u0DBB\u0DC0\u0DCF\u0DAF\u0DD2\u0DC0 \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DB7\u0DCF\u0DC0\u0DD2\u0DAD\u0DCF \u0D9A\u0DBD \u0DC4\u0DD0\u0D9A.`,
+            `this service will allow to create collaborative documents with conflicts resolved through voting. this can be used to create an aragala manifesto, or even a new constitution.`,
+            `\u0B87\u0BA8\u0BCD\u0BA4\u0B9A\u0BCD \u0B9A\u0BC7\u0BB5\u0BC8\u0BAF\u0BBE\u0BA9\u0BA4\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC1\u0BAA\u0BCD\u0BAA\u0BA4\u0BBF\u0BB5\u0BC1 \u0BAE\u0BC2\u0BB2\u0BAE\u0BCD \u0BA4\u0BC0\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BC1\u0BAE\u0BCD \u0BAE\u0BC1\u0BB0\u0BA3\u0BCD\u0BAA\u0BBE\u0B9F\u0BC1\u0B95\u0BB3\u0BC1\u0B9F\u0BA9\u0BCD \u0B95\u0BC2\u0B9F\u0BCD\u0B9F\u0BC1 \u0B86\u0BB5\u0BA3\u0B99\u0BCD\u0B95\u0BB3\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0B85\u0BB0\u0B95\u0BB2 \u0BAA\u0BBF\u0BB0\u0B95\u0B9F\u0BA9\u0BA4\u0BCD\u0BA4\u0BC8 \u0B85\u0BB2\u0BCD\u0BB2\u0BA4\u0BC1 \u0BAA\u0BC1\u0BA4\u0BBF\u0BAF \u0B85\u0BB0\u0B9A\u0BBF\u0BAF\u0BB2\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4\u0BB2\u0BBE\u0BAE\u0BCD.`
+          ],
+          releaseDate: "29/09/2022"
+        }]
+      },
+      {
+        title: [
+          "\u0DC0\u0DD2\u0DC0\u0DD4\u0DBB\u0DCA\u0DAD \u0D85\u0DBA\u0DC0\u0DD0\u0DBA",
+          "Open budgets",
+          "\u0BA4\u0BBF\u0BB1\u0BA8\u0BCD\u0BA4 \u0BAA\u0B9F\u0BCD\u0B9C\u0BC6\u0B9F\u0BCD"
+        ],
+        icon: "fa-solid fa-coins",
+        height: "410px",
+        type: "budget",
+        type: "static",
+        static: [{
+          type: "wip",
+          service: [
+            `\u0DC0\u0DD2\u0DB1\u0DD2\u0DC0\u0DD2\u0DAF \u0DB4\u0DD9\u0DB1\u0DD9\u0DB1 \u0D85\u0DBA\u0DC0\u0DD0\u0DBA \u0DB8\u0D9F\u0DD2\u0DB1\u0DCA \u0D95\u0DB1\u0DD1\u0DB8 \u0D85\u0DBB\u0D9C\u0DBD\u0DBA \u0DC0\u0DCA\u200D\u0DBA\u0DCF\u0DB4\u0DD8\u0DAD\u0DD2\u0DBA\u0D9A\u0DCA \u0DC3\u0DB3\u0DC4\u0DCF \u0DC0\u0DD2\u0DC0\u0DD8\u0DAD \u0D85\u0DBA\u0DC0\u0DD0\u0DBA\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DC3\u0DD0\u0DBD\u0DC3\u0DDA. \u0DB4\u0DC5\u0DB8\u0DD4 \u0DB4\u0DD2\u0DBA\u0DC0\u0DBB \u0DBD\u0DD9\u0DC3 \u0D85\u0DB4\u0DD2 aragalaya.online \u0DC0\u0DCA\u200D\u0DBA\u0DCF\u0DB4\u0DD8\u0DAD\u0DD2\u0DBA \u0DC3\u0DB3\u0DC4\u0DCF \u0D85\u0DBA\u0DC0\u0DD0\u0DBA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8 \u0DC3\u0DB3\u0DC4\u0DCF \u0DB8\u0DD9\u0DBA \u0DB7\u0DCF\u0DC0\u0DD2\u0DAD\u0DCF \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC3\u0DD0\u0DBD\u0DC3\u0DD4\u0DB8\u0DCA \u0D9A\u0DBB\u0DB8\u0DD4.`,
+            `transparent budgets will allow to create open budgets for any of the aragalaya projects. as first step we're planning to use this for creating the budget for the aragalaya.online project.`,
+            `\u0BB5\u0BC6\u0BB3\u0BBF\u0BAA\u0BCD\u0BAA\u0B9F\u0BC8\u0BAF\u0BBE\u0BA9 \u0BB5\u0BB0\u0BB5\u0BC1\u0B9A\u0BC6\u0BB2\u0BB5\u0BC1\u0BA4\u0BCD\u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0B8E\u0BA8\u0BCD\u0BA4\u0BB5\u0BCA\u0BB0\u0BC1 \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BC1\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD \u0BA4\u0BBF\u0BB1\u0BA8\u0BCD\u0BA4 \u0BB5\u0BB0\u0BB5\u0BC1 \u0B9A\u0BC6\u0BB2\u0BB5\u0BC1\u0BA4\u0BCD \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0BAE\u0BC1\u0BA4\u0BB2\u0BCD \u0B95\u0B9F\u0BCD\u0B9F\u0BAE\u0BBE\u0B95 \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE.\u0B86\u0BA9\u0BCD\u0BB2\u0BC8\u0BA9\u0BCD \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0BA4\u0BCD\u0BA4\u0BBF\u0BB1\u0BCD\u0B95\u0BBE\u0BA9 \u0BAA\u0B9F\u0BCD\u0B9C\u0BC6\u0B9F\u0BCD\u0B9F\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4 \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0BAE\u0BBF\u0B9F\u0BCD\u0B9F\u0BC1\u0BB3\u0BCD\u0BB3\u0BCB\u0BAE\u0BCD.`
+          ],
+          releaseDate: "29/09/2022"
+        }]
+      }
+    ];
+    COLUMN_COUNT = COLUMNS.length;
+  }
+});
+
+// .svelte-kit/output/server/_app/immutable/chunks/tags-b46fae60.js
+var import_chroma_js, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, Font, tagConfig, colors, TAGS, css, Tags;
+var init_tags_b46fae60 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/tags-b46fae60.js"() {
+    init_shims();
+    init_index_d732e872();
+    import_chroma_js = __toESM(require_chroma(), 1);
+    init_store_21b4cd20();
+    init_column_config_ed3a8d78();
+    _isMobile = writable2(false);
+    _fontGroups = [
+      [
+        "'Abhaya Libre', serif",
+        "'Nunito', sans-serif",
+        "'Hind Madurai', sans-serif"
+      ],
+      [
+        "'Noto Serif Sinhala', serif",
+        "'Source Sans Pro', sans-serif",
+        "'Pavanam', sans-serif"
+      ],
+      [
+        "'Noto Sans Sinhala', sans-serif",
+        "'Open Sans', sans-serif",
+        "'Mukta Malar', sans-serif"
+      ],
+      [
+        "'Roboto', sans-serif",
+        "'Roboto', sans-serif",
+        "'Roboto', sans-serif"
+      ]
+    ];
+    _fontSizes = [
+      [1.2, 1, 0.85],
+      [0.8, 1, 1],
+      [0.9, 1, 1],
+      [1, 1, 1]
+    ];
+    pallettes = [
+      ["#274654", "#299d8f", "#e9c46a", "#f4a261", "#e76f51"],
+      ["#9A031A", "#e26413", "#fb8b24", "#0f4C5C", "#5f0f41"],
+      ["#E63A46", "#e12f7d", "#bf47af", "#7f63d1", "#0076dc"],
+      ["#E96491", "#bd629f", "#8b629f", "#5d5e90", "#3c5576"],
+      ["#fffe00", "#85e757", "#00c484", "#009b95", "#007184"],
+      ["#6f3cb1", "#ca369c", "#ff537c", "#ff885f", "#ffc154"]
+    ];
+    _headerFontColor = "#ffffff";
+    _previewOpacity = "0.3";
+    _themes = pallettes.map((pallette, i2) => {
+      const columns = import_chroma_js.default.scale(pallette).mode("lch").colors(COLUMN_COUNT + 2, "hex");
+      const navigation = columns.map((c3, _i) => {
+        return (0, import_chroma_js.default)(c3).luminance(0.3).hex();
+      });
+      const headerBackground = "white";
+      const columnBackground = import_chroma_js.default.scale(["black", "white"])(0.92).hex();
+      const columnBackgroundAlternate = import_chroma_js.default.scale(["black", "white"])(0.86).hex();
+      const defaultButton = navigation[0];
+      const cancelButton = navigation[1];
+      const headerFontColor = _headerFontColor;
+      const previewOpacity = _previewOpacity;
+      return {
+        columns,
+        navigation,
+        headerBackground,
+        columnBackground,
+        columnBackgroundAlternate,
+        defaultButton,
+        cancelButton,
+        headerFontColor,
+        previewOpacity
+      };
+    });
+    layoutHeaderHeight = 50;
+    columnWidth = 500;
+    columnHeaderHeight = 50;
+    cardSeparation = 12;
+    cardPadding = 12;
+    navSize = 60;
+    previewHeight = (columnWidth - cardSeparation - cardPadding * 2) * 9 / 16;
+    toolbarButtonSize = 20;
+    _getSizeConfig = () => {
+      let devicePixelRatio = window && window.innerWidth > 600 ? window.devicePixelRatio : 1;
+      let _columnWidth = columnWidth;
+      let _previewHeight = previewHeight;
+      let _navSize = navSize;
+      let _toolbarButtonSize = toolbarButtonSize;
+      if (window && window.innerWidth < 600) {
+        _isMobile.set(true);
+        _columnWidth = window.innerWidth;
+        _previewHeight = (_columnWidth - cardSeparation - cardPadding * 2) * 9 / 16;
+        _navSize = 50;
+        _toolbarButtonSize = 26;
+      }
+      return {
+        layoutHeaderHeight: layoutHeaderHeight / devicePixelRatio,
+        columnWidth: _columnWidth / devicePixelRatio,
+        columnHeaderHeight: columnHeaderHeight / devicePixelRatio,
+        cardSeparation: cardSeparation / devicePixelRatio,
+        cardSeparationHalf: cardSeparation / 2 / devicePixelRatio,
+        cardPadding: cardPadding / devicePixelRatio,
+        previewHeight: _previewHeight / devicePixelRatio,
+        navSize: _navSize / devicePixelRatio,
+        navIconSize: _navSize / 3 / devicePixelRatio,
+        toolbarButtonSize: _toolbarButtonSize / devicePixelRatio
+      };
+    };
+    Font = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let fontSize;
+      let fontFamily;
+      let $_lang, $$unsubscribe__lang;
+      validate_store(_lang, "_lang");
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let { font = 0 } = $$props;
+      let { size = 1 } = $$props;
+      let { color = "" } = $$props;
+      let { style = "" } = $$props;
+      let { inline = false } = $$props;
+      let devicePixelRatio = 1;
+      if ($$props.font === void 0 && $$bindings.font && font !== void 0)
+        $$bindings.font(font);
+      if ($$props.size === void 0 && $$bindings.size && size !== void 0)
+        $$bindings.size(size);
+      if ($$props.color === void 0 && $$bindings.color && color !== void 0)
+        $$bindings.color(color);
+      if ($$props.style === void 0 && $$bindings.style && style !== void 0)
+        $$bindings.style(style);
+      if ($$props.inline === void 0 && $$bindings.inline && inline !== void 0)
+        $$bindings.inline(inline);
+      fontSize = _fontSizes[font][$_lang] * size * 16 / devicePixelRatio;
+      fontFamily = _fontGroups[font][$_lang];
+      $$unsubscribe__lang();
+      return `
+
+
+<div style="${"font-family: " + escape(fontFamily, true) + "; font-size: " + escape(fontSize, true) + "px; color: " + escape(color || "inherit", true) + "; display: " + escape(inline ? "inline-block" : "block", true) + "; " + escape(style, true)}">${slots.default ? slots.default({}) : ``}</div>`;
+    });
+    tagConfig = {
+      mainstream: [
+        "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+        "mainstream news",
+        "\u0BAE\u0BC1\u0B95\u0BCD\u0B95\u0BBF\u0BAF \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
+      ],
+      aragala: [
+        "\u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+        "aragala news",
+        "\u0B85\u0BB0\u0B95\u0BB2 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
+      ],
+      economy: [
+        "\u0D86\u0DBB\u0DCA\u0DAE\u0DD2\u0D9A",
+        "economy",
+        "\u0BAA\u0BCA\u0BB0\u0BC1\u0BB3\u0BBE\u0BA4\u0BBE\u0BB0\u0BAE\u0BCD"
+      ],
+      political: [
+        "\u0DAF\u0DDA\u0DC1\u0DB4\u0DCF\u0DBD\u0DB1",
+        "political",
+        "\u0B85\u0BB0\u0B9A\u0BBF\u0BAF\u0BB2\u0BCD"
+      ],
+      legal: [
+        "\u0D85\u0DB0\u0DD2\u0D9A\u0DBB\u0DAB",
+        "judicial",
+        "\u0BA8\u0BC0\u0BA4\u0BBF\u0BA4\u0BCD\u0BA4\u0BC1\u0BB1\u0BC8"
+      ],
+      international: [
+        "\u0DA2\u0DCF\u0DAD\u0DCA\u200D\u0DBA\u0DB1\u0DCA\u0DAD\u0DBB",
+        "international",
+        "\u0B9A\u0BB0\u0BCD\u0BB5\u0BA4\u0BC7\u0B9A"
+      ],
+      energy: [
+        "\u0DB6\u0DBD\u0DC1\u0D9A\u0DCA\u0DAD\u0DD2",
+        "power & energy",
+        "\u0B86\u0BB1\u0BCD\u0BB1\u0BB2\u0BCD"
+      ],
+      philosophy: [
+        "\u0DAF\u0DBB\u0DCA\u0DC1\u0DB1\u0DBA",
+        "philosophy",
+        "\u0BA4\u0BA4\u0BCD\u0BA4\u0BC1\u0BB5\u0BAE\u0BCD"
+      ],
+      english: [
+        "\u0D89\u0D82\u0D9C\u0DCA\u200D\u0DBB\u0DD3\u0DC3\u0DD2",
+        "english",
+        "\u0B86\u0B99\u0BCD\u0B95\u0BBF\u0BB2\u0BAE\u0BCD"
+      ],
+      discussion: [
+        "\u0DC3\u0DCF\u0D9A\u0DA0\u0DCA\u0DA1\u0DCF",
+        "discussion",
+        "\u0BB5\u0BBF\u0BB5\u0BBE\u0BA4\u0BAE\u0BCD"
+      ],
+      downloads: [
+        "\u0DB6\u0DCF\u0D9C\u0DAD \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DCA",
+        "downloads",
+        "\u0BAA\u0BA4\u0BBF\u0BB5\u0BBF\u0BB1\u0B95\u0BCD\u0B95\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+      ]
+    };
+    colors = import_chroma_js.default.scale(["#c1f437", "#00e0ff", "#ff6161", "#ffca99", "#ff58d3"]).colors(Object.keys(tagConfig).length);
+    TAGS = Object.keys(tagConfig).reduce((object, key2, _i) => {
+      object[key2] = {
+        name: key2,
+        strings: tagConfig[key2],
+        color: (0, import_chroma_js.default)(colors[_i]).luminance(0.4).hex()
+      };
+      return object;
+    }, {});
+    css = {
+      code: ".tag.s-AT3XvDln3Ibo{border:var(--s2px) solid #a5a5a5;border-radius:var(--s3px);padding:0 var(--s3px);margin-right:var(--s3px);margin-bottom:var(--s3px)}.s-AT3XvDln3Ibo{}",
+      map: null
+    };
+    Tags = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $_lang, $$unsubscribe__lang;
+      validate_store(_lang, "_lang");
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let { tags } = $$props;
+      let { clickable = void 0 } = $$props;
+      let { style = "" } = $$props;
+      if (!tags)
+        tags = [];
+      createEventDispatcher();
+      if ($$props.tags === void 0 && $$bindings.tags && tags !== void 0)
+        $$bindings.tags(tags);
+      if ($$props.clickable === void 0 && $$bindings.clickable && clickable !== void 0)
+        $$bindings.clickable(clickable);
+      if ($$props.style === void 0 && $$bindings.style && style !== void 0)
+        $$bindings.style(style);
+      $$result.css.add(css);
+      $$unsubscribe__lang();
+      return `${validate_component(Font, "Font").$$render(
+        $$result,
+        {
+          font: 0,
+          size: 0.75,
+          style: "\n        display: flex;\n        width: calc(90% - 4px);\n        flex-wrap: wrap;" + style
+        },
+        {},
+        {
+          default: () => {
+            return `${each(tags, (tag, _i) => {
+              return `<span class="${"tag " + escape(clickable ? "_clickable" : "", true) + " s-AT3XvDln3Ibo"}" style="${"background-color: " + escape(TAGS[tag].color, true) + ";"}">${escape(TAGS[tag].strings[$_lang])}
+    </span>`;
+            })}`;
+          }
+        }
+      )}`;
+    });
+  }
+});
+
+// node_modules/@firebase/storage/dist/node-esm/index.node.esm.js
+function prependCode(code) {
+  return "storage/" + code;
+}
+function unknown() {
+  const message = "An unknown error occurred, please check the error payload for server response.";
+  return new StorageError("unknown", message);
+}
+function retryLimitExceeded() {
+  return new StorageError("retry-limit-exceeded", "Max retry time for operation exceeded, please try again.");
+}
+function canceled() {
+  return new StorageError("canceled", "User canceled the upload/download.");
+}
+function invalidUrl(url) {
+  return new StorageError("invalid-url", "Invalid URL '" + url + "'.");
+}
+function invalidDefaultBucket(bucket) {
+  return new StorageError("invalid-default-bucket", "Invalid default bucket '" + bucket + "'.");
+}
+function invalidArgument(message) {
+  return new StorageError("invalid-argument", message);
+}
+function appDeleted() {
+  return new StorageError("app-deleted", "The Firebase app was deleted.");
+}
+function invalidRootOperation(name7) {
+  return new StorageError("invalid-root-operation", "The operation '" + name7 + "' cannot be performed on a root reference, create a non-root reference using child, such as .child('file.png').");
+}
+function start(f5, callback, timeout) {
+  let waitSeconds = 1;
+  let retryTimeoutId = null;
+  let globalTimeoutId = null;
+  let hitTimeout = false;
+  let cancelState = 0;
+  function canceled2() {
+    return cancelState === 2;
+  }
+  let triggeredCallback = false;
+  function triggerCallback(...args) {
+    if (!triggeredCallback) {
+      triggeredCallback = true;
+      callback.apply(null, args);
+    }
+  }
+  function callWithDelay(millis) {
+    retryTimeoutId = setTimeout(() => {
+      retryTimeoutId = null;
+      f5(handler, canceled2());
+    }, millis);
+  }
+  function clearGlobalTimeout() {
+    if (globalTimeoutId) {
+      clearTimeout(globalTimeoutId);
+    }
+  }
+  function handler(success, ...args) {
+    if (triggeredCallback) {
+      clearGlobalTimeout();
+      return;
+    }
+    if (success) {
+      clearGlobalTimeout();
+      triggerCallback.call(null, success, ...args);
+      return;
+    }
+    const mustStop = canceled2() || hitTimeout;
+    if (mustStop) {
+      clearGlobalTimeout();
+      triggerCallback.call(null, success, ...args);
+      return;
+    }
+    if (waitSeconds < 64) {
+      waitSeconds *= 2;
+    }
+    let waitMillis;
+    if (cancelState === 1) {
+      cancelState = 2;
+      waitMillis = 0;
+    } else {
+      waitMillis = (waitSeconds + Math.random()) * 1e3;
+    }
+    callWithDelay(waitMillis);
+  }
+  let stopped = false;
+  function stop2(wasTimeout) {
+    if (stopped) {
+      return;
+    }
+    stopped = true;
+    clearGlobalTimeout();
+    if (triggeredCallback) {
+      return;
+    }
+    if (retryTimeoutId !== null) {
+      if (!wasTimeout) {
+        cancelState = 2;
+      }
+      clearTimeout(retryTimeoutId);
+      callWithDelay(0);
+    } else {
+      if (!wasTimeout) {
+        cancelState = 1;
+      }
+    }
+  }
+  callWithDelay(0);
+  globalTimeoutId = setTimeout(() => {
+    hitTimeout = true;
+    stop2(true);
+  }, timeout);
+  return stop2;
+}
+function stop(id) {
+  id(false);
+}
+function isJustDef(p2) {
+  return p2 !== void 0;
+}
+function validateNumber(argument, minValue, maxValue, value) {
+  if (value < minValue) {
+    throw invalidArgument(`Invalid value for '${argument}'. Expected ${minValue} or greater.`);
+  }
+  if (value > maxValue) {
+    throw invalidArgument(`Invalid value for '${argument}'. Expected ${maxValue} or less.`);
+  }
+}
+function makeQueryString(params) {
+  const encode4 = encodeURIComponent;
+  let queryPart = "?";
+  for (const key2 in params) {
+    if (params.hasOwnProperty(key2)) {
+      const nextPart = encode4(key2) + "=" + encode4(params[key2]);
+      queryPart = queryPart + nextPart + "&";
+    }
+  }
+  queryPart = queryPart.slice(0, -1);
+  return queryPart;
+}
+function addAuthHeader_(headers2, authToken) {
+  if (authToken !== null && authToken.length > 0) {
+    headers2["Authorization"] = "Firebase " + authToken;
+  }
+}
+function addVersionHeader_(headers2, firebaseVersion) {
+  headers2["X-Firebase-Storage-Version"] = "webjs/" + (firebaseVersion !== null && firebaseVersion !== void 0 ? firebaseVersion : "AppManager");
+}
+function addGmpidHeader_(headers2, appId) {
+  if (appId) {
+    headers2["X-Firebase-GMPID"] = appId;
+  }
+}
+function addAppCheckHeader_(headers2, appCheckToken) {
+  if (appCheckToken !== null) {
+    headers2["X-Firebase-AppCheck"] = appCheckToken;
+  }
+}
+function makeRequest(requestInfo, appId, authToken, appCheckToken, requestFactory, firebaseVersion) {
+  const queryPart = makeQueryString(requestInfo.urlParams);
+  const url = requestInfo.url + queryPart;
+  const headers2 = Object.assign({}, requestInfo.headers);
+  addGmpidHeader_(headers2, appId);
+  addAuthHeader_(headers2, authToken);
+  addVersionHeader_(headers2, firebaseVersion);
+  addAppCheckHeader_(headers2, appCheckToken);
+  return new NetworkRequest(url, requestInfo.method, headers2, requestInfo.body, requestInfo.successCodes, requestInfo.additionalRetryCodes, requestInfo.handler, requestInfo.errorHandler, requestInfo.timeout, requestInfo.progressCallback, requestFactory);
+}
+function parent(path) {
+  if (path.length === 0) {
+    return null;
+  }
+  const index11 = path.lastIndexOf("/");
+  if (index11 === -1) {
+    return "";
+  }
+  const newPath = path.slice(0, index11);
+  return newPath;
+}
+function lastComponent(path) {
+  const index11 = path.lastIndexOf("/", path.length - 2);
+  if (index11 === -1) {
+    return path;
+  } else {
+    return path.slice(index11 + 1);
+  }
+}
+function extractBucket(host, config) {
+  const bucketString = config === null || config === void 0 ? void 0 : config[CONFIG_STORAGE_BUCKET_KEY];
+  if (bucketString == null) {
+    return null;
+  }
+  return Location.makeFromBucketSpec(bucketString, host);
+}
+function getStorage(app2 = getApp(), bucketUrl) {
+  app2 = getModularInstance(app2);
+  const storageProvider = _getProvider(app2, STORAGE_TYPE);
+  const storageInstance = storageProvider.getImmediate({
+    identifier: bucketUrl
+  });
+  return storageInstance;
+}
+function factory(container, { instanceIdentifier: url }) {
+  const app2 = container.getProvider("app").getImmediate();
+  const authProvider = container.getProvider("auth-internal");
+  const appCheckProvider = container.getProvider("app-check-internal");
+  return new FirebaseStorageImpl(app2, authProvider, appCheckProvider, url, SDK_VERSION);
+}
+function registerStorage() {
+  _registerComponent(new Component(STORAGE_TYPE, factory, "PUBLIC").setMultipleInstances(true));
+  registerVersion(name5, version5);
+}
+var import_node_fetch2, DEFAULT_HOST2, CONFIG_STORAGE_BUCKET_KEY, DEFAULT_MAX_OPERATION_RETRY_TIME, DEFAULT_MAX_UPLOAD_RETRY_TIME, StorageError, Location, FailRequest, ErrorCode, NetworkRequest, RequestEndStatus, RESUMABLE_UPLOAD_CHUNK_SIZE, Reference, FirebaseStorageImpl, name5, version5, STORAGE_TYPE;
+var init_index_node_esm2 = __esm({
+  "node_modules/@firebase/storage/dist/node-esm/index.node.esm.js"() {
+    init_shims();
+    init_index_esm20173();
+    init_index_node_esm();
+    import_node_fetch2 = __toESM(require_lib2(), 1);
+    init_index_esm2017();
+    DEFAULT_HOST2 = "firebasestorage.googleapis.com";
+    CONFIG_STORAGE_BUCKET_KEY = "storageBucket";
+    DEFAULT_MAX_OPERATION_RETRY_TIME = 2 * 60 * 1e3;
+    DEFAULT_MAX_UPLOAD_RETRY_TIME = 10 * 60 * 1e3;
+    StorageError = class extends FirebaseError {
+      constructor(code, message) {
+        super(prependCode(code), `Firebase Storage: ${message} (${prependCode(code)})`);
+        this.customData = { serverResponse: null };
+        this._baseMessage = this.message;
+        Object.setPrototypeOf(this, StorageError.prototype);
+      }
+      _codeEquals(code) {
+        return prependCode(code) === this.code;
+      }
+      get serverResponse() {
+        return this.customData.serverResponse;
+      }
+      set serverResponse(serverResponse) {
+        this.customData.serverResponse = serverResponse;
+        if (this.customData.serverResponse) {
+          this.message = `${this._baseMessage}
+${this.customData.serverResponse}`;
+        } else {
+          this.message = this._baseMessage;
+        }
+      }
+    };
+    Location = class {
+      constructor(bucket, path) {
+        this.bucket = bucket;
+        this.path_ = path;
+      }
+      get path() {
+        return this.path_;
+      }
+      get isRoot() {
+        return this.path.length === 0;
+      }
+      fullServerUrl() {
+        const encode4 = encodeURIComponent;
+        return "/b/" + encode4(this.bucket) + "/o/" + encode4(this.path);
+      }
+      bucketOnlyServerUrl() {
+        const encode4 = encodeURIComponent;
+        return "/b/" + encode4(this.bucket) + "/o";
+      }
+      static makeFromBucketSpec(bucketString, host) {
+        let bucketLocation;
+        try {
+          bucketLocation = Location.makeFromUrl(bucketString, host);
+        } catch (e2) {
+          return new Location(bucketString, "");
+        }
+        if (bucketLocation.path === "") {
+          return bucketLocation;
+        } else {
+          throw invalidDefaultBucket(bucketString);
+        }
+      }
+      static makeFromUrl(url, host) {
+        let location = null;
+        const bucketDomain = "([A-Za-z0-9.\\-_]+)";
+        function gsModify(loc) {
+          if (loc.path.charAt(loc.path.length - 1) === "/") {
+            loc.path_ = loc.path_.slice(0, -1);
+          }
+        }
+        const gsPath = "(/(.*))?$";
+        const gsRegex = new RegExp("^gs://" + bucketDomain + gsPath, "i");
+        const gsIndices = { bucket: 1, path: 3 };
+        function httpModify(loc) {
+          loc.path_ = decodeURIComponent(loc.path);
+        }
+        const version7 = "v[A-Za-z0-9_]+";
+        const firebaseStorageHost = host.replace(/[.]/g, "\\.");
+        const firebaseStoragePath = "(/([^?#]*).*)?$";
+        const firebaseStorageRegExp = new RegExp(`^https?://${firebaseStorageHost}/${version7}/b/${bucketDomain}/o${firebaseStoragePath}`, "i");
+        const firebaseStorageIndices = { bucket: 1, path: 3 };
+        const cloudStorageHost = host === DEFAULT_HOST2 ? "(?:storage.googleapis.com|storage.cloud.google.com)" : host;
+        const cloudStoragePath = "([^?#]*)";
+        const cloudStorageRegExp = new RegExp(`^https?://${cloudStorageHost}/${bucketDomain}/${cloudStoragePath}`, "i");
+        const cloudStorageIndices = { bucket: 1, path: 2 };
+        const groups = [
+          { regex: gsRegex, indices: gsIndices, postModify: gsModify },
+          {
+            regex: firebaseStorageRegExp,
+            indices: firebaseStorageIndices,
+            postModify: httpModify
+          },
+          {
+            regex: cloudStorageRegExp,
+            indices: cloudStorageIndices,
+            postModify: httpModify
+          }
+        ];
+        for (let i2 = 0; i2 < groups.length; i2++) {
+          const group = groups[i2];
+          const captures = group.regex.exec(url);
+          if (captures) {
+            const bucketValue = captures[group.indices.bucket];
+            let pathValue = captures[group.indices.path];
+            if (!pathValue) {
+              pathValue = "";
+            }
+            location = new Location(bucketValue, pathValue);
+            group.postModify(location);
+            break;
+          }
+        }
+        if (location == null) {
+          throw invalidUrl(url);
+        }
+        return location;
+      }
+    };
+    FailRequest = class {
+      constructor(error2) {
+        this.promise_ = Promise.reject(error2);
+      }
+      getPromise() {
+        return this.promise_;
+      }
+      cancel(_appDelete = false) {
+      }
+    };
+    (function(ErrorCode2) {
+      ErrorCode2[ErrorCode2["NO_ERROR"] = 0] = "NO_ERROR";
+      ErrorCode2[ErrorCode2["NETWORK_ERROR"] = 1] = "NETWORK_ERROR";
+      ErrorCode2[ErrorCode2["ABORT"] = 2] = "ABORT";
+    })(ErrorCode || (ErrorCode = {}));
+    NetworkRequest = class {
+      constructor(url_, method_, headers_, body_, successCodes_, additionalRetryCodes_, callback_, errorCallback_, timeout_, progressCallback_, connectionFactory_) {
+        this.url_ = url_;
+        this.method_ = method_;
+        this.headers_ = headers_;
+        this.body_ = body_;
+        this.successCodes_ = successCodes_;
+        this.additionalRetryCodes_ = additionalRetryCodes_;
+        this.callback_ = callback_;
+        this.errorCallback_ = errorCallback_;
+        this.timeout_ = timeout_;
+        this.progressCallback_ = progressCallback_;
+        this.connectionFactory_ = connectionFactory_;
+        this.pendingConnection_ = null;
+        this.backoffId_ = null;
+        this.canceled_ = false;
+        this.appDelete_ = false;
+        this.promise_ = new Promise((resolve2, reject) => {
+          this.resolve_ = resolve2;
+          this.reject_ = reject;
+          this.start_();
+        });
+      }
+      start_() {
+        const doTheRequest = (backoffCallback, canceled2) => {
+          if (canceled2) {
+            backoffCallback(false, new RequestEndStatus(false, null, true));
+            return;
+          }
+          const connection = this.connectionFactory_();
+          this.pendingConnection_ = connection;
+          const progressListener = (progressEvent) => {
+            const loaded = progressEvent.loaded;
+            const total = progressEvent.lengthComputable ? progressEvent.total : -1;
+            if (this.progressCallback_ !== null) {
+              this.progressCallback_(loaded, total);
+            }
+          };
+          if (this.progressCallback_ !== null) {
+            connection.addUploadProgressListener(progressListener);
+          }
+          connection.send(this.url_, this.method_, this.body_, this.headers_).then(() => {
+            if (this.progressCallback_ !== null) {
+              connection.removeUploadProgressListener(progressListener);
+            }
+            this.pendingConnection_ = null;
+            const hitServer = connection.getErrorCode() === ErrorCode.NO_ERROR;
+            const status = connection.getStatus();
+            if (!hitServer || this.isRetryStatusCode_(status)) {
+              const wasCanceled = connection.getErrorCode() === ErrorCode.ABORT;
+              backoffCallback(false, new RequestEndStatus(false, null, wasCanceled));
+              return;
+            }
+            const successCode = this.successCodes_.indexOf(status) !== -1;
+            backoffCallback(true, new RequestEndStatus(successCode, connection));
+          });
+        };
+        const backoffDone = (requestWentThrough, status) => {
+          const resolve2 = this.resolve_;
+          const reject = this.reject_;
+          const connection = status.connection;
+          if (status.wasSuccessCode) {
+            try {
+              const result = this.callback_(connection, connection.getResponse());
+              if (isJustDef(result)) {
+                resolve2(result);
+              } else {
+                resolve2();
+              }
+            } catch (e2) {
+              reject(e2);
+            }
+          } else {
+            if (connection !== null) {
+              const err = unknown();
+              err.serverResponse = connection.getErrorText();
+              if (this.errorCallback_) {
+                reject(this.errorCallback_(connection, err));
+              } else {
+                reject(err);
+              }
+            } else {
+              if (status.canceled) {
+                const err = this.appDelete_ ? appDeleted() : canceled();
+                reject(err);
+              } else {
+                const err = retryLimitExceeded();
+                reject(err);
+              }
+            }
+          }
+        };
+        if (this.canceled_) {
+          backoffDone(false, new RequestEndStatus(false, null, true));
+        } else {
+          this.backoffId_ = start(doTheRequest, backoffDone, this.timeout_);
+        }
+      }
+      getPromise() {
+        return this.promise_;
+      }
+      cancel(appDelete) {
+        this.canceled_ = true;
+        this.appDelete_ = appDelete || false;
+        if (this.backoffId_ !== null) {
+          stop(this.backoffId_);
+        }
+        if (this.pendingConnection_ !== null) {
+          this.pendingConnection_.abort();
+        }
+      }
+      isRetryStatusCode_(status) {
+        const isFiveHundredCode = status >= 500 && status < 600;
+        const extraRetryCodes = [
+          408,
+          429
+        ];
+        const isExtraRetryCode = extraRetryCodes.indexOf(status) !== -1;
+        const isRequestSpecificRetryCode = this.additionalRetryCodes_.indexOf(status) !== -1;
+        return isFiveHundredCode || isExtraRetryCode || isRequestSpecificRetryCode;
+      }
+    };
+    RequestEndStatus = class {
+      constructor(wasSuccessCode, connection, canceled2) {
+        this.wasSuccessCode = wasSuccessCode;
+        this.connection = connection;
+        this.canceled = !!canceled2;
+      }
+    };
+    RESUMABLE_UPLOAD_CHUNK_SIZE = 256 * 1024;
+    Reference = class {
+      constructor(_service, location) {
+        this._service = _service;
+        if (location instanceof Location) {
+          this._location = location;
+        } else {
+          this._location = Location.makeFromUrl(location, _service.host);
+        }
+      }
+      toString() {
+        return "gs://" + this._location.bucket + "/" + this._location.path;
+      }
+      _newRef(service, location) {
+        return new Reference(service, location);
+      }
+      get root() {
+        const location = new Location(this._location.bucket, "");
+        return this._newRef(this._service, location);
+      }
+      get bucket() {
+        return this._location.bucket;
+      }
+      get fullPath() {
+        return this._location.path;
+      }
+      get name() {
+        return lastComponent(this._location.path);
+      }
+      get storage() {
+        return this._service;
+      }
+      get parent() {
+        const newPath = parent(this._location.path);
+        if (newPath === null) {
+          return null;
+        }
+        const location = new Location(this._location.bucket, newPath);
+        return new Reference(this._service, location);
+      }
+      _throwIfRoot(name7) {
+        if (this._location.path === "") {
+          throw invalidRootOperation(name7);
+        }
+      }
+    };
+    FirebaseStorageImpl = class {
+      constructor(app2, _authProvider, _appCheckProvider, _url, _firebaseVersion) {
+        this.app = app2;
+        this._authProvider = _authProvider;
+        this._appCheckProvider = _appCheckProvider;
+        this._url = _url;
+        this._firebaseVersion = _firebaseVersion;
+        this._bucket = null;
+        this._host = DEFAULT_HOST2;
+        this._protocol = "https";
+        this._appId = null;
+        this._deleted = false;
+        this._maxOperationRetryTime = DEFAULT_MAX_OPERATION_RETRY_TIME;
+        this._maxUploadRetryTime = DEFAULT_MAX_UPLOAD_RETRY_TIME;
+        this._requests = /* @__PURE__ */ new Set();
+        if (_url != null) {
+          this._bucket = Location.makeFromBucketSpec(_url, this._host);
+        } else {
+          this._bucket = extractBucket(this._host, this.app.options);
+        }
+      }
+      get host() {
+        return this._host;
+      }
+      set host(host) {
+        this._host = host;
+        if (this._url != null) {
+          this._bucket = Location.makeFromBucketSpec(this._url, host);
+        } else {
+          this._bucket = extractBucket(host, this.app.options);
+        }
+      }
+      get maxUploadRetryTime() {
+        return this._maxUploadRetryTime;
+      }
+      set maxUploadRetryTime(time) {
+        validateNumber(
+          "time",
+          0,
+          Number.POSITIVE_INFINITY,
+          time
+        );
+        this._maxUploadRetryTime = time;
+      }
+      get maxOperationRetryTime() {
+        return this._maxOperationRetryTime;
+      }
+      set maxOperationRetryTime(time) {
+        validateNumber(
+          "time",
+          0,
+          Number.POSITIVE_INFINITY,
+          time
+        );
+        this._maxOperationRetryTime = time;
+      }
+      async _getAuthToken() {
+        if (this._overrideAuthToken) {
+          return this._overrideAuthToken;
+        }
+        const auth2 = this._authProvider.getImmediate({ optional: true });
+        if (auth2) {
+          const tokenData = await auth2.getToken();
+          if (tokenData !== null) {
+            return tokenData.accessToken;
+          }
+        }
+        return null;
+      }
+      async _getAppCheckToken() {
+        const appCheck = this._appCheckProvider.getImmediate({ optional: true });
+        if (appCheck) {
+          const result = await appCheck.getToken();
+          return result.token;
+        }
+        return null;
+      }
+      _delete() {
+        if (!this._deleted) {
+          this._deleted = true;
+          this._requests.forEach((request2) => request2.cancel());
+          this._requests.clear();
+        }
+        return Promise.resolve();
+      }
+      _makeStorageReference(loc) {
+        return new Reference(this, loc);
+      }
+      _makeRequest(requestInfo, requestFactory, authToken, appCheckToken) {
+        if (!this._deleted) {
+          const request2 = makeRequest(requestInfo, this._appId, authToken, appCheckToken, requestFactory, this._firebaseVersion);
+          this._requests.add(request2);
+          request2.getPromise().then(() => this._requests.delete(request2), () => this._requests.delete(request2));
+          return request2;
+        } else {
+          return new FailRequest(appDeleted());
+        }
+      }
+      async makeRequestWithTokens(requestInfo, requestFactory) {
+        const [authToken, appCheckToken] = await Promise.all([
+          this._getAuthToken(),
+          this._getAppCheckToken()
+        ]);
+        return this._makeRequest(requestInfo, requestFactory, authToken, appCheckToken).getPromise();
+      }
+    };
+    name5 = "@firebase/storage";
+    version5 = "0.9.9";
+    STORAGE_TYPE = "storage";
+    registerStorage();
+  }
+});
+
+// node_modules/firebase/storage/dist/index.mjs
+var init_dist4 = __esm({
+  "node_modules/firebase/storage/dist/index.mjs"() {
+    init_shims();
+    init_index_node_esm2();
+  }
+});
+
+// .svelte-kit/output/server/_app/immutable/chunks/storage-05d57c84.js
+var init_storage_05d57c84 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/storage-05d57c84.js"() {
+    init_shims();
+    init_database_298aef9a();
+    init_dist4();
     getStorage(app);
   }
 });
@@ -70404,13 +70447,13 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "replaceChild",
-        value: function replaceChild(index10, node) {
-          var current = this.content[index10];
+        value: function replaceChild(index11, node) {
+          var current = this.content[index11];
           if (current == node)
             return this;
           var copy2 = this.content.slice();
           var size = this.size + node.nodeSize - current.nodeSize;
-          copy2[index10] = node;
+          copy2[index11] = node;
           return new Fragment2(copy2, size);
         }
       }, {
@@ -70451,16 +70494,16 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "child",
-        value: function child(index10) {
-          var found2 = this.content[index10];
+        value: function child(index11) {
+          var found2 = this.content[index11];
           if (!found2)
-            throw new RangeError("Index " + index10 + " out of range for " + this);
+            throw new RangeError("Index " + index11 + " out of range for " + this);
           return found2;
         }
       }, {
         key: "maybeChild",
-        value: function maybeChild(index10) {
-          return this.content[index10] || null;
+        value: function maybeChild(index11) {
+          return this.content[index11] || null;
         }
       }, {
         key: "forEach",
@@ -70570,8 +70613,8 @@ var require_dist2 = __commonJS({
       index: 0,
       offset: 0
     };
-    function retIndex(index10, offset) {
-      found.index = index10;
+    function retIndex(index11, offset) {
+      found.index = index11;
       found.offset = offset;
       return found;
     }
@@ -70797,26 +70840,26 @@ var require_dist2 = __commonJS({
     }();
     Slice.empty = new Slice(Fragment.empty, 0, 0);
     function removeRange(content, from, to) {
-      var _content$findIndex = content.findIndex(from), index10 = _content$findIndex.index, offset = _content$findIndex.offset, child = content.maybeChild(index10);
+      var _content$findIndex = content.findIndex(from), index11 = _content$findIndex.index, offset = _content$findIndex.offset, child = content.maybeChild(index11);
       var _content$findIndex2 = content.findIndex(to), indexTo = _content$findIndex2.index, offsetTo = _content$findIndex2.offset;
       if (offset == from || child.isText) {
         if (offsetTo != to && !content.child(indexTo).isText)
           throw new RangeError("Removing non-flat range");
         return content.cut(0, from).append(content.cut(to));
       }
-      if (index10 != indexTo)
+      if (index11 != indexTo)
         throw new RangeError("Removing non-flat range");
-      return content.replaceChild(index10, child.copy(removeRange(child.content, from - offset - 1, to - offset - 1)));
+      return content.replaceChild(index11, child.copy(removeRange(child.content, from - offset - 1, to - offset - 1)));
     }
     function insertInto(content, dist, insert, parent2) {
-      var _content$findIndex3 = content.findIndex(dist), index10 = _content$findIndex3.index, offset = _content$findIndex3.offset, child = content.maybeChild(index10);
+      var _content$findIndex3 = content.findIndex(dist), index11 = _content$findIndex3.index, offset = _content$findIndex3.offset, child = content.maybeChild(index11);
       if (offset == dist || child.isText) {
-        if (parent2 && !parent2.canReplace(index10, index10, insert))
+        if (parent2 && !parent2.canReplace(index11, index11, insert))
           return null;
         return content.cut(0, dist).append(insert).append(content.cut(dist));
       }
       var inner = insertInto(child.content, dist - offset - 1, insert);
-      return inner && content.replaceChild(index10, child.copy(inner));
+      return inner && content.replaceChild(index11, child.copy(inner));
     }
     function _replace($from, $to, slice) {
       if (slice.openStart > $from.depth)
@@ -70826,10 +70869,10 @@ var require_dist2 = __commonJS({
       return replaceOuter($from, $to, slice, 0);
     }
     function replaceOuter($from, $to, slice, depth) {
-      var index10 = $from.index(depth), node = $from.node(depth);
-      if (index10 == $to.index(depth) && depth < $from.depth - slice.openStart) {
+      var index11 = $from.index(depth), node = $from.node(depth);
+      if (index11 == $to.index(depth) && depth < $from.depth - slice.openStart) {
         var inner = replaceOuter($from, $to, slice, depth + 1);
-        return node.copy(node.content.replaceChild(index10, inner));
+        return node.copy(node.content.replaceChild(index11, inner));
       } else if (!slice.content.size) {
         return close(node, replaceTwoWay($from, $to, depth));
       } else if (!slice.openStart && !slice.openEnd && $from.depth == depth && $to.depth == depth) {
@@ -70952,7 +70995,7 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "index",
-        value: function index10(depth) {
+        value: function index11(depth) {
           return this.path[this.resolveDepth(depth) * 3 + 1];
         }
       }, {
@@ -70997,27 +71040,27 @@ var require_dist2 = __commonJS({
       }, {
         key: "nodeAfter",
         get: function get() {
-          var parent2 = this.parent, index10 = this.index(this.depth);
-          if (index10 == parent2.childCount)
+          var parent2 = this.parent, index11 = this.index(this.depth);
+          if (index11 == parent2.childCount)
             return null;
-          var dOff = this.pos - this.path[this.path.length - 1], child = parent2.child(index10);
-          return dOff ? parent2.child(index10).cut(dOff) : child;
+          var dOff = this.pos - this.path[this.path.length - 1], child = parent2.child(index11);
+          return dOff ? parent2.child(index11).cut(dOff) : child;
         }
       }, {
         key: "nodeBefore",
         get: function get() {
-          var index10 = this.index(this.depth);
+          var index11 = this.index(this.depth);
           var dOff = this.pos - this.path[this.path.length - 1];
           if (dOff)
-            return this.parent.child(index10).cut(0, dOff);
-          return index10 == 0 ? null : this.parent.child(index10 - 1);
+            return this.parent.child(index11).cut(0, dOff);
+          return index11 == 0 ? null : this.parent.child(index11 - 1);
         }
       }, {
         key: "posAtIndex",
-        value: function posAtIndex(index10, depth) {
+        value: function posAtIndex(index11, depth) {
           depth = this.resolveDepth(depth);
           var node = this.path[depth * 3], pos = depth == 0 ? 0 : this.path[depth * 3 - 1] + 1;
-          for (var i2 = 0; i2 < index10; i2++) {
+          for (var i2 = 0; i2 < index11; i2++) {
             pos += node.child(i2).nodeSize;
           }
           return pos;
@@ -71025,12 +71068,12 @@ var require_dist2 = __commonJS({
       }, {
         key: "marks",
         value: function marks() {
-          var parent2 = this.parent, index10 = this.index();
+          var parent2 = this.parent, index11 = this.index();
           if (parent2.content.size == 0)
             return Mark.none;
           if (this.textOffset)
-            return parent2.child(index10).marks;
-          var main = parent2.maybeChild(index10 - 1), other = parent2.maybeChild(index10);
+            return parent2.child(index11).marks;
+          var main = parent2.maybeChild(index11 - 1), other = parent2.maybeChild(index11);
           if (!main) {
             var tmp = main;
             main = other;
@@ -71110,12 +71153,12 @@ var require_dist2 = __commonJS({
           var path = [];
           var start2 = 0, parentOffset = pos;
           for (var node = doc3; ; ) {
-            var _node$content$findInd = node.content.findIndex(parentOffset), index10 = _node$content$findInd.index, offset = _node$content$findInd.offset;
+            var _node$content$findInd = node.content.findIndex(parentOffset), index11 = _node$content$findInd.index, offset = _node$content$findInd.offset;
             var rem = parentOffset - offset;
-            path.push(node, index10, start2 + offset);
+            path.push(node, index11, start2 + offset);
             if (!rem)
               break;
-            node = node.child(index10);
+            node = node.child(index11);
             if (node.isText)
               break;
             parentOffset = rem - 1;
@@ -71198,13 +71241,13 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "child",
-        value: function child(index10) {
-          return this.content.child(index10);
+        value: function child(index11) {
+          return this.content.child(index11);
         }
       }, {
         key: "maybeChild",
-        value: function maybeChild(index10) {
-          return this.content.maybeChild(index10);
+        value: function maybeChild(index11) {
+          return this.content.maybeChild(index11);
         }
       }, {
         key: "forEach",
@@ -71300,8 +71343,8 @@ var require_dist2 = __commonJS({
         key: "nodeAt",
         value: function nodeAt(pos) {
           for (var node = this; ; ) {
-            var _node$content$findInd2 = node.content.findIndex(pos), index10 = _node$content$findInd2.index, offset = _node$content$findInd2.offset;
-            node = node.maybeChild(index10);
+            var _node$content$findInd2 = node.content.findIndex(pos), index11 = _node$content$findInd2.index, offset = _node$content$findInd2.offset;
+            node = node.maybeChild(index11);
             if (!node)
               return null;
             if (offset == pos || node.isText)
@@ -71312,10 +71355,10 @@ var require_dist2 = __commonJS({
       }, {
         key: "childAfter",
         value: function childAfter(pos) {
-          var _this$content$findInd = this.content.findIndex(pos), index10 = _this$content$findInd.index, offset = _this$content$findInd.offset;
+          var _this$content$findInd = this.content.findIndex(pos), index11 = _this$content$findInd.index, offset = _this$content$findInd.offset;
           return {
-            node: this.content.maybeChild(index10),
-            index: index10,
+            node: this.content.maybeChild(index11),
+            index: index11,
             offset
           };
         }
@@ -71328,17 +71371,17 @@ var require_dist2 = __commonJS({
               index: 0,
               offset: 0
             };
-          var _this$content$findInd2 = this.content.findIndex(pos), index10 = _this$content$findInd2.index, offset = _this$content$findInd2.offset;
+          var _this$content$findInd2 = this.content.findIndex(pos), index11 = _this$content$findInd2.index, offset = _this$content$findInd2.offset;
           if (offset < pos)
             return {
-              node: this.content.child(index10),
-              index: index10,
+              node: this.content.child(index11),
+              index: index11,
               offset
             };
-          var node = this.content.child(index10 - 1);
+          var node = this.content.child(index11 - 1);
           return {
             node,
-            index: index10 - 1,
+            index: index11 - 1,
             offset: offset - node.nodeSize
           };
         }
@@ -71411,8 +71454,8 @@ var require_dist2 = __commonJS({
         }
       }, {
         key: "contentMatchAt",
-        value: function contentMatchAt(index10) {
-          var match = this.type.contentMatch.matchFragment(this.content, 0, index10);
+        value: function contentMatchAt(index11) {
+          var match = this.type.contentMatch.matchFragment(this.content, 0, index11);
           if (!match)
             throw new Error("Called contentMatchAt on a node with invalid content");
           return match;
@@ -72827,12 +72870,12 @@ var require_dist2 = __commonJS({
       }, {
         key: "addAll",
         value: function addAll(parent2, startIndex, endIndex) {
-          var index10 = startIndex || 0;
-          for (var dom = startIndex ? parent2.childNodes[startIndex] : parent2.firstChild, end = endIndex == null ? null : parent2.childNodes[endIndex]; dom != end; dom = dom.nextSibling, ++index10) {
-            this.findAtPoint(parent2, index10);
+          var index11 = startIndex || 0;
+          for (var dom = startIndex ? parent2.childNodes[startIndex] : parent2.firstChild, end = endIndex == null ? null : parent2.childNodes[endIndex]; dom != end; dom = dom.nextSibling, ++index11) {
+            this.findAtPoint(parent2, index11);
             this.addDOM(dom);
           }
-          this.findAtPoint(parent2, index10);
+          this.findAtPoint(parent2, index11);
         }
       }, {
         key: "findPlace",
@@ -73465,8 +73508,8 @@ var require_dist3 = __commonJS({
     var prosemirrorModel = require_dist2();
     var lower16 = 65535;
     var factor16 = Math.pow(2, 16);
-    function makeRecover(index10, offset) {
-      return index10 + offset * factor16;
+    function makeRecover(index11, offset) {
+      return index11 + offset * factor16;
     }
     function recoverIndex(value) {
       return value & lower16;
@@ -73520,12 +73563,12 @@ var require_dist3 = __commonJS({
       _createClass(StepMap2, [{
         key: "recover",
         value: function recover(value) {
-          var diff = 0, index10 = recoverIndex(value);
+          var diff = 0, index11 = recoverIndex(value);
           if (!this.inverted)
-            for (var i2 = 0; i2 < index10; i2++) {
+            for (var i2 = 0; i2 < index11; i2++) {
               diff += this.ranges[i2 * 3 + 2] - this.ranges[i2 * 3 + 1];
             }
-          return this.ranges[index10 * 3] + diff + recoverOffset(value);
+          return this.ranges[index11 * 3] + diff + recoverOffset(value);
         }
       }, {
         key: "mapResult",
@@ -73566,14 +73609,14 @@ var require_dist3 = __commonJS({
       }, {
         key: "touches",
         value: function touches(pos, recover) {
-          var diff = 0, index10 = recoverIndex(recover);
+          var diff = 0, index11 = recoverIndex(recover);
           var oldIndex = this.inverted ? 2 : 1, newIndex = this.inverted ? 1 : 2;
           for (var i2 = 0; i2 < this.ranges.length; i2 += 3) {
             var start2 = this.ranges[i2] - (this.inverted ? diff : 0);
             if (start2 > pos)
               break;
             var oldSize = this.ranges[i2 + oldIndex], end = start2 + oldSize;
-            if (pos <= end && i2 == index10 * 3)
+            if (pos <= end && i2 == index11 * 3)
               return true;
             diff += this.ranges[i2 + newIndex] - oldSize;
           }
@@ -74211,10 +74254,10 @@ var require_dist3 = __commonJS({
       var content = parent2.content.cutByIndex(range.startIndex, range.endIndex);
       for (var depth = range.depth; ; --depth) {
         var node = range.$from.node(depth);
-        var index10 = range.$from.index(depth), endIndex = range.$to.indexAfter(depth);
-        if (depth < range.depth && node.canReplace(index10, endIndex, content))
+        var index11 = range.$from.index(depth), endIndex = range.$to.indexAfter(depth);
+        if (depth < range.depth && node.canReplace(index11, endIndex, content))
           return depth;
-        if (depth == 0 || node.type.spec.isolating || !canCut(node, index10, endIndex))
+        if (depth == 0 || node.type.spec.isolating || !canCut(node, index11, endIndex))
           break;
       }
       return null;
@@ -74314,8 +74357,8 @@ var require_dist3 = __commonJS({
       });
     }
     function canChangeType(doc2, pos, type) {
-      var $pos = doc2.resolve(pos), index10 = $pos.index();
-      return $pos.parent.canReplaceWith(index10, index10 + 1, type);
+      var $pos = doc2.resolve(pos), index11 = $pos.index();
+      return $pos.parent.canReplaceWith(index11, index11 + 1, type);
     }
     function _setNodeMarkup(tr, pos, type, attrs, marks) {
       var node = tr.doc.nodeAt(pos);
@@ -74348,9 +74391,9 @@ var require_dist3 = __commonJS({
         if (!node.canReplace(_index + 1, node.childCount) || !after.type.validContent(rest))
           return false;
       }
-      var index10 = $pos.indexAfter(base2);
+      var index11 = $pos.indexAfter(base2);
       var baseType = typesAfter && typesAfter[0];
-      return $pos.node(base2).canReplaceWith(index10, index10, baseType ? baseType.type : $pos.node(base2 + 1).type);
+      return $pos.node(base2).canReplaceWith(index11, index11, baseType ? baseType.type : $pos.node(base2 + 1).type);
     }
     function _split(tr, pos) {
       var depth = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : 1;
@@ -74364,8 +74407,8 @@ var require_dist3 = __commonJS({
       tr.step(new ReplaceStep(pos, pos, new prosemirrorModel.Slice(before.append(after), depth, depth), true));
     }
     function canJoin(doc2, pos) {
-      var $pos = doc2.resolve(pos), index10 = $pos.index();
-      return joinable($pos.nodeBefore, $pos.nodeAfter) && $pos.parent.canReplace(index10, index10 + 1);
+      var $pos = doc2.resolve(pos), index11 = $pos.index();
+      return joinable($pos.nodeBefore, $pos.nodeAfter) && $pos.parent.canReplace(index11, index11 + 1);
     }
     function joinable(a, b4) {
       return !!(a && b4 && !a.isLeaf && a.canAppend(b4));
@@ -74374,19 +74417,19 @@ var require_dist3 = __commonJS({
       var dir = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : -1;
       var $pos = doc2.resolve(pos);
       for (var d3 = $pos.depth; ; d3--) {
-        var before = void 0, after = void 0, index10 = $pos.index(d3);
+        var before = void 0, after = void 0, index11 = $pos.index(d3);
         if (d3 == $pos.depth) {
           before = $pos.nodeBefore;
           after = $pos.nodeAfter;
         } else if (dir > 0) {
           before = $pos.node(d3 + 1);
-          index10++;
-          after = $pos.node(d3).maybeChild(index10);
+          index11++;
+          after = $pos.node(d3).maybeChild(index11);
         } else {
-          before = $pos.node(d3).maybeChild(index10 - 1);
+          before = $pos.node(d3).maybeChild(index11 - 1);
           after = $pos.node(d3 + 1);
         }
-        if (before && !before.isTextblock && joinable(before, after) && $pos.node(d3).canReplace(index10, index10 + 1))
+        if (before && !before.isTextblock && joinable(before, after) && $pos.node(d3).canReplace(index11, index11 + 1))
           return pos;
         if (d3 == 0)
           break;
@@ -74403,10 +74446,10 @@ var require_dist3 = __commonJS({
         return pos;
       if ($pos.parentOffset == 0)
         for (var d3 = $pos.depth - 1; d3 >= 0; d3--) {
-          var index10 = $pos.index(d3);
-          if ($pos.node(d3).canReplaceWith(index10, index10, nodeType))
+          var index11 = $pos.index(d3);
+          if ($pos.node(d3).canReplaceWith(index11, index11, nodeType))
             return $pos.before(d3 + 1);
-          if (index10 > 0)
+          if (index11 > 0)
             return null;
         }
       if ($pos.parentOffset == $pos.parent.content.size)
@@ -74723,11 +74766,11 @@ var require_dist3 = __commonJS({
       return node.copy(frag);
     }
     function contentAfterFits($to, depth, type, match, open) {
-      var node = $to.node(depth), index10 = open ? $to.indexAfter(depth) : $to.index(depth);
-      if (index10 == node.childCount && !type.compatibleContent(node.type))
+      var node = $to.node(depth), index11 = open ? $to.indexAfter(depth) : $to.index(depth);
+      if (index11 == node.childCount && !type.compatibleContent(node.type))
         return null;
-      var fit = match.fillBefore(node.content, true, index10);
-      return fit && !invalidMarks(type, node.content, index10) ? fit : null;
+      var fit = match.fillBefore(node.content, true, index11);
+      return fit && !invalidMarks(type, node.content, index11) ? fit : null;
     }
     function invalidMarks(type, fragment, start2) {
       for (var i2 = start2; i2 < fragment.childCount; i2++) {
@@ -74786,8 +74829,8 @@ var require_dist3 = __commonJS({
             expand = false;
             targetDepth = -targetDepth;
           }
-          var parent2 = $from.node(targetDepth - 1), index10 = $from.index(targetDepth - 1);
-          if (parent2.canReplaceWith(index10, index10, insert.type, insert.marks))
+          var parent2 = $from.node(targetDepth - 1), index11 = $from.index(targetDepth - 1);
+          if (parent2.canReplaceWith(index11, index11, insert.type, insert.marks))
             return tr.replace($from.before(targetDepth), expand ? $to.after(targetDepth) : to, new prosemirrorModel.Slice(closeFragment(slice.content, 0, slice.openStart, openDepth), openDepth, slice.openEnd));
         }
       }
@@ -75585,11 +75628,11 @@ var require_dist4 = __commonJS({
         return new AllSelection(doc2);
       }
     };
-    function findSelectionIn(doc2, node, pos, index10, dir) {
+    function findSelectionIn(doc2, node, pos, index11, dir) {
       var text = arguments.length > 5 && arguments[5] !== void 0 ? arguments[5] : false;
       if (node.inlineContent)
         return TextSelection.create(doc2, pos);
-      for (var i2 = index10 - (dir > 0 ? 0 : 1); dir > 0 ? i2 < node.childCount : i2 >= 0; i2 += dir) {
+      for (var i2 = index11 - (dir > 0 ? 0 : 1); dir > 0 ? i2 < node.childCount : i2 >= 0; i2 += dir) {
         var child = node.child(i2);
         if (!child.isAtom) {
           var inner = findSelectionIn(doc2, child, pos + dir, dir < 0 ? child.childCount : 0, dir, text);
@@ -76227,10 +76270,10 @@ var require_dist5 = __commonJS({
     var webkit = !!doc2 && "webkitFontSmoothing" in doc2.documentElement.style;
     var webkit_version = webkit ? +(/\bAppleWebKit\/(\d+)/.exec(navigator.userAgent) || [0, 0])[1] : 0;
     var domIndex = function domIndex2(node) {
-      for (var index10 = 0; ; index10++) {
+      for (var index11 = 0; ; index11++) {
         node = node.previousSibling;
         if (!node)
-          return index10;
+          return index11;
       }
     };
     var parentNode = function parentNode2(node) {
@@ -76275,12 +76318,12 @@ var require_dist5 = __commonJS({
       for (var atStart = offset == 0, atEnd = offset == nodeSize(node); atStart || atEnd; ) {
         if (node == parent2)
           return true;
-        var index10 = domIndex(node);
+        var index11 = domIndex(node);
         node = node.parentNode;
         if (!node)
           return false;
-        atStart = atStart && index10 == 0;
-        atEnd = atEnd && index10 == nodeSize(node);
+        atStart = atStart && index11 == 0;
+        atEnd = atEnd && index11 == nodeSize(node);
       }
     }
     function hasBlockDesc(dom) {
@@ -78037,9 +78080,9 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "findNodeMatch",
-        value: function findNodeMatch(node, outerDeco, innerDeco, index10) {
+        value: function findNodeMatch(node, outerDeco, innerDeco, index11) {
           var found = -1, targetDesc;
-          if (index10 >= this.preMatch.index && (targetDesc = this.preMatch.matches[index10 - this.preMatch.index]).parent == this.top && targetDesc.matchesNode(node, outerDeco, innerDeco)) {
+          if (index11 >= this.preMatch.index && (targetDesc = this.preMatch.matches[index11 - this.preMatch.index]).parent == this.top && targetDesc.matchesNode(node, outerDeco, innerDeco)) {
             found = this.top.children.indexOf(targetDesc, this.index);
           } else {
             for (var i2 = this.index, e2 = Math.min(this.top.children.length, i2 + 5); i2 < e2; i2++) {
@@ -78058,14 +78101,14 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "updateNodeAt",
-        value: function updateNodeAt(node, outerDeco, innerDeco, index10, view) {
-          var child = this.top.children[index10];
+        value: function updateNodeAt(node, outerDeco, innerDeco, index11, view) {
+          var child = this.top.children[index11];
           if (child.dirty == NODE_DIRTY && child.dom == child.contentDOM)
             child.dirty = CONTENT_DIRTY;
           if (!child.update(node, outerDeco, innerDeco, view))
             return false;
-          this.destroyBetween(this.index, index10);
-          this.index = index10 + 1;
+          this.destroyBetween(this.index, index11);
+          this.index = index11 + 1;
           return true;
         }
       }, {
@@ -78089,12 +78132,12 @@ var require_dist5 = __commonJS({
         }
       }, {
         key: "updateNextNode",
-        value: function updateNextNode(node, outerDeco, innerDeco, view, index10) {
+        value: function updateNextNode(node, outerDeco, innerDeco, view, index11) {
           for (var i2 = this.index; i2 < this.top.children.length; i2++) {
             var next = this.top.children[i2];
             if (next instanceof NodeViewDesc) {
               var _preMatch = this.preMatch.matched.get(next);
-              if (_preMatch != null && _preMatch != index10)
+              if (_preMatch != null && _preMatch != index11)
                 return false;
               var nextDOM = next.dom;
               var locked = this.lock && (nextDOM == this.lock || nextDOM.nodeType == 1 && nextDOM.contains(this.lock.parentNode)) && !(node.isText && next.node && next.node.isText && next.nodeDOM.nodeValue == node.text && next.dirty != NODE_DIRTY && sameOuterDeco(outerDeco, next.outerDeco));
@@ -78234,13 +78277,13 @@ var require_dist5 = __commonJS({
             onWidget(widget, parentIndex, !!restNode);
           }
         }
-        var _child = void 0, index10 = void 0;
+        var _child = void 0, index11 = void 0;
         if (restNode) {
-          index10 = -1;
+          index11 = -1;
           _child = restNode;
           restNode = null;
         } else if (parentIndex < parent2.childCount) {
-          index10 = parentIndex;
+          index11 = parentIndex;
           _child = parent2.child(parentIndex++);
         } else {
           break;
@@ -78265,13 +78308,13 @@ var require_dist5 = __commonJS({
             restNode = _child.cut(cutAt - offset);
             _child = _child.cut(0, cutAt - offset);
             end = cutAt;
-            index10 = -1;
+            index11 = -1;
           }
         }
         var outerDeco = _child.isInline && !_child.isLeaf ? active.filter(function(d3) {
           return !d3.inline;
         }) : active.slice();
-        onNode(_child, outerDeco, deco.forChild(offset, _child), index10);
+        onNode(_child, outerDeco, deco.forChild(offset, _child), index11);
         offset = end;
       }
     }
@@ -79831,8 +79874,8 @@ var require_dist5 = __commonJS({
       }, {
         key: "valid",
         value: function valid(node, span) {
-          var _node$content$findInd = node.content.findIndex(span.from), index10 = _node$content$findInd.index, offset = _node$content$findInd.offset, child;
-          return offset == span.from && !(child = node.child(index10)).isText && offset + child.nodeSize == span.to;
+          var _node$content$findInd = node.content.findIndex(span.from), index11 = _node$content$findInd.index, offset = _node$content$findInd.offset, child;
+          return offset == span.from && !(child = node.child(index11)).isText && offset + child.nodeSize == span.to;
         }
       }, {
         key: "eq",
@@ -80224,8 +80267,8 @@ var require_dist5 = __commonJS({
             continue;
           }
           var to = mapping.map(oldChildren[_i9 + 1] + oldOffset, -1), toLocal = to - offset;
-          var _node$content$findInd2 = node.content.findIndex(fromLocal), index10 = _node$content$findInd2.index, childOffset = _node$content$findInd2.offset;
-          var childNode = node.maybeChild(index10);
+          var _node$content$findInd2 = node.content.findIndex(fromLocal), index11 = _node$content$findInd2.index, childOffset = _node$content$findInd2.offset;
+          var childNode = node.maybeChild(index11);
           if (childNode && childOffset == fromLocal && childOffset + childNode.nodeSize == toLocal) {
             var mapped = children[_i9 + 2].mapInner(mapping, childNode, from + 1, oldChildren[_i9] + oldOffset + 1, options);
             if (mapped != empty) {
@@ -81939,15 +81982,15 @@ var require_dist7 = __commonJS({
       return true;
     };
     function joinMaybeClear(state, $pos, dispatch) {
-      var before = $pos.nodeBefore, after = $pos.nodeAfter, index10 = $pos.index();
+      var before = $pos.nodeBefore, after = $pos.nodeAfter, index11 = $pos.index();
       if (!before || !after || !before.type.compatibleContent(after.type))
         return false;
-      if (!before.content.size && $pos.parent.canReplace(index10 - 1, index10)) {
+      if (!before.content.size && $pos.parent.canReplace(index11 - 1, index11)) {
         if (dispatch)
           dispatch(state.tr["delete"]($pos.pos - before.nodeSize, $pos.pos).scrollIntoView());
         return true;
       }
-      if (!$pos.parent.canReplace(index10, index10 + 1) || !(after.isTextblock || prosemirrorTransform.canJoin(state.doc, $pos.pos)))
+      if (!$pos.parent.canReplace(index11, index11 + 1) || !(after.isTextblock || prosemirrorTransform.canJoin(state.doc, $pos.pos)))
         return false;
       if (dispatch)
         dispatch(state.tr.clearIncompatible($pos.pos, before.type, before.contentMatchAt(before.childCount)).join($pos.pos).scrollIntoView());
@@ -82051,8 +82094,8 @@ var require_dist7 = __commonJS({
           if (node.type == nodeType) {
             applicable = true;
           } else {
-            var $pos = state.doc.resolve(pos), index10 = $pos.index();
-            applicable = $pos.parent.canReplaceWith(index10, index10 + 1, nodeType);
+            var $pos = state.doc.resolve(pos), index11 = $pos.index();
+            applicable = $pos.parent.canReplaceWith(index11, index11 + 1, nodeType);
           }
         });
         if (!applicable)
@@ -82140,12 +82183,12 @@ var require_dist7 = __commonJS({
         for (var _i3 = 0; _i3 < ranges.length; _i3 += 2) {
           var from = ranges[_i3], to = ranges[_i3 + 1];
           var $from = tr.doc.resolve(from), depth = $from.sharedDepth(to), parent2 = $from.node(depth);
-          for (var index10 = $from.indexAfter(depth), pos = $from.after(depth + 1); pos <= to; ++index10) {
-            var after = parent2.maybeChild(index10);
+          for (var index11 = $from.indexAfter(depth), pos = $from.after(depth + 1); pos <= to; ++index11) {
+            var after = parent2.maybeChild(index11);
             if (!after)
               break;
-            if (index10 && joinable.indexOf(pos) == -1) {
-              var before = parent2.child(index10 - 1);
+            if (index11 && joinable.indexOf(pos) == -1) {
+              var before = parent2.child(index11 - 1);
               if (before.type == after.type && isJoinable(before, after))
                 joinable.push(pos);
             }
@@ -82964,13 +83007,13 @@ var require_tiptap_core_cjs = __commonJS({
     }
     var getTextContentFromNodes = ($from, maxMatch = 500) => {
       let textBefore = "";
-      $from.parent.nodesBetween(Math.max(0, $from.parentOffset - maxMatch), $from.parentOffset, (node, pos, parent2, index10) => {
+      $from.parent.nodesBetween(Math.max(0, $from.parentOffset - maxMatch), $from.parentOffset, (node, pos, parent2, index11) => {
         var _a, _b, _c;
         textBefore += ((_b = (_a = node.type.spec).toText) === null || _b === void 0 ? void 0 : _b.call(_a, {
           node,
           pos,
           parent: parent2,
-          index: index10
+          index: index11
         })) || ((_c = $from.nodeBefore) === null || _c === void 0 ? void 0 : _c.text) || "%leaf%";
       });
       return textBefore;
@@ -83265,7 +83308,7 @@ var require_tiptap_core_cjs = __commonJS({
       return plugins;
     }
     function findDuplicates(items) {
-      const filtered = items.filter((el, index10) => items.indexOf(el) !== index10);
+      const filtered = items.filter((el, index11) => items.indexOf(el) !== index11);
       return [...new Set(filtered)];
     }
     var ExtensionManager = class {
@@ -83555,7 +83598,7 @@ var require_tiptap_core_cjs = __commonJS({
       const { blockSeparator = "\n\n", textSerializers = {} } = options || {};
       let text = "";
       let separated = true;
-      startNode.nodesBetween(from, to, (node, pos, parent2, index10) => {
+      startNode.nodesBetween(from, to, (node, pos, parent2, index11) => {
         var _a;
         const textSerializer = textSerializers === null || textSerializers === void 0 ? void 0 : textSerializers[node.type.name];
         if (textSerializer) {
@@ -83568,7 +83611,7 @@ var require_tiptap_core_cjs = __commonJS({
               node,
               pos,
               parent: parent2,
-              index: index10,
+              index: index11,
               range
             });
           }
@@ -83862,7 +83905,7 @@ var require_tiptap_core_cjs = __commonJS({
       return true;
     };
     var forEach2 = (items, fn) => (props) => {
-      return items.every((item, index10) => fn(item, { ...props, index: index10 }));
+      return items.every((item, index11) => fn(item, { ...props, index: index11 }));
     };
     var insertContent = (value, options) => ({ tr, commands: commands2 }) => {
       return commands2.insertContentAt({ from: tr.selection.from, to: tr.selection.to }, value, options);
@@ -85383,8 +85426,8 @@ img.ProseMirror-separator {
     }
     function simplifyChangedRanges(changes) {
       const uniqueChanges = removeDuplicates(changes);
-      return uniqueChanges.length === 1 ? uniqueChanges : uniqueChanges.filter((change, index10) => {
-        const rest = uniqueChanges.filter((_2, i2) => i2 !== index10);
+      return uniqueChanges.length === 1 ? uniqueChanges : uniqueChanges.filter((change, index11) => {
+        const rest = uniqueChanges.filter((_2, i2) => i2 !== index11);
         return !rest.some((otherChange) => {
           return change.oldRange.from >= otherChange.oldRange.from && change.oldRange.to <= otherChange.oldRange.to && change.newRange.from >= otherChange.newRange.from && change.newRange.to <= otherChange.newRange.to;
         });
@@ -85393,10 +85436,10 @@ img.ProseMirror-separator {
     function getChangedRanges(transform) {
       const { mapping, steps } = transform;
       const changes = [];
-      mapping.maps.forEach((stepMap, index10) => {
+      mapping.maps.forEach((stepMap, index11) => {
         const ranges = [];
         if (!stepMap.ranges.length) {
-          const { from, to } = steps[index10];
+          const { from, to } = steps[index11];
           if (from === void 0 || to === void 0) {
             return;
           }
@@ -85407,8 +85450,8 @@ img.ProseMirror-separator {
           });
         }
         ranges.forEach(({ from, to }) => {
-          const newStart = mapping.slice(index10).map(from, -1);
-          const newEnd = mapping.slice(index10).map(to);
+          const newStart = mapping.slice(index11).map(from, -1);
+          const newEnd = mapping.slice(index11).map(to);
           const oldStart = mapping.invert().map(newStart, -1);
           const oldEnd = mapping.invert().map(newEnd);
           changes.push({
@@ -87308,13 +87351,13 @@ var require_linkify = __commonJS({
     function stringToArray(str) {
       var result = [];
       var len = str.length;
-      var index10 = 0;
-      while (index10 < len) {
-        var first = str.charCodeAt(index10);
+      var index11 = 0;
+      while (index11 < len) {
+        var first = str.charCodeAt(index11);
         var second = void 0;
-        var char = first < 55296 || first > 56319 || index10 + 1 === len || (second = str.charCodeAt(index10 + 1)) < 56320 || second > 57343 ? str[index10] : str.slice(index10, index10 + 2);
+        var char = first < 55296 || first > 56319 || index11 + 1 === len || (second = str.charCodeAt(index11 + 1)) < 56320 || second > 57343 ? str[index11] : str.slice(index11, index11 + 2);
         result.push(char);
-        index10 += char.length;
+        index11 += char.length;
       }
       return result;
     }
@@ -88044,10 +88087,12 @@ var import_extension_text, import_extension_bold, import_extension_italic, impor
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
-    init_index_19a73778();
-    init_tags_0c38ec88();
-    init_storage_47dbcc97();
-    init_database_88f2b9f9();
+    init_index_d732e872();
+    init_store_21b4cd20();
+    init_database_298aef9a();
+    init_tags_b46fae60();
+    init_dist3();
+    init_storage_05d57c84();
     init_column_config_ed3a8d78();
     init_dist5();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
@@ -88064,11 +88109,10 @@ var init_layout_svelte = __esm({
     import_extension_heading = __toESM(require_tiptap_extension_heading_cjs(), 1);
     import_extension_placeholder = __toESM(require_tiptap_extension_placeholder_cjs(), 1);
     import_extension_link = __toESM(require_tiptap_extension_link_cjs(), 1);
-    import_chroma_js2 = __toESM(require_chroma(), 1);
-    init_dist4();
-    init_dist3();
     init_dist();
     init_dist2();
+    import_chroma_js2 = __toESM(require_chroma(), 1);
+    init_dist4();
     strings$1 = {
       enter: [
         "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA\u0DC0\u0DB1\u0DCA\u0DB1",
@@ -88104,6 +88148,11 @@ var init_layout_svelte = __esm({
         "\u0DC4\u0DDD",
         "or",
         "\u0B85\u0BB2\u0BCD\u0BB2\u0BA4\u0BC1"
+      ],
+      enter_name: [
+        "\u0DB1\u0DB8 \u0D87\u0DAD\u0DD4\u0DBD\u0DAD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+        "enter name",
+        "\u0BAA\u0BC6\u0BAF\u0BB0\u0BC8 \u0B89\u0BB3\u0BCD\u0BB3\u0BBF\u0B9F\u0BC1\u0B95"
       ]
     };
     css$b = {
@@ -88111,9 +88160,9 @@ var init_layout_svelte = __esm({
       map: null
     };
     Button = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang2, $$unsubscribe__lang;
+      let $_lang, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
       let { onclick } = $$props;
       let { text } = $$props;
       let { cancel } = $$props;
@@ -88136,7 +88185,7 @@ var init_layout_svelte = __esm({
       $$unsubscribe__lang();
       return `<div class="${["button s-d9-80eNJ_c8b", (cancel ? "cancel" : "") + " " + (form ? "form" : "")].join(" ").trim()}"${add_attribute("style", style, 0)}>${`${validate_component(Font, "Font").$$render($$result, { font: 0, size: fontSize || 1 }, {}, {
         default: () => {
-          return `${escape(text[$_lang2])}`;
+          return `${escape(text[$_lang])}`;
         }
       })}`}
 </div>`;
@@ -88146,12 +88195,13 @@ var init_layout_svelte = __esm({
       map: null
     };
     Text_input = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang2, $$unsubscribe__lang;
+      let $_lang, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
-      let { disabled } = $$props;
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let { disabled = false } = $$props;
       let { config } = $$props;
       let { data } = $$props;
+      createEventDispatcher();
       let { error: error2 } = $$props;
       if ($$props.disabled === void 0 && $$bindings.disabled && disabled !== void 0)
         $$bindings.disabled(disabled);
@@ -88166,11 +88216,11 @@ var init_layout_svelte = __esm({
       return `<div class="${"text-input s-Rc61XWFQtAVh"}">${validate_component(Font, "Font").$$render($$result, { font: 0, size: 1 }, {}, {
         default: () => {
           return `
-        ${config.type !== "password" ? `<input type="${"text"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang2], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["s-Rc61XWFQtAVh", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>` : `<input type="${"password"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang2], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["s-Rc61XWFQtAVh", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>`}
+        ${config.type !== "password" ? `<input type="${"text"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["s-Rc61XWFQtAVh", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>` : `<input type="${"password"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["s-Rc61XWFQtAVh", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>`}
         
-        ${typeof error2 === "string" ? `<span class="${"s-Rc61XWFQtAVh"}">${validate_component(Font, "Font").$$render($$result, { font: 0, remSize: 0.8 }, {}, {
+        ${error2 && typeof error2 != "boolean" ? `<span class="${"s-Rc61XWFQtAVh"}">${validate_component(Font, "Font").$$render($$result, { font: 0, size: 0.8 }, {}, {
             default: () => {
-              return `${escape(error2)}`;
+              return `${escape(Array.isArray(error2) ? error2[$_lang] : error2)}`;
             }
           })}</span>` : ``}`;
         }
@@ -88182,15 +88232,23 @@ var init_layout_svelte = __esm({
       map: null
     };
     Login = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang2, $$unsubscribe__lang;
+      let $_lang, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
       let showLogin = false;
+      let adminLogin = false;
+      let forceEnterName = false;
       let user2 = {};
       let emailError, nameError, passwordError, repeatPasswordError;
       let signinOrSignup = 0;
-      const showHideEvent = _eventListener("show-hide-login").subscribe((v3) => {
-        showLogin = v3;
+      const showHideEvent = _eventListener("show-hide-login").subscribe((value) => {
+        showLogin = value;
+        adminLogin = showLogin == "admin-login";
+        forceEnterName = showLogin == "force-signup";
+        if (forceEnterName) {
+          user2.email = getAuth().currentUser.email;
+        }
+        _signUpInProgress.set(true);
       });
       onDestroy(() => {
         showHideEvent.unsubscribe();
@@ -88208,9 +88266,17 @@ var init_layout_svelte = __esm({
             user2.uid = result.authUser.uid;
           }
           if (result.code == "auth/email-already-in-use") {
-            signinOrSignup = 1;
+            if (forceEnterName) {
+              signinOrSignup = 2;
+            } else {
+              signinOrSignup = 1;
+            }
           } else {
-            signinOrSignup = 2;
+            if (showLogin !== "admin") {
+              signinOrSignup = 2;
+            } else {
+              emailError = ["\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0DB4\u0DBB\u0DD2\u0DC1\u0DD3\u0DBD\u0D9A\u0DBA\u0DD9\u0D9A\u0DCA \u0DB1\u0DDC\u0DC0\u0DDA", "not a valid user", "\u0BA4\u0BB5\u0BB1\u0BBE\u0BA9 \u0BAA\u0BAF\u0BA9\u0BB0\u0BCD"];
+            }
           }
           return;
         }
@@ -88226,10 +88292,27 @@ var init_layout_svelte = __esm({
             passwordError = true;
             return;
           }
+          if (!result.user) {
+            forceEnterName = true;
+            signinOrSignup = 2;
+            return;
+          }
+          if (adminLogin) {
+            let claims;
+            try {
+              claims = JSON.parse(getAuth().currentUser.reloadUserInfo.customAttributes);
+            } catch {
+              claims = {};
+            }
+            const hasAdminAccess = result.user.super && claims.super || result.user.admin && claims.admin;
+            if (!hasAdminAccess) {
+              passwordError = ["\u0DB4\u0DCA\u0DBB\u0DC0\u0DDA\u0DC1\u0DBA \u0DB4\u0DCA\u0DBB\u0DAD\u0DD2\u0D9A\u0DCA\u0DC2\u0DDA\u0DB4 \u0DC0\u0DD2\u0DAB\u0DD2", "access denied", "\u0B85\u0BA3\u0BC1\u0B95\u0BB2\u0BCD \u0BAE\u0BB1\u0BC1\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BCD\u0B9F\u0BA4\u0BC1"];
+              return;
+            }
+          }
           if (result.user) {
-            showLogin = false;
-            _emitEvent("user-ready", result.user);
-            reset();
+            _emitEvent("user-changed", result.user);
+            closeLogin();
           }
           return;
         }
@@ -88239,33 +88322,41 @@ var init_layout_svelte = __esm({
           } else {
             nameError = false;
           }
-          if (!user2.password) {
-            passwordError = true;
-          } else if (user2.password.length < 6) {
-            passwordError = "should be atlest 6 characters";
-          } else {
-            passwordError = false;
-          }
-          if (user2.password != user2.repeatPassword && !passwordError) {
-            repeatPasswordError = true;
-            passwordError = true;
-          } else {
-            repeatPasswordError = false;
+          if (!forceEnterName) {
+            if (!user2.password) {
+              passwordError = true;
+            } else if (user2.password.length < 6) {
+              passwordError = "should be atlest 6 characters";
+            } else {
+              passwordError = false;
+            }
+            if (user2.password != user2.repeatPassword && !passwordError) {
+              repeatPasswordError = true;
+              passwordError = true;
+            } else {
+              repeatPasswordError = false;
+            }
           }
           if (nameError || passwordError || repeatPasswordError) {
             return;
           }
-          let result = await _changePassword(user2.password, user2.name, user2.email);
+          let result = await _changePassword(user2.password, user2.name, user2.email, forceEnterName);
           if (!result) {
-            showLogin = false;
-            _emitEvent("user-ready", user2);
-            reset();
+            _emitEvent("user-changed", user2);
+            closeLogin();
           }
           return;
         }
       };
+      const closeLogin = () => {
+        _signUpInProgress.set(false);
+        reset();
+        showLogin = false;
+      };
       const reset = () => {
+        forceEnterName = false;
         user2 = {};
+        adminLogin = false;
         nameError = false;
         passwordError = false;
         repeatPasswordError = false;
@@ -88283,7 +88374,7 @@ var init_layout_svelte = __esm({
         {},
         {
           default: () => {
-            return `${escape(strings$1["enter"][$_lang2])}`;
+            return `${escape(strings$1[forceEnterName ? "enter_name" : "enter"][$_lang])}`;
           }
         }
       )}
@@ -88318,7 +88409,7 @@ var init_layout_svelte = __esm({
         {},
         {}
       )}` : ``}
-            ${signinOrSignup ? `${validate_component(Text_input, "TextInput").$$render(
+            ${signinOrSignup && !forceEnterName ? `${validate_component(Text_input, "TextInput").$$render(
         $$result,
         {
           error: passwordError,
@@ -88333,7 +88424,7 @@ var init_layout_svelte = __esm({
         {},
         {}
       )}` : ``}
-            ${signinOrSignup == 2 ? `${validate_component(Text_input, "TextInput").$$render(
+            ${signinOrSignup == 2 && !forceEnterName ? `${validate_component(Text_input, "TextInput").$$render(
         $$result,
         {
           error: repeatPasswordError,
@@ -88369,7 +88460,7 @@ var init_layout_svelte = __esm({
         {},
         {
           default: () => {
-            return `${escape(strings$1["or"][$_lang2])}`;
+            return `${escape(strings$1["or"][$_lang])}`;
           }
         }
       )}
@@ -88511,9 +88602,9 @@ var init_layout_svelte = __esm({
       let fields;
       let fieldConfigs;
       let errors2;
-      let $_lang2, $$unsubscribe__lang;
+      let $_lang, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
       let showForm = false;
       let columnIndex = 0;
       let data = {};
@@ -88602,7 +88693,7 @@ var init_layout_svelte = __esm({
         {},
         {
           default: () => {
-            return `${escape(COLUMNS[columnIndex].dataFormTitle[$_lang2])}`;
+            return `${escape(COLUMNS[columnIndex].dataFormTitle[$_lang])}`;
           }
         }
       )}
@@ -88622,7 +88713,7 @@ var init_layout_svelte = __esm({
             ${validate_component(Select, "Select").$$render(
         $$result,
         {
-          placeholder: strings["tags"][$_lang2],
+          placeholder: strings["tags"][$_lang],
           options: unselectedTagNames.map((tag) => TAGS[tag]),
           error: tagError
         },
@@ -88656,9 +88747,9 @@ var init_layout_svelte = __esm({
       map: null
     };
     Theme_selector = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_currentTheme2, $$unsubscribe__currentTheme;
+      let $_currentTheme, $$unsubscribe__currentTheme;
       validate_store(_currentTheme, "_currentTheme");
-      $$unsubscribe__currentTheme = subscribe(_currentTheme, (value) => $_currentTheme2 = value);
+      $$unsubscribe__currentTheme = subscribe(_currentTheme, (value) => $_currentTheme = value);
       let themeSelect;
       let themePanel;
       let showPanel = false;
@@ -88672,8 +88763,8 @@ var init_layout_svelte = __esm({
       $$unsubscribe__currentTheme();
       return `<div id="${"theme-button"}" style="${"--theme-1: var(--theme-columns-0); --theme-2: var(--theme-columns-2); --theme-3: var(--theme-columns-4); --theme-4: var(--theme-columns-6);"}" class="${"s-LohSOtP4JF2y"}"${add_attribute("this", themeSelect, 0)}></div>
 
-<span style="${"display: " + escape(showPanel ? "block" : "none", true) + ";"}" class="${"s-LohSOtP4JF2y"}"${add_attribute("this", themePanel, 0)}>${each(_themes, (theme, _i) => {
-        return `${_i != ($_currentTheme2 || 0) ? `<div style="${"--theme-1: " + escape(theme.columns[0], true) + "; --theme-2: " + escape(theme.columns[2], true) + "; --theme-3: " + escape(theme.columns[4], true) + "; --theme-4: " + escape(theme.columns[6], true) + ";"}" class="${"s-LohSOtP4JF2y"}"></div>` : ``}`;
+<span style="${"display: " + escape(showPanel ? "block" : "none", true) + ";"}" class="${"s-LohSOtP4JF2y"}"${add_attribute("this", themePanel, 0)}>${each(_themes, (theme2, _i) => {
+        return `${_i != ($_currentTheme || 0) ? `<div style="${"--theme-1: " + escape(theme2.columns[0], true) + "; --theme-2: " + escape(theme2.columns[2], true) + "; --theme-3: " + escape(theme2.columns[4], true) + "; --theme-4: " + escape(theme2.columns[6], true) + ";"}" class="${"s-LohSOtP4JF2y"}"></div>` : ``}`;
       })}
 </span>`;
     });
@@ -88692,13 +88783,15 @@ var init_layout_svelte = __esm({
     };
     Loader = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $$unsubscribe__authStateChecked;
+      let $$unsubscribe__redirected;
       let $$unsubscribe__appContentReady;
       let $$unsubscribe__scaledPixelsReady;
       let $$unsubscribe__themeSizesReady;
       let $$unsubscribe__themeColorsReady;
-      let $$unsubscribe__redirected;
       validate_store(_authStateChecked, "_authStateChecked");
       $$unsubscribe__authStateChecked = subscribe(_authStateChecked, (value) => value);
+      validate_store(_redirected, "_redirected");
+      $$unsubscribe__redirected = subscribe(_redirected, (value) => value);
       validate_store(_appContentReady, "_appContentReady");
       $$unsubscribe__appContentReady = subscribe(_appContentReady, (value) => value);
       validate_store(_scaledPixelsReady, "_scaledPixelsReady");
@@ -88707,15 +88800,13 @@ var init_layout_svelte = __esm({
       $$unsubscribe__themeSizesReady = subscribe(_themeSizesReady, (value) => value);
       validate_store(_themeColorsReady, "_themeColorsReady");
       $$unsubscribe__themeColorsReady = subscribe(_themeColorsReady, (value) => value);
-      validate_store(_redirected, "_redirected");
-      $$unsubscribe__redirected = subscribe(_redirected, (value) => value);
       $$result.css.add(css$2);
       $$unsubscribe__authStateChecked();
+      $$unsubscribe__redirected();
       $$unsubscribe__appContentReady();
       $$unsubscribe__scaledPixelsReady();
       $$unsubscribe__themeSizesReady();
       $$unsubscribe__themeColorsReady();
-      $$unsubscribe__redirected();
       return `${`<div class="${"loader s-o47rfqMMGVwP"}"><div class="${"title s-o47rfqMMGVwP"}"><img src="${"/logo-tiny.png"}" alt="${"\u0D85\u0DBB\u0D9C\u0DBD\u0DBA.online"}" class="${"s-o47rfqMMGVwP"}"></div>
     <div class="${"progress-bar s-o47rfqMMGVwP"}">${validate_component(Preloading_indicator, "PreloadingIndicator").$$render($$result, {}, {}, {})}</div></div>`}`;
     });
@@ -88724,15 +88815,15 @@ var init_layout_svelte = __esm({
       map: null
     };
     Toasts = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang2, $$unsubscribe__lang;
+      let $_lang, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
       let showText = void 0;
       let event = void 0;
       const showToastEvent = _eventListener("show-toast").subscribe((data) => {
         event = data.event;
         if (Array.isArray(data.text)) {
-          showText = data.text[$_lang2];
+          showText = data.text[$_lang];
         } else {
           showText = data.text;
         }
@@ -88764,7 +88855,7 @@ ${showText ? `<div class="${["toast-container s-F3BFPhrY-hZv", event ? "event" :
       validate_store(_isMobile, "_isMobile");
       $$unsubscribe__isMobile = subscribe(_isMobile, (value) => $_isMobile = value);
       let user2;
-      const userReadyEvent = _eventListener("user-ready").subscribe((userData) => {
+      const userReadyEvent = _eventListener("user-changed").subscribe((userData) => {
         user2 = userData;
         if (user2) {
           _currentTheme.set(user2.theme);
@@ -88850,8 +88941,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-fbd453d9.js";
-    imports = ["_app/immutable/pages/__layout.svelte-fbd453d9.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/store-0aecff84.js", "_app/immutable/chunks/index-09267728.js", "_app/immutable/chunks/tags-532662c3.js", "_app/immutable/chunks/storage-aff0b961.js"];
+    file2 = "_app/immutable/pages/__layout.svelte-0e309c39.js";
+    imports = ["_app/immutable/pages/__layout.svelte-0e309c39.js", "_app/immutable/chunks/index-73a75506.js", "_app/immutable/chunks/store-50aefbd8.js", "_app/immutable/chunks/index-4c7ad0d2.js", "_app/immutable/chunks/events-8308a6cd.js", "_app/immutable/chunks/database-39b5466e.js", "_app/immutable/chunks/tags-5f4692e5.js", "_app/immutable/chunks/storage-79c8d12a.js"];
     stylesheets = ["_app/immutable/assets/__layout-737c78a1.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/storage-491479b0.css"];
   }
 });
@@ -88869,7 +88960,7 @@ var Error2;
 var init_error_svelte = __esm({
   ".svelte-kit/output/server/entries/fallbacks/error.svelte.js"() {
     init_shims();
-    init_index_19a73778();
+    init_index_d732e872();
     Error2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { status } = $$props;
       let { error: error2 } = $$props;
@@ -88904,8 +88995,8 @@ var init__2 = __esm({
     init_shims();
     init_error_svelte();
     index2 = 1;
-    file3 = "_app/immutable/error.svelte-a1d68402.js";
-    imports2 = ["_app/immutable/error.svelte-a1d68402.js", "_app/immutable/chunks/index-98578d05.js"];
+    file3 = "_app/immutable/error.svelte-6d8050c8.js";
+    imports2 = ["_app/immutable/error.svelte-6d8050c8.js", "_app/immutable/chunks/index-73a75506.js"];
     stylesheets2 = [];
   }
 });
@@ -88988,10 +89079,10 @@ var require_lodash3 = __commonJS({
       return string.split("");
     }
     function baseFindIndex(array2, predicate, fromIndex, fromRight) {
-      var length = array2.length, index10 = fromIndex + (fromRight ? 1 : -1);
-      while (fromRight ? index10-- : ++index10 < length) {
-        if (predicate(array2[index10], index10, array2)) {
-          return index10;
+      var length = array2.length, index11 = fromIndex + (fromRight ? 1 : -1);
+      while (fromRight ? index11-- : ++index11 < length) {
+        if (predicate(array2[index11], index11, array2)) {
+          return index11;
         }
       }
       return -1;
@@ -89000,10 +89091,10 @@ var require_lodash3 = __commonJS({
       if (value !== value) {
         return baseFindIndex(array2, baseIsNaN, fromIndex);
       }
-      var index10 = fromIndex - 1, length = array2.length;
-      while (++index10 < length) {
-        if (array2[index10] === value) {
-          return index10;
+      var index11 = fromIndex - 1, length = array2.length;
+      while (++index11 < length) {
+        if (array2[index11] === value) {
+          return index11;
         }
       }
       return -1;
@@ -89012,16 +89103,16 @@ var require_lodash3 = __commonJS({
       return value !== value;
     }
     function charsStartIndex(strSymbols, chrSymbols) {
-      var index10 = -1, length = strSymbols.length;
-      while (++index10 < length && baseIndexOf(chrSymbols, strSymbols[index10], 0) > -1) {
+      var index11 = -1, length = strSymbols.length;
+      while (++index11 < length && baseIndexOf(chrSymbols, strSymbols[index11], 0) > -1) {
       }
-      return index10;
+      return index11;
     }
     function charsEndIndex(strSymbols, chrSymbols) {
-      var index10 = strSymbols.length;
-      while (index10-- && baseIndexOf(chrSymbols, strSymbols[index10], 0) > -1) {
+      var index11 = strSymbols.length;
+      while (index11-- && baseIndexOf(chrSymbols, strSymbols[index11], 0) > -1) {
       }
-      return index10;
+      return index11;
     }
     function hasUnicode(string) {
       return reHasUnicode.test(string);
@@ -89038,7 +89129,7 @@ var require_lodash3 = __commonJS({
     var symbolProto = Symbol2 ? Symbol2.prototype : void 0;
     var symbolToString = symbolProto ? symbolProto.toString : void 0;
     function baseSlice(array2, start2, end) {
-      var index10 = -1, length = array2.length;
+      var index11 = -1, length = array2.length;
       if (start2 < 0) {
         start2 = -start2 > length ? 0 : length + start2;
       }
@@ -89049,8 +89140,8 @@ var require_lodash3 = __commonJS({
       length = start2 > end ? 0 : end - start2 >>> 0;
       start2 >>>= 0;
       var result = Array(length);
-      while (++index10 < length) {
-        result[index10] = array2[index10 + start2];
+      while (++index11 < length) {
+        result[index11] = array2[index11 + start2];
       }
       return result;
     }
@@ -89125,26 +89216,26 @@ var require_lodash4 = __commonJS({
       return !!length && baseIndexOf(array2, value, 0) > -1;
     }
     function arrayIncludesWith(array2, value, comparator) {
-      var index10 = -1, length = array2 ? array2.length : 0;
-      while (++index10 < length) {
-        if (comparator(value, array2[index10])) {
+      var index11 = -1, length = array2 ? array2.length : 0;
+      while (++index11 < length) {
+        if (comparator(value, array2[index11])) {
           return true;
         }
       }
       return false;
     }
     function arrayMap(array2, iteratee) {
-      var index10 = -1, length = array2 ? array2.length : 0, result = Array(length);
-      while (++index10 < length) {
-        result[index10] = iteratee(array2[index10], index10, array2);
+      var index11 = -1, length = array2 ? array2.length : 0, result = Array(length);
+      while (++index11 < length) {
+        result[index11] = iteratee(array2[index11], index11, array2);
       }
       return result;
     }
     function baseFindIndex(array2, predicate, fromIndex, fromRight) {
-      var length = array2.length, index10 = fromIndex + (fromRight ? 1 : -1);
-      while (fromRight ? index10-- : ++index10 < length) {
-        if (predicate(array2[index10], index10, array2)) {
-          return index10;
+      var length = array2.length, index11 = fromIndex + (fromRight ? 1 : -1);
+      while (fromRight ? index11-- : ++index11 < length) {
+        if (predicate(array2[index11], index11, array2)) {
+          return index11;
         }
       }
       return -1;
@@ -89153,10 +89244,10 @@ var require_lodash4 = __commonJS({
       if (value !== value) {
         return baseFindIndex(array2, baseIsNaN, fromIndex);
       }
-      var index10 = fromIndex - 1, length = array2.length;
-      while (++index10 < length) {
-        if (array2[index10] === value) {
-          return index10;
+      var index11 = fromIndex - 1, length = array2.length;
+      while (++index11 < length) {
+        if (array2[index11] === value) {
+          return index11;
         }
       }
       return -1;
@@ -89204,10 +89295,10 @@ var require_lodash4 = __commonJS({
     var Map2 = getNative(root, "Map");
     var nativeCreate = getNative(Object, "create");
     function Hash(entries) {
-      var index10 = -1, length = entries ? entries.length : 0;
+      var index11 = -1, length = entries ? entries.length : 0;
       this.clear();
-      while (++index10 < length) {
-        var entry = entries[index10];
+      while (++index11 < length) {
+        var entry = entries[index11];
         this.set(entry[0], entry[1]);
       }
     }
@@ -89240,10 +89331,10 @@ var require_lodash4 = __commonJS({
     Hash.prototype.has = hashHas;
     Hash.prototype.set = hashSet;
     function ListCache(entries) {
-      var index10 = -1, length = entries ? entries.length : 0;
+      var index11 = -1, length = entries ? entries.length : 0;
       this.clear();
-      while (++index10 < length) {
-        var entry = entries[index10];
+      while (++index11 < length) {
+        var entry = entries[index11];
         this.set(entry[0], entry[1]);
       }
     }
@@ -89251,31 +89342,31 @@ var require_lodash4 = __commonJS({
       this.__data__ = [];
     }
     function listCacheDelete(key2) {
-      var data = this.__data__, index10 = assocIndexOf(data, key2);
-      if (index10 < 0) {
+      var data = this.__data__, index11 = assocIndexOf(data, key2);
+      if (index11 < 0) {
         return false;
       }
       var lastIndex = data.length - 1;
-      if (index10 == lastIndex) {
+      if (index11 == lastIndex) {
         data.pop();
       } else {
-        splice.call(data, index10, 1);
+        splice.call(data, index11, 1);
       }
       return true;
     }
     function listCacheGet(key2) {
-      var data = this.__data__, index10 = assocIndexOf(data, key2);
-      return index10 < 0 ? void 0 : data[index10][1];
+      var data = this.__data__, index11 = assocIndexOf(data, key2);
+      return index11 < 0 ? void 0 : data[index11][1];
     }
     function listCacheHas(key2) {
       return assocIndexOf(this.__data__, key2) > -1;
     }
     function listCacheSet(key2, value) {
-      var data = this.__data__, index10 = assocIndexOf(data, key2);
-      if (index10 < 0) {
+      var data = this.__data__, index11 = assocIndexOf(data, key2);
+      if (index11 < 0) {
         data.push([key2, value]);
       } else {
-        data[index10][1] = value;
+        data[index11][1] = value;
       }
       return this;
     }
@@ -89285,10 +89376,10 @@ var require_lodash4 = __commonJS({
     ListCache.prototype.has = listCacheHas;
     ListCache.prototype.set = listCacheSet;
     function MapCache(entries) {
-      var index10 = -1, length = entries ? entries.length : 0;
+      var index11 = -1, length = entries ? entries.length : 0;
       this.clear();
-      while (++index10 < length) {
-        var entry = entries[index10];
+      while (++index11 < length) {
+        var entry = entries[index11];
         this.set(entry[0], entry[1]);
       }
     }
@@ -89318,10 +89409,10 @@ var require_lodash4 = __commonJS({
     MapCache.prototype.has = mapCacheHas;
     MapCache.prototype.set = mapCacheSet;
     function SetCache(values) {
-      var index10 = -1, length = values ? values.length : 0;
+      var index11 = -1, length = values ? values.length : 0;
       this.__data__ = new MapCache();
-      while (++index10 < length) {
-        this.add(values[index10]);
+      while (++index11 < length) {
+        this.add(values[index11]);
       }
     }
     function setCacheAdd(value) {
@@ -89343,7 +89434,7 @@ var require_lodash4 = __commonJS({
       return -1;
     }
     function baseDifference(array2, values, iteratee, comparator) {
-      var index10 = -1, includes = arrayIncludes, isCommon = true, length = array2.length, result = [], valuesLength = values.length;
+      var index11 = -1, includes = arrayIncludes, isCommon = true, length = array2.length, result = [], valuesLength = values.length;
       if (!length) {
         return result;
       }
@@ -89359,8 +89450,8 @@ var require_lodash4 = __commonJS({
         values = new SetCache(values);
       }
       outer:
-        while (++index10 < length) {
-          var value = array2[index10], computed = iteratee ? iteratee(value) : value;
+        while (++index11 < length) {
+          var value = array2[index11], computed = iteratee ? iteratee(value) : value;
           value = comparator || value !== 0 ? value : 0;
           if (isCommon && computed === computed) {
             var valuesIndex = valuesLength;
@@ -89386,14 +89477,14 @@ var require_lodash4 = __commonJS({
     function baseRest(func, start2) {
       start2 = nativeMax(start2 === void 0 ? func.length - 1 : start2, 0);
       return function() {
-        var args = arguments, index10 = -1, length = nativeMax(args.length - start2, 0), array2 = Array(length);
-        while (++index10 < length) {
-          array2[index10] = args[start2 + index10];
+        var args = arguments, index11 = -1, length = nativeMax(args.length - start2, 0), array2 = Array(length);
+        while (++index11 < length) {
+          array2[index11] = args[start2 + index11];
         }
-        index10 = -1;
+        index11 = -1;
         var otherArgs = Array(start2 + 1);
-        while (++index10 < start2) {
-          otherArgs[index10] = args[index10];
+        while (++index11 < start2) {
+          otherArgs[index11] = args[index11];
         }
         otherArgs[start2] = array2;
         return apply(func, this, otherArgs);
@@ -90048,35 +90139,35 @@ var require_lodash5 = __commonJS({
       return set;
     }
     function arrayEach(array2, iteratee) {
-      var index10 = -1, length = array2 ? array2.length : 0;
-      while (++index10 < length) {
-        if (iteratee(array2[index10], index10, array2) === false) {
+      var index11 = -1, length = array2 ? array2.length : 0;
+      while (++index11 < length) {
+        if (iteratee(array2[index11], index11, array2) === false) {
           break;
         }
       }
       return array2;
     }
     function arrayPush(array2, values) {
-      var index10 = -1, length = values.length, offset = array2.length;
-      while (++index10 < length) {
-        array2[offset + index10] = values[index10];
+      var index11 = -1, length = values.length, offset = array2.length;
+      while (++index11 < length) {
+        array2[offset + index11] = values[index11];
       }
       return array2;
     }
     function arrayReduce(array2, iteratee, accumulator, initAccum) {
-      var index10 = -1, length = array2 ? array2.length : 0;
+      var index11 = -1, length = array2 ? array2.length : 0;
       if (initAccum && length) {
-        accumulator = array2[++index10];
+        accumulator = array2[++index11];
       }
-      while (++index10 < length) {
-        accumulator = iteratee(accumulator, array2[index10], index10, array2);
+      while (++index11 < length) {
+        accumulator = iteratee(accumulator, array2[index11], index11, array2);
       }
       return accumulator;
     }
     function baseTimes(n, iteratee) {
-      var index10 = -1, result = Array(n);
-      while (++index10 < n) {
-        result[index10] = iteratee(index10);
+      var index11 = -1, result = Array(n);
+      while (++index11 < n) {
+        result[index11] = iteratee(index11);
       }
       return result;
     }
@@ -90094,9 +90185,9 @@ var require_lodash5 = __commonJS({
       return result;
     }
     function mapToArray(map) {
-      var index10 = -1, result = Array(map.size);
+      var index11 = -1, result = Array(map.size);
       map.forEach(function(value, key2) {
-        result[++index10] = [key2, value];
+        result[++index11] = [key2, value];
       });
       return result;
     }
@@ -90106,9 +90197,9 @@ var require_lodash5 = __commonJS({
       };
     }
     function setToArray(set) {
-      var index10 = -1, result = Array(set.size);
+      var index11 = -1, result = Array(set.size);
       set.forEach(function(value) {
-        result[++index10] = value;
+        result[++index11] = value;
       });
       return result;
     }
@@ -90150,10 +90241,10 @@ var require_lodash5 = __commonJS({
     var symbolProto = Symbol2 ? Symbol2.prototype : void 0;
     var symbolValueOf = symbolProto ? symbolProto.valueOf : void 0;
     function Hash(entries) {
-      var index10 = -1, length = entries ? entries.length : 0;
+      var index11 = -1, length = entries ? entries.length : 0;
       this.clear();
-      while (++index10 < length) {
-        var entry = entries[index10];
+      while (++index11 < length) {
+        var entry = entries[index11];
         this.set(entry[0], entry[1]);
       }
     }
@@ -90186,10 +90277,10 @@ var require_lodash5 = __commonJS({
     Hash.prototype.has = hashHas;
     Hash.prototype.set = hashSet;
     function ListCache(entries) {
-      var index10 = -1, length = entries ? entries.length : 0;
+      var index11 = -1, length = entries ? entries.length : 0;
       this.clear();
-      while (++index10 < length) {
-        var entry = entries[index10];
+      while (++index11 < length) {
+        var entry = entries[index11];
         this.set(entry[0], entry[1]);
       }
     }
@@ -90197,31 +90288,31 @@ var require_lodash5 = __commonJS({
       this.__data__ = [];
     }
     function listCacheDelete(key2) {
-      var data = this.__data__, index10 = assocIndexOf(data, key2);
-      if (index10 < 0) {
+      var data = this.__data__, index11 = assocIndexOf(data, key2);
+      if (index11 < 0) {
         return false;
       }
       var lastIndex = data.length - 1;
-      if (index10 == lastIndex) {
+      if (index11 == lastIndex) {
         data.pop();
       } else {
-        splice.call(data, index10, 1);
+        splice.call(data, index11, 1);
       }
       return true;
     }
     function listCacheGet(key2) {
-      var data = this.__data__, index10 = assocIndexOf(data, key2);
-      return index10 < 0 ? void 0 : data[index10][1];
+      var data = this.__data__, index11 = assocIndexOf(data, key2);
+      return index11 < 0 ? void 0 : data[index11][1];
     }
     function listCacheHas(key2) {
       return assocIndexOf(this.__data__, key2) > -1;
     }
     function listCacheSet(key2, value) {
-      var data = this.__data__, index10 = assocIndexOf(data, key2);
-      if (index10 < 0) {
+      var data = this.__data__, index11 = assocIndexOf(data, key2);
+      if (index11 < 0) {
         data.push([key2, value]);
       } else {
-        data[index10][1] = value;
+        data[index11][1] = value;
       }
       return this;
     }
@@ -90231,10 +90322,10 @@ var require_lodash5 = __commonJS({
     ListCache.prototype.has = listCacheHas;
     ListCache.prototype.set = listCacheSet;
     function MapCache(entries) {
-      var index10 = -1, length = entries ? entries.length : 0;
+      var index11 = -1, length = entries ? entries.length : 0;
       this.clear();
-      while (++index10 < length) {
-        var entry = entries[index10];
+      while (++index11 < length) {
+        var entry = entries[index11];
         this.set(entry[0], entry[1]);
       }
     }
@@ -90446,18 +90537,18 @@ var require_lodash5 = __commonJS({
       return new typedArray.constructor(buffer, typedArray.byteOffset, typedArray.length);
     }
     function copyArray(source, array2) {
-      var index10 = -1, length = source.length;
+      var index11 = -1, length = source.length;
       array2 || (array2 = Array(length));
-      while (++index10 < length) {
-        array2[index10] = source[index10];
+      while (++index11 < length) {
+        array2[index11] = source[index11];
       }
       return array2;
     }
     function copyObject(source, props, object, customizer) {
       object || (object = {});
-      var index10 = -1, length = props.length;
-      while (++index10 < length) {
-        var key2 = props[index10];
+      var index11 = -1, length = props.length;
+      while (++index11 < length) {
+        var key2 = props[index11];
         var newValue = customizer ? customizer(object[key2], source[key2], key2, object, source) : void 0;
         assignValue(object, key2, newValue === void 0 ? source[key2] : newValue);
       }
@@ -90959,14 +91050,15 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/proposal-c929a7c3.js
+// .svelte-kit/output/server/_app/immutable/chunks/proposal-41537404.js
 var css$32, Card, strings$3, Timestamp2, strings$2, css$22, Content, css$12, Preview, strings$12, css3, Toolbar, strings2, Proposal;
-var init_proposal_c929a7c3 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/proposal-c929a7c3.js"() {
+var init_proposal_41537404 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/proposal-41537404.js"() {
     init_shims();
-    init_index_19a73778();
-    init_tags_0c38ec88();
+    init_index_d732e872();
+    init_store_21b4cd20();
     init_string_strip_html_esm();
+    init_tags_b46fae60();
     css$32 = {
       code: ".card-container.s-Hio59jcNIlCL{padding:var(--theme-cardseparationhalf)}.card.s-Hio59jcNIlCL{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.s-Hio59jcNIlCL{}",
       map: null
@@ -91077,17 +91169,17 @@ var init_proposal_c929a7c3 = __esm({
         const isYesterday = yesterday.toDateString() === date.toDateString();
         const isThisYear = today.getFullYear() === date.getFullYear();
         if (seconds < 5) {
-          return strings$3["now"][language];
+          return strings$3["now"][language2];
         } else if (seconds < 60) {
-          return strings$3["secondsAgo"][language].replace("*seconds*", seconds.toString());
+          return strings$3["secondsAgo"][language2].replace("*seconds*", seconds.toString());
         } else if (seconds < 90) {
-          return strings$3["minuteAgo"][language];
+          return strings$3["minuteAgo"][language2];
         } else if (minutes < 60) {
-          return strings$3["minutesAgo"][language].replace("*minutes*", minutes.toString());
+          return strings$3["minutesAgo"][language2].replace("*minutes*", minutes.toString());
         } else if (isToday) {
-          return getFormattedDate(date, strings$3["today"][language]);
+          return getFormattedDate(date, strings$3["today"][language2]);
         } else if (isYesterday) {
-          return getFormattedDate(date, strings$3["yesterday"][language]);
+          return getFormattedDate(date, strings$3["yesterday"][language2]);
         } else if (isThisYear) {
           return getFormattedDate(date, false, true);
         }
@@ -91095,7 +91187,7 @@ var init_proposal_c929a7c3 = __esm({
       };
       const getFormattedDate = (date, prefomattedDate = false, hideYear = false) => {
         const day = date.getDate();
-        const month = MONTH_NAMES[date.getMonth()][language];
+        const month = MONTH_NAMES[date.getMonth()][language2];
         const year = date.getFullYear();
         const hours = date.getHours();
         let minutes = date.getMinutes();
@@ -91103,17 +91195,17 @@ var init_proposal_c929a7c3 = __esm({
           minutes = `0${minutes}`;
         }
         if (prefomattedDate) {
-          return `${prefomattedDate} ${language == 1 ? "at" : ""} ${hours}:${minutes}${language == 0 ? "\u0DA7" : language == 2 ? " \u0BAE\u0BA3\u0BBF\u0B95\u0BCD\u0B95\u0BC1" : ""}`;
+          return `${prefomattedDate} ${language2 == 1 ? "at" : ""} ${hours}:${minutes}${language2 == 0 ? "\u0DA7" : language2 == 2 ? " \u0BAE\u0BA3\u0BBF\u0B95\u0BCD\u0B95\u0BC1" : ""}`;
         }
         if (hideYear) {
-          return `${day} ${month} ${language == 1 ? "at" : ""} ${hours}:${minutes}${language == 0 ? "\u0DA7" : language == 2 ? " \u0BAE\u0BA3\u0BBF\u0B95\u0BCD\u0B95\u0BC1" : ""}`;
+          return `${day} ${month} ${language2 == 1 ? "at" : ""} ${hours}:${minutes}${language2 == 0 ? "\u0DA7" : language2 == 2 ? " \u0BAE\u0BA3\u0BBF\u0B95\u0BCD\u0B95\u0BC1" : ""}`;
         }
-        return `${day} ${month} ${year}. ${language == 1 ? "at" : ""} ${hours}:${minutes}`;
+        return `${day} ${month} ${year}. ${language2 == 1 ? "at" : ""} ${hours}:${minutes}`;
       };
-      let language = 0;
+      let language2 = 0;
       let timeAgoString = timeAgo(time);
       _lang.subscribe((l) => {
-        language = l;
+        language2 = l;
         timeAgoString = timeAgo(time);
       });
       if ($$props.time === void 0 && $$bindings.time && time !== void 0)
@@ -91131,9 +91223,9 @@ var init_proposal_c929a7c3 = __esm({
     };
     css$22 = { code: ".s-DkLwbhZttZVG{}", map: null };
     Content = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang2, $$unsubscribe__lang;
+      let $_lang, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
       let { data } = $$props;
       let { contentField } = $$props;
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
@@ -91146,7 +91238,7 @@ var init_proposal_c929a7c3 = __esm({
 
 
 <div class="${"s-DkLwbhZttZVG"}">
-    <!-- HTML_TAG_START -->${data[contentField][data._viewOriginal ? 3 : $_lang2]}<!-- HTML_TAG_END -->  
+    <!-- HTML_TAG_START -->${data[contentField][data._viewOriginal ? 3 : $_lang]}<!-- HTML_TAG_END -->  
 </div>`;
     });
     css$12 = {
@@ -91156,9 +91248,9 @@ var init_proposal_c929a7c3 = __esm({
     Preview = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let contentString;
       let images;
-      let $_lang2, $$unsubscribe__lang;
+      let $_lang, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
       let { data } = $$props;
       let { contentField } = $$props;
       let { limit: limit2 } = $$props;
@@ -91179,7 +91271,7 @@ var init_proposal_c929a7c3 = __esm({
       if ($$props.expanded === void 0 && $$bindings.expanded && expanded !== void 0)
         $$bindings.expanded(expanded);
       $$result.css.add(css$12);
-      contentString = Array.isArray(content) ? content[data._viewOriginal ? 3 : $_lang2] : content;
+      contentString = Array.isArray(content) ? content[data._viewOriginal ? 3 : $_lang] : content;
       images = contentString.match(/src="([\w\W]+?)"/g);
       images = images && images.map((src, _i) => {
         return src.replace('src="', "").replace('"', "").replace("&amp;", "&");
@@ -91193,7 +91285,7 @@ var init_proposal_c929a7c3 = __esm({
 
 
 <div class="${"preview s-Aln3qbhUrjzf"}">${expanded ? `${validate_component(Content, "Content").$$render($$result, { data, contentField }, {}, {})}` : `<div class="${"_clickable s-Aln3qbhUrjzf"}">${escape(croppedText)}
-            ${croppedFlag ? `<span style="${"font-weight:bold; text-decoration:underline"}" class="${"s-Aln3qbhUrjzf"}">${escape(strings$2["read_more"][$_lang2])}</span>
+            ${croppedFlag ? `<span style="${"font-weight:bold; text-decoration:underline"}" class="${"s-Aln3qbhUrjzf"}">${escape(strings$2["read_more"][$_lang])}</span>
                 ${images ? `<div class="${"preview-container s-Aln3qbhUrjzf"}"><div class="${"preview-image s-Aln3qbhUrjzf"}" style="${"--url: url(" + escape(images[0], true) + ")"}"></div>
                     <div class="${"preview-overlay s-Aln3qbhUrjzf"}"></div></div>` : ``}` : ``}</div>`}
 </div>`;
@@ -91215,9 +91307,9 @@ var init_proposal_c929a7c3 = __esm({
       map: null
     };
     Toolbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang2, $$unsubscribe__lang;
+      let $_lang, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
       let { data } = $$props;
       createEventDispatcher();
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
@@ -91244,7 +91336,7 @@ var init_proposal_c929a7c3 = __esm({
         {},
         {
           default: () => {
-            return `${escape(strings$12["verified"][$_lang2])}`;
+            return `${escape(strings$12["verified"][$_lang])}`;
           }
         }
       )}
@@ -91258,7 +91350,7 @@ var init_proposal_c929a7c3 = __esm({
         {},
         {
           default: () => {
-            return `${escape(strings$12["not_verified"][$_lang2])}`;
+            return `${escape(strings$12["not_verified"][$_lang])}`;
           }
         }
       )}
@@ -91278,9 +91370,9 @@ var init_proposal_c929a7c3 = __esm({
       ]
     };
     Proposal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang2, $$unsubscribe__lang;
+      let $_lang, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
       let { data } = $$props;
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
@@ -91329,7 +91421,7 @@ var init_proposal_c929a7c3 = __esm({
             {},
             {
               default: () => {
-                return `${escape(strings2["motive"][$_lang2])}`;
+                return `${escape(strings2["motive"][$_lang])}`;
               }
             }
           )}
@@ -91361,7 +91453,7 @@ var init_proposal_c929a7c3 = __esm({
             {},
             {
               default: () => {
-                return `${escape(strings2["proposal"][$_lang2])}`;
+                return `${escape(strings2["proposal"][$_lang])}`;
               }
             }
           )}
@@ -91526,21 +91618,22 @@ var import_chroma_js3, css$72, Nav, css$62, Template, strings$22, css$52, Mt, Bu
 var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
-    init_index_19a73778();
+    init_index_d732e872();
     init_column_config_ed3a8d78();
-    init_tags_0c38ec88();
+    init_store_21b4cd20();
     init_string_strip_html_esm();
-    init_storage_47dbcc97();
-    init_database_88f2b9f9();
-    init_proposal_c929a7c3();
-    import_chroma_js3 = __toESM(require_chroma(), 1);
-    init_dist4();
-    init_dist3();
+    init_database_298aef9a();
+    init_tags_b46fae60();
+    init_storage_05d57c84();
+    init_proposal_41537404();
     init_dist();
     init_dist2();
+    init_dist3();
+    import_chroma_js3 = __toESM(require_chroma(), 1);
+    init_dist4();
     Array(COLUMN_COUNT).fill(0);
     css$72 = {
-      code: ".navigation.s-QYN83HapRChq{position:fixed;right:var(--s5px);bottom:var(--s5px);z-index:100;display:flex;align-items:center;flex-direction:column;background-color:black;border-radius:var(--s6px)}.animated.s-QYN83HapRChq{position:relative}.icons.s-QYN83HapRChq{position:relative;overflow:hidden}.icon.s-QYN83HapRChq{position:relative;width:var(--theme-navsize);height:var(--theme-navsize);display:flex;align-items:center;justify-content:center;color:var(--nav-buttons);font-size:var(--theme-naviconsize)}.toggle.s-QYN83HapRChq{color:white}.show-hide.s-QYN83HapRChq{background-color:black;z-index:1;color:white;border-radius:var(--s6px)}.scroll.s-QYN83HapRChq{position:absolute;right:0;width:var(--s4px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-columns-7) 25%, \n            var(--theme-columns-5) 50%,\n            var(--theme-columns-3) 75%, \n            var(--theme-columns-1) 100%);border-radius:var(--s6px)}.title_c.s-QYN83HapRChq{position:fixed}.title.s-QYN83HapRChq{font-weight:bold;color:rgb(85, 85, 85);padding:var(--s0px) var(--s5px);background-color:white}.s-QYN83HapRChq{}",
+      code: ".navigation.s-QYN83HapRChq{position:fixed;right:var(--s5px);bottom:var(--s5px);z-index:100;display:flex;align-items:center;flex-direction:column;background-color:black;border-radius:var(--s6px);border:var(--s0_5px) solid white}.animated.s-QYN83HapRChq{position:relative}.icons.s-QYN83HapRChq{position:relative;overflow:hidden}.icon.s-QYN83HapRChq{position:relative;width:var(--theme-navsize);height:var(--theme-navsize);display:flex;align-items:center;justify-content:center;color:var(--nav-buttons);font-size:var(--theme-naviconsize)}.toggle.s-QYN83HapRChq{color:white}.show-hide.s-QYN83HapRChq{background-color:black;z-index:1;color:white;border-radius:var(--s6px)}.scroll.s-QYN83HapRChq{position:absolute;right:0;width:var(--s4px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-columns-7) 25%, \n            var(--theme-columns-5) 50%,\n            var(--theme-columns-3) 75%, \n            var(--theme-columns-1) 100%);border-radius:var(--s6px)}.title_c.s-QYN83HapRChq{position:fixed}.title.s-QYN83HapRChq{font-weight:bold;color:rgb(85, 85, 85);padding:var(--s0px) var(--s5px);background-color:white}.s-QYN83HapRChq{}",
       map: null
     };
     Nav = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -91590,7 +91683,6 @@ var init_index_svelte = __esm({
         return `<div style="${"color: var(--theme-navigation-" + escape(_i, true) + ")"}" class="${"icon _clickable s-QYN83HapRChq"}"><i class="${escape(null_to_empty(column.icon), true) + " s-QYN83HapRChq"}"></i>
                 </div>`;
       })}
-            
             <div class="${"scroll s-QYN83HapRChq"}" style="${"height: " + escape(scrollBarHeight, true) + "px; top: " + escape($scrollPosition, true) + "px;"}"></div></div>
         ${``}</div>
     
@@ -91635,9 +91727,9 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
     };
     Mt = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let machineTranslated;
-      let $_lang2, $$unsubscribe__lang;
+      let $_lang, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
       createEventDispatcher();
       let { data } = $$props;
       let objectProps = Object.keys(data);
@@ -91645,7 +91737,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
       $$result.css.add(css$52);
-      machineTranslated = objectFields.some((key2) => data[key2][$_lang2]);
+      machineTranslated = objectFields.some((key2) => data[key2][$_lang]);
       $$unsubscribe__lang();
       return `
 
@@ -91660,7 +91752,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         {},
         {
           default: () => {
-            return `${`<i class="${"fa-solid fa-globe s-Q7XEqeLz3oYK"}"></i> ${escape(strings$22["machine_translated"][$_lang2])}`}`;
+            return `${`<i class="${"fa-solid fa-globe s-Q7XEqeLz3oYK"}"></i> ${escape(strings$22["machine_translated"][$_lang])}`}`;
           }
         }
       )}</div>` : ``}`;
@@ -92004,9 +92096,9 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
       map: null
     };
     Filter2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang2, $$unsubscribe__lang;
+      let $_lang, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
       let { show } = $$props;
       let { columnId } = $$props;
       let configTags = [];
@@ -92036,13 +92128,13 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             {},
             {
               default: () => {
-                return `<span class="${["tag verified s-BJo09dFzrlwu", "selectedTags"].join(" ").trim()}">${escape(strings$13["verified"][$_lang2])}</span>
+                return `<span class="${["tag verified s-BJo09dFzrlwu", "selectedTags"].join(" ").trim()}">${escape(strings$13["verified"][$_lang])}</span>
             <span class="${[
                   "tag not-verified s-BJo09dFzrlwu",
                   ""
-                ].join(" ").trim()}">${escape(strings$13["not_verified"][$_lang2])}</span>
+                ].join(" ").trim()}">${escape(strings$13["not_verified"][$_lang])}</span>
             ${each(configTags, (tag, _i) => {
-                  return `<span class="${["tag s-BJo09dFzrlwu", selectedTags[_i] ? "selectedTags" : ""].join(" ").trim()}" style="${"--color: " + escape(tag.color, true) + ";"}">${escape(tag.strings[$_lang2])}
+                  return `<span class="${["tag s-BJo09dFzrlwu", selectedTags[_i] ? "selectedTags" : ""].join(" ").trim()}" style="${"--color: " + escape(tag.color, true) + ";"}">${escape(tag.strings[$_lang])}
             </span>`;
                 })}`;
               }
@@ -92055,7 +92147,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             
             <div class="${"button filter s-BJo09dFzrlwu"}">${validate_component(Font, "Font").$$render($$result, { font: 0, size: 0.9 }, {}, {
             default: () => {
-              return `${`${escape(strings$13["filter"][$_lang2])}`}`;
+              return `${`${escape(strings$13["filter"][$_lang])}`}`;
             }
           })}</div>
             
@@ -92085,9 +92177,9 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
       map: null
     };
     Wip = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang2, $$unsubscribe__lang;
+      let $_lang, $$unsubscribe__lang;
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
       let { data } = $$props;
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
@@ -92107,7 +92199,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             {},
             {
               default: () => {
-                return `${escape(strings3["wip"][$_lang2])}`;
+                return `${escape(strings3["wip"][$_lang])}`;
               }
             }
           )}
@@ -92122,7 +92214,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             {},
             {
               default: () => {
-                return `${escape(data.service[$_lang2])}`;
+                return `${escape(data.service[$_lang])}`;
               }
             }
           )}
@@ -92138,7 +92230,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             {},
             {
               default: () => {
-                return `${escape(strings3["release"][$_lang2] + ": " + data.releaseDate)}`;
+                return `${escape(strings3["release"][$_lang] + ": " + data.releaseDate)}`;
               }
             }
           )}`;
@@ -92158,11 +92250,11 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
     };
     Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $_isMobile, $$unsubscribe__isMobile;
-      let $_lang2, $$unsubscribe__lang;
+      let $_lang, $$unsubscribe__lang;
       validate_store(_isMobile, "_isMobile");
       $$unsubscribe__isMobile = subscribe(_isMobile, (value) => $_isMobile = value);
       validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang2 = value);
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
       let { columnData } = $$props;
       let { postData = void 0 } = $$props;
       let showFilters = Array(COLUMN_COUNT).fill(false);
@@ -92229,12 +92321,12 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
       };
       const bounceAnimation = Array(COLUMN_COUNT).fill(1).map((_2) => tweened(0, { duration: 350, easing: backInOut }));
       const _bounceAnimation = Array(COLUMN_COUNT).fill(1);
-      _eventListener("nav-click").subscribe((index10) => {
+      _eventListener("nav-click").subscribe((index11) => {
         const sizeConfig = _getSizeConfig();
         const maxLeft = COLUMN_COUNT - Math.floor(window.innerWidth / sizeConfig.columnWidth);
-        if (index10 < maxLeft) {
-          hScrollIndex.value = index10;
-          setHorizontalScroll(sizeConfig.columnWidth * index10);
+        if (index11 < maxLeft) {
+          hScrollIndex.value = index11;
+          setHorizontalScroll(sizeConfig.columnWidth * index11);
         } else {
           hScrollIndex.value = maxLeft;
           const remainingSpace = COLUMN_COUNT * sizeConfig.columnWidth + 15 - hScrollIndex.value * sizeConfig.columnWidth - window.innerWidth;
@@ -92242,10 +92334,10 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
           setHorizontalScroll(sizeConfig.columnWidth * maxLeft + remainingSpace);
         }
         if (!$_isMobile) {
-          bounceAnimation[index10].set(8);
+          bounceAnimation[index11].set(8);
           setTimeout(
             () => {
-              bounceAnimation[index10].set(0);
+              bounceAnimation[index11].set(0);
             },
             350
           );
@@ -92287,7 +92379,7 @@ ${validate_component(Nav, "Nav").$$render($$result, {}, {}, {})}
           {},
           {
             default: () => {
-              return `${escape(column.title[$_lang2])}
+              return `${escape(column.title[$_lang])}
                             `;
             }
           }
@@ -92315,7 +92407,7 @@ ${validate_component(Nav, "Nav").$$render($$result, {}, {}, {})}
   }
 });
 
-// .svelte-kit/output/server/nodes/2.js
+// .svelte-kit/output/server/nodes/3.js
 var __exports3 = {};
 __export(__exports3, {
   file: () => file4,
@@ -92326,13 +92418,13 @@ __export(__exports3, {
 });
 var index3, file4, imports3, stylesheets3;
 var init__3 = __esm({
-  ".svelte-kit/output/server/nodes/2.js"() {
+  ".svelte-kit/output/server/nodes/3.js"() {
     init_shims();
     init_index_svelte();
-    index3 = 2;
-    file4 = "_app/immutable/pages/index.svelte-7cd40934.js";
-    imports3 = ["_app/immutable/pages/index.svelte-7cd40934.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/tags-532662c3.js", "_app/immutable/chunks/store-0aecff84.js", "_app/immutable/chunks/index-09267728.js", "_app/immutable/chunks/proposal-bbbb48dc.js", "_app/immutable/chunks/storage-aff0b961.js"];
-    stylesheets3 = ["_app/immutable/assets/index-d79e3fbd.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/proposal-8f53a606.css", "_app/immutable/assets/storage-491479b0.css"];
+    index3 = 3;
+    file4 = "_app/immutable/pages/index.svelte-6b37237c.js";
+    imports3 = ["_app/immutable/pages/index.svelte-6b37237c.js", "_app/immutable/chunks/index-73a75506.js", "_app/immutable/chunks/tags-5f4692e5.js", "_app/immutable/chunks/store-50aefbd8.js", "_app/immutable/chunks/index-4c7ad0d2.js", "_app/immutable/chunks/proposal-0dce41fc.js", "_app/immutable/chunks/events-8308a6cd.js", "_app/immutable/chunks/database-39b5466e.js", "_app/immutable/chunks/storage-79c8d12a.js"];
+    stylesheets3 = ["_app/immutable/assets/index-06011cae.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/proposal-8f53a606.css", "_app/immutable/assets/storage-491479b0.css"];
   }
 });
 
@@ -92345,12 +92437,13 @@ var import_chroma_js4, css5, Post_preview;
 var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
-    init_index_19a73778();
-    init_proposal_c929a7c3();
-    init_tags_0c38ec88();
+    init_index_d732e872();
+    init_proposal_41537404();
+    init_store_21b4cd20();
+    init_string_strip_html_esm();
+    init_tags_b46fae60();
     import_chroma_js4 = __toESM(require_chroma(), 1);
     init_column_config_ed3a8d78();
-    init_string_strip_html_esm();
     css5 = {
       code: ".preview.s-nkO0SViUUGe1{display:flex;justify-content:center;background-color:var(--theme-columnbackground);width:100%;height:100vh}.column-container.s-nkO0SViUUGe1{padding:var(--theme-cardseparationhalf);height:100%}.column.s-nkO0SViUUGe1{display:flex;align-items:center;justify-content:center;flex-direction:column;width:var(--theme-columnwidth);height:100%;padding:0 var(--theme-cardseparationhalf)}.s-nkO0SViUUGe1{}",
       map: null
@@ -92381,7 +92474,7 @@ var init_post_preview_svelte = __esm({
   }
 });
 
-// .svelte-kit/output/server/nodes/3.js
+// .svelte-kit/output/server/nodes/4.js
 var __exports4 = {};
 __export(__exports4, {
   file: () => file5,
@@ -92392,12 +92485,12 @@ __export(__exports4, {
 });
 var index4, file5, imports4, stylesheets4;
 var init__4 = __esm({
-  ".svelte-kit/output/server/nodes/3.js"() {
+  ".svelte-kit/output/server/nodes/4.js"() {
     init_shims();
     init_post_preview_svelte();
-    index4 = 3;
-    file5 = "_app/immutable/pages/post_preview.svelte-c48191b6.js";
-    imports4 = ["_app/immutable/pages/post_preview.svelte-c48191b6.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/proposal-bbbb48dc.js", "_app/immutable/chunks/store-0aecff84.js", "_app/immutable/chunks/index-09267728.js", "_app/immutable/chunks/tags-532662c3.js"];
+    index4 = 4;
+    file5 = "_app/immutable/pages/post_preview.svelte-75ce3840.js";
+    imports4 = ["_app/immutable/pages/post_preview.svelte-75ce3840.js", "_app/immutable/chunks/index-73a75506.js", "_app/immutable/chunks/proposal-0dce41fc.js", "_app/immutable/chunks/store-50aefbd8.js", "_app/immutable/chunks/index-4c7ad0d2.js", "_app/immutable/chunks/tags-5f4692e5.js", "_app/immutable/chunks/events-8308a6cd.js"];
     stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-8f53a606.css", "_app/immutable/assets/tags-95a7f94d.css"];
   }
 });
@@ -92411,7 +92504,7 @@ var css6, Privacy_policy;
 var init_privacy_policy_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/privacy_policy.svelte.js"() {
     init_shims();
-    init_index_19a73778();
+    init_index_d732e872();
     css6 = {
       code: ".privacy.s-BFsvH6Axz-AK{display:flex;align-items:center;justify-content:center;width:100vw;height:100vh;padding:150px}.s-BFsvH6Axz-AK{}",
       map: null
@@ -92425,7 +92518,7 @@ var init_privacy_policy_svelte = __esm({
   }
 });
 
-// .svelte-kit/output/server/nodes/4.js
+// .svelte-kit/output/server/nodes/5.js
 var __exports5 = {};
 __export(__exports5, {
   file: () => file6,
@@ -92436,13 +92529,60 @@ __export(__exports5, {
 });
 var index5, file6, imports5, stylesheets5;
 var init__5 = __esm({
-  ".svelte-kit/output/server/nodes/4.js"() {
+  ".svelte-kit/output/server/nodes/5.js"() {
     init_shims();
     init_privacy_policy_svelte();
-    index5 = 4;
-    file6 = "_app/immutable/pages/privacy_policy.svelte-3317b5e4.js";
-    imports5 = ["_app/immutable/pages/privacy_policy.svelte-3317b5e4.js", "_app/immutable/chunks/index-98578d05.js"];
+    index5 = 5;
+    file6 = "_app/immutable/pages/privacy_policy.svelte-2c37d41d.js";
+    imports5 = ["_app/immutable/pages/privacy_policy.svelte-2c37d41d.js", "_app/immutable/chunks/index-73a75506.js"];
     stylesheets5 = ["_app/immutable/assets/privacy_policy-9e1470cc.css"];
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/admin/users.svelte.js
+var users_svelte_exports = {};
+__export(users_svelte_exports, {
+  default: () => Users
+});
+var Users;
+var init_users_svelte = __esm({
+  ".svelte-kit/output/server/entries/pages/admin/users.svelte.js"() {
+    init_shims();
+    init_index_d732e872();
+    init_database_298aef9a();
+    init_store_21b4cd20();
+    init_dist();
+    init_dist2();
+    init_dist3();
+    Users = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      const appContentReadyUnsubscribe = _appContentReady.subscribe((value) => {
+        if (value)
+          _emitEvent("show-hide-login", "admin-login");
+      });
+      onDestroy(appContentReadyUnsubscribe);
+      return `<div>hello</div>`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/nodes/2.js
+var __exports6 = {};
+__export(__exports6, {
+  file: () => file7,
+  imports: () => imports6,
+  index: () => index6,
+  module: () => users_svelte_exports,
+  stylesheets: () => stylesheets6
+});
+var index6, file7, imports6, stylesheets6;
+var init__6 = __esm({
+  ".svelte-kit/output/server/nodes/2.js"() {
+    init_shims();
+    init_users_svelte();
+    index6 = 2;
+    file7 = "_app/immutable/pages/admin/users.svelte-441b2688.js";
+    imports6 = ["_app/immutable/pages/admin/users.svelte-441b2688.js", "_app/immutable/chunks/index-73a75506.js", "_app/immutable/chunks/database-39b5466e.js", "_app/immutable/chunks/events-8308a6cd.js", "_app/immutable/chunks/store-50aefbd8.js", "_app/immutable/chunks/index-4c7ad0d2.js"];
+    stylesheets6 = [];
   }
 });
 
@@ -92455,7 +92595,7 @@ var css7, Facebook;
 var init_facebook_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/share/facebook.svelte.js"() {
     init_shims();
-    init_index_19a73778();
+    init_index_d732e872();
     css7 = {
       code: ".redirect.s-uPWWvh_Oaxdy{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-uPWWvh_Oaxdy{}",
       map: null
@@ -92470,24 +92610,24 @@ var init_facebook_svelte = __esm({
   }
 });
 
-// .svelte-kit/output/server/nodes/5.js
-var __exports6 = {};
-__export(__exports6, {
-  file: () => file7,
-  imports: () => imports6,
-  index: () => index6,
+// .svelte-kit/output/server/nodes/6.js
+var __exports7 = {};
+__export(__exports7, {
+  file: () => file8,
+  imports: () => imports7,
+  index: () => index7,
   module: () => facebook_svelte_exports,
-  stylesheets: () => stylesheets6
+  stylesheets: () => stylesheets7
 });
-var index6, file7, imports6, stylesheets6;
-var init__6 = __esm({
-  ".svelte-kit/output/server/nodes/5.js"() {
+var index7, file8, imports7, stylesheets7;
+var init__7 = __esm({
+  ".svelte-kit/output/server/nodes/6.js"() {
     init_shims();
     init_facebook_svelte();
-    index6 = 5;
-    file7 = "_app/immutable/pages/share/facebook.svelte-84038ea7.js";
-    imports6 = ["_app/immutable/pages/share/facebook.svelte-84038ea7.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/store-0aecff84.js", "_app/immutable/chunks/index-09267728.js"];
-    stylesheets6 = ["_app/immutable/assets/facebook-5ae6a916.css"];
+    index7 = 6;
+    file8 = "_app/immutable/pages/share/facebook.svelte-3b883068.js";
+    imports7 = ["_app/immutable/pages/share/facebook.svelte-3b883068.js", "_app/immutable/chunks/index-73a75506.js", "_app/immutable/chunks/store-50aefbd8.js", "_app/immutable/chunks/index-4c7ad0d2.js"];
+    stylesheets7 = ["_app/immutable/assets/facebook-5ae6a916.css"];
   }
 });
 
@@ -92500,7 +92640,7 @@ var css8, Reddit;
 var init_reddit_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/share/reddit.svelte.js"() {
     init_shims();
-    init_index_19a73778();
+    init_index_d732e872();
     css8 = {
       code: ".redirect.s-t6VgelH33f8J{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-t6VgelH33f8J{}",
       map: null
@@ -92515,24 +92655,24 @@ var init_reddit_svelte = __esm({
   }
 });
 
-// .svelte-kit/output/server/nodes/6.js
-var __exports7 = {};
-__export(__exports7, {
-  file: () => file8,
-  imports: () => imports7,
-  index: () => index7,
+// .svelte-kit/output/server/nodes/7.js
+var __exports8 = {};
+__export(__exports8, {
+  file: () => file9,
+  imports: () => imports8,
+  index: () => index8,
   module: () => reddit_svelte_exports,
-  stylesheets: () => stylesheets7
+  stylesheets: () => stylesheets8
 });
-var index7, file8, imports7, stylesheets7;
-var init__7 = __esm({
-  ".svelte-kit/output/server/nodes/6.js"() {
+var index8, file9, imports8, stylesheets8;
+var init__8 = __esm({
+  ".svelte-kit/output/server/nodes/7.js"() {
     init_shims();
     init_reddit_svelte();
-    index7 = 6;
-    file8 = "_app/immutable/pages/share/reddit.svelte-151f35b8.js";
-    imports7 = ["_app/immutable/pages/share/reddit.svelte-151f35b8.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/store-0aecff84.js", "_app/immutable/chunks/index-09267728.js"];
-    stylesheets7 = ["_app/immutable/assets/reddit-07daef39.css"];
+    index8 = 7;
+    file9 = "_app/immutable/pages/share/reddit.svelte-d127924c.js";
+    imports8 = ["_app/immutable/pages/share/reddit.svelte-d127924c.js", "_app/immutable/chunks/index-73a75506.js", "_app/immutable/chunks/store-50aefbd8.js", "_app/immutable/chunks/index-4c7ad0d2.js"];
+    stylesheets8 = ["_app/immutable/assets/reddit-07daef39.css"];
   }
 });
 
@@ -92545,7 +92685,7 @@ var css9, Twitter;
 var init_twitter_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/share/twitter.svelte.js"() {
     init_shims();
-    init_index_19a73778();
+    init_index_d732e872();
     css9 = {
       code: ".redirect.s-1wq-66mPpMC5{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-1wq-66mPpMC5{}",
       map: null
@@ -92560,24 +92700,24 @@ var init_twitter_svelte = __esm({
   }
 });
 
-// .svelte-kit/output/server/nodes/7.js
-var __exports8 = {};
-__export(__exports8, {
-  file: () => file9,
-  imports: () => imports8,
-  index: () => index8,
+// .svelte-kit/output/server/nodes/8.js
+var __exports9 = {};
+__export(__exports9, {
+  file: () => file10,
+  imports: () => imports9,
+  index: () => index9,
   module: () => twitter_svelte_exports,
-  stylesheets: () => stylesheets8
+  stylesheets: () => stylesheets9
 });
-var index8, file9, imports8, stylesheets8;
-var init__8 = __esm({
-  ".svelte-kit/output/server/nodes/7.js"() {
+var index9, file10, imports9, stylesheets9;
+var init__9 = __esm({
+  ".svelte-kit/output/server/nodes/8.js"() {
     init_shims();
     init_twitter_svelte();
-    index8 = 7;
-    file9 = "_app/immutable/pages/share/twitter.svelte-3c881253.js";
-    imports8 = ["_app/immutable/pages/share/twitter.svelte-3c881253.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/store-0aecff84.js", "_app/immutable/chunks/index-09267728.js"];
-    stylesheets8 = ["_app/immutable/assets/twitter-dafdce4f.css"];
+    index9 = 8;
+    file10 = "_app/immutable/pages/share/twitter.svelte-a4519163.js";
+    imports9 = ["_app/immutable/pages/share/twitter.svelte-a4519163.js", "_app/immutable/chunks/index-73a75506.js", "_app/immutable/chunks/store-50aefbd8.js", "_app/immutable/chunks/index-4c7ad0d2.js"];
+    stylesheets9 = ["_app/immutable/assets/twitter-dafdce4f.css"];
   }
 });
 
@@ -92590,7 +92730,7 @@ var css10, Whatsapp;
 var init_whatsapp_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/share/whatsapp.svelte.js"() {
     init_shims();
-    init_index_19a73778();
+    init_index_d732e872();
     css10 = {
       code: ".redirect.s-mE7g6kYsnsCp{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-mE7g6kYsnsCp{}",
       map: null
@@ -92605,24 +92745,24 @@ var init_whatsapp_svelte = __esm({
   }
 });
 
-// .svelte-kit/output/server/nodes/8.js
-var __exports9 = {};
-__export(__exports9, {
-  file: () => file10,
-  imports: () => imports9,
-  index: () => index9,
+// .svelte-kit/output/server/nodes/9.js
+var __exports10 = {};
+__export(__exports10, {
+  file: () => file11,
+  imports: () => imports10,
+  index: () => index10,
   module: () => whatsapp_svelte_exports,
-  stylesheets: () => stylesheets9
+  stylesheets: () => stylesheets10
 });
-var index9, file10, imports9, stylesheets9;
-var init__9 = __esm({
-  ".svelte-kit/output/server/nodes/8.js"() {
+var index10, file11, imports10, stylesheets10;
+var init__10 = __esm({
+  ".svelte-kit/output/server/nodes/9.js"() {
     init_shims();
     init_whatsapp_svelte();
-    index9 = 8;
-    file10 = "_app/immutable/pages/share/whatsapp.svelte-ccffb030.js";
-    imports9 = ["_app/immutable/pages/share/whatsapp.svelte-ccffb030.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/store-0aecff84.js", "_app/immutable/chunks/index-09267728.js"];
-    stylesheets9 = ["_app/immutable/assets/whatsapp-15a937dd.css"];
+    index10 = 9;
+    file11 = "_app/immutable/pages/share/whatsapp.svelte-4f8fc71f.js";
+    imports10 = ["_app/immutable/pages/share/whatsapp.svelte-4f8fc71f.js", "_app/immutable/chunks/index-73a75506.js", "_app/immutable/chunks/store-50aefbd8.js", "_app/immutable/chunks/index-4c7ad0d2.js"];
+    stylesheets10 = ["_app/immutable/assets/whatsapp-15a937dd.css"];
   }
 });
 
@@ -92636,10 +92776,12 @@ var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
     init_column_config_ed3a8d78();
-    init_database_88f2b9f9();
+    init_database_298aef9a();
     init_dist();
     init_dist2();
     init_dist3();
+    init_store_21b4cd20();
+    init_index_d732e872();
     GET = async ({ url }) => {
       let postData;
       if (url.search.includes("=")) {
@@ -92778,7 +92920,7 @@ init_shims();
 
 // .svelte-kit/output/server/index.js
 init_shims();
-init_index_19a73778();
+init_index_d732e872();
 function afterUpdate() {
 }
 var Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -93690,7 +93832,7 @@ async function render_response({
     }
   }
   const { entry } = options.manifest._;
-  const stylesheets10 = new Set(entry.stylesheets);
+  const stylesheets11 = new Set(entry.stylesheets);
   const modulepreloads = new Set(entry.imports);
   const link_header_preloads = /* @__PURE__ */ new Set();
   const inline_styles = /* @__PURE__ */ new Map();
@@ -93713,7 +93855,7 @@ async function render_response({
         node.imports.forEach((url) => modulepreloads.add(url));
       }
       if (node.stylesheets) {
-        node.stylesheets.forEach((url) => stylesheets10.add(url));
+        node.stylesheets.forEach((url) => stylesheets11.add(url));
       }
       if (node.inline_styles) {
         Object.entries(await node.inline_styles()).forEach(([k, v3]) => inline_styles.set(k, v3));
@@ -93808,7 +93950,7 @@ async function render_response({
     head += `
 	<style${attributes.join("")}>${content}</style>`;
   }
-  for (const dep of stylesheets10) {
+  for (const dep of stylesheets11) {
     const path = options.prefix + dep;
     const attributes = [];
     if (csp.style_needs_nonce) {
@@ -93922,20 +94064,20 @@ function parse$1(str, options) {
   var obj = {};
   var opt = options || {};
   var dec = opt.decode || decode;
-  var index10 = 0;
-  while (index10 < str.length) {
-    var eqIdx = str.indexOf("=", index10);
+  var index11 = 0;
+  while (index11 < str.length) {
+    var eqIdx = str.indexOf("=", index11);
     if (eqIdx === -1) {
       break;
     }
-    var endIdx = str.indexOf(";", index10);
+    var endIdx = str.indexOf(";", index11);
     if (endIdx === -1) {
       endIdx = str.length;
     } else if (endIdx < eqIdx) {
-      index10 = str.lastIndexOf(";", eqIdx - 1) + 1;
+      index11 = str.lastIndexOf(";", eqIdx - 1) + 1;
       continue;
     }
-    var key2 = str.slice(index10, eqIdx).trim();
+    var key2 = str.slice(index11, eqIdx).trim();
     if (void 0 === obj[key2]) {
       var val = str.slice(eqIdx + 1, endIdx).trim();
       if (val.charCodeAt(0) === 34) {
@@ -93943,7 +94085,7 @@ function parse$1(str, options) {
       }
       obj[key2] = tryDecode(val, dec);
     }
-    index10 = endIdx + 1;
+    index11 = endIdx + 1;
   }
   return obj;
 }
@@ -94355,15 +94497,15 @@ async function load_node({
         const is_asset = options.manifest.assets.has(filename);
         const is_asset_html = options.manifest.assets.has(filename_html);
         if (is_asset || is_asset_html) {
-          const file11 = is_asset ? filename : filename_html;
+          const file12 = is_asset ? filename : filename_html;
           if (options.read) {
             const type = is_asset ? options.manifest.mimeTypes[filename.slice(filename.lastIndexOf("."))] : "text/html";
-            response2 = new Response(options.read(file11), {
+            response2 = new Response(options.read(file12), {
               headers: type ? { "content-type": type } : {}
             });
           } else {
             response2 = await fetch(
-              `${event.url.origin}/${file11}`,
+              `${event.url.origin}/${file12}`,
               opts
             );
           }
@@ -94788,8 +94930,8 @@ async function respond$1(opts) {
         if (error2) {
           while (i2--) {
             if (route.b[i2]) {
-              const index10 = route.b[i2];
-              const error_node = await options.manifest._.nodes[index10]();
+              const index11 = route.b[i2];
+              const error_node = await options.manifest._.nodes[index11]();
               let node_loaded;
               let j2 = i2;
               while (!(node_loaded = branch[j2])) {
@@ -95290,7 +95432,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-58640ffa.js", "imports": ["_app/immutable/start-58640ffa.js", "_app/immutable/chunks/index-98578d05.js", "_app/immutable/chunks/index-09267728.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-d6d925b6.js", "imports": ["_app/immutable/start-d6d925b6.js", "_app/immutable/chunks/index-73a75506.js", "_app/immutable/chunks/index-4c7ad0d2.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
@@ -95300,7 +95442,8 @@ var manifest = {
       () => Promise.resolve().then(() => (init__6(), __exports6)),
       () => Promise.resolve().then(() => (init__7(), __exports7)),
       () => Promise.resolve().then(() => (init__8(), __exports8)),
-      () => Promise.resolve().then(() => (init__9(), __exports9))
+      () => Promise.resolve().then(() => (init__9(), __exports9)),
+      () => Promise.resolve().then(() => (init__10(), __exports10))
     ],
     routes: [
       {
@@ -95338,13 +95481,24 @@ var manifest = {
       },
       {
         type: "page",
+        id: "admin/users",
+        pattern: /^\/admin\/users\/?$/,
+        names: [],
+        types: [],
+        path: "/admin/users",
+        shadow: null,
+        a: [0, 5],
+        b: [1]
+      },
+      {
+        type: "page",
         id: "share/facebook",
         pattern: /^\/share\/facebook\/?$/,
         names: [],
         types: [],
         path: "/share/facebook",
         shadow: () => Promise.resolve().then(() => (init_facebook(), facebook_exports)),
-        a: [0, 5],
+        a: [0, 6],
         b: [1]
       },
       {
@@ -95355,7 +95509,7 @@ var manifest = {
         types: [],
         path: "/share/reddit",
         shadow: () => Promise.resolve().then(() => (init_reddit(), reddit_exports)),
-        a: [0, 6],
+        a: [0, 7],
         b: [1]
       },
       {
@@ -95366,7 +95520,7 @@ var manifest = {
         types: [],
         path: "/share/twitter",
         shadow: () => Promise.resolve().then(() => (init_twitter(), twitter_exports)),
-        a: [0, 7],
+        a: [0, 8],
         b: [1]
       },
       {
@@ -95377,7 +95531,7 @@ var manifest = {
         types: [],
         path: "/share/whatsapp",
         shadow: () => Promise.resolve().then(() => (init_whatsapp(), whatsapp_exports)),
-        a: [0, 8],
+        a: [0, 9],
         b: [1]
       }
     ],

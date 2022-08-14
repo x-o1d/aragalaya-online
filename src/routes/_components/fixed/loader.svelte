@@ -57,14 +57,18 @@
                 // if the window 'load' event has been fired
                 // this is ignored in the share redirect pages, onload sometimes
                 // doesn't trigger until the redirected page is loaded.
-                ($_redirected || $_appContentReady) &&
+                ((executionCount > 9) || $_redirected || $_appContentReady) &&
                 // check if the auth state has been checked
                 // auth might be in a state where an auth change is not triggered
                 // stop checking for it after 4 seconds
                 ((executionCount > 9) || $_authStateChecked)
             ) {
-                console.log(checkLoadedInterval);
-                console.log('loading complete');
+                if(executionCount > 9 && !_appContentReady) {
+                    console.log('ignoring window onload()..');
+                }
+                if(executionCount > 9 && !_authStateChecked) {
+                    console.log('ignoring auth state change check..');
+                }
                 loadingComplete = true;
                 clearInterval(checkLoadedInterval);
                 
@@ -78,12 +82,6 @@
                 }
                 if(!$_themeColorsReady || !$_themeSizesReady || !$_scaledPixelsReady) {
                     console.log('css variables pending..');
-                }
-                if(!$_appContentReady && !$_redirected) {
-                    console.log('window onload() pending..');
-                }
-                if(!$_authStateChecked) {
-                    console.log('auth state not changed after 4 seconds, ignoring..');
                 }
             }
             executionCount++;
