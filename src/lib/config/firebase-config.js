@@ -1,8 +1,12 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// import { env } from '$env/dynamic/private';
+import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
+import { getAuth, connectAuthEmulator } from "firebase/auth";
+import { getFunctions, connectFunctionsEmulator } from "firebase/functions";
+
+
 // SECURITY:
-// this apiKey is now available in the public domain.
+// these apiKey is now available in the public domain.
 // the firebase apiKey does not need to be considered a secret
 // https://firebase.google.com/docs/projects/api-keys#apply-restrictions
 // TODO:
@@ -33,4 +37,9 @@ if(import.meta.env.MODE == 'prod') {
 
 export const app = initializeApp(firebaseConfig);
 
+if(import.meta.env.MODE == 'localhost') {
+    connectFirestoreEmulator(getFirestore(), 'localhost', 8080);
+    connectAuthEmulator(getAuth(app), "http://localhost:9099");
+    connectFunctionsEmulator(getFunctions(app), "localhost", 5001);
+}
 

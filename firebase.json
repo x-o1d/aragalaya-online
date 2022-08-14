@@ -24,7 +24,7 @@
     ]
   },
   "storage": {
-     "rules": "storage.rules"
+    "rules": "storage.rules"
   },
   "emulators": {
     "auth": {
@@ -47,6 +47,9 @@
     },
     "ui": {
       "enabled": true
+    },
+    "eventarc": {
+      "port": 9299
     }
   },
   "remoteconfig": {

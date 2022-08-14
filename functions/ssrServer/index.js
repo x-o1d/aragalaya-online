@@ -13045,7 +13045,7 @@ var init_shims = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/index-d732e872.js
+// .svelte-kit/output/server/_app/immutable/chunks/index-269d0619.js
 function noop2() {
 }
 function assign(tar, src) {
@@ -13191,7 +13191,7 @@ function create_ssr_component(fn) {
       return {
         html,
         css: {
-          code: Array.from(result.css).map((css11) => css11.code).join("\n"),
+          code: Array.from(result.css).map((css13) => css13.code).join("\n"),
           map: null
         },
         head: result.title + result.head
@@ -13207,8 +13207,8 @@ function add_attribute(name7, value, boolean) {
   return ` ${name7}${assignment}`;
 }
 var identity, is_client, now, raf, tasks, current_component, ATTR_REGEX, CONTENT_REGEX, missing_component, on_destroy;
-var init_index_d732e872 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/index-d732e872.js"() {
+var init_index_269d0619 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/index-269d0619.js"() {
     init_shims();
     identity = (x2) => x2;
     is_client = typeof window !== "undefined";
@@ -13232,7 +13232,7 @@ var init_hooks_bced8853 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/store-21b4cd20.js
+// .svelte-kit/output/server/_app/immutable/chunks/store-f57b9afe.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -13274,11 +13274,343 @@ function writable2(value, start2 = noop2) {
   }
   return { set, update, subscribe: subscribe2 };
 }
-var subscriber_queue2, _lang, _currentTheme, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _authStateChecked, _redirected, _signUpInProgress, _shareLink, _URL;
-var init_store_21b4cd20 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/store-21b4cd20.js"() {
+var COLUMNS, COLUMN_COUNT, subscriber_queue2, _lang, _currentTheme, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _authStateChecked, _redirected, _signUpInProgress, _shareLink, _URL;
+var init_store_f57b9afe = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/store-f57b9afe.js"() {
     init_shims();
-    init_index_d732e872();
+    init_index_269d0619();
+    COLUMNS = [
+      {
+        title: [
+          "\u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+          "News",
+          "\u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
+        ],
+        icon: "fa-solid fa-radio",
+        height: "200px",
+        type: "news",
+        verified: true,
+        tags: [
+          "mainstream",
+          "aragala",
+          "economy",
+          "political",
+          "legal",
+          "international",
+          "energy",
+          "downloads"
+        ],
+        data: {
+          title: {
+            type: "text",
+            maxlength: 100,
+            placeholder: [
+              "\u0DC1\u0DD3\u0DBB\u0DCA\u0DC2\u0DBA",
+              "title",
+              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
+            ],
+            required: true,
+            translate: true
+          },
+          description: {
+            type: "html",
+            maxlength: 100,
+            placeholder: [
+              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A \u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8 ",
+              "details",
+              "\u0BB5\u0BBF\u0BB5\u0BB0\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+            ],
+            required: true,
+            translate: true
+          }
+        },
+        dataFormTitle: [
+          "\u0DB4\u0DD4\u0DC0\u0DAD\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "Create a news article",
+          "\u0B92\u0BB0\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF \u0B95\u0B9F\u0BCD\u0B9F\u0BC1\u0BB0\u0BC8\u0BAF\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
+        ],
+        submitButton: [
+          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "create",
+          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
+        ],
+        cancelButton: [
+          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "cancel",
+          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
+        ]
+      },
+      {
+        title: [
+          "\u0DC3\u0DCF\u0D9A\u0DA0\u0DCA\u0DA1\u0DCF",
+          "Discussions",
+          "\u0BB5\u0BBF\u0BB5\u0BBE\u0BA4\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+        ],
+        icon: "fa-solid fa-comments",
+        height: "310px",
+        type: "video",
+        verified: true,
+        tags: [
+          "economy",
+          "political",
+          "legal",
+          "international",
+          "energy",
+          "philosophy",
+          "english",
+          "discussion"
+        ],
+        data: {
+          videoId: {
+            type: "text",
+            maxlength: 100,
+            placeholder: [
+              "https://www.youtube.com/watch?v=ueYFyWW8e5I",
+              "https://www.youtube.com/watch?v=ueYFyWW8e5I",
+              "https://www.youtube.com/watch?v=ueYFyWW8e5I"
+            ],
+            required: true,
+            validate: (val) => {
+              var videoIdRegexp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
+              let result = videoIdRegexp.exec(val);
+              return !result[1];
+            },
+            process: (val) => {
+              var videoIdRegexp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
+              let result = videoIdRegexp.exec(val);
+              return result[1];
+            }
+          },
+          title: {
+            type: "text",
+            maxlength: 300,
+            placeholder: [
+              "\u0DB8\u0DCF\u0DAD\u0DD8\u0D9A\u0DCF\u0DC0",
+              "title",
+              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
+            ],
+            required: true,
+            translate: true
+          },
+          shortDescription: {
+            type: "text",
+            maxlength: 300,
+            placeholder: [
+              "\u0D9A\u0DD9\u0DA7\u0DD2 \u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DBA",
+              "short description",
+              "\u0B95\u0BC1\u0BB1\u0BC1\u0B95\u0BBF\u0BAF \u0BB5\u0BBF\u0BB3\u0B95\u0BCD\u0B95\u0BAE\u0BCD"
+            ],
+            required: true,
+            translate: true
+          }
+        },
+        dataFormTitle: [
+          "\u0DC0\u0DD3\u0DA9\u0DD2\u0DBA\u0DDD\u0DC0\u0D9A\u0DCA \u0D91\u0D9A\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "Add a video",
+          "\u0B92\u0BB0\u0BC1 \u0BB5\u0BC0\u0B9F\u0BBF\u0BAF\u0BCB\u0BB5\u0BC8\u0B9A\u0BCD \u0B9A\u0BC7\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
+        ],
+        submitButton: [
+          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "submit",
+          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
+        ],
+        cancelButton: [
+          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "cancel",
+          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
+        ]
+      },
+      {
+        title: [
+          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0DCA \u0DB4\u0DD4\u0DC0\u0DBB\u0DD4\u0DC0",
+          "Bulletin board",
+          "\u0B85\u0BB1\u0BBF\u0BB5\u0BBF\u0BAA\u0BCD\u0BAA\u0BC1 \u0BAA\u0BB2\u0B95\u0BC8"
+        ],
+        icon: "fa-solid fa-calendar-days",
+        height: "300px",
+        type: "bulletin",
+        verified: true,
+        tags: [
+          "mainstream",
+          "aragala",
+          "economy",
+          "political",
+          "legal",
+          "international",
+          "energy",
+          "downloads"
+        ],
+        data: {
+          title: {
+            type: "text",
+            maxlength: 100,
+            placeholder: [
+              "\u0DC1\u0DD3\u0DBB\u0DCA\u0DC2\u0DBA",
+              "title",
+              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
+            ],
+            required: true,
+            translate: true
+          },
+          description: {
+            type: "html",
+            maxlength: 100,
+            placeholder: [
+              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A \u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8 ",
+              "details",
+              "\u0BB5\u0BBF\u0BB5\u0BB0\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+            ],
+            required: true,
+            translate: true
+          }
+        },
+        dataFormTitle: [
+          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "Create a bulletin",
+          "\u0B92\u0BB0\u0BC1 \u0BAA\u0BC1\u0BB2\u0BCD\u0BB2\u0B9F\u0BCD\u0B9F\u0BBF\u0BA9\u0BCD \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
+        ],
+        submitButton: [
+          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "create",
+          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
+        ],
+        cancelButton: [
+          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "cancel",
+          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
+        ]
+      },
+      {
+        title: [
+          "\u0DB8\u0DC4\u0DA2\u0DB1 \u0D85\u0DAF\u0DC4\u0DC3\u0DCA \u0DC3\u0DB3\u0DC4\u0DCF \u0DBA\u0DDD\u0DA2\u0DB1\u0DCF",
+          "Proposals for public comments",
+          "\u0BAA\u0BCA\u0BA4\u0BC1 \u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BB3\u0BC1\u0B95\u0BCD\u0B95\u0BBE\u0BA9 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAE\u0BCA\u0BB4\u0BBF\u0BB5\u0BC1\u0B95\u0BB3\u0BCD"
+        ],
+        icon: "fa-solid fa-file-lines",
+        height: "400px",
+        type: "proposal",
+        verified: true,
+        tags: [
+          "mainstream",
+          "aragala",
+          "economy",
+          "political",
+          "legal",
+          "international",
+          "energy",
+          "downloads"
+        ],
+        data: {
+          organization: {
+            type: "text",
+            maxlength: 100,
+            placeholder: [
+              "\u0D86\u0DBA\u0DAD\u0DB1\u0DBA",
+              "organization",
+              "\u0B85\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
+            ],
+            required: true,
+            translate: true
+          },
+          motive: {
+            type: "text",
+            maxlength: 300,
+            placeholder: [
+              "\u0D86\u0DBA\u0DAD\u0DB1\u0DBA\u0DDA \u0D85\u0DBB\u0DB8\u0DD4\u0DAB",
+              "organization's motive",
+              "\u0B85\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BBF\u0BA9\u0BCD \u0BA8\u0BCB\u0B95\u0BCD\u0B95\u0BAE\u0BCD"
+            ],
+            required: true,
+            translate: true
+          },
+          proposal: {
+            type: "html",
+            maxlength: 1e3,
+            placeholder: [
+              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A\u0DC0 \u0DBA\u0DDD\u0DA2\u0DB1\u0DCF\u0DC0",
+              "proposal in detail",
+              "\u0BB5\u0BBF\u0BB0\u0BBF\u0BB5\u0BBE\u0BA9 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAE\u0BCA\u0BB4\u0BBF\u0BB5\u0BC1"
+            ],
+            required: true,
+            translate: true
+          }
+        },
+        dataFormTitle: [
+          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "Create a bulletin",
+          "\u0B92\u0BB0\u0BC1 \u0BAA\u0BC1\u0BB2\u0BCD\u0BB2\u0B9F\u0BCD\u0B9F\u0BBF\u0BA9\u0BCD \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
+        ],
+        submitButton: [
+          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "create",
+          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
+        ],
+        cancelButton: [
+          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
+          "cancel",
+          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
+        ]
+      },
+      {
+        title: [
+          "\u0DB8\u0DAD \u0DC0\u0DD2\u0DB8\u0DC3\u0DD3\u0DB8\u0DCA",
+          "Opinion polls",
+          "\u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BCD \u0B95\u0BA3\u0BBF\u0BAA\u0BCD\u0BAA\u0BC1\u0B95\u0BB3\u0BCD"
+        ],
+        icon: "fa-solid fa-check-to-slot",
+        height: "500px",
+        type: "static",
+        static: [{
+          type: "wip",
+          service: [
+            `\u0DA1\u0DB1\u0DCA\u0DAF \u0DC0\u0DD2\u0DB8\u0DC3\u0DD3\u0DB8\u0DCA \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0D95\u0DB1\u0DD1\u0DB8 \u0D9A\u0DD9\u0DB1\u0DD9\u0D9A\u0DD4\u0DA7 \u0DB4\u0DDC\u0DAF\u0DD4 \u0DB8\u0DAD \u0DC0\u0DD2\u0DB8\u0DC3\u0DD4\u0DB8\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC3\u0DC4 \u0DB8\u0DD2\u0DB1\u0DD2\u0DC3\u0DD4\u0DB1\u0DCA\u0DA7 \u0D92 \u0DC3\u0DB3\u0DC4\u0DCF \u0DA1\u0DB1\u0DCA\u0DAF\u0DBA \u0DB4\u0DCA\u200D\u0DBB\u0D9A\u0DCF\u0DC1 \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DBD\u0DB6\u0DCF \u0DAF\u0DDA. \u0D85\u0DBB\u0D9C\u0DBD\u0DBA\u0DDA \u0DAF\u0DD2\u0DC1\u0DCF\u0DB1\u0DAD\u0DD2\u0DBA \u0D9C\u0DD0\u0DB1 \u0DB4\u0DCA\u200D\u0DBB\u0DA2\u0DCF\u0DAD\u0DB1\u0DCA\u0DAD\u0DCA\u200D\u0DBB\u0DC0\u0DCF\u0DAF\u0DD3\u0DC0 \u0DAD\u0DD3\u0DBB\u0DAB \u0D9C\u0DD0\u0DB1\u0DD3\u0DB8\u0DA7 \u0DB8\u0DD9\u0DBA \u0DBA\u0DDC\u0DAF\u0DCF\u0D9C\u0DAD \u0DC4\u0DD0\u0D9A.`,
+            `polls will allow anyone to create a public poll and allow anyone to create and vote for suggestions. this can be used to make democratic decisions about the direction of aragalaya.`,
+            `\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC6\u0B9F\u0BC1\u0BAA\u0BCD\u0BAA\u0BC1\u0B95\u0BB3\u0BCD \u0BAF\u0BBE\u0BB0\u0BC8\u0BAF\u0BC1\u0BAE\u0BCD \u0BAA\u0BCA\u0BA4\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC6\u0B9F\u0BC1\u0BAA\u0BCD\u0BAA\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD \u0BAE\u0BB1\u0BCD\u0BB1\u0BC1\u0BAE\u0BCD \u0BAE\u0B95\u0BCD\u0B95\u0BB3\u0BCD \u0B85\u0BA4\u0BB1\u0BCD\u0B95\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB3\u0BBF\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE\u0BB5\u0BBF\u0BA9\u0BCD \u0BA4\u0BBF\u0B9A\u0BC8\u0BAF\u0BC8\u0BAA\u0BCD \u0BAA\u0BB1\u0BCD\u0BB1\u0BBF \u0B9C\u0BA9\u0BA8\u0BBE\u0BAF\u0B95 \u0BAE\u0BC1\u0B9F\u0BBF\u0BB5\u0BC1\u0B95\u0BB3\u0BC8 \u0B8E\u0B9F\u0BC1\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4\u0BB2\u0BBE\u0BAE\u0BCD.`
+          ],
+          releaseDate: "29/08/2022"
+        }]
+      },
+      {
+        title: [
+          "\u0DC3\u0DCF\u0DB8\u0DD4\u0DC4\u0DD2\u0D9A \u0DBD\u0DDA\u0D9B\u0DB1",
+          "Collaborative documents",
+          "\u0B95\u0BC2\u0B9F\u0BCD\u0B9F\u0BC1 \u0B86\u0BB5\u0BA3\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+        ],
+        icon: "fa-solid fa-file-signature",
+        height: "500px",
+        type: "static",
+        static: [{
+          type: "wip",
+          service: [
+            `\u0DB8\u0DD9\u0DB8 \u0DC3\u0DDA\u0DC0\u0DCF\u0DC0 \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0DC3\u0DCF\u0DB8\u0DD4\u0DC4\u0DD2\u0D9A\u0DC0 \u0DBD\u0DDA\u0D9B\u0DB1 \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DBD \u0DC4\u0DD0\u0D9A\u0DD2 \u0D85\u0DAD\u0DBB, \u0D91\u0DC4\u0DD2\u0DAF\u0DD3 \u0D87\u0DAD\u0DD2\u0DC0\u0DB1 \u0D9C\u0DD0\u0DA7\u0DD4\u0DB8\u0DCA \u0DA0\u0DB1\u0DCA\u0DAF\u0DBA\u0D9A\u0DCA \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0DC0\u0DD2\u0DC3\u0DB3\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DC3\u0DBD\u0DC3\u0DBA\u0DD2. \u0DB8\u0DD9\u0DBA \u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DCA\u200D\u0DBB\u0DA5\u0DB4\u0DCA\u0DAD\u0DD2\u0DBA\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC4\u0DCF \u0DB1\u0DC0 \u0DC0\u0DCA\u200D\u0DBA\u0DC0\u0DC3\u0DCA\u0DAE\u0DCF\u0DC0\u0D9A\u0DCA \u0DB4\u0DC0\u0DCF \u0DB4\u0DCA\u200D\u0DBB\u0DA2\u0DCF\u0DAD\u0DB1\u0DCA\u0DAD\u0DCA\u200D\u0DBB\u0DC0\u0DCF\u0DAF\u0DD2\u0DC0 \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DB7\u0DCF\u0DC0\u0DD2\u0DAD\u0DCF \u0D9A\u0DBD \u0DC4\u0DD0\u0D9A.`,
+            `this service will allow to create collaborative documents with conflicts resolved through voting. this can be used to create an aragala manifesto, or even a new constitution.`,
+            `\u0B87\u0BA8\u0BCD\u0BA4\u0B9A\u0BCD \u0B9A\u0BC7\u0BB5\u0BC8\u0BAF\u0BBE\u0BA9\u0BA4\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC1\u0BAA\u0BCD\u0BAA\u0BA4\u0BBF\u0BB5\u0BC1 \u0BAE\u0BC2\u0BB2\u0BAE\u0BCD \u0BA4\u0BC0\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BC1\u0BAE\u0BCD \u0BAE\u0BC1\u0BB0\u0BA3\u0BCD\u0BAA\u0BBE\u0B9F\u0BC1\u0B95\u0BB3\u0BC1\u0B9F\u0BA9\u0BCD \u0B95\u0BC2\u0B9F\u0BCD\u0B9F\u0BC1 \u0B86\u0BB5\u0BA3\u0B99\u0BCD\u0B95\u0BB3\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0B85\u0BB0\u0B95\u0BB2 \u0BAA\u0BBF\u0BB0\u0B95\u0B9F\u0BA9\u0BA4\u0BCD\u0BA4\u0BC8 \u0B85\u0BB2\u0BCD\u0BB2\u0BA4\u0BC1 \u0BAA\u0BC1\u0BA4\u0BBF\u0BAF \u0B85\u0BB0\u0B9A\u0BBF\u0BAF\u0BB2\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4\u0BB2\u0BBE\u0BAE\u0BCD.`
+          ],
+          releaseDate: "29/09/2022"
+        }]
+      },
+      {
+        title: [
+          "\u0DC0\u0DD2\u0DC0\u0DD4\u0DBB\u0DCA\u0DAD \u0D85\u0DBA\u0DC0\u0DD0\u0DBA",
+          "Open budgets",
+          "\u0BA4\u0BBF\u0BB1\u0BA8\u0BCD\u0BA4 \u0BAA\u0B9F\u0BCD\u0B9C\u0BC6\u0B9F\u0BCD"
+        ],
+        icon: "fa-solid fa-coins",
+        height: "410px",
+        type: "budget",
+        type: "static",
+        static: [{
+          type: "wip",
+          service: [
+            `\u0DC0\u0DD2\u0DB1\u0DD2\u0DC0\u0DD2\u0DAF \u0DB4\u0DD9\u0DB1\u0DD9\u0DB1 \u0D85\u0DBA\u0DC0\u0DD0\u0DBA \u0DB8\u0D9F\u0DD2\u0DB1\u0DCA \u0D95\u0DB1\u0DD1\u0DB8 \u0D85\u0DBB\u0D9C\u0DBD\u0DBA \u0DC0\u0DCA\u200D\u0DBA\u0DCF\u0DB4\u0DD8\u0DAD\u0DD2\u0DBA\u0D9A\u0DCA \u0DC3\u0DB3\u0DC4\u0DCF \u0DC0\u0DD2\u0DC0\u0DD8\u0DAD \u0D85\u0DBA\u0DC0\u0DD0\u0DBA\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DC3\u0DD0\u0DBD\u0DC3\u0DDA. \u0DB4\u0DC5\u0DB8\u0DD4 \u0DB4\u0DD2\u0DBA\u0DC0\u0DBB \u0DBD\u0DD9\u0DC3 \u0D85\u0DB4\u0DD2 aragalaya.online \u0DC0\u0DCA\u200D\u0DBA\u0DCF\u0DB4\u0DD8\u0DAD\u0DD2\u0DBA \u0DC3\u0DB3\u0DC4\u0DCF \u0D85\u0DBA\u0DC0\u0DD0\u0DBA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8 \u0DC3\u0DB3\u0DC4\u0DCF \u0DB8\u0DD9\u0DBA \u0DB7\u0DCF\u0DC0\u0DD2\u0DAD\u0DCF \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC3\u0DD0\u0DBD\u0DC3\u0DD4\u0DB8\u0DCA \u0D9A\u0DBB\u0DB8\u0DD4.`,
+            `transparent budgets will allow to create open budgets for any of the aragalaya projects. as first step we're planning to use this for creating the budget for the aragalaya.online project.`,
+            `\u0BB5\u0BC6\u0BB3\u0BBF\u0BAA\u0BCD\u0BAA\u0B9F\u0BC8\u0BAF\u0BBE\u0BA9 \u0BB5\u0BB0\u0BB5\u0BC1\u0B9A\u0BC6\u0BB2\u0BB5\u0BC1\u0BA4\u0BCD\u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0B8E\u0BA8\u0BCD\u0BA4\u0BB5\u0BCA\u0BB0\u0BC1 \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BC1\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD \u0BA4\u0BBF\u0BB1\u0BA8\u0BCD\u0BA4 \u0BB5\u0BB0\u0BB5\u0BC1 \u0B9A\u0BC6\u0BB2\u0BB5\u0BC1\u0BA4\u0BCD \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0BAE\u0BC1\u0BA4\u0BB2\u0BCD \u0B95\u0B9F\u0BCD\u0B9F\u0BAE\u0BBE\u0B95 \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE.\u0B86\u0BA9\u0BCD\u0BB2\u0BC8\u0BA9\u0BCD \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0BA4\u0BCD\u0BA4\u0BBF\u0BB1\u0BCD\u0B95\u0BBE\u0BA9 \u0BAA\u0B9F\u0BCD\u0B9C\u0BC6\u0B9F\u0BCD\u0B9F\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4 \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0BAE\u0BBF\u0B9F\u0BCD\u0B9F\u0BC1\u0BB3\u0BCD\u0BB3\u0BCB\u0BAE\u0BCD.`
+          ],
+          releaseDate: "29/09/2022"
+        }]
+      }
+    ];
+    COLUMN_COUNT = COLUMNS.length;
     subscriber_queue2 = [];
     _lang = writable2(0);
     _currentTheme = writable2(void 0);
@@ -13289,8 +13621,8 @@ var init_store_21b4cd20 = __esm({
     _authStateChecked = writable2(false);
     _redirected = writable2(false);
     _signUpInProgress = writable2(false);
-    _shareLink = "https://aragalaya.online/?post=";
-    _URL = "https://aragalaya.online";
+    _shareLink = "https://aragalaya-online.web.app/?post=";
+    _URL = "https://aragalaya-online.web.app";
   }
 });
 
@@ -55273,6 +55605,395 @@ var init_dist3 = __esm({
   }
 });
 
+// node_modules/@firebase/functions/dist/esm-node/index.node.esm.js
+function mapValues(o, f5) {
+  const result = {};
+  for (const key2 in o) {
+    if (o.hasOwnProperty(key2)) {
+      result[key2] = f5(o[key2]);
+    }
+  }
+  return result;
+}
+function encode3(data) {
+  if (data == null) {
+    return null;
+  }
+  if (data instanceof Number) {
+    data = data.valueOf();
+  }
+  if (typeof data === "number" && isFinite(data)) {
+    return data;
+  }
+  if (data === true || data === false) {
+    return data;
+  }
+  if (Object.prototype.toString.call(data) === "[object String]") {
+    return data;
+  }
+  if (data instanceof Date) {
+    return data.toISOString();
+  }
+  if (Array.isArray(data)) {
+    return data.map((x2) => encode3(x2));
+  }
+  if (typeof data === "function" || typeof data === "object") {
+    return mapValues(data, (x2) => encode3(x2));
+  }
+  throw new Error("Data cannot be encoded in JSON: " + data);
+}
+function decode2(json) {
+  if (json == null) {
+    return json;
+  }
+  if (json["@type"]) {
+    switch (json["@type"]) {
+      case LONG_TYPE:
+      case UNSIGNED_LONG_TYPE: {
+        const value = Number(json["value"]);
+        if (isNaN(value)) {
+          throw new Error("Data cannot be decoded from JSON: " + json);
+        }
+        return value;
+      }
+      default: {
+        throw new Error("Data cannot be decoded from JSON: " + json);
+      }
+    }
+  }
+  if (Array.isArray(json)) {
+    return json.map((x2) => decode2(x2));
+  }
+  if (typeof json === "function" || typeof json === "object") {
+    return mapValues(json, (x2) => decode2(x2));
+  }
+  return json;
+}
+function codeForHTTPStatus(status) {
+  if (status >= 200 && status < 300) {
+    return "ok";
+  }
+  switch (status) {
+    case 0:
+      return "internal";
+    case 400:
+      return "invalid-argument";
+    case 401:
+      return "unauthenticated";
+    case 403:
+      return "permission-denied";
+    case 404:
+      return "not-found";
+    case 409:
+      return "aborted";
+    case 429:
+      return "resource-exhausted";
+    case 499:
+      return "cancelled";
+    case 500:
+      return "internal";
+    case 501:
+      return "unimplemented";
+    case 503:
+      return "unavailable";
+    case 504:
+      return "deadline-exceeded";
+  }
+  return "unknown";
+}
+function _errorForResponse(status, bodyJSON) {
+  let code = codeForHTTPStatus(status);
+  let description = code;
+  let details = void 0;
+  try {
+    const errorJSON = bodyJSON && bodyJSON.error;
+    if (errorJSON) {
+      const status2 = errorJSON.status;
+      if (typeof status2 === "string") {
+        if (!errorCodeMap[status2]) {
+          return new FunctionsError("internal", "internal");
+        }
+        code = errorCodeMap[status2];
+        description = status2;
+      }
+      const message = errorJSON.message;
+      if (typeof message === "string") {
+        description = message;
+      }
+      details = errorJSON.details;
+      if (details !== void 0) {
+        details = decode2(details);
+      }
+    }
+  } catch (e2) {
+  }
+  if (code === "ok") {
+    return null;
+  }
+  return new FunctionsError(code, description, details);
+}
+function failAfter(millis) {
+  let timer = null;
+  return {
+    promise: new Promise((_2, reject) => {
+      timer = setTimeout(() => {
+        reject(new FunctionsError("deadline-exceeded", "deadline-exceeded"));
+      }, millis);
+    }),
+    cancel: () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+    }
+  };
+}
+function httpsCallable$1(functionsInstance, name7, options) {
+  return (data) => {
+    return call(functionsInstance, name7, data, options || {});
+  };
+}
+async function postJSON(url, body2, headers2, fetchImpl2) {
+  headers2["Content-Type"] = "application/json";
+  let response2;
+  try {
+    response2 = await fetchImpl2(url, {
+      method: "POST",
+      body: JSON.stringify(body2),
+      headers: headers2
+    });
+  } catch (e2) {
+    return {
+      status: 0,
+      json: null
+    };
+  }
+  let json = null;
+  try {
+    json = await response2.json();
+  } catch (e2) {
+  }
+  return {
+    status: response2.status,
+    json
+  };
+}
+function call(functionsInstance, name7, data, options) {
+  const url = functionsInstance._url(name7);
+  return callAtURL(functionsInstance, url, data, options);
+}
+async function callAtURL(functionsInstance, url, data, options) {
+  data = encode3(data);
+  const body2 = { data };
+  const headers2 = {};
+  const context = await functionsInstance.contextProvider.getContext();
+  if (context.authToken) {
+    headers2["Authorization"] = "Bearer " + context.authToken;
+  }
+  if (context.messagingToken) {
+    headers2["Firebase-Instance-ID-Token"] = context.messagingToken;
+  }
+  if (context.appCheckToken !== null) {
+    headers2["X-Firebase-AppCheck"] = context.appCheckToken;
+  }
+  const timeout = options.timeout || 7e4;
+  const failAfterHandle = failAfter(timeout);
+  const response2 = await Promise.race([
+    postJSON(url, body2, headers2, functionsInstance.fetchImpl),
+    failAfterHandle.promise,
+    functionsInstance.cancelAllRequests
+  ]);
+  failAfterHandle.cancel();
+  if (!response2) {
+    throw new FunctionsError("cancelled", "Firebase Functions instance was deleted.");
+  }
+  const error2 = _errorForResponse(response2.status, response2.json);
+  if (error2) {
+    throw error2;
+  }
+  if (!response2.json) {
+    throw new FunctionsError("internal", "Response is not valid JSON object.");
+  }
+  let responseData = response2.json.data;
+  if (typeof responseData === "undefined") {
+    responseData = response2.json.result;
+  }
+  if (typeof responseData === "undefined") {
+    throw new FunctionsError("internal", "Response is missing data field.");
+  }
+  const decodedData = decode2(responseData);
+  return { data: decodedData };
+}
+function registerFunctions(fetchImpl2, variant) {
+  const factory2 = (container, { instanceIdentifier: regionOrCustomDomain }) => {
+    const app2 = container.getProvider("app").getImmediate();
+    const authProvider = container.getProvider(AUTH_INTERNAL_NAME);
+    const messagingProvider = container.getProvider(MESSAGING_INTERNAL_NAME);
+    const appCheckProvider = container.getProvider(APP_CHECK_INTERNAL_NAME);
+    return new FunctionsService(app2, authProvider, messagingProvider, appCheckProvider, regionOrCustomDomain, fetchImpl2);
+  };
+  _registerComponent(new Component(FUNCTIONS_TYPE, factory2, "PUBLIC").setMultipleInstances(true));
+  registerVersion(name5, version5, variant);
+  registerVersion(name5, version5, "esm2017");
+}
+function getFunctions(app2 = getApp(), regionOrCustomDomain = DEFAULT_REGION) {
+  const functionsProvider = _getProvider(getModularInstance(app2), FUNCTIONS_TYPE);
+  const functionsInstance = functionsProvider.getImmediate({
+    identifier: regionOrCustomDomain
+  });
+  return functionsInstance;
+}
+function httpsCallable(functionsInstance, name7, options) {
+  return httpsCallable$1(getModularInstance(functionsInstance), name7, options);
+}
+var import_node_fetch2, LONG_TYPE, UNSIGNED_LONG_TYPE, FUNCTIONS_TYPE, errorCodeMap, FunctionsError, ContextProvider, DEFAULT_REGION, FunctionsService, name5, version5, AUTH_INTERNAL_NAME, APP_CHECK_INTERNAL_NAME, MESSAGING_INTERNAL_NAME;
+var init_index_node_esm2 = __esm({
+  "node_modules/@firebase/functions/dist/esm-node/index.node.esm.js"() {
+    init_shims();
+    init_index_esm20173();
+    init_index_node_esm();
+    init_index_esm2017();
+    import_node_fetch2 = __toESM(require_lib2(), 1);
+    LONG_TYPE = "type.googleapis.com/google.protobuf.Int64Value";
+    UNSIGNED_LONG_TYPE = "type.googleapis.com/google.protobuf.UInt64Value";
+    FUNCTIONS_TYPE = "functions";
+    errorCodeMap = {
+      OK: "ok",
+      CANCELLED: "cancelled",
+      UNKNOWN: "unknown",
+      INVALID_ARGUMENT: "invalid-argument",
+      DEADLINE_EXCEEDED: "deadline-exceeded",
+      NOT_FOUND: "not-found",
+      ALREADY_EXISTS: "already-exists",
+      PERMISSION_DENIED: "permission-denied",
+      UNAUTHENTICATED: "unauthenticated",
+      RESOURCE_EXHAUSTED: "resource-exhausted",
+      FAILED_PRECONDITION: "failed-precondition",
+      ABORTED: "aborted",
+      OUT_OF_RANGE: "out-of-range",
+      UNIMPLEMENTED: "unimplemented",
+      INTERNAL: "internal",
+      UNAVAILABLE: "unavailable",
+      DATA_LOSS: "data-loss"
+    };
+    FunctionsError = class extends FirebaseError {
+      constructor(code, message, details) {
+        super(`${FUNCTIONS_TYPE}/${code}`, message || "");
+        this.details = details;
+      }
+    };
+    ContextProvider = class {
+      constructor(authProvider, messagingProvider, appCheckProvider) {
+        this.auth = null;
+        this.messaging = null;
+        this.appCheck = null;
+        this.auth = authProvider.getImmediate({ optional: true });
+        this.messaging = messagingProvider.getImmediate({
+          optional: true
+        });
+        if (!this.auth) {
+          authProvider.get().then((auth2) => this.auth = auth2, () => {
+          });
+        }
+        if (!this.messaging) {
+          messagingProvider.get().then((messaging) => this.messaging = messaging, () => {
+          });
+        }
+        if (!this.appCheck) {
+          appCheckProvider.get().then((appCheck) => this.appCheck = appCheck, () => {
+          });
+        }
+      }
+      async getAuthToken() {
+        if (!this.auth) {
+          return void 0;
+        }
+        try {
+          const token = await this.auth.getToken();
+          return token === null || token === void 0 ? void 0 : token.accessToken;
+        } catch (e2) {
+          return void 0;
+        }
+      }
+      async getMessagingToken() {
+        if (!this.messaging || !("Notification" in self) || Notification.permission !== "granted") {
+          return void 0;
+        }
+        try {
+          return await this.messaging.getToken();
+        } catch (e2) {
+          return void 0;
+        }
+      }
+      async getAppCheckToken() {
+        if (this.appCheck) {
+          const result = await this.appCheck.getToken();
+          if (result.error) {
+            return null;
+          }
+          return result.token;
+        }
+        return null;
+      }
+      async getContext() {
+        const authToken = await this.getAuthToken();
+        const messagingToken = await this.getMessagingToken();
+        const appCheckToken = await this.getAppCheckToken();
+        return { authToken, messagingToken, appCheckToken };
+      }
+    };
+    DEFAULT_REGION = "us-central1";
+    FunctionsService = class {
+      constructor(app2, authProvider, messagingProvider, appCheckProvider, regionOrCustomDomain = DEFAULT_REGION, fetchImpl2) {
+        this.app = app2;
+        this.fetchImpl = fetchImpl2;
+        this.emulatorOrigin = null;
+        this.contextProvider = new ContextProvider(authProvider, messagingProvider, appCheckProvider);
+        this.cancelAllRequests = new Promise((resolve2) => {
+          this.deleteService = () => {
+            return Promise.resolve(resolve2());
+          };
+        });
+        try {
+          const url = new URL(regionOrCustomDomain);
+          this.customDomain = url.origin;
+          this.region = DEFAULT_REGION;
+        } catch (e2) {
+          this.customDomain = null;
+          this.region = regionOrCustomDomain;
+        }
+      }
+      _delete() {
+        return this.deleteService();
+      }
+      _url(name7) {
+        const projectId = this.app.options.projectId;
+        if (this.emulatorOrigin !== null) {
+          const origin = this.emulatorOrigin;
+          return `${origin}/${projectId}/${this.region}/${name7}`;
+        }
+        if (this.customDomain !== null) {
+          return `${this.customDomain}/${name7}`;
+        }
+        return `https://${this.region}-${projectId}.cloudfunctions.net/${name7}`;
+      }
+    };
+    name5 = "@firebase/functions";
+    version5 = "0.8.4";
+    AUTH_INTERNAL_NAME = "auth-internal";
+    APP_CHECK_INTERNAL_NAME = "app-check-internal";
+    MESSAGING_INTERNAL_NAME = "messaging-internal";
+    registerFunctions(import_node_fetch2.default, "node");
+  }
+});
+
+// node_modules/firebase/functions/dist/index.mjs
+var init_dist4 = __esm({
+  "node_modules/firebase/functions/dist/index.mjs"() {
+    init_shims();
+    init_index_node_esm2();
+  }
+});
+
 // node_modules/rxjs/dist/cjs/internal/util/isFunction.js
 var require_isFunction = __commonJS({
   "node_modules/rxjs/dist/cjs/internal/util/isFunction.js"(exports2) {
@@ -65085,16 +65806,17 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/database-298aef9a.js
+// .svelte-kit/output/server/_app/immutable/chunks/database-257f4b5e.js
 var import_rxjs, firebaseConfig, app, dev, events, _emitEvent, _eventListener, auth, user, signUpInProgress, language, theme, _userSignedIn, _emailSignup, _emailSignin, _changePassword, _userLogout, db, _createError2, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord;
-var init_database_298aef9a = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/database-298aef9a.js"() {
+var init_database_257f4b5e = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/database-257f4b5e.js"() {
     init_shims();
     init_dist();
     init_dist2();
     init_dist3();
+    init_dist4();
     import_rxjs = __toESM(require_cjs(), 1);
-    init_store_21b4cd20();
+    init_store_f57b9afe();
     firebaseConfig = {
       apiKey: "AIzaSyCFIhFlai5zMvE-9eeSiaL4ZiGiSvpg0yY",
       authDomain: "aragalaya-online.firebaseapp.com",
@@ -65103,16 +65825,6 @@ var init_database_298aef9a = __esm({
       messagingSenderId: "15533282305",
       appId: "1:15533282305:web:a807d2c4f789c046a71c00"
     };
-    {
-      firebaseConfig = {
-        apiKey: "AIzaSyAIFR7IVXYjG_8lyPyfHxsdx_kaRz4z3SM",
-        authDomain: "aragalaya-online-prod.firebaseapp.com",
-        projectId: "aragalaya-online-prod",
-        storageBucket: "aragalaya-online-prod.appspot.com",
-        messagingSenderId: "730227179317",
-        appId: "1:730227179317:web:59771460444f98ae52567c"
-      };
-    }
     app = initializeApp(firebaseConfig);
     dev = false;
     events = [];
@@ -65668,16 +66380,16 @@ var require_chroma = __commonJS({
       var RE_HSL = /^hsl\(\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*\)$/;
       var RE_HSLA = /^hsla\(\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*,\s*([01]|[01]?\.\d+)\)$/;
       var round$4 = Math.round;
-      var css2rgb$1 = function(css11) {
-        css11 = css11.toLowerCase().trim();
+      var css2rgb$1 = function(css13) {
+        css13 = css13.toLowerCase().trim();
         var m3;
         if (input$f.format.named) {
           try {
-            return input$f.format.named(css11);
+            return input$f.format.named(css13);
           } catch (e2) {
           }
         }
-        if (m3 = css11.match(RE_RGB)) {
+        if (m3 = css13.match(RE_RGB)) {
           var rgb2 = m3.slice(1, 4);
           for (var i3 = 0; i3 < 3; i3++) {
             rgb2[i3] = +rgb2[i3];
@@ -65685,14 +66397,14 @@ var require_chroma = __commonJS({
           rgb2[3] = 1;
           return rgb2;
         }
-        if (m3 = css11.match(RE_RGBA)) {
+        if (m3 = css13.match(RE_RGBA)) {
           var rgb$1 = m3.slice(1, 5);
           for (var i$12 = 0; i$12 < 4; i$12++) {
             rgb$1[i$12] = +rgb$1[i$12];
           }
           return rgb$1;
         }
-        if (m3 = css11.match(RE_RGB_PCT)) {
+        if (m3 = css13.match(RE_RGB_PCT)) {
           var rgb$2 = m3.slice(1, 4);
           for (var i$2 = 0; i$2 < 3; i$2++) {
             rgb$2[i$2] = round$4(rgb$2[i$2] * 2.55);
@@ -65700,7 +66412,7 @@ var require_chroma = __commonJS({
           rgb$2[3] = 1;
           return rgb$2;
         }
-        if (m3 = css11.match(RE_RGBA_PCT)) {
+        if (m3 = css13.match(RE_RGBA_PCT)) {
           var rgb$3 = m3.slice(1, 5);
           for (var i$3 = 0; i$3 < 3; i$3++) {
             rgb$3[i$3] = round$4(rgb$3[i$3] * 2.55);
@@ -65708,7 +66420,7 @@ var require_chroma = __commonJS({
           rgb$3[3] = +rgb$3[3];
           return rgb$3;
         }
-        if (m3 = css11.match(RE_HSL)) {
+        if (m3 = css13.match(RE_HSL)) {
           var hsl2 = m3.slice(1, 4);
           hsl2[1] *= 0.01;
           hsl2[2] *= 0.01;
@@ -65716,7 +66428,7 @@ var require_chroma = __commonJS({
           rgb$4[3] = 1;
           return rgb$4;
         }
-        if (m3 = css11.match(RE_HSLA)) {
+        if (m3 = css13.match(RE_HSLA)) {
           var hsl$1 = m3.slice(1, 4);
           hsl$1[1] *= 0.01;
           hsl$1[2] *= 0.01;
@@ -68359,378 +69071,37 @@ var require_chroma = __commonJS({
         colorbrewer[key2.toLowerCase()] = colorbrewer[key2];
       }
       var colorbrewer_1 = colorbrewer;
-      var chroma2 = chroma_1;
-      chroma2.average = average;
-      chroma2.bezier = bezier_1;
-      chroma2.blend = blend_1;
-      chroma2.cubehelix = cubehelix;
-      chroma2.mix = chroma2.interpolate = mix$1;
-      chroma2.random = random_1;
-      chroma2.scale = scale$2;
-      chroma2.analyze = analyze_1.analyze;
-      chroma2.contrast = contrast;
-      chroma2.deltaE = deltaE;
-      chroma2.distance = distance;
-      chroma2.limits = analyze_1.limits;
-      chroma2.valid = valid;
-      chroma2.scales = scales;
-      chroma2.colors = w3cx11_1;
-      chroma2.brewer = colorbrewer_1;
-      var chroma_js = chroma2;
+      var chroma3 = chroma_1;
+      chroma3.average = average;
+      chroma3.bezier = bezier_1;
+      chroma3.blend = blend_1;
+      chroma3.cubehelix = cubehelix;
+      chroma3.mix = chroma3.interpolate = mix$1;
+      chroma3.random = random_1;
+      chroma3.scale = scale$2;
+      chroma3.analyze = analyze_1.analyze;
+      chroma3.contrast = contrast;
+      chroma3.deltaE = deltaE;
+      chroma3.distance = distance;
+      chroma3.limits = analyze_1.limits;
+      chroma3.valid = valid;
+      chroma3.scales = scales;
+      chroma3.colors = w3cx11_1;
+      chroma3.brewer = colorbrewer_1;
+      var chroma_js = chroma3;
       return chroma_js;
     });
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/column-config-ed3a8d78.js
-var COLUMNS, COLUMN_COUNT;
-var init_column_config_ed3a8d78 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/column-config-ed3a8d78.js"() {
+// .svelte-kit/output/server/_app/immutable/chunks/font-d540c2eb.js
+var import_chroma_js, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, Font;
+var init_font_d540c2eb = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/font-d540c2eb.js"() {
     init_shims();
-    COLUMNS = [
-      {
-        title: [
-          "\u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
-          "News",
-          "\u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
-        ],
-        icon: "fa-solid fa-radio",
-        height: "200px",
-        type: "news",
-        verified: true,
-        tags: [
-          "mainstream",
-          "aragala",
-          "economy",
-          "political",
-          "legal",
-          "international",
-          "energy",
-          "downloads"
-        ],
-        data: {
-          title: {
-            type: "text",
-            maxlength: 100,
-            placeholder: [
-              "\u0DC1\u0DD3\u0DBB\u0DCA\u0DC2\u0DBA",
-              "title",
-              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
-            ],
-            required: true,
-            translate: true
-          },
-          description: {
-            type: "html",
-            maxlength: 100,
-            placeholder: [
-              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A \u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8 ",
-              "details",
-              "\u0BB5\u0BBF\u0BB5\u0BB0\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
-            ],
-            required: true,
-            translate: true
-          }
-        },
-        dataFormTitle: [
-          "\u0DB4\u0DD4\u0DC0\u0DAD\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "Create a news article",
-          "\u0B92\u0BB0\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF \u0B95\u0B9F\u0BCD\u0B9F\u0BC1\u0BB0\u0BC8\u0BAF\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
-        ],
-        submitButton: [
-          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "create",
-          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
-        ],
-        cancelButton: [
-          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "cancel",
-          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
-        ]
-      },
-      {
-        title: [
-          "\u0DC3\u0DCF\u0D9A\u0DA0\u0DCA\u0DA1\u0DCF",
-          "Discussions",
-          "\u0BB5\u0BBF\u0BB5\u0BBE\u0BA4\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
-        ],
-        icon: "fa-solid fa-comments",
-        height: "310px",
-        type: "video",
-        verified: true,
-        tags: [
-          "economy",
-          "political",
-          "legal",
-          "international",
-          "energy",
-          "philosophy",
-          "english",
-          "discussion"
-        ],
-        data: {
-          videoId: {
-            type: "text",
-            maxlength: 100,
-            placeholder: [
-              "https://www.youtube.com/watch?v=ueYFyWW8e5I",
-              "https://www.youtube.com/watch?v=ueYFyWW8e5I",
-              "https://www.youtube.com/watch?v=ueYFyWW8e5I"
-            ],
-            required: true,
-            validate: (val) => {
-              var videoIdRegexp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
-              let result = videoIdRegexp.exec(val);
-              return !result[1];
-            },
-            process: (val) => {
-              var videoIdRegexp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
-              let result = videoIdRegexp.exec(val);
-              return result[1];
-            }
-          },
-          title: {
-            type: "text",
-            maxlength: 300,
-            placeholder: [
-              "\u0DB8\u0DCF\u0DAD\u0DD8\u0D9A\u0DCF\u0DC0",
-              "title",
-              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
-            ],
-            required: true,
-            translate: true
-          },
-          shortDescription: {
-            type: "text",
-            maxlength: 300,
-            placeholder: [
-              "\u0D9A\u0DD9\u0DA7\u0DD2 \u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DBA",
-              "short description",
-              "\u0B95\u0BC1\u0BB1\u0BC1\u0B95\u0BBF\u0BAF \u0BB5\u0BBF\u0BB3\u0B95\u0BCD\u0B95\u0BAE\u0BCD"
-            ],
-            required: true,
-            translate: true
-          }
-        },
-        dataFormTitle: [
-          "\u0DC0\u0DD3\u0DA9\u0DD2\u0DBA\u0DDD\u0DC0\u0D9A\u0DCA \u0D91\u0D9A\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "Add a video",
-          "\u0B92\u0BB0\u0BC1 \u0BB5\u0BC0\u0B9F\u0BBF\u0BAF\u0BCB\u0BB5\u0BC8\u0B9A\u0BCD \u0B9A\u0BC7\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
-        ],
-        submitButton: [
-          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "submit",
-          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
-        ],
-        cancelButton: [
-          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "cancel",
-          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
-        ]
-      },
-      {
-        title: [
-          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0DCA \u0DB4\u0DD4\u0DC0\u0DBB\u0DD4\u0DC0",
-          "Bulletin board",
-          "\u0B85\u0BB1\u0BBF\u0BB5\u0BBF\u0BAA\u0BCD\u0BAA\u0BC1 \u0BAA\u0BB2\u0B95\u0BC8"
-        ],
-        icon: "fa-solid fa-calendar-days",
-        height: "300px",
-        type: "bulletin",
-        verified: true,
-        tags: [
-          "mainstream",
-          "aragala",
-          "economy",
-          "political",
-          "legal",
-          "international",
-          "energy",
-          "downloads"
-        ],
-        data: {
-          title: {
-            type: "text",
-            maxlength: 100,
-            placeholder: [
-              "\u0DC1\u0DD3\u0DBB\u0DCA\u0DC2\u0DBA",
-              "title",
-              "\u0BA4\u0BB2\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
-            ],
-            required: true,
-            translate: true
-          },
-          description: {
-            type: "html",
-            maxlength: 100,
-            placeholder: [
-              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A \u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8 ",
-              "details",
-              "\u0BB5\u0BBF\u0BB5\u0BB0\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
-            ],
-            required: true,
-            translate: true
-          }
-        },
-        dataFormTitle: [
-          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "Create a bulletin",
-          "\u0B92\u0BB0\u0BC1 \u0BAA\u0BC1\u0BB2\u0BCD\u0BB2\u0B9F\u0BCD\u0B9F\u0BBF\u0BA9\u0BCD \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
-        ],
-        submitButton: [
-          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "create",
-          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
-        ],
-        cancelButton: [
-          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "cancel",
-          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
-        ]
-      },
-      {
-        title: [
-          "\u0DB8\u0DC4\u0DA2\u0DB1 \u0D85\u0DAF\u0DC4\u0DC3\u0DCA \u0DC3\u0DB3\u0DC4\u0DCF \u0DBA\u0DDD\u0DA2\u0DB1\u0DCF",
-          "Proposals for public comments",
-          "\u0BAA\u0BCA\u0BA4\u0BC1 \u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BB3\u0BC1\u0B95\u0BCD\u0B95\u0BBE\u0BA9 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAE\u0BCA\u0BB4\u0BBF\u0BB5\u0BC1\u0B95\u0BB3\u0BCD"
-        ],
-        icon: "fa-solid fa-file-lines",
-        height: "400px",
-        type: "proposal",
-        verified: true,
-        tags: [
-          "mainstream",
-          "aragala",
-          "economy",
-          "political",
-          "legal",
-          "international",
-          "energy",
-          "downloads"
-        ],
-        data: {
-          organization: {
-            type: "text",
-            maxlength: 100,
-            placeholder: [
-              "\u0D86\u0DBA\u0DAD\u0DB1\u0DBA",
-              "organization",
-              "\u0B85\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1"
-            ],
-            required: true,
-            translate: true
-          },
-          motive: {
-            type: "text",
-            maxlength: 300,
-            placeholder: [
-              "\u0D86\u0DBA\u0DAD\u0DB1\u0DBA\u0DDA \u0D85\u0DBB\u0DB8\u0DD4\u0DAB",
-              "organization's motive",
-              "\u0B85\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BBF\u0BA9\u0BCD \u0BA8\u0BCB\u0B95\u0BCD\u0B95\u0BAE\u0BCD"
-            ],
-            required: true,
-            translate: true
-          },
-          proposal: {
-            type: "html",
-            maxlength: 1e3,
-            placeholder: [
-              "\u0DC3\u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DCF\u0DAD\u0DCA\u0DB8\u0D9A\u0DC0 \u0DBA\u0DDD\u0DA2\u0DB1\u0DCF\u0DC0",
-              "proposal in detail",
-              "\u0BB5\u0BBF\u0BB0\u0BBF\u0BB5\u0BBE\u0BA9 \u0BAE\u0BC1\u0BA9\u0BCD\u0BAE\u0BCA\u0BB4\u0BBF\u0BB5\u0BC1"
-            ],
-            required: true,
-            translate: true
-          }
-        },
-        dataFormTitle: [
-          "\u0DAF\u0DD0\u0DB1\u0DCA\u0DC0\u0DD3\u0DB8\u0D9A\u0DCA \u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "Create a bulletin",
-          "\u0B92\u0BB0\u0BC1 \u0BAA\u0BC1\u0BB2\u0BCD\u0BB2\u0B9F\u0BCD\u0B9F\u0BBF\u0BA9\u0BCD \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD"
-        ],
-        submitButton: [
-          "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "create",
-          "\u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95"
-        ],
-        cancelButton: [
-          "\u0D85\u0DC0\u0DBD\u0D82\u0D9C\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
-          "cancel",
-          "\u0BB0\u0BA4\u0BCD\u0BA4\u0BC1 \u0B9A\u0BC6\u0BAF\u0BCD"
-        ]
-      },
-      {
-        title: [
-          "\u0DB8\u0DAD \u0DC0\u0DD2\u0DB8\u0DC3\u0DD3\u0DB8\u0DCA",
-          "Opinion polls",
-          "\u0B95\u0BB0\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BCD \u0B95\u0BA3\u0BBF\u0BAA\u0BCD\u0BAA\u0BC1\u0B95\u0BB3\u0BCD"
-        ],
-        icon: "fa-solid fa-check-to-slot",
-        height: "500px",
-        type: "static",
-        static: [{
-          type: "wip",
-          service: [
-            `\u0DA1\u0DB1\u0DCA\u0DAF \u0DC0\u0DD2\u0DB8\u0DC3\u0DD3\u0DB8\u0DCA \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0D95\u0DB1\u0DD1\u0DB8 \u0D9A\u0DD9\u0DB1\u0DD9\u0D9A\u0DD4\u0DA7 \u0DB4\u0DDC\u0DAF\u0DD4 \u0DB8\u0DAD \u0DC0\u0DD2\u0DB8\u0DC3\u0DD4\u0DB8\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC3\u0DC4 \u0DB8\u0DD2\u0DB1\u0DD2\u0DC3\u0DD4\u0DB1\u0DCA\u0DA7 \u0D92 \u0DC3\u0DB3\u0DC4\u0DCF \u0DA1\u0DB1\u0DCA\u0DAF\u0DBA \u0DB4\u0DCA\u200D\u0DBB\u0D9A\u0DCF\u0DC1 \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DBD\u0DB6\u0DCF \u0DAF\u0DDA. \u0D85\u0DBB\u0D9C\u0DBD\u0DBA\u0DDA \u0DAF\u0DD2\u0DC1\u0DCF\u0DB1\u0DAD\u0DD2\u0DBA \u0D9C\u0DD0\u0DB1 \u0DB4\u0DCA\u200D\u0DBB\u0DA2\u0DCF\u0DAD\u0DB1\u0DCA\u0DAD\u0DCA\u200D\u0DBB\u0DC0\u0DCF\u0DAF\u0DD3\u0DC0 \u0DAD\u0DD3\u0DBB\u0DAB \u0D9C\u0DD0\u0DB1\u0DD3\u0DB8\u0DA7 \u0DB8\u0DD9\u0DBA \u0DBA\u0DDC\u0DAF\u0DCF\u0D9C\u0DAD \u0DC4\u0DD0\u0D9A.`,
-            `polls will allow anyone to create a public poll and allow anyone to create and vote for suggestions. this can be used to make democratic decisions about the direction of aragalaya.`,
-            `\u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC6\u0B9F\u0BC1\u0BAA\u0BCD\u0BAA\u0BC1\u0B95\u0BB3\u0BCD \u0BAF\u0BBE\u0BB0\u0BC8\u0BAF\u0BC1\u0BAE\u0BCD \u0BAA\u0BCA\u0BA4\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC6\u0B9F\u0BC1\u0BAA\u0BCD\u0BAA\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD \u0BAE\u0BB1\u0BCD\u0BB1\u0BC1\u0BAE\u0BCD \u0BAE\u0B95\u0BCD\u0B95\u0BB3\u0BCD \u0B85\u0BA4\u0BB1\u0BCD\u0B95\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BB3\u0BBF\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE\u0BB5\u0BBF\u0BA9\u0BCD \u0BA4\u0BBF\u0B9A\u0BC8\u0BAF\u0BC8\u0BAA\u0BCD \u0BAA\u0BB1\u0BCD\u0BB1\u0BBF \u0B9C\u0BA9\u0BA8\u0BBE\u0BAF\u0B95 \u0BAE\u0BC1\u0B9F\u0BBF\u0BB5\u0BC1\u0B95\u0BB3\u0BC8 \u0B8E\u0B9F\u0BC1\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4\u0BB2\u0BBE\u0BAE\u0BCD.`
-          ],
-          releaseDate: "29/08/2022"
-        }]
-      },
-      {
-        title: [
-          "\u0DC3\u0DCF\u0DB8\u0DD4\u0DC4\u0DD2\u0D9A \u0DBD\u0DDA\u0D9B\u0DB1",
-          "Collaborative documents",
-          "\u0B95\u0BC2\u0B9F\u0BCD\u0B9F\u0BC1 \u0B86\u0BB5\u0BA3\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
-        ],
-        icon: "fa-solid fa-file-signature",
-        height: "500px",
-        type: "static",
-        static: [{
-          type: "wip",
-          service: [
-            `\u0DB8\u0DD9\u0DB8 \u0DC3\u0DDA\u0DC0\u0DCF\u0DC0 \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0DC3\u0DCF\u0DB8\u0DD4\u0DC4\u0DD2\u0D9A\u0DC0 \u0DBD\u0DDA\u0D9B\u0DB1 \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DBD \u0DC4\u0DD0\u0D9A\u0DD2 \u0D85\u0DAD\u0DBB, \u0D91\u0DC4\u0DD2\u0DAF\u0DD3 \u0D87\u0DAD\u0DD2\u0DC0\u0DB1 \u0D9C\u0DD0\u0DA7\u0DD4\u0DB8\u0DCA \u0DA0\u0DB1\u0DCA\u0DAF\u0DBA\u0D9A\u0DCA \u0DB8\u0D9C\u0DD2\u0DB1\u0DCA \u0DC0\u0DD2\u0DC3\u0DB3\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DC3\u0DBD\u0DC3\u0DBA\u0DD2. \u0DB8\u0DD9\u0DBA \u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DCA\u200D\u0DBB\u0DA5\u0DB4\u0DCA\u0DAD\u0DD2\u0DBA\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC4\u0DCF \u0DB1\u0DC0 \u0DC0\u0DCA\u200D\u0DBA\u0DC0\u0DC3\u0DCA\u0DAE\u0DCF\u0DC0\u0D9A\u0DCA \u0DB4\u0DC0\u0DCF \u0DB4\u0DCA\u200D\u0DBB\u0DA2\u0DCF\u0DAD\u0DB1\u0DCA\u0DAD\u0DCA\u200D\u0DBB\u0DC0\u0DCF\u0DAF\u0DD2\u0DC0 \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DB7\u0DCF\u0DC0\u0DD2\u0DAD\u0DCF \u0D9A\u0DBD \u0DC4\u0DD0\u0D9A.`,
-            `this service will allow to create collaborative documents with conflicts resolved through voting. this can be used to create an aragala manifesto, or even a new constitution.`,
-            `\u0B87\u0BA8\u0BCD\u0BA4\u0B9A\u0BCD \u0B9A\u0BC7\u0BB5\u0BC8\u0BAF\u0BBE\u0BA9\u0BA4\u0BC1 \u0BB5\u0BBE\u0B95\u0BCD\u0B95\u0BC1\u0BAA\u0BCD\u0BAA\u0BA4\u0BBF\u0BB5\u0BC1 \u0BAE\u0BC2\u0BB2\u0BAE\u0BCD \u0BA4\u0BC0\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BC1\u0BAE\u0BCD \u0BAE\u0BC1\u0BB0\u0BA3\u0BCD\u0BAA\u0BBE\u0B9F\u0BC1\u0B95\u0BB3\u0BC1\u0B9F\u0BA9\u0BCD \u0B95\u0BC2\u0B9F\u0BCD\u0B9F\u0BC1 \u0B86\u0BB5\u0BA3\u0B99\u0BCD\u0B95\u0BB3\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0B85\u0BB0\u0B95\u0BB2 \u0BAA\u0BBF\u0BB0\u0B95\u0B9F\u0BA9\u0BA4\u0BCD\u0BA4\u0BC8 \u0B85\u0BB2\u0BCD\u0BB2\u0BA4\u0BC1 \u0BAA\u0BC1\u0BA4\u0BBF\u0BAF \u0B85\u0BB0\u0B9A\u0BBF\u0BAF\u0BB2\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4\u0BB2\u0BBE\u0BAE\u0BCD.`
-          ],
-          releaseDate: "29/09/2022"
-        }]
-      },
-      {
-        title: [
-          "\u0DC0\u0DD2\u0DC0\u0DD4\u0DBB\u0DCA\u0DAD \u0D85\u0DBA\u0DC0\u0DD0\u0DBA",
-          "Open budgets",
-          "\u0BA4\u0BBF\u0BB1\u0BA8\u0BCD\u0BA4 \u0BAA\u0B9F\u0BCD\u0B9C\u0BC6\u0B9F\u0BCD"
-        ],
-        icon: "fa-solid fa-coins",
-        height: "410px",
-        type: "budget",
-        type: "static",
-        static: [{
-          type: "wip",
-          service: [
-            `\u0DC0\u0DD2\u0DB1\u0DD2\u0DC0\u0DD2\u0DAF \u0DB4\u0DD9\u0DB1\u0DD9\u0DB1 \u0D85\u0DBA\u0DC0\u0DD0\u0DBA \u0DB8\u0D9F\u0DD2\u0DB1\u0DCA \u0D95\u0DB1\u0DD1\u0DB8 \u0D85\u0DBB\u0D9C\u0DBD\u0DBA \u0DC0\u0DCA\u200D\u0DBA\u0DCF\u0DB4\u0DD8\u0DAD\u0DD2\u0DBA\u0D9A\u0DCA \u0DC3\u0DB3\u0DC4\u0DCF \u0DC0\u0DD2\u0DC0\u0DD8\u0DAD \u0D85\u0DBA\u0DC0\u0DD0\u0DBA\u0D9A\u0DCA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0D89\u0DA9 \u0DC3\u0DD0\u0DBD\u0DC3\u0DDA. \u0DB4\u0DC5\u0DB8\u0DD4 \u0DB4\u0DD2\u0DBA\u0DC0\u0DBB \u0DBD\u0DD9\u0DC3 \u0D85\u0DB4\u0DD2 aragalaya.online \u0DC0\u0DCA\u200D\u0DBA\u0DCF\u0DB4\u0DD8\u0DAD\u0DD2\u0DBA \u0DC3\u0DB3\u0DC4\u0DCF \u0D85\u0DBA\u0DC0\u0DD0\u0DBA \u0DB1\u0DD2\u0DBB\u0DCA\u0DB8\u0DCF\u0DAB\u0DBA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8 \u0DC3\u0DB3\u0DC4\u0DCF \u0DB8\u0DD9\u0DBA \u0DB7\u0DCF\u0DC0\u0DD2\u0DAD\u0DCF \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DA7 \u0DC3\u0DD0\u0DBD\u0DC3\u0DD4\u0DB8\u0DCA \u0D9A\u0DBB\u0DB8\u0DD4.`,
-            `transparent budgets will allow to create open budgets for any of the aragalaya projects. as first step we're planning to use this for creating the budget for the aragalaya.online project.`,
-            `\u0BB5\u0BC6\u0BB3\u0BBF\u0BAA\u0BCD\u0BAA\u0B9F\u0BC8\u0BAF\u0BBE\u0BA9 \u0BB5\u0BB0\u0BB5\u0BC1\u0B9A\u0BC6\u0BB2\u0BB5\u0BC1\u0BA4\u0BCD\u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0B8E\u0BA8\u0BCD\u0BA4\u0BB5\u0BCA\u0BB0\u0BC1 \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BC1\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD \u0BA4\u0BBF\u0BB1\u0BA8\u0BCD\u0BA4 \u0BB5\u0BB0\u0BB5\u0BC1 \u0B9A\u0BC6\u0BB2\u0BB5\u0BC1\u0BA4\u0BCD \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0B99\u0BCD\u0B95\u0BB3\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD. \u0BAE\u0BC1\u0BA4\u0BB2\u0BCD \u0B95\u0B9F\u0BCD\u0B9F\u0BAE\u0BBE\u0B95 \u0B85\u0BB0\u0B95\u0BB2\u0BAF\u0BBE.\u0B86\u0BA9\u0BCD\u0BB2\u0BC8\u0BA9\u0BCD \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0BA4\u0BCD\u0BA4\u0BBF\u0BB1\u0BCD\u0B95\u0BBE\u0BA9 \u0BAA\u0B9F\u0BCD\u0B9C\u0BC6\u0B9F\u0BCD\u0B9F\u0BC8 \u0B89\u0BB0\u0BC1\u0BB5\u0BBE\u0B95\u0BCD\u0B95 \u0B87\u0BA4\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4 \u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0BAE\u0BBF\u0B9F\u0BCD\u0B9F\u0BC1\u0BB3\u0BCD\u0BB3\u0BCB\u0BAE\u0BCD.`
-          ],
-          releaseDate: "29/09/2022"
-        }]
-      }
-    ];
-    COLUMN_COUNT = COLUMNS.length;
-  }
-});
-
-// .svelte-kit/output/server/_app/immutable/chunks/tags-b46fae60.js
-var import_chroma_js, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, Font, tagConfig, colors, TAGS, css, Tags;
-var init_tags_b46fae60 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/tags-b46fae60.js"() {
-    init_shims();
-    init_index_d732e872();
+    init_index_269d0619();
+    init_store_f57b9afe();
     import_chroma_js = __toESM(require_chroma(), 1);
-    init_store_21b4cd20();
-    init_column_config_ed3a8d78();
     _isMobile = writable2(false);
     _fontGroups = [
       [
@@ -68857,112 +69228,6 @@ var init_tags_b46fae60 = __esm({
 
 
 <div style="${"font-family: " + escape(fontFamily, true) + "; font-size: " + escape(fontSize, true) + "px; color: " + escape(color || "inherit", true) + "; display: " + escape(inline ? "inline-block" : "block", true) + "; " + escape(style, true)}">${slots.default ? slots.default({}) : ``}</div>`;
-    });
-    tagConfig = {
-      mainstream: [
-        "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
-        "mainstream news",
-        "\u0BAE\u0BC1\u0B95\u0BCD\u0B95\u0BBF\u0BAF \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
-      ],
-      aragala: [
-        "\u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
-        "aragala news",
-        "\u0B85\u0BB0\u0B95\u0BB2 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
-      ],
-      economy: [
-        "\u0D86\u0DBB\u0DCA\u0DAE\u0DD2\u0D9A",
-        "economy",
-        "\u0BAA\u0BCA\u0BB0\u0BC1\u0BB3\u0BBE\u0BA4\u0BBE\u0BB0\u0BAE\u0BCD"
-      ],
-      political: [
-        "\u0DAF\u0DDA\u0DC1\u0DB4\u0DCF\u0DBD\u0DB1",
-        "political",
-        "\u0B85\u0BB0\u0B9A\u0BBF\u0BAF\u0BB2\u0BCD"
-      ],
-      legal: [
-        "\u0D85\u0DB0\u0DD2\u0D9A\u0DBB\u0DAB",
-        "judicial",
-        "\u0BA8\u0BC0\u0BA4\u0BBF\u0BA4\u0BCD\u0BA4\u0BC1\u0BB1\u0BC8"
-      ],
-      international: [
-        "\u0DA2\u0DCF\u0DAD\u0DCA\u200D\u0DBA\u0DB1\u0DCA\u0DAD\u0DBB",
-        "international",
-        "\u0B9A\u0BB0\u0BCD\u0BB5\u0BA4\u0BC7\u0B9A"
-      ],
-      energy: [
-        "\u0DB6\u0DBD\u0DC1\u0D9A\u0DCA\u0DAD\u0DD2",
-        "power & energy",
-        "\u0B86\u0BB1\u0BCD\u0BB1\u0BB2\u0BCD"
-      ],
-      philosophy: [
-        "\u0DAF\u0DBB\u0DCA\u0DC1\u0DB1\u0DBA",
-        "philosophy",
-        "\u0BA4\u0BA4\u0BCD\u0BA4\u0BC1\u0BB5\u0BAE\u0BCD"
-      ],
-      english: [
-        "\u0D89\u0D82\u0D9C\u0DCA\u200D\u0DBB\u0DD3\u0DC3\u0DD2",
-        "english",
-        "\u0B86\u0B99\u0BCD\u0B95\u0BBF\u0BB2\u0BAE\u0BCD"
-      ],
-      discussion: [
-        "\u0DC3\u0DCF\u0D9A\u0DA0\u0DCA\u0DA1\u0DCF",
-        "discussion",
-        "\u0BB5\u0BBF\u0BB5\u0BBE\u0BA4\u0BAE\u0BCD"
-      ],
-      downloads: [
-        "\u0DB6\u0DCF\u0D9C\u0DAD \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DCA",
-        "downloads",
-        "\u0BAA\u0BA4\u0BBF\u0BB5\u0BBF\u0BB1\u0B95\u0BCD\u0B95\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
-      ]
-    };
-    colors = import_chroma_js.default.scale(["#c1f437", "#00e0ff", "#ff6161", "#ffca99", "#ff58d3"]).colors(Object.keys(tagConfig).length);
-    TAGS = Object.keys(tagConfig).reduce((object, key2, _i) => {
-      object[key2] = {
-        name: key2,
-        strings: tagConfig[key2],
-        color: (0, import_chroma_js.default)(colors[_i]).luminance(0.4).hex()
-      };
-      return object;
-    }, {});
-    css = {
-      code: ".tag.s-AT3XvDln3Ibo{border:var(--s2px) solid #a5a5a5;border-radius:var(--s3px);padding:0 var(--s3px);margin-right:var(--s3px);margin-bottom:var(--s3px)}.s-AT3XvDln3Ibo{}",
-      map: null
-    };
-    Tags = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang, $$unsubscribe__lang;
-      validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
-      let { tags } = $$props;
-      let { clickable = void 0 } = $$props;
-      let { style = "" } = $$props;
-      if (!tags)
-        tags = [];
-      createEventDispatcher();
-      if ($$props.tags === void 0 && $$bindings.tags && tags !== void 0)
-        $$bindings.tags(tags);
-      if ($$props.clickable === void 0 && $$bindings.clickable && clickable !== void 0)
-        $$bindings.clickable(clickable);
-      if ($$props.style === void 0 && $$bindings.style && style !== void 0)
-        $$bindings.style(style);
-      $$result.css.add(css);
-      $$unsubscribe__lang();
-      return `${validate_component(Font, "Font").$$render(
-        $$result,
-        {
-          font: 0,
-          size: 0.75,
-          style: "\n        display: flex;\n        width: calc(90% - 4px);\n        flex-wrap: wrap;" + style
-        },
-        {},
-        {
-          default: () => {
-            return `${each(tags, (tag, _i) => {
-              return `<span class="${"tag " + escape(clickable ? "_clickable" : "", true) + " s-AT3XvDln3Ibo"}" style="${"background-color: " + escape(TAGS[tag].color, true) + ";"}">${escape(TAGS[tag].strings[$_lang])}
-    </span>`;
-            })}`;
-          }
-        }
-      )}`;
     });
   }
 });
@@ -69176,15 +69441,15 @@ function factory(container, { instanceIdentifier: url }) {
 }
 function registerStorage() {
   _registerComponent(new Component(STORAGE_TYPE, factory, "PUBLIC").setMultipleInstances(true));
-  registerVersion(name5, version5);
+  registerVersion(name6, version6);
 }
-var import_node_fetch2, DEFAULT_HOST2, CONFIG_STORAGE_BUCKET_KEY, DEFAULT_MAX_OPERATION_RETRY_TIME, DEFAULT_MAX_UPLOAD_RETRY_TIME, StorageError, Location, FailRequest, ErrorCode, NetworkRequest, RequestEndStatus, RESUMABLE_UPLOAD_CHUNK_SIZE, Reference, FirebaseStorageImpl, name5, version5, STORAGE_TYPE;
-var init_index_node_esm2 = __esm({
+var import_node_fetch3, DEFAULT_HOST2, CONFIG_STORAGE_BUCKET_KEY, DEFAULT_MAX_OPERATION_RETRY_TIME, DEFAULT_MAX_UPLOAD_RETRY_TIME, StorageError, Location, FailRequest, ErrorCode, NetworkRequest, RequestEndStatus, RESUMABLE_UPLOAD_CHUNK_SIZE, Reference, FirebaseStorageImpl, name6, version6, STORAGE_TYPE;
+var init_index_node_esm3 = __esm({
   "node_modules/@firebase/storage/dist/node-esm/index.node.esm.js"() {
     init_shims();
     init_index_esm20173();
     init_index_node_esm();
-    import_node_fetch2 = __toESM(require_lib2(), 1);
+    import_node_fetch3 = __toESM(require_lib2(), 1);
     init_index_esm2017();
     DEFAULT_HOST2 = "firebasestorage.googleapis.com";
     CONFIG_STORAGE_BUCKET_KEY = "storageBucket";
@@ -69597,417 +69862,194 @@ ${this.customData.serverResponse}`;
         return this._makeRequest(requestInfo, requestFactory, authToken, appCheckToken).getPromise();
       }
     };
-    name5 = "@firebase/storage";
-    version5 = "0.9.9";
+    name6 = "@firebase/storage";
+    version6 = "0.9.9";
     STORAGE_TYPE = "storage";
     registerStorage();
   }
 });
 
 // node_modules/firebase/storage/dist/index.mjs
-var init_dist4 = __esm({
+var init_dist5 = __esm({
   "node_modules/firebase/storage/dist/index.mjs"() {
     init_shims();
-    init_index_node_esm2();
+    init_index_node_esm3();
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/storage-05d57c84.js
-var init_storage_05d57c84 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/storage-05d57c84.js"() {
+// .svelte-kit/output/server/_app/immutable/chunks/storage-1eab496f.js
+var init_storage_1eab496f = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/storage-1eab496f.js"() {
     init_shims();
-    init_database_298aef9a();
-    init_dist4();
+    init_database_257f4b5e();
+    init_dist5();
     getStorage(app);
   }
 });
 
-// node_modules/@firebase/functions/dist/esm-node/index.node.esm.js
-function mapValues(o, f5) {
-  const result = {};
-  for (const key2 in o) {
-    if (o.hasOwnProperty(key2)) {
-      result[key2] = f5(o[key2]);
-    }
-  }
-  return result;
-}
-function encode3(data) {
-  if (data == null) {
-    return null;
-  }
-  if (data instanceof Number) {
-    data = data.valueOf();
-  }
-  if (typeof data === "number" && isFinite(data)) {
-    return data;
-  }
-  if (data === true || data === false) {
-    return data;
-  }
-  if (Object.prototype.toString.call(data) === "[object String]") {
-    return data;
-  }
-  if (data instanceof Date) {
-    return data.toISOString();
-  }
-  if (Array.isArray(data)) {
-    return data.map((x2) => encode3(x2));
-  }
-  if (typeof data === "function" || typeof data === "object") {
-    return mapValues(data, (x2) => encode3(x2));
-  }
-  throw new Error("Data cannot be encoded in JSON: " + data);
-}
-function decode2(json) {
-  if (json == null) {
-    return json;
-  }
-  if (json["@type"]) {
-    switch (json["@type"]) {
-      case LONG_TYPE:
-      case UNSIGNED_LONG_TYPE: {
-        const value = Number(json["value"]);
-        if (isNaN(value)) {
-          throw new Error("Data cannot be decoded from JSON: " + json);
-        }
-        return value;
-      }
-      default: {
-        throw new Error("Data cannot be decoded from JSON: " + json);
-      }
-    }
-  }
-  if (Array.isArray(json)) {
-    return json.map((x2) => decode2(x2));
-  }
-  if (typeof json === "function" || typeof json === "object") {
-    return mapValues(json, (x2) => decode2(x2));
-  }
-  return json;
-}
-function codeForHTTPStatus(status) {
-  if (status >= 200 && status < 300) {
-    return "ok";
-  }
-  switch (status) {
-    case 0:
-      return "internal";
-    case 400:
-      return "invalid-argument";
-    case 401:
-      return "unauthenticated";
-    case 403:
-      return "permission-denied";
-    case 404:
-      return "not-found";
-    case 409:
-      return "aborted";
-    case 429:
-      return "resource-exhausted";
-    case 499:
-      return "cancelled";
-    case 500:
-      return "internal";
-    case 501:
-      return "unimplemented";
-    case 503:
-      return "unavailable";
-    case 504:
-      return "deadline-exceeded";
-  }
-  return "unknown";
-}
-function _errorForResponse(status, bodyJSON) {
-  let code = codeForHTTPStatus(status);
-  let description = code;
-  let details = void 0;
-  try {
-    const errorJSON = bodyJSON && bodyJSON.error;
-    if (errorJSON) {
-      const status2 = errorJSON.status;
-      if (typeof status2 === "string") {
-        if (!errorCodeMap[status2]) {
-          return new FunctionsError("internal", "internal");
-        }
-        code = errorCodeMap[status2];
-        description = status2;
-      }
-      const message = errorJSON.message;
-      if (typeof message === "string") {
-        description = message;
-      }
-      details = errorJSON.details;
-      if (details !== void 0) {
-        details = decode2(details);
-      }
-    }
-  } catch (e2) {
-  }
-  if (code === "ok") {
-    return null;
-  }
-  return new FunctionsError(code, description, details);
-}
-function failAfter(millis) {
-  let timer = null;
-  return {
-    promise: new Promise((_2, reject) => {
-      timer = setTimeout(() => {
-        reject(new FunctionsError("deadline-exceeded", "deadline-exceeded"));
-      }, millis);
-    }),
-    cancel: () => {
-      if (timer) {
-        clearTimeout(timer);
-      }
-    }
-  };
-}
-function httpsCallable$1(functionsInstance, name7, options) {
-  return (data) => {
-    return call(functionsInstance, name7, data, options || {});
-  };
-}
-async function postJSON(url, body2, headers2, fetchImpl2) {
-  headers2["Content-Type"] = "application/json";
-  let response2;
-  try {
-    response2 = await fetchImpl2(url, {
-      method: "POST",
-      body: JSON.stringify(body2),
-      headers: headers2
-    });
-  } catch (e2) {
-    return {
-      status: 0,
-      json: null
-    };
-  }
-  let json = null;
-  try {
-    json = await response2.json();
-  } catch (e2) {
-  }
-  return {
-    status: response2.status,
-    json
-  };
-}
-function call(functionsInstance, name7, data, options) {
-  const url = functionsInstance._url(name7);
-  return callAtURL(functionsInstance, url, data, options);
-}
-async function callAtURL(functionsInstance, url, data, options) {
-  data = encode3(data);
-  const body2 = { data };
-  const headers2 = {};
-  const context = await functionsInstance.contextProvider.getContext();
-  if (context.authToken) {
-    headers2["Authorization"] = "Bearer " + context.authToken;
-  }
-  if (context.messagingToken) {
-    headers2["Firebase-Instance-ID-Token"] = context.messagingToken;
-  }
-  if (context.appCheckToken !== null) {
-    headers2["X-Firebase-AppCheck"] = context.appCheckToken;
-  }
-  const timeout = options.timeout || 7e4;
-  const failAfterHandle = failAfter(timeout);
-  const response2 = await Promise.race([
-    postJSON(url, body2, headers2, functionsInstance.fetchImpl),
-    failAfterHandle.promise,
-    functionsInstance.cancelAllRequests
-  ]);
-  failAfterHandle.cancel();
-  if (!response2) {
-    throw new FunctionsError("cancelled", "Firebase Functions instance was deleted.");
-  }
-  const error2 = _errorForResponse(response2.status, response2.json);
-  if (error2) {
-    throw error2;
-  }
-  if (!response2.json) {
-    throw new FunctionsError("internal", "Response is not valid JSON object.");
-  }
-  let responseData = response2.json.data;
-  if (typeof responseData === "undefined") {
-    responseData = response2.json.result;
-  }
-  if (typeof responseData === "undefined") {
-    throw new FunctionsError("internal", "Response is missing data field.");
-  }
-  const decodedData = decode2(responseData);
-  return { data: decodedData };
-}
-function registerFunctions(fetchImpl2, variant) {
-  const factory2 = (container, { instanceIdentifier: regionOrCustomDomain }) => {
-    const app2 = container.getProvider("app").getImmediate();
-    const authProvider = container.getProvider(AUTH_INTERNAL_NAME);
-    const messagingProvider = container.getProvider(MESSAGING_INTERNAL_NAME);
-    const appCheckProvider = container.getProvider(APP_CHECK_INTERNAL_NAME);
-    return new FunctionsService(app2, authProvider, messagingProvider, appCheckProvider, regionOrCustomDomain, fetchImpl2);
-  };
-  _registerComponent(new Component(FUNCTIONS_TYPE, factory2, "PUBLIC").setMultipleInstances(true));
-  registerVersion(name6, version6, variant);
-  registerVersion(name6, version6, "esm2017");
-}
-function getFunctions(app2 = getApp(), regionOrCustomDomain = DEFAULT_REGION) {
-  const functionsProvider = _getProvider(getModularInstance(app2), FUNCTIONS_TYPE);
-  const functionsInstance = functionsProvider.getImmediate({
-    identifier: regionOrCustomDomain
-  });
-  return functionsInstance;
-}
-function httpsCallable(functionsInstance, name7, options) {
-  return httpsCallable$1(getModularInstance(functionsInstance), name7, options);
-}
-var import_node_fetch3, LONG_TYPE, UNSIGNED_LONG_TYPE, FUNCTIONS_TYPE, errorCodeMap, FunctionsError, ContextProvider, DEFAULT_REGION, FunctionsService, name6, version6, AUTH_INTERNAL_NAME, APP_CHECK_INTERNAL_NAME, MESSAGING_INTERNAL_NAME;
-var init_index_node_esm3 = __esm({
-  "node_modules/@firebase/functions/dist/esm-node/index.node.esm.js"() {
+// .svelte-kit/output/server/_app/immutable/chunks/text-input-fffa3872.js
+var css, Text_input;
+var init_text_input_fffa3872 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/text-input-fffa3872.js"() {
     init_shims();
-    init_index_esm20173();
-    init_index_node_esm();
-    init_index_esm2017();
-    import_node_fetch3 = __toESM(require_lib2(), 1);
-    LONG_TYPE = "type.googleapis.com/google.protobuf.Int64Value";
-    UNSIGNED_LONG_TYPE = "type.googleapis.com/google.protobuf.UInt64Value";
-    FUNCTIONS_TYPE = "functions";
-    errorCodeMap = {
-      OK: "ok",
-      CANCELLED: "cancelled",
-      UNKNOWN: "unknown",
-      INVALID_ARGUMENT: "invalid-argument",
-      DEADLINE_EXCEEDED: "deadline-exceeded",
-      NOT_FOUND: "not-found",
-      ALREADY_EXISTS: "already-exists",
-      PERMISSION_DENIED: "permission-denied",
-      UNAUTHENTICATED: "unauthenticated",
-      RESOURCE_EXHAUSTED: "resource-exhausted",
-      FAILED_PRECONDITION: "failed-precondition",
-      ABORTED: "aborted",
-      OUT_OF_RANGE: "out-of-range",
-      UNIMPLEMENTED: "unimplemented",
-      INTERNAL: "internal",
-      UNAVAILABLE: "unavailable",
-      DATA_LOSS: "data-loss"
+    init_index_269d0619();
+    init_store_f57b9afe();
+    init_font_d540c2eb();
+    css = {
+      code: ".text-input.s-Rc61XWFQtAVh{width:90%;margin-bottom:var(--s18px)}input.s-Rc61XWFQtAVh{height:var(--s45px);width:100%;border-radius:var(--s5px);padding:var(--s10px);border:var(--s1px) solid var(--theme-defaultbutton);font-size:1rem;margin-bottom:3px}span.s-Rc61XWFQtAVh{color:red}.error.s-Rc61XWFQtAVh{border-width:2px;border-color:#c02e46}.s-Rc61XWFQtAVh{}",
+      map: null
     };
-    FunctionsError = class extends FirebaseError {
-      constructor(code, message, details) {
-        super(`${FUNCTIONS_TYPE}/${code}`, message || "");
-        this.details = details;
-      }
-    };
-    ContextProvider = class {
-      constructor(authProvider, messagingProvider, appCheckProvider) {
-        this.auth = null;
-        this.messaging = null;
-        this.appCheck = null;
-        this.auth = authProvider.getImmediate({ optional: true });
-        this.messaging = messagingProvider.getImmediate({
-          optional: true
-        });
-        if (!this.auth) {
-          authProvider.get().then((auth2) => this.auth = auth2, () => {
-          });
+    Text_input = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $_lang, $$unsubscribe__lang;
+      validate_store(_lang, "_lang");
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let { disabled = false } = $$props;
+      let { config } = $$props;
+      let { data } = $$props;
+      createEventDispatcher();
+      let { error: error2 } = $$props;
+      if ($$props.disabled === void 0 && $$bindings.disabled && disabled !== void 0)
+        $$bindings.disabled(disabled);
+      if ($$props.config === void 0 && $$bindings.config && config !== void 0)
+        $$bindings.config(config);
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+        $$bindings.data(data);
+      if ($$props.error === void 0 && $$bindings.error && error2 !== void 0)
+        $$bindings.error(error2);
+      $$result.css.add(css);
+      $$unsubscribe__lang();
+      return `<div class="${"text-input s-Rc61XWFQtAVh"}">${validate_component(Font, "Font").$$render($$result, { font: 0, size: 1 }, {}, {
+        default: () => {
+          return `
+        ${config.type !== "password" ? `<input type="${"text"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["s-Rc61XWFQtAVh", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>` : `<input type="${"password"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["s-Rc61XWFQtAVh", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>`}
+        
+        ${error2 && typeof error2 != "boolean" ? `<span class="${"s-Rc61XWFQtAVh"}">${validate_component(Font, "Font").$$render($$result, { font: 0, size: 0.8 }, {}, {
+            default: () => {
+              return `${escape(Array.isArray(error2) ? error2[$_lang] : error2)}`;
+            }
+          })}</span>` : ``}`;
         }
-        if (!this.messaging) {
-          messagingProvider.get().then((messaging) => this.messaging = messaging, () => {
-          });
-        }
-        if (!this.appCheck) {
-          appCheckProvider.get().then((appCheck) => this.appCheck = appCheck, () => {
-          });
-        }
-      }
-      async getAuthToken() {
-        if (!this.auth) {
-          return void 0;
-        }
-        try {
-          const token = await this.auth.getToken();
-          return token === null || token === void 0 ? void 0 : token.accessToken;
-        } catch (e2) {
-          return void 0;
-        }
-      }
-      async getMessagingToken() {
-        if (!this.messaging || !("Notification" in self) || Notification.permission !== "granted") {
-          return void 0;
-        }
-        try {
-          return await this.messaging.getToken();
-        } catch (e2) {
-          return void 0;
-        }
-      }
-      async getAppCheckToken() {
-        if (this.appCheck) {
-          const result = await this.appCheck.getToken();
-          if (result.error) {
-            return null;
-          }
-          return result.token;
-        }
-        return null;
-      }
-      async getContext() {
-        const authToken = await this.getAuthToken();
-        const messagingToken = await this.getMessagingToken();
-        const appCheckToken = await this.getAppCheckToken();
-        return { authToken, messagingToken, appCheckToken };
-      }
-    };
-    DEFAULT_REGION = "us-central1";
-    FunctionsService = class {
-      constructor(app2, authProvider, messagingProvider, appCheckProvider, regionOrCustomDomain = DEFAULT_REGION, fetchImpl2) {
-        this.app = app2;
-        this.fetchImpl = fetchImpl2;
-        this.emulatorOrigin = null;
-        this.contextProvider = new ContextProvider(authProvider, messagingProvider, appCheckProvider);
-        this.cancelAllRequests = new Promise((resolve2) => {
-          this.deleteService = () => {
-            return Promise.resolve(resolve2());
-          };
-        });
-        try {
-          const url = new URL(regionOrCustomDomain);
-          this.customDomain = url.origin;
-          this.region = DEFAULT_REGION;
-        } catch (e2) {
-          this.customDomain = null;
-          this.region = regionOrCustomDomain;
-        }
-      }
-      _delete() {
-        return this.deleteService();
-      }
-      _url(name7) {
-        const projectId = this.app.options.projectId;
-        if (this.emulatorOrigin !== null) {
-          const origin = this.emulatorOrigin;
-          return `${origin}/${projectId}/${this.region}/${name7}`;
-        }
-        if (this.customDomain !== null) {
-          return `${this.customDomain}/${name7}`;
-        }
-        return `https://${this.region}-${projectId}.cloudfunctions.net/${name7}`;
-      }
-    };
-    name6 = "@firebase/functions";
-    version6 = "0.8.4";
-    AUTH_INTERNAL_NAME = "auth-internal";
-    APP_CHECK_INTERNAL_NAME = "app-check-internal";
-    MESSAGING_INTERNAL_NAME = "messaging-internal";
-    registerFunctions(import_node_fetch3.default, "node");
+      })}
+</div>`;
+    });
   }
 });
 
-// node_modules/firebase/functions/dist/index.mjs
-var init_dist5 = __esm({
-  "node_modules/firebase/functions/dist/index.mjs"() {
+// .svelte-kit/output/server/_app/immutable/chunks/tags-aae63568.js
+var import_chroma_js2, tagConfig, colors, TAGS, css2, Tags;
+var init_tags_aae63568 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/tags-aae63568.js"() {
     init_shims();
-    init_index_node_esm3();
+    init_index_269d0619();
+    import_chroma_js2 = __toESM(require_chroma(), 1);
+    init_store_f57b9afe();
+    init_font_d540c2eb();
+    tagConfig = {
+      mainstream: [
+        "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+        "mainstream news",
+        "\u0BAE\u0BC1\u0B95\u0BCD\u0B95\u0BBF\u0BAF \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
+      ],
+      aragala: [
+        "\u0D85\u0DBB\u0D9C\u0DBD \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
+        "aragala news",
+        "\u0B85\u0BB0\u0B95\u0BB2 \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BBF"
+      ],
+      economy: [
+        "\u0D86\u0DBB\u0DCA\u0DAE\u0DD2\u0D9A",
+        "economy",
+        "\u0BAA\u0BCA\u0BB0\u0BC1\u0BB3\u0BBE\u0BA4\u0BBE\u0BB0\u0BAE\u0BCD"
+      ],
+      political: [
+        "\u0DAF\u0DDA\u0DC1\u0DB4\u0DCF\u0DBD\u0DB1",
+        "political",
+        "\u0B85\u0BB0\u0B9A\u0BBF\u0BAF\u0BB2\u0BCD"
+      ],
+      legal: [
+        "\u0D85\u0DB0\u0DD2\u0D9A\u0DBB\u0DAB",
+        "judicial",
+        "\u0BA8\u0BC0\u0BA4\u0BBF\u0BA4\u0BCD\u0BA4\u0BC1\u0BB1\u0BC8"
+      ],
+      international: [
+        "\u0DA2\u0DCF\u0DAD\u0DCA\u200D\u0DBA\u0DB1\u0DCA\u0DAD\u0DBB",
+        "international",
+        "\u0B9A\u0BB0\u0BCD\u0BB5\u0BA4\u0BC7\u0B9A"
+      ],
+      energy: [
+        "\u0DB6\u0DBD\u0DC1\u0D9A\u0DCA\u0DAD\u0DD2",
+        "power & energy",
+        "\u0B86\u0BB1\u0BCD\u0BB1\u0BB2\u0BCD"
+      ],
+      philosophy: [
+        "\u0DAF\u0DBB\u0DCA\u0DC1\u0DB1\u0DBA",
+        "philosophy",
+        "\u0BA4\u0BA4\u0BCD\u0BA4\u0BC1\u0BB5\u0BAE\u0BCD"
+      ],
+      english: [
+        "\u0D89\u0D82\u0D9C\u0DCA\u200D\u0DBB\u0DD3\u0DC3\u0DD2",
+        "english",
+        "\u0B86\u0B99\u0BCD\u0B95\u0BBF\u0BB2\u0BAE\u0BCD"
+      ],
+      discussion: [
+        "\u0DC3\u0DCF\u0D9A\u0DA0\u0DCA\u0DA1\u0DCF",
+        "discussion",
+        "\u0BB5\u0BBF\u0BB5\u0BBE\u0BA4\u0BAE\u0BCD"
+      ],
+      downloads: [
+        "\u0DB6\u0DCF\u0D9C\u0DAD \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DCA",
+        "downloads",
+        "\u0BAA\u0BA4\u0BBF\u0BB5\u0BBF\u0BB1\u0B95\u0BCD\u0B95\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+      ]
+    };
+    colors = import_chroma_js2.default.scale(["#c1f437", "#00e0ff", "#ff6161", "#ffca99", "#ff58d3"]).colors(Object.keys(tagConfig).length);
+    TAGS = Object.keys(tagConfig).reduce((object, key2, _i) => {
+      object[key2] = {
+        name: key2,
+        strings: tagConfig[key2],
+        color: (0, import_chroma_js2.default)(colors[_i]).luminance(0.4).hex()
+      };
+      return object;
+    }, {});
+    css2 = {
+      code: ".tag.s-AT3XvDln3Ibo{border:var(--s2px) solid #a5a5a5;border-radius:var(--s3px);padding:0 var(--s3px);margin-right:var(--s3px);margin-bottom:var(--s3px)}.s-AT3XvDln3Ibo{}",
+      map: null
+    };
+    Tags = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $_lang, $$unsubscribe__lang;
+      validate_store(_lang, "_lang");
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let { tags } = $$props;
+      let { clickable = void 0 } = $$props;
+      let { style = "" } = $$props;
+      if (!tags)
+        tags = [];
+      createEventDispatcher();
+      if ($$props.tags === void 0 && $$bindings.tags && tags !== void 0)
+        $$bindings.tags(tags);
+      if ($$props.clickable === void 0 && $$bindings.clickable && clickable !== void 0)
+        $$bindings.clickable(clickable);
+      if ($$props.style === void 0 && $$bindings.style && style !== void 0)
+        $$bindings.style(style);
+      $$result.css.add(css2);
+      $$unsubscribe__lang();
+      return `${validate_component(Font, "Font").$$render(
+        $$result,
+        {
+          font: 0,
+          size: 0.75,
+          style: "\n        display: flex;\n        width: calc(90% - 4px);\n        flex-wrap: wrap;" + style
+        },
+        {},
+        {
+          default: () => {
+            return `${each(tags, (tag, _i) => {
+              return `<span class="${"tag " + escape(clickable ? "_clickable" : "", true) + " s-AT3XvDln3Ibo"}" style="${"background-color: " + escape(TAGS[tag].color, true) + ";"}">${escape(TAGS[tag].strings[$_lang])}
+    </span>`;
+            })}`;
+          }
+        }
+      )}`;
+    });
   }
 });
 
@@ -88083,18 +88125,19 @@ var layout_svelte_exports = {};
 __export(layout_svelte_exports, {
   default: () => _layout
 });
-var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_extension_link, import_chroma_js2, strings$1, css$b, Button, css$a, Text_input, css$9, Login, functions, _createPost, strings, css$8, Tiptap_editor, css$7, Html_input, css$6, Select, css$5, Form, css$4, Theme_selector, css$3, Preloading_indicator, css$2, Loader, css$1, Toasts, css2, _layout;
+var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_extension_link, import_chroma_js3, strings$1, css$a, Button, css$9, Login, functions, _createPost, strings, css$8, Tiptap_editor, css$7, Html_input, css$6, Select, css$5, Form, css$4, Theme_selector, css$3, Preloading_indicator, css$2, Loader, css$1, Toasts, css3, _layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
-    init_index_d732e872();
-    init_store_21b4cd20();
-    init_database_298aef9a();
-    init_tags_b46fae60();
+    init_index_269d0619();
+    init_store_f57b9afe();
+    init_database_257f4b5e();
+    init_font_d540c2eb();
     init_dist3();
-    init_storage_05d57c84();
-    init_column_config_ed3a8d78();
-    init_dist5();
+    init_storage_1eab496f();
+    init_text_input_fffa3872();
+    init_tags_aae63568();
+    init_dist4();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
     import_extension_bold = __toESM(require_tiptap_extension_bold_cjs(), 1);
     import_extension_italic = __toESM(require_tiptap_extension_italic_cjs(), 1);
@@ -88111,8 +88154,8 @@ var init_layout_svelte = __esm({
     import_extension_link = __toESM(require_tiptap_extension_link_cjs(), 1);
     init_dist();
     init_dist2();
-    import_chroma_js2 = __toESM(require_chroma(), 1);
-    init_dist4();
+    import_chroma_js3 = __toESM(require_chroma(), 1);
+    init_dist5();
     strings$1 = {
       enter: [
         "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA\u0DC0\u0DB1\u0DCA\u0DB1",
@@ -88155,7 +88198,7 @@ var init_layout_svelte = __esm({
         "\u0BAA\u0BC6\u0BAF\u0BB0\u0BC8 \u0B89\u0BB3\u0BCD\u0BB3\u0BBF\u0B9F\u0BC1\u0B95"
       ]
     };
-    css$b = {
+    css$a = {
       code: ".button.s-d9-80eNJ_c8b{display:flex;align-items:center;justify-content:center;border-radius:var(--s5px);padding:var(--s5px);cursor:pointer;color:white;background-color:var(--theme-defaultbutton)}.form.s-d9-80eNJ_c8b{height:var(--s45px);width:90%;margin-bottom:var(--s14px)}.cancel.s-d9-80eNJ_c8b{background-color:var(--theme-cancelbutton)}.s-d9-80eNJ_c8b{}",
       map: null
     };
@@ -88181,50 +88224,13 @@ var init_layout_svelte = __esm({
         $$bindings.style(style);
       if ($$props.fontSize === void 0 && $$bindings.fontSize && fontSize !== void 0)
         $$bindings.fontSize(fontSize);
-      $$result.css.add(css$b);
+      $$result.css.add(css$a);
       $$unsubscribe__lang();
       return `<div class="${["button s-d9-80eNJ_c8b", (cancel ? "cancel" : "") + " " + (form ? "form" : "")].join(" ").trim()}"${add_attribute("style", style, 0)}>${`${validate_component(Font, "Font").$$render($$result, { font: 0, size: fontSize || 1 }, {}, {
         default: () => {
           return `${escape(text[$_lang])}`;
         }
       })}`}
-</div>`;
-    });
-    css$a = {
-      code: ".text-input.s-Rc61XWFQtAVh{width:90%;margin-bottom:var(--s18px)}input.s-Rc61XWFQtAVh{height:var(--s45px);width:100%;border-radius:var(--s5px);padding:var(--s10px);border:var(--s1px) solid var(--theme-defaultbutton);font-size:1rem;margin-bottom:3px}span.s-Rc61XWFQtAVh{color:red}.error.s-Rc61XWFQtAVh{border-width:2px;border-color:#c02e46}.s-Rc61XWFQtAVh{}",
-      map: null
-    };
-    Text_input = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang, $$unsubscribe__lang;
-      validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
-      let { disabled = false } = $$props;
-      let { config } = $$props;
-      let { data } = $$props;
-      createEventDispatcher();
-      let { error: error2 } = $$props;
-      if ($$props.disabled === void 0 && $$bindings.disabled && disabled !== void 0)
-        $$bindings.disabled(disabled);
-      if ($$props.config === void 0 && $$bindings.config && config !== void 0)
-        $$bindings.config(config);
-      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
-        $$bindings.data(data);
-      if ($$props.error === void 0 && $$bindings.error && error2 !== void 0)
-        $$bindings.error(error2);
-      $$result.css.add(css$a);
-      $$unsubscribe__lang();
-      return `<div class="${"text-input s-Rc61XWFQtAVh"}">${validate_component(Font, "Font").$$render($$result, { font: 0, size: 1 }, {}, {
-        default: () => {
-          return `
-        ${config.type !== "password" ? `<input type="${"text"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["s-Rc61XWFQtAVh", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>` : `<input type="${"password"}" ${disabled ? "disabled" : ""}${add_attribute("placeholder", config.placeholder[$_lang], 0)}${add_attribute("maxlength", config.maxlength, 0)}${add_attribute("autocomplete", config.autocomplete, 0)} class="${["s-Rc61XWFQtAVh", error2 ? "error" : ""].join(" ").trim()}"${add_attribute("value", data[config.name], 0)}>`}
-        
-        ${error2 && typeof error2 != "boolean" ? `<span class="${"s-Rc61XWFQtAVh"}">${validate_component(Font, "Font").$$render($$result, { font: 0, size: 0.8 }, {}, {
-            default: () => {
-              return `${escape(Array.isArray(error2) ? error2[$_lang] : error2)}`;
-            }
-          })}</span>` : ``}`;
-        }
-      })}
 </div>`;
     });
     css$9 = {
@@ -88782,31 +88788,31 @@ var init_layout_svelte = __esm({
       map: null
     };
     Loader = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $$unsubscribe__authStateChecked;
-      let $$unsubscribe__redirected;
-      let $$unsubscribe__appContentReady;
       let $$unsubscribe__scaledPixelsReady;
       let $$unsubscribe__themeSizesReady;
       let $$unsubscribe__themeColorsReady;
-      validate_store(_authStateChecked, "_authStateChecked");
-      $$unsubscribe__authStateChecked = subscribe(_authStateChecked, (value) => value);
-      validate_store(_redirected, "_redirected");
-      $$unsubscribe__redirected = subscribe(_redirected, (value) => value);
-      validate_store(_appContentReady, "_appContentReady");
-      $$unsubscribe__appContentReady = subscribe(_appContentReady, (value) => value);
+      let $$unsubscribe__authStateChecked;
+      let $$unsubscribe__appContentReady;
+      let $$unsubscribe__redirected;
       validate_store(_scaledPixelsReady, "_scaledPixelsReady");
       $$unsubscribe__scaledPixelsReady = subscribe(_scaledPixelsReady, (value) => value);
       validate_store(_themeSizesReady, "_themeSizesReady");
       $$unsubscribe__themeSizesReady = subscribe(_themeSizesReady, (value) => value);
       validate_store(_themeColorsReady, "_themeColorsReady");
       $$unsubscribe__themeColorsReady = subscribe(_themeColorsReady, (value) => value);
+      validate_store(_authStateChecked, "_authStateChecked");
+      $$unsubscribe__authStateChecked = subscribe(_authStateChecked, (value) => value);
+      validate_store(_appContentReady, "_appContentReady");
+      $$unsubscribe__appContentReady = subscribe(_appContentReady, (value) => value);
+      validate_store(_redirected, "_redirected");
+      $$unsubscribe__redirected = subscribe(_redirected, (value) => value);
       $$result.css.add(css$2);
-      $$unsubscribe__authStateChecked();
-      $$unsubscribe__redirected();
-      $$unsubscribe__appContentReady();
       $$unsubscribe__scaledPixelsReady();
       $$unsubscribe__themeSizesReady();
       $$unsubscribe__themeColorsReady();
+      $$unsubscribe__authStateChecked();
+      $$unsubscribe__appContentReady();
+      $$unsubscribe__redirected();
       return `${`<div class="${"loader s-o47rfqMMGVwP"}"><div class="${"title s-o47rfqMMGVwP"}"><img src="${"/logo-tiny.png"}" alt="${"\u0D85\u0DBB\u0D9C\u0DBD\u0DBA.online"}" class="${"s-o47rfqMMGVwP"}"></div>
     <div class="${"progress-bar s-o47rfqMMGVwP"}">${validate_component(Preloading_indicator, "PreloadingIndicator").$$render($$result, {}, {}, {})}</div></div>`}`;
     });
@@ -88846,7 +88852,7 @@ ${showText ? `<div class="${["toast-container s-F3BFPhrY-hZv", event ? "event" :
         }
       })}</div></div>` : ``}`;
     });
-    css2 = {
+    css3 = {
       code: "html{font-family:'Roboto', sans-serif}body{margin:0;overflow:hidden}*{box-sizing:border-box}._clickable:hover{cursor:pointer}p{margin:0px}ul.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-flex}.header.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{--text:rgb(163, 47, 47);--shadow-height:0.5rem;--shadow-gradient:linear-gradient(\n			to bottom,\n			rgba(0, 0, 0, 0.3) 0%,\n			rgba(0, 0, 0, 0.1) 30%,\n			transparent 100%\n		);height:var(--theme-layoutheaderheight);display:flex;align-items:center;justify-content:space-between;width:100vw;margin:0;font-family:var(--font);transition:transform 0.2s;user-select:none;padding:0;background-color:var(--theme-headerbackground)}.logo.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:flex;padding:var(--s10px) var(--s7px);align-items:baseline;padding-bottom:var(--s10px)}.aragalaya.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-block;font-size:var(--s36px);line-height:var(--s28px);font-weight:bold;font-family:'Gemunu Libre', sans-serif}.online.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-block;font-size:var(--s18px);font-family:'Roboto', sans-serif}.beta.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{padding:var(--s5px);font-size:var(--s9px);font-weight:bold;color:green}.header-right.s-PoaHcXV6SIWL li.s-PoaHcXV6SIWL{font-size:var(--s14px);line-height:var(--s14px);padding:0 var(--s5px);font-family:'Roboto', sans-serif}.header-right.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL:last-child{margin-right:var(--s5px)}.login.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{margin-left:var(--s30px)}.login.s-PoaHcXV6SIWL .fa-solid.s-PoaHcXV6SIWL{font-size:var(--s19px);margin-right:var(--s3px)}.header-right.s-PoaHcXV6SIWL li.s-PoaHcXV6SIWL{cursor:pointer}.language-select.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:relative}.language-button.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:flex;align-items:center;justify-content:center;width:var(--s30px);height:var(--s30px);background:white;color:black;font-size:18px;border-radius:var(--s3px);border:0.0520vw solid black;cursor:pointer}.languages.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:absolute;top:var(--s35px);right:var(--s-22_5px);z-index:10;width:var(--s80px);border-radius:var(--s3px);border:0.0520vw solid black}.languages.s-PoaHcXV6SIWL>div.s-PoaHcXV6SIWL{padding:var(--s10px);background-color:white;text-align:center}main.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:relative;margin:0 auto;overflow:hiden}.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{}",
       map: null
     };
@@ -88890,7 +88896,7 @@ ${showText ? `<div class="${["toast-container s-F3BFPhrY-hZv", event ? "event" :
         }
       });
       onDestroy(() => globalClickEvent.unsubscribe());
-      $$result.css.add(css2);
+      $$result.css.add(css3);
       $$unsubscribe__isMobile();
       return `
 
@@ -88903,7 +88909,7 @@ ${validate_component(Toasts, "Toasts").$$render($$result, {}, {}, {})}
 		</div>
 		<div class="${"online s-PoaHcXV6SIWL"}">.online
 		</div>
-        <div class="${"beta s-PoaHcXV6SIWL"}">${escape("(beta)")}</div></div>
+        <div class="${"beta s-PoaHcXV6SIWL"}">${escape("(dev-beta)")}</div></div>
 	<ul class="${"header-right s-PoaHcXV6SIWL"}">${!$_isMobile ? `<li class="${"s-PoaHcXV6SIWL"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
 		</li>
 		<li class="${"s-PoaHcXV6SIWL"}">English 
@@ -88941,9 +88947,9 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-0e309c39.js";
-    imports = ["_app/immutable/pages/__layout.svelte-0e309c39.js", "_app/immutable/chunks/index-73a75506.js", "_app/immutable/chunks/store-50aefbd8.js", "_app/immutable/chunks/index-4c7ad0d2.js", "_app/immutable/chunks/events-8308a6cd.js", "_app/immutable/chunks/database-39b5466e.js", "_app/immutable/chunks/tags-5f4692e5.js", "_app/immutable/chunks/storage-79c8d12a.js"];
-    stylesheets = ["_app/immutable/assets/__layout-737c78a1.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/storage-491479b0.css"];
+    file2 = "_app/immutable/pages/__layout.svelte-9ee59225.js";
+    imports = ["_app/immutable/pages/__layout.svelte-9ee59225.js", "_app/immutable/chunks/index-99208652.js", "_app/immutable/chunks/store-93d9bf09.js", "_app/immutable/chunks/index-06ba869f.js", "_app/immutable/chunks/font-aba25a34.js", "_app/immutable/chunks/database-512b7597.js", "_app/immutable/chunks/storage-d739126e.js", "_app/immutable/chunks/text-input-ceba9618.js", "_app/immutable/chunks/tags-d0e6f1d5.js"];
+    stylesheets = ["_app/immutable/assets/__layout-c9b942dd.css", "_app/immutable/assets/storage-491479b0.css", "_app/immutable/assets/text-input-b1daa303.css", "_app/immutable/assets/tags-95a7f94d.css"];
   }
 });
 
@@ -88960,7 +88966,7 @@ var Error2;
 var init_error_svelte = __esm({
   ".svelte-kit/output/server/entries/fallbacks/error.svelte.js"() {
     init_shims();
-    init_index_d732e872();
+    init_index_269d0619();
     Error2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { status } = $$props;
       let { error: error2 } = $$props;
@@ -88995,8 +89001,8 @@ var init__2 = __esm({
     init_shims();
     init_error_svelte();
     index2 = 1;
-    file3 = "_app/immutable/error.svelte-6d8050c8.js";
-    imports2 = ["_app/immutable/error.svelte-6d8050c8.js", "_app/immutable/chunks/index-73a75506.js"];
+    file3 = "_app/immutable/error.svelte-04e99297.js";
+    imports2 = ["_app/immutable/error.svelte-04e99297.js", "_app/immutable/chunks/index-99208652.js"];
     stylesheets2 = [];
   }
 });
@@ -91050,15 +91056,16 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/proposal-41537404.js
-var css$32, Card, strings$3, Timestamp2, strings$2, css$22, Content, css$12, Preview, strings$12, css3, Toolbar, strings2, Proposal;
-var init_proposal_41537404 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/proposal-41537404.js"() {
+// .svelte-kit/output/server/_app/immutable/chunks/proposal-9d5e9e62.js
+var css$32, Card, strings$3, Timestamp2, strings$2, css$22, Content, css$12, Preview, strings$12, css4, Toolbar, strings2, Proposal;
+var init_proposal_9d5e9e62 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/proposal-9d5e9e62.js"() {
     init_shims();
-    init_index_d732e872();
-    init_store_21b4cd20();
+    init_index_269d0619();
+    init_store_f57b9afe();
     init_string_strip_html_esm();
-    init_tags_b46fae60();
+    init_font_d540c2eb();
+    init_tags_aae63568();
     css$32 = {
       code: ".card-container.s-Hio59jcNIlCL{padding:var(--theme-cardseparationhalf)}.card.s-Hio59jcNIlCL{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.s-Hio59jcNIlCL{}",
       map: null
@@ -91302,7 +91309,7 @@ var init_proposal_41537404 = __esm({
         "\u0B9A\u0BB0\u0BBF\u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BB5\u0BBF\u0BB2\u0BCD\u0BB2\u0BC8"
       ]
     };
-    css3 = {
+    css4 = {
       code: ".toolbar.s-A62t8M1ucyij{display:flex;align-items:center;justify-content:space-between;margin-top:var(--s10px)}.toolbar-left.s-A62t8M1ucyij{display:inline-flex}.toolbar-right.s-A62t8M1ucyij{display:inline-flex;align-items:center}.icon.s-A62t8M1ucyij{display:inline-flex;align-items:center;justify-content:center;width:var(--theme-toolbarbuttonsize);height:var(--theme-toolbarbuttonsize);margin-right:var(--s5px);font-size:var(--s13px);line-height:var(--s14px);background-color:rgb(226, 230, 230);border-radius:3px}.on.s-A62t8M1ucyij{background-color:rgb(124, 124, 124);color:white}.verified.s-A62t8M1ucyij{background-color:#48bb6b;color:white;margin-right:0}.not-verified.s-A62t8M1ucyij{background-color:#e44e4e;color:white;margin-right:0}.facebook.s-A62t8M1ucyij{background-color:#557bab}.twitter.s-A62t8M1ucyij{background-color:#6abef2}.whatsapp.s-A62t8M1ucyij{background-color:#61ba7b}.reddit.s-A62t8M1ucyij{background-color:#fc7949}.fa-brands.s-A62t8M1ucyij{color:white}.s-A62t8M1ucyij{}",
       map: null
     };
@@ -91314,7 +91321,7 @@ var init_proposal_41537404 = __esm({
       createEventDispatcher();
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      $$result.css.add(css3);
+      $$result.css.add(css4);
       $$unsubscribe__lang();
       return `
 
@@ -91614,23 +91621,24 @@ function tweened(value, defaults = {}) {
     subscribe: store.subscribe
   };
 }
-var import_chroma_js3, css$72, Nav, css$62, Template, strings$22, css$52, Mt, Bulletin, News, css$42, Youtube, Video, css$33, Post, strings$13, css$23, Filter2, strings3, css$13, Wip, css4, COMPONENTS, Routes;
+var import_chroma_js4, css$72, Nav, css$62, Template, strings$22, css$52, Mt, Bulletin, News, css$42, Youtube, Video, css$33, Post, strings$13, css$23, Filter2, strings3, css$13, Wip, css5, COMPONENTS, Routes;
 var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
-    init_index_d732e872();
-    init_column_config_ed3a8d78();
-    init_store_21b4cd20();
+    init_index_269d0619();
+    init_store_f57b9afe();
     init_string_strip_html_esm();
-    init_database_298aef9a();
-    init_tags_b46fae60();
-    init_storage_05d57c84();
-    init_proposal_41537404();
+    init_database_257f4b5e();
+    init_font_d540c2eb();
+    init_storage_1eab496f();
+    init_proposal_9d5e9e62();
+    init_tags_aae63568();
     init_dist();
     init_dist2();
     init_dist3();
-    import_chroma_js3 = __toESM(require_chroma(), 1);
     init_dist4();
+    import_chroma_js4 = __toESM(require_chroma(), 1);
+    init_dist5();
     Array(COLUMN_COUNT).fill(0);
     css$72 = {
       code: ".navigation.s-QYN83HapRChq{position:fixed;right:var(--s5px);bottom:var(--s5px);z-index:100;display:flex;align-items:center;flex-direction:column;background-color:black;border-radius:var(--s6px);border:var(--s0_5px) solid white}.animated.s-QYN83HapRChq{position:relative}.icons.s-QYN83HapRChq{position:relative;overflow:hidden}.icon.s-QYN83HapRChq{position:relative;width:var(--theme-navsize);height:var(--theme-navsize);display:flex;align-items:center;justify-content:center;color:var(--nav-buttons);font-size:var(--theme-naviconsize)}.toggle.s-QYN83HapRChq{color:white}.show-hide.s-QYN83HapRChq{background-color:black;z-index:1;color:white;border-radius:var(--s6px)}.scroll.s-QYN83HapRChq{position:absolute;right:0;width:var(--s4px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-columns-7) 25%, \n            var(--theme-columns-5) 50%,\n            var(--theme-columns-3) 75%, \n            var(--theme-columns-1) 100%);border-radius:var(--s6px)}.title_c.s-QYN83HapRChq{position:fixed}.title.s-QYN83HapRChq{font-weight:bold;color:rgb(85, 85, 85);padding:var(--s0px) var(--s5px);background-color:white}.s-QYN83HapRChq{}",
@@ -92092,7 +92100,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
       ]
     };
     css$23 = {
-      code: ".filters.s-BJo09dFzrlwu{position:relative;width:100%;padding:var(--theme-cardseparationhalf) 0 0 0}.tag.s-BJo09dFzrlwu{background-color:var(--color);border:var(--s1px) solid #cfcfcf;border-radius:var(--s3px);padding:0 var(--s3px);margin-right:var(--s5px);filter:grayscale(0.8);margin-bottom:var(--s6px)}.tag.s-BJo09dFzrlwu:hover{cursor:pointer}.selectedTags.s-BJo09dFzrlwu{border-bottom:var(--s3px) solid black;filter:none}.verified.s-BJo09dFzrlwu{background-color:#48bb6b}.not-verified.s-BJo09dFzrlwu{background-color:#ff8181}.button-container.s-BJo09dFzrlwu{display:flex;justify-content:center}.button.s-BJo09dFzrlwu{display:inline-flex;justify-content:center;align-items:center;margin-right:var(--s5px);padding:var(--s7px);background-color:rgb(199, 226, 249);border-radius:var(--s3px);width:var(--s30px)}.button.s-BJo09dFzrlwu:hover{cursor:pointer}.filter.s-BJo09dFzrlwu{background-color:rgb(127, 191, 247);padding:var(--s5px) var(--s10px);width:var(--s150px)}.s-BJo09dFzrlwu{}",
+      code: ".filters.s-BJo09dFzrlwu{position:relative;width:100%;padding:var(--theme-cardseparationhalf) 0 0 0}.tag.s-BJo09dFzrlwu{background-color:white;border:var(--s1px) solid #cfcfcf;border-radius:var(--s3px);padding:var(--s3px) var(--s3px);margin-right:var(--s5px);filter:grayscale(0.8);margin-bottom:var(--s6px)}.tag.s-BJo09dFzrlwu:hover{cursor:pointer}.separator.s-BJo09dFzrlwu{padding:var(--s3px) var(--s3px);margin-right:var(--s5px)}.selected-tags.s-BJo09dFzrlwu{background-color:var(--color);filter:none}.button-container.s-BJo09dFzrlwu{display:flex;justify-content:center}.button.s-BJo09dFzrlwu{display:inline-flex;justify-content:center;align-items:center;margin-right:var(--s5px);padding:var(--s7px);background-color:rgb(199, 226, 249);border-radius:var(--s3px);width:var(--s30px)}.button.s-BJo09dFzrlwu:hover{cursor:pointer}.filter.s-BJo09dFzrlwu{background-color:rgb(127, 191, 247);padding:var(--s5px) var(--s10px);width:var(--s150px)}.s-BJo09dFzrlwu{}",
       map: null
     };
     Filter2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -92128,13 +92136,14 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             {},
             {
               default: () => {
-                return `<span class="${["tag verified s-BJo09dFzrlwu", "selectedTags"].join(" ").trim()}">${escape(strings$13["verified"][$_lang])}</span>
-            <span class="${[
-                  "tag not-verified s-BJo09dFzrlwu",
-                  ""
-                ].join(" ").trim()}">${escape(strings$13["not_verified"][$_lang])}</span>
+                return `
+            <span class="${["tag s-BJo09dFzrlwu", "selected-tags"].join(" ").trim()}" style="${"--color: #48bb6b;"}">${escape(strings$13["verified"][$_lang])}</span>
+            
+            <span class="${["tag s-BJo09dFzrlwu", ""].join(" ").trim()}" style="${"--color: #e44e4e;"}">${escape(strings$13["not_verified"][$_lang])}</span>
+            <span class="${"separator s-BJo09dFzrlwu"}">-</span>
+            
             ${each(configTags, (tag, _i) => {
-                  return `<span class="${["tag s-BJo09dFzrlwu", selectedTags[_i] ? "selectedTags" : ""].join(" ").trim()}" style="${"--color: " + escape(tag.color, true) + ";"}">${escape(tag.strings[$_lang])}
+                  return `<span class="${["tag s-BJo09dFzrlwu", selectedTags[_i] ? "selected-tags" : ""].join(" ").trim()}" style="${"--color: " + escape(tag.color, true) + ";"}">${escape(tag.strings[$_lang])}
             </span>`;
                 })}`;
               }
@@ -92237,7 +92246,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
         }
       })}`;
     });
-    css4 = {
+    css5 = {
       code: "ul.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex}.columns.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;overflow:hidden;background-color:var(--theme-columnbackground)}.column.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;width:var(--theme-columnwidth);height:calc(100vh - var(--theme-columnheaderheight))}.header.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;height:var(--theme-columnheaderheight);color:var(--theme-headerfontcolor);padding:0 var(--theme-cardseparationhalf) 0 var(--s10px);font-weight:bold;z-index:2}.header.s-Uap-jPRb-uiE div.s-Uap-jPRb-uiE{display:flex;align-items:center;height:100%}.header.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE:first-child{font-size:var(--s24px)}.icon-button.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex;align-items:center;justify-content:center;width:35px;height:35px;font-size:var(--s17px)}.cards.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;width:100%;height:calc(100vh - var(--s100px));overflow-y:scroll;overflow-x:hidden;-ms-overflow-style:none;scrollbar-width:none;padding:var(--theme-cardseparationhalf) 0}.cards.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE::-webkit-scrollbar{display:none}.spacer.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{width:var(--theme-cardseparationhalf);height:calc(100vh - var(--theme-columnheaderheight))}.spacer.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE::after{display:block;content:'';height:var(--theme-columnheaderheight);width:var(--theme-cardseparationhalf);background-color:var(--background)}.scrollbar.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:absolute;top:var(--theme-columnheaderheight);right:0}.scroll.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:absolute;overflow:hidden;top:var(--s20px);right:var(--s-3_75px);width:var(--s7_5px);border-radius:var(--s7_5px);opacity:0.5;background-color:rgba(0,0,0,0.4)}.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{}",
       map: null
     };
@@ -92347,7 +92356,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
         $$bindings.columnData(columnData);
       if ($$props.postData === void 0 && $$bindings.postData && postData !== void 0)
         $$bindings.postData(postData);
-      $$result.css.add(css4);
+      $$result.css.add(css5);
       $$unsubscribe__isMobile();
       $$unsubscribe__lang();
       return `
@@ -92422,9 +92431,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    file4 = "_app/immutable/pages/index.svelte-6b37237c.js";
-    imports3 = ["_app/immutable/pages/index.svelte-6b37237c.js", "_app/immutable/chunks/index-73a75506.js", "_app/immutable/chunks/tags-5f4692e5.js", "_app/immutable/chunks/store-50aefbd8.js", "_app/immutable/chunks/index-4c7ad0d2.js", "_app/immutable/chunks/proposal-0dce41fc.js", "_app/immutable/chunks/events-8308a6cd.js", "_app/immutable/chunks/database-39b5466e.js", "_app/immutable/chunks/storage-79c8d12a.js"];
-    stylesheets3 = ["_app/immutable/assets/index-06011cae.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/proposal-8f53a606.css", "_app/immutable/assets/storage-491479b0.css"];
+    file4 = "_app/immutable/pages/index.svelte-b3d7e69a.js";
+    imports3 = ["_app/immutable/pages/index.svelte-b3d7e69a.js", "_app/immutable/chunks/index-99208652.js", "_app/immutable/chunks/font-aba25a34.js", "_app/immutable/chunks/store-93d9bf09.js", "_app/immutable/chunks/index-06ba869f.js", "_app/immutable/chunks/proposal-74a03fbd.js", "_app/immutable/chunks/tags-d0e6f1d5.js", "_app/immutable/chunks/database-512b7597.js", "_app/immutable/chunks/storage-d739126e.js"];
+    stylesheets3 = ["_app/immutable/assets/index-586204af.css", "_app/immutable/assets/proposal-8f53a606.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/storage-491479b0.css"];
   }
 });
 
@@ -92433,18 +92442,18 @@ var post_preview_svelte_exports = {};
 __export(post_preview_svelte_exports, {
   default: () => Post_preview
 });
-var import_chroma_js4, css5, Post_preview;
+var import_chroma_js5, css6, Post_preview;
 var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
-    init_index_d732e872();
-    init_proposal_41537404();
-    init_store_21b4cd20();
+    init_index_269d0619();
+    init_proposal_9d5e9e62();
+    init_store_f57b9afe();
     init_string_strip_html_esm();
-    init_tags_b46fae60();
-    import_chroma_js4 = __toESM(require_chroma(), 1);
-    init_column_config_ed3a8d78();
-    css5 = {
+    init_font_d540c2eb();
+    import_chroma_js5 = __toESM(require_chroma(), 1);
+    init_tags_aae63568();
+    css6 = {
       code: ".preview.s-nkO0SViUUGe1{display:flex;justify-content:center;background-color:var(--theme-columnbackground);width:100%;height:100vh}.column-container.s-nkO0SViUUGe1{padding:var(--theme-cardseparationhalf);height:100%}.column.s-nkO0SViUUGe1{display:flex;align-items:center;justify-content:center;flex-direction:column;width:var(--theme-columnwidth);height:100%;padding:0 var(--theme-cardseparationhalf)}.s-nkO0SViUUGe1{}",
       map: null
     };
@@ -92461,7 +92470,7 @@ var init_post_preview_svelte = __esm({
           ]
         }
       ];
-      $$result.css.add(css5);
+      $$result.css.add(css6);
       return `
 
 
@@ -92489,8 +92498,8 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 4;
-    file5 = "_app/immutable/pages/post_preview.svelte-75ce3840.js";
-    imports4 = ["_app/immutable/pages/post_preview.svelte-75ce3840.js", "_app/immutable/chunks/index-73a75506.js", "_app/immutable/chunks/proposal-0dce41fc.js", "_app/immutable/chunks/store-50aefbd8.js", "_app/immutable/chunks/index-4c7ad0d2.js", "_app/immutable/chunks/tags-5f4692e5.js", "_app/immutable/chunks/events-8308a6cd.js"];
+    file5 = "_app/immutable/pages/post_preview.svelte-1ca9ea35.js";
+    imports4 = ["_app/immutable/pages/post_preview.svelte-1ca9ea35.js", "_app/immutable/chunks/index-99208652.js", "_app/immutable/chunks/proposal-74a03fbd.js", "_app/immutable/chunks/store-93d9bf09.js", "_app/immutable/chunks/index-06ba869f.js", "_app/immutable/chunks/font-aba25a34.js", "_app/immutable/chunks/tags-d0e6f1d5.js"];
     stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-8f53a606.css", "_app/immutable/assets/tags-95a7f94d.css"];
   }
 });
@@ -92500,17 +92509,17 @@ var privacy_policy_svelte_exports = {};
 __export(privacy_policy_svelte_exports, {
   default: () => Privacy_policy
 });
-var css6, Privacy_policy;
+var css7, Privacy_policy;
 var init_privacy_policy_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/privacy_policy.svelte.js"() {
     init_shims();
-    init_index_d732e872();
-    css6 = {
+    init_index_269d0619();
+    css7 = {
       code: ".privacy.s-BFsvH6Axz-AK{display:flex;align-items:center;justify-content:center;width:100vw;height:100vh;padding:150px}.s-BFsvH6Axz-AK{}",
       map: null
     };
     Privacy_policy = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css6);
+      $$result.css.add(css7);
       return `<div class="${"privacy s-BFsvH6Axz-AK"}">We do not collect or store any other information than your name and email.
     If you wish to hide your email, use the facebook signon method, click &#39;edit access&#39; and select hide email.
 </div>`;
@@ -92533,8 +92542,8 @@ var init__5 = __esm({
     init_shims();
     init_privacy_policy_svelte();
     index5 = 5;
-    file6 = "_app/immutable/pages/privacy_policy.svelte-2c37d41d.js";
-    imports5 = ["_app/immutable/pages/privacy_policy.svelte-2c37d41d.js", "_app/immutable/chunks/index-73a75506.js"];
+    file6 = "_app/immutable/pages/privacy_policy.svelte-321bb851.js";
+    imports5 = ["_app/immutable/pages/privacy_policy.svelte-321bb851.js", "_app/immutable/chunks/index-99208652.js"];
     stylesheets5 = ["_app/immutable/assets/privacy_policy-9e1470cc.css"];
   }
 });
@@ -92544,23 +92553,50 @@ var users_svelte_exports = {};
 __export(users_svelte_exports, {
   default: () => Users
 });
-var Users;
+var import_chroma_js6, css8, Users;
 var init_users_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/admin/users.svelte.js"() {
     init_shims();
-    init_index_d732e872();
-    init_database_298aef9a();
-    init_store_21b4cd20();
+    init_index_269d0619();
+    init_database_257f4b5e();
+    init_store_f57b9afe();
+    init_text_input_fffa3872();
     init_dist();
     init_dist2();
     init_dist3();
+    init_dist4();
+    init_font_d540c2eb();
+    import_chroma_js6 = __toESM(require_chroma(), 1);
+    css8 = {
+      code: ".user-management.s-EMdAkrFBC1gH{display:flex;align-items:center;justify-content:center;height:100vh;width:100vw}.admin-column.s-EMdAkrFBC1gH{width:var(--s500px)}.s-EMdAkrFBC1gH{}",
+      map: null
+    };
     Users = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       const appContentReadyUnsubscribe = _appContentReady.subscribe((value) => {
         if (value)
           _emitEvent("show-hide-login", "admin-login");
       });
       onDestroy(appContentReadyUnsubscribe);
-      return `<div>hello</div>`;
+      let formData = {};
+      $$result.css.add(css8);
+      return `<div class="${"user-management s-EMdAkrFBC1gH"}"><div class="${"admin-column s-EMdAkrFBC1gH"}">${validate_component(Text_input, "Input").$$render(
+        $$result,
+        {
+          config: {
+            name: "email",
+            type: "text",
+            maxlength: 100,
+            placeholder: ["enter user email"],
+            required: true,
+            validate: (val) => true,
+            process: (val) => val
+          },
+          data: formData
+        },
+        {},
+        {}
+      )}</div>
+</div>`;
     });
   }
 });
@@ -92580,9 +92616,9 @@ var init__6 = __esm({
     init_shims();
     init_users_svelte();
     index6 = 2;
-    file7 = "_app/immutable/pages/admin/users.svelte-441b2688.js";
-    imports6 = ["_app/immutable/pages/admin/users.svelte-441b2688.js", "_app/immutable/chunks/index-73a75506.js", "_app/immutable/chunks/database-39b5466e.js", "_app/immutable/chunks/events-8308a6cd.js", "_app/immutable/chunks/store-50aefbd8.js", "_app/immutable/chunks/index-4c7ad0d2.js"];
-    stylesheets6 = [];
+    file7 = "_app/immutable/pages/admin/users.svelte-e726e100.js";
+    imports6 = ["_app/immutable/pages/admin/users.svelte-e726e100.js", "_app/immutable/chunks/index-99208652.js", "_app/immutable/chunks/database-512b7597.js", "_app/immutable/chunks/font-aba25a34.js", "_app/immutable/chunks/store-93d9bf09.js", "_app/immutable/chunks/index-06ba869f.js", "_app/immutable/chunks/text-input-ceba9618.js"];
+    stylesheets6 = ["_app/immutable/assets/users-ce0a626a.css", "_app/immutable/assets/text-input-b1daa303.css"];
   }
 });
 
@@ -92591,12 +92627,12 @@ var facebook_svelte_exports = {};
 __export(facebook_svelte_exports, {
   default: () => Facebook
 });
-var css7, Facebook;
+var css9, Facebook;
 var init_facebook_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/share/facebook.svelte.js"() {
     init_shims();
-    init_index_d732e872();
-    css7 = {
+    init_index_269d0619();
+    css9 = {
       code: ".redirect.s-uPWWvh_Oaxdy{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-uPWWvh_Oaxdy{}",
       map: null
     };
@@ -92604,7 +92640,7 @@ var init_facebook_svelte = __esm({
       let { postId } = $$props;
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
-      $$result.css.add(css7);
+      $$result.css.add(css9);
       return `<div class="${"redirect s-uPWWvh_Oaxdy"}">Redirecting to facebook..</div>`;
     });
   }
@@ -92625,8 +92661,8 @@ var init__7 = __esm({
     init_shims();
     init_facebook_svelte();
     index7 = 6;
-    file8 = "_app/immutable/pages/share/facebook.svelte-3b883068.js";
-    imports7 = ["_app/immutable/pages/share/facebook.svelte-3b883068.js", "_app/immutable/chunks/index-73a75506.js", "_app/immutable/chunks/store-50aefbd8.js", "_app/immutable/chunks/index-4c7ad0d2.js"];
+    file8 = "_app/immutable/pages/share/facebook.svelte-b954ec8d.js";
+    imports7 = ["_app/immutable/pages/share/facebook.svelte-b954ec8d.js", "_app/immutable/chunks/index-99208652.js", "_app/immutable/chunks/store-93d9bf09.js", "_app/immutable/chunks/index-06ba869f.js"];
     stylesheets7 = ["_app/immutable/assets/facebook-5ae6a916.css"];
   }
 });
@@ -92636,12 +92672,12 @@ var reddit_svelte_exports = {};
 __export(reddit_svelte_exports, {
   default: () => Reddit
 });
-var css8, Reddit;
+var css10, Reddit;
 var init_reddit_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/share/reddit.svelte.js"() {
     init_shims();
-    init_index_d732e872();
-    css8 = {
+    init_index_269d0619();
+    css10 = {
       code: ".redirect.s-t6VgelH33f8J{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-t6VgelH33f8J{}",
       map: null
     };
@@ -92649,7 +92685,7 @@ var init_reddit_svelte = __esm({
       let { postId } = $$props;
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
-      $$result.css.add(css8);
+      $$result.css.add(css10);
       return `<div class="${"redirect s-t6VgelH33f8J"}">Redirecting to reddit..</div>`;
     });
   }
@@ -92670,8 +92706,8 @@ var init__8 = __esm({
     init_shims();
     init_reddit_svelte();
     index8 = 7;
-    file9 = "_app/immutable/pages/share/reddit.svelte-d127924c.js";
-    imports8 = ["_app/immutable/pages/share/reddit.svelte-d127924c.js", "_app/immutable/chunks/index-73a75506.js", "_app/immutable/chunks/store-50aefbd8.js", "_app/immutable/chunks/index-4c7ad0d2.js"];
+    file9 = "_app/immutable/pages/share/reddit.svelte-7620d291.js";
+    imports8 = ["_app/immutable/pages/share/reddit.svelte-7620d291.js", "_app/immutable/chunks/index-99208652.js", "_app/immutable/chunks/store-93d9bf09.js", "_app/immutable/chunks/index-06ba869f.js"];
     stylesheets8 = ["_app/immutable/assets/reddit-07daef39.css"];
   }
 });
@@ -92681,12 +92717,12 @@ var twitter_svelte_exports = {};
 __export(twitter_svelte_exports, {
   default: () => Twitter
 });
-var css9, Twitter;
+var css11, Twitter;
 var init_twitter_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/share/twitter.svelte.js"() {
     init_shims();
-    init_index_d732e872();
-    css9 = {
+    init_index_269d0619();
+    css11 = {
       code: ".redirect.s-1wq-66mPpMC5{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-1wq-66mPpMC5{}",
       map: null
     };
@@ -92694,7 +92730,7 @@ var init_twitter_svelte = __esm({
       let { postId } = $$props;
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
-      $$result.css.add(css9);
+      $$result.css.add(css11);
       return `<div class="${"redirect s-1wq-66mPpMC5"}">Redirecting to twitter..</div>`;
     });
   }
@@ -92715,8 +92751,8 @@ var init__9 = __esm({
     init_shims();
     init_twitter_svelte();
     index9 = 8;
-    file10 = "_app/immutable/pages/share/twitter.svelte-a4519163.js";
-    imports9 = ["_app/immutable/pages/share/twitter.svelte-a4519163.js", "_app/immutable/chunks/index-73a75506.js", "_app/immutable/chunks/store-50aefbd8.js", "_app/immutable/chunks/index-4c7ad0d2.js"];
+    file10 = "_app/immutable/pages/share/twitter.svelte-aae9b3df.js";
+    imports9 = ["_app/immutable/pages/share/twitter.svelte-aae9b3df.js", "_app/immutable/chunks/index-99208652.js", "_app/immutable/chunks/store-93d9bf09.js", "_app/immutable/chunks/index-06ba869f.js"];
     stylesheets9 = ["_app/immutable/assets/twitter-dafdce4f.css"];
   }
 });
@@ -92726,12 +92762,12 @@ var whatsapp_svelte_exports = {};
 __export(whatsapp_svelte_exports, {
   default: () => Whatsapp
 });
-var css10, Whatsapp;
+var css12, Whatsapp;
 var init_whatsapp_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/share/whatsapp.svelte.js"() {
     init_shims();
-    init_index_d732e872();
-    css10 = {
+    init_index_269d0619();
+    css12 = {
       code: ".redirect.s-mE7g6kYsnsCp{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-mE7g6kYsnsCp{}",
       map: null
     };
@@ -92739,7 +92775,7 @@ var init_whatsapp_svelte = __esm({
       let { postId } = $$props;
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
-      $$result.css.add(css10);
+      $$result.css.add(css12);
       return `<div class="${"redirect s-mE7g6kYsnsCp"}">Redirecting to whatsapp..</div>`;
     });
   }
@@ -92760,8 +92796,8 @@ var init__10 = __esm({
     init_shims();
     init_whatsapp_svelte();
     index10 = 9;
-    file11 = "_app/immutable/pages/share/whatsapp.svelte-4f8fc71f.js";
-    imports10 = ["_app/immutable/pages/share/whatsapp.svelte-4f8fc71f.js", "_app/immutable/chunks/index-73a75506.js", "_app/immutable/chunks/store-50aefbd8.js", "_app/immutable/chunks/index-4c7ad0d2.js"];
+    file11 = "_app/immutable/pages/share/whatsapp.svelte-c0aa27d1.js";
+    imports10 = ["_app/immutable/pages/share/whatsapp.svelte-c0aa27d1.js", "_app/immutable/chunks/index-99208652.js", "_app/immutable/chunks/store-93d9bf09.js", "_app/immutable/chunks/index-06ba869f.js"];
     stylesheets10 = ["_app/immutable/assets/whatsapp-15a937dd.css"];
   }
 });
@@ -92775,13 +92811,13 @@ var GET;
 var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
-    init_column_config_ed3a8d78();
-    init_database_298aef9a();
+    init_store_f57b9afe();
+    init_database_257f4b5e();
+    init_index_269d0619();
     init_dist();
     init_dist2();
     init_dist3();
-    init_store_21b4cd20();
-    init_index_d732e872();
+    init_dist4();
     GET = async ({ url }) => {
       let postData;
       if (url.search.includes("=")) {
@@ -92920,7 +92956,7 @@ init_shims();
 
 // .svelte-kit/output/server/index.js
 init_shims();
-init_index_d732e872();
+init_index_269d0619();
 function afterUpdate() {
 }
 var Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -95432,7 +95468,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-d6d925b6.js", "imports": ["_app/immutable/start-d6d925b6.js", "_app/immutable/chunks/index-73a75506.js", "_app/immutable/chunks/index-4c7ad0d2.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-1707ba79.js", "imports": ["_app/immutable/start-1707ba79.js", "_app/immutable/chunks/index-99208652.js", "_app/immutable/chunks/index-06ba869f.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

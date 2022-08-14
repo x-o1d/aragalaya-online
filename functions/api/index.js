@@ -11,7 +11,15 @@ const { API_KEY_PROD } = require('../sensitive/google-apikey-prod.cjs');
 admin.initializeApp();
 
 const firestore = new Firestore();
-const translate = new Translate();
+let translate = new Translate();
+
+// for localhost emulate google translate
+// TODO: create an api key to be used for localhost emulation
+if(process.env.MODE == "localhost") {
+    translate = {
+        translate: (data) => Promise.resolve([data])
+    }
+}
 
 // fetch the thumbnail for any videoId properties in data
 // so that it can be specified in og:image tag for video post
@@ -41,6 +49,15 @@ async function getThumbnail(data) {
     return data;
 }
 
+// go through all of the fields in the data object and translate
+// fields which has an accompanying -translate field
+// eg: if the data object has a field called 'title'
+// the function looks for a field called '_title-translate', if the value
+// of this field is true, 'title' is translated and replaced with an array of
+// four elements. [sinhala_translation, english_translation, tamil_translation, original_text]
+//
+// the -translate field is added by the form.svelte component in the frontend 
+// based on the configuration in column-config.js.
 async function translateData(data) {
     const translatedData = {};
     var promises = [];
@@ -74,6 +91,7 @@ async function translateData(data) {
     await Promise.all(promises);
 
     // add machine translated flag
+    // TODO: move below logic to the frontend
     Object.keys(translatedData).map(key => {
         if (data['_' + key + '-translate'] == true) {
             translatedData[key + '_MT'] = [
@@ -113,3 +131,22 @@ exports.addpost = functions.runWith(runtimeOpts).https.onCall(async (data, conte
     return translatedData;
 });
 
+exports.adminGetUser = functions.runWith(runtimeOpts).https.onCall(async (data, context) => {
+    logger.info('Input data :', data);
+
+    if (!context.auth) {
+        throw new HttpsError('failed-precondition', 'The function must be ' +
+            'called while authenticated.');
+    }
+
+    let translatedData = await translateData(data);
+    translatedData = await getThumbnail(translatedData);
+    logger.info('Translated data :', translatedData);
+
+    // Enter new data into the document.
+    let document = firestore.collection('Posts').doc();
+    translatedData.id = document.id;
+    await document.set(translatedData);
+
+    return translatedData;
+});
