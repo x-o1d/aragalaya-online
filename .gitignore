@@ -12,3 +12,5 @@ sensitive/*
 !sensitive/readme.md
 .firebase
 *.log
+*.cache
+localhost-data
