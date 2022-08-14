@@ -171,7 +171,7 @@
                 font={2}
                 size={1.3}
                 style="margin-bottom: var(--s20px);">
-                {_strings['enter'][$_lang]}{showLogin}
+                {_strings['enter'][$_lang]}
             </Font>
             <TextInput
                 disabled={signinOrSignup}
