@@ -19,7 +19,7 @@
     "rewrites": [
       {
         "source": "**",
-        "function": "ssrServer"
+        "function": "ssr_server"
       }
     ]
   },

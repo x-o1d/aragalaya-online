@@ -238,7 +238,16 @@ exports.admin_toggle_verified = functions.runWith(runtimeOpts).https.onCall(asyn
     // toggle it's verified status
     let newPost = await collection2.doc(id).update({
         verified: !post.verified
-    });    
- 
+    });
+
+    // log the verification: post id <XX> was marked as <STATUS> by admin <ADMINID> at <TIME>
+    let collection3 = firestore.collection('Verifications');
+    let result = await collection3.add({
+        post: id,
+        markedAs: !post.verified,
+        by: context.auth.token.uid,
+        at: (new Date()).getTime()
+    });
+
     return newPost;
 });
