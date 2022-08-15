@@ -100,8 +100,8 @@ EXAMPLE:
     }
 
     const toggleVerified = async () => {
-        data.verified = !data.verified;
         if($_admin) {
+            data.verified = !data.verified;
             let result = await _adminToggleVerified(data.id);
             if(result.error) {
                 data.verified = !data.verified;

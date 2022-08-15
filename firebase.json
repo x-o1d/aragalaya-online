@@ -17,10 +17,13 @@
       "**/node_modules/**"
     ],
     "rewrites": [
-      {
-        "source": "**",
-        "function": "ssr_server"
-      }
+        {
+            "source": "/images",
+            "function": "bigben"
+        },{
+            "source": "**",
+            "function": "ssrServer"
+        }
     ]
   },
   "storage": {

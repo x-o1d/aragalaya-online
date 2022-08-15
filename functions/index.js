@@ -13,7 +13,7 @@ const runtimeOpts = {
 // all calls to hosting is redirected to this function and this function
 // returns the prerendered html to the browser.
 let ssrServerServer;
-exports.ssr_server = functions.region('us-central1').runWith(runtimeOpts).
+exports.ssrServer = functions.region('us-central1').runWith(runtimeOpts).
         https.onRequest(async (request, response) => {
     if (!ssrServerServer) {
         functions.logger.info('Initialising SvelteKit SSR entry');
