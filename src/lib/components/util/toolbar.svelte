@@ -15,9 +15,11 @@ EXAMPLE:
     import { createEventDispatcher, onMount } from 'svelte';
 
     // services
-    import { _lang, _shareLink } from '$lib/services/store';
-    import _strings from './toolbar-strings';
+
+    import { _adminToggleVerified } from '$lib/services/functions';
+    import { _lang, _shareLink, _admin } from '$lib/services/store';
     import { _emitEvent } from '$lib/services/events';
+    import _strings from './toolbar-strings';
 
     // components
     import Font from '$lib/components/display/font.svelte';
@@ -97,6 +99,15 @@ EXAMPLE:
         }
     }
 
+    const toggleVerified = async () => {
+        data.verified = !data.verified;
+        if($_admin) {
+            let result = await _adminToggleVerified(data.id);
+            if(result.error) {
+                data.verified = !data.verified;
+            }
+        }
+    }
 </script>
 
 <div class="toolbar">
@@ -139,7 +150,9 @@ EXAMPLE:
             <i class="fa-brands fa-reddit"></i>
         </div>
     </div>
-    <div class="toolbar-right">
+    <div class="toolbar-right"
+        class:_clickable={$_admin}
+        on:click={toggleVerified}>
         {#if data.verified}
         <Font
             font={0}
@@ -147,7 +160,8 @@ EXAMPLE:
             style="margin-right: var(--s5px);">
             {_strings['verified'][$_lang]}
         </Font>
-        <div class="icon verified">
+        <div 
+            class="icon verified">
             <i class="fa-solid fa-check"></i>
         </div>
         {:else}

@@ -2,7 +2,7 @@
 	"name": "my-app",
 	"version": "0.0.1",
 	"scripts": {
-        "dev": "vite dev --mode localhost",
+        "dev": "vite dev --mode dev",
 		"dev:prod": "vite dev --mode prod",
         "dev:localhost": "vite dev --mode localhost",
         "dev:backend": "MODE=localhost firebase emulators:start --import=./localhost-data --export-on-exit",

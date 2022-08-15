@@ -129,7 +129,7 @@
                     return;
                 }
             }
-
+            
             if(result.user) {
                 _emitEvent('user-changed', result.user);
                 closeLogin();

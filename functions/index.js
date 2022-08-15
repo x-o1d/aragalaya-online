@@ -2,8 +2,7 @@ const functions = require('firebase-functions');
 
 const runtimeOpts = {
     timeoutSeconds: 300,
-    memory: (process.env.MODE == 'prod')? '512MB': '256MB',
-    mode: process.env.MODE,
+    memory: '512MB',
 };
 
 let ssrServerServer;
@@ -18,7 +17,8 @@ exports.ssrServer = functions.region('us-central1').runWith(runtimeOpts).
     return ssrServerServer(request, response);
 });
 
-exports.addpost = require('./api/index').addpost;
-exports.admingetuser = require('./api/index').admingetuser;
-exports.adminchangerole = require('./api/index').adminchangerole;
+exports.add_post = require('./api/index').add_post;
+exports.admin_get_user = require('./api/index').admin_get_user;
+exports.admin_change_role = require('./api/index').admin_change_role;
+exports.admin_toggle_verified = require('./api/index').admin_toggle_verified;
 

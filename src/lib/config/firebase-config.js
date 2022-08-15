@@ -39,7 +39,7 @@ if(import.meta.env.MODE == 'prod') {
 export const app = initializeApp(firebaseConfig);
 
 if(import.meta.env.MODE == 'localhost') {
-    connectFirestoreEmulator(getFirestore(), 'localhost', 8080);
+    connectFirestoreEmulator(getFirestore(app), 'localhost', 8080);
     connectAuthEmulator(getAuth(app), "http://localhost:9099");
     connectFunctionsEmulator(getFunctions(app), "localhost", 5001);
     connectStorageEmulator(getStorage(app), "localhost", 9199);

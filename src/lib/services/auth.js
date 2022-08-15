@@ -14,7 +14,8 @@ import {
 
 import { _createUserRecord, _getUserRecord, _createError } from '$lib/services/database';
 import { _emitEvent } from '$lib/services/events';
-import { _authStateChecked, _currentTheme, _lang, _signUpInProgress } from './store';
+import { _admin, _authStateChecked, _currentTheme, _lang, _signUpInProgress } from './store';
+import { _adminGetUser } from './functions';
 
 const auth = getAuth(app);
 
@@ -35,7 +36,19 @@ _currentTheme.subscribe((v) => theme = v);
 
 // listens to auth state changes and updates the local user record
 onAuthStateChanged(auth, async (authUser) => {
+    // get authUser claims
+    let claims = {}
+    try {
+        claims = JSON.parse(authUser.reloadUserInfo.customAttributes);
+    } catch (e) {}
+    
+    // if admin or super admin set _admin to true
+    if(authUser) _admin.set(claims.admin || claims.super);
+
+    // if the login component is active ignore authStateChanged events
     if(signUpInProgress) return;
+
+    // fetch the user record for the auth user
     if (authUser) {
         // if there's no existing user record
         // or if the existing user records uid doesn't match the auth credentials uid

@@ -9,7 +9,7 @@ let app = admin.initializeApp({
 let uid = '8A78JjD299cw90gfwHlgbZFhqGo2'
 
 const claims = {
-    super: true,
+    admin: true,
 }
   
 const firestore = admin.firestore(app);

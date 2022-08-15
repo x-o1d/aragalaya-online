@@ -10,13 +10,17 @@ const functions = getFunctions(app);
 // --
 
 export const _createPost = async (post) => {
-    return httpsCallable(functions, 'addpost')(post);
+    return httpsCallable(functions, 'add_post')(post);
 }
 
 export const _adminGetUser = async (email) => {
-    return httpsCallable(functions, 'admingetuser')(email);
+    return httpsCallable(functions, 'admin_get_user')(email);
 }
 
 export const _adminChangeRole = async (uid, role) => {
-    return httpsCallable(functions, 'adminchangerole')({uid, role});
+    return httpsCallable(functions, 'admin_change_role')({uid, role});
+}
+
+export const _adminToggleVerified = async (id) => {
+    return httpsCallable(functions, 'admin_toggle_verified')(id);
 }

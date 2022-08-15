@@ -109,72 +109,86 @@ async function translateData(data) {
 const runtimeOpts = {
     timeoutSeconds: 300,
     memory: '256MB',
-    mode: process.env.MODE,
 };
 
-exports.addpost = functions.runWith(runtimeOpts).https.onCall(async (data, context) => {
+exports.add_post = functions.runWith(runtimeOpts).https.onCall(async (data, context) => {
     logger.info('Input data :', data);
 
+    // check if user token present
     if (!context.auth) {
         throw new HttpsError('failed-precondition', 'The function must be ' +
             'called while authenticated.');
     }
 
-    let translatedData = await translateData(data);
-    translatedData = await getThumbnail(translatedData);
-    logger.info('Translated data :', translatedData);
+    // translate the -translate marked fields and add _MT flags
+    let modifiedData = await translateData(data);
+    // fetch youtube thumbnail
+    modifiedData = await getThumbnail(modifiedData);
+
+    // if the user has any of the three user roles mark post as verified
+    modifiedData.verified = (context.auth.token.super || 
+        context.auth.token.admin || 
+        context.auth.token.verified || false);
+
+    logger.info('Modified data :', modifiedData);
 
     // Enter new data into the document.
     let document = firestore.collection('Posts').doc();
-    translatedData.id = document.id;
-    await document.set(translatedData);
+    modifiedData.id = document.id;
+    await document.set(modifiedData);
 
-    return translatedData;
+    return modifiedData;
 });
 
-exports.admingetuser = functions.runWith(runtimeOpts).https.onCall(async (email, context) => {
+exports.admin_get_user = functions.runWith(runtimeOpts).https.onCall(async (email, context) => {
     logger.info('Input email :', email);
 
+    // check if user token present
     if (!context.auth) {
         throw new HttpsError('failed-precondition', 'The function must be ' +
             'called while authenticated.');
     }
 
+    // fetch the admin's user record
     let collection = firestore.collection('Users');
-
     let adminRecord;
     const qs1 = await collection.where('email', '==', context.auth.token.email).get();
     adminRecord = qs1.docs[0].data();
     
+    // check if the user is a super admin and the roles in user record and auth token
+    // match
     if(!(context.auth.token.super && adminRecord.super)) {
         logger.info('not-authorized');
         return { error: 'not-authorized', message: 'this incident will be reported as a potential infiltration attempt' }
     }
 
+    // return the user record
     let userRecord;
     const qs2 = await collection.where('email', '==', email).get();
     if(qs2.docs[0]) {
         userRecord = qs2.docs[0].data();
     }
-
     
     return userRecord;
 });
 
-exports.adminchangerole = functions.runWith(runtimeOpts).https.onCall(async (data, context) => {
+exports.admin_change_role = functions.runWith(runtimeOpts).https.onCall(async (data, context) => {
     logger.info('Input data :', data);
 
+    // check if user token present
     if (!context.auth) {
         throw new HttpsError('failed-precondition', 'The function must be ' +
             'called while authenticated.');
     }
 
+    // fetch the admin's user record
     let collection = firestore.collection('Users');
-
     let adminRecord;
     const adminDoc = await collection.doc(context.auth.token.uid).get();
     adminRecord = adminDoc.data();
     
+    // check if the user is a super admin and the roles in user record and auth token
+    // match
     if(!(context.auth.token.super && adminRecord.super)) {
         logger.info('not-authorized');
         return { error: 'not-authorized', message: 'this incident will be reported as a potential infiltration attempt' }
@@ -186,8 +200,45 @@ exports.adminchangerole = functions.runWith(runtimeOpts).https.onCall(async (dat
         verified: (data.role == 'verified'),
     }
     
+    // update auth user custom claims
     await admin.auth().setCustomUserClaims(data.uid, roles);
+    // update user record roles
     let userRecord = await collection.doc(data.uid).update(roles);
 
     return userRecord;
+});
+
+exports.admin_toggle_verified = functions.runWith(runtimeOpts).https.onCall(async (id, context) => {
+    logger.info('Input data :', id);
+
+    // check if user token present
+    if (!context.auth) {
+        throw new HttpsError('failed-precondition', 'The function must be ' +
+            'called while authenticated.');
+    }
+
+    // fetch the admin's user record
+    let collection = firestore.collection('Users');
+    let adminRecord;
+    const adminDoc = await collection.doc(context.auth.token.uid).get();
+    adminRecord = adminDoc.data();
+
+    // check if the user is an admin or a super admin, and the roles in both 
+    // the user record and user token claims match
+    if(!((context.auth.token.super && adminRecord.super)
+        || (context.auth.token.admin && adminRecord.admin))) 
+    {
+        logger.info('not-authorized');
+        return { error: 'not-authorized', message: 'this incident will be reported as a potential infiltration attempt' }
+    }
+
+    // get the post
+    let collection2 = firestore.collection('Posts');
+    let post = await (await collection2.doc(id).get()).data();
+    // toggle it's verified status
+    let newPost = await collection2.doc(id).update({
+        verified: !post.verified
+    });    
+ 
+    return newPost;
 });
