@@ -14,7 +14,7 @@ import {
 
 import { _createUserRecord, _getUserRecord, _createError } from '$lib/services/database';
 import { _emitEvent } from '$lib/services/events';
-import { _admin, _authStateChecked, _currentTheme, _lang, _signUpInProgress } from './store';
+import { _admin, _verified, _authStateChecked, _currentTheme, _lang, _signUpInProgress, _user } from './store';
 import { _adminGetUser } from './functions';
 
 const auth = getAuth(app);
@@ -43,7 +43,10 @@ onAuthStateChanged(auth, async (authUser) => {
     } catch (e) {}
     
     // if admin or super admin set _admin to true
-    if(authUser) _admin.set(claims.admin || claims.super);
+    if(authUser) {
+        _verified.set(claims.verified || claims.admin || claims.super || false);
+        _admin.set(claims.admin || claims.super || false);
+    }
 
     // if the login component is active ignore authStateChanged events
     if(signUpInProgress) return;
@@ -54,7 +57,6 @@ onAuthStateChanged(auth, async (authUser) => {
         // or if the existing user records uid doesn't match the auth credentials uid
         // fetch the user record
         if(!user || (user && (user.uid != authUser.uid))) {
-            console.log('getting user record');
             user = await _getUserRecord(authUser.uid);
         }
         // if a valid token is found on the browser but no correlating user 
@@ -66,11 +68,11 @@ onAuthStateChanged(auth, async (authUser) => {
                 _emitEvent('show-hide-login', 'force-signup');
             }
         } else {
-            _emitEvent('user-changed', user);
+            _user.set(user);
             return;
         }
     }
-    _emitEvent('user-changed', undefined);
+    _user.set(undefined);
     _authStateChecked.set(true);
 });
 
@@ -182,5 +184,5 @@ export const _userLogout = () => {
     console.log('signing out');
     signOut(auth);
     user = undefined;
-    _emitEvent('user-changed', undefined);
+    _user.set(undefined);
 }

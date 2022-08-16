@@ -37,34 +37,43 @@
     let editorDisabled = false;
   
     onMount(() => {
-        editor = new Editor({
-            element: element,
-            extensions: [
-                Document,
-                Text,
-                Heading,
-                Paragraph,
-                Bold,
-                Italic,
-                Strike,
-                BulletList, 
-                OrderedList, 
-                ListItem,
-                Image,
-                Dropcursor,
-                Link,
-                Placeholder.configure({
-                    placeholder: placeholder[$_lang],
-                })
-            ],
-            content: '',
-            onTransaction: () => {
-                // force re-render so `editor.isActive` works as expected
-                editor = editor;
-                data[config.name] = element.innerHTML.includes('is-empty')?
-                    '': editor.getHTML();
-            },
-        })
+        const initEditor = () => {
+            if(editor) editor.destroy();
+            editor = new Editor({
+                element: element,
+                extensions: [
+                    Document,
+                    Text,
+                    Heading,
+                    Paragraph,
+                    Bold,
+                    Italic,
+                    Strike,
+                    BulletList, 
+                    OrderedList, 
+                    ListItem,
+                    Image,
+                    Dropcursor,
+                    Link,
+                    Placeholder.configure({
+                        placeholder: placeholder[$_lang],
+                    })
+                ],
+                content: data[config.name] || '',
+                onTransaction: () => {
+                    // force re-render so `editor.isActive` works as expected
+                    editor = editor;
+                    data[config.name] = element.innerHTML.includes('is-editor-empty')?
+                        '': editor.getHTML();
+                },
+            });
+        };
+        initEditor();
+
+        data._updateEditorContent = () => {
+            // init editor so that the initial content will be updated
+            initEditor();
+        };
     })
   
     onDestroy(() => {

@@ -13,6 +13,7 @@ import {
     addDoc,
     getDoc,
     updateDoc,
+    deleteDoc
 } from "firebase/firestore";
 
 import { getAuth } from 'firebase/auth';
@@ -56,6 +57,40 @@ export const _createError = async (error, caller, data) => {
     }
 }
 
+export const _updatePost = async (post) => {
+    try {
+        const c = collection(db, 'Posts');
+        const error = await updateDoc(doc(c, post.id), post);
+        
+        return error;
+    } catch (error) {
+        if(error.code == 'permission-denied') {
+            console.log(error);
+            _userLogout();
+            return;
+        }
+        _createError(error, 'DBService:updatePost');
+        return [];
+    }
+}
+
+export const _deletePost = async (post) => {
+    try {
+        const c = collection(db, 'Posts');
+        const error = await deleteDoc(doc(c, post.id));
+        
+        return error;
+    } catch (error) {
+        if(error.code == 'permission-denied') {
+            console.log(error);
+            _userLogout();
+            return;
+        }
+        _createError(error, 'DBService:updatePost');
+        return [];
+    }
+}
+
 export const _getPosts = async (type) => {
     try {
         const c = collection(db, 'Posts');
@@ -74,7 +109,7 @@ export const _getPosts = async (type) => {
             _userLogout();
             return;
         }
-        _createError(error, 'DBService:getBulletins');
+        _createError(error, 'DBService:getPosts');
         return [];
     }
 }
@@ -111,7 +146,7 @@ export const _getFilteredPosts = async (type, verified, tags) => {
             _userLogout();
             return;
         }
-        _createError(error, 'DBService:getBulletins');
+        _createError(error, 'DBService:getFilteredPosts');
         return [];
     }
 }

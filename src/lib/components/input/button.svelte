@@ -10,13 +10,15 @@
     export let text;
     export let cancel;
     export let form;
+    export let selected = false;
     export let style = undefined;
-    export let fontSize = undefined
+    export let fontSize = undefined;
+    export let font = undefined;
 </script>
 
 <div 
     class="button"
-    class:cancel={cancel}
+    class:cancel={cancel || selected}
     class:form={form}
     style={style}
     on:click={async () => {
@@ -28,9 +30,9 @@
         <Progress delay={100}/>
     {:else}
         <Font
-            font={0}
+            font={font || 0}
             size={fontSize || 1}>
-            {text[$_lang]}
+            {Array.isArray(text)? text[$_lang]: text}
         </Font>
     {/if}
 </div>

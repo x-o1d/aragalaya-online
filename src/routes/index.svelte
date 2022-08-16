@@ -68,6 +68,9 @@
     // this flag determines if a column filters are visible or not
     let showFilters = Array(COLUMN_COUNT).fill(false);
 
+    // update-column event is triggered by the Filter component
+    // update count is incremented every time to make the {#each} keys
+    // different, so that column data will be reactively updated
     let updateCount = 0;
     const updateColumnEvent = _eventListener('update-column').subscribe((data) => {
         updateCount++;
@@ -144,15 +147,34 @@
 
     // when new data is added by a form it's inserted to the column
     // by this listener
-    const newColumnDataEvent = _eventListener('new-column-data').subscribe(async (event) => {
-        const data = event.postData;
-        data._slideInTop = true;
-        columnData[event.columnIndex].unshift(data);
+    const newPostEvent = _eventListener('new-post').subscribe(async (postData) => {
+        columnData[postData._columnIndex].unshift(postData);
         // trigger template update
         columnData = columnData;
     })
     // clear subscription
-    onDestroy(() => newColumnDataEvent.unsubscribe());
+    onDestroy(() => newPostEvent.unsubscribe());
+
+    // when new data is added by a form it's inserted to the column
+    // by this listener
+    const postUpdatedtEvent = _eventListener('update-post').subscribe(async () => {
+        // trigger template update
+        columnData = columnData;
+    })
+    // clear subscription
+    onDestroy(() => postUpdatedtEvent.unsubscribe());
+
+    // when new data is added by a form it's inserted to the column
+    // by this listener
+    const deletePostEvent = _eventListener('delete-post').subscribe(async (postData) => {
+        const postIndex = columnData[postData._columnIndex]
+            .findIndex(p => p.id == postData.id);
+        columnData[postData._columnIndex].splice(postIndex, 1);
+        // trigger template update
+        columnData = columnData;
+    })
+    // clear subscription
+    onDestroy(() => deletePostEvent.unsubscribe());
 
     // the DOM element that contains all the columns
     // this element is moves left and right to produce the
@@ -276,7 +298,7 @@
     // header + icon click event
     const addDocument = (event, index) => {
         if(_userSignedIn()) {
-            _emitEvent('show-add-document-form', {columnIndex: index});
+            _emitEvent('show-post-form', {columnIndex: index});
         } else {
             _emitEvent('show-hide-login', true);
         }

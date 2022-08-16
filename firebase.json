@@ -18,9 +18,6 @@
     ],
     "rewrites": [
         {
-            "source": "/images",
-            "function": "bigben"
-        },{
             "source": "**",
             "function": "ssrServer"
         }
@@ -37,7 +34,7 @@
       "port": 5001
     },
     "firestore": {
-      "port": 8080
+      "port": 8081
     },
     "hosting": {
       "port": 5000

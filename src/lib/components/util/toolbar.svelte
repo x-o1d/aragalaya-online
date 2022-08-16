@@ -17,8 +17,9 @@ EXAMPLE:
     // services
 
     import { _adminToggleVerified } from '$lib/services/functions';
-    import { _lang, _shareLink, _admin } from '$lib/services/store';
+    import { _user, _lang, _shareLink, _admin } from '$lib/services/store';
     import { _emitEvent } from '$lib/services/events';
+    import { _isMobile } from '$lib/services/theme';
     import _strings from './toolbar-strings';
 
     // components
@@ -108,10 +109,21 @@ EXAMPLE:
             }
         }
     }
+
+    const editPost = () => {
+        _emitEvent('show-post-form', { data });
+    }
 </script>
 
 <div class="toolbar">
     <div class="toolbar-left">
+        {#if $_user && ($_user.uid == data.createdBy)}
+        <div 
+            class="icon _clickable"
+            on:click={editPost}>
+            <i class="fa-solid fa-pen-clip"></i>
+        </div>
+        {/if}
         <div 
             class="icon _clickable"
             class:on={data._expanded}
@@ -126,16 +138,19 @@ EXAMPLE:
         </div>
         <div 
             class="icon _clickable"
+            class:huddle={$_isMobile}
             on:click={shareButtonClick}>
             <i class="fa-solid fa-share-nodes"></i>
         </div>
         <div 
             class="icon facebook _clickable"
+            class:huddle={$_isMobile}
             on:click={facebookShare}>
             <i class="fa-brands fa-facebook"></i>
         </div>
         <div 
             class="icon twitter _clickable"
+            class:huddle={$_isMobile}
             on:click={twitterShare}>
             <i class="fa-brands fa-twitter"></i>
         </div>
@@ -144,11 +159,13 @@ EXAMPLE:
             on:click={whatsappShare}>
             <i class="fa-brands fa-whatsapp"></i>
         </div>
+        {#if !$_isMobile}
         <div 
             class="icon reddit _clickable"
             on:click={redditShare}>
             <i class="fa-brands fa-reddit"></i>
         </div>
+        {/if}
     </div>
     <div class="toolbar-right"
         class:_clickable={$_admin}
@@ -207,6 +224,9 @@ EXAMPLE:
 
         background-color: rgb(226, 230, 230);
         border-radius: 3px;
+    }
+    .huddle {
+        margin-right: var(--s1px);
     }
     .on {
         background-color: rgb(124, 124, 124);

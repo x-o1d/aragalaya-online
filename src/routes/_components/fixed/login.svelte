@@ -7,7 +7,7 @@
     import { _themes } from '$lib/services/theme';
     import { _eventListener, _emitEvent } from '$lib/services/events';
     import { _createError, _createUserRecord } from '$lib/services/database';
-    import { _lang, _signUpInProgress } from '$lib/services/store';
+    import { _lang, _signUpInProgress, _user } from '$lib/services/store';
     import { _facebookSignin, _emailSignup, _emailSignin, _changePassword, _userLogout } from '$lib/services/auth';
     import _strings from './login-strings';
    
@@ -131,7 +131,7 @@
             }
             
             if(result.user) {
-                _emitEvent('user-changed', result.user);
+                _user.set(result.user)
                 closeLogin();
             }
             return;
@@ -176,7 +176,7 @@
             let result = await _changePassword(user.password, user.name, user.email, forceEnterName);
             
             if(!result) {
-                _emitEvent('user-changed', user);
+                _user.set(user);
                 closeLogin();
             }
             return;
