@@ -7,7 +7,6 @@ const admin = require('firebase-admin');
 const service = google.youtube('v3');
 const { API_KEY } = require('../sensitive/google-apikey.cjs');
 const { API_KEY_PROD } = require('../sensitive/google-apikey-prod.cjs');
-const { user } = require('firebase-functions/v1/auth');
 
 admin.initializeApp();
 
@@ -28,7 +27,7 @@ if(process.env.MODE == "localhost") {
 async function getThumbnail(data) {
     logger.info(process.env.MODE)
     for (let key of Object.keys(data)) {
-        if(key == 'videoId') {
+        if(key.includes('_videoId')) {
             let thumbnail = await new Promise((resolve) => {
                 service.videos.list({
                     auth: (process.env.MODE == 'prod')? API_KEY_PROD: API_KEY,
@@ -43,7 +42,7 @@ async function getThumbnail(data) {
                 });
             });
             if(thumbnail) {
-                data[key + '_images'] = [{href: thumbnail.url}];
+                data[key.split('_')[0] + '_images'] = [{href: thumbnail.url}];
             }
         }
     }

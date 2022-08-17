@@ -89,7 +89,7 @@ export const COLUMNS = [
                     'international', 'energy', 'philosophy', 'english', 'discussion'],
         // START - input form field properties
         data: {
-            videoId: {
+            youtubeURL: {
                 type: 'text',
                 maxlength: 100,
                 placeholder: [
@@ -98,16 +98,17 @@ export const COLUMNS = [
                     'https://www.youtube.com/watch?v=ueYFyWW8e5I'
                 ],
                 required: true,
+                editable: false,
                 validate: (val) => { // mock custom validation function
                     var videoIdRegexp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
                     let result = videoIdRegexp.exec(val);
                     return !result[1];
                 },
-                process: (val) => { // mock post process function
+                process: (val, data) => { // mock post process function
                     var videoIdRegexp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
                     let result = videoIdRegexp.exec(val);
-                    
-                    return result[1];
+                    data.youtubeURL_videoId = result[1];
+                    return val;
                 },
             },
             title: {

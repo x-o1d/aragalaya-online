@@ -37,6 +37,9 @@
             if(modifiedData[key + '_MT']) {
                 formData[key] = modifiedData[key][lang];
             }
+            if(modifiedData[key + '_videoId']) {
+                formData[key] = modifiedData[key];
+            }
         });
 
         // recreate the html editor content with the current language data.
@@ -174,7 +177,7 @@
         // call the process function if it's defined in the config
         fieldConfigs.map(config => {
             if(config.process) {
-                formData[config.name] = config.process(formData[config.name]);
+                formData[config.name] = config.process(formData[config.name], formData);
             }
         });
         
@@ -344,6 +347,7 @@
             {#each fields as field, _i}
                 <svelte:component 
                     this={COMPONENTS[fieldConfigs[_i].type]}
+                    disabled={(fieldConfigs[_i].editable === false) && editMode}
                     config={fieldConfigs[_i]}
                     data={formData}
                     error={errors[_i]}/>

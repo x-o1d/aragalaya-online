@@ -1,5 +1,4 @@
 <script>
-	import { onMount } from 'svelte';
     import { _getSizeConfig } from '$lib/services/theme';
 
     export let data;
@@ -9,7 +8,7 @@
 
     let player;
     let playerLoaded = false;
-    let youtubeStyles = style + `;--thumbnail: url(${data.videoId_images && data.videoId_images[0].href})`;
+    let youtubeStyles = style + `;--thumbnail: url(${data.youtubeURL_images && data.youtubeURL_images[0].href})`;
 
     const loadPlayer = () => {
         const sizeConfig = _getSizeConfig();
@@ -21,7 +20,7 @@
                         - sizeConfig.cardSeparation 
                         - sizeConfig.cardPadding*2
                         ).toString(),
-                videoId: data.videoId,
+                videoId: data.youtubeURL_videoId,
                 playerVars: {
                     playsinline: 1
                 },
