@@ -56,7 +56,6 @@ EXAMPLE:
 
 <style>
     .machine-translated{
-        padding: var(--s5px) 0;
         cursor: pointer;
     }
     .fa-solid {

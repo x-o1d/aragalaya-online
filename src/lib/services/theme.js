@@ -147,7 +147,7 @@ const columnHeaderHeight = 50;
 const cardSeparation = 12;
 
 // padding inside a card
-const cardPadding = 12;
+const cardPadding = cardSeparation;
 
 // navigation button size
 const navSize = 60;
@@ -192,6 +192,7 @@ export const _getSizeConfig = () => {
         // card seperation half is added because it is typically used as a padding
         // to achieve the specified card seperation
         cardSeparationHalf: cardSeparation/2/devicePixelRatio,
+        cardSeparationQuarter: cardSeparation/4/devicePixelRatio,
         cardPadding: cardPadding/devicePixelRatio,
         previewHeight: _previewHeight/devicePixelRatio,
         navSize: _navSize/devicePixelRatio,

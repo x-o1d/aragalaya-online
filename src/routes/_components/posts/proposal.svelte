@@ -25,7 +25,7 @@
             size={0.75}
             color="
                 rgb(100, 99, 99);
-                margin-bottom: var(--s5px);">
+                margin-bottom: var(--theme-cardseparationhalf);">
             <Timestamp time={data.createdOn}/>
         </Font>
         <!-- organization name -->
@@ -34,7 +34,7 @@
             size={1.25}
             style="
                 font-weight: bold;
-                margin-bottom: var(--s10px);">
+                margin-bottom: var(--theme-cardseparationhalf);">
             <Content
                 data={data}
                 contentField={'organization'}/>
@@ -45,7 +45,7 @@
             size={0.8}
             color="rgb(55, 55, 55);"
             style="
-                margin-bottom: var(--s3px);
+                margin-bottom: var(--theme-cardseparationquarter);
                 font-weight: bold;">
             {_strings['motive'][$_lang]}
         </Font>
@@ -55,7 +55,7 @@
             size={0.9}
             color="rgb(57, 56, 56);"
             style="
-                margin-bottom: var(--s10px);">
+                margin-bottom: var(--theme-cardseparationhalf);">
             <Content
                 data={data}
                 contentField={'motive'}/>
@@ -66,7 +66,7 @@
             size={0.8}
             color="rgb(55, 55, 55);"
             style="
-                margin-bottom: var(--s3px);
+                margin-bottom: var(--theme-cardseparationquarter);
                 font-weight: bold;">
             {_strings['proposal'][$_lang]}
         </Font>
@@ -85,7 +85,7 @@
         <!-- post tags -->
         <Tags 
             tags={data.tags}
-            style="margin-top: var(--s10px)"/>
+            style="margin-top: var(--theme-cardseparationhalf);"/>
         <!-- post toolbar -->
         <Toolbar 
             data={data}

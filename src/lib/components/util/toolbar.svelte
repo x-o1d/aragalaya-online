@@ -136,28 +136,31 @@ EXAMPLE:
             on:click={toggleSinglePostView}>
             <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
         </div>
-        <div 
-            class="icon _clickable"
-            class:huddle={$_isMobile}
-            on:click={shareButtonClick}>
-            <i class="fa-solid fa-share-nodes"></i>
-        </div>
-        <div 
-            class="icon facebook _clickable"
-            class:huddle={$_isMobile}
-            on:click={facebookShare}>
-            <i class="fa-brands fa-facebook"></i>
-        </div>
-        <div 
-            class="icon twitter _clickable"
-            class:huddle={$_isMobile}
-            on:click={twitterShare}>
-            <i class="fa-brands fa-twitter"></i>
-        </div>
-        <div 
-            class="icon whatsapp _clickable"
-            on:click={whatsappShare}>
-            <i class="fa-brands fa-whatsapp"></i>
+        <div class="mobile-huddle">
+            <div 
+                class="icon _clickable"
+                class:huddle={$_isMobile}
+                on:click={shareButtonClick}>
+                <i class="fa-solid fa-share-nodes"></i>
+            </div>
+            <div 
+                class="icon facebook _clickable"
+                class:huddle={$_isMobile}
+                on:click={facebookShare}>
+                <i class="fa-brands fa-facebook"></i>
+            </div>
+            <div 
+                class="icon twitter _clickable"
+                class:huddle={$_isMobile}
+                on:click={twitterShare}>
+                <i class="fa-brands fa-twitter"></i>
+            </div>
+            <div 
+                class="icon whatsapp _clickable"
+                class:huddle={$_isMobile}
+                on:click={whatsappShare}>
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
         </div>
         {#if !$_isMobile}
         <div 
@@ -200,7 +203,7 @@ EXAMPLE:
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-top: var(--s10px);
+        margin-top: var(--theme-cardseparationhalf);
     }
     .toolbar-left {
         display: inline-flex;
@@ -217,16 +220,23 @@ EXAMPLE:
         width: var(--theme-toolbarbuttonsize);
         height: var(--theme-toolbarbuttonsize);
 
-        margin-right: var(--s5px);
+        margin-right: var(--theme-cardseparationhalf);
 
         font-size: var(--s13px);
         line-height: var(--s14px);
 
         background-color: rgb(226, 230, 230);
-        border-radius: 3px;
+        border-radius: var(--s3px);
+    }
+    .mobile-huddle {
+        display: inline-flex;
+        border-radius: var(--s3px);
+        overflow: hidden; 
+        padding: 0;
     }
     .huddle {
-        margin-right: var(--s1px);
+        margin-right: 0;
+        border-radius: 0;
     }
     .on {
         background-color: rgb(124, 124, 124);

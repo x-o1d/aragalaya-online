@@ -21,7 +21,9 @@
     style="
         display: flex;
         width: calc(90% - 4px);
-        flex-wrap: wrap;{style}">
+        flex-wrap: wrap;{style};
+        margin-top: var(--theme-cardseparation);
+        margin-bottom: calc(var(--theme-cardseparation) - var(--s3px));">
     {#each tags as tag, _i}
     <span 
         class="tag {clickable? '_clickable': ''}"

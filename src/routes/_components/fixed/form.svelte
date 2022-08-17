@@ -60,8 +60,12 @@
                 modifiedData[key][lang] = formData[key];
             }
             if(formData[key + '_images']) {
-                modifiedData[key + '_images'] = [...formData[key + '_images'],
-                    ...originalData[key + '_images'] ];
+                if(originalData[key + '_images']) {
+                    modifiedData[key + '_images'] = [...formData[key + '_images'],
+                        ...originalData[key + '_images'] ];
+                } else {
+                    modifiedData[key + '_images'] = [...formData[key + '_images']];
+                }
             }
         });
     }

@@ -56,7 +56,7 @@
         justify-content: space-between;
         width: 100%;
 
-        margin-top: var(--s5px);
+        margin-top: var(--theme-cardseparationhalf);
     }
     .comment-text {
         display: inline-flex;

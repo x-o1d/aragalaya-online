@@ -23,7 +23,7 @@
         font={0}
         size={0.75}
         color="rgb(100, 99, 99)"
-        style="margin-bottom: var(--s5px);">
+        style="margin-bottom: var(--theme-cardseparationhalf);">
         <Timestamp time={data.createdOn}/>
     </Font>
     <!-- title -->
@@ -41,7 +41,7 @@
         font={3}
         size={0.75}
         color="rgb(55, 55, 55);"
-        style="margin-bottom: var(--s10px);">
+        style="margin-bottom: var(--theme-cardseparationhalf);">
         {data.createdByName}
     </Font>
     <!-- description -->
@@ -58,8 +58,7 @@
     </Font>
     <!-- post tags -->
     <Tags 
-        tags={data.tags}
-        style="margin-top: var(--s10px)"/>
+        tags={data.tags}/>
     <!-- machine translated indication
     ---- the _viewOriginal property of data has to be updated
     ---- from the viewOriginal event so that svelte can reactively

@@ -95,7 +95,7 @@ USAGE:
         width: 100%;
         height: 100%;
         border-radius: var(--s3px);
-        padding: var(--s4px);
+        padding: var(--theme-cardseparationhalf);
         border: var(--s1px) solid rgb(237, 237, 237);
     }
     .form {
@@ -103,7 +103,7 @@ USAGE:
         border: var(--s1px) solid var(--theme-defaultbutton);
         height: var(--s45px);
         margin-bottom: var(--s18px);
-        padding: var(--s10px);
+        padding: var(--theme-cardseparation);
     }
     span {
         color: red;

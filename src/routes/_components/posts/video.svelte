@@ -25,7 +25,7 @@
         size={0.75}
         color="
             rgb(100, 99, 99);
-            margin-bottom: var(--s7px);">
+            margin-bottom: var(--theme-cardseparationhalf);">
         <Timestamp time={data.createdOn}/>
     </Font>
     <!-- youtube video -->
@@ -38,7 +38,7 @@
         size={1.25}
         style="
             font-weight: bold;
-            margin-bottom: var(--s10px);">
+            margin-bottom: var(--theme-cardseparationhalf);">
         <Content
             data={data}
             contentField={'title'}/>
@@ -57,8 +57,7 @@
     </Font>
     <!-- post tags -->
     <Tags 
-        tags={data.tags}
-        style="margin-top: var(--s10px)"/>
+        tags={data.tags}/>
     <!-- machine translated indication -->
     <MT data={data}
         on:viewOriginal={e => data._viewOriginal = e.detail}/>
