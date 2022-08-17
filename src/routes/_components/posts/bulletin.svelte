@@ -16,7 +16,8 @@
     
 </script>
 
-<Card>
+<Card
+    data={data}>
     <!-- timestamp -->
     <Font
         font={0}

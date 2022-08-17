@@ -32,6 +32,8 @@ USAGE:
     export let disabled = false;
     export let config;
     export let data;
+    export let form = false;
+    export let style = '';
 
     const dispatch = createEventDispatcher();
 
@@ -39,17 +41,20 @@ USAGE:
     
 </script>
 
-<div class="text-input">
+<div style="width: {form? '90%': '100%'}">
     <Font
         font={0}
-        size={1}>
+        size={form? 1: 0.75}>
         <!-- type='password' cannot be dynamically set -->
         {#if config.type !== 'password'}
         <input 
+            style={style}
             type="text"
             class:error={error}
+            class:form={form}
             disabled={disabled}
-            placeholder={config.placeholder[$_lang]}
+            placeholder={Array.isArray(config.placeholder)? 
+                config.placeholder[$_lang]: config.placeholder}
             maxlength={config.maxlength}
             autocomplete={config.autocomplete}
             on:keyup={() => (error = false)}
@@ -59,10 +64,13 @@ USAGE:
             bind:value={data[config.name]}/>
         {:else}
         <input 
+            style={style}
             type="password"
             class:error={error}
+            class:form={form}
             disabled={disabled}
-            placeholder={config.placeholder[$_lang]}
+            placeholder={Array.isArray(config.placeholder)? 
+                config.placeholder[$_lang]: config.placeholder}
             maxlength={config.maxlength}
             autocomplete={config.autocomplete}
             on:keyup={() => (error = false)}
@@ -83,18 +91,19 @@ USAGE:
 </div>
 
 <style>
-    .text-input {
-        width: 90%;
-        margin-bottom: var(--s18px);
-    }
     input {
-        height: var(--s45px);
         width: 100%;
+        height: 100%;
+        border-radius: var(--s3px);
+        padding: var(--s4px);
+        border: var(--s1px) solid rgb(237, 237, 237);
+    }
+    .form {
         border-radius: var(--s5px);
-        padding: var(--s10px);
         border: var(--s1px) solid var(--theme-defaultbutton);
-        font-size: 1rem;
-        margin-bottom: 3px;
+        height: var(--s45px);
+        margin-bottom: var(--s18px);
+        padding: var(--s10px);
     }
     span {
         color: red;

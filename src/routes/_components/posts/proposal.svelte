@@ -17,7 +17,8 @@
 </script>
 
 <div class="proposals">
-    <Card>
+    <Card
+        data={data}>
         <!-- timestamp -->
         <Font
             font={0}

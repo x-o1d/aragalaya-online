@@ -10,7 +10,8 @@
 
 </script>
 
-<Card>
+<Card
+    data={data}>
     <div class="wip-icon">
         <i class="fa-solid fa-screwdriver-wrench"></i>
     </div>

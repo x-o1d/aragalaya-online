@@ -350,7 +350,8 @@
                     disabled={(fieldConfigs[_i].editable === false) && editMode}
                     config={fieldConfigs[_i]}
                     data={formData}
-                    error={errors[_i]}/>
+                    error={errors[_i]}
+                    form/>
             {/each}
             <Tags  
                 clickable

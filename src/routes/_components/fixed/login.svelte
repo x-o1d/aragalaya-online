@@ -214,6 +214,7 @@
                 {_strings[forceEnterName? 'enter_name': 'enter'][$_lang]}
             </Font>
             <TextInput
+                form
                 disabled={signinOrSignup}
                 error={emailError}
                 data={user}
@@ -226,6 +227,7 @@
                 on:enter={continueEmailSignin}/>
             {#if signinOrSignup == 2}
             <TextInput
+                form
                 error={nameError}
                 data={user}
                 config={{
@@ -237,6 +239,7 @@
             {/if}
             {#if signinOrSignup && !forceEnterName}
             <TextInput
+                form
                 error={passwordError}
                 data={user}
                 config={{
@@ -249,6 +252,7 @@
             {/if}
             {#if signinOrSignup == 2 && !forceEnterName}
             <TextInput
+                form
                 error={repeatPasswordError}
                 data={user}
                 config={{

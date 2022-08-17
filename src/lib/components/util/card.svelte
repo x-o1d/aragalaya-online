@@ -1,10 +1,38 @@
 <!-- Card component sets the boundary for all post components
 --->
-<script></script>
+<script>
+    import Input from "$lib/components/input/text-input.svelte";
+    import { onMount } from "svelte";
+
+    export let data = undefined;
+
+    let comment = {};
+    
+</script>
 
 <div class="card-container">
     <div class="card">
         <slot/>
+        {#if data}
+        <div 
+            class="comment-box">
+            <div 
+                class="comment-text">
+                <Input
+                    data={comment}
+                    config={{
+                        name: 'text',
+                        maxlength: 300,
+                        placeholder: [
+                            'අදහස් දක්වන්න..',
+                            'comment..',
+                            'கருத்து..'
+                        ]
+                    }}
+                    style=""/>
+            </div>
+        </div>
+        {/if}
     </div>
 </div>
 
@@ -21,5 +49,17 @@
         background-color: white;
         padding: var(--theme-cardpadding);
         overflow: hidden;
+    }
+    .comment-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        margin-top: var(--s5px);
+    }
+    .comment-text {
+        display: inline-flex;
+        width: 100%;
     }
 </style>
