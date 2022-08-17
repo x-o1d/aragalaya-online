@@ -56250,7 +56250,7 @@ var init_dist5 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/functions-139f5752.js
+// .svelte-kit/output/server/_app/immutable/chunks/functions-ecdef1f9.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -56293,8 +56293,8 @@ function writable2(value, start2 = noop2) {
   return { set, update, subscribe: subscribe2 };
 }
 var COLUMNS, COLUMN_COUNT, firebaseConfig, app, subscriber_queue2, _lang, _currentTheme, _user, _admin, _verified, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _authStateChecked, _redirected, _signUpInProgress, _shareLink, _URL, functions, _createPost;
-var init_functions_139f5752 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/functions-139f5752.js"() {
+var init_functions_ecdef1f9 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/functions-ecdef1f9.js"() {
     init_shims();
     init_index_269d0619();
     init_dist();
@@ -56660,7 +56660,7 @@ var init_functions_139f5752 = __esm({
     _signUpInProgress = writable2(false);
     _shareLink = "https://aragalaya-online.web.app/?post=";
     _URL = "https://aragalaya-online.web.app";
-    functions = getFunctions(app);
+    functions = getFunctions(app, "asia-south1");
     _createPost = async (post) => {
       return httpsCallable(functions, "add_post")(post);
     };
@@ -66479,12 +66479,12 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/database-3cebeb77.js
+// .svelte-kit/output/server/_app/immutable/chunks/database-3fafc715.js
 var import_rxjs, dev, events, _emitEvent, _eventListener, auth, user, signUpInProgress, language, theme, _userSignedIn, _emailSignup, _emailSignin, _changePassword, _userLogout, db, _createError2, _updatePost, _deletePost, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord;
-var init_database_3cebeb77 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/database-3cebeb77.js"() {
+var init_database_3fafc715 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/database-3fafc715.js"() {
     init_shims();
-    init_functions_139f5752();
+    init_functions_ecdef1f9();
     init_dist2();
     init_dist3();
     import_rxjs = __toESM(require_cjs(), 1);
@@ -69796,13 +69796,13 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/text-input-456924f0.js
+// .svelte-kit/output/server/_app/immutable/chunks/text-input-2a777b4c.js
 var import_chroma_js, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, Font, css, Text_input;
-var init_text_input_456924f0 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/text-input-456924f0.js"() {
+var init_text_input_2a777b4c = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/text-input-2a777b4c.js"() {
     init_shims();
     init_index_269d0619();
-    init_functions_139f5752();
+    init_functions_ecdef1f9();
     import_chroma_js = __toESM(require_chroma(), 1);
     _isMobile = writable2(false);
     _fontGroups = [
@@ -69988,26 +69988,26 @@ var init_text_input_456924f0 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/storage-2710d50a.js
-var init_storage_2710d50a = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/storage-2710d50a.js"() {
+// .svelte-kit/output/server/_app/immutable/chunks/storage-3a44a5a5.js
+var init_storage_3a44a5a5 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/storage-3a44a5a5.js"() {
     init_shims();
-    init_functions_139f5752();
+    init_functions_ecdef1f9();
     init_dist5();
-    init_database_3cebeb77();
+    init_database_3fafc715();
     getStorage(app);
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/tags-e7ea0416.js
+// .svelte-kit/output/server/_app/immutable/chunks/tags-a4e8b541.js
 var import_chroma_js2, tagConfig, colors, TAGS, css2, Tags;
-var init_tags_e7ea0416 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/tags-e7ea0416.js"() {
+var init_tags_a4e8b541 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/tags-a4e8b541.js"() {
     init_shims();
     init_index_269d0619();
     import_chroma_js2 = __toESM(require_chroma(), 1);
-    init_functions_139f5752();
-    init_text_input_456924f0();
+    init_functions_ecdef1f9();
+    init_text_input_2a777b4c();
     tagConfig = {
       mainstream: [
         "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
@@ -88194,12 +88194,12 @@ var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
     init_index_269d0619();
-    init_functions_139f5752();
-    init_database_3cebeb77();
-    init_text_input_456924f0();
+    init_functions_ecdef1f9();
+    init_database_3fafc715();
+    init_text_input_2a777b4c();
     init_dist3();
-    init_storage_2710d50a();
-    init_tags_e7ea0416();
+    init_storage_3a44a5a5();
+    init_tags_a4e8b541();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
     import_extension_bold = __toESM(require_tiptap_extension_bold_cjs(), 1);
     import_extension_italic = __toESM(require_tiptap_extension_italic_cjs(), 1);
@@ -88678,7 +88678,7 @@ var init_layout_svelte = __esm({
       return `
 
 
-<div class="${"select s-F31ZuIzHSCwG"}"${add_attribute("style", style, 0)}><div class="${["select-box s-F31ZuIzHSCwG", error2 ? "error" : ""].join(" ").trim()}">${validate_component(Font, "Font").$$render(
+<div class="${"select s-F31ZuIzHSCwG"}"${add_attribute("style", style, 0)}><div class="${["select-box _clickable s-F31ZuIzHSCwG", error2 ? "error" : ""].join(" ").trim()}">${validate_component(Font, "Font").$$render(
         $$result,
         {
           font: 0,
@@ -89192,8 +89192,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-6da42e9f.js";
-    imports = ["_app/immutable/pages/__layout.svelte-6da42e9f.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/text-input-08768bb3.js", "_app/immutable/chunks/database-f88774b5.js", "_app/immutable/chunks/storage-5ed647af.js", "_app/immutable/chunks/tags-d5398d07.js", "_app/immutable/chunks/select-a5bb7245.js"];
+    file2 = "_app/immutable/pages/__layout.svelte-2c56d09d.js";
+    imports = ["_app/immutable/pages/__layout.svelte-2c56d09d.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/text-input-fbf16f90.js", "_app/immutable/chunks/database-7651eeff.js", "_app/immutable/chunks/storage-c2a28e6a.js", "_app/immutable/chunks/tags-29c1ec7d.js", "_app/immutable/chunks/select-912f9d2a.js"];
     stylesheets = ["_app/immutable/assets/__layout-514ae95d.css", "_app/immutable/assets/text-input-9d999076.css", "_app/immutable/assets/storage-491479b0.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/select-9228a765.css"];
   }
 });
@@ -91301,16 +91301,16 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/proposal-92771e0d.js
+// .svelte-kit/output/server/_app/immutable/chunks/proposal-f95fce73.js
 var css$32, Card, strings$3, Timestamp2, strings$2, css$22, Content, css$12, Preview, strings$12, css4, Toolbar, strings2, Proposal;
-var init_proposal_92771e0d = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/proposal-92771e0d.js"() {
+var init_proposal_f95fce73 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/proposal-f95fce73.js"() {
     init_shims();
     init_index_269d0619();
-    init_functions_139f5752();
-    init_text_input_456924f0();
+    init_functions_ecdef1f9();
+    init_text_input_2a777b4c();
     init_string_strip_html_esm();
-    init_tags_e7ea0416();
+    init_tags_a4e8b541();
     css$32 = {
       code: ".card-container.s-Hio59jcNIlCL{padding:var(--theme-cardseparationhalf)}.card.s-Hio59jcNIlCL{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.comment-box.s-Hio59jcNIlCL{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:var(--s5px)}.comment-text.s-Hio59jcNIlCL{display:inline-flex;width:100%}.s-Hio59jcNIlCL{}",
       map: null
@@ -91902,13 +91902,13 @@ var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
     init_index_269d0619();
-    init_functions_139f5752();
+    init_functions_ecdef1f9();
     init_string_strip_html_esm();
-    init_database_3cebeb77();
-    init_text_input_456924f0();
-    init_storage_2710d50a();
-    init_proposal_92771e0d();
-    init_tags_e7ea0416();
+    init_database_3fafc715();
+    init_text_input_2a777b4c();
+    init_storage_3a44a5a5();
+    init_proposal_f95fce73();
+    init_tags_a4e8b541();
     init_dist();
     init_dist2();
     init_dist3();
@@ -92715,8 +92715,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    file4 = "_app/immutable/pages/index.svelte-b204ef58.js";
-    imports3 = ["_app/immutable/pages/index.svelte-b204ef58.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/text-input-08768bb3.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/proposal-2ccd3dd5.js", "_app/immutable/chunks/tags-d5398d07.js", "_app/immutable/chunks/database-f88774b5.js", "_app/immutable/chunks/storage-5ed647af.js"];
+    file4 = "_app/immutable/pages/index.svelte-c71de253.js";
+    imports3 = ["_app/immutable/pages/index.svelte-c71de253.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/text-input-fbf16f90.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/proposal-f6c648cb.js", "_app/immutable/chunks/tags-29c1ec7d.js", "_app/immutable/chunks/database-7651eeff.js", "_app/immutable/chunks/storage-c2a28e6a.js"];
     stylesheets3 = ["_app/immutable/assets/index-586204af.css", "_app/immutable/assets/text-input-9d999076.css", "_app/immutable/assets/proposal-8f259728.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/storage-491479b0.css"];
   }
 });
@@ -92731,17 +92731,17 @@ var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_269d0619();
-    init_proposal_92771e0d();
-    init_functions_139f5752();
+    init_proposal_f95fce73();
+    init_functions_ecdef1f9();
     init_dist();
     init_dist2();
     init_dist3();
     init_dist4();
     init_dist5();
-    init_text_input_456924f0();
+    init_text_input_2a777b4c();
     import_chroma_js5 = __toESM(require_chroma(), 1);
     init_string_strip_html_esm();
-    init_tags_e7ea0416();
+    init_tags_a4e8b541();
     css6 = {
       code: ".preview.s-nkO0SViUUGe1{display:flex;justify-content:center;background-color:var(--theme-columnbackground);width:100%;height:100vh}.column-container.s-nkO0SViUUGe1{padding:var(--theme-cardseparationhalf);height:100%}.column.s-nkO0SViUUGe1{display:flex;align-items:center;justify-content:center;flex-direction:column;width:var(--theme-columnwidth);height:100%;padding:0 var(--theme-cardseparationhalf)}.s-nkO0SViUUGe1{}",
       map: null
@@ -92787,8 +92787,8 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 4;
-    file5 = "_app/immutable/pages/post_preview.svelte-4e2b96b2.js";
-    imports4 = ["_app/immutable/pages/post_preview.svelte-4e2b96b2.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/proposal-2ccd3dd5.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/text-input-08768bb3.js", "_app/immutable/chunks/tags-d5398d07.js"];
+    file5 = "_app/immutable/pages/post_preview.svelte-fec1f3dc.js";
+    imports4 = ["_app/immutable/pages/post_preview.svelte-fec1f3dc.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/proposal-f6c648cb.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/text-input-fbf16f90.js", "_app/immutable/chunks/tags-29c1ec7d.js"];
     stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-8f259728.css", "_app/immutable/assets/text-input-9d999076.css", "_app/immutable/assets/tags-95a7f94d.css"];
   }
 });
@@ -92847,9 +92847,9 @@ var init_users_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/admin/users.svelte.js"() {
     init_shims();
     init_index_269d0619();
-    init_database_3cebeb77();
-    init_functions_139f5752();
-    init_text_input_456924f0();
+    init_database_3fafc715();
+    init_functions_ecdef1f9();
+    init_text_input_2a777b4c();
     init_dist2();
     init_dist3();
     init_dist();
@@ -92909,8 +92909,8 @@ var init__6 = __esm({
     init_shims();
     init_users_svelte();
     index6 = 2;
-    file7 = "_app/immutable/pages/admin/users.svelte-2a32121b.js";
-    imports6 = ["_app/immutable/pages/admin/users.svelte-2a32121b.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/database-f88774b5.js", "_app/immutable/chunks/text-input-08768bb3.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/select-a5bb7245.js"];
+    file7 = "_app/immutable/pages/admin/users.svelte-881d5cfb.js";
+    imports6 = ["_app/immutable/pages/admin/users.svelte-881d5cfb.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/database-7651eeff.js", "_app/immutable/chunks/text-input-fbf16f90.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/select-912f9d2a.js"];
     stylesheets6 = ["_app/immutable/assets/users-ad6cc9f1.css", "_app/immutable/assets/text-input-9d999076.css", "_app/immutable/assets/select-9228a765.css"];
   }
 });
@@ -93104,8 +93104,8 @@ var GET;
 var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
-    init_functions_139f5752();
-    init_database_3cebeb77();
+    init_functions_ecdef1f9();
+    init_database_3fafc715();
     init_index_269d0619();
     init_dist();
     init_dist2();
@@ -95767,7 +95767,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-a2e52393.js", "imports": ["_app/immutable/start-a2e52393.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/index-ebce0b94.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-1ea4246c.js", "imports": ["_app/immutable/start-1ea4246c.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/index-ebce0b94.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

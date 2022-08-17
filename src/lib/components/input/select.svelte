@@ -30,7 +30,7 @@
     class="select"
     style={style}>
     <div 
-        class="select-box"
+        class="select-box _clickable"
         class:error={error}
         on:click={() => showOptions = !showOptions}>
         <Font

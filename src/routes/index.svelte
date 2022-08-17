@@ -150,6 +150,7 @@
     const newPostEvent = _eventListener('new-post').subscribe(async (postData) => {
         columnData[postData._columnIndex].unshift(postData);
         // trigger template update
+        updateCount++;
         columnData = columnData;
     })
     // clear subscription
@@ -159,6 +160,7 @@
     // by this listener
     const postUpdatedtEvent = _eventListener('update-post').subscribe(async () => {
         // trigger template update
+        updateCount++;
         columnData = columnData;
     })
     // clear subscription
@@ -171,6 +173,7 @@
             .findIndex(p => p.id == postData.id);
         columnData[postData._columnIndex].splice(postIndex, 1);
         // trigger template update
+        updateCount++;
         columnData = columnData;
     })
     // clear subscription

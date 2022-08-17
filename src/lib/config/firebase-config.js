@@ -41,7 +41,7 @@ export const app = initializeApp(firebaseConfig);
 if(import.meta.env.MODE == 'localhost') {
     connectFirestoreEmulator(getFirestore(app), 'localhost', 8081);
     connectAuthEmulator(getAuth(app), "http://localhost:9099");
-    connectFunctionsEmulator(getFunctions(app), "localhost", 5001);
+    connectFunctionsEmulator(getFunctions(app, 'asia-south1'), "localhost", 5001);
     connectStorageEmulator(getStorage(app), "localhost", 9199);
 }
 

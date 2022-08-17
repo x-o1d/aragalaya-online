@@ -2,7 +2,7 @@ import { app } from '$lib/config/firebase-config';
 
 import { getFunctions, httpsCallable } from 'firebase/functions';
 
-const functions = getFunctions(app);
+const functions = getFunctions(app, 'asia-south1');
 
 // --
 // properties exposed from services (export const xx) are prepended with
