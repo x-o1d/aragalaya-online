@@ -69796,10 +69796,10 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/text-input-2a777b4c.js
+// .svelte-kit/output/server/_app/immutable/chunks/text-input-2cfe33ae.js
 var import_chroma_js, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, Font, css, Text_input;
-var init_text_input_2a777b4c = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/text-input-2a777b4c.js"() {
+var init_text_input_2cfe33ae = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/text-input-2cfe33ae.js"() {
     init_shims();
     init_index_269d0619();
     init_functions_ecdef1f9();
@@ -69871,7 +69871,7 @@ var init_text_input_2a777b4c = __esm({
     columnWidth = 500;
     columnHeaderHeight = 50;
     cardSeparation = 12;
-    cardPadding = 12;
+    cardPadding = cardSeparation;
     navSize = 60;
     previewHeight = (columnWidth - cardSeparation - cardPadding * 2) * 9 / 16;
     toolbarButtonSize = 20;
@@ -69894,6 +69894,7 @@ var init_text_input_2a777b4c = __esm({
         columnHeaderHeight: columnHeaderHeight / devicePixelRatio,
         cardSeparation: cardSeparation / devicePixelRatio,
         cardSeparationHalf: cardSeparation / 2 / devicePixelRatio,
+        cardSeparationQuarter: cardSeparation / 4 / devicePixelRatio,
         cardPadding: cardPadding / devicePixelRatio,
         previewHeight: _previewHeight / devicePixelRatio,
         navSize: _navSize / devicePixelRatio,
@@ -69932,7 +69933,7 @@ var init_text_input_2a777b4c = __esm({
 <div style="${"font-family: " + escape(fontFamily, true) + "; font-size: " + escape(fontSize, true) + "px; color: " + escape(color || "inherit", true) + "; display: " + escape(inline ? "inline-block" : "block", true) + "; " + escape(style, true)}">${slots.default ? slots.default({}) : ``}</div>`;
     });
     css = {
-      code: "input.s-Rc61XWFQtAVh{width:100%;height:100%;border-radius:var(--s3px);padding:var(--s4px);border:var(--s1px) solid rgb(237, 237, 237)}.form.s-Rc61XWFQtAVh{border-radius:var(--s5px);border:var(--s1px) solid var(--theme-defaultbutton);height:var(--s45px);margin-bottom:var(--s18px);padding:var(--s10px)}span.s-Rc61XWFQtAVh{color:red}.error.s-Rc61XWFQtAVh{border-width:2px;border-color:#c02e46}.s-Rc61XWFQtAVh{}",
+      code: "input.s-Rc61XWFQtAVh{width:100%;height:100%;border-radius:var(--s3px);padding:var(--theme-cardseparationhalf) var(--s9px);border:var(--s1px) solid rgb(237, 237, 237)}.form.s-Rc61XWFQtAVh{border-radius:var(--s5px);border:var(--s1px) solid var(--theme-defaultbutton);height:var(--s45px);margin-bottom:var(--s18px);padding:var(--theme-cardseparation)}span.s-Rc61XWFQtAVh{color:red}.error.s-Rc61XWFQtAVh{border-width:2px;border-color:#c02e46}.s-Rc61XWFQtAVh{}",
       map: null
     };
     Text_input = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -69999,15 +70000,15 @@ var init_storage_3a44a5a5 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/tags-a4e8b541.js
+// .svelte-kit/output/server/_app/immutable/chunks/tags-f6539694.js
 var import_chroma_js2, tagConfig, colors, TAGS, css2, Tags;
-var init_tags_a4e8b541 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/tags-a4e8b541.js"() {
+var init_tags_f6539694 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/tags-f6539694.js"() {
     init_shims();
     init_index_269d0619();
     import_chroma_js2 = __toESM(require_chroma(), 1);
     init_functions_ecdef1f9();
-    init_text_input_2a777b4c();
+    init_text_input_2cfe33ae();
     tagConfig = {
       mainstream: [
         "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
@@ -70101,7 +70102,7 @@ var init_tags_a4e8b541 = __esm({
         {
           font: 0,
           size: 0.75,
-          style: "\n        display: flex;\n        width: calc(90% - 4px);\n        flex-wrap: wrap;" + style
+          style: "\n        display: flex;\n        width: calc(90% - 4px);\n        flex-wrap: wrap;" + style + ";\n        margin-top: var(--theme-cardseparation);\n        margin-bottom: calc(var(--theme-cardseparation) - var(--s3px));"
         },
         {},
         {
@@ -88196,10 +88197,10 @@ var init_layout_svelte = __esm({
     init_index_269d0619();
     init_functions_ecdef1f9();
     init_database_3fafc715();
-    init_text_input_2a777b4c();
+    init_text_input_2cfe33ae();
     init_dist3();
     init_storage_3a44a5a5();
-    init_tags_a4e8b541();
+    init_tags_f6539694();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
     import_extension_bold = __toESM(require_tiptap_extension_bold_cjs(), 1);
     import_extension_italic = __toESM(require_tiptap_extension_italic_cjs(), 1);
@@ -88736,7 +88737,11 @@ var init_layout_svelte = __esm({
             modifiedData[key2][lang] = formData[key2];
           }
           if (formData[key2 + "_images"]) {
-            modifiedData[key2 + "_images"] = [...formData[key2 + "_images"], ...originalData[key2 + "_images"]];
+            if (originalData[key2 + "_images"]) {
+              modifiedData[key2 + "_images"] = [...formData[key2 + "_images"], ...originalData[key2 + "_images"]];
+            } else {
+              modifiedData[key2 + "_images"] = [...formData[key2 + "_images"]];
+            }
           }
         });
       };
@@ -88818,6 +88823,11 @@ var init_layout_svelte = __esm({
       const editPost = async () => {
         setModifiedData();
         updateMachineTranslated();
+        Object.keys(modifiedData).map((key2) => {
+          if (key2.startsWith("_")) {
+            delete modifiedData[key2];
+          }
+        });
         let error2 = await _updatePost({
           ...modifiedData,
           tags: selectedTagNames,
@@ -89192,9 +89202,9 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-2c56d09d.js";
-    imports = ["_app/immutable/pages/__layout.svelte-2c56d09d.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/text-input-fbf16f90.js", "_app/immutable/chunks/database-7651eeff.js", "_app/immutable/chunks/storage-c2a28e6a.js", "_app/immutable/chunks/tags-29c1ec7d.js", "_app/immutable/chunks/select-912f9d2a.js"];
-    stylesheets = ["_app/immutable/assets/__layout-514ae95d.css", "_app/immutable/assets/text-input-9d999076.css", "_app/immutable/assets/storage-491479b0.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/select-9228a765.css"];
+    file2 = "_app/immutable/pages/__layout.svelte-e7f094b7.js";
+    imports = ["_app/immutable/pages/__layout.svelte-e7f094b7.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/text-input-87fcefbf.js", "_app/immutable/chunks/database-32df0e4c.js", "_app/immutable/chunks/storage-75e9bb97.js", "_app/immutable/chunks/tags-4e2f4971.js", "_app/immutable/chunks/select-12454dd9.js"];
+    stylesheets = ["_app/immutable/assets/__layout-514ae95d.css", "_app/immutable/assets/text-input-829f9949.css", "_app/immutable/assets/storage-491479b0.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/select-9228a765.css"];
   }
 });
 
@@ -91301,18 +91311,18 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/proposal-f95fce73.js
+// .svelte-kit/output/server/_app/immutable/chunks/proposal-65c9c7d6.js
 var css$32, Card, strings$3, Timestamp2, strings$2, css$22, Content, css$12, Preview, strings$12, css4, Toolbar, strings2, Proposal;
-var init_proposal_f95fce73 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/proposal-f95fce73.js"() {
+var init_proposal_65c9c7d6 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/proposal-65c9c7d6.js"() {
     init_shims();
     init_index_269d0619();
     init_functions_ecdef1f9();
-    init_text_input_2a777b4c();
+    init_text_input_2cfe33ae();
     init_string_strip_html_esm();
-    init_tags_a4e8b541();
+    init_tags_f6539694();
     css$32 = {
-      code: ".card-container.s-Hio59jcNIlCL{padding:var(--theme-cardseparationhalf)}.card.s-Hio59jcNIlCL{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.comment-box.s-Hio59jcNIlCL{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:var(--s5px)}.comment-text.s-Hio59jcNIlCL{display:inline-flex;width:100%}.s-Hio59jcNIlCL{}",
+      code: ".card-container.s-Hio59jcNIlCL{padding:var(--theme-cardseparationhalf)}.card.s-Hio59jcNIlCL{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.comment-box.s-Hio59jcNIlCL{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:var(--theme-cardseparationhalf)}.comment-text.s-Hio59jcNIlCL{display:inline-flex;width:100%}.s-Hio59jcNIlCL{}",
       map: null
     };
     Card = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -91512,7 +91522,7 @@ var init_proposal_f95fce73 = __esm({
 </div>`;
     });
     css$12 = {
-      code: ".preview-image.s-Aln3qbhUrjzf{background-image:var(--url);background-color:#7b7b7b;height:var(--theme-previewheight);width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;border-radius:3px;margin-top:5px;filter:grayscale(0.6)}.preview-container.s-Aln3qbhUrjzf{position:relative}.preview-overlay.s-Aln3qbhUrjzf{position:absolute;top:0;left:0;height:var(--theme-previewheight);width:100%;background-color:black;opacity:var(--theme-previewopacity);border-radius:3px}.preview img{margin:var(--s10px) 0;width:100%;border-radius:3px}.s-Aln3qbhUrjzf{}",
+      code: ".preview-image.s-Aln3qbhUrjzf{background-image:var(--url);background-color:#7b7b7b;height:var(--theme-previewheight);width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;border-radius:var(--s3px);margin-top:var(--theme-cardseparationhalf);filter:grayscale(0.6)}.preview-container.s-Aln3qbhUrjzf{position:relative}.preview-overlay.s-Aln3qbhUrjzf{position:absolute;top:0;left:0;height:var(--theme-previewheight);width:100%;background-color:black;opacity:var(--theme-previewopacity);border-radius:3px}.preview img{margin:var(--theme-cardseparationhalf) 0;width:100%;border-radius:3px}.s-Aln3qbhUrjzf{}",
       map: null
     };
     Preview = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -91573,7 +91583,7 @@ var init_proposal_f95fce73 = __esm({
       ]
     };
     css4 = {
-      code: ".toolbar.s-A62t8M1ucyij{display:flex;align-items:center;justify-content:space-between;margin-top:var(--s10px)}.toolbar-left.s-A62t8M1ucyij{display:inline-flex}.toolbar-right.s-A62t8M1ucyij{display:inline-flex;align-items:center}.icon.s-A62t8M1ucyij{display:inline-flex;align-items:center;justify-content:center;width:var(--theme-toolbarbuttonsize);height:var(--theme-toolbarbuttonsize);margin-right:var(--s5px);font-size:var(--s13px);line-height:var(--s14px);background-color:rgb(226, 230, 230);border-radius:3px}.huddle.s-A62t8M1ucyij{margin-right:var(--s1px)}.on.s-A62t8M1ucyij{background-color:rgb(124, 124, 124);color:white}.verified.s-A62t8M1ucyij{background-color:#48bb6b;color:white;margin-right:0}.not-verified.s-A62t8M1ucyij{background-color:#e44e4e;color:white;margin-right:0}.facebook.s-A62t8M1ucyij{background-color:#557bab}.twitter.s-A62t8M1ucyij{background-color:#6abef2}.whatsapp.s-A62t8M1ucyij{background-color:#61ba7b}.reddit.s-A62t8M1ucyij{background-color:#fc7949}.fa-brands.s-A62t8M1ucyij{color:white}.s-A62t8M1ucyij{}",
+      code: ".toolbar.s-A62t8M1ucyij{display:flex;align-items:center;justify-content:space-between;margin-top:var(--theme-cardseparationhalf)}.toolbar-left.s-A62t8M1ucyij{display:inline-flex}.toolbar-right.s-A62t8M1ucyij{display:inline-flex;align-items:center}.icon.s-A62t8M1ucyij{display:inline-flex;align-items:center;justify-content:center;width:var(--theme-toolbarbuttonsize);height:var(--theme-toolbarbuttonsize);margin-right:var(--theme-cardseparationhalf);font-size:var(--s13px);line-height:var(--s14px);background-color:rgb(226, 230, 230);border-radius:var(--s3px)}.mobile-huddle.s-A62t8M1ucyij{display:inline-flex;border-radius:var(--s3px);overflow:hidden;padding:0}.huddle.s-A62t8M1ucyij{margin-right:0;border-radius:0}.on.s-A62t8M1ucyij{background-color:rgb(124, 124, 124);color:white}.verified.s-A62t8M1ucyij{background-color:#48bb6b;color:white;margin-right:0}.not-verified.s-A62t8M1ucyij{background-color:#e44e4e;color:white;margin-right:0}.facebook.s-A62t8M1ucyij{background-color:#557bab}.twitter.s-A62t8M1ucyij{background-color:#6abef2}.whatsapp.s-A62t8M1ucyij{background-color:#61ba7b}.reddit.s-A62t8M1ucyij{background-color:#fc7949}.fa-brands.s-A62t8M1ucyij{color:white}.s-A62t8M1ucyij{}",
       map: null
     };
     Toolbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -91604,10 +91614,10 @@ var init_proposal_f95fce73 = __esm({
 <div class="${"toolbar s-A62t8M1ucyij"}"><div class="${"toolbar-left s-A62t8M1ucyij"}">${$_user && $_user.uid == data.createdBy ? `<div class="${"icon _clickable s-A62t8M1ucyij"}"><i class="${"fa-solid fa-pen-clip s-A62t8M1ucyij"}"></i></div>` : ``}
         <div class="${["icon _clickable s-A62t8M1ucyij", data._expanded ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-down s-A62t8M1ucyij"}"></i></div>
         <div class="${["icon _clickable s-A62t8M1ucyij", data._singlePostView ? "on" : ""].join(" ").trim()}"><i class="${"fa-solid fa-up-right-and-down-left-from-center s-A62t8M1ucyij"}"></i></div>
-        <div class="${["icon _clickable s-A62t8M1ucyij", $_isMobile ? "huddle" : ""].join(" ").trim()}"><i class="${"fa-solid fa-share-nodes s-A62t8M1ucyij"}"></i></div>
-        <div class="${["icon facebook _clickable s-A62t8M1ucyij", $_isMobile ? "huddle" : ""].join(" ").trim()}"><i class="${"fa-brands fa-facebook s-A62t8M1ucyij"}"></i></div>
-        <div class="${["icon twitter _clickable s-A62t8M1ucyij", $_isMobile ? "huddle" : ""].join(" ").trim()}"><i class="${"fa-brands fa-twitter s-A62t8M1ucyij"}"></i></div>
-        <div class="${"icon whatsapp _clickable s-A62t8M1ucyij"}"><i class="${"fa-brands fa-whatsapp s-A62t8M1ucyij"}"></i></div>
+        <div class="${"mobile-huddle s-A62t8M1ucyij"}"><div class="${["icon _clickable s-A62t8M1ucyij", $_isMobile ? "huddle" : ""].join(" ").trim()}"><i class="${"fa-solid fa-share-nodes s-A62t8M1ucyij"}"></i></div>
+            <div class="${["icon facebook _clickable s-A62t8M1ucyij", $_isMobile ? "huddle" : ""].join(" ").trim()}"><i class="${"fa-brands fa-facebook s-A62t8M1ucyij"}"></i></div>
+            <div class="${["icon twitter _clickable s-A62t8M1ucyij", $_isMobile ? "huddle" : ""].join(" ").trim()}"><i class="${"fa-brands fa-twitter s-A62t8M1ucyij"}"></i></div>
+            <div class="${["icon whatsapp _clickable s-A62t8M1ucyij", $_isMobile ? "huddle" : ""].join(" ").trim()}"><i class="${"fa-brands fa-whatsapp s-A62t8M1ucyij"}"></i></div></div>
         ${!$_isMobile ? `<div class="${"icon reddit _clickable s-A62t8M1ucyij"}"><i class="${"fa-brands fa-reddit s-A62t8M1ucyij"}"></i></div>` : ``}</div>
     <div class="${["toolbar-right s-A62t8M1ucyij", $_admin ? "_clickable" : ""].join(" ").trim()}">${data.verified ? `${validate_component(Font, "Font").$$render(
         $$result,
@@ -91668,7 +91678,7 @@ var init_proposal_f95fce73 = __esm({
             {
               font: 0,
               size: 0.75,
-              color: "\n                rgb(100, 99, 99);\n                margin-bottom: var(--s5px);"
+              color: "\n                rgb(100, 99, 99);\n                margin-bottom: var(--theme-cardseparationhalf);"
             },
             {},
             {
@@ -91683,7 +91693,7 @@ var init_proposal_f95fce73 = __esm({
             {
               font: 1,
               size: 1.25,
-              style: "\n                font-weight: bold;\n                margin-bottom: var(--s10px);"
+              style: "\n                font-weight: bold;\n                margin-bottom: var(--theme-cardseparationhalf);"
             },
             {},
             {
@@ -91699,7 +91709,7 @@ var init_proposal_f95fce73 = __esm({
               font: 3,
               size: 0.8,
               color: "rgb(55, 55, 55);",
-              style: "\n                margin-bottom: var(--s3px);\n                font-weight: bold;"
+              style: "\n                margin-bottom: var(--theme-cardseparationquarter);\n                font-weight: bold;"
             },
             {},
             {
@@ -91715,7 +91725,7 @@ var init_proposal_f95fce73 = __esm({
               font: 0,
               size: 0.9,
               color: "rgb(57, 56, 56);",
-              style: "\n                margin-bottom: var(--s10px);"
+              style: "\n                margin-bottom: var(--theme-cardseparationhalf);"
             },
             {},
             {
@@ -91731,7 +91741,7 @@ var init_proposal_f95fce73 = __esm({
               font: 3,
               size: 0.8,
               color: "rgb(55, 55, 55);",
-              style: "\n                margin-bottom: var(--s3px);\n                font-weight: bold;"
+              style: "\n                margin-bottom: var(--theme-cardseparationquarter);\n                font-weight: bold;"
             },
             {},
             {
@@ -91770,7 +91780,7 @@ var init_proposal_f95fce73 = __esm({
             $$result,
             {
               tags: data.tags,
-              style: "margin-top: var(--s10px)"
+              style: "margin-top: var(--theme-cardseparationhalf);"
             },
             {},
             {}
@@ -91905,10 +91915,10 @@ var init_index_svelte = __esm({
     init_functions_ecdef1f9();
     init_string_strip_html_esm();
     init_database_3fafc715();
-    init_text_input_2a777b4c();
+    init_text_input_2cfe33ae();
     init_storage_3a44a5a5();
-    init_proposal_f95fce73();
-    init_tags_a4e8b541();
+    init_proposal_65c9c7d6();
+    init_tags_f6539694();
     init_dist();
     init_dist2();
     init_dist3();
@@ -92006,7 +92016,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
       ]
     };
     css$52 = {
-      code: ".machine-translated.s-Q7XEqeLz3oYK{padding:var(--s5px) 0;cursor:pointer}.fa-solid.s-Q7XEqeLz3oYK{font-size:var(--s11px)}.s-Q7XEqeLz3oYK{}",
+      code: ".machine-translated.s-Q7XEqeLz3oYK{cursor:pointer}.fa-solid.s-Q7XEqeLz3oYK{font-size:var(--s11px)}.s-Q7XEqeLz3oYK{}",
       map: null
     };
     Mt = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -92054,7 +92064,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
               font: 0,
               size: 0.75,
               color: "rgb(100, 99, 99)",
-              style: "margin-bottom: var(--s5px);"
+              style: "margin-bottom: var(--theme-cardseparationhalf);"
             },
             {},
             {
@@ -92085,7 +92095,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
               font: 3,
               size: 0.75,
               color: "rgb(55, 55, 55);",
-              style: "margin-bottom: var(--s10px);"
+              style: "margin-bottom: var(--theme-cardseparationhalf);"
             },
             {},
             {
@@ -92120,15 +92130,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
             }
           )}
     
-    ${validate_component(Tags, "Tags").$$render(
-            $$result,
-            {
-              tags: data.tags,
-              style: "margin-top: var(--s10px)"
-            },
-            {},
-            {}
-          )}
+    ${validate_component(Tags, "Tags").$$render($$result, { tags: data.tags }, {}, {})}
     
     ${validate_component(Mt, "MT").$$render($$result, { data }, {}, {})}
     
@@ -92149,7 +92151,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
               font: 0,
               size: 0.75,
               color: "rgb(100, 99, 99)",
-              style: "margin-bottom: var(--s5px);"
+              style: "margin-bottom: var(--theme-cardseparationhalf);"
             },
             {},
             {
@@ -92180,7 +92182,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
               font: 3,
               size: 0.75,
               color: "rgb(55, 55, 55);",
-              style: "margin-bottom: var(--s10px);"
+              style: "margin-bottom: var(--theme-cardseparationhalf);"
             },
             {},
             {
@@ -92215,15 +92217,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
             }
           )}
     
-    ${validate_component(Tags, "Tags").$$render(
-            $$result,
-            {
-              tags: data.tags,
-              style: "margin-top: var(--s10px)"
-            },
-            {},
-            {}
-          )}
+    ${validate_component(Tags, "Tags").$$render($$result, { tags: data.tags }, {}, {})}
     
     ${validate_component(Mt, "MT").$$render($$result, { data }, {}, {})}
     
@@ -92260,7 +92254,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
             {
               font: 0,
               size: 0.75,
-              color: "\n            rgb(100, 99, 99);\n            margin-bottom: var(--s7px);"
+              color: "\n            rgb(100, 99, 99);\n            margin-bottom: var(--theme-cardseparationhalf);"
             },
             {},
             {
@@ -92285,7 +92279,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
             {
               font: 1,
               size: 1.25,
-              style: "\n            font-weight: bold;\n            margin-bottom: var(--s10px);"
+              style: "\n            font-weight: bold;\n            margin-bottom: var(--theme-cardseparationhalf);"
             },
             {},
             {
@@ -92320,15 +92314,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
             }
           )}
     
-    ${validate_component(Tags, "Tags").$$render(
-            $$result,
-            {
-              tags: data.tags,
-              style: "margin-top: var(--s10px)"
-            },
-            {},
-            {}
-          )}
+    ${validate_component(Tags, "Tags").$$render($$result, { tags: data.tags }, {}, {})}
     
     ${validate_component(Mt, "MT").$$render($$result, { data }, {}, {})}
     
@@ -92715,9 +92701,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    file4 = "_app/immutable/pages/index.svelte-41401f1f.js";
-    imports3 = ["_app/immutable/pages/index.svelte-41401f1f.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/text-input-fbf16f90.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/proposal-f6c648cb.js", "_app/immutable/chunks/tags-29c1ec7d.js", "_app/immutable/chunks/database-7651eeff.js", "_app/immutable/chunks/storage-c2a28e6a.js"];
-    stylesheets3 = ["_app/immutable/assets/index-586204af.css", "_app/immutable/assets/text-input-9d999076.css", "_app/immutable/assets/proposal-8f259728.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/storage-491479b0.css"];
+    file4 = "_app/immutable/pages/index.svelte-2c8207fd.js";
+    imports3 = ["_app/immutable/pages/index.svelte-2c8207fd.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/text-input-87fcefbf.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/proposal-b2998b8e.js", "_app/immutable/chunks/tags-4e2f4971.js", "_app/immutable/chunks/database-32df0e4c.js", "_app/immutable/chunks/storage-75e9bb97.js"];
+    stylesheets3 = ["_app/immutable/assets/index-2127efea.css", "_app/immutable/assets/text-input-829f9949.css", "_app/immutable/assets/proposal-b7026361.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/storage-491479b0.css"];
   }
 });
 
@@ -92731,17 +92717,17 @@ var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_269d0619();
-    init_proposal_f95fce73();
+    init_proposal_65c9c7d6();
     init_functions_ecdef1f9();
     init_dist();
     init_dist2();
     init_dist3();
     init_dist4();
     init_dist5();
-    init_text_input_2a777b4c();
+    init_text_input_2cfe33ae();
     import_chroma_js5 = __toESM(require_chroma(), 1);
     init_string_strip_html_esm();
-    init_tags_a4e8b541();
+    init_tags_f6539694();
     css6 = {
       code: ".preview.s-nkO0SViUUGe1{display:flex;justify-content:center;background-color:var(--theme-columnbackground);width:100%;height:100vh}.column-container.s-nkO0SViUUGe1{padding:var(--theme-cardseparationhalf);height:100%}.column.s-nkO0SViUUGe1{display:flex;align-items:center;justify-content:center;flex-direction:column;width:var(--theme-columnwidth);height:100%;padding:0 var(--theme-cardseparationhalf)}.s-nkO0SViUUGe1{}",
       map: null
@@ -92787,9 +92773,9 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 4;
-    file5 = "_app/immutable/pages/post_preview.svelte-fec1f3dc.js";
-    imports4 = ["_app/immutable/pages/post_preview.svelte-fec1f3dc.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/proposal-f6c648cb.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/text-input-fbf16f90.js", "_app/immutable/chunks/tags-29c1ec7d.js"];
-    stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-8f259728.css", "_app/immutable/assets/text-input-9d999076.css", "_app/immutable/assets/tags-95a7f94d.css"];
+    file5 = "_app/immutable/pages/post_preview.svelte-5052be58.js";
+    imports4 = ["_app/immutable/pages/post_preview.svelte-5052be58.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/proposal-b2998b8e.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/text-input-87fcefbf.js", "_app/immutable/chunks/tags-4e2f4971.js"];
+    stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-b7026361.css", "_app/immutable/assets/text-input-829f9949.css", "_app/immutable/assets/tags-95a7f94d.css"];
   }
 });
 
@@ -92849,7 +92835,7 @@ var init_users_svelte = __esm({
     init_index_269d0619();
     init_database_3fafc715();
     init_functions_ecdef1f9();
-    init_text_input_2a777b4c();
+    init_text_input_2cfe33ae();
     init_dist2();
     init_dist3();
     init_dist();
@@ -92909,9 +92895,9 @@ var init__6 = __esm({
     init_shims();
     init_users_svelte();
     index6 = 2;
-    file7 = "_app/immutable/pages/admin/users.svelte-881d5cfb.js";
-    imports6 = ["_app/immutable/pages/admin/users.svelte-881d5cfb.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/database-7651eeff.js", "_app/immutable/chunks/text-input-fbf16f90.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/select-912f9d2a.js"];
-    stylesheets6 = ["_app/immutable/assets/users-ad6cc9f1.css", "_app/immutable/assets/text-input-9d999076.css", "_app/immutable/assets/select-9228a765.css"];
+    file7 = "_app/immutable/pages/admin/users.svelte-cf88aa5b.js";
+    imports6 = ["_app/immutable/pages/admin/users.svelte-cf88aa5b.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/database-32df0e4c.js", "_app/immutable/chunks/text-input-87fcefbf.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/select-12454dd9.js"];
+    stylesheets6 = ["_app/immutable/assets/users-ad6cc9f1.css", "_app/immutable/assets/text-input-829f9949.css", "_app/immutable/assets/select-9228a765.css"];
   }
 });
 
@@ -95767,7 +95753,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-95204598.js", "imports": ["_app/immutable/start-95204598.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/index-ebce0b94.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-76816ed8.js", "imports": ["_app/immutable/start-76816ed8.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/index-ebce0b94.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

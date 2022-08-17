@@ -95,7 +95,7 @@ USAGE:
         width: 100%;
         height: 100%;
         border-radius: var(--s3px);
-        padding: var(--theme-cardseparationhalf);
+        padding: var(--theme-cardseparationhalf) var(--s9px);
         border: var(--s1px) solid rgb(237, 237, 237);
     }
     .form {

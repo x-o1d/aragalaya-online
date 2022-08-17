@@ -121,9 +121,9 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        border-radius: 3px;
+        border-radius: var(--s3px);
 
-        margin-top: 5px;
+        margin-top: var(--theme-cardseparationhalf);
 
         filter: grayscale(0.6);
     }
@@ -143,7 +143,7 @@
         border-radius: 3px;
     }
     :global(.preview img) {
-        margin: var(--s10px) 0;
+        margin: var(--theme-cardseparationhalf) 0;
         width: 100%;
         border-radius: 3px;
     }

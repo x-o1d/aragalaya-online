@@ -219,6 +219,12 @@
         setModifiedData();
         // update machine translated fields
         updateMachineTranslated();
+        // remove local variables from data
+        Object.keys(modifiedData).map(key => {
+            if(key.startsWith('_')) {
+                delete modifiedData[key];
+            }
+        })
         // save modifiedData
         let error = await _updatePost({
             ...modifiedData,
