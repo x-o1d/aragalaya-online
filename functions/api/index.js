@@ -110,7 +110,9 @@ const runtimeOpts = {
     memory: '256MB',
 };
 
-exports.add_post = functions.runWith(runtimeOpts).https.onCall(async (data, context) => {
+const region = 'asia-south1';
+
+exports.add_post = functions.region(region).runWith(runtimeOpts).https.onCall(async (data, context) => {
     logger.info('Input data :', data);
 
     // check if user token present
@@ -139,7 +141,7 @@ exports.add_post = functions.runWith(runtimeOpts).https.onCall(async (data, cont
     return modifiedData;
 });
 
-exports.admin_get_user = functions.runWith(runtimeOpts).https.onCall(async (email, context) => {
+exports.admin_get_user = functions.region(region).runWith(runtimeOpts).https.onCall(async (email, context) => {
     logger.info('Input email :', email);
 
     // check if user token present
@@ -171,7 +173,7 @@ exports.admin_get_user = functions.runWith(runtimeOpts).https.onCall(async (emai
     return userRecord;
 });
 
-exports.admin_change_role = functions.runWith(runtimeOpts).https.onCall(async (data, context) => {
+exports.admin_change_role = functions.region(region).runWith(runtimeOpts).https.onCall(async (data, context) => {
     logger.info('Input data :', data);
 
     // check if user token present
@@ -207,7 +209,7 @@ exports.admin_change_role = functions.runWith(runtimeOpts).https.onCall(async (d
     return userRecord;
 });
 
-exports.admin_toggle_verified = functions.runWith(runtimeOpts).https.onCall(async (id, context) => {
+exports.admin_toggle_verified = functions.region(region).runWith(runtimeOpts).https.onCall(async (id, context) => {
     logger.info('Input data :', id);
 
     // check if user token present
