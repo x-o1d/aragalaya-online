@@ -11,6 +11,9 @@ https://aragalaya.online
 you can see our kanban board here,
 https://trello.com/b/6ArJOe4u/aragalayaonline-kanban-board
 
+join our discord:
+https://discord.gg/dzrYm7BuDT
+
 feel free to contact us at contact@aragalaya.online
 
 ### getting started
