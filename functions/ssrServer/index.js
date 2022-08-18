@@ -95753,7 +95753,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-76816ed8.js", "imports": ["_app/immutable/start-76816ed8.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/index-ebce0b94.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-7f2b875d.js", "imports": ["_app/immutable/start-7f2b875d.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/index-ebce0b94.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

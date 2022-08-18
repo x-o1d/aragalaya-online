@@ -61,6 +61,8 @@ USAGE:
             on:keydown={(e) => {
                 if(e.keyCode == 13) dispatch('enter')
             }}
+            on:focus={(e) => dispatch('focus')}
+            on:blur={(e) => dispatch('blur')}
             bind:value={data[config.name]}/>
         {:else}
         <input 
@@ -77,6 +79,8 @@ USAGE:
             on:keydown={(e) => {
                 if(e.keyCode == 13) dispatch('enter')
             }}
+            on:focus={(e) => dispatch('focus')}
+            on:blur={(e) => dispatch('blur')}
             bind:value={data[config.name]}/>
         {/if}
         <!-- if error is a string show the error -->
@@ -95,7 +99,7 @@ USAGE:
         width: 100%;
         height: 100%;
         border-radius: var(--s3px);
-        padding: var(--theme-cardseparationhalf) var(--s9px);
+        padding: var(--theme-cardseparationhalf) var(--s40px) var(--theme-cardseparationhalf) var(--s9px);
         border: var(--s1px) solid rgb(237, 237, 237);
     }
     .form {

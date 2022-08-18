@@ -24,3 +24,7 @@ export const _adminChangeRole = async (uid, role) => {
 export const _adminToggleVerified = async (id) => {
     return httpsCallable(functions, 'admin_toggle_verified')(id);
 }
+
+export const _addComment = async (id) => {
+    return httpsCallable(functions, 'add_comment')(id);
+}

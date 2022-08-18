@@ -253,6 +253,21 @@ exports.admin_toggle_verified = functions.region(region).runWith(runtimeOpts).ht
     return newPost;
 });
 
+exports.add_comment = functions.region(region).runWith(runtimeOpts).https.onCall(async (data, context) => {
+    logger.info('Input data :', data);
 
+    // check if user token present
+    if (!context.auth) {
+        throw new HttpsError('failed-precondition', 'The function must be ' +
+            'called while authenticated.');
+    }
 
+    // Enter new data into the document.
+    let document = firestore.collection('Posts').doc(data.id);
+    const result = await document.update({
+        comments: FieldValue.arrayUnion(data.comment)
+    });
+
+    return result;
+});
   
