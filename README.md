@@ -45,4 +45,10 @@ you will have a local version of the project running on localhost:3000
 
 feel free to hack around and send us a pr!
 
+#### troubleshooting
 
+if you run into any build issues you can try the following:
+
+1. check node is version 18, since sveltkit 405 node 16 is no longer compatible
+2. delete node_modules folder and rerun npm install
+4. comment line 98 `builder.writeStatic(publicDir)` of node_modules => svelte-adapter-firebase => index.js  (this will be fixed by sveltkit-firebase-adapter 14.2)
