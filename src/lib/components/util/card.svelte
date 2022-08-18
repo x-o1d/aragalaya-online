@@ -40,7 +40,10 @@
     onDestroy(appContentReadyUnsubscribe);
 
     const submitComment = async () => {
+        if(submitProgress) return;
+        submitProgress = true;
         if(!comment.text) {
+            submitProgress = false;
             commentError = true;
             return;
         }
@@ -61,13 +64,17 @@
             // for reactive update
             data.comments = data.comments;
         }
+        submitProgress = false;
     }
 
     const deleteComment = async (comment, fromButton) => {
+        if(deleteProgress) return;
+        deleteProgress = true;
         if(!(comment.createdBy == ($_user && $_user.uid)) &&
             !(comment.createdBy == _anonymousId) && 
             !$_admin) 
         {
+            deleteProgress = false;
             return;
         }
         if(!fromButton) {
@@ -75,17 +82,20 @@
             // for reactive update
             data.comments = data.comments;
             setTimeout(() => {
+                if(deleteProgress) return;
                 comment._delete = false;
                 // for reactive update
                 data.comments = data.comments;
             }, 3000);
         } else {
-            delete comment._delete;
+            // strip _delete local variable from the comment before
+            // sending to the backend
+            let modifiedComment = JSON.parse(JSON.stringify(comment));
+            delete modifiedComment._delete;
             const result = await _deleteComment({
                 id: data.id,
-                comment
+                comment: modifiedComment
             });
-            console.log(result);
             if(!result.data.error) {
                 const commentIndex = data.comments
                     .findIndex(c => c.id == comment.id);
@@ -93,7 +103,9 @@
                 // for reactive update
                 data.comments = data.comments;
             }
+            comment._delete = false;
         }
+        deleteProgress = false;
     }
 </script>
 
@@ -120,11 +132,7 @@
                     class="delete-button _clickable"
                     class:progress={deleteProgress}
                     style="width: {submitButtonWidth}px;"
-                    on:click={async () => {
-                        deleteProgress = true;
-                        await deleteComment(comment, true);
-                        deleteProgress = false;
-                    }}>
+                    on:click={() => deleteComment(comment, true)}>
                     <i class="fa-solid fa-trash-can"></i>
                 </div>
                 {/if}
@@ -156,11 +164,7 @@
                     class:progress={submitProgress}
                     bind:this={submitButton}
                     style="background-color: {focused? '#e1e1e1': '#f9f9f9'};"
-                    on:click={async () => {
-                        submitProgress = true;
-                        await submitComment();
-                        submitProgress = false;
-                    }}>
+                    on:click={submitComment}>
                     <i class="fa-solid fa-location-arrow"></i>
                 </div>
             </div>

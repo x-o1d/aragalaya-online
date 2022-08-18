@@ -2,7 +2,7 @@ import { app } from '$lib/config/firebase-config';
 
 import { 
     FacebookAuthProvider, 
-    signInWithPopup, 
+    signInWithRedirect, 
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword,
     updatePassword,
@@ -14,10 +14,10 @@ import {
 
 import { _createUserRecord, _getUserRecord, _createError } from '$lib/services/database';
 import { _emitEvent } from '$lib/services/events';
-import { _admin, _verified, _authStateChecked, _currentTheme, _lang, _signUpInProgress, _user } from './store';
+import { _admin, _verified, _authStateChecked, _currentTheme, _lang, _signUpInProgress, _user, _URL } from './store';
 import { _adminGetUser } from './functions';
 
-const auth = getAuth(app);
+export const auth = getAuth(app);
 
 // holds the user record for the session
 let user;
@@ -64,11 +64,29 @@ onAuthStateChanged(auth, async (authUser) => {
         // requests or other edge cases)
         // force user to re-enter signup data
         if(!user) {
-            if(!location.href.includes('admin')) {
+            // check if facebook provider
+            if(authUser.providerData[0].providerId == 'facebook.com') {
+                user = await _createUserRecord({
+                    name: authUser.reloadUserInfo.displayName,
+                    email: authUser.reloadUserInfo.email,
+                    uid: authUser.uid,
+                    language: language || 0,
+                    theme: theme || 0
+                });
+                if(user) {
+                    _user.set(user);
+                    _authStateChecked.set(true);
+                    return;
+                }
+            } 
+            // if firebase provider and not in admin route, request user name
+            // to create a user record
+            else if(!location.href.includes('admin')) {
                 _emitEvent('show-hide-login', 'force-signup');
             }
         } else {
             _user.set(user);
+            _authStateChecked.set(true);
             return;
         }
     }
@@ -89,9 +107,10 @@ export const _userSignedIn = () => {
 
 export const _facebookSignin = () => {
     const provider = new FacebookAuthProvider();
-    
-    signInWithPopup(auth, provider)
+
+    signInWithRedirect(auth, provider)
     .then((result) => {
+        console.log(result);
         const user = result.user;
 
         const credential = FacebookAuthProvider.credentialFromResult(result);

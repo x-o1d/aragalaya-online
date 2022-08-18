@@ -59,9 +59,9 @@
                 // doesn't trigger until the redirected page is loaded.
                 ((executionCount > 9) || $_redirected || $_appContentReady) &&
                 // check if the auth state has been checked
-                // auth might be in a state where an auth change is not triggered
-                // stop checking for it after 4 seconds
-                ((executionCount > 9) || $_authStateChecked)
+                // XX auth might be in a state where an auth change is not triggered
+                // XX stop checking for it after 4 seconds
+                ($_authStateChecked)
             ) {
                 if(executionCount > 9 && !_appContentReady) {
                     console.log('ignoring window onload()..');
@@ -82,6 +82,9 @@
                 }
                 if(!$_themeColorsReady || !$_themeSizesReady || !$_scaledPixelsReady) {
                     console.log('css variables pending..');
+                }
+                if(!$_authStateChecked) {
+                    console.log('auth state check pending..');
                 }
             }
             executionCount++;

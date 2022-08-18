@@ -18,7 +18,7 @@ import { getStorage, connectStorageEmulator } from "firebase/storage";
 // and is not urgent.
 let firebaseConfig = {
   apiKey: "AIzaSyCFIhFlai5zMvE-9eeSiaL4ZiGiSvpg0yY",
-  authDomain: "aragalaya-online.firebaseapp.com",
+  authDomain: "aragalaya-online.web.app",
   projectId: "aragalaya-online",
   storageBucket: "aragalaya-online.appspot.com",
   messagingSenderId: "15533282305",
@@ -28,7 +28,7 @@ let firebaseConfig = {
 if(import.meta.env.MODE == 'prod') {
     firebaseConfig = {
         apiKey: "AIzaSyAIFR7IVXYjG_8lyPyfHxsdx_kaRz4z3SM",
-        authDomain: "aragalaya-online-prod.firebaseapp.com",
+        authDomain: "aragalaya.online",
         projectId: "aragalaya-online-prod",
         storageBucket: "aragalaya-online-prod.appspot.com",
         messagingSenderId: "730227179317",

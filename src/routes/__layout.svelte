@@ -3,12 +3,14 @@
 	import { onMount, onDestroy } from 'svelte';
 
     // services
-	import { _user, _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _authStateChecked, _currentTheme } from '$lib/services/store';
+	import { _user, _lang, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, 
+        _appContentReady, _currentTheme } from '$lib/services/store';
 	import { _eventListener, _emitEvent } from '$lib/services/events';
     import { _setUserLanguage, _setUserTheme } from '$lib/services/database';
     import { _userLogout } from '$lib/services/auth';
     import { _themes, _fontGroups, _fontSizes, _getSizeConfig, _isMobile } from '$lib/services/theme';
-    
+    import { _createUserRecord, _getUserRecord } from '$lib/services/database';
+
     // components
 	import Login from './_components/fixed/login.svelte';
 	import Form from './_components/fixed/form.svelte';
@@ -19,7 +21,7 @@
     let user;
     // update user status on auth state change
     // if a user record is found set language and theme to user preference
-    const userReadyUnsubscribe = _user.subscribe((userData) => {
+    const userUnsubscribe = _user.subscribe((userData) => {
         user = userData;
         if(user) {
             // change the theme to user's default
@@ -28,7 +30,7 @@
             _lang.set(user.language);
         } 
     });
-    onDestroy(userReadyUnsubscribe);
+    onDestroy(userUnsubscribe);
 
 	// set all the theme variables as css variables
     // refer theme.js comments
