@@ -1,13 +1,13 @@
 <!-- Card component sets the boundary for all post components
 --->
 <script>
-    import { _user } from '$lib/services/store';
+    import { _appContentReady, _user } from '$lib/services/store';
     import { _updatePost } from '$lib/services/database';
     import { _emitEvent } from '$lib/services/events'
 
     import Input from "$lib/components/input/text-input.svelte";
     import { _addComment } from '$lib/services/functions';
-    import { onMount } from 'svelte';
+    import { onDestroy } from 'svelte';
 
     export let data = undefined;
     if(!data.comments) {
@@ -20,9 +20,12 @@
     let submitButton;
     let submitButtonWidth = 34;
 
-    onMount(() => {
-        submitButtonWidth = submitButton.clientHeight + 2;
-    });
+    const appContentReadyUnsubscribe = _appContentReady.subscribe((value) => {
+        if(value) {
+            submitButtonWidth = submitButton.clientHeight + 2;
+        }
+    })
+    onDestroy(appContentReadyUnsubscribe);
 
     const submitComment = async () => {
         console.log(submitComment);
