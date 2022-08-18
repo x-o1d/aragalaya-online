@@ -1,4 +1,4 @@
-# aragalaya-online
+# aragalaya.online
 
 this is the public repository for the aragalaya.online project, an open-source collective effort to support the aragalaya movement in sri lanka.
 
