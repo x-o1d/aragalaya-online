@@ -69785,10 +69785,10 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/text-input-6784c2eb.js
+// .svelte-kit/output/server/_app/immutable/chunks/text-input-593e3886.js
 var import_chroma_js, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, Font, css, Text_input;
-var init_text_input_6784c2eb = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/text-input-6784c2eb.js"() {
+var init_text_input_593e3886 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/text-input-593e3886.js"() {
     init_shims();
     init_index_269d0619();
     init_database_fd27c750();
@@ -69953,7 +69953,7 @@ var init_text_input_6784c2eb = __esm({
       return `
 
 
-<div style="${"width: " + escape(form ? "90%" : "100%", true)}" class="${"s-Rc61XWFQtAVh"}">${validate_component(Font, "Font").$$render($$result, { font: 0, size: form ? 1 : 0.75 }, {}, {
+<div style="${"width: " + escape(form ? "90%" : "100%", true)}" class="${"s-Rc61XWFQtAVh"}">${validate_component(Font, "Font").$$render($$result, { font: 3, size: form ? 1 : 0.75 }, {}, {
         default: () => {
           return `
         ${config.type !== "password" ? `<input${add_attribute("style", style, 0)} type="${"text"}" ${disabled ? "disabled" : ""}${add_attribute(
@@ -69988,15 +69988,15 @@ var init_storage_bb613e0f = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/tags-f29e6374.js
+// .svelte-kit/output/server/_app/immutable/chunks/tags-9a1a6182.js
 var import_chroma_js2, tagConfig, colors, TAGS, css2, Tags;
-var init_tags_f29e6374 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/tags-f29e6374.js"() {
+var init_tags_9a1a6182 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/tags-9a1a6182.js"() {
     init_shims();
     init_index_269d0619();
     import_chroma_js2 = __toESM(require_chroma(), 1);
     init_database_fd27c750();
-    init_text_input_6784c2eb();
+    init_text_input_593e3886();
     tagConfig = {
       mainstream: [
         "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
@@ -88184,10 +88184,10 @@ var init_layout_svelte = __esm({
     init_shims();
     init_index_269d0619();
     init_database_fd27c750();
-    init_text_input_6784c2eb();
+    init_text_input_593e3886();
     init_dist3();
     init_storage_bb613e0f();
-    init_tags_f29e6374();
+    init_tags_9a1a6182();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
     import_extension_bold = __toESM(require_tiptap_extension_bold_cjs(), 1);
     import_extension_italic = __toESM(require_tiptap_extension_italic_cjs(), 1);
@@ -89189,8 +89189,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-c5472b76.js";
-    imports = ["_app/immutable/pages/__layout.svelte-c5472b76.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/text-input-9e8472c1.js", "_app/immutable/chunks/storage-86a2694e.js", "_app/immutable/chunks/tags-b7687537.js", "_app/immutable/chunks/select-49dad7af.js"];
+    file2 = "_app/immutable/pages/__layout.svelte-113b9d03.js";
+    imports = ["_app/immutable/pages/__layout.svelte-113b9d03.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/text-input-87efeaa4.js", "_app/immutable/chunks/storage-09461587.js", "_app/immutable/chunks/tags-137837ba.js", "_app/immutable/chunks/select-6a3551ba.js"];
     stylesheets = ["_app/immutable/assets/__layout-514ae95d.css", "_app/immutable/assets/text-input-3a112e71.css", "_app/immutable/assets/storage-491479b0.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/select-9228a765.css"];
   }
 });
@@ -91298,31 +91298,37 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/proposal-f0ef9df4.js
+// .svelte-kit/output/server/_app/immutable/chunks/proposal-beb43136.js
 var css$32, Card, strings$3, Timestamp2, strings$2, css$22, Content, css$12, Preview, strings$12, css4, Toolbar, strings2, Proposal;
-var init_proposal_f0ef9df4 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/proposal-f0ef9df4.js"() {
+var init_proposal_beb43136 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/proposal-beb43136.js"() {
     init_shims();
     init_index_269d0619();
     init_database_fd27c750();
-    init_text_input_6784c2eb();
+    init_text_input_593e3886();
     init_string_strip_html_esm();
-    init_tags_f29e6374();
+    init_tags_9a1a6182();
     css$32 = {
-      code: ".card-container.s-Hio59jcNIlCL{padding:var(--theme-cardseparationhalf)}.card.s-Hio59jcNIlCL{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.comment-author.s-Hio59jcNIlCL{display:flex;align-items:baseline;justify-content:flex-start}.author-name.s-Hio59jcNIlCL{font-size:var(--s11px);color:black;font-weight:bold}.comment.s-Hio59jcNIlCL{display:inline-flex;font-size:var(--s12px);padding:2px 0px 0 0;border-radius:4px;color:rgb(57, 56, 56)}.comment-box.s-Hio59jcNIlCL{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:var(--theme-cardseparation)}.comment-text.s-Hio59jcNIlCL{position:relative;display:inline-flex;width:100%}.submit-button.s-Hio59jcNIlCL{position:absolute;display:flex;align-items:center;justify-content:center;z-index:100;top:0;right:0;height:100%;width:var(--s33px);background-color:#f5f5f5;color:white;border-top-right-radius:var(--s3px);border-bottom-right-radius:var(--s3px)}.s-Hio59jcNIlCL{}",
+      code: ".card-container.s-Hio59jcNIlCL{padding:var(--theme-cardseparationhalf)}.card.s-Hio59jcNIlCL{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.comment-container.s-Hio59jcNIlCL{position:relative;margin-top:var(--s9px);border-left:var(--s1px) solid #f0f0f0;padding-left:var(--s3px)}.comment-author.s-Hio59jcNIlCL{display:flex;align-items:baseline;justify-content:flex-start}.author-name.s-Hio59jcNIlCL{font-size:var(--s11px);color:black;font-weight:bold}.comment.s-Hio59jcNIlCL{display:inline-flex;font-size:var(--s12px);padding:2px 0px 0 0;border-radius:4px;color:rgb(57, 56, 56)}.comment-box.s-Hio59jcNIlCL{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:var(--theme-cardseparation)}.comment-text.s-Hio59jcNIlCL{position:relative;display:inline-flex;width:100%}.submit-button.s-Hio59jcNIlCL{position:absolute;display:flex;align-items:center;justify-content:center;z-index:1;top:0;right:0;height:100%;width:var(--comment-button-size);background-color:#f5f5f5;color:white;border-top-right-radius:var(--s3px);border-bottom-right-radius:var(--s3px)}.delete-button.s-Hio59jcNIlCL{position:absolute;display:flex;align-items:center;justify-content:center;z-index:1;top:0;right:0;height:var(--comment-button-size);width:var(--comment-button-size);background-color:#e1e1e1;color:white;border-radius:var(--s3px)}.s-Hio59jcNIlCL{}",
       map: null
     };
     Card = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $$unsubscribe__user;
+      let $_user, $$unsubscribe__user;
       validate_store(_user, "_user");
-      $$unsubscribe__user = subscribe(_user, (value) => value);
+      $$unsubscribe__user = subscribe(_user, (value) => $_user = value);
       let { data = void 0 } = $$props;
-      if (!data.comments) {
+      if (data && !data.comments) {
         data.comments = [];
       }
       let comment = {};
       let submitButton;
       let submitButtonWidth = 34;
+      const appContentReadyUnsubscribe = _appContentReady.subscribe((value) => {
+        if (value) {
+          submitButtonWidth = submitButton.clientHeight + 2;
+        }
+      });
+      onDestroy(appContentReadyUnsubscribe);
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
       $$result.css.add(css$32);
@@ -91330,10 +91336,15 @@ var init_proposal_f0ef9df4 = __esm({
       return `
 
 
-<div class="${"card-container s-Hio59jcNIlCL"}"><div class="${"card s-Hio59jcNIlCL"}">${slots.default ? slots.default({}) : ``}
+<div class="${"card-container s-Hio59jcNIlCL"}"><div class="${"card s-Hio59jcNIlCL"}" style="${"--comment-button-size: " + escape(submitButtonWidth, true) + "px"}">${slots.default ? slots.default({}) : ``}
         ${data ? `${data.comments.length ? `<div style="${"margin-top: 12px;"}" class="${"s-Hio59jcNIlCL"}">${each(data.comments, (comment2) => {
-        return `<div style="${"margin-top: var(--s9px); border-left: 1px solid rgb(240, 240, 240); padding-left: 3px;"}" class="${"s-Hio59jcNIlCL"}"><div class="${"comment-author s-Hio59jcNIlCL"}"><div class="${"author-name s-Hio59jcNIlCL"}">${escape(comment2.createdByName)}</div></div>
+        return `<div class="${[
+          "comment-container s-Hio59jcNIlCL",
+          comment2.createdBy == ($_user && $_user.uid) ? "_clickable" : ""
+        ].join(" ").trim()}"><div class="${"comment-author s-Hio59jcNIlCL"}"><div class="${"author-name s-Hio59jcNIlCL"}">${escape(comment2.createdByName)}</div></div>
                 <div class="${"comment s-Hio59jcNIlCL"}">${escape(comment2.text)}</div>
+                ${comment2._delete ? `<div class="${"delete-button _clickable s-Hio59jcNIlCL"}" style="${"width: " + escape(submitButtonWidth, true) + "px;"}"><i class="${"fa-solid fa-trash-can s-Hio59jcNIlCL"}"></i>
+                </div>` : ``}
             </div>`;
       })}</div>` : ``}
         <div class="${"comment-box s-Hio59jcNIlCL"}"><div class="${"comment-text s-Hio59jcNIlCL"}">${validate_component(Text_input, "Input").$$render(
@@ -91349,7 +91360,7 @@ var init_proposal_f0ef9df4 = __esm({
         {},
         {}
       )}
-                <div class="${"submit-button _clickable s-Hio59jcNIlCL"}" style="${"width: " + escape(submitButtonWidth, true) + "px; background-color: " + escape("#f1f1f1", true) + ";"}"${add_attribute("this", submitButton, 0)}><i class="${"fa-solid fa-location-arrow s-Hio59jcNIlCL"}"></i></div></div></div>` : ``}</div>
+                <div class="${"submit-button _clickable s-Hio59jcNIlCL"}" style="${"background-color: " + escape("#f9f9f9", true) + ";"}"${add_attribute("this", submitButton, 0)}><i class="${"fa-solid fa-location-arrow s-Hio59jcNIlCL"}"></i></div></div></div>` : ``}</div>
 </div>`;
     });
     strings$3 = {
@@ -91915,10 +91926,10 @@ var init_index_svelte = __esm({
     init_index_269d0619();
     init_database_fd27c750();
     init_string_strip_html_esm();
-    init_text_input_6784c2eb();
+    init_text_input_593e3886();
     init_storage_bb613e0f();
-    init_proposal_f0ef9df4();
-    init_tags_f29e6374();
+    init_proposal_beb43136();
+    init_tags_9a1a6182();
     init_dist();
     init_dist2();
     init_dist3();
@@ -92701,9 +92712,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    file4 = "_app/immutable/pages/index.svelte-690d0a4b.js";
-    imports3 = ["_app/immutable/pages/index.svelte-690d0a4b.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/text-input-9e8472c1.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/proposal-2c6dda8c.js", "_app/immutable/chunks/tags-b7687537.js", "_app/immutable/chunks/storage-86a2694e.js"];
-    stylesheets3 = ["_app/immutable/assets/index-2127efea.css", "_app/immutable/assets/text-input-3a112e71.css", "_app/immutable/assets/proposal-bb8e25a7.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/storage-491479b0.css"];
+    file4 = "_app/immutable/pages/index.svelte-80879b63.js";
+    imports3 = ["_app/immutable/pages/index.svelte-80879b63.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/text-input-87efeaa4.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/proposal-a7feb55b.js", "_app/immutable/chunks/tags-137837ba.js", "_app/immutable/chunks/storage-09461587.js"];
+    stylesheets3 = ["_app/immutable/assets/index-2127efea.css", "_app/immutable/assets/text-input-3a112e71.css", "_app/immutable/assets/proposal-fb8374ce.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/storage-491479b0.css"];
   }
 });
 
@@ -92717,17 +92728,17 @@ var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_269d0619();
-    init_proposal_f0ef9df4();
+    init_proposal_beb43136();
     init_database_fd27c750();
     init_dist();
     init_dist2();
     init_dist3();
     init_dist4();
     init_dist5();
-    init_text_input_6784c2eb();
+    init_text_input_593e3886();
     import_chroma_js5 = __toESM(require_chroma(), 1);
     init_string_strip_html_esm();
-    init_tags_f29e6374();
+    init_tags_9a1a6182();
     css6 = {
       code: ".preview.s-nkO0SViUUGe1{display:flex;justify-content:center;background-color:var(--theme-columnbackground);width:100%;height:100vh}.column-container.s-nkO0SViUUGe1{padding:var(--theme-cardseparationhalf);height:100%}.column.s-nkO0SViUUGe1{display:flex;align-items:center;justify-content:center;flex-direction:column;width:var(--theme-columnwidth);height:100%;padding:0 var(--theme-cardseparationhalf)}.s-nkO0SViUUGe1{}",
       map: null
@@ -92773,9 +92784,9 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 4;
-    file5 = "_app/immutable/pages/post_preview.svelte-baad94e3.js";
-    imports4 = ["_app/immutable/pages/post_preview.svelte-baad94e3.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/proposal-2c6dda8c.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/text-input-9e8472c1.js", "_app/immutable/chunks/tags-b7687537.js"];
-    stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-bb8e25a7.css", "_app/immutable/assets/text-input-3a112e71.css", "_app/immutable/assets/tags-95a7f94d.css"];
+    file5 = "_app/immutable/pages/post_preview.svelte-111163f0.js";
+    imports4 = ["_app/immutable/pages/post_preview.svelte-111163f0.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/proposal-a7feb55b.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/text-input-87efeaa4.js", "_app/immutable/chunks/tags-137837ba.js"];
+    stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-fb8374ce.css", "_app/immutable/assets/text-input-3a112e71.css", "_app/immutable/assets/tags-95a7f94d.css"];
   }
 });
 
@@ -92834,7 +92845,7 @@ var init_users_svelte = __esm({
     init_shims();
     init_index_269d0619();
     init_database_fd27c750();
-    init_text_input_6784c2eb();
+    init_text_input_593e3886();
     init_dist();
     init_dist2();
     init_dist3();
@@ -92894,8 +92905,8 @@ var init__6 = __esm({
     init_shims();
     init_users_svelte();
     index6 = 2;
-    file7 = "_app/immutable/pages/admin/users.svelte-e2878260.js";
-    imports6 = ["_app/immutable/pages/admin/users.svelte-e2878260.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/text-input-9e8472c1.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/select-49dad7af.js"];
+    file7 = "_app/immutable/pages/admin/users.svelte-e256bc39.js";
+    imports6 = ["_app/immutable/pages/admin/users.svelte-e256bc39.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/text-input-87efeaa4.js", "_app/immutable/chunks/store-21493f2f.js", "_app/immutable/chunks/index-ebce0b94.js", "_app/immutable/chunks/select-6a3551ba.js"];
     stylesheets6 = ["_app/immutable/assets/users-ad6cc9f1.css", "_app/immutable/assets/text-input-3a112e71.css", "_app/immutable/assets/select-9228a765.css"];
   }
 });
@@ -95751,7 +95762,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-845c8245.js", "imports": ["_app/immutable/start-845c8245.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/index-ebce0b94.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-bb263fa8.js", "imports": ["_app/immutable/start-bb263fa8.js", "_app/immutable/chunks/index-a6d2c994.js", "_app/immutable/chunks/index-ebce0b94.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

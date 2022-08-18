@@ -36,6 +36,8 @@ exports.admin_change_role = require('./api/index').admin_change_role;
 exports.admin_toggle_verified = require('./api/index').admin_toggle_verified;
 // add comment to post
 exports.add_comment = require('./api/index').add_comment;
+// delete comment from post
+exports.delete_comment = require('./api/index').delete_comment;
 
 // TEST delivering images with firebase hosting @google-cloud/storage
 exports.images = function imageSender(req, res) {

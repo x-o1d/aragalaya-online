@@ -117,8 +117,8 @@ exports.add_post = functions.region(region).runWith(runtimeOpts).https.onCall(as
 
     // check if user token present
     if (!context.auth) {
-        throw new HttpsError('failed-precondition', 'The function must be ' +
-            'called while authenticated.');
+        logger.info('no-user');
+        return { error: 'not-user', message: 'user not signed in' };
     }
 
     // translate the -translate marked fields and add _MT flags
@@ -146,8 +146,8 @@ exports.admin_get_user = functions.region(region).runWith(runtimeOpts).https.onC
 
     // check if user token present
     if (!context.auth) {
-        throw new HttpsError('failed-precondition', 'The function must be ' +
-            'called while authenticated.');
+        logger.info('not-authorized');
+        return { error: 'not-authorized', message: 'this incident will be reported as a potential infiltration attempt' }
     }
 
     // fetch the admin's user record
@@ -178,8 +178,8 @@ exports.admin_change_role = functions.region(region).runWith(runtimeOpts).https.
 
     // check if user token present
     if (!context.auth) {
-        throw new HttpsError('failed-precondition', 'The function must be ' +
-            'called while authenticated.');
+        logger.info('not-authorized');
+        return { error: 'not-authorized', message: 'this incident will be reported as a potential infiltration attempt' }
     }
 
     // fetch the admin's user record
@@ -214,8 +214,8 @@ exports.admin_toggle_verified = functions.region(region).runWith(runtimeOpts).ht
 
     // check if user token present
     if (!context.auth) {
-        throw new HttpsError('failed-precondition', 'The function must be ' +
-            'called while authenticated.');
+        logger.info('no-user');
+        return { error: 'not-user', message: 'user not signed in' };
     }
 
     // fetch the admin's user record
@@ -256,16 +256,48 @@ exports.admin_toggle_verified = functions.region(region).runWith(runtimeOpts).ht
 exports.add_comment = functions.region(region).runWith(runtimeOpts).https.onCall(async (data, context) => {
     logger.info('Input data :', data);
 
-    // check if user token present
-    if (!context.auth) {
-        throw new HttpsError('failed-precondition', 'The function must be ' +
-            'called while authenticated.');
-    }
-
     // Enter new data into the document.
     let document = firestore.collection('Posts').doc(data.id);
     const result = await document.update({
         comments: FieldValue.arrayUnion(data.comment)
+    });
+
+    return result;
+});
+
+exports.delete_comment = functions.region(region).runWith(runtimeOpts).https.onCall(async (data, context) => {
+    logger.info('Input data :', data);
+
+    // check if user token present or if the comment is an anonymous comment
+    if (!context.auth && !data.comment.createdBy.startsWith('anon')) {
+        logger.info('no-user');
+        return { error: 'not-user', message: 'user not signed in' };
+    }
+
+    // Enter new data into the document.
+    let post = (await firestore.collection('Posts').doc(data.id).get()).data();
+
+    // check if post exists and has comments
+    if(!post || !(post && post.comments && post.comments.length)) {
+        logger.info('comment-not-found');
+        return { error: 'comment-not-found', message: 'this incident will be reported as a potential infiltration attempt' };
+    }
+    
+    // find comment index
+    const commentIndex = post.comments.findIndex(c => c.id == data.comment.id);
+
+    // check if the request came comment owner
+    if(!(context.auth && (post.comments[commentIndex].createdBy == context.auth.token.uid)) &&
+        !(context.auth && (context.auth.token.super || context.auth.token.admin )) &&
+        !data.comment.createdBy.startsWith('anon'))
+    {
+        logger.info('not-authorized');
+        return { error: 'not-authorized', message: 'this incident will be reported as a potential infiltration attempt' };
+    }
+
+    post.comments.splice(commentIndex, 1);
+    const result = await firestore.collection('Posts').doc(data.id).update({
+        comments: post.comments
     });
 
     return result;

@@ -1,4 +1,5 @@
 import { writable } from "svelte/store";
+import { v4 as uuid } from 'uuid';
 
 // --
 // properties exposed from services (export const xx) are prepended with
@@ -11,6 +12,7 @@ export const _currentTheme = writable(undefined);
 export const _user = writable(undefined);
 export const _admin = writable(false);
 export const _verified = writable(false);
+export const _anonymousId = 'anon-' + uuid();
 
 // stores used by the Loader component
 export const _themeColorsReady = writable(false);

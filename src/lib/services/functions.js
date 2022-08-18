@@ -25,6 +25,10 @@ export const _adminToggleVerified = async (id) => {
     return httpsCallable(functions, 'admin_toggle_verified')(id);
 }
 
-export const _addComment = async (id) => {
-    return httpsCallable(functions, 'add_comment')(id);
+export const _addComment = async (comment) => {
+    return httpsCallable(functions, 'add_comment')(comment);
+}
+
+export const _deleteComment = async (comment) => {
+    return httpsCallable(functions, 'delete_comment')(comment);
 }

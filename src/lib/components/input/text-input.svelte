@@ -43,7 +43,7 @@ USAGE:
 
 <div style="width: {form? '90%': '100%'}">
     <Font
-        font={0}
+        font={3}
         size={form? 1: 0.75}>
         <!-- type='password' cannot be dynamically set -->
         {#if config.type !== 'password'}
