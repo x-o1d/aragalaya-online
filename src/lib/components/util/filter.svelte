@@ -115,7 +115,15 @@
                 on:click={notVerifiedClick}>
                 {_strings['not_verified'][$_lang]}
             </span>
-            <span class="separator">-</span>
+        </Font>
+        <Font
+            font={0}
+            size={0.9}
+            style="
+                display: flex;
+                margin-bottom: var(--s5px);
+                justify-content: center;
+                flex-wrap: wrap;">
             <!-- other tags -->
             {#each configTags as tag, _i}
             <span 
@@ -174,18 +182,14 @@
     .tag {
         background-color: white;
         border: var(--s1px) solid #cfcfcf;
-        border-radius: var(--s3px);
-        padding: var(--s3px) var(--s3px);
+        border-radius: var(--s5px);
+        padding: var(--s3px) var(--s5px);
         margin-right: var(--s5px);
         filter: grayscale(0.8);
         margin-bottom: var(--s6px);
     }
     .tag:hover {
         cursor: pointer;
-    }
-    .separator {
-        padding: var(--s3px) var(--s3px);
-        margin-right: var(--s5px);
     }
     .selected-tags {
         background-color: var(--color);
