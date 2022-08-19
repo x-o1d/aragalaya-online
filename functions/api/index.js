@@ -1,4 +1,6 @@
 const { Translate } = require('@google-cloud/translate').v2;
+const request = require('request');
+const sharp = require('sharp');
 const { Firestore, FieldValue } = require('@google-cloud/firestore');
 const functions = require('firebase-functions');
 const { google } = require('googleapis');
@@ -302,4 +304,36 @@ exports.delete_comment = functions.region(region).runWith(runtimeOpts).https.onC
 
     return result;
 });
-  
+
+const imageRuntimeOpts = {
+    timeoutSeconds: 300,
+    memory: '512MB',
+};
+
+// deliver images with firebase hosting rewrites, this enables the firebase 
+// cdn for images
+exports.images = functions.region(region).runWith(imageRuntimeOpts).https.onRequest(async (req, res) => {
+
+    // fetch image data from the images collection
+    const imageURL = req.headers['x-original-url'];
+    const imageName = imageURL.split('/images/')[1];
+    let image = (await firestore.collection('Images').doc(imageName).get()).data();
+    
+    // fetch image from firebase storage
+    const imageBuffer = await (new Promise(resolve => {
+        request({
+            url: image.href,
+            encoding: null
+        }, (err, resp, buffer) => resolve(resp.body));
+    }));
+    
+    // resize image to thumbnail size
+    const resizedImageBuffer = await sharp(imageBuffer).resize(452, 254).webp().toBuffer();
+
+    // return image with cache-control headers to cache in the cdn
+    // indefinitely
+    res.set("Content-Type", "image/jpeg");
+    res.set('Cache-Control', 'public, immutable, max-age=31536000, s-maxage=31536000');
+    res.send(resizedImageBuffer);
+
+});

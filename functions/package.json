@@ -20,7 +20,9 @@
     "firebase-admin": "^10.0.2",
     "firebase-functions": "^3.22.0",
     "google-auth-library": "^8.1.1",
-    "googleapis": "^105.0.0"
+    "googleapis": "^105.0.0",
+    "request": "^2.88.2",
+    "sharp": "^0.30.7"
   },
   "devDependencies": {
     "eslint": "^8.9.0",

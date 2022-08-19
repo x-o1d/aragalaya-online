@@ -38,12 +38,5 @@ exports.admin_toggle_verified = require('./api/index').admin_toggle_verified;
 exports.add_comment = require('./api/index').add_comment;
 // delete comment from post
 exports.delete_comment = require('./api/index').delete_comment;
-
-// TEST delivering images with firebase hosting @google-cloud/storage
-exports.images = function imageSender(req, res) {
-    // let file = gcs.bucket('my-bucket').file('test-1.jpg');
-    // let readStream = file.createReadStream();
-
-    // res.setHeader("content-type", "image/png");
-    // readStream.pipe(res);
-};
+// deliver images with firebase hosting rewrites
+exports.images = require('./api/index').images;
