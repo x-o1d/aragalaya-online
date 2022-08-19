@@ -2,7 +2,7 @@
 --->
 <script>
     // node modules
-    import { onDestroy } from 'svelte'; 
+    import { onDestroy, onMount } from 'svelte'; 
     import { v4 as uuid } from 'uuid';
 
     // services
@@ -32,12 +32,17 @@
 
     // NOTE: using _appContentReady to read the button height breaks HMR for
     // this component
-    const appContentReadyUnsubscribe = _appContentReady.subscribe((value) => {
-        if(value) {
-            submitButtonWidth = submitButton.clientHeight + 2;
+    let appContentReadyUnsubscribe = () => {};
+    onMount(() => {
+        if(data) {
+            _appContentReady.subscribe((value) => {
+                if(value) {
+                    if(data) submitButtonWidth = submitButton.clientHeight + 2;
+                }
+            });
         }
-    })
-    onDestroy(appContentReadyUnsubscribe);
+    });
+    onDestroy(appContentReadyUnsubscribe)
 
     const submitComment = async () => {
         if(submitProgress) return;

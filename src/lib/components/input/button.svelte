@@ -1,7 +1,8 @@
 <script>
-    import Progress from '$lib/components/util/progress.svelte';
     import { _lang } from '$lib/services/store';
+
     import Font from '$lib/components/display/font.svelte';
+    import PreloadingIndicator from '$lib/components/util/preloading-indicator.svelte';
 
     let buttonProgress;
     
@@ -14,6 +15,7 @@
     export let style = undefined;
     export let fontSize = undefined;
     export let font = undefined;
+    export let progress = undefined;
 </script>
 
 <div 
@@ -26,16 +28,16 @@
         await onclick();
         buttonProgress = false;
     }}>
-    {#if buttonProgress}
-        <Progress delay={100}/>
-    {:else}
-        <Font
-            font={font || 0}
-            size={fontSize || 1}>
-            {Array.isArray(text)? text[$_lang]: text}
-        </Font>
-    {/if}
+    <Font
+        font={font || 0}
+        size={fontSize || 1}>
+        {Array.isArray(text)? text[$_lang]: text}
+    </Font>
 </div>
+{#if buttonProgress || progress}
+    <div class="preloader"><PreloadingIndicator height={2}/></div>
+{/if}
+<div style="margin-bottom: var(--s14px);"></div>
 
 <style>
     .button {
@@ -54,9 +56,12 @@
     .form {
         height: var(--s45px);
         width: 90%;
-        margin-bottom: var(--s14px);
     }
     .cancel {
         background-color: var(--theme-cancelbutton);
+    }
+    .preloader {
+        position: relative;
+        width: calc(90% - var(--s5px));
     }
 </style>

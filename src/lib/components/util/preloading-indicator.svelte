@@ -1,6 +1,8 @@
 <script>
 	import { onMount } from 'svelte';
 
+    export let height;
+
 	let p = 0.1;
 	let visible = true;
 
@@ -18,7 +20,9 @@
 </script>
 
 {#if visible}
-	<div class="progress-container">
+	<div 
+        class="progress-container"
+        style="--height: var(--s{height || 4}px)">
 		<div class="progress" style="inline-size: {p * 100}%" />
 	</div>
 {/if}
@@ -29,7 +33,7 @@
 		top: 0;
 		left: 0;
 		width: 80%;
-		height: 4px;
+		height: var(--height);
 		z-index: 997;
 	}
 

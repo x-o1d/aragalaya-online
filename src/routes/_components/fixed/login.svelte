@@ -15,9 +15,12 @@
     import Button from '$lib/components/input/button.svelte';
     import TextInput from '$lib/components/input/text-input.svelte';
     import Font from '$lib/components/display/font.svelte';
+    import PreloadingIndicator from '$lib/components/util/preloading-indicator.svelte';
 
     let showLogin = false;
     let adminLogin = false;
+    let facebookProgress = false;
+    let loginProgress = false;
     let forceEnterName = false;
     let user = {};
     let emailError, nameError, passwordError, repeatPasswordError;
@@ -40,6 +43,12 @@
         showHideEvent.unsubscribe();
     })
     
+    const continueEmailSigninProgress = async () => {
+        loginProgress = true;
+        await continueEmailSignin();
+        loginProgress = false;
+    }
+
     const continueEmailSignin = async () => {
         // check if account exists
         if(!signinOrSignup) {
@@ -183,6 +192,11 @@
         }
     }
 
+    const facebookSignin = () => {
+        facebookProgress = true;
+        _facebookSignin();
+    }
+
     const closeLogin = () => {
         _signUpInProgress.set(false);
         reset();
@@ -224,7 +238,7 @@
                     type: 'text',
                     autocomplete: 'username'
                 }}
-                on:enter={continueEmailSignin}/>
+                on:enter={continueEmailSigninProgress}/>
             {#if signinOrSignup == 2}
             <TextInput
                 form
@@ -265,7 +279,8 @@
             <Button
                 form
                 onclick={continueEmailSignin}
-                text={_strings['continue']}/>
+                text={_strings['continue']}
+                progress={loginProgress}/>
             <Font
                 font={0}
                 size={1}
@@ -276,10 +291,13 @@
             </Font>
             <div 
                 class="fb-button"
-                on:click={() => _facebookSignin()}>
+                on:click={facebookSignin}>
                 <i class="fa-brands fa-facebook-square"></i>
                 facebook
             </div>
+            {#if facebookProgress}
+            <div class="preloader"><PreloadingIndicator height={3}/></div>
+            {/if}
         </div>
     </div>
 </div>
@@ -344,7 +362,7 @@
         font-size: 1.1rem;
         font-weight: bold;
 
-        margin-bottom: var(--s14px);
+        /* margin-bottom: var(--s14px); */
 
         font-family: 'Roboto', sans-serif;
         font-size: var(--s13px);
@@ -353,6 +371,10 @@
     .fa-facebook-square {
         font-size: 1.3rem;
         margin-right: var(--s10px);
+    }
+    .preloader {
+        position: relative;
+        width: calc(90% - var(--s5px));
     }
 
 </style>
