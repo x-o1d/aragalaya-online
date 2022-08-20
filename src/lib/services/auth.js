@@ -37,15 +37,18 @@ _currentTheme.subscribe((v) => theme = v);
 // listens to auth state changes and updates the local user record
 onAuthStateChanged(auth, async (authUser) => {
     // get authUser claims
-    let claims = {}
+    let claims = {};
     try {
         claims = JSON.parse(authUser.reloadUserInfo.customAttributes);
     } catch (e) {}
     
     // if admin or super admin set _admin to true
     if(authUser) {
-        _verified.set(claims.verified || claims.admin || claims.super || false);
-        _admin.set(claims.admin || claims.super || false);
+        const verified = claims.verified || claims.admin || claims.super || false;
+        _verified.set(verified);
+        const admin = claims.admin || claims.super || false;
+        _admin.set(admin);
+        console.log('user', verified, admin);
     }
 
     // if the login component is active ignore authStateChanged events

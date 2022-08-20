@@ -142,10 +142,5 @@
         opacity: var(--theme-previewopacity);
         border-radius: 3px;
     }
-    :global(.preview img) {
-        margin: var(--theme-cardseparationhalf) 0;
-        width: 100%;
-        border-radius: 3px;
-    }
     
 </style>

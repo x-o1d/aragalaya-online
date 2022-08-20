@@ -24,6 +24,7 @@
     class:form={form}
     style={style}
     on:click={async () => {
+        if(buttonProgress) return;
         buttonProgress = true;
         await onclick();
         buttonProgress = false;

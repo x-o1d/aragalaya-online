@@ -18,6 +18,7 @@
     import Heading from '@tiptap/extension-heading';
     import Placeholder from '@tiptap/extension-placeholder';
     import Link from '@tiptap/extension-link';
+    import HardBreak from '@tiptap/extension-hard-break';
 
     import { _getFileURL, _uploadToImages, _uploadToDocuments } from '$lib/services/storage';
     import { _lang } from '$lib/services/store';
@@ -46,6 +47,7 @@
                     Text,
                     Heading,
                     Paragraph,
+                    HardBreak,
                     Bold,
                     Italic,
                     Strike,
@@ -63,8 +65,15 @@
                 onTransaction: () => {
                     // force re-render so `editor.isActive` works as expected
                     editor = editor;
+                    // if editor is empty getHTML() still returns the placeholder
+                    // html, this is avoided by checking for the is-editor-empty 
+                    // class
+                    // blank paragraphs are rendered in the editor with a <br>
+                    // node inside of it, but this br tag is not returned in
+                    // getHTML(), to make the rendered html similar to the 
+                    // editor empty p tags are replaced with a br
                     data[config.name] = element.innerHTML.includes('is-editor-empty')?
-                        '': editor.getHTML();
+                        '': editor.getHTML().replaceAll('<p></p>','<br>');
                 },
             });
         };
@@ -96,13 +105,13 @@
         if(!Array.isArray(data[config.name + '_images'])) {
             data[config.name + '_images'] = [];
         }
-        const imageUrl = await _getFileURL(imageRef.url);
-        imageRef.href = imageUrl;
         data[config.name + '_images'].push(imageRef);
         editor.chain().focus().setImage({ 
-            src: imageUrl, 
-            title: imageRef.url
+            src: imageRef.url,
+            alt: 'user image'
         }).run();
+        // add an empty paragraph after an image is added
+        editor.commands.createParagraphNear();
         editorDisabled = false;
     }
 
@@ -246,9 +255,6 @@
     button.active {
         background: black;
         color: white;
-    }
-    :global(.ProseMirror img) {
-        max-width: 100%;
     }
     :global(h2) {
         margin: var(--s10px) 0px;

@@ -315,7 +315,7 @@ const imageRuntimeOpts = {
 exports.images = functions.region(region).runWith(imageRuntimeOpts).https.onRequest(async (req, res) => {
 
     // fetch image data from the images collection
-    const imageURL = req.headers['x-original-url'];
+    const imageURL = req.url;
     const imageName = imageURL.split('/images/')[1];
     let image = (await firestore.collection('Images').doc(imageName).get()).data();
     
@@ -328,7 +328,7 @@ exports.images = functions.region(region).runWith(imageRuntimeOpts).https.onRequ
     }));
     
     // resize image to thumbnail size
-    const resizedImageBuffer = await sharp(imageBuffer).resize(452, 254).webp().toBuffer();
+    const resizedImageBuffer = await sharp(imageBuffer).resize(452, null).webp().toBuffer();
 
     // return image with cache-control headers to cache in the cdn
     // indefinitely

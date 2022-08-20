@@ -6,7 +6,7 @@ let app = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
 
-let uid = 'IzucuB26wtbXCcHEw842B2Ctz2G2'
+let uid = 'XeZQPuTZdPh0ver3P2w4EqpCvsk2'
 
 const claims = {
     super: true,

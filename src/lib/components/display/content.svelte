@@ -23,5 +23,12 @@
 </div>
 
 <style>
+    /* globalimg {
+        background-color: #7b7b7b; 
+        height: var(--theme-previewheight);
 
+        margin: var(--theme-cardseparationhalf) 0;
+        width: 100%;
+        border-radius: 3px;
+    } */
 </style>

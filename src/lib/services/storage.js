@@ -3,7 +3,7 @@ import { app } from '$lib/config/firebase-config'
 import { ref, uploadBytes, getDownloadURL, getStorage } from "firebase/storage";
 import { v4 as uuid } from 'uuid';
 
-import { _createError } from '$lib/services/database';
+import { _createError, _createImage } from '$lib/services/database';
 import { _userSignedIn } from '$lib/services/auth';
 
 const storage = getStorage(app);
@@ -17,20 +17,23 @@ export const _uploadToImages = async (file) => {
     try {
         let user = _userSignedIn();
         if(!user) throw ('user not signed in');
+        console.log('found user');
         // replace the actual file name with a uuid
-        let name = uuid();
+        const name = uuid();
         // upload to firebase storage
         const storageRef = ref(storage, 'images/'+ name);
-        let result = await uploadBytes(storageRef, file);
-
-        return {
-            url: '/images/'+ result.metadata.name,
-            name: file.name,
+        const result = await uploadBytes(storageRef, file);
+        const URL = '/images/' + result.metadata.name;
+        return await _createImage({
+            url: ((import.meta.env.MODE == 'localhost')? 'http://localhost:5000': '') + URL,
+            href: await _getFileURL(URL),
+            name,
+            originalName: file.name,
             type: result.metadata.contentType,
             createdBy: user.uid,
             createdByName: user.name,
             createdOn: (new Date()).getTime()
-        }
+        });
     } catch (error) {
         _createError(error, 'storageService::_uploadToImages', file);
     }    

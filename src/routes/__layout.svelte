@@ -287,9 +287,31 @@
 	}
     /* applies to paragraph elements added by the tiptap-editor */
     :global(p) {
-        margin: 0px;
+        margin: 0;
+        /* padding: 5px; */
     }
+    /* these styles apply to images inside posts (both inside cards and inside the form),
+     the background color is visible until the image is loaded.
+     since the height of the image is not known until the image is loaded
+     a minimum is height is set to specify the height of the box shown until
+     the image is loaded. */
+    :global(.card img) {
+        background-color: #000000; 
+        min-height: var(--theme-previewheight); 
+        width: 100%;
+        border-radius: 3px;
 
+        
+    }
+    :global(.form img) {
+        background-color: #000000; 
+        min-height: var(--theme-previewheight); 
+        width: 100%;
+        height: 100%;
+        border-radius: 3px;
+
+        /* margin: 0 var(--theme-cardseparation); */
+    }
 	/*inline lists */
 	ul {
 		display: inline-flex;

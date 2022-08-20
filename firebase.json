@@ -18,8 +18,13 @@
     ],
     "rewrites": [
         {
+            "source": "/images/**",
+            "function": "images",
+            "region": "asia-south1"
+        },{
             "source": "**",
-            "function": "ssrServer"
+            "function": "ssrServer",
+            "region": "asia-south1"
         }
     ]
   },

@@ -13,6 +13,11 @@ service cloud.firestore {
         	request.auth.uid == resource.data.createdBy;
         allow read: if true;
     }
+    match /Images/{image} {
+    	allow create: if 
+        	request.auth.uid != null;
+        allow read: if false;
+    }
     match /Errors/{error} {
     	allow create: if true;
     }
