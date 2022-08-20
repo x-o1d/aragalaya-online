@@ -400,17 +400,18 @@
 <style>
     .overlay {
         display: flex;
-        align-items: center;
-        justify-content: center;
+        /* justify-content: center; */
 
         position: fixed;
         z-index: 10000;
 
         width: 100vw;
-        height: 100vh;
+        min-height: 100vh;
+        max-height: 100vh;
 
         overflow-y: scroll;
-
+        padding: var(--s50px) 0;
+        
         background-color: rgba(0,0,0,0.9);
     }
     .form_c {
@@ -425,6 +426,7 @@
             var(--theme-columns-6) 100%);
         border-radius: var(--s15px);
         border: var(--s1px) solid #5c5c5c;
+        margin: auto;
     }
     .form {
         display: flex;
@@ -433,7 +435,7 @@
         justify-content: center;
         padding: var(--s20px);
         width: 100%;
-        height: 100%;
+        /* height: 100%; */
         background-color: #f0f0f0;
         border-radius: var(--s15px);
         border: var(--s1px) solid #707070;

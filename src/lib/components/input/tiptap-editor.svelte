@@ -235,7 +235,7 @@
     }
     :global(.editable > .ProseMirror) {
         min-height: var(--s300px);
-        max-height: 80vh;
+        max-height: 50vh;
         overflow-y: auto;
         border-radius: var(--s5px);
         background-color: white;
