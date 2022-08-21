@@ -1,14 +1,20 @@
+<!-- this component -->
 <script>
+    // configs
     import { COLUMNS, COLUMN_COUNT } from '$lib/config/column-config';
 
+    // npm modules
     import { onDestroy, onMount } from 'svelte';
     import { tweened } from "svelte/motion";
     import { circIn, quartOut } from "svelte/easing";
     
+    // services
     import { _emitEvent, _eventListener } from '$lib/services/events';
     import { _lang } from '$lib/services/store';
     import { _getSizeConfig, _isMobile } from '$lib/services/theme';
+    import { _setupNavAnimations } from '$lib/services/scroll';
 
+    // components
     import Font from '$lib/components/display/font.svelte';
 
     const height = tweened((COLUMN_COUNT + 1) * 70, {
@@ -17,27 +23,20 @@
     });
 
     let scrollBarHeight = 0;
+    let scrollBarElement;
 
     onMount(() => {
-        scrollBarHeight = (COLUMN_COUNT * _getSizeConfig().navSize) / 
-            (COLUMN_COUNT * _getSizeConfig().columnWidth) * window.innerWidth;
-        devicePixelRatio = window.devicePixelRatio;
-    })
-    
-    const scrollPosition = tweened(0, {
-        duration: 350,
-        easing: quartOut
-    });
+        const sizeConfig = _getSizeConfig();
 
-    // subscribe to the horizontal scroll event
-    const hScrollEvent = _eventListener('h-scroll').subscribe(v => {
-        scrollPosition.set(v/(COLUMN_COUNT * _getSizeConfig().columnWidth)*(COLUMN_COUNT * _getSizeConfig().navSize));
-    });
-    // clear subscription
-    onDestroy(() => hScrollEvent.unsubscribe());
+        scrollBarHeight = (COLUMN_COUNT * sizeConfig.navSize) / 
+            (COLUMN_COUNT * sizeConfig.columnWidth) * window.innerWidth;
+
+        _setupNavAnimations(scrollBarElement);
+        
+    })
 
     // subscribe to the vertical-scroll event
-    const vScrollEvent = _eventListener('update-vscroll').subscribe(v => {
+    const vScrollEvent = _eventListener('hide-nav-menu').subscribe(v => {
         if($_isMobile) {
             if(!hidden) {
                 showHide();
@@ -49,23 +48,15 @@
 
     // nav bar hidden flag
     let hidden = false;
-    // nav item names hidden flag
-    let showNames = false;
-
-    // temporarily hide names until transition is complete
-    let namesHidden = false;
     
     function showHide() {
         if(hidden) {
             height.set((COLUMN_COUNT + 1) * _getSizeConfig().navSize);
-            setTimeout(() => namesHidden = false, 350);
         } else {
             height.set(0);
-            namesHidden = true;
         }
         hidden = !hidden;
     }
-
 </script>
 
 <div class="navigation">
@@ -82,32 +73,12 @@
                 </div>
             {/each}
             <div 
+                bind:this={scrollBarElement}
                 class="scroll"
-                style="
-                    height: {scrollBarHeight}px;
-                    top: {$scrollPosition}px;">
+                style="height: {scrollBarHeight}px;">
             </div>
         </div>
-        {#if showNames && !namesHidden}
-        {#each COLUMNS as column, _i}
-        <div 
-            on:click={() => showNames = !showNames}
-            class="title_c _clickable"
-            style="
-                right: {(_getSizeConfig().navSize+5)}px;
-                bottom: {(_getSizeConfig().navSize*(COLUMN_COUNT+1-_i)+5)}px">
-            <div class="title">
-                <Font
-                    font={1}
-                    size={1}>
-                    {column.title[$_lang]}
-                </Font>
-            </div>
-        </div>
-        {/each}
-        {/if}
     </div>
-    
     <div 
         on:click={showHide}
         class="icon show-hide _clickable">
@@ -173,16 +144,4 @@
             var(--theme-columns-1) 100%);
         border-radius: var(--s6px);
     }
-
-
-    .title_c {
-        position: fixed;
-    }
-    .title {
-        font-weight: bold;
-        color: rgb(85, 85, 85);
-        padding: var(--s0px) var(--s5px);
-        background-color: white; 
-    }
-
 </style>

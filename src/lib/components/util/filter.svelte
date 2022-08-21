@@ -79,7 +79,7 @@
     const filterPosts = async () => {
         filterProgress = true;
         const posts = await _getFilteredPosts(COLUMNS[columnId].type, verified && !notVerified, tagNames);
-        _emitEvent('update-column', {
+        _emitEvent('filtered-posts', {
             column: columnId,
             posts: posts
         })

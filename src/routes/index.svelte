@@ -6,6 +6,8 @@
 
 <!-- this context module block is added here so that the COMPONENT definition
 ---- can be accesed by other components
+---- the COMPONENTS objects map post type to the component that needs to be 
+---- loaded
 ---- https://svelte.dev/tutorial/module-exports 
 --->
 <script context="module">
@@ -28,8 +30,6 @@
     import { COLUMNS, COLUMN_COUNT }from '$lib/config/column-config'
     
     // npm modules
-    import { tweened } from "svelte/motion";
-    import { quartOut, backInOut } from 'svelte/easing';
     import { onMount, onDestroy } from 'svelte';
     import { stripHtml } from  'string-strip-html';
     
@@ -40,11 +40,10 @@
     import { _themes, _isMobile, _getSizeConfig } from '$lib/services/theme';
     import { _getPost } from '$lib/services/database';
     import { _getFileURL } from '$lib/services/storage';
+    import { _handleWheel, _handleTouchMove, _handleTouchStart, 
+        _handleColumnScroll, _setupIndexAnimations} from '$lib/services/scroll';
 
-    // helpers
-    import { __handleHorizontalScroll, __handleTouchMove, __handleTouchStart, __handleVerticalScroll } from '$lib/utils/scroll';
-
-    // components
+    // components$lib/services/scroll
     import Nav from './_components/fixed/nav.svelte';
     import Empty from './_components/posts/_template.svelte';
     import Bulletin from './_components/posts/bulletin.svelte';
@@ -56,6 +55,31 @@
     import Wip from './_components/posts/wip.svelte';
     import Video from './_components/posts/video.svelte';
 
+    // the DOM element that contains all the columns
+    // this element is moves left and right to produce the
+    // horizontal scroll effect
+    let appWindowElement;
+    // the cards container element for each column, this element
+    // is vertically scrolled on wheel and touch events
+    let columnElements = Array(COLUMN_COUNT).fill(null);
+    // the scroll bar element for each column, this element
+    // moves vertically to indicate the current scroll position
+    let columnScrollBarElements = Array(COLUMN_COUNT).fill(null);
+    // the column header element for each column
+    // this element is animated on navigation clicks
+    let columnHeaderElements = Array(COLUMN_COUNT).fill(null);
+
+    // these elements are sent to the scroll service after mount and
+    // they are animated based on wheel and touch events
+    onMount(() => {
+        _setupIndexAnimations(
+            appWindowElement, 
+            columnElements, 
+            columnScrollBarElements, 
+            columnHeaderElements
+        );
+    });
+
     // column data, this is populated by the page endpoint (./index.js)
     // using the page endpoint allows the data to be fetched in the backend
     // itself for SSR
@@ -65,52 +89,8 @@
     // available in this prop, this is populated by the page endpoint (./index.js)
     export let postData = undefined;
 
-    // this flag determines if a column filters are visible or not
-    let showFilters = Array(COLUMN_COUNT).fill(false);
-
-    // update-column event is triggered by the Filter component
-    // update count is incremented every time to make the {#each} keys
-    // different, so that column data will be reactively updated
-    let updateCount = 0;
-    const updateColumnEvent = _eventListener('update-column').subscribe((data) => {
-        updateCount++;
-        columnData[data.column] = data.posts;
-        // reactively updata
-        columnData = columnData;
-    })
-    // clear subscription
-    onDestroy(() => updateColumnEvent.unsubscribe());
-
-    // triggered by the Toolbar component when show post button is clicked
-    // this assigns the post data 
-    const showPostEvent = _eventListener('show-post').subscribe((data) => {
-        // set the post id in the url
-        window.history.pushState("", "", `/?post=${data.id}`);
-        // in single post view expand all previews
-        data._expanded = true;
-        // let the toolbar know that the post is in single post view
-        data._singlePostView = true;
-        // assign data and show the Post component
-        postData = data;
-
-    });
-    // clear subscriptions
-    onDestroy(() => showPostEvent.unsubscribe());
-
-    // triggered by the Post component when it's exited
-    // this clears the postData therefore hiding the post component
-    const hidePostEvent = _eventListener('hide-post').subscribe(() => {
-        // clear the post id from the url
-        window.history.pushState("", "", '/');
-        title = 'අරගලය.online';
-        // clear data and hide the Post component
-        postData = undefined;
-    });
-    // clear subscriptions
-    onDestroy(() => hidePostEvent.unsubscribe());
-
-    // default values for the opengraph meta tags
-    // these will be added to the page in SSR
+    // START - SSR: setup open graph tags for social shares
+    // default values if postData is not specified
     let title = 'අරගලය.online';
     let url = _URL;
     let description = 'The online portal for the aragalaya movement in Sri Lanka';
@@ -144,6 +124,50 @@
         })
         if(images[0] && images[0].href) imagex = images[0].href;
     }
+    // START - SSR: setup open graph tags for social shares
+    
+    // update count is incremented every time column data is updated
+    // to make the {#each} keys unique.
+    // this ensures that column data will be reactively updated.
+    let updateCount = 0;
+
+    // this flag determines if a column filters are visible or not
+    let showFilters = Array(COLUMN_COUNT).fill(false);
+
+    // filtered-posts event is triggered by the Filter component.
+    const filteredPostsEvent = _eventListener('filtered-posts').subscribe((data) => {
+        updateCount++;
+        columnData[data.column] = data.posts;
+        // reactively updata
+        columnData = columnData;
+    })
+    // clear subscription
+    onDestroy(() => filteredPostsEvent.unsubscribe());
+
+    // triggered by the Toolbar component when show post button is clicked
+    const showPostEvent = _eventListener('show-post').subscribe((data) => {
+        // set the post id in the url
+        window.history.pushState("", "", `/?post=${data.id}`);
+        // in single post view expand all previews
+        data._expanded = true;
+        // let the toolbar know that the post is in single post view
+        data._singlePostView = true;
+        // assign data and show the Post component
+        postData = data;
+    });
+    // clear subscriptions
+    onDestroy(() => showPostEvent.unsubscribe());
+
+    // triggered by the Post component when it's exited
+    const hidePostEvent = _eventListener('hide-post').subscribe(() => {
+        // clear the post id from the url
+        window.history.pushState("", "", '/');
+        title = 'අරගලය.online';
+        // clear data and hide the Post component
+        postData = undefined;
+    });
+    // clear subscriptions
+    onDestroy(() => hidePostEvent.unsubscribe());
 
     // when new data is added by a form it's inserted to the column
     // by this listener
@@ -179,126 +203,8 @@
     // clear subscription
     onDestroy(() => deletePostEvent.unsubscribe());
 
-    // the DOM element that contains all the columns
-    // this element is moves left and right to produce the
-    // horizontal scroll effect
-    let columnsElement;
-
-    ////////////////////////////////////////////////////////////////////
-    // NOTE:: variables prepended with _ are number arrays that track the
-    // current value of a tween of the same name
-    ////////////////////////////////////////////////////////////////////
-
-    // vertical scroll:
-    // array that holds the vertical scroll positions of 
-    // each indidual column
-    // initial value is set to 15px to align with the edge of the card
-    const vScroll = Array(COLUMN_COUNT).fill(15);
-    // above value is updated by the update-vscroll event triggered by the
-    // handleVerticalScroll() method
-    // NOTE:: updating the value with an event ensures that the value remains
-    // reactive, there might be a better way to do it
-    const vScrollEvent = _eventListener('update-vscroll').subscribe(v => {
-        vScroll[v.index] = v.value;
-    });
-    // clear subscription
-    onDestroy(() => {
-        vScrollEvent.unsubscribe();
-    })
-
-    // column scroll bar visibility and size animation
-    const vScrollAnimation = Array(COLUMN_COUNT).fill(0).map(_ => tweened(0, {
-        duration: 350,
-        easing: quartOut
-    }));
-    const _vScrollAnimation = Array(COLUMN_COUNT).fill(0);
-
-    // horizontal scroll index:
-    // index of the left most column in view
-    // this value is modified by both handleVerticalScroll method
-    // and the nav-click event
-    //
-    // NOTE:: hScrollIndex is passed to handleVerticalScroll as an object so that 
-    // the changes can be reflected in the component
-    // https://www.tutorialspoint.com/explain-javascript-pass-by-reference-in-javascript
-    let hScrollIndex = {
-        value: 0
-    }
-
-    // horizontal scroll animation tween
-    const hScroll = tweened(0, {
-        duration: 350,
-        easing: quartOut
-    });
-    
-    const setHorizontalScroll = (v) => {
-        hScroll.set(v);
-        // emit the h-scroll event to trigger the corresponding
-        // animation in the navigation bar
-        _emitEvent('h-scroll', v);
-    }
-
-    // header bounce animation on navigation click
-    const bounceAnimation = Array(COLUMN_COUNT).fill(1).map(_ => tweened(0, {
-        duration: 350,
-        easing: backInOut
-    }));
-    const _bounceAnimation = Array(COLUMN_COUNT).fill(1);
-
-    // hook that listens to to navigation click events
-    _eventListener('nav-click').subscribe((index) => {
-        const sizeConfig = _getSizeConfig();
-        const maxLeft = (COLUMN_COUNT - Math.floor(window.innerWidth/sizeConfig.columnWidth))
-        if(index < maxLeft) {
-            hScrollIndex.value = index;
-            setHorizontalScroll(sizeConfig.columnWidth * index);
-        } else {
-            hScrollIndex.value = maxLeft;
-            const remainingSpace = (COLUMN_COUNT * sizeConfig.columnWidth + 15)
-                - hScrollIndex.value * sizeConfig.columnWidth
-                - window.innerWidth;
-            hScrollIndex.value--;
-            setHorizontalScroll(sizeConfig.columnWidth * maxLeft 
-                + remainingSpace);
-        }
-
-        // trigger the column header bounce animation on desktop browsers
-        if(!$_isMobile) {
-            bounceAnimation[index].set(8);
-            setTimeout(() => {
-                bounceAnimation[index].set(0);
-            }, 350);
-        }
-    });
-
-    // NOTE:: sunscriptions in this onMount function can potentially be
-    // automatically subscribed through reactive declarations, 
-    // have to try it out.
-    onMount(() => {
-        // set columnsElement.scrolLeft to follow hScroll tween
-        // hScroll is used for the horizontal scrolling animation
-        hScroll.subscribe(v => (columnsElement.scrollLeft = v));
-        
-        // set _bounceAnimation[index] to follow 
-        // bounceAnimation[index] tween 
-        // _bounceAnimation is used for the bounce effect of the 
-        // column headers 
-        bounceAnimation.map((t, _i) => {
-            t.subscribe(v => (_bounceAnimation[_i] = v));
-        })
-
-        // set _vScrollAnimation[index] to follow 
-        // vScrollAnimation[index] tween 
-        // _vScrollAnimation[index] is used for the vertical scroll 
-        // bar visibility and size animation 
-        vScrollAnimation.map((t, _i) => {
-            t.subscribe(v => {
-                _vScrollAnimation[_i] = v;
-            });
-        })
-    });
-
     // header + icon click event
+    // this opens the Form component in an overlay
     const addDocument = (event, index) => {
         if(_userSignedIn()) {
             _emitEvent('show-post-form', {columnIndex: index});
@@ -306,7 +212,6 @@
             _emitEvent('show-hide-login', true);
         }
     }
-
 </script>
 
 <svelte:head>
@@ -325,13 +230,13 @@
 
 <div 
     class="columns"
-    bind:this={columnsElement}
-    on:wheel|stopPropagation={(e) => {
-        __handleHorizontalScroll(e, hScrollIndex, setHorizontalScroll);
+    bind:this={appWindowElement}
+    on:wheel|passive|stopPropagation={(e) => {
+        _handleWheel(e);
     }}
-    on:touchstart={__handleTouchStart}
-    on:touchmove={(e) => {
-        __handleTouchMove(e, hScrollIndex, setHorizontalScroll);
+    on:touchstart|passive={_handleTouchStart}
+    on:touchmove|passive={(e) => {
+        _handleTouchMove(e);
     }}>
     <!-- Post displays a single post as an overlay -->
     {#if postData}
@@ -351,10 +256,9 @@
                 <div style="background-color: var(--theme-headerbackground);">
                     <div 
                         class="header _clickable"
+                        bind:this={columnHeaderElements[_i]}
                         on:click={() => _emitEvent('nav-click', _i)}
-                        style="
-                            background-color: var(--theme-columns-{_i+1});
-                            top: {_bounceAnimation[_i]}px">
+                        style="background-color: var(--theme-columns-{_i+1});">
                         <div>
                             <i class="{column.icon}"></i>
                             <Font 
@@ -393,7 +297,8 @@
                 <!-- column cards -->
                 <div 
                     class="cards"
-                    on:scroll|stopPropagation={(e) => __handleVerticalScroll(e, _i, vScrollAnimation)}>
+                    bind:this={columnElements[_i]}
+                    on:scroll|stopPropagation={(e) => _handleColumnScroll(e, _i)}>
                     {#each columnData[_i] as item, _i (item.id + updateCount)}
                     <div>
                         <svelte:component 
@@ -404,11 +309,8 @@
                 </div>
                 <div class="scrollbar">
                     <div 
-                        class="scroll"
-                        style="
-                            top: {vScroll[_i]}px;
-                            opacity: {_vScrollAnimation[_i]};
-                            height: {_vScrollAnimation[_i]*25}px">
+                        bind:this={columnScrollBarElements[_i]}
+                        class="scroll">
                     </div>
                 </div>
             </div>
@@ -482,9 +384,8 @@
         width: 100%;
         height: calc(100vh - var(--s100px));
         overflow-y: scroll;
-        overflow-x: hidden;
-        -ms-overflow-style: none;
         scrollbar-width: none;
+        -ms-overflow-style: none;
         padding: var(--theme-cardseparationhalf) 0;
     }
     .cards::-webkit-scrollbar {
