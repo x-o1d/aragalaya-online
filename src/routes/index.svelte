@@ -106,6 +106,7 @@
     if(postData) {
         // in single post view expand all previews
         postData._expanded = true;
+        postData._initialLoad = true;
         title = (postData.title && postData.title[0]) || 
                     (postData.organization && postData.organization[0]) ||
                         'අරගලය.online';
@@ -126,6 +127,12 @@
     }
     // START - SSR: setup open graph tags for social shares
     
+    onMount(() => {
+        if(postData) {
+            window.history.pushState("", "", '/');
+            window.history.pushState("", "", `/?post=${postData.id}`);
+        }
+    })
     // update count is incremented every time column data is updated
     // to make the {#each} keys unique.
     // this ensures that column data will be reactively updated.

@@ -1,20 +1,17 @@
 <script>
-    import { _emitEvent } from '$lib/services/events';
-
-    import Empty from '../posts/_template.svelte';
-    import Bulletin from '../posts/bulletin.svelte';
-    import News from '../posts/video.svelte';
+    import { COLUMNS } from '$lib/config/column-config';
     import { COMPONENTS } from '../../index.svelte';
 
+    import { _lang } from '$lib/services/store';
+    import { _emitEvent } from '$lib/services/events';
+    import _strings from './post-strings';
+
+    import Button from '$lib/components/input/button.svelte';
+    
     export let data;
 
-    // export const COMPONENTS = {
-    //     bulletin: Bulletin,
-    //     newsx: News,
-    //     empty: Empty,
-    //     bulletinx: Bulletin,
-    // }
-
+    const column = COLUMNS.find(c => c.type == data.type);
+    
     const hidePost = () => {
         data._singlePostView = false;
         data._expanded = true;
@@ -27,8 +24,19 @@
     on:click|self={hidePost}>
     <div class="post-container">
         <svelte:component 
+            class="post-component"
             this={COMPONENTS[data.type]}
             data={data}/>
+        <Button
+            form
+            text={data._initialLoad? 
+                    (_strings['more'][$_lang] + column.title[$_lang]):
+                    _strings['back'][$_lang]}
+            style="
+                width: calc(100% - var(--theme-cardseparation));
+                margin: var(--theme-cardseparationhalf);
+                margin-bottom: var(--s20px);"
+            onclick={hidePost}/>
     </div>
 </div>
 
@@ -41,8 +49,8 @@
 
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+
+        overflow-y: scroll;
 
         width: 100%;
         height: 100%;
@@ -51,5 +59,7 @@
     }
     .post-container {
         width: var(--theme-columnwidth);
+        margin: auto;
     }
+
 </style>
