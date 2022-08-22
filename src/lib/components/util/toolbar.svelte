@@ -130,12 +130,14 @@ EXAMPLE:
             on:click={toggleExpanded}>
             <i class="fa-solid fa-up-down"></i>
         </div>
+        {#if !$_isMobile}
         <div 
             class="icon _clickable"
             class:on={data._singlePostView}
             on:click={toggleSinglePostView}>
             <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
         </div>
+        {/if}
         <div class="mobile-huddle">
             <div 
                 class="icon _clickable"
