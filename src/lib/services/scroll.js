@@ -311,11 +311,10 @@ export const _handleTouchMove = (event) => {
     moveIndex++;
     const TOUCH_SENSITIVITY = 2;
     let deltaX = (event.touches[0].pageX - touchStartX)*TOUCH_SENSITIVITY;
-
-    const DELTA_X_THRESHOLD = 10;
+    // console.log(deltaX);
+    const DELTA_X_THRESHOLD = 80;
     if((moveIndex < 2) && (Math.abs(deltaX) > DELTA_X_THRESHOLD)) {
         disableVerticalScroll = true;
-        console.log('disableVerticalScroll');
     }
     _handleWheel({wheelDeltaX: deltaX});
 }
