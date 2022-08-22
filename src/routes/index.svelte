@@ -41,7 +41,7 @@
     import { _getPost } from '$lib/services/database';
     import { _getFileURL } from '$lib/services/storage';
     import { _handleWheel, _handleTouchMove, _handleTouchStart, 
-        _handleColumnScroll, _setupIndexAnimations} from '$lib/services/scroll';
+        _handleColumnScroll, _setupIndexAnimations, _handleTouchEnd} from '$lib/services/scroll';
 
     // components$lib/services/scroll
     import Nav from './_components/fixed/nav.svelte';
@@ -228,16 +228,15 @@
 <!-- Nav is the navigation bar component which is a fixed overlay-->
 <Nav/>  
 
-<div 
+<div
     class="columns"
     bind:this={appWindowElement}
     on:wheel|passive|stopPropagation={(e) => {
         _handleWheel(e);
     }}
     on:touchstart|passive={_handleTouchStart}
-    on:touchmove|passive={(e) => {
-        _handleTouchMove(e);
-    }}>
+    on:touchmove|passive={_handleTouchMove}
+    on:touchend|passive={_handleTouchEnd}>
     <!-- Post displays a single post as an overlay -->
     {#if postData}
     <Post data={postData}/>

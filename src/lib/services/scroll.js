@@ -6,6 +6,7 @@ import { quartOut, backInOut } from 'svelte/easing';
 import { _getSizeConfig } from '$lib/services/theme';
 import { _eventListener, _emitEvent } from '$lib/services/events';
 import { _isMobile } from '$lib/services/theme';
+import { of } from 'rxjs';
 
 // if the app is loaded in a mobile browser
 let isMobile = false;
@@ -156,7 +157,18 @@ export const _setupNavAnimations = (scrollElement) => {
 // position
 let columnHeight;
 export const _handleColumnScroll = (event, columnIndex) => {
-
+    // if a horizontal scroll has been initiated disable verticle
+    // scroll until it has been completed
+    if(disableVerticalScroll) {
+        event.preventDefault();
+        event.target.style.overflowY = 'hidden';
+        return
+    }
+    // if vertical scroll is greater than 20px hide the nav bar in
+    // mobile
+    if(event.target.scrollTop > 20 && isMobile) {
+        _emitEvent('hide-nav-menu');
+    }
     // calculate the height of the column
     // it is calculated for once a single scroll session and reset by
     // the below set timeout (500ms after scroll has stopped)
@@ -283,12 +295,34 @@ export const _handleWheel = (event) => {
 // *** END: horizontal scroll handler
 
 let touchStartX = null;
+let touchStartY = null;
+let disableVerticalScroll = false;
 
+let moveIndex = 0;
+
+// handle mobile touch start
 export const _handleTouchStart = (event) => {
     touchStartX = event.touches[0].pageX;
+    touchStartX = event.touches[0].pageX;
+    moveIndex = 0;
 }
 
 export const _handleTouchMove = (event) => {
-    let deltaX = (event.touches[0].pageX - touchStartX)*2;
-    __handleHorizontalScroll({wheelDeltaX: deltaX});
+    moveIndex++;
+    const TOUCH_SENSITIVITY = 2;
+    let deltaX = (event.touches[0].pageX - touchStartX)*TOUCH_SENSITIVITY;
+
+    const DELTA_X_THRESHOLD = 10;
+    if((moveIndex < 2) && (Math.abs(deltaX) > DELTA_X_THRESHOLD)) {
+        disableVerticalScroll = true;
+        console.log('disableVerticalScroll');
+    }
+    _handleWheel({wheelDeltaX: deltaX});
+}
+
+export const _handleTouchEnd = (event) => {
+    touchStartX = null;
+    touchStartY = null;
+    disableVerticalScroll = false;
+    _columnElements.map(c => c.style.overflowY = 'scroll');
 }

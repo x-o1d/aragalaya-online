@@ -89820,8 +89820,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-b16acade.js";
-    imports = ["_app/immutable/pages/__layout.svelte-b16acade.js", "_app/immutable/chunks/index-1067e9ce.js", "_app/immutable/chunks/store-9b9b3f8a.js", "_app/immutable/chunks/index-b44c1d94.js", "_app/immutable/chunks/text-input-e8316e33.js", "_app/immutable/chunks/tags-8fb60c37.js", "_app/immutable/chunks/progress-da773794.js", "_app/immutable/chunks/select-a77b25fe.js"];
+    file2 = "_app/immutable/pages/__layout.svelte-61814ab8.js";
+    imports = ["_app/immutable/pages/__layout.svelte-61814ab8.js", "_app/immutable/chunks/index-3f430973.js", "_app/immutable/chunks/store-ce79c03c.js", "_app/immutable/chunks/index-ae61dfd7.js", "_app/immutable/chunks/text-input-a2667b4e.js", "_app/immutable/chunks/tags-3d71b4b3.js", "_app/immutable/chunks/progress-e3654a7b.js", "_app/immutable/chunks/select-f6a69648.js"];
     stylesheets = ["_app/immutable/assets/__layout-86c85fdd.css", "_app/immutable/assets/text-input-3a112e71.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/progress-491479b0.css", "_app/immutable/assets/select-9228a765.css"];
   }
 });
@@ -89874,8 +89874,8 @@ var init__2 = __esm({
     init_shims();
     init_error_svelte();
     index2 = 1;
-    file3 = "_app/immutable/error.svelte-be58e6ac.js";
-    imports2 = ["_app/immutable/error.svelte-be58e6ac.js", "_app/immutable/chunks/index-1067e9ce.js"];
+    file3 = "_app/immutable/error.svelte-cb74504f.js";
+    imports2 = ["_app/immutable/error.svelte-cb74504f.js", "_app/immutable/chunks/index-3f430973.js"];
     stylesheets2 = [];
   }
 });
@@ -92563,8 +92563,8 @@ var init_index_svelte = __esm({
     init_shims();
     init_index_548f2339();
     init_database_3b681d90();
-    init_store_ef18036d();
     init_string_strip_html_esm();
+    init_store_ef18036d();
     init_text_input_5ddfa4f0();
     init_progress_svelte_svelte_type_style_lang_4912f87d();
     init_proposal_ed198162();
@@ -92575,32 +92575,47 @@ var init_index_svelte = __esm({
     init_dist4();
     init_dist5();
     import_chroma_js4 = __toESM(require_chroma(), 1);
+    _isMobile.subscribe((v6) => v6);
+    tweened(0, {
+      duration: 350,
+      easing: quartOut
+    });
+    Array(COLUMN_COUNT).fill(false).map((_2) => tweened(0, {
+      duration: 350,
+      easing: quartOut
+    }));
+    Array(COLUMN_COUNT).fill(false).map((_2) => tweened(15, {
+      duration: 350,
+      easing: quartOut
+    }));
+    Array(COLUMN_COUNT).fill(0).map((_2) => tweened(0, {
+      duration: 350,
+      easing: quartOut
+    }));
+    Array(COLUMN_COUNT).fill(1).map((_2) => tweened(0, {
+      duration: 350,
+      easing: backInOut
+    }));
+    tweened(0, {
+      duration: 350,
+      easing: quartOut
+    });
     Array(COLUMN_COUNT).fill(0);
     css$72 = {
-      code: ".navigation.s-QYN83HapRChq{position:fixed;right:var(--s5px);bottom:var(--s5px);z-index:100;display:flex;align-items:center;flex-direction:column;background-color:black;border-radius:var(--s6px);border:var(--s0_5px) solid white}.animated.s-QYN83HapRChq{position:relative}.icons.s-QYN83HapRChq{position:relative;overflow:hidden}.icon.s-QYN83HapRChq{position:relative;width:var(--theme-navsize);height:var(--theme-navsize);display:flex;align-items:center;justify-content:center;color:var(--nav-buttons);font-size:var(--theme-naviconsize)}.toggle.s-QYN83HapRChq{color:white}.show-hide.s-QYN83HapRChq{background-color:black;z-index:1;color:white;border-radius:var(--s6px)}.scroll.s-QYN83HapRChq{position:absolute;right:0;width:var(--s4px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-columns-7) 25%, \n            var(--theme-columns-5) 50%,\n            var(--theme-columns-3) 75%, \n            var(--theme-columns-1) 100%);border-radius:var(--s6px)}.title_c.s-QYN83HapRChq{position:fixed}.title.s-QYN83HapRChq{font-weight:bold;color:rgb(85, 85, 85);padding:var(--s0px) var(--s5px);background-color:white}.s-QYN83HapRChq{}",
+      code: ".navigation.s-QYN83HapRChq{position:fixed;right:var(--s5px);bottom:var(--s5px);z-index:100;display:flex;align-items:center;flex-direction:column;background-color:black;border-radius:var(--s6px);border:var(--s0_5px) solid white}.animated.s-QYN83HapRChq{position:relative}.icons.s-QYN83HapRChq{position:relative;overflow:hidden}.icon.s-QYN83HapRChq{position:relative;width:var(--theme-navsize);height:var(--theme-navsize);display:flex;align-items:center;justify-content:center;color:var(--nav-buttons);font-size:var(--theme-naviconsize)}.toggle.s-QYN83HapRChq{color:white}.show-hide.s-QYN83HapRChq{background-color:black;z-index:1;color:white;border-radius:var(--s6px)}.scroll.s-QYN83HapRChq{position:absolute;right:0;width:var(--s4px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-columns-7) 25%, \n            var(--theme-columns-5) 50%,\n            var(--theme-columns-3) 75%, \n            var(--theme-columns-1) 100%);border-radius:var(--s6px)}.s-QYN83HapRChq{}",
       map: null
     };
     Nav = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $_isMobile, $$unsubscribe__isMobile;
       let $height, $$unsubscribe_height;
-      let $scrollPosition, $$unsubscribe_scrollPosition;
-      let $$unsubscribe__lang;
       validate_store(_isMobile, "_isMobile");
       $$unsubscribe__isMobile = subscribe(_isMobile, (value) => $_isMobile = value);
-      validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => value);
       const height = tweened((COLUMN_COUNT + 1) * 70, { duration: 350, easing: circIn });
       validate_store(height, "height");
       $$unsubscribe_height = subscribe(height, (value) => $height = value);
       let scrollBarHeight = 0;
-      const scrollPosition = tweened(0, { duration: 350, easing: quartOut });
-      validate_store(scrollPosition, "scrollPosition");
-      $$unsubscribe_scrollPosition = subscribe(scrollPosition, (value) => $scrollPosition = value);
-      const hScrollEvent = _eventListener("h-scroll").subscribe((v6) => {
-        scrollPosition.set(v6 / (COLUMN_COUNT * _getSizeConfig().columnWidth) * (COLUMN_COUNT * _getSizeConfig().navSize));
-      });
-      onDestroy(() => hScrollEvent.unsubscribe());
-      const vScrollEvent = _eventListener("update-vscroll").subscribe((v6) => {
+      let scrollBarElement;
+      const vScrollEvent = _eventListener("hide-nav-menu").subscribe((v6) => {
         if ($_isMobile) {
           if (!hidden) {
             showHide();
@@ -92612,7 +92627,6 @@ var init_index_svelte = __esm({
       function showHide() {
         if (hidden) {
           height.set((COLUMN_COUNT + 1) * _getSizeConfig().navSize);
-          setTimeout(() => false, 350);
         } else {
           height.set(0);
         }
@@ -92621,15 +92635,14 @@ var init_index_svelte = __esm({
       $$result.css.add(css$72);
       $$unsubscribe__isMobile();
       $$unsubscribe_height();
-      $$unsubscribe_scrollPosition();
-      $$unsubscribe__lang();
-      return `<div class="${"navigation s-QYN83HapRChq"}"><div class="${"animated s-QYN83HapRChq"}"><div class="${"icons s-QYN83HapRChq"}" style="${"max-height: " + escape($height, true) + "px"}">${each(COLUMNS, (column, _i) => {
+      return `
+
+
+<div class="${"navigation s-QYN83HapRChq"}"><div class="${"animated s-QYN83HapRChq"}"><div class="${"icons s-QYN83HapRChq"}" style="${"max-height: " + escape($height, true) + "px"}">${each(COLUMNS, (column, _i) => {
         return `<div style="${"color: var(--theme-navigation-" + escape(_i, true) + ")"}" class="${"icon _clickable s-QYN83HapRChq"}"><i class="${escape(null_to_empty(column.icon), true) + " s-QYN83HapRChq"}"></i>
                 </div>`;
       })}
-            <div class="${"scroll s-QYN83HapRChq"}" style="${"height: " + escape(scrollBarHeight, true) + "px; top: " + escape($scrollPosition, true) + "px;"}"></div></div>
-        ${``}</div>
-    
+            <div class="${"scroll s-QYN83HapRChq"}" style="${"height: " + escape(scrollBarHeight, true) + "px;"}"${add_attribute("this", scrollBarElement, 0)}></div></div></div>
     <div class="${"icon show-hide _clickable s-QYN83HapRChq"}">${!hidden ? `<i class="${"fa-solid fa-angles-down s-QYN83HapRChq"}"></i>` : `<i class="${"fa-solid fa-angles-up s-QYN83HapRChq"}"></i>`}</div>
 </div>`;
     });
@@ -93171,7 +93184,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
       })}`;
     });
     css5 = {
-      code: "ul.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex}.columns.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;overflow:hidden;background-color:var(--theme-columnbackground);overflow-x:scroll}.column.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;width:var(--theme-columnwidth);height:calc(100vh - var(--theme-columnheaderheight))}.header.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;height:var(--theme-columnheaderheight);color:var(--theme-headerfontcolor);padding:0 var(--theme-cardseparationhalf) 0 var(--s10px);font-weight:bold;z-index:2}.header.s-Uap-jPRb-uiE div.s-Uap-jPRb-uiE{display:flex;align-items:center;height:100%}.header.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE:first-child{font-size:var(--s24px)}.icon-button.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex;align-items:center;justify-content:center;width:35px;height:35px;font-size:var(--s17px)}.cards.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;width:100%;height:calc(100vh - var(--s100px));overflow-y:scroll;overflow-x:hidden;-ms-overflow-style:none;scrollbar-width:none;padding:var(--theme-cardseparationhalf) 0}.cards.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE::-webkit-scrollbar{display:none}.spacer.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{width:var(--theme-cardseparationhalf);height:calc(100vh - var(--theme-columnheaderheight))}.spacer.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE::after{display:block;content:'';height:var(--theme-columnheaderheight);width:var(--theme-cardseparationhalf);background-color:var(--background)}.scrollbar.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:absolute;top:var(--theme-columnheaderheight);right:0}.scroll.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:absolute;overflow:hidden;top:var(--s20px);right:var(--s-3_75px);width:var(--s7_5px);border-radius:var(--s7_5px);opacity:0.5;background-color:rgba(0,0,0,0.4)}.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{}",
+      code: "ul.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex}.columns.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;overflow:hidden;background-color:var(--theme-columnbackground)}.column.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;width:var(--theme-columnwidth);height:calc(100vh - var(--theme-columnheaderheight))}.header.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;height:var(--theme-columnheaderheight);color:var(--theme-headerfontcolor);padding:0 var(--theme-cardseparationhalf) 0 var(--s10px);font-weight:bold;z-index:2}.header.s-Uap-jPRb-uiE div.s-Uap-jPRb-uiE{display:flex;align-items:center;height:100%}.header.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE:first-child{font-size:var(--s24px)}.icon-button.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex;align-items:center;justify-content:center;width:35px;height:35px;font-size:var(--s17px)}.cards.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;width:100%;height:calc(100vh - var(--s100px));overflow-y:scroll;scrollbar-width:none;-ms-overflow-style:none;padding:var(--theme-cardseparationhalf) 0}.cards.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE::-webkit-scrollbar{display:none}.spacer.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{width:var(--theme-cardseparationhalf);height:calc(100vh - var(--theme-columnheaderheight))}.spacer.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE::after{display:block;content:'';height:var(--theme-columnheaderheight);width:var(--theme-cardseparationhalf);background-color:var(--background)}.scrollbar.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:absolute;top:var(--theme-columnheaderheight);right:0}.scroll.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:absolute;overflow:hidden;top:var(--s20px);right:var(--s-3_75px);width:var(--s7_5px);border-radius:var(--s7_5px);opacity:0.5;background-color:rgba(0,0,0,0.4)}.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{}",
       map: null
     };
     COMPONENTS = {
@@ -93188,27 +93201,12 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
       $$unsubscribe__isMobile = subscribe(_isMobile, (value) => $_isMobile = value);
       validate_store(_lang, "_lang");
       $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let appWindowElement;
+      let columnElements = Array(COLUMN_COUNT).fill(null);
+      let columnScrollBarElements = Array(COLUMN_COUNT).fill(null);
+      let columnHeaderElements = Array(COLUMN_COUNT).fill(null);
       let { columnData } = $$props;
       let { postData = void 0 } = $$props;
-      let showFilters = Array(COLUMN_COUNT).fill(false);
-      const updateColumnEvent = _eventListener("update-column").subscribe((data) => {
-        columnData[data.column] = data.posts;
-        columnData = columnData;
-      });
-      onDestroy(() => updateColumnEvent.unsubscribe());
-      const showPostEvent = _eventListener("show-post").subscribe((data) => {
-        window.history.pushState("", "", `/?post=${data.id}`);
-        data._expanded = true;
-        data._singlePostView = true;
-        postData = data;
-      });
-      onDestroy(() => showPostEvent.unsubscribe());
-      const hidePostEvent = _eventListener("hide-post").subscribe(() => {
-        window.history.pushState("", "", "/");
-        title = "\u0D85\u0DBB\u0D9C\u0DBD\u0DBA.online";
-        postData = void 0;
-      });
-      onDestroy(() => hidePostEvent.unsubscribe());
       let title = "\u0D85\u0DBB\u0D9C\u0DBD\u0DBA.online";
       let url = _URL;
       let description = "The online portal for the aragalaya movement in Sri Lanka";
@@ -93229,6 +93227,25 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
         if (images[0] && images[0].href)
           imagex = images[0].href;
       }
+      let showFilters = Array(COLUMN_COUNT).fill(false);
+      const filteredPostsEvent = _eventListener("filtered-posts").subscribe((data) => {
+        columnData[data.column] = data.posts;
+        columnData = columnData;
+      });
+      onDestroy(() => filteredPostsEvent.unsubscribe());
+      const showPostEvent = _eventListener("show-post").subscribe((data) => {
+        window.history.pushState("", "", `/?post=${data.id}`);
+        data._expanded = true;
+        data._singlePostView = true;
+        postData = data;
+      });
+      onDestroy(() => showPostEvent.unsubscribe());
+      const hidePostEvent = _eventListener("hide-post").subscribe(() => {
+        window.history.pushState("", "", "/");
+        title = "\u0D85\u0DBB\u0D9C\u0DBD\u0DBA.online";
+        postData = void 0;
+      });
+      onDestroy(() => hidePostEvent.unsubscribe());
       const newPostEvent = _eventListener("new-post").subscribe(async (postData2) => {
         columnData[postData2._columnIndex].unshift(postData2);
         columnData = columnData;
@@ -93244,46 +93261,6 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
         columnData = columnData;
       });
       onDestroy(() => deletePostEvent.unsubscribe());
-      let columnsElement;
-      const vScroll = Array(COLUMN_COUNT).fill(15);
-      const vScrollEvent = _eventListener("update-vscroll").subscribe((v6) => {
-        vScroll[v6.index] = v6.value;
-      });
-      onDestroy(() => {
-        vScrollEvent.unsubscribe();
-      });
-      Array(COLUMN_COUNT).fill(0).map((_2) => tweened(0, { duration: 350, easing: quartOut }));
-      const _vScrollAnimation = Array(COLUMN_COUNT).fill(0);
-      let hScrollIndex = { value: 0 };
-      const hScroll = tweened(0, { duration: 350, easing: quartOut });
-      const setHorizontalScroll = (v6) => {
-        hScroll.set(v6);
-        _emitEvent("h-scroll", v6);
-      };
-      const bounceAnimation = Array(COLUMN_COUNT).fill(1).map((_2) => tweened(0, { duration: 350, easing: backInOut }));
-      const _bounceAnimation = Array(COLUMN_COUNT).fill(1);
-      _eventListener("nav-click").subscribe((index11) => {
-        const sizeConfig = _getSizeConfig();
-        const maxLeft = COLUMN_COUNT - Math.floor(window.innerWidth / sizeConfig.columnWidth);
-        if (index11 < maxLeft) {
-          hScrollIndex.value = index11;
-          setHorizontalScroll(sizeConfig.columnWidth * index11);
-        } else {
-          hScrollIndex.value = maxLeft;
-          const remainingSpace = COLUMN_COUNT * sizeConfig.columnWidth + 15 - hScrollIndex.value * sizeConfig.columnWidth - window.innerWidth;
-          hScrollIndex.value--;
-          setHorizontalScroll(sizeConfig.columnWidth * maxLeft + remainingSpace);
-        }
-        if (!$_isMobile) {
-          bounceAnimation[index11].set(8);
-          setTimeout(
-            () => {
-              bounceAnimation[index11].set(0);
-            },
-            350
-          );
-        }
-      });
       if ($$props.columnData === void 0 && $$bindings.columnData && columnData !== void 0)
         $$bindings.columnData(columnData);
       if ($$props.postData === void 0 && $$bindings.postData && postData !== void 0)
@@ -93303,12 +93280,12 @@ ${$$result.head += `${$$result.title = `<title>${escape(title)}</title>`, ""}<me
 
 ${validate_component(Nav, "Nav").$$render($$result, {}, {}, {})}  
 
-<div class="${"columns s-Uap-jPRb-uiE"}"${add_attribute("this", columnsElement, 0)}>
+<div class="${"columns s-Uap-jPRb-uiE"}"${add_attribute("this", appWindowElement, 0)}>
     ${postData ? `${validate_component(Post, "Post").$$render($$result, { data: postData }, {}, {})}` : ``}
 	<ul class="${"s-Uap-jPRb-uiE"}">${!$_isMobile ? `<li class="${"spacer s-Uap-jPRb-uiE"}" style="${"--background: var(--theme-columns-0);"}"></li>` : ``}
         ${each(COLUMNS, (column, _i) => {
         return `<li class="${"s-Uap-jPRb-uiE"}"><div class="${"column s-Uap-jPRb-uiE"}">
-                <div style="${"background-color: var(--theme-headerbackground);"}" class="${"s-Uap-jPRb-uiE"}"><div class="${"header _clickable s-Uap-jPRb-uiE"}" style="${"background-color: var(--theme-columns-" + escape(_i + 1, true) + "); top: " + escape(_bounceAnimation[_i], true) + "px"}"><div class="${"s-Uap-jPRb-uiE"}"><i class="${escape(null_to_empty(column.icon), true) + " s-Uap-jPRb-uiE"}"></i>
+                <div style="${"background-color: var(--theme-headerbackground);"}" class="${"s-Uap-jPRb-uiE"}"><div class="${"header _clickable s-Uap-jPRb-uiE"}" style="${"background-color: var(--theme-columns-" + escape(_i + 1, true) + ");"}"${add_attribute("this", columnHeaderElements[_i], 0)}><div class="${"s-Uap-jPRb-uiE"}"><i class="${escape(null_to_empty(column.icon), true) + " s-Uap-jPRb-uiE"}"></i>
                             ${validate_component(Font, "Font").$$render(
           $$result,
           {
@@ -93334,11 +93311,11 @@ ${validate_component(Nav, "Nav").$$render($$result, {}, {}, {})}
                     </div></div>
                 ${validate_component(Filter2, "Filter").$$render($$result, { show: showFilters[_i], columnId: _i }, {}, {})}
                 
-                <div class="${"cards s-Uap-jPRb-uiE"}">${each(columnData[_i], (item, _i2) => {
+                <div class="${"cards s-Uap-jPRb-uiE"}"${add_attribute("this", columnElements[_i], 0)}>${each(columnData[_i], (item, _i2) => {
           return `<div class="${"s-Uap-jPRb-uiE"}">${validate_component(COMPONENTS[item.type] || Template || missing_component, "svelte:component").$$render($$result, { data: item }, {}, {})}
                     </div>`;
         })}</div>
-                <div class="${"scrollbar s-Uap-jPRb-uiE"}"><div class="${"scroll s-Uap-jPRb-uiE"}" style="${"top: " + escape(vScroll[_i], true) + "px; opacity: " + escape(_vScrollAnimation[_i], true) + "; height: " + escape(_vScrollAnimation[_i] * 25, true) + "px"}"></div>
+                <div class="${"scrollbar s-Uap-jPRb-uiE"}"><div class="${"scroll s-Uap-jPRb-uiE"}"${add_attribute("this", columnScrollBarElements[_i], 0)}></div>
                 </div></div>
         </li>`;
       })}
@@ -93363,9 +93340,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    file4 = "_app/immutable/pages/index.svelte-3112c48f.js";
-    imports3 = ["_app/immutable/pages/index.svelte-3112c48f.js", "_app/immutable/chunks/index-1067e9ce.js", "_app/immutable/chunks/text-input-e8316e33.js", "_app/immutable/chunks/store-9b9b3f8a.js", "_app/immutable/chunks/index-b44c1d94.js", "_app/immutable/chunks/proposal-49dc89a1.js", "_app/immutable/chunks/tags-8fb60c37.js", "_app/immutable/chunks/progress-da773794.js"];
-    stylesheets3 = ["_app/immutable/assets/index-d23ffa58.css", "_app/immutable/assets/text-input-3a112e71.css", "_app/immutable/assets/proposal-96974fc1.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/progress-491479b0.css"];
+    file4 = "_app/immutable/pages/index.svelte-bbfe7d93.js";
+    imports3 = ["_app/immutable/pages/index.svelte-bbfe7d93.js", "_app/immutable/chunks/index-3f430973.js", "_app/immutable/chunks/text-input-a2667b4e.js", "_app/immutable/chunks/store-ce79c03c.js", "_app/immutable/chunks/index-ae61dfd7.js", "_app/immutable/chunks/proposal-3fdc9980.js", "_app/immutable/chunks/tags-3d71b4b3.js", "_app/immutable/chunks/progress-e3654a7b.js"];
+    stylesheets3 = ["_app/immutable/assets/index-ce697e7d.css", "_app/immutable/assets/text-input-3a112e71.css", "_app/immutable/assets/proposal-96974fc1.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/progress-491479b0.css"];
   }
 });
 
@@ -93436,8 +93413,8 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 4;
-    file5 = "_app/immutable/pages/post_preview.svelte-bc415034.js";
-    imports4 = ["_app/immutable/pages/post_preview.svelte-bc415034.js", "_app/immutable/chunks/index-1067e9ce.js", "_app/immutable/chunks/proposal-49dc89a1.js", "_app/immutable/chunks/store-9b9b3f8a.js", "_app/immutable/chunks/index-b44c1d94.js", "_app/immutable/chunks/text-input-e8316e33.js", "_app/immutable/chunks/tags-8fb60c37.js"];
+    file5 = "_app/immutable/pages/post_preview.svelte-20f11f98.js";
+    imports4 = ["_app/immutable/pages/post_preview.svelte-20f11f98.js", "_app/immutable/chunks/index-3f430973.js", "_app/immutable/chunks/proposal-3fdc9980.js", "_app/immutable/chunks/store-ce79c03c.js", "_app/immutable/chunks/index-ae61dfd7.js", "_app/immutable/chunks/text-input-a2667b4e.js", "_app/immutable/chunks/tags-3d71b4b3.js"];
     stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-96974fc1.css", "_app/immutable/assets/text-input-3a112e71.css", "_app/immutable/assets/tags-95a7f94d.css"];
   }
 });
@@ -93480,8 +93457,8 @@ var init__5 = __esm({
     init_shims();
     init_privacy_policy_svelte();
     index5 = 5;
-    file6 = "_app/immutable/pages/privacy_policy.svelte-b7198457.js";
-    imports5 = ["_app/immutable/pages/privacy_policy.svelte-b7198457.js", "_app/immutable/chunks/index-1067e9ce.js"];
+    file6 = "_app/immutable/pages/privacy_policy.svelte-104ba251.js";
+    imports5 = ["_app/immutable/pages/privacy_policy.svelte-104ba251.js", "_app/immutable/chunks/index-3f430973.js"];
     stylesheets5 = ["_app/immutable/assets/privacy_policy-9e1470cc.css"];
   }
 });
@@ -93558,8 +93535,8 @@ var init__6 = __esm({
     init_shims();
     init_users_svelte();
     index6 = 2;
-    file7 = "_app/immutable/pages/admin/users.svelte-f9759d7a.js";
-    imports6 = ["_app/immutable/pages/admin/users.svelte-f9759d7a.js", "_app/immutable/chunks/index-1067e9ce.js", "_app/immutable/chunks/text-input-e8316e33.js", "_app/immutable/chunks/store-9b9b3f8a.js", "_app/immutable/chunks/index-b44c1d94.js", "_app/immutable/chunks/select-a77b25fe.js"];
+    file7 = "_app/immutable/pages/admin/users.svelte-d41719c1.js";
+    imports6 = ["_app/immutable/pages/admin/users.svelte-d41719c1.js", "_app/immutable/chunks/index-3f430973.js", "_app/immutable/chunks/text-input-a2667b4e.js", "_app/immutable/chunks/store-ce79c03c.js", "_app/immutable/chunks/index-ae61dfd7.js", "_app/immutable/chunks/select-f6a69648.js"];
     stylesheets6 = ["_app/immutable/assets/users-ad6cc9f1.css", "_app/immutable/assets/text-input-3a112e71.css", "_app/immutable/assets/select-9228a765.css"];
   }
 });
@@ -93604,8 +93581,8 @@ var init__7 = __esm({
     init_shims();
     init_facebook_svelte();
     index7 = 6;
-    file8 = "_app/immutable/pages/share/facebook.svelte-4706c97a.js";
-    imports7 = ["_app/immutable/pages/share/facebook.svelte-4706c97a.js", "_app/immutable/chunks/index-1067e9ce.js", "_app/immutable/chunks/store-9b9b3f8a.js", "_app/immutable/chunks/index-b44c1d94.js"];
+    file8 = "_app/immutable/pages/share/facebook.svelte-4e563634.js";
+    imports7 = ["_app/immutable/pages/share/facebook.svelte-4e563634.js", "_app/immutable/chunks/index-3f430973.js", "_app/immutable/chunks/store-ce79c03c.js", "_app/immutable/chunks/index-ae61dfd7.js"];
     stylesheets7 = ["_app/immutable/assets/facebook-5ae6a916.css"];
   }
 });
@@ -93650,8 +93627,8 @@ var init__8 = __esm({
     init_shims();
     init_reddit_svelte();
     index8 = 7;
-    file9 = "_app/immutable/pages/share/reddit.svelte-e015bc7a.js";
-    imports8 = ["_app/immutable/pages/share/reddit.svelte-e015bc7a.js", "_app/immutable/chunks/index-1067e9ce.js", "_app/immutable/chunks/store-9b9b3f8a.js", "_app/immutable/chunks/index-b44c1d94.js"];
+    file9 = "_app/immutable/pages/share/reddit.svelte-5caef969.js";
+    imports8 = ["_app/immutable/pages/share/reddit.svelte-5caef969.js", "_app/immutable/chunks/index-3f430973.js", "_app/immutable/chunks/store-ce79c03c.js", "_app/immutable/chunks/index-ae61dfd7.js"];
     stylesheets8 = ["_app/immutable/assets/reddit-07daef39.css"];
   }
 });
@@ -93696,8 +93673,8 @@ var init__9 = __esm({
     init_shims();
     init_twitter_svelte();
     index9 = 8;
-    file10 = "_app/immutable/pages/share/twitter.svelte-c0fe4323.js";
-    imports9 = ["_app/immutable/pages/share/twitter.svelte-c0fe4323.js", "_app/immutable/chunks/index-1067e9ce.js", "_app/immutable/chunks/store-9b9b3f8a.js", "_app/immutable/chunks/index-b44c1d94.js"];
+    file10 = "_app/immutable/pages/share/twitter.svelte-cd0bc96e.js";
+    imports9 = ["_app/immutable/pages/share/twitter.svelte-cd0bc96e.js", "_app/immutable/chunks/index-3f430973.js", "_app/immutable/chunks/store-ce79c03c.js", "_app/immutable/chunks/index-ae61dfd7.js"];
     stylesheets9 = ["_app/immutable/assets/twitter-dafdce4f.css"];
   }
 });
@@ -93742,8 +93719,8 @@ var init__10 = __esm({
     init_shims();
     init_whatsapp_svelte();
     index10 = 9;
-    file11 = "_app/immutable/pages/share/whatsapp.svelte-8f3e4fa4.js";
-    imports10 = ["_app/immutable/pages/share/whatsapp.svelte-8f3e4fa4.js", "_app/immutable/chunks/index-1067e9ce.js", "_app/immutable/chunks/store-9b9b3f8a.js", "_app/immutable/chunks/index-b44c1d94.js"];
+    file11 = "_app/immutable/pages/share/whatsapp.svelte-0a6fa3ef.js";
+    imports10 = ["_app/immutable/pages/share/whatsapp.svelte-0a6fa3ef.js", "_app/immutable/chunks/index-3f430973.js", "_app/immutable/chunks/store-ce79c03c.js", "_app/immutable/chunks/index-ae61dfd7.js"];
     stylesheets10 = ["_app/immutable/assets/whatsapp-15a937dd.css"];
   }
 });
@@ -96420,7 +96397,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-9bc97b0a.js", "imports": ["_app/immutable/start-9bc97b0a.js", "_app/immutable/chunks/index-1067e9ce.js", "_app/immutable/chunks/index-b44c1d94.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-78a73df9.js", "imports": ["_app/immutable/start-78a73df9.js", "_app/immutable/chunks/index-3f430973.js", "_app/immutable/chunks/index-ae61dfd7.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

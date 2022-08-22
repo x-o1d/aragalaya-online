@@ -1,4 +1,5 @@
-<!-- this component -->
+<!-- the Nav component draws the navigation menu in the bottom right corner
+---- in an overlay -->
 <script>
     // configs
     import { COLUMNS, COLUMN_COUNT } from '$lib/config/column-config';
@@ -6,16 +7,13 @@
     // npm modules
     import { onDestroy, onMount } from 'svelte';
     import { tweened } from "svelte/motion";
-    import { circIn, quartOut } from "svelte/easing";
-    
+    import { circIn } from "svelte/easing";
+
     // services
     import { _emitEvent, _eventListener } from '$lib/services/events';
     import { _lang } from '$lib/services/store';
     import { _getSizeConfig, _isMobile } from '$lib/services/theme';
     import { _setupNavAnimations } from '$lib/services/scroll';
-
-    // components
-    import Font from '$lib/components/display/font.svelte';
 
     const height = tweened((COLUMN_COUNT + 1) * 70, {
         duration: 350,
