@@ -35,7 +35,7 @@
             style="
                 width: calc(100% - var(--theme-cardseparation));
                 margin: var(--theme-cardseparationhalf);
-                margin-bottom: var(--s20px);"
+                margin-bottom: var(--s100px);"
             onclick={hidePost}/>
     </div>
 </div>

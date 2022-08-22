@@ -13045,7 +13045,7 @@ var init_shims = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/index-548f2339.js
+// .svelte-kit/output/server/_app/immutable/chunks/index-35b769a7.js
 function noop2() {
 }
 function assign(tar, src) {
@@ -13191,7 +13191,7 @@ function create_ssr_component(fn) {
       return {
         html,
         css: {
-          code: Array.from(result.css).map((css13) => css13.code).join("\n"),
+          code: Array.from(result.css).map((css14) => css14.code).join("\n"),
           map: null
         },
         head: result.title + result.head
@@ -13207,8 +13207,8 @@ function add_attribute(name7, value, boolean) {
   return ` ${name7}${assignment}`;
 }
 var identity, is_client, now, raf, tasks, current_component, ATTR_REGEX, CONTENT_REGEX, missing_component, on_destroy;
-var init_index_548f2339 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/index-548f2339.js"() {
+var init_index_35b769a7 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/index-35b769a7.js"() {
     init_shims();
     identity = (x2) => x2;
     is_client = typeof window !== "undefined";
@@ -13756,7 +13756,7 @@ var init_wrapper = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/store-ef18036d.js
+// .svelte-kit/output/server/_app/immutable/chunks/store-b064923f.js
 function writable2(value, start2 = noop2) {
   let stop2;
   const subscribers = /* @__PURE__ */ new Set();
@@ -13799,10 +13799,10 @@ function writable2(value, start2 = noop2) {
   return { set, update, subscribe: subscribe2 };
 }
 var subscriber_queue2, _lang, _currentTheme, _user, _admin, _verified, _anonymousId, _themeColorsReady, _themeSizesReady, _scaledPixelsReady, _appContentReady, _authStateChecked, _redirected, _signUpInProgress, _shareLink, _URL;
-var init_store_ef18036d = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/store-ef18036d.js"() {
+var init_store_b064923f = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/store-b064923f.js"() {
     init_shims();
-    init_index_548f2339();
+    init_index_35b769a7();
     init_wrapper();
     subscriber_queue2 = [];
     _lang = writable2(0);
@@ -13818,8 +13818,8 @@ var init_store_ef18036d = __esm({
     _authStateChecked = writable2(false);
     _redirected = writable2(false);
     _signUpInProgress = writable2(false);
-    _shareLink = "https://aragalaya-online.web.app/?post=";
-    _URL = "https://aragalaya-online.web.app";
+    _shareLink = "https://aragalaya.online/?post=";
+    _URL = "https://aragalaya.online";
   }
 });
 
@@ -66653,10 +66653,10 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/database-3b681d90.js
+// .svelte-kit/output/server/_app/immutable/chunks/database-101a0841.js
 var import_rxjs, COLUMNS, COLUMN_COUNT, firebaseConfig, app, dev, events, _emitEvent, _eventListener, functions, _createPost, auth, user, signUpInProgress, language, theme, _userSignedIn, _emailSignup, _emailSignin, _changePassword, _userLogout, db, _createError2, _updatePost, _deletePost, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord;
-var init_database_3b681d90 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/database-3b681d90.js"() {
+var init_database_101a0841 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/database-101a0841.js"() {
     init_shims();
     init_dist();
     init_dist2();
@@ -66664,7 +66664,7 @@ var init_database_3b681d90 = __esm({
     init_dist4();
     init_dist5();
     import_rxjs = __toESM(require_cjs(), 1);
-    init_store_ef18036d();
+    init_store_b064923f();
     COLUMNS = [
       {
         title: [
@@ -67007,6 +67007,16 @@ var init_database_3b681d90 = __esm({
       messagingSenderId: "15533282305",
       appId: "1:15533282305:web:a807d2c4f789c046a71c00"
     };
+    {
+      firebaseConfig = {
+        apiKey: "AIzaSyAIFR7IVXYjG_8lyPyfHxsdx_kaRz4z3SM",
+        authDomain: "aragalaya.online",
+        projectId: "aragalaya-online-prod",
+        storageBucket: "aragalaya-online-prod.appspot.com",
+        messagingSenderId: "730227179317",
+        appId: "1:730227179317:web:59771460444f98ae52567c"
+      };
+    }
     app = initializeApp(firebaseConfig);
     dev = false;
     events = [];
@@ -67623,16 +67633,16 @@ var require_chroma = __commonJS({
       var RE_HSL = /^hsl\(\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*\)$/;
       var RE_HSLA = /^hsla\(\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*,\s*([01]|[01]?\.\d+)\)$/;
       var round$4 = Math.round;
-      var css2rgb$1 = function(css13) {
-        css13 = css13.toLowerCase().trim();
+      var css2rgb$1 = function(css14) {
+        css14 = css14.toLowerCase().trim();
         var m3;
         if (input$f.format.named) {
           try {
-            return input$f.format.named(css13);
+            return input$f.format.named(css14);
           } catch (e2) {
           }
         }
-        if (m3 = css13.match(RE_RGB)) {
+        if (m3 = css14.match(RE_RGB)) {
           var rgb2 = m3.slice(1, 4);
           for (var i3 = 0; i3 < 3; i3++) {
             rgb2[i3] = +rgb2[i3];
@@ -67640,14 +67650,14 @@ var require_chroma = __commonJS({
           rgb2[3] = 1;
           return rgb2;
         }
-        if (m3 = css13.match(RE_RGBA)) {
+        if (m3 = css14.match(RE_RGBA)) {
           var rgb$1 = m3.slice(1, 5);
           for (var i$12 = 0; i$12 < 4; i$12++) {
             rgb$1[i$12] = +rgb$1[i$12];
           }
           return rgb$1;
         }
-        if (m3 = css13.match(RE_RGB_PCT)) {
+        if (m3 = css14.match(RE_RGB_PCT)) {
           var rgb$2 = m3.slice(1, 4);
           for (var i$2 = 0; i$2 < 3; i$2++) {
             rgb$2[i$2] = round$4(rgb$2[i$2] * 2.55);
@@ -67655,7 +67665,7 @@ var require_chroma = __commonJS({
           rgb$2[3] = 1;
           return rgb$2;
         }
-        if (m3 = css13.match(RE_RGBA_PCT)) {
+        if (m3 = css14.match(RE_RGBA_PCT)) {
           var rgb$3 = m3.slice(1, 5);
           for (var i$3 = 0; i$3 < 3; i$3++) {
             rgb$3[i$3] = round$4(rgb$3[i$3] * 2.55);
@@ -67663,7 +67673,7 @@ var require_chroma = __commonJS({
           rgb$3[3] = +rgb$3[3];
           return rgb$3;
         }
-        if (m3 = css13.match(RE_HSL)) {
+        if (m3 = css14.match(RE_HSL)) {
           var hsl2 = m3.slice(1, 4);
           hsl2[1] *= 0.01;
           hsl2[2] *= 0.01;
@@ -67671,7 +67681,7 @@ var require_chroma = __commonJS({
           rgb$4[3] = 1;
           return rgb$4;
         }
-        if (m3 = css13.match(RE_HSLA)) {
+        if (m3 = css14.match(RE_HSLA)) {
           var hsl$1 = m3.slice(1, 4);
           hsl$1[1] *= 0.01;
           hsl$1[2] *= 0.01;
@@ -70337,14 +70347,14 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/text-input-5ddfa4f0.js
+// .svelte-kit/output/server/_app/immutable/chunks/text-input-634a870a.js
 var import_chroma_js, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, Font, css, Text_input;
-var init_text_input_5ddfa4f0 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/text-input-5ddfa4f0.js"() {
+var init_text_input_634a870a = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/text-input-634a870a.js"() {
     init_shims();
-    init_index_548f2339();
-    init_store_ef18036d();
-    init_database_3b681d90();
+    init_index_35b769a7();
+    init_store_b064923f();
+    init_database_101a0841();
     import_chroma_js = __toESM(require_chroma(), 1);
     _isMobile = writable2(false);
     _fontGroups = [
@@ -70531,15 +70541,89 @@ var init_text_input_5ddfa4f0 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/tags-1e5db5f0.js
-var import_chroma_js2, tagConfig, colors, TAGS, css2, Tags;
-var init_tags_1e5db5f0 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/tags-1e5db5f0.js"() {
+// .svelte-kit/output/server/_app/immutable/chunks/progress.svelte_svelte_type_style_lang-71288b18.js
+var css$1, Preloading_indicator, css2, Button;
+var init_progress_svelte_svelte_type_style_lang_71288b18 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/progress.svelte_svelte_type_style_lang-71288b18.js"() {
     init_shims();
-    init_index_548f2339();
+    init_index_35b769a7();
+    init_store_b064923f();
+    init_text_input_634a870a();
+    init_database_101a0841();
+    init_dist5();
+    css$1 = {
+      code: ".progress-container.s-O_aVUB49AbpB{position:absolute;top:0;left:0;width:80%;height:var(--height);z-index:997}.progress.s-O_aVUB49AbpB{position:absolute;left:0;top:0;height:100%;background-color:green;transition:width 0.4s}@keyframes s-O_aVUB49AbpB-fade{from{opacity:0}to{opacity:1}}.s-O_aVUB49AbpB{}",
+      map: null
+    };
+    Preloading_indicator = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let { height } = $$props;
+      let p2 = 0.1;
+      if ($$props.height === void 0 && $$bindings.height && height !== void 0)
+        $$bindings.height(height);
+      $$result.css.add(css$1);
+      return `${`<div class="${"progress-container s-O_aVUB49AbpB"}" style="${"--height: var(--s" + escape(height || 4, true) + "px)"}"><div class="${"progress s-O_aVUB49AbpB"}" style="${"inline-size: " + escape(p2 * 100, true) + "%"}"></div></div>`}`;
+    });
+    css2 = {
+      code: ".button.s-d9-80eNJ_c8b{display:flex;align-items:center;justify-content:center;border-radius:var(--s5px);padding:var(--s5px);cursor:pointer;color:white;background-color:var(--theme-defaultbutton)}.form.s-d9-80eNJ_c8b{height:var(--s45px);width:90%}.cancel.s-d9-80eNJ_c8b{background-color:var(--theme-cancelbutton)}.preloader.s-d9-80eNJ_c8b{position:relative;width:calc(90% - var(--s5px))}.s-d9-80eNJ_c8b{}",
+      map: null
+    };
+    Button = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $_lang, $$unsubscribe__lang;
+      validate_store(_lang, "_lang");
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let { onclick } = $$props;
+      let { text } = $$props;
+      let { cancel } = $$props;
+      let { form } = $$props;
+      let { selected = false } = $$props;
+      let { style = void 0 } = $$props;
+      let { fontSize = void 0 } = $$props;
+      let { font = void 0 } = $$props;
+      let { progress = void 0 } = $$props;
+      if ($$props.onclick === void 0 && $$bindings.onclick && onclick !== void 0)
+        $$bindings.onclick(onclick);
+      if ($$props.text === void 0 && $$bindings.text && text !== void 0)
+        $$bindings.text(text);
+      if ($$props.cancel === void 0 && $$bindings.cancel && cancel !== void 0)
+        $$bindings.cancel(cancel);
+      if ($$props.form === void 0 && $$bindings.form && form !== void 0)
+        $$bindings.form(form);
+      if ($$props.selected === void 0 && $$bindings.selected && selected !== void 0)
+        $$bindings.selected(selected);
+      if ($$props.style === void 0 && $$bindings.style && style !== void 0)
+        $$bindings.style(style);
+      if ($$props.fontSize === void 0 && $$bindings.fontSize && fontSize !== void 0)
+        $$bindings.fontSize(fontSize);
+      if ($$props.font === void 0 && $$bindings.font && font !== void 0)
+        $$bindings.font(font);
+      if ($$props.progress === void 0 && $$bindings.progress && progress !== void 0)
+        $$bindings.progress(progress);
+      $$result.css.add(css2);
+      $$unsubscribe__lang();
+      return `<div class="${[
+        "button s-d9-80eNJ_c8b",
+        (cancel || selected ? "cancel" : "") + " " + (form ? "form" : "")
+      ].join(" ").trim()}"${add_attribute("style", style, 0)}>${validate_component(Font, "Font").$$render($$result, { font: font || 0, size: fontSize || 1 }, {}, {
+        default: () => {
+          return `${escape(Array.isArray(text) ? text[$_lang] : text)}`;
+        }
+      })}</div>
+${progress ? `<div class="${"preloader s-d9-80eNJ_c8b"}">${validate_component(Preloading_indicator, "PreloadingIndicator").$$render($$result, { height: 2 }, {}, {})}</div>` : ``}
+<div style="${"margin-bottom: var(--s14px);"}" class="${"s-d9-80eNJ_c8b"}"></div>`;
+    });
+    getStorage(app);
+  }
+});
+
+// .svelte-kit/output/server/_app/immutable/chunks/tags-d4e87ab8.js
+var import_chroma_js2, tagConfig, colors, TAGS, css3, Tags;
+var init_tags_d4e87ab8 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/tags-d4e87ab8.js"() {
+    init_shims();
+    init_index_35b769a7();
     import_chroma_js2 = __toESM(require_chroma(), 1);
-    init_store_ef18036d();
-    init_text_input_5ddfa4f0();
+    init_store_b064923f();
+    init_text_input_634a870a();
     tagConfig = {
       mainstream: [
         "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
@@ -70606,7 +70690,7 @@ var init_tags_1e5db5f0 = __esm({
       };
       return object;
     }, {});
-    css2 = {
+    css3 = {
       code: ".tag.s-AT3XvDln3Ibo{border:var(--s2px) solid #a5a5a5;border-radius:var(--s3px);padding:0 var(--s3px);margin-right:var(--s3px);margin-bottom:var(--s3px)}.s-AT3XvDln3Ibo{}",
       map: null
     };
@@ -70626,7 +70710,7 @@ var init_tags_1e5db5f0 = __esm({
         $$bindings.clickable(clickable);
       if ($$props.style === void 0 && $$bindings.style && style !== void 0)
         $$bindings.style(style);
-      $$result.css.add(css2);
+      $$result.css.add(css3);
       $$unsubscribe__lang();
       return `${validate_component(Font, "Font").$$render(
         $$result,
@@ -88782,31 +88866,22 @@ var require_tiptap_extension_hard_break_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/progress.svelte_svelte_type_style_lang-4912f87d.js
-var init_progress_svelte_svelte_type_style_lang_4912f87d = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/progress.svelte_svelte_type_style_lang-4912f87d.js"() {
-    init_shims();
-    init_database_3b681d90();
-    init_dist5();
-    getStorage(app);
-  }
-});
-
 // .svelte-kit/output/server/entries/pages/__layout.svelte.js
 var layout_svelte_exports = {};
 __export(layout_svelte_exports, {
   default: () => _layout
 });
-var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_extension_link, import_extension_hard_break, import_chroma_js3, strings$1, css$a, Preloading_indicator, css$9, Button, css$8, Login, strings, css$7, Tiptap_editor, css$6, Html_input, css$5, Select, css$4, Form, css$3, Theme_selector, css$2, Loader, css$1, Toasts, css3, _layout;
+var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_extension_link, import_extension_hard_break, import_chroma_js3, strings$1, css$8, Login, strings, css$7, Tiptap_editor, css$6, Html_input, css$5, Select, css$4, Form, css$3, Theme_selector, css$2, Loader, css$12, Toasts, css4, _layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
-    init_index_548f2339();
-    init_store_ef18036d();
-    init_database_3b681d90();
-    init_text_input_5ddfa4f0();
+    init_index_35b769a7();
+    init_store_b064923f();
+    init_database_101a0841();
+    init_text_input_634a870a();
     init_dist3();
-    init_tags_1e5db5f0();
+    init_progress_svelte_svelte_type_style_lang_71288b18();
+    init_tags_d4e87ab8();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
     import_extension_bold = __toESM(require_tiptap_extension_bold_cjs(), 1);
     import_extension_italic = __toESM(require_tiptap_extension_italic_cjs(), 1);
@@ -88822,7 +88897,6 @@ var init_layout_svelte = __esm({
     import_extension_placeholder = __toESM(require_tiptap_extension_placeholder_cjs(), 1);
     import_extension_link = __toESM(require_tiptap_extension_link_cjs(), 1);
     import_extension_hard_break = __toESM(require_tiptap_extension_hard_break_cjs(), 1);
-    init_progress_svelte_svelte_type_style_lang_4912f87d();
     init_dist();
     init_dist2();
     init_dist4();
@@ -88870,66 +88944,6 @@ var init_layout_svelte = __esm({
         "\u0BAA\u0BC6\u0BAF\u0BB0\u0BC8 \u0B89\u0BB3\u0BCD\u0BB3\u0BBF\u0B9F\u0BC1\u0B95"
       ]
     };
-    css$a = {
-      code: ".progress-container.s-O_aVUB49AbpB{position:absolute;top:0;left:0;width:80%;height:var(--height);z-index:997}.progress.s-O_aVUB49AbpB{position:absolute;left:0;top:0;height:100%;background-color:green;transition:width 0.4s}@keyframes s-O_aVUB49AbpB-fade{from{opacity:0}to{opacity:1}}.s-O_aVUB49AbpB{}",
-      map: null
-    };
-    Preloading_indicator = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let { height } = $$props;
-      let p2 = 0.1;
-      if ($$props.height === void 0 && $$bindings.height && height !== void 0)
-        $$bindings.height(height);
-      $$result.css.add(css$a);
-      return `${`<div class="${"progress-container s-O_aVUB49AbpB"}" style="${"--height: var(--s" + escape(height || 4, true) + "px)"}"><div class="${"progress s-O_aVUB49AbpB"}" style="${"inline-size: " + escape(p2 * 100, true) + "%"}"></div></div>`}`;
-    });
-    css$9 = {
-      code: ".button.s-d9-80eNJ_c8b{display:flex;align-items:center;justify-content:center;border-radius:var(--s5px);padding:var(--s5px);cursor:pointer;color:white;background-color:var(--theme-defaultbutton)}.form.s-d9-80eNJ_c8b{height:var(--s45px);width:90%}.cancel.s-d9-80eNJ_c8b{background-color:var(--theme-cancelbutton)}.preloader.s-d9-80eNJ_c8b{position:relative;width:calc(90% - var(--s5px))}.s-d9-80eNJ_c8b{}",
-      map: null
-    };
-    Button = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang, $$unsubscribe__lang;
-      validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
-      let { onclick } = $$props;
-      let { text } = $$props;
-      let { cancel } = $$props;
-      let { form } = $$props;
-      let { selected = false } = $$props;
-      let { style = void 0 } = $$props;
-      let { fontSize = void 0 } = $$props;
-      let { font = void 0 } = $$props;
-      let { progress = void 0 } = $$props;
-      if ($$props.onclick === void 0 && $$bindings.onclick && onclick !== void 0)
-        $$bindings.onclick(onclick);
-      if ($$props.text === void 0 && $$bindings.text && text !== void 0)
-        $$bindings.text(text);
-      if ($$props.cancel === void 0 && $$bindings.cancel && cancel !== void 0)
-        $$bindings.cancel(cancel);
-      if ($$props.form === void 0 && $$bindings.form && form !== void 0)
-        $$bindings.form(form);
-      if ($$props.selected === void 0 && $$bindings.selected && selected !== void 0)
-        $$bindings.selected(selected);
-      if ($$props.style === void 0 && $$bindings.style && style !== void 0)
-        $$bindings.style(style);
-      if ($$props.fontSize === void 0 && $$bindings.fontSize && fontSize !== void 0)
-        $$bindings.fontSize(fontSize);
-      if ($$props.font === void 0 && $$bindings.font && font !== void 0)
-        $$bindings.font(font);
-      if ($$props.progress === void 0 && $$bindings.progress && progress !== void 0)
-        $$bindings.progress(progress);
-      $$result.css.add(css$9);
-      $$unsubscribe__lang();
-      return `<div class="${[
-        "button s-d9-80eNJ_c8b",
-        (cancel || selected ? "cancel" : "") + " " + (form ? "form" : "")
-      ].join(" ").trim()}"${add_attribute("style", style, 0)}>${validate_component(Font, "Font").$$render($$result, { font: font || 0, size: fontSize || 1 }, {}, {
-        default: () => {
-          return `${escape(Array.isArray(text) ? text[$_lang] : text)}`;
-        }
-      })}</div>
-${progress ? `<div class="${"preloader s-d9-80eNJ_c8b"}">${validate_component(Preloading_indicator, "PreloadingIndicator").$$render($$result, { height: 2 }, {}, {})}</div>` : ``}
-<div style="${"margin-bottom: var(--s14px);"}" class="${"s-d9-80eNJ_c8b"}"></div>`;
-    });
     css$8 = {
       code: ".overlay.s-yeySwwqjZFKq{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;width:100vw;height:100vh;background-color:rgba(0,0,0,0.9)}.overlay.s-yeySwwqjZFKq:hover{cursor:ne-resize}.login_c.s-yeySwwqjZFKq{width:var(--s340px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c;cursor:auto}.login.s-yeySwwqjZFKq{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s20px);width:100%;height:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}.fb-button.s-yeySwwqjZFKq{display:flex;align-items:center;justify-content:center;height:var(--s45px);width:90%;border-radius:var(--s5px);padding:var(--s5px);background-color:var(--button);cursor:pointer;color:white;font-size:1.1rem;font-weight:bold;font-family:'Roboto', sans-serif;font-size:var(--s13px);background-color:#0a82ec}.fa-facebook-square.s-yeySwwqjZFKq{font-size:1.3rem;margin-right:var(--s10px)}.preloader.s-yeySwwqjZFKq{position:relative;width:calc(90% - var(--s5px))}.s-yeySwwqjZFKq{}",
       map: null
@@ -89689,7 +89703,7 @@ ${progress ? `<div class="${"preloader s-d9-80eNJ_c8b"}">${validate_component(Pr
       return `${`<div class="${"loader s-o47rfqMMGVwP"}"><div class="${"title s-o47rfqMMGVwP"}"><img src="${"/logo-tiny.png"}" alt="${"\u0D85\u0DBB\u0D9C\u0DBD\u0DBA.online"}" class="${"s-o47rfqMMGVwP"}"></div>
     <div class="${"progress-bar s-o47rfqMMGVwP"}">${validate_component(Preloading_indicator, "PreloadingIndicator").$$render($$result, {}, {}, {})}</div></div>`}`;
     });
-    css$1 = {
+    css$12 = {
       code: ".toast-container.s-F3BFPhrY-hZv{position:fixed;bottom:0;left:0;display:flex;justify-content:center;width:100vw;z-index:100}.event.s-F3BFPhrY-hZv{top:var(--eventy);left:var(--eventx);bottom:auto;width:auto;display:flex;justify-content:center}.toast.s-F3BFPhrY-hZv{display:inline-flex;max-width:var(--theme-columnwidth);padding:var(--s3px);border-radius:var(--s3px);border:var(--s1px) solid rgb(114, 114, 114);color:black;background-color:#ffffff;margin-bottom:var(--s5px);text-align:center}.s-F3BFPhrY-hZv{}",
       map: null
     };
@@ -89714,7 +89728,7 @@ ${progress ? `<div class="${"preloader s-d9-80eNJ_c8b"}">${validate_component(Pr
         );
       });
       onDestroy(() => showToastEvent.unsubscribe());
-      $$result.css.add(css$1);
+      $$result.css.add(css$12);
       $$unsubscribe__lang();
       return `
 
@@ -89725,7 +89739,7 @@ ${showText ? `<div class="${["toast-container s-F3BFPhrY-hZv", event ? "event" :
         }
       })}</div></div>` : ``}`;
     });
-    css3 = {
+    css4 = {
       code: "html{font-family:'Roboto', sans-serif}body{margin:0;overflow:hidden}*{box-sizing:border-box}._clickable:hover{cursor:pointer}p{margin:0}.card img{background-color:#000000;min-height:var(--theme-previewheight);width:100%;border-radius:3px}.form img{background-color:#000000;min-height:var(--theme-previewheight);width:100%;height:100%;border-radius:3px}ul.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-flex}.header.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{--text:rgb(163, 47, 47);--shadow-height:0.5rem;--shadow-gradient:linear-gradient(\n			to bottom,\n			rgba(0, 0, 0, 0.3) 0%,\n			rgba(0, 0, 0, 0.1) 30%,\n			transparent 100%\n		);height:var(--theme-layoutheaderheight);display:flex;align-items:center;justify-content:space-between;width:100vw;margin:0;font-family:var(--font);transition:transform 0.2s;user-select:none;padding:0;background-color:var(--theme-headerbackground)}.logo.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:flex;padding:var(--s10px) var(--s7px);align-items:baseline;padding-bottom:var(--s10px)}.aragalaya.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-block;font-size:var(--s36px);line-height:var(--s28px);font-weight:bold;font-family:'Gemunu Libre', sans-serif}.online.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-block;font-size:var(--s18px);font-family:'Roboto', sans-serif}.beta.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{padding:var(--s5px);font-size:var(--s9px);font-weight:bold;color:green}.header-right.s-PoaHcXV6SIWL li.s-PoaHcXV6SIWL{font-size:var(--s14px);line-height:var(--s14px);padding:0 var(--s5px);font-family:'Roboto', sans-serif}.header-right.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL:last-child{margin-right:var(--s5px)}.login.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{margin-left:var(--s30px)}.login.s-PoaHcXV6SIWL .fa-solid.s-PoaHcXV6SIWL{font-size:var(--s19px);margin-right:var(--s3px)}.header-right.s-PoaHcXV6SIWL li.s-PoaHcXV6SIWL{cursor:pointer}.language-select.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:relative}.language-button.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:flex;align-items:center;justify-content:center;width:var(--s30px);height:var(--s30px);background:white;color:black;font-size:18px;border-radius:var(--s3px);border:0.0520vw solid black;cursor:pointer}.languages.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:absolute;top:var(--s35px);right:var(--s-22_5px);z-index:10;width:var(--s80px);border-radius:var(--s3px);border:0.0520vw solid black}.languages.s-PoaHcXV6SIWL>div.s-PoaHcXV6SIWL{padding:var(--s10px);background-color:white;text-align:center}main.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:relative;margin:0 auto;overflow:hiden}.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{}",
       map: null
     };
@@ -89769,7 +89783,7 @@ ${showText ? `<div class="${["toast-container s-F3BFPhrY-hZv", event ? "event" :
         }
       });
       onDestroy(() => globalClickEvent.unsubscribe());
-      $$result.css.add(css3);
+      $$result.css.add(css4);
       $$unsubscribe__isMobile();
       return `
 
@@ -89782,7 +89796,7 @@ ${validate_component(Toasts, "Toasts").$$render($$result, {}, {}, {})}
 		</div>
 		<div class="${"online s-PoaHcXV6SIWL"}">.online
 		</div>
-        <div class="${"beta s-PoaHcXV6SIWL"}">${escape("(dev-beta)")}</div></div>
+        <div class="${"beta s-PoaHcXV6SIWL"}">${escape("(beta)")}</div></div>
 	<ul class="${"header-right s-PoaHcXV6SIWL"}">${!$_isMobile ? `<li class="${"s-PoaHcXV6SIWL"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
 		</li>
 		<li class="${"s-PoaHcXV6SIWL"}">English 
@@ -89820,9 +89834,9 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-61814ab8.js";
-    imports = ["_app/immutable/pages/__layout.svelte-61814ab8.js", "_app/immutable/chunks/index-3f430973.js", "_app/immutable/chunks/store-ce79c03c.js", "_app/immutable/chunks/index-ae61dfd7.js", "_app/immutable/chunks/text-input-a2667b4e.js", "_app/immutable/chunks/tags-3d71b4b3.js", "_app/immutable/chunks/progress-e3654a7b.js", "_app/immutable/chunks/select-f6a69648.js"];
-    stylesheets = ["_app/immutable/assets/__layout-86c85fdd.css", "_app/immutable/assets/text-input-3a112e71.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/progress-491479b0.css", "_app/immutable/assets/select-9228a765.css"];
+    file2 = "_app/immutable/pages/__layout.svelte-c3ad9b32.js";
+    imports = ["_app/immutable/pages/__layout.svelte-c3ad9b32.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/store-04dd07b0.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/text-input-52de91d0.js", "_app/immutable/chunks/progress-17dd0e1b.js", "_app/immutable/chunks/tags-bd466f71.js", "_app/immutable/chunks/select-abd9699c.js"];
+    stylesheets = ["_app/immutable/assets/__layout-47551a29.css", "_app/immutable/assets/text-input-3a112e71.css", "_app/immutable/assets/progress-7ec17c02.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/select-9228a765.css"];
   }
 });
 
@@ -89839,7 +89853,7 @@ var Error2;
 var init_error_svelte = __esm({
   ".svelte-kit/output/server/entries/fallbacks/error.svelte.js"() {
     init_shims();
-    init_index_548f2339();
+    init_index_35b769a7();
     Error2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { status } = $$props;
       let { error: error2 } = $$props;
@@ -89874,8 +89888,8 @@ var init__2 = __esm({
     init_shims();
     init_error_svelte();
     index2 = 1;
-    file3 = "_app/immutable/error.svelte-cb74504f.js";
-    imports2 = ["_app/immutable/error.svelte-cb74504f.js", "_app/immutable/chunks/index-3f430973.js"];
+    file3 = "_app/immutable/error.svelte-ff663153.js";
+    imports2 = ["_app/immutable/error.svelte-ff663153.js", "_app/immutable/chunks/index-52eb79f8.js"];
     stylesheets2 = [];
   }
 });
@@ -91929,17 +91943,17 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/proposal-ed198162.js
-var css$32, Card, strings$3, Timestamp2, strings$2, css$22, Content, css$12, Preview, strings$12, css4, Toolbar, strings2, Proposal;
-var init_proposal_ed198162 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/proposal-ed198162.js"() {
+// .svelte-kit/output/server/_app/immutable/chunks/proposal-fafe04c0.js
+var css$32, Card, strings$3, Timestamp2, strings$2, css$22, Content, css$13, Preview, strings$12, css5, Toolbar, strings2, Proposal;
+var init_proposal_fafe04c0 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/proposal-fafe04c0.js"() {
     init_shims();
-    init_index_548f2339();
-    init_store_ef18036d();
-    init_database_3b681d90();
-    init_text_input_5ddfa4f0();
+    init_index_35b769a7();
+    init_store_b064923f();
+    init_database_101a0841();
+    init_text_input_634a870a();
     init_string_strip_html_esm();
-    init_tags_1e5db5f0();
+    init_tags_d4e87ab8();
     css$32 = {
       code: ".card-container.s-Hio59jcNIlCL{padding:var(--theme-cardseparationhalf)}.card.s-Hio59jcNIlCL{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.comment-container.s-Hio59jcNIlCL{position:relative;margin-top:var(--s9px);border-left:var(--s1px) solid #f0f0f0;padding-left:var(--s3px)}.comment-author.s-Hio59jcNIlCL{display:flex;align-items:baseline;justify-content:flex-start}.author-name.s-Hio59jcNIlCL{font-size:var(--s11px);color:black;font-weight:bold}.comment.s-Hio59jcNIlCL{display:inline-flex;font-size:var(--s12px);padding:2px 0px 0 0;border-radius:4px;color:rgb(57, 56, 56)}.comment-box.s-Hio59jcNIlCL{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:var(--theme-cardseparation)}.comment-text.s-Hio59jcNIlCL{position:relative;display:inline-flex;width:100%}.submit-button.s-Hio59jcNIlCL{position:absolute;display:flex;align-items:center;justify-content:center;z-index:1;top:0;right:0;height:100%;width:var(--comment-button-size);background-color:#f5f5f5;color:white;border-top-right-radius:var(--s3px);border-bottom-right-radius:var(--s3px)}.progress.s-Hio59jcNIlCL{animation:s-Hio59jcNIlCL-progress;animation-duration:500ms;animation-iteration-count:infinite}.delete-button.s-Hio59jcNIlCL{position:absolute;display:flex;align-items:center;justify-content:center;z-index:1;top:0;right:0;height:var(--comment-button-size);width:var(--comment-button-size);background-color:#e1e1e1;color:white;border-radius:var(--s3px)}@keyframes s-Hio59jcNIlCL-progress{from{background-color:#e1e1e1}to{background-color:#f5f5f5}}.s-Hio59jcNIlCL{}",
       map: null
@@ -92171,7 +92185,7 @@ var init_proposal_ed198162 = __esm({
     <!-- HTML_TAG_START -->${data[contentField][data._viewOriginal ? 3 : $_lang]}<!-- HTML_TAG_END -->  
 </div>`;
     });
-    css$12 = {
+    css$13 = {
       code: ".preview-image.s-Aln3qbhUrjzf{background-image:var(--url);background-color:#7b7b7b;height:var(--theme-previewheight);width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;border-radius:var(--s3px);margin-top:var(--theme-cardseparationhalf);filter:grayscale(0.6)}.preview-container.s-Aln3qbhUrjzf{position:relative}.preview-overlay.s-Aln3qbhUrjzf{position:absolute;top:0;left:0;height:var(--theme-previewheight);width:100%;background-color:black;opacity:var(--theme-previewopacity);border-radius:3px}.s-Aln3qbhUrjzf{}",
       map: null
     };
@@ -92200,7 +92214,7 @@ var init_proposal_ed198162 = __esm({
         $$bindings.limit(limit2);
       if ($$props.expanded === void 0 && $$bindings.expanded && expanded !== void 0)
         $$bindings.expanded(expanded);
-      $$result.css.add(css$12);
+      $$result.css.add(css$13);
       contentString = Array.isArray(content) ? content[data._viewOriginal ? 3 : $_lang] : content;
       images = contentString.match(/src="([\w\W]+?)"/g);
       images = images && images.map((src, _i) => {
@@ -92232,7 +92246,7 @@ var init_proposal_ed198162 = __esm({
         "\u0B9A\u0BB0\u0BBF\u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BB5\u0BBF\u0BB2\u0BCD\u0BB2\u0BC8"
       ]
     };
-    css4 = {
+    css5 = {
       code: ".toolbar.s-A62t8M1ucyij{display:flex;align-items:center;justify-content:space-between;margin-top:var(--theme-cardseparationhalf)}.toolbar-left.s-A62t8M1ucyij{display:inline-flex}.toolbar-right.s-A62t8M1ucyij{display:inline-flex;align-items:center}.icon.s-A62t8M1ucyij{display:inline-flex;align-items:center;justify-content:center;width:var(--theme-toolbarbuttonsize);height:var(--theme-toolbarbuttonsize);margin-right:var(--theme-cardseparationhalf);font-size:var(--s13px);line-height:var(--s14px);background-color:rgb(226, 230, 230);border-radius:var(--s3px)}.mobile-huddle.s-A62t8M1ucyij{display:inline-flex;border-radius:var(--s3px);overflow:hidden;padding:0}.huddle.s-A62t8M1ucyij{margin-right:0;border-radius:0}.on.s-A62t8M1ucyij{background-color:rgb(124, 124, 124);color:white}.verified.s-A62t8M1ucyij{background-color:#48bb6b;color:white;margin-right:0}.not-verified.s-A62t8M1ucyij{background-color:#e44e4e;color:white;margin-right:0}.facebook.s-A62t8M1ucyij{background-color:#557bab}.twitter.s-A62t8M1ucyij{background-color:#6abef2}.whatsapp.s-A62t8M1ucyij{background-color:#61ba7b}.reddit.s-A62t8M1ucyij{background-color:#fc7949}.fa-brands.s-A62t8M1ucyij{color:white}.s-A62t8M1ucyij{}",
       map: null
     };
@@ -92253,7 +92267,7 @@ var init_proposal_ed198162 = __esm({
       createEventDispatcher();
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      $$result.css.add(css4);
+      $$result.css.add(css5);
       $$unsubscribe__admin();
       $$unsubscribe__user();
       $$unsubscribe__isMobile();
@@ -92557,18 +92571,18 @@ function tweened(value, defaults = {}) {
     subscribe: store.subscribe
   };
 }
-var import_chroma_js4, css$72, Nav, css$62, Template, strings$22, css$52, Mt, Bulletin, News, css$42, Youtube, Video, css$33, Post, strings$13, css$23, Filter2, strings3, css$13, Wip, css5, COMPONENTS, Routes;
+var import_chroma_js4, css$72, Nav, css$62, Template, strings$32, css$52, Mt, Bulletin, News, strings$22, css$42, Post, strings$13, css$33, Filter2, strings3, css$23, Wip, css$14, Youtube, Video, css6, COMPONENTS, Routes;
 var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
-    init_index_548f2339();
-    init_database_3b681d90();
+    init_index_35b769a7();
+    init_database_101a0841();
     init_string_strip_html_esm();
-    init_store_ef18036d();
-    init_text_input_5ddfa4f0();
-    init_progress_svelte_svelte_type_style_lang_4912f87d();
-    init_proposal_ed198162();
-    init_tags_1e5db5f0();
+    init_store_b064923f();
+    init_text_input_634a870a();
+    init_progress_svelte_svelte_type_style_lang_71288b18();
+    init_proposal_fafe04c0();
+    init_tags_d4e87ab8();
     init_dist();
     init_dist2();
     init_dist3();
@@ -92666,7 +92680,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
         }
       })}`;
     });
-    strings$22 = {
+    strings$32 = {
       machine_translated: [
         "\u0DC3\u0DCA\u0DC0\u0DBA\u0D82\u0D9A\u0DCA\u200D\u0DBB\u0DD3\u0DBA \u0DB4\u0DBB\u0DD2\u0DC0\u0DBB\u0DCA\u0DAD\u0DB1\u0DBA\u0D9A\u0DD2, \u0DB8\u0DD4\u0DBD\u0DCA \u0DB4\u0DD2\u0DA7\u0DB4\u0DAD \u0DB6\u0DBD\u0DB1\u0DCA\u0DB1.",
         "automatic translation, view original.",
@@ -92709,7 +92723,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         {},
         {
           default: () => {
-            return `${`<i class="${"fa-solid fa-globe s-Q7XEqeLz3oYK"}"></i> ${escape(strings$22["machine_translated"][$_lang])}`}`;
+            return `${`<i class="${"fa-solid fa-globe s-Q7XEqeLz3oYK"}"></i> ${escape(strings$32["machine_translated"][$_lang])}`}`;
           }
         }
       )}</div>` : ``}`;
@@ -92888,7 +92902,238 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         }
       })}`;
     });
+    strings$22 = {
+      more: [
+        "\u0DAD\u0DC0\u0DAD\u0DCA ",
+        "more ",
+        "\u0BAE\u0BC7\u0BB2\u0BC1\u0BAE\u0BCD "
+      ],
+      back: [
+        "\u0D86\u0DB4\u0DC3\u0DD4",
+        "back",
+        "\u0BAE\u0BC0\u0BA3\u0BCD\u0B9F\u0BC1\u0BAE\u0BCD"
+      ]
+    };
     css$42 = {
+      code: ".post.s--3yJQkpZRIwU{position:absolute;top:0;left:0;z-index:1000;display:flex;flex-direction:column;overflow-y:scroll;width:100%;height:100%;background-color:rgba(0,0,0,0.9)}.post-container.s--3yJQkpZRIwU{width:var(--theme-columnwidth);margin:auto}.s--3yJQkpZRIwU{}",
+      map: null
+    };
+    Post = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $_lang, $$unsubscribe__lang;
+      validate_store(_lang, "_lang");
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let { data } = $$props;
+      const column = COLUMNS.find((c3) => c3.type == data.type);
+      const hidePost = () => {
+        data._singlePostView = false;
+        data._expanded = true;
+        _emitEvent("hide-post");
+      };
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+        $$bindings.data(data);
+      $$result.css.add(css$42);
+      $$unsubscribe__lang();
+      return `<div class="${"post s--3yJQkpZRIwU"}"><div class="${"post-container s--3yJQkpZRIwU"}">${validate_component(COMPONENTS[data.type] || missing_component, "svelte:component").$$render($$result, { class: "post-component", data }, {}, {})}
+        ${validate_component(Button, "Button").$$render(
+        $$result,
+        {
+          form: true,
+          text: data._initialLoad ? strings$22["more"][$_lang] + column.title[$_lang] : strings$22["back"][$_lang],
+          style: "\n                width: calc(100% - var(--theme-cardseparation));\n                margin: var(--theme-cardseparationhalf);\n                margin-bottom: var(--s20px);",
+          onclick: hidePost
+        },
+        {},
+        {}
+      )}</div>
+</div>`;
+    });
+    strings$13 = {
+      verified_status: [
+        "\u0DC3\u0DAD\u0DCA\u200D\u0DBA\u0DCF\u0DB4\u0DD2\u0DAD \u0DB6\u0DC0:",
+        "verified status:",
+        "\u0B9A\u0BB0\u0BBF\u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BCD\u0B9F \u0BA8\u0BBF\u0BB2\u0BC8:"
+      ],
+      verified: [
+        "\u0DAD\u0DC4\u0DC0\u0DD4\u0DBB\u0DD4 \u0D9A\u0DBB \u0D87\u0DAD\u0DD2",
+        "verified",
+        "\u0B9A\u0BB0\u0BBF\u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BCD\u0B9F\u0BA4\u0BC1"
+      ],
+      not_verified: [
+        "\u0DAD\u0DC4\u0DC0\u0DD4\u0DBB\u0DD4 \u0D9A\u0DBB \u0DB1\u0DD0\u0DAD\u0DD2",
+        "not verified",
+        "\u0B9A\u0BB0\u0BBF\u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BB5\u0BBF\u0BB2\u0BCD\u0BB2\u0BC8"
+      ],
+      tags: [
+        "\u0D9A\u0DCF\u0DAB\u0DCA\u0DA9:",
+        "tags:",
+        "\u0BB5\u0B95\u0BC8\u0B95\u0BB3\u0BCD:"
+      ],
+      filter: [
+        "\u0DAD\u0DDD\u0DBB\u0DB1\u0DCA\u0DB1",
+        "filter",
+        "\u0BB5\u0B9F\u0BBF\u0B95\u0B9F\u0BCD\u0B9F\u0BC1"
+      ]
+    };
+    css$33 = {
+      code: ".filters.s-BJo09dFzrlwu{position:relative;width:100%;padding:var(--theme-cardseparationhalf) 0 0 0}.tag.s-BJo09dFzrlwu{background-color:white;border:var(--s1px) solid #cfcfcf;border-radius:var(--s5px);padding:var(--s3px) var(--s5px);margin-right:var(--s5px);filter:grayscale(0.8);margin-bottom:var(--s6px)}.tag.s-BJo09dFzrlwu:hover{cursor:pointer}.selected-tags.s-BJo09dFzrlwu{background-color:var(--color);filter:none}.button-container.s-BJo09dFzrlwu{display:flex;justify-content:center}.button.s-BJo09dFzrlwu{display:inline-flex;justify-content:center;align-items:center;margin-right:var(--s5px);padding:var(--s7px);background-color:rgb(199, 226, 249);border-radius:var(--s3px);width:var(--s30px)}.button.s-BJo09dFzrlwu:hover{cursor:pointer}.filter.s-BJo09dFzrlwu{background-color:rgb(127, 191, 247);padding:var(--s5px) var(--s10px);width:var(--s150px)}.s-BJo09dFzrlwu{}",
+      map: null
+    };
+    Filter2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $_lang, $$unsubscribe__lang;
+      validate_store(_lang, "_lang");
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let { show } = $$props;
+      let { columnId } = $$props;
+      let configTags = [];
+      if (COLUMNS[columnId].tags) {
+        configTags = COLUMNS[columnId].tags.map((tag) => TAGS[tag]);
+      }
+      configTags.map((_2) => _2.name);
+      let selectedTags = Array(configTags.length).fill(true);
+      if ($$props.show === void 0 && $$bindings.show && show !== void 0)
+        $$bindings.show(show);
+      if ($$props.columnId === void 0 && $$bindings.columnId && columnId !== void 0)
+        $$bindings.columnId(columnId);
+      $$result.css.add(css$33);
+      $$unsubscribe__lang();
+      return `
+
+
+${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "Card").$$render($$result, {}, {}, {
+        default: () => {
+          return `${validate_component(Font, "Font").$$render(
+            $$result,
+            {
+              font: 0,
+              size: 0.9,
+              style: "\n                display: flex;\n                margin-bottom: var(--s5px);\n                justify-content: center;\n                flex-wrap: wrap;"
+            },
+            {},
+            {
+              default: () => {
+                return `
+            <span class="${["tag s-BJo09dFzrlwu", "selected-tags"].join(" ").trim()}" style="${"--color: #48bb6b;"}">${escape(strings$13["verified"][$_lang])}</span>
+            
+            <span class="${["tag s-BJo09dFzrlwu", ""].join(" ").trim()}" style="${"--color: #e44e4e;"}">${escape(strings$13["not_verified"][$_lang])}</span>`;
+              }
+            }
+          )}
+        ${validate_component(Font, "Font").$$render(
+            $$result,
+            {
+              font: 0,
+              size: 0.9,
+              style: "\n                display: flex;\n                margin-bottom: var(--s5px);\n                justify-content: center;\n                flex-wrap: wrap;"
+            },
+            {},
+            {
+              default: () => {
+                return `
+            ${each(configTags, (tag, _i) => {
+                  return `<span class="${["tag s-BJo09dFzrlwu", selectedTags[_i] ? "selected-tags" : ""].join(" ").trim()}" style="${"--color: " + escape(tag.color, true) + ";"}">${escape(tag.strings[$_lang])}
+            </span>`;
+                })}`;
+              }
+            }
+          )}
+        <div class="${"button-container s-BJo09dFzrlwu"}">
+            <div class="${"button s-BJo09dFzrlwu"}"><i class="${"fa-solid fa-grip s-BJo09dFzrlwu"}"></i></div>
+            
+            <div class="${"button s-BJo09dFzrlwu"}"><i class="${"fa-solid fa-ellipsis s-BJo09dFzrlwu"}"></i></div>
+            
+            <div class="${"button filter s-BJo09dFzrlwu"}">${validate_component(Font, "Font").$$render($$result, { font: 0, size: 0.9 }, {}, {
+            default: () => {
+              return `${`${escape(strings$13["filter"][$_lang])}`}`;
+            }
+          })}</div>
+            
+            <div class="${"button s-BJo09dFzrlwu"}"><i class="${"fa-solid fa-xmark s-BJo09dFzrlwu"}"></i></div></div>`;
+        }
+      })}</div>` : ``}`;
+    });
+    strings3 = {
+      wip: [
+        "\u0DB8\u0DD9\u0DB8 \u0DC3\u0DDA\u0DC0\u0DCF\u0DC0 \u0DAD\u0DC0\u0DB8\u0DAD\u0DCA \u0D89\u0DAF\u0DD2\u0D9A\u0DBB\u0DB8\u0DD2\u0DB1\u0DCA \u0DB4\u0DC0\u0DAD\u0DD3",
+        "this service is still under construction",
+        "\u0B87\u0BA8\u0BCD\u0BA4 \u0B9A\u0BC7\u0BB5\u0BC8 \u0B87\u0BA9\u0BCD\u0BA9\u0BC1\u0BAE\u0BCD \u0B95\u0B9F\u0BCD\u0B9F\u0BC1\u0BAE\u0BBE\u0BA9\u0BA4\u0BCD\u0BA4\u0BBF\u0BB2\u0BCD \u0B89\u0BB3\u0BCD\u0BB3\u0BA4\u0BC1"
+      ],
+      description: [
+        "\u0DC3\u0DDA\u0DC0\u0DCF \u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DBA",
+        "service description",
+        "\u0B9A\u0BC7\u0BB5\u0BC8 \u0BB5\u0BBF\u0BB3\u0B95\u0BCD\u0B95\u0BAE\u0BCD"
+      ],
+      release: [
+        "\u0DC3\u0DD0\u0DBD\u0DC3\u0DD4\u0DB8\u0DCA\u0D9C\u0DAD \u0DB8\u0DD4\u0DAF\u0DCF \u0DC4\u0DD0\u0DBB\u0DD3\u0DB8\u0DDA \u0DAF\u0DD2\u0DB1\u0DBA",
+        "planned release date",
+        "\u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0BAE\u0BBF\u0B9F\u0BCD\u0B9F \u0BB5\u0BC6\u0BB3\u0BBF\u0BAF\u0BC0\u0B9F\u0BCD\u0B9F\u0BC1 \u0BA4\u0BC7\u0BA4\u0BBF"
+      ]
+    };
+    css$23 = {
+      code: ".wip-icon.s-VlBfGya5dl-K{font-size:var(--s30px);text-align:center;padding:var(--s20px)}.s-VlBfGya5dl-K{}",
+      map: null
+    };
+    Wip = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $_lang, $$unsubscribe__lang;
+      validate_store(_lang, "_lang");
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let { data } = $$props;
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+        $$bindings.data(data);
+      $$result.css.add(css$23);
+      $$unsubscribe__lang();
+      return `${validate_component(Card, "Card").$$render($$result, { data }, {}, {
+        default: () => {
+          return `<div class="${"wip-icon s-VlBfGya5dl-K"}"><i class="${"fa-solid fa-screwdriver-wrench s-VlBfGya5dl-K"}"></i></div>
+    ${validate_component(Font, "Font").$$render(
+            $$result,
+            {
+              font: 2,
+              size: 1,
+              color: "rgb(55, 55, 55);",
+              style: "\n            margin-bottom: var(--s10px);\n            text-align: center;\n            font-weight: bold;"
+            },
+            {},
+            {
+              default: () => {
+                return `${escape(strings3["wip"][$_lang])}`;
+              }
+            }
+          )}
+    ${validate_component(Font, "Font").$$render(
+            $$result,
+            {
+              font: 0,
+              size: 0.9,
+              color: "rgb(55, 55, 55);",
+              style: "\n            margin-bottom: var(--s10px);\n            text-align: center;"
+            },
+            {},
+            {
+              default: () => {
+                return `${escape(data.service[$_lang])}`;
+              }
+            }
+          )}
+
+    ${validate_component(Font, "Font").$$render(
+            $$result,
+            {
+              font: 0,
+              size: 0.9,
+              color: "rgb(55, 55, 55);",
+              style: "\n            margin-bottom: var(--s10px);\n            text-align: center;"
+            },
+            {},
+            {
+              default: () => {
+                return `${escape(strings3["release"][$_lang] + ": " + data.releaseDate)}`;
+              }
+            }
+          )}`;
+        }
+      })}`;
+    });
+    css$14 = {
       code: ".youtube.s-pP_MCOEFRNVA{position:relative;border-radius:var(--s3px);overflow:hidden;height:var(--theme-previewheight);width:100%}.youtube-preview.s-pP_MCOEFRNVA{background-image:var(--thumbnail);background-color:#7b7b7b;height:var(--theme-previewheight);width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;filter:grayscale(0.6)}.youtube-overlay.s-pP_MCOEFRNVA{position:absolute;top:0;left:0;display:flex;align-items:center;justify-content:center;color:white;font-size:var(--s35px);height:var(--theme-previewheight);width:100%;background-color:rgba(0,0,0, var(--theme-previewopacity));border-radius:3px}.s-pP_MCOEFRNVA{}",
       map: null
     };
@@ -92900,7 +93145,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         $$bindings.data(data);
       if ($$props.style === void 0 && $$bindings.style && style !== void 0)
         $$bindings.style(style);
-      $$result.css.add(css$42);
+      $$result.css.add(css$14);
       return `<div class="${["youtube s-pP_MCOEFRNVA", "youtube-preview"].join(" ").trim()}"${add_attribute("style", youtubeStyles, 0)}><div id="${"player-" + escape(data.id, true)}" class="${"s-pP_MCOEFRNVA"}"></div>
     ${`<div class="${"youtube-overlay s-pP_MCOEFRNVA"}"><i class="${"fa-solid fa-play s-pP_MCOEFRNVA"}"></i></div>`}
 </div>`;
@@ -92985,205 +93230,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         }
       })}`;
     });
-    css$33 = {
-      code: ".post.s--3yJQkpZRIwU{position:absolute;top:0;left:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background-color:rgba(0,0,0,0.9)}.post-container.s--3yJQkpZRIwU{width:var(--theme-columnwidth)}.s--3yJQkpZRIwU{}",
-      map: null
-    };
-    Post = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let { data } = $$props;
-      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
-        $$bindings.data(data);
-      $$result.css.add(css$33);
-      return `<div class="${"post s--3yJQkpZRIwU"}"><div class="${"post-container s--3yJQkpZRIwU"}">${validate_component(COMPONENTS[data.type] || missing_component, "svelte:component").$$render($$result, { data }, {}, {})}</div>
-</div>`;
-    });
-    strings$13 = {
-      verified_status: [
-        "\u0DC3\u0DAD\u0DCA\u200D\u0DBA\u0DCF\u0DB4\u0DD2\u0DAD \u0DB6\u0DC0:",
-        "verified status:",
-        "\u0B9A\u0BB0\u0BBF\u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BCD\u0B9F \u0BA8\u0BBF\u0BB2\u0BC8:"
-      ],
-      verified: [
-        "\u0DAD\u0DC4\u0DC0\u0DD4\u0DBB\u0DD4 \u0D9A\u0DBB \u0D87\u0DAD\u0DD2",
-        "verified",
-        "\u0B9A\u0BB0\u0BBF\u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BCD\u0B9F\u0BA4\u0BC1"
-      ],
-      not_verified: [
-        "\u0DAD\u0DC4\u0DC0\u0DD4\u0DBB\u0DD4 \u0D9A\u0DBB \u0DB1\u0DD0\u0DAD\u0DD2",
-        "not verified",
-        "\u0B9A\u0BB0\u0BBF\u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BB5\u0BBF\u0BB2\u0BCD\u0BB2\u0BC8"
-      ],
-      tags: [
-        "\u0D9A\u0DCF\u0DAB\u0DCA\u0DA9:",
-        "tags:",
-        "\u0BB5\u0B95\u0BC8\u0B95\u0BB3\u0BCD:"
-      ],
-      filter: [
-        "\u0DAD\u0DDD\u0DBB\u0DB1\u0DCA\u0DB1",
-        "filter",
-        "\u0BB5\u0B9F\u0BBF\u0B95\u0B9F\u0BCD\u0B9F\u0BC1"
-      ]
-    };
-    css$23 = {
-      code: ".filters.s-BJo09dFzrlwu{position:relative;width:100%;padding:var(--theme-cardseparationhalf) 0 0 0}.tag.s-BJo09dFzrlwu{background-color:white;border:var(--s1px) solid #cfcfcf;border-radius:var(--s5px);padding:var(--s3px) var(--s5px);margin-right:var(--s5px);filter:grayscale(0.8);margin-bottom:var(--s6px)}.tag.s-BJo09dFzrlwu:hover{cursor:pointer}.selected-tags.s-BJo09dFzrlwu{background-color:var(--color);filter:none}.button-container.s-BJo09dFzrlwu{display:flex;justify-content:center}.button.s-BJo09dFzrlwu{display:inline-flex;justify-content:center;align-items:center;margin-right:var(--s5px);padding:var(--s7px);background-color:rgb(199, 226, 249);border-radius:var(--s3px);width:var(--s30px)}.button.s-BJo09dFzrlwu:hover{cursor:pointer}.filter.s-BJo09dFzrlwu{background-color:rgb(127, 191, 247);padding:var(--s5px) var(--s10px);width:var(--s150px)}.s-BJo09dFzrlwu{}",
-      map: null
-    };
-    Filter2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang, $$unsubscribe__lang;
-      validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
-      let { show } = $$props;
-      let { columnId } = $$props;
-      let configTags = [];
-      if (COLUMNS[columnId].tags) {
-        configTags = COLUMNS[columnId].tags.map((tag) => TAGS[tag]);
-      }
-      configTags.map((_2) => _2.name);
-      let selectedTags = Array(configTags.length).fill(true);
-      if ($$props.show === void 0 && $$bindings.show && show !== void 0)
-        $$bindings.show(show);
-      if ($$props.columnId === void 0 && $$bindings.columnId && columnId !== void 0)
-        $$bindings.columnId(columnId);
-      $$result.css.add(css$23);
-      $$unsubscribe__lang();
-      return `
-
-
-${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "Card").$$render($$result, {}, {}, {
-        default: () => {
-          return `${validate_component(Font, "Font").$$render(
-            $$result,
-            {
-              font: 0,
-              size: 0.9,
-              style: "\n                display: flex;\n                margin-bottom: var(--s5px);\n                justify-content: center;\n                flex-wrap: wrap;"
-            },
-            {},
-            {
-              default: () => {
-                return `
-            <span class="${["tag s-BJo09dFzrlwu", "selected-tags"].join(" ").trim()}" style="${"--color: #48bb6b;"}">${escape(strings$13["verified"][$_lang])}</span>
-            
-            <span class="${["tag s-BJo09dFzrlwu", ""].join(" ").trim()}" style="${"--color: #e44e4e;"}">${escape(strings$13["not_verified"][$_lang])}</span>`;
-              }
-            }
-          )}
-        ${validate_component(Font, "Font").$$render(
-            $$result,
-            {
-              font: 0,
-              size: 0.9,
-              style: "\n                display: flex;\n                margin-bottom: var(--s5px);\n                justify-content: center;\n                flex-wrap: wrap;"
-            },
-            {},
-            {
-              default: () => {
-                return `
-            ${each(configTags, (tag, _i) => {
-                  return `<span class="${["tag s-BJo09dFzrlwu", selectedTags[_i] ? "selected-tags" : ""].join(" ").trim()}" style="${"--color: " + escape(tag.color, true) + ";"}">${escape(tag.strings[$_lang])}
-            </span>`;
-                })}`;
-              }
-            }
-          )}
-        <div class="${"button-container s-BJo09dFzrlwu"}">
-            <div class="${"button s-BJo09dFzrlwu"}"><i class="${"fa-solid fa-grip s-BJo09dFzrlwu"}"></i></div>
-            
-            <div class="${"button s-BJo09dFzrlwu"}"><i class="${"fa-solid fa-ellipsis s-BJo09dFzrlwu"}"></i></div>
-            
-            <div class="${"button filter s-BJo09dFzrlwu"}">${validate_component(Font, "Font").$$render($$result, { font: 0, size: 0.9 }, {}, {
-            default: () => {
-              return `${`${escape(strings$13["filter"][$_lang])}`}`;
-            }
-          })}</div>
-            
-            <div class="${"button s-BJo09dFzrlwu"}"><i class="${"fa-solid fa-xmark s-BJo09dFzrlwu"}"></i></div></div>`;
-        }
-      })}</div>` : ``}`;
-    });
-    strings3 = {
-      wip: [
-        "\u0DB8\u0DD9\u0DB8 \u0DC3\u0DDA\u0DC0\u0DCF\u0DC0 \u0DAD\u0DC0\u0DB8\u0DAD\u0DCA \u0D89\u0DAF\u0DD2\u0D9A\u0DBB\u0DB8\u0DD2\u0DB1\u0DCA \u0DB4\u0DC0\u0DAD\u0DD3",
-        "this service is still under construction",
-        "\u0B87\u0BA8\u0BCD\u0BA4 \u0B9A\u0BC7\u0BB5\u0BC8 \u0B87\u0BA9\u0BCD\u0BA9\u0BC1\u0BAE\u0BCD \u0B95\u0B9F\u0BCD\u0B9F\u0BC1\u0BAE\u0BBE\u0BA9\u0BA4\u0BCD\u0BA4\u0BBF\u0BB2\u0BCD \u0B89\u0BB3\u0BCD\u0BB3\u0BA4\u0BC1"
-      ],
-      description: [
-        "\u0DC3\u0DDA\u0DC0\u0DCF \u0DC0\u0DD2\u0DC3\u0DCA\u0DAD\u0DBB\u0DBA",
-        "service description",
-        "\u0B9A\u0BC7\u0BB5\u0BC8 \u0BB5\u0BBF\u0BB3\u0B95\u0BCD\u0B95\u0BAE\u0BCD"
-      ],
-      release: [
-        "\u0DC3\u0DD0\u0DBD\u0DC3\u0DD4\u0DB8\u0DCA\u0D9C\u0DAD \u0DB8\u0DD4\u0DAF\u0DCF \u0DC4\u0DD0\u0DBB\u0DD3\u0DB8\u0DDA \u0DAF\u0DD2\u0DB1\u0DBA",
-        "planned release date",
-        "\u0BA4\u0BBF\u0B9F\u0BCD\u0B9F\u0BAE\u0BBF\u0B9F\u0BCD\u0B9F \u0BB5\u0BC6\u0BB3\u0BBF\u0BAF\u0BC0\u0B9F\u0BCD\u0B9F\u0BC1 \u0BA4\u0BC7\u0BA4\u0BBF"
-      ]
-    };
-    css$13 = {
-      code: ".wip-icon.s-VlBfGya5dl-K{font-size:var(--s30px);text-align:center;padding:var(--s20px)}.s-VlBfGya5dl-K{}",
-      map: null
-    };
-    Wip = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang, $$unsubscribe__lang;
-      validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
-      let { data } = $$props;
-      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
-        $$bindings.data(data);
-      $$result.css.add(css$13);
-      $$unsubscribe__lang();
-      return `${validate_component(Card, "Card").$$render($$result, { data }, {}, {
-        default: () => {
-          return `<div class="${"wip-icon s-VlBfGya5dl-K"}"><i class="${"fa-solid fa-screwdriver-wrench s-VlBfGya5dl-K"}"></i></div>
-    ${validate_component(Font, "Font").$$render(
-            $$result,
-            {
-              font: 2,
-              size: 1,
-              color: "rgb(55, 55, 55);",
-              style: "\n            margin-bottom: var(--s10px);\n            text-align: center;\n            font-weight: bold;"
-            },
-            {},
-            {
-              default: () => {
-                return `${escape(strings3["wip"][$_lang])}`;
-              }
-            }
-          )}
-    ${validate_component(Font, "Font").$$render(
-            $$result,
-            {
-              font: 0,
-              size: 0.9,
-              color: "rgb(55, 55, 55);",
-              style: "\n            margin-bottom: var(--s10px);\n            text-align: center;"
-            },
-            {},
-            {
-              default: () => {
-                return `${escape(data.service[$_lang])}`;
-              }
-            }
-          )}
-
-    ${validate_component(Font, "Font").$$render(
-            $$result,
-            {
-              font: 0,
-              size: 0.9,
-              color: "rgb(55, 55, 55);",
-              style: "\n            margin-bottom: var(--s10px);\n            text-align: center;"
-            },
-            {},
-            {
-              default: () => {
-                return `${escape(strings3["release"][$_lang] + ": " + data.releaseDate)}`;
-              }
-            }
-          )}`;
-        }
-      })}`;
-    });
-    css5 = {
+    css6 = {
       code: "ul.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex}.columns.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;overflow:hidden;background-color:var(--theme-columnbackground)}.column.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;width:var(--theme-columnwidth);height:calc(100vh - var(--theme-columnheaderheight))}.header.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;height:var(--theme-columnheaderheight);color:var(--theme-headerfontcolor);padding:0 var(--theme-cardseparationhalf) 0 var(--s10px);font-weight:bold;z-index:2}.header.s-Uap-jPRb-uiE div.s-Uap-jPRb-uiE{display:flex;align-items:center;height:100%}.header.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE:first-child{font-size:var(--s24px)}.icon-button.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{display:inline-flex;align-items:center;justify-content:center;width:35px;height:35px;font-size:var(--s17px)}.cards.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:relative;width:100%;height:calc(100vh - var(--s100px));overflow-y:scroll;scrollbar-width:none;-ms-overflow-style:none;padding:var(--theme-cardseparationhalf) 0}.cards.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE::-webkit-scrollbar{display:none}.spacer.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{width:var(--theme-cardseparationhalf);height:calc(100vh - var(--theme-columnheaderheight))}.spacer.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE::after{display:block;content:'';height:var(--theme-columnheaderheight);width:var(--theme-cardseparationhalf);background-color:var(--background)}.scrollbar.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:absolute;top:var(--theme-columnheaderheight);right:0}.scroll.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{position:absolute;overflow:hidden;top:var(--s20px);right:var(--s-3_75px);width:var(--s7_5px);border-radius:var(--s7_5px);opacity:0.5;background-color:rgba(0,0,0,0.4)}.s-Uap-jPRb-uiE.s-Uap-jPRb-uiE{}",
       map: null
     };
@@ -93214,6 +93261,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
       let imagex = "https://firebasestorage.googleapis.com/v0/b/aragalaya-online.appspot.com/o/aragalaya-image.jpeg?alt=media&token=46171892-7f2f-49bb-8424-65ca7411271e";
       if (postData) {
         postData._expanded = true;
+        postData._initialLoad = true;
         title = postData.title && postData.title[0] || postData.organization && postData.organization[0] || "\u0D85\u0DBB\u0D9C\u0DBD\u0DBA.online";
         url = _shareLink + postData.id;
         description = ge(postData.description && postData.description[0] || postData.shortDescription && postData.shortDescription[0] || postData.proposal && postData.proposal[0]).result;
@@ -93265,7 +93313,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
         $$bindings.columnData(columnData);
       if ($$props.postData === void 0 && $$bindings.postData && postData !== void 0)
         $$bindings.postData(postData);
-      $$result.css.add(css5);
+      $$result.css.add(css6);
       $$unsubscribe__isMobile();
       $$unsubscribe__lang();
       return `
@@ -93340,9 +93388,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    file4 = "_app/immutable/pages/index.svelte-7344537e.js";
-    imports3 = ["_app/immutable/pages/index.svelte-7344537e.js", "_app/immutable/chunks/index-3f430973.js", "_app/immutable/chunks/text-input-a2667b4e.js", "_app/immutable/chunks/store-ce79c03c.js", "_app/immutable/chunks/index-ae61dfd7.js", "_app/immutable/chunks/proposal-3fdc9980.js", "_app/immutable/chunks/tags-3d71b4b3.js", "_app/immutable/chunks/progress-e3654a7b.js"];
-    stylesheets3 = ["_app/immutable/assets/index-ce697e7d.css", "_app/immutable/assets/text-input-3a112e71.css", "_app/immutable/assets/proposal-96974fc1.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/progress-491479b0.css"];
+    file4 = "_app/immutable/pages/index.svelte-ffd80e9f.js";
+    imports3 = ["_app/immutable/pages/index.svelte-ffd80e9f.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/text-input-52de91d0.js", "_app/immutable/chunks/store-04dd07b0.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/proposal-c37729c1.js", "_app/immutable/chunks/tags-bd466f71.js", "_app/immutable/chunks/progress-17dd0e1b.js"];
+    stylesheets3 = ["_app/immutable/assets/index-2734bfc9.css", "_app/immutable/assets/text-input-3a112e71.css", "_app/immutable/assets/proposal-96974fc1.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/progress-7ec17c02.css"];
   }
 });
 
@@ -93351,24 +93399,24 @@ var post_preview_svelte_exports = {};
 __export(post_preview_svelte_exports, {
   default: () => Post_preview
 });
-var import_chroma_js5, css6, Post_preview;
+var import_chroma_js5, css7, Post_preview;
 var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
-    init_index_548f2339();
-    init_proposal_ed198162();
-    init_store_ef18036d();
-    init_database_3b681d90();
+    init_index_35b769a7();
+    init_proposal_fafe04c0();
+    init_store_b064923f();
+    init_database_101a0841();
     init_dist();
     init_dist2();
     init_dist3();
     init_dist4();
     init_dist5();
-    init_text_input_5ddfa4f0();
+    init_text_input_634a870a();
     import_chroma_js5 = __toESM(require_chroma(), 1);
     init_string_strip_html_esm();
-    init_tags_1e5db5f0();
-    css6 = {
+    init_tags_d4e87ab8();
+    css7 = {
       code: ".preview.s-nkO0SViUUGe1{display:flex;justify-content:center;background-color:var(--theme-columnbackground);width:100%;height:100vh}.column-container.s-nkO0SViUUGe1{padding:var(--theme-cardseparationhalf);height:100%}.column.s-nkO0SViUUGe1{display:flex;align-items:center;justify-content:center;flex-direction:column;width:var(--theme-columnwidth);height:100%;padding:0 var(--theme-cardseparationhalf)}.s-nkO0SViUUGe1{}",
       map: null
     };
@@ -93385,7 +93433,7 @@ var init_post_preview_svelte = __esm({
           ]
         }
       ];
-      $$result.css.add(css6);
+      $$result.css.add(css7);
       return `
 
 
@@ -93413,8 +93461,8 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 4;
-    file5 = "_app/immutable/pages/post_preview.svelte-20f11f98.js";
-    imports4 = ["_app/immutable/pages/post_preview.svelte-20f11f98.js", "_app/immutable/chunks/index-3f430973.js", "_app/immutable/chunks/proposal-3fdc9980.js", "_app/immutable/chunks/store-ce79c03c.js", "_app/immutable/chunks/index-ae61dfd7.js", "_app/immutable/chunks/text-input-a2667b4e.js", "_app/immutable/chunks/tags-3d71b4b3.js"];
+    file5 = "_app/immutable/pages/post_preview.svelte-a470de2a.js";
+    imports4 = ["_app/immutable/pages/post_preview.svelte-a470de2a.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/proposal-c37729c1.js", "_app/immutable/chunks/store-04dd07b0.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/text-input-52de91d0.js", "_app/immutable/chunks/tags-bd466f71.js"];
     stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-96974fc1.css", "_app/immutable/assets/text-input-3a112e71.css", "_app/immutable/assets/tags-95a7f94d.css"];
   }
 });
@@ -93424,17 +93472,17 @@ var privacy_policy_svelte_exports = {};
 __export(privacy_policy_svelte_exports, {
   default: () => Privacy_policy
 });
-var css7, Privacy_policy;
+var css8, Privacy_policy;
 var init_privacy_policy_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/privacy_policy.svelte.js"() {
     init_shims();
-    init_index_548f2339();
-    css7 = {
+    init_index_35b769a7();
+    css8 = {
       code: ".privacy.s-BFsvH6Axz-AK{display:flex;align-items:center;justify-content:center;width:100vw;height:100vh;padding:150px}.s-BFsvH6Axz-AK{}",
       map: null
     };
     Privacy_policy = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css7);
+      $$result.css.add(css8);
       return `<div class="${"privacy s-BFsvH6Axz-AK"}">We do not collect or store any other information than your name and email.
     If you wish to hide your email, use the facebook signon method, click &#39;edit access&#39; and select hide email.
 </div>`;
@@ -93457,8 +93505,8 @@ var init__5 = __esm({
     init_shims();
     init_privacy_policy_svelte();
     index5 = 5;
-    file6 = "_app/immutable/pages/privacy_policy.svelte-104ba251.js";
-    imports5 = ["_app/immutable/pages/privacy_policy.svelte-104ba251.js", "_app/immutable/chunks/index-3f430973.js"];
+    file6 = "_app/immutable/pages/privacy_policy.svelte-d6d88bf0.js";
+    imports5 = ["_app/immutable/pages/privacy_policy.svelte-d6d88bf0.js", "_app/immutable/chunks/index-52eb79f8.js"];
     stylesheets5 = ["_app/immutable/assets/privacy_policy-9e1470cc.css"];
   }
 });
@@ -93468,21 +93516,21 @@ var users_svelte_exports = {};
 __export(users_svelte_exports, {
   default: () => Users
 });
-var import_chroma_js6, css8, Users;
+var import_chroma_js6, css9, Users;
 var init_users_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/admin/users.svelte.js"() {
     init_shims();
-    init_index_548f2339();
-    init_database_3b681d90();
-    init_store_ef18036d();
-    init_text_input_5ddfa4f0();
+    init_index_35b769a7();
+    init_database_101a0841();
+    init_store_b064923f();
+    init_text_input_634a870a();
     init_dist();
     init_dist2();
     init_dist3();
     init_dist4();
     init_dist5();
     import_chroma_js6 = __toESM(require_chroma(), 1);
-    css8 = {
+    css9 = {
       code: ".user-management.s-EMdAkrFBC1gH{display:flex;align-items:center;justify-content:center;height:100vh;width:100vw}.admin-column.s-EMdAkrFBC1gH{width:var(--s500px)}.user.s-EMdAkrFBC1gH{display:flex;align-items:center;justify-content:space-between;width:90%}.email.s-EMdAkrFBC1gH{display:inline-block;padding:var(--s5px)}.role.s-EMdAkrFBC1gH{display:inline-flex;justify-content:right;width:var(--s100px)}.s-EMdAkrFBC1gH{}",
       map: null
     };
@@ -93502,7 +93550,7 @@ var init_users_svelte = __esm({
         placeholder: ["enter user email"],
         error: false
       };
-      $$result.css.add(css8);
+      $$result.css.add(css9);
       return `<div class="${"user-management s-EMdAkrFBC1gH"}"><div class="${"admin-column s-EMdAkrFBC1gH"}">${validate_component(Text_input, "Input").$$render(
         $$result,
         {
@@ -93535,8 +93583,8 @@ var init__6 = __esm({
     init_shims();
     init_users_svelte();
     index6 = 2;
-    file7 = "_app/immutable/pages/admin/users.svelte-d41719c1.js";
-    imports6 = ["_app/immutable/pages/admin/users.svelte-d41719c1.js", "_app/immutable/chunks/index-3f430973.js", "_app/immutable/chunks/text-input-a2667b4e.js", "_app/immutable/chunks/store-ce79c03c.js", "_app/immutable/chunks/index-ae61dfd7.js", "_app/immutable/chunks/select-f6a69648.js"];
+    file7 = "_app/immutable/pages/admin/users.svelte-e1ee3ee3.js";
+    imports6 = ["_app/immutable/pages/admin/users.svelte-e1ee3ee3.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/text-input-52de91d0.js", "_app/immutable/chunks/store-04dd07b0.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/select-abd9699c.js"];
     stylesheets6 = ["_app/immutable/assets/users-ad6cc9f1.css", "_app/immutable/assets/text-input-3a112e71.css", "_app/immutable/assets/select-9228a765.css"];
   }
 });
@@ -93546,13 +93594,13 @@ var facebook_svelte_exports = {};
 __export(facebook_svelte_exports, {
   default: () => Facebook
 });
-var css9, Facebook;
+var css10, Facebook;
 var init_facebook_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/share/facebook.svelte.js"() {
     init_shims();
-    init_index_548f2339();
-    init_store_ef18036d();
-    css9 = {
+    init_index_35b769a7();
+    init_store_b064923f();
+    css10 = {
       code: ".redirect.s-uPWWvh_Oaxdy{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-uPWWvh_Oaxdy{}",
       map: null
     };
@@ -93560,7 +93608,7 @@ var init_facebook_svelte = __esm({
       let { postId } = $$props;
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
-      $$result.css.add(css9);
+      $$result.css.add(css10);
       return `<div class="${"redirect s-uPWWvh_Oaxdy"}">Redirecting to facebook..</div>`;
     });
   }
@@ -93581,8 +93629,8 @@ var init__7 = __esm({
     init_shims();
     init_facebook_svelte();
     index7 = 6;
-    file8 = "_app/immutable/pages/share/facebook.svelte-4e563634.js";
-    imports7 = ["_app/immutable/pages/share/facebook.svelte-4e563634.js", "_app/immutable/chunks/index-3f430973.js", "_app/immutable/chunks/store-ce79c03c.js", "_app/immutable/chunks/index-ae61dfd7.js"];
+    file8 = "_app/immutable/pages/share/facebook.svelte-6a2e0fd8.js";
+    imports7 = ["_app/immutable/pages/share/facebook.svelte-6a2e0fd8.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/store-04dd07b0.js", "_app/immutable/chunks/index-b62ca7b4.js"];
     stylesheets7 = ["_app/immutable/assets/facebook-5ae6a916.css"];
   }
 });
@@ -93592,13 +93640,13 @@ var reddit_svelte_exports = {};
 __export(reddit_svelte_exports, {
   default: () => Reddit
 });
-var css10, Reddit;
+var css11, Reddit;
 var init_reddit_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/share/reddit.svelte.js"() {
     init_shims();
-    init_index_548f2339();
-    init_store_ef18036d();
-    css10 = {
+    init_index_35b769a7();
+    init_store_b064923f();
+    css11 = {
       code: ".redirect.s-t6VgelH33f8J{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-t6VgelH33f8J{}",
       map: null
     };
@@ -93606,7 +93654,7 @@ var init_reddit_svelte = __esm({
       let { postId } = $$props;
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
-      $$result.css.add(css10);
+      $$result.css.add(css11);
       return `<div class="${"redirect s-t6VgelH33f8J"}">Redirecting to reddit..</div>`;
     });
   }
@@ -93627,8 +93675,8 @@ var init__8 = __esm({
     init_shims();
     init_reddit_svelte();
     index8 = 7;
-    file9 = "_app/immutable/pages/share/reddit.svelte-5caef969.js";
-    imports8 = ["_app/immutable/pages/share/reddit.svelte-5caef969.js", "_app/immutable/chunks/index-3f430973.js", "_app/immutable/chunks/store-ce79c03c.js", "_app/immutable/chunks/index-ae61dfd7.js"];
+    file9 = "_app/immutable/pages/share/reddit.svelte-d3a21eb9.js";
+    imports8 = ["_app/immutable/pages/share/reddit.svelte-d3a21eb9.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/store-04dd07b0.js", "_app/immutable/chunks/index-b62ca7b4.js"];
     stylesheets8 = ["_app/immutable/assets/reddit-07daef39.css"];
   }
 });
@@ -93638,13 +93686,13 @@ var twitter_svelte_exports = {};
 __export(twitter_svelte_exports, {
   default: () => Twitter
 });
-var css11, Twitter;
+var css12, Twitter;
 var init_twitter_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/share/twitter.svelte.js"() {
     init_shims();
-    init_index_548f2339();
-    init_store_ef18036d();
-    css11 = {
+    init_index_35b769a7();
+    init_store_b064923f();
+    css12 = {
       code: ".redirect.s-1wq-66mPpMC5{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-1wq-66mPpMC5{}",
       map: null
     };
@@ -93652,7 +93700,7 @@ var init_twitter_svelte = __esm({
       let { postId } = $$props;
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
-      $$result.css.add(css11);
+      $$result.css.add(css12);
       return `<div class="${"redirect s-1wq-66mPpMC5"}">Redirecting to twitter..</div>`;
     });
   }
@@ -93673,8 +93721,8 @@ var init__9 = __esm({
     init_shims();
     init_twitter_svelte();
     index9 = 8;
-    file10 = "_app/immutable/pages/share/twitter.svelte-cd0bc96e.js";
-    imports9 = ["_app/immutable/pages/share/twitter.svelte-cd0bc96e.js", "_app/immutable/chunks/index-3f430973.js", "_app/immutable/chunks/store-ce79c03c.js", "_app/immutable/chunks/index-ae61dfd7.js"];
+    file10 = "_app/immutable/pages/share/twitter.svelte-8841bf9e.js";
+    imports9 = ["_app/immutable/pages/share/twitter.svelte-8841bf9e.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/store-04dd07b0.js", "_app/immutable/chunks/index-b62ca7b4.js"];
     stylesheets9 = ["_app/immutable/assets/twitter-dafdce4f.css"];
   }
 });
@@ -93684,13 +93732,13 @@ var whatsapp_svelte_exports = {};
 __export(whatsapp_svelte_exports, {
   default: () => Whatsapp
 });
-var css12, Whatsapp;
+var css13, Whatsapp;
 var init_whatsapp_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/share/whatsapp.svelte.js"() {
     init_shims();
-    init_index_548f2339();
-    init_store_ef18036d();
-    css12 = {
+    init_index_35b769a7();
+    init_store_b064923f();
+    css13 = {
       code: ".redirect.s-mE7g6kYsnsCp{display:flex;align-items:center;justify-content:center;width:100%;height:100vh}.s-mE7g6kYsnsCp{}",
       map: null
     };
@@ -93698,7 +93746,7 @@ var init_whatsapp_svelte = __esm({
       let { postId } = $$props;
       if ($$props.postId === void 0 && $$bindings.postId && postId !== void 0)
         $$bindings.postId(postId);
-      $$result.css.add(css12);
+      $$result.css.add(css13);
       return `<div class="${"redirect s-mE7g6kYsnsCp"}">Redirecting to whatsapp..</div>`;
     });
   }
@@ -93719,8 +93767,8 @@ var init__10 = __esm({
     init_shims();
     init_whatsapp_svelte();
     index10 = 9;
-    file11 = "_app/immutable/pages/share/whatsapp.svelte-0a6fa3ef.js";
-    imports10 = ["_app/immutable/pages/share/whatsapp.svelte-0a6fa3ef.js", "_app/immutable/chunks/index-3f430973.js", "_app/immutable/chunks/store-ce79c03c.js", "_app/immutable/chunks/index-ae61dfd7.js"];
+    file11 = "_app/immutable/pages/share/whatsapp.svelte-9b5d07c2.js";
+    imports10 = ["_app/immutable/pages/share/whatsapp.svelte-9b5d07c2.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/store-04dd07b0.js", "_app/immutable/chunks/index-b62ca7b4.js"];
     stylesheets10 = ["_app/immutable/assets/whatsapp-15a937dd.css"];
   }
 });
@@ -93734,14 +93782,14 @@ var GET;
 var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
-    init_database_3b681d90();
+    init_database_101a0841();
     init_dist();
     init_dist2();
     init_dist3();
     init_dist4();
     init_dist5();
-    init_store_ef18036d();
-    init_index_548f2339();
+    init_store_b064923f();
+    init_index_35b769a7();
     GET = async ({ url }) => {
       let promises = [];
       let postData;
@@ -93885,7 +93933,7 @@ init_shims();
 
 // .svelte-kit/output/server/index.js
 init_shims();
-init_index_548f2339();
+init_index_35b769a7();
 function afterUpdate() {
 }
 var Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -96397,7 +96445,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-f18cafd2.js", "imports": ["_app/immutable/start-f18cafd2.js", "_app/immutable/chunks/index-3f430973.js", "_app/immutable/chunks/index-ae61dfd7.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-d7875683.js", "imports": ["_app/immutable/start-d7875683.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/index-b62ca7b4.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
