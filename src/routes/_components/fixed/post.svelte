@@ -1,16 +1,26 @@
 <script>
+    // configs
     import { COLUMNS } from '$lib/config/column-config';
     import { COMPONENTS } from '../../index.svelte';
 
+    // npm modules
+    import { onMount } from 'svelte';
+
+    // services
     import { _lang } from '$lib/services/store';
     import { _emitEvent } from '$lib/services/events';
     import _strings from './post-strings';
 
+    // components
     import Button from '$lib/components/input/button.svelte';
-    
+
     export let data;
 
-    const column = COLUMNS.find(c => c.type == data.type);
+    const columnIndex = COLUMNS.findIndex(c => c.type == data.type);
+
+    onMount(() => {
+        _emitEvent('nav-click', columnIndex);
+    })
     
     const hidePost = () => {
         data._singlePostView = false;
@@ -30,7 +40,7 @@
         <Button
             form
             text={data._initialLoad? 
-                    (_strings['more'][$_lang] + column.title[$_lang]):
+                    (_strings['more'][$_lang] + COLUMNS[columnIndex].title[$_lang]):
                     _strings['back'][$_lang]}
             style="
                 width: calc(100% - var(--theme-cardseparation));
@@ -42,8 +52,8 @@
 
 <style>
     .post {
-        position: absolute;
-        top: 0;
+        position: fixed;
+        top: calc(var(--theme-columnheaderheight) + var(--theme-layoutheaderheight));
         left: 0;
         z-index: 1000;
 

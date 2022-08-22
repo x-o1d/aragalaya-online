@@ -235,6 +235,11 @@
 <!-- Nav is the navigation bar component which is a fixed overlay-->
 <Nav/>  
 
+{#if postData}
+<!-- Post displays a single post as an overlay -->
+<Post data={postData}/>
+{/if}
+
 <div
     class="columns"
     bind:this={appWindowElement}
@@ -244,10 +249,6 @@
     on:touchstart|passive={_handleTouchStart}
     on:touchmove|passive={_handleTouchMove}
     on:touchend|passive={_handleTouchEnd}>
-    <!-- Post displays a single post as an overlay -->
-    {#if postData}
-    <Post data={postData}/>
-    {/if}
 	<ul>
         {#if !$_isMobile}
         <li 
