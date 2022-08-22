@@ -4,11 +4,12 @@
     import { COMPONENTS } from '../../index.svelte';
 
     // npm modules
-    import { onMount } from 'svelte';
+    import { onDestroy } from 'svelte';
 
     // services
-    import { _lang } from '$lib/services/store';
+    import { _appContentReady, _lang } from '$lib/services/store';
     import { _emitEvent } from '$lib/services/events';
+    import { _isMobile } from '$lib/services/theme';
     import _strings from './post-strings';
 
     // components
@@ -18,9 +19,12 @@
 
     const columnIndex = COLUMNS.findIndex(c => c.type == data.type);
 
-    onMount(() => {
-        _emitEvent('nav-click', columnIndex);
+    const appContentReadyUnsubscribe = _appContentReady.subscribe(() => {
+        if($_isMobile) {
+            _emitEvent('nav-click', columnIndex);
+        }
     })
+    onDestroy(appContentReadyUnsubscribe)
     
     const hidePost = () => {
         data._singlePostView = false;
@@ -63,7 +67,7 @@
         overflow-y: scroll;
 
         width: 100%;
-        height: 100%;
+        height: calc(100vh - var(--theme-columnheaderheight) - var(--theme-layoutheaderheight));
 
         background-color: rgba(0,0,0,0.9);
     }

@@ -219,6 +219,12 @@
             _emitEvent('show-hide-login', true);
         }
     }
+
+    // goto column
+    const goToColumn = (index) => {
+        _emitEvent('nav-click', index);
+        _emitEvent('hide-post');
+    }
 </script>
 
 <svelte:head>
@@ -264,7 +270,7 @@
                     <div 
                         class="header _clickable"
                         bind:this={columnHeaderElements[_i]}
-                        on:click={() => _emitEvent('nav-click', _i)}
+                        on:click={() => goToColumn(_i)}
                         style="background-color: var(--theme-columns-{_i+1});">
                         <div>
                             <i class="{column.icon}"></i>

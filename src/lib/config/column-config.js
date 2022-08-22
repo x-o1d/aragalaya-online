@@ -155,9 +155,9 @@ export const COLUMNS = [
     },
     {
         title: [
-            'දැන්වීම් පුවරුව', 
-            'Bulletin board', 
-            'அறிவிப்பு பலகை'
+            'දැන්වීම්', 
+            'Notices', 
+            'அறிவிப்புகள்'
         ],
         icon: 'fa-solid fa-calendar-days',
         height: '300px',

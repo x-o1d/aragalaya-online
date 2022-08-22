@@ -92905,7 +92905,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
       ]
     };
     css$42 = {
-      code: ".post.s--3yJQkpZRIwU{position:absolute;top:0;left:0;z-index:1000;display:flex;flex-direction:column;overflow-y:scroll;width:100%;height:100%;background-color:rgba(0,0,0,0.9)}.post-container.s--3yJQkpZRIwU{width:var(--theme-columnwidth);margin:auto}.s--3yJQkpZRIwU{}",
+      code: ".post.s--3yJQkpZRIwU{position:fixed;top:calc(var(--theme-columnheaderheight) + var(--theme-layoutheaderheight));left:0;z-index:1000;display:flex;flex-direction:column;overflow-y:scroll;width:100%;height:100%;background-color:rgba(0,0,0,0.9)}.post-container.s--3yJQkpZRIwU{width:var(--theme-columnwidth);margin:auto}.s--3yJQkpZRIwU{}",
       map: null
     };
     Post = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -92913,7 +92913,10 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
       validate_store(_lang, "_lang");
       $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
       let { data } = $$props;
-      const column = COLUMNS.find((c3) => c3.type == data.type);
+      const columnIndex = COLUMNS.findIndex((c3) => c3.type == data.type);
+      _appContentReady.subscribe(() => {
+        _emitEvent("nav-click", columnIndex);
+      });
       const hidePost = () => {
         data._singlePostView = false;
         data._expanded = true;
@@ -92928,7 +92931,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         $$result,
         {
           form: true,
-          text: data._initialLoad ? strings$22["more"][$_lang] + column.title[$_lang] : strings$22["back"][$_lang],
+          text: data._initialLoad ? strings$22["more"][$_lang] + COLUMNS[columnIndex].title[$_lang] : strings$22["back"][$_lang],
           style: "\n                width: calc(100% - var(--theme-cardseparation));\n                margin: var(--theme-cardseparationhalf);\n                margin-bottom: var(--s100px);",
           onclick: hidePost
         },
@@ -93318,9 +93321,10 @@ ${$$result.head += `${$$result.title = `<title>${escape(title)}</title>`, ""}<me
 
 ${validate_component(Nav, "Nav").$$render($$result, {}, {}, {})}  
 
-<div class="${"columns s-Uap-jPRb-uiE"}"${add_attribute("this", appWindowElement, 0)}>
-    ${postData ? `${validate_component(Post, "Post").$$render($$result, { data: postData }, {}, {})}` : ``}
-	<ul class="${"s-Uap-jPRb-uiE"}">${!$_isMobile ? `<li class="${"spacer s-Uap-jPRb-uiE"}" style="${"--background: var(--theme-columns-0);"}"></li>` : ``}
+${postData ? `
+${validate_component(Post, "Post").$$render($$result, { data: postData }, {}, {})}` : ``}
+
+<div class="${"columns s-Uap-jPRb-uiE"}"${add_attribute("this", appWindowElement, 0)}><ul class="${"s-Uap-jPRb-uiE"}">${!$_isMobile ? `<li class="${"spacer s-Uap-jPRb-uiE"}" style="${"--background: var(--theme-columns-0);"}"></li>` : ``}
         ${each(COLUMNS, (column, _i) => {
         return `<li class="${"s-Uap-jPRb-uiE"}"><div class="${"column s-Uap-jPRb-uiE"}">
                 <div style="${"background-color: var(--theme-headerbackground);"}" class="${"s-Uap-jPRb-uiE"}"><div class="${"header _clickable s-Uap-jPRb-uiE"}" style="${"background-color: var(--theme-columns-" + escape(_i + 1, true) + ");"}"${add_attribute("this", columnHeaderElements[_i], 0)}><div class="${"s-Uap-jPRb-uiE"}"><i class="${escape(null_to_empty(column.icon), true) + " s-Uap-jPRb-uiE"}"></i>
@@ -93378,9 +93382,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    file4 = "_app/immutable/pages/index.svelte-2eec67eb.js";
-    imports3 = ["_app/immutable/pages/index.svelte-2eec67eb.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/text-input-fb3fda34.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/proposal-203b9876.js", "_app/immutable/chunks/tags-63ef83de.js", "_app/immutable/chunks/progress-e1073e32.js"];
-    stylesheets3 = ["_app/immutable/assets/index-2734bfc9.css", "_app/immutable/assets/text-input-3a112e71.css", "_app/immutable/assets/proposal-96974fc1.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/progress-7ec17c02.css"];
+    file4 = "_app/immutable/pages/index.svelte-2780c43b.js";
+    imports3 = ["_app/immutable/pages/index.svelte-2780c43b.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/text-input-fb3fda34.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/proposal-203b9876.js", "_app/immutable/chunks/tags-63ef83de.js", "_app/immutable/chunks/progress-e1073e32.js"];
+    stylesheets3 = ["_app/immutable/assets/index-6d0a0fbf.css", "_app/immutable/assets/text-input-3a112e71.css", "_app/immutable/assets/proposal-96974fc1.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/progress-7ec17c02.css"];
   }
 });
 
@@ -96435,7 +96439,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-e48532b6.js", "imports": ["_app/immutable/start-e48532b6.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/index-b62ca7b4.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-48b80b23.js", "imports": ["_app/immutable/start-48b80b23.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/index-b62ca7b4.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
