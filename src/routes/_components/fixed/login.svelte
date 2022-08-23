@@ -16,12 +16,15 @@
     import TextInput from '$lib/components/input/text-input.svelte';
     import Font from '$lib/components/display/font.svelte';
     import PreloadingIndicator from '$lib/components/util/preloading-indicator.svelte';
+    import Preview from '$lib/components/display/preview.svelte';
 
     let showLogin = false;
     let adminLogin = false;
     let facebookProgress = false;
     let loginProgress = false;
     let forceEnterName = false;
+    let expandPrivacyPolicy = false;
+
     let user = {};
     let emailError, nameError, passwordError, repeatPasswordError;
     
@@ -211,6 +214,7 @@
         nameError = false;
         passwordError = false;
         repeatPasswordError = false;
+        expandPrivacyPolicy = false;
         signinOrSignup = 0;
     };
 </script>
@@ -298,6 +302,20 @@
             {#if facebookProgress}
             <div class="preloader"><PreloadingIndicator height={3}/></div>
             {/if}
+            <Font
+                font={0}
+                size={0.9}
+                color="rgb(57, 56, 56);"
+                style="
+                    margin-top: var(--s20px);
+                    margin-bottom: var(--s14px);">
+                <Preview
+                    data={_strings}
+                    contentField={'privacy_policy'}
+                    limit={60}
+                    expanded={expandPrivacyPolicy}
+                    on:expandPost={() => expandPrivacyPolicy = true}/>
+            </Font>
         </div>
     </div>
 </div>
@@ -306,14 +324,15 @@
 <style>
     .overlay {
         display: flex;
-        align-items: center;
-        justify-content: center;
 
         position: fixed;
         z-index: 10000;
 
         width: 100vw;
-        height: 100vh;
+        min-height: 100vh;
+        max-height: 100vh;
+
+        overflow-y: scroll;
 
         background-color: rgba(0,0,0,0.9);
     }
@@ -333,6 +352,7 @@
         border-radius: var(--s15px);
         border: var(--s1px) solid #5c5c5c;
         cursor: auto;
+        margin: auto;
     }
     .login {
         display: flex;
@@ -374,7 +394,7 @@
     }
     .preloader {
         position: relative;
-        width: calc(90% - var(--s5px));
+        width: calc(100% - var(--s5px));
     }
 
 </style>

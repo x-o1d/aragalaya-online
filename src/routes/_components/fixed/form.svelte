@@ -427,7 +427,6 @@
         border-radius: var(--s15px);
         border: var(--s1px) solid #5c5c5c;
         margin: auto;
-        margin-bottom: var(--s100px);
     }
     .form {
         display: flex;
