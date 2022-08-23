@@ -34,7 +34,7 @@
     })
 
     // subscribe to the vertical-scroll event
-    const vScrollEvent = _eventListener('hide-nav-menu').subscribe(v => {
+    const hideNavMenulEvent = _eventListener('hide-nav-menu').subscribe(v => {
         if($_isMobile) {
             if(!hidden) {
                 showHide();
@@ -42,7 +42,7 @@
         }
     });
     // clear subscription
-    onDestroy(() => vScrollEvent.unsubscribe());
+    onDestroy(() => hideNavMenulEvent.unsubscribe());
 
     // nav bar hidden flag
     let hidden = false;

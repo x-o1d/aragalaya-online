@@ -27,7 +27,7 @@
 
 <style>
     .html-input {
-        width: 90%;
+        width: 100%;
         margin-bottom: var(--s18px);
     }
     span {

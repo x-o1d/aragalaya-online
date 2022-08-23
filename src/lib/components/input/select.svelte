@@ -61,7 +61,7 @@
 <style>
     .select {
         position: relative;
-        width: 90%;
+        width: 100%;
         height: var(--s45px);
 
         margin-bottom: var(--s14px);

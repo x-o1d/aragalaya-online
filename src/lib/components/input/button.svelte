@@ -56,7 +56,7 @@
     }
     .form {
         height: var(--s45px);
-        width: 90%;
+        width: 100%;
     }
     .cancel {
         background-color: var(--theme-cancelbutton);
