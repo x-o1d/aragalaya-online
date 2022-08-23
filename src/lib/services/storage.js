@@ -17,7 +17,6 @@ export const _uploadToImages = async (file) => {
     try {
         let user = _userSignedIn();
         if(!user) throw ('user not signed in');
-        console.log('found user');
         // replace the actual file name with a uuid
         const name = uuid();
         // upload to firebase storage

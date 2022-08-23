@@ -17,6 +17,7 @@ const region = 'asia-south1';
 let ssrServerServer;
 exports.ssrServer = functions.region(region).runWith(runtimeOpts).
         https.onRequest(async (request, response) => {
+    console.log(request);
     if (!ssrServerServer) {
         functions.logger.info('Initialising SvelteKit SSR entry');
         ssrServerServer = require('./ssrServer/index').default;

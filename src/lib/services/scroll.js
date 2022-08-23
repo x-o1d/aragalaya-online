@@ -2,11 +2,11 @@ import { COLUMN_COUNT } from '$lib/config/column-config'
 
 import { tweened } from "svelte/motion";
 import { quartOut, backInOut } from 'svelte/easing';
+import { v4 as uuid } from 'uuid';
 
 import { _getSizeConfig } from '$lib/services/theme';
 import { _eventListener, _emitEvent } from '$lib/services/events';
 import { _isMobile } from '$lib/services/theme';
-import { of } from 'rxjs';
 
 // if the app is loaded in a mobile browser
 let isMobile = false;
@@ -151,15 +151,22 @@ export const _setupNavAnimations = (scrollElement) => {
 
 // *** START: column scroll bar animation
 
-// last scroll time is maintained to scale down and hide the
-// scroll bar after the scroll bar has been idle for 500ms
-let lastScrollTime = Array(COLUMN_COUNT).fill(0);
-
+// every time a scroll event is received a unique id is created for it 
+// and saved in lastWheelEventId.
+// checkLastScrollEventId() stores this id in it's closure
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
+// when the setTimeout() callback triggers after N milliseconds
+// if lastScrollEventId hasn't changed, that means no new scroll events
+// has been received in the last N milliseconds.
+// this is assumed to be the end of the scroll move operation and the
+// scroll bar is hidden
+let lastScrolEventIds = Array(COLUMN_COUNT).fill(0);
 // draws and animates the column scroll bar element according to the scroll
 // position of each column
 let columnHeight;
 export const _handleColumnScroll = (event, columnIndex) => {
     // scrollbar animation is diabled in mobile for performance
+    // on low end devices
     if(isMobile) return;
 
     // calculate the height of the column
@@ -188,35 +195,60 @@ export const _handleColumnScroll = (event, columnIndex) => {
     vScrollBarTweens[columnIndex].set(columnScrollBarPosition);
     // sets the visibility and size animation tween of the scroll bar
     vScrollBarAnimationTweens[columnIndex].set(1);
-    // hide the scroll bar 500 ms after the last scroll
-    setTimeout(() => {
-        let time = (new Date()).getTime();
-        if((time-lastScrollTime[columnIndex]) > 490) {
-            vScrollBarAnimationTweens[columnIndex].set(0);
-            columnHeight = undefined;
-        }
-    }, 500);
-    lastScrollTime[columnIndex] = (new Date()).getTime();
+
+    const checkLastScrollEventId = (scrollEventId) => {
+        setTimeout(() => {
+            if(scrollEventId == lastScrolEventIds[columnIndex]) {
+                vScrollBarAnimationTweens[columnIndex].set(0);
+                // reset columnHeight so that it will be recalculated
+                // in the next scroll event
+                columnHeight = undefined;
+            }
+        }, 500);
+    }
+    lastScrolEventIds[columnIndex] = uuid();
+    checkLastScrollEventId(lastScrolEventIds[columnIndex]);
 }
 
-// *** START: end column scroll bar animation
+// *** END: column scroll bar animation
 
-// last wheel time is used to determine when the wheel operation ends
-// if _handleWheel desn't get a wheel event for 500ms it calls wheelEnd()
-// this way wheelEnd can be used similar to browser touchEnd event
-let lastWheelTime = 0;
+// *** START: handle wheel event
+
+// every time a wheel event is received a unique id is created for it 
+// and saved in lastWheelEventId.
+// checkLastWheelEventId() stores this id in it's closure
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
+// when the setTimeout() callback triggers after N milliseconds
+// if lastWheelEventId hasn't changed, that means no new wheel events
+// has been received in the last N milliseconds.
+// this is assumed to be the end of the wheel move operation and emulateWheelEnd()
+// is called.
+let lastWheelEventId = null;
 // handles wheel (touchpad/mousewheel) events
 export const _handleWheel = (event) => {
-    unfiedMoveHandler(event.wheelDeltaX/4, event.wheelDeltaY/4);
+    unfiedMoveHandler(event.wheelDeltaX/8, event.wheelDeltaY/8);
 
-    setTimeout(() => {
-        let time = (new Date()).getTime();
-        if((time-lastWheelTime) > 490) {
-            emulatedWheelEnd();
-        }
-    }, 500);
-    lastWheelTime = (new Date()).getTime();
+    const checkLastWheelEventId = (wheelEventId) => {
+        setTimeout(() => {
+            if(wheelEventId == lastWheelEventId) {
+                emulatedWheelEnd();
+            }
+        }, 300);
+    }
+    lastWheelEventId = uuid();
+    checkLastWheelEventId(lastWheelEventId);
 }
+
+// handle mouse wheel/touchpad end
+// this function emulates the touchend behavior for
+// wheel events
+const emulatedWheelEnd = () => {
+    unifiedMoveEnd();
+}
+
+// *** END: handle wheel events
+
+// *** START: handle touch events
 
 // holds the previous touch position to calculate the delta
 let touchStartX = null;
@@ -241,25 +273,10 @@ export const _handleTouchMove = (event) => {
 export const _handleTouchEnd = (event) => {
     unifiedMoveEnd();
 }
-// handle mouse wheel/touchpad end
-const emulatedWheelEnd = () => {
-    unifiedMoveEnd();
-}
 
-// when a move event ends reset the delta cache
-const unifiedMoveEnd = () => {
-    moveDeltaXCache = [];
-    moveDeltaYCache = [];
-    peeked = false;
-    moved = false;
+// *** END: handle touch events
 
-    // if peek has been activated return to the original position
-    hScrollPositionTween.set(hScrollIndex * sizeConfig.columnWidth);
-    // enable vertical scroll on the column
-    _columnElements.map(c => c.style.overflowY = 'scroll');
-}
-
-let total = 0;
+// *** START: horizontal scroll
 
 let moveDeltaXCache = [];
 let moveDeltaYCache = [];
@@ -267,6 +284,7 @@ let moveDeltaYCache = [];
 let peeked = false;
 let moved = false;
 
+// both wheel and touch events are merged into this handler
 const unfiedMoveHandler = (deltaX, deltaY) => {
     if(moveDeltaXCache[0] && (Math.sign(deltaX) != Math.sign(moveDeltaXCache[0]))) {
         unifiedMoveEnd();
@@ -286,15 +304,13 @@ const unfiedMoveHandler = (deltaX, deltaY) => {
         // deltaX value is divided by the deltaY value so that
         // the movement in the x direction would be less if the 
         // touch is moving at an angle
-        xTotal += Math.abs(moveDeltaXCache[_i])/(Math.abs(moveDeltaYCache[_i])+1);
+        xTotal += (Math.abs(moveDeltaXCache[_i])/(Math.abs(moveDeltaYCache[_i])+1));
 
         if(!peeked && (xTotal > PEEK_THRESHOLD)) {
             peek(Math.sign(-1*deltaX));
-            peeked = true;
         }
         if(!moved && (xTotal > MOVE_THRESHOLD)) {
             move(Math.sign(-1*deltaX));
-            moved = true;
             return true;
         }
     });
@@ -304,15 +320,28 @@ const unfiedMoveHandler = (deltaX, deltaY) => {
     // hide navbar based on the values in the yCache
     let yTotal = 0;
     moveDeltaYCache.findIndex((_, _i) => {
-        // deltaX value is divided by the deltaY value so that
-        // the movement in the x direction would be less if the 
-        // touch is moving at an angle
-        yTotal += Math.abs(moveDeltaYCache[_i])/(Math.abs(moveDeltaXCache[_i])+1);
-
+        // deltaY value is divided by the deltaX value so that
+        // the movement in the y direction would be less if the 
+        // touch also has a component in the x direction
+        yTotal += (Math.abs(moveDeltaYCache[_i])/(Math.abs(moveDeltaXCache[_i])+1));
         if(yTotal > HIDE_NAV_THRESHOLD) {
             _emitEvent('hide-nav-menu');
         }
     });
+}
+
+// both wheel/touch end events are merged into handler
+const unifiedMoveEnd = () => {
+    moveDeltaXCache = [];
+    moveDeltaYCache = [];
+    peeked = false;
+    moved = false;
+
+    // reset the original position incase peek has been activated 
+    hScrollPositionTween.set(getHorizontalScrollPosition());
+
+    // enable vertical scroll on the column
+    _columnElements.map(c => c.style.overflowY = 'scroll');
 }
 
 // peek the next column without switching to it. if the user let's 
@@ -323,28 +352,62 @@ const peek = (direction) => {
     _columnElements.map(c => c.style.overflowY = 'hidden');
 
     const PEEK_DISTANCE = 24;
-    const scrollMax = COLUMN_COUNT * sizeConfig.columnWidth - window.innerWidth;
-
-    let scrollTo = hScrollIndex * sizeConfig.columnWidth + (PEEK_DISTANCE*direction);
-
+    const scrollMax = (COLUMN_COUNT * sizeConfig.columnWidth) 
+                        // add spacer width for desktop browsers
+                        + (isMobile? 0: sizeConfig.cardSeparation)
+                        - window.innerWidth;
+    let scrollTo = getHorizontalScrollPosition() + (PEEK_DISTANCE*direction);
     // scroll to the peek position
     if((scrollTo < scrollMax) && (scrollTo > 0)) {
-        hScrollPositionTween.set(scrollTo);
+        hScrollPositionTween.set(scrollTo, {
+            duration: 350,
+            easing: quartOut
+        });
+    } else {
+        // if the peek sroll is beyond the scroll boundaries
+        // make a jolt animation to indicate that it's the last column
+        const joltDistance = PEEK_DISTANCE/4*direction;
+        hScrollPositionTween.set(getHorizontalScrollPosition() - joltDistance, {
+            duration: 100,
+            easing: quartOut
+        });
     }
+    peeked = true;
 }
 
 // switch to the next column
 const move = (direction) => {
+    // maximum column you can scroll to based on screen size
+    const hScrollIndexMax = Math.floor(
+                                ((COLUMN_COUNT * sizeConfig.columnWidth) 
+                                    // add spacer width for desktop browsers
+                                    + (isMobile? 0: sizeConfig.cardSeparation)
+                                    - window.innerWidth)
+                                / sizeConfig.columnWidth);
     if((direction < 0) && (hScrollIndex > 0)) {
         hScrollIndex--;
+        hScrollPositionTween.set(getHorizontalScrollPosition(), {
+            duration: 350
+        });
+        moved = true;
     }
-    if((direction > 0) && (hScrollIndex < COLUMN_COUNT)) {
+    if((direction > 0) && (hScrollIndex < hScrollIndexMax)) {
         hScrollIndex++;
+        hScrollPositionTween.set(getHorizontalScrollPosition(), {
+            duration: 350
+        });
+        moved = true;
     }
+}
+
+// calculate the scrollLeft value for the current hScrollIndex value
+const getHorizontalScrollPosition = () => {
     let scrollTo = hScrollIndex * sizeConfig.columnWidth;
 
     // calculate remaining space to the right after the move.
-    const remainingSpace = (COLUMN_COUNT * sizeConfig.columnWidth + 15)
+    const remainingSpace = (COLUMN_COUNT * sizeConfig.columnWidth)
+        // add spacer width for desktop browsers
+        + (isMobile? 0: sizeConfig.cardSeparation)
         - scrollTo
         - window.innerWidth;
 
@@ -353,6 +416,7 @@ const move = (direction) => {
     if(remainingSpace < sizeConfig.columnWidth) {
         scrollTo += remainingSpace;
     }
-
-    hScrollPositionTween.set(scrollTo);
+    return scrollTo;
 }
+
+// *** END: horizontal scroll
