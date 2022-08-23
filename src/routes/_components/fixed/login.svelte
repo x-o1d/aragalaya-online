@@ -352,7 +352,7 @@
         justify-content: center;
 
         height: var(--s45px);
-        width: 90%;
+        width: 100%;
         border-radius: var(--s5px);
         padding: var(--s5px);
         background-color: var(--button);

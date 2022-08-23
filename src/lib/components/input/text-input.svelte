@@ -41,7 +41,7 @@ USAGE:
     
 </script>
 
-<div style="width: {form? '90%': '100%'}">
+<div class="text-input">
     <Font
         font={3}
         size={form? 1: 0.75}>
@@ -95,6 +95,9 @@ USAGE:
 </div>
 
 <style>
+    .text-input {
+        width: 100%;
+    }
     input {
         width: 100%;
         height: 100%;

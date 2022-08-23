@@ -46,6 +46,8 @@
         align-items: center;
         justify-content: center;
         
+        width: 100%;
+
         border-radius: var(--s5px);
         padding: var(--s5px);
         cursor: pointer;
@@ -56,13 +58,12 @@
     }
     .form {
         height: var(--s45px);
-        width: 100%;
     }
     .cancel {
         background-color: var(--theme-cancelbutton);
     }
     .preloader {
         position: relative;
-        width: calc(90% - var(--s5px));
+        width: calc(100% - var(--s5px));
     }
 </style>

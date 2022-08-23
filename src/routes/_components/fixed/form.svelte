@@ -434,7 +434,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: var(--s20px);
+        padding: var(--theme-cardpadding);
         width: 100%;
         /* height: 100%; */
         background-color: #f0f0f0;
