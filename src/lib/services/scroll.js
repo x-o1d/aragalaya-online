@@ -132,11 +132,13 @@ export const _setupNavAnimations = (scrollElement) => {
         if(index < maxLeft) {
             hScrollIndex = index;
             hScrollPositionTween.set(sizeConfig.columnWidth * index);
+            navScrollPositionTween.set(hScrollIndex * sizeConfig.navSize);
         } 
         // if not scroll to the absolute edge
         else {
             hScrollIndex = maxLeft;
             hScrollPositionTween.set((COLUMN_COUNT * sizeConfig.columnWidth + 15) - window.innerWidth);
+            navScrollPositionTween.set(hScrollIndex * sizeConfig.navSize);
         }
 
         // trigger the column header bounce animation on desktop browsers
@@ -389,6 +391,7 @@ const move = (direction) => {
         hScrollPositionTween.set(getHorizontalScrollPosition(), {
             duration: 350
         });
+        navScrollPositionTween.set(hScrollIndex * sizeConfig.navSize);
         moved = true;
     }
     if((direction > 0) && (hScrollIndex < hScrollIndexMax)) {
@@ -396,6 +399,7 @@ const move = (direction) => {
         hScrollPositionTween.set(getHorizontalScrollPosition(), {
             duration: 350
         });
+        navScrollPositionTween.set(hScrollIndex * sizeConfig.navSize);
         moved = true;
     }
 }
