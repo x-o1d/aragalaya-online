@@ -275,8 +275,8 @@ const unfiedMoveHandler = (deltaX, deltaY) => {
     moveDeltaXCache.unshift(deltaX);
     moveDeltaYCache.unshift(deltaY);
 
-    const PEEK_THRESHOLD = 40;
-    const MOVE_THRESHOLD = 90;
+    const PEEK_THRESHOLD = 20;
+    const MOVE_THRESHOLD = 40;
 
     // call peek or move based on the values in the xCache
     let xTotal = 0;
@@ -297,7 +297,7 @@ const unfiedMoveHandler = (deltaX, deltaY) => {
         }
     });
 
-    const HIDE_NAV_THRESHOLD = 40;
+    const HIDE_NAV_THRESHOLD = 20;
 
     // hide navbar based on the values in the yCache
     let yTotal = 0;
@@ -339,7 +339,7 @@ const move = (direction) => {
     if((direction > 0) && (hScrollIndex < COLUMN_COUNT)) {
         hScrollIndex++;
     }
-    const scrollTo = hScrollIndex * sizeConfig.columnWidth;
+    let scrollTo = hScrollIndex * sizeConfig.columnWidth;
 
     // calculate remaining space to the right after the move.
     const remainingSpace = (COLUMN_COUNT * sizeConfig.columnWidth + 15)
