@@ -20,7 +20,7 @@
     size={0.75}
     style="
         display: flex;
-        width: calc(90% - 4px);
+        width: calc(100% - 4px);
         flex-wrap: wrap;{style};
         margin-top: var(--theme-cardseparation);
         margin-bottom: calc(var(--theme-cardseparation) - var(--s3px));">

@@ -283,22 +283,24 @@ export const _handleTouchEnd = (event) => {
 let moveDeltaXCache = [];
 let moveDeltaYCache = [];
 
-let peeked = false;
 let moved = false;
 
 // both wheel and touch events are merged into this handler
 const unfiedMoveHandler = (deltaX, deltaY) => {
+    // check if the current delta directio is the same as the previous in
+    // cache, if not consider the gesture has ended
     if(moveDeltaXCache[0] && (Math.sign(deltaX) != Math.sign(moveDeltaXCache[0]))) {
         unifiedMoveEnd();
         return;
     }
-    if(peeked && moved) return;
+    // ignore events after move has been triggered, until unifiedMoveEnd() has been
+    // called
+    if(moved) return;
 
     moveDeltaXCache.unshift(deltaX);
     moveDeltaYCache.unshift(deltaY);
 
-    const PEEK_THRESHOLD = 16;
-    const MOVE_THRESHOLD = 32;
+    const MOVE_THRESHOLD = 20;
 
     // call peek or move based on the values in the xCache
     let xTotal = 0;
@@ -308,9 +310,6 @@ const unfiedMoveHandler = (deltaX, deltaY) => {
         // touch is moving at an angle
         xTotal += (Math.abs(moveDeltaXCache[_i])/(Math.abs(moveDeltaYCache[_i])+1));
 
-        if(!peeked && (xTotal > PEEK_THRESHOLD)) {
-            peek(Math.sign(-1*deltaX));
-        }
         if(!moved && (xTotal > MOVE_THRESHOLD)) {
             move(Math.sign(-1*deltaX));
             return true;
@@ -336,45 +335,10 @@ const unfiedMoveHandler = (deltaX, deltaY) => {
 const unifiedMoveEnd = () => {
     moveDeltaXCache = [];
     moveDeltaYCache = [];
-    peeked = false;
     moved = false;
 
-    // reset the original position incase peek has been activated 
-    hScrollPositionTween.set(getHorizontalScrollPosition());
-
     // enable vertical scroll on the column
-    _columnElements.map(c => c.style.overflowY = 'scroll');
-}
-
-// peek the next column without switching to it. if the user let's 
-// go of the touch or moves in the opposite direction, the column 
-// would return to the original position
-const peek = (direction) => {
-    // disable vertical scroll on the column
-    _columnElements.map(c => c.style.overflowY = 'hidden');
-
-    const PEEK_DISTANCE = 24;
-    const scrollMax = (COLUMN_COUNT * sizeConfig.columnWidth) 
-                        // add spacer width for desktop browsers
-                        + (isMobile? 0: sizeConfig.cardSeparation)
-                        - window.innerWidth;
-    let scrollTo = getHorizontalScrollPosition() + (PEEK_DISTANCE*direction);
-    // scroll to the peek position
-    if((scrollTo < scrollMax) && (scrollTo > 0)) {
-        hScrollPositionTween.set(scrollTo, {
-            duration: 350,
-            easing: quartOut
-        });
-    } else {
-        // if the peek sroll is beyond the scroll boundaries
-        // make a jolt animation to indicate that it's the last column
-        const joltDistance = PEEK_DISTANCE/4*direction;
-        hScrollPositionTween.set(getHorizontalScrollPosition() - joltDistance, {
-            duration: 100,
-            easing: quartOut
-        });
-    }
-    peeked = true;
+    // _columnElements.map(c => c.style.overflowY = 'scroll');
 }
 
 // switch to the next column
@@ -386,22 +350,29 @@ const move = (direction) => {
                                     + (isMobile? 0: sizeConfig.cardSeparation)
                                     - window.innerWidth)
                                 / sizeConfig.columnWidth);
+    // move to the left column
     if((direction < 0) && (hScrollIndex > 0)) {
         hScrollIndex--;
-        hScrollPositionTween.set(getHorizontalScrollPosition(), {
-            duration: 350
-        });
+        hScrollPositionTween.set(getHorizontalScrollPosition());
         navScrollPositionTween.set(hScrollIndex * sizeConfig.navSize);
-        moved = true;
-    }
-    if((direction > 0) && (hScrollIndex < hScrollIndexMax)) {
+    } 
+    // move to the right column
+    else if((direction > 0) && (hScrollIndex < hScrollIndexMax)) {
         hScrollIndex++;
-        hScrollPositionTween.set(getHorizontalScrollPosition(), {
-            duration: 350
-        });
+        hScrollPositionTween.set(getHorizontalScrollPosition());
         navScrollPositionTween.set(hScrollIndex * sizeConfig.navSize);
-        moved = true;
+    } 
+    // end of scroll
+    else {
+        const SCROLL_END_ANIMATION = 10;
+        hScrollPositionTween.set(getHorizontalScrollPosition() - (SCROLL_END_ANIMATION*direction), {
+            duration: 100
+        });
+        setTimeout(() => {
+            hScrollPositionTween.set(getHorizontalScrollPosition());
+        }, 100);
     }
+    moved = true;
 }
 
 // calculate the scrollLeft value for the current hScrollIndex value

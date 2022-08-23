@@ -284,13 +284,14 @@
                 form
                 onclick={continueEmailSignin}
                 text={_strings['continue']}
-                progress={loginProgress}/>
+                progress={loginProgress}
+                style="margin-bottom: var(--s10px)"/>
             <Font
                 font={0}
                 size={1}
                 color="#5c5c5c"
                 style="
-                    margin-bottom: var(--s14px);">
+                    margin-bottom: var(--s10px);">
                 {_strings['or'][$_lang]}
             </Font>
             <div 

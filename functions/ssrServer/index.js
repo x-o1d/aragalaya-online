@@ -70605,15 +70605,2141 @@ ${progress ? `<div class="${"preloader s-d9-80eNJ_c8b"}">${validate_component(Pr
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/tags-8586509e.js
-var import_chroma_js2, tagConfig, colors, TAGS, css3, Tags;
-var init_tags_8586509e = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/tags-8586509e.js"() {
+// node_modules/lodash.isplainobject/index.js
+var require_lodash2 = __commonJS({
+  "node_modules/lodash.isplainobject/index.js"(exports2, module2) {
+    init_shims();
+    var objectTag = "[object Object]";
+    function isHostObject(value) {
+      var result = false;
+      if (value != null && typeof value.toString != "function") {
+        try {
+          result = !!(value + "");
+        } catch (e2) {
+        }
+      }
+      return result;
+    }
+    function overArg(func, transform) {
+      return function(arg) {
+        return func(transform(arg));
+      };
+    }
+    var funcProto = Function.prototype;
+    var objectProto = Object.prototype;
+    var funcToString = funcProto.toString;
+    var hasOwnProperty = objectProto.hasOwnProperty;
+    var objectCtorString = funcToString.call(Object);
+    var objectToString = objectProto.toString;
+    var getPrototype = overArg(Object.getPrototypeOf, Object);
+    function isObjectLike(value) {
+      return !!value && typeof value == "object";
+    }
+    function isPlainObject2(value) {
+      if (!isObjectLike(value) || objectToString.call(value) != objectTag || isHostObject(value)) {
+        return false;
+      }
+      var proto = getPrototype(value);
+      if (proto === null) {
+        return true;
+      }
+      var Ctor = hasOwnProperty.call(proto, "constructor") && proto.constructor;
+      return typeof Ctor == "function" && Ctor instanceof Ctor && funcToString.call(Ctor) == objectCtorString;
+    }
+    module2.exports = isPlainObject2;
+  }
+});
+
+// node_modules/lodash.trim/index.js
+var require_lodash3 = __commonJS({
+  "node_modules/lodash.trim/index.js"(exports2, module2) {
+    init_shims();
+    var INFINITY = 1 / 0;
+    var symbolTag = "[object Symbol]";
+    var reTrim = /^\s+|\s+$/g;
+    var rsAstralRange = "\\ud800-\\udfff";
+    var rsComboMarksRange = "\\u0300-\\u036f\\ufe20-\\ufe23";
+    var rsComboSymbolsRange = "\\u20d0-\\u20f0";
+    var rsVarRange = "\\ufe0e\\ufe0f";
+    var rsAstral = "[" + rsAstralRange + "]";
+    var rsCombo = "[" + rsComboMarksRange + rsComboSymbolsRange + "]";
+    var rsFitz = "\\ud83c[\\udffb-\\udfff]";
+    var rsModifier = "(?:" + rsCombo + "|" + rsFitz + ")";
+    var rsNonAstral = "[^" + rsAstralRange + "]";
+    var rsRegional = "(?:\\ud83c[\\udde6-\\uddff]){2}";
+    var rsSurrPair = "[\\ud800-\\udbff][\\udc00-\\udfff]";
+    var rsZWJ = "\\u200d";
+    var reOptMod = rsModifier + "?";
+    var rsOptVar = "[" + rsVarRange + "]?";
+    var rsOptJoin = "(?:" + rsZWJ + "(?:" + [rsNonAstral, rsRegional, rsSurrPair].join("|") + ")" + rsOptVar + reOptMod + ")*";
+    var rsSeq = rsOptVar + reOptMod + rsOptJoin;
+    var rsSymbol = "(?:" + [rsNonAstral + rsCombo + "?", rsCombo, rsRegional, rsSurrPair, rsAstral].join("|") + ")";
+    var reUnicode = RegExp(rsFitz + "(?=" + rsFitz + ")|" + rsSymbol + rsSeq, "g");
+    var reHasUnicode = RegExp("[" + rsZWJ + rsAstralRange + rsComboMarksRange + rsComboSymbolsRange + rsVarRange + "]");
+    var freeGlobal = typeof global == "object" && global && global.Object === Object && global;
+    var freeSelf = typeof self == "object" && self && self.Object === Object && self;
+    var root = freeGlobal || freeSelf || Function("return this")();
+    function asciiToArray(string) {
+      return string.split("");
+    }
+    function baseFindIndex(array2, predicate, fromIndex, fromRight) {
+      var length = array2.length, index11 = fromIndex + (fromRight ? 1 : -1);
+      while (fromRight ? index11-- : ++index11 < length) {
+        if (predicate(array2[index11], index11, array2)) {
+          return index11;
+        }
+      }
+      return -1;
+    }
+    function baseIndexOf(array2, value, fromIndex) {
+      if (value !== value) {
+        return baseFindIndex(array2, baseIsNaN, fromIndex);
+      }
+      var index11 = fromIndex - 1, length = array2.length;
+      while (++index11 < length) {
+        if (array2[index11] === value) {
+          return index11;
+        }
+      }
+      return -1;
+    }
+    function baseIsNaN(value) {
+      return value !== value;
+    }
+    function charsStartIndex(strSymbols, chrSymbols) {
+      var index11 = -1, length = strSymbols.length;
+      while (++index11 < length && baseIndexOf(chrSymbols, strSymbols[index11], 0) > -1) {
+      }
+      return index11;
+    }
+    function charsEndIndex(strSymbols, chrSymbols) {
+      var index11 = strSymbols.length;
+      while (index11-- && baseIndexOf(chrSymbols, strSymbols[index11], 0) > -1) {
+      }
+      return index11;
+    }
+    function hasUnicode(string) {
+      return reHasUnicode.test(string);
+    }
+    function stringToArray(string) {
+      return hasUnicode(string) ? unicodeToArray(string) : asciiToArray(string);
+    }
+    function unicodeToArray(string) {
+      return string.match(reUnicode) || [];
+    }
+    var objectProto = Object.prototype;
+    var objectToString = objectProto.toString;
+    var Symbol2 = root.Symbol;
+    var symbolProto = Symbol2 ? Symbol2.prototype : void 0;
+    var symbolToString = symbolProto ? symbolProto.toString : void 0;
+    function baseSlice(array2, start2, end) {
+      var index11 = -1, length = array2.length;
+      if (start2 < 0) {
+        start2 = -start2 > length ? 0 : length + start2;
+      }
+      end = end > length ? length : end;
+      if (end < 0) {
+        end += length;
+      }
+      length = start2 > end ? 0 : end - start2 >>> 0;
+      start2 >>>= 0;
+      var result = Array(length);
+      while (++index11 < length) {
+        result[index11] = array2[index11 + start2];
+      }
+      return result;
+    }
+    function baseToString(value) {
+      if (typeof value == "string") {
+        return value;
+      }
+      if (isSymbol(value)) {
+        return symbolToString ? symbolToString.call(value) : "";
+      }
+      var result = value + "";
+      return result == "0" && 1 / value == -INFINITY ? "-0" : result;
+    }
+    function castSlice(array2, start2, end) {
+      var length = array2.length;
+      end = end === void 0 ? length : end;
+      return !start2 && end >= length ? array2 : baseSlice(array2, start2, end);
+    }
+    function isObjectLike(value) {
+      return !!value && typeof value == "object";
+    }
+    function isSymbol(value) {
+      return typeof value == "symbol" || isObjectLike(value) && objectToString.call(value) == symbolTag;
+    }
+    function toString(value) {
+      return value == null ? "" : baseToString(value);
+    }
+    function trim(string, chars2, guard) {
+      string = toString(string);
+      if (string && (guard || chars2 === void 0)) {
+        return string.replace(reTrim, "");
+      }
+      if (!string || !(chars2 = baseToString(chars2))) {
+        return string;
+      }
+      var strSymbols = stringToArray(string), chrSymbols = stringToArray(chars2), start2 = charsStartIndex(strSymbols, chrSymbols), end = charsEndIndex(strSymbols, chrSymbols) + 1;
+      return castSlice(strSymbols, start2, end).join("");
+    }
+    module2.exports = trim;
+  }
+});
+
+// node_modules/lodash.without/index.js
+var require_lodash4 = __commonJS({
+  "node_modules/lodash.without/index.js"(exports2, module2) {
+    init_shims();
+    var LARGE_ARRAY_SIZE = 200;
+    var HASH_UNDEFINED = "__lodash_hash_undefined__";
+    var MAX_SAFE_INTEGER = 9007199254740991;
+    var funcTag = "[object Function]";
+    var genTag = "[object GeneratorFunction]";
+    var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+    var reIsHostCtor = /^\[object .+?Constructor\]$/;
+    var freeGlobal = typeof global == "object" && global && global.Object === Object && global;
+    var freeSelf = typeof self == "object" && self && self.Object === Object && self;
+    var root = freeGlobal || freeSelf || Function("return this")();
+    function apply(func, thisArg, args) {
+      switch (args.length) {
+        case 0:
+          return func.call(thisArg);
+        case 1:
+          return func.call(thisArg, args[0]);
+        case 2:
+          return func.call(thisArg, args[0], args[1]);
+        case 3:
+          return func.call(thisArg, args[0], args[1], args[2]);
+      }
+      return func.apply(thisArg, args);
+    }
+    function arrayIncludes(array2, value) {
+      var length = array2 ? array2.length : 0;
+      return !!length && baseIndexOf(array2, value, 0) > -1;
+    }
+    function arrayIncludesWith(array2, value, comparator) {
+      var index11 = -1, length = array2 ? array2.length : 0;
+      while (++index11 < length) {
+        if (comparator(value, array2[index11])) {
+          return true;
+        }
+      }
+      return false;
+    }
+    function arrayMap(array2, iteratee) {
+      var index11 = -1, length = array2 ? array2.length : 0, result = Array(length);
+      while (++index11 < length) {
+        result[index11] = iteratee(array2[index11], index11, array2);
+      }
+      return result;
+    }
+    function baseFindIndex(array2, predicate, fromIndex, fromRight) {
+      var length = array2.length, index11 = fromIndex + (fromRight ? 1 : -1);
+      while (fromRight ? index11-- : ++index11 < length) {
+        if (predicate(array2[index11], index11, array2)) {
+          return index11;
+        }
+      }
+      return -1;
+    }
+    function baseIndexOf(array2, value, fromIndex) {
+      if (value !== value) {
+        return baseFindIndex(array2, baseIsNaN, fromIndex);
+      }
+      var index11 = fromIndex - 1, length = array2.length;
+      while (++index11 < length) {
+        if (array2[index11] === value) {
+          return index11;
+        }
+      }
+      return -1;
+    }
+    function baseIsNaN(value) {
+      return value !== value;
+    }
+    function baseUnary(func) {
+      return function(value) {
+        return func(value);
+      };
+    }
+    function cacheHas(cache, key2) {
+      return cache.has(key2);
+    }
+    function getValue(object, key2) {
+      return object == null ? void 0 : object[key2];
+    }
+    function isHostObject(value) {
+      var result = false;
+      if (value != null && typeof value.toString != "function") {
+        try {
+          result = !!(value + "");
+        } catch (e2) {
+        }
+      }
+      return result;
+    }
+    var arrayProto = Array.prototype;
+    var funcProto = Function.prototype;
+    var objectProto = Object.prototype;
+    var coreJsData = root["__core-js_shared__"];
+    var maskSrcKey = function() {
+      var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || "");
+      return uid ? "Symbol(src)_1." + uid : "";
+    }();
+    var funcToString = funcProto.toString;
+    var hasOwnProperty = objectProto.hasOwnProperty;
+    var objectToString = objectProto.toString;
+    var reIsNative = RegExp(
+      "^" + funcToString.call(hasOwnProperty).replace(reRegExpChar, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$"
+    );
+    var splice = arrayProto.splice;
+    var nativeMax = Math.max;
+    var Map2 = getNative(root, "Map");
+    var nativeCreate = getNative(Object, "create");
+    function Hash(entries) {
+      var index11 = -1, length = entries ? entries.length : 0;
+      this.clear();
+      while (++index11 < length) {
+        var entry = entries[index11];
+        this.set(entry[0], entry[1]);
+      }
+    }
+    function hashClear() {
+      this.__data__ = nativeCreate ? nativeCreate(null) : {};
+    }
+    function hashDelete(key2) {
+      return this.has(key2) && delete this.__data__[key2];
+    }
+    function hashGet(key2) {
+      var data = this.__data__;
+      if (nativeCreate) {
+        var result = data[key2];
+        return result === HASH_UNDEFINED ? void 0 : result;
+      }
+      return hasOwnProperty.call(data, key2) ? data[key2] : void 0;
+    }
+    function hashHas(key2) {
+      var data = this.__data__;
+      return nativeCreate ? data[key2] !== void 0 : hasOwnProperty.call(data, key2);
+    }
+    function hashSet(key2, value) {
+      var data = this.__data__;
+      data[key2] = nativeCreate && value === void 0 ? HASH_UNDEFINED : value;
+      return this;
+    }
+    Hash.prototype.clear = hashClear;
+    Hash.prototype["delete"] = hashDelete;
+    Hash.prototype.get = hashGet;
+    Hash.prototype.has = hashHas;
+    Hash.prototype.set = hashSet;
+    function ListCache(entries) {
+      var index11 = -1, length = entries ? entries.length : 0;
+      this.clear();
+      while (++index11 < length) {
+        var entry = entries[index11];
+        this.set(entry[0], entry[1]);
+      }
+    }
+    function listCacheClear() {
+      this.__data__ = [];
+    }
+    function listCacheDelete(key2) {
+      var data = this.__data__, index11 = assocIndexOf(data, key2);
+      if (index11 < 0) {
+        return false;
+      }
+      var lastIndex = data.length - 1;
+      if (index11 == lastIndex) {
+        data.pop();
+      } else {
+        splice.call(data, index11, 1);
+      }
+      return true;
+    }
+    function listCacheGet(key2) {
+      var data = this.__data__, index11 = assocIndexOf(data, key2);
+      return index11 < 0 ? void 0 : data[index11][1];
+    }
+    function listCacheHas(key2) {
+      return assocIndexOf(this.__data__, key2) > -1;
+    }
+    function listCacheSet(key2, value) {
+      var data = this.__data__, index11 = assocIndexOf(data, key2);
+      if (index11 < 0) {
+        data.push([key2, value]);
+      } else {
+        data[index11][1] = value;
+      }
+      return this;
+    }
+    ListCache.prototype.clear = listCacheClear;
+    ListCache.prototype["delete"] = listCacheDelete;
+    ListCache.prototype.get = listCacheGet;
+    ListCache.prototype.has = listCacheHas;
+    ListCache.prototype.set = listCacheSet;
+    function MapCache(entries) {
+      var index11 = -1, length = entries ? entries.length : 0;
+      this.clear();
+      while (++index11 < length) {
+        var entry = entries[index11];
+        this.set(entry[0], entry[1]);
+      }
+    }
+    function mapCacheClear() {
+      this.__data__ = {
+        "hash": new Hash(),
+        "map": new (Map2 || ListCache)(),
+        "string": new Hash()
+      };
+    }
+    function mapCacheDelete(key2) {
+      return getMapData(this, key2)["delete"](key2);
+    }
+    function mapCacheGet(key2) {
+      return getMapData(this, key2).get(key2);
+    }
+    function mapCacheHas(key2) {
+      return getMapData(this, key2).has(key2);
+    }
+    function mapCacheSet(key2, value) {
+      getMapData(this, key2).set(key2, value);
+      return this;
+    }
+    MapCache.prototype.clear = mapCacheClear;
+    MapCache.prototype["delete"] = mapCacheDelete;
+    MapCache.prototype.get = mapCacheGet;
+    MapCache.prototype.has = mapCacheHas;
+    MapCache.prototype.set = mapCacheSet;
+    function SetCache(values) {
+      var index11 = -1, length = values ? values.length : 0;
+      this.__data__ = new MapCache();
+      while (++index11 < length) {
+        this.add(values[index11]);
+      }
+    }
+    function setCacheAdd(value) {
+      this.__data__.set(value, HASH_UNDEFINED);
+      return this;
+    }
+    function setCacheHas(value) {
+      return this.__data__.has(value);
+    }
+    SetCache.prototype.add = SetCache.prototype.push = setCacheAdd;
+    SetCache.prototype.has = setCacheHas;
+    function assocIndexOf(array2, key2) {
+      var length = array2.length;
+      while (length--) {
+        if (eq(array2[length][0], key2)) {
+          return length;
+        }
+      }
+      return -1;
+    }
+    function baseDifference(array2, values, iteratee, comparator) {
+      var index11 = -1, includes = arrayIncludes, isCommon = true, length = array2.length, result = [], valuesLength = values.length;
+      if (!length) {
+        return result;
+      }
+      if (iteratee) {
+        values = arrayMap(values, baseUnary(iteratee));
+      }
+      if (comparator) {
+        includes = arrayIncludesWith;
+        isCommon = false;
+      } else if (values.length >= LARGE_ARRAY_SIZE) {
+        includes = cacheHas;
+        isCommon = false;
+        values = new SetCache(values);
+      }
+      outer:
+        while (++index11 < length) {
+          var value = array2[index11], computed = iteratee ? iteratee(value) : value;
+          value = comparator || value !== 0 ? value : 0;
+          if (isCommon && computed === computed) {
+            var valuesIndex = valuesLength;
+            while (valuesIndex--) {
+              if (values[valuesIndex] === computed) {
+                continue outer;
+              }
+            }
+            result.push(value);
+          } else if (!includes(values, computed, comparator)) {
+            result.push(value);
+          }
+        }
+      return result;
+    }
+    function baseIsNative(value) {
+      if (!isObject3(value) || isMasked(value)) {
+        return false;
+      }
+      var pattern = isFunction(value) || isHostObject(value) ? reIsNative : reIsHostCtor;
+      return pattern.test(toSource(value));
+    }
+    function baseRest(func, start2) {
+      start2 = nativeMax(start2 === void 0 ? func.length - 1 : start2, 0);
+      return function() {
+        var args = arguments, index11 = -1, length = nativeMax(args.length - start2, 0), array2 = Array(length);
+        while (++index11 < length) {
+          array2[index11] = args[start2 + index11];
+        }
+        index11 = -1;
+        var otherArgs = Array(start2 + 1);
+        while (++index11 < start2) {
+          otherArgs[index11] = args[index11];
+        }
+        otherArgs[start2] = array2;
+        return apply(func, this, otherArgs);
+      };
+    }
+    function getMapData(map, key2) {
+      var data = map.__data__;
+      return isKeyable(key2) ? data[typeof key2 == "string" ? "string" : "hash"] : data.map;
+    }
+    function getNative(object, key2) {
+      var value = getValue(object, key2);
+      return baseIsNative(value) ? value : void 0;
+    }
+    function isKeyable(value) {
+      var type = typeof value;
+      return type == "string" || type == "number" || type == "symbol" || type == "boolean" ? value !== "__proto__" : value === null;
+    }
+    function isMasked(func) {
+      return !!maskSrcKey && maskSrcKey in func;
+    }
+    function toSource(func) {
+      if (func != null) {
+        try {
+          return funcToString.call(func);
+        } catch (e2) {
+        }
+        try {
+          return func + "";
+        } catch (e2) {
+        }
+      }
+      return "";
+    }
+    var without = baseRest(function(array2, values) {
+      return isArrayLikeObject(array2) ? baseDifference(array2, values) : [];
+    });
+    function eq(value, other) {
+      return value === other || value !== value && other !== other;
+    }
+    function isArrayLike(value) {
+      return value != null && isLength(value.length) && !isFunction(value);
+    }
+    function isArrayLikeObject(value) {
+      return isObjectLike(value) && isArrayLike(value);
+    }
+    function isFunction(value) {
+      var tag = isObject3(value) ? objectToString.call(value) : "";
+      return tag == funcTag || tag == genTag;
+    }
+    function isLength(value) {
+      return typeof value == "number" && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+    }
+    function isObject3(value) {
+      var type = typeof value;
+      return !!value && (type == "object" || type == "function");
+    }
+    function isObjectLike(value) {
+      return !!value && typeof value == "object";
+    }
+    module2.exports = without;
+  }
+});
+
+// node_modules/html-entities/lib/named-references.js
+var require_named_references = __commonJS({
+  "node_modules/html-entities/lib/named-references.js"(exports2) {
+    "use strict";
+    init_shims();
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.bodyRegExps = { xml: /&(?:#\d+|#[xX][\da-fA-F]+|[0-9a-zA-Z]+);?/g, html4: /&(?:nbsp|iexcl|cent|pound|curren|yen|brvbar|sect|uml|copy|ordf|laquo|not|shy|reg|macr|deg|plusmn|sup2|sup3|acute|micro|para|middot|cedil|sup1|ordm|raquo|frac14|frac12|frac34|iquest|Agrave|Aacute|Acirc|Atilde|Auml|Aring|AElig|Ccedil|Egrave|Eacute|Ecirc|Euml|Igrave|Iacute|Icirc|Iuml|ETH|Ntilde|Ograve|Oacute|Ocirc|Otilde|Ouml|times|Oslash|Ugrave|Uacute|Ucirc|Uuml|Yacute|THORN|szlig|agrave|aacute|acirc|atilde|auml|aring|aelig|ccedil|egrave|eacute|ecirc|euml|igrave|iacute|icirc|iuml|eth|ntilde|ograve|oacute|ocirc|otilde|ouml|divide|oslash|ugrave|uacute|ucirc|uuml|yacute|thorn|yuml|quot|amp|lt|gt|#\d+|#[xX][\da-fA-F]+|[0-9a-zA-Z]+);?/g, html5: /&(?:AElig|AMP|Aacute|Acirc|Agrave|Aring|Atilde|Auml|COPY|Ccedil|ETH|Eacute|Ecirc|Egrave|Euml|GT|Iacute|Icirc|Igrave|Iuml|LT|Ntilde|Oacute|Ocirc|Ograve|Oslash|Otilde|Ouml|QUOT|REG|THORN|Uacute|Ucirc|Ugrave|Uuml|Yacute|aacute|acirc|acute|aelig|agrave|amp|aring|atilde|auml|brvbar|ccedil|cedil|cent|copy|curren|deg|divide|eacute|ecirc|egrave|eth|euml|frac12|frac14|frac34|gt|iacute|icirc|iexcl|igrave|iquest|iuml|laquo|lt|macr|micro|middot|nbsp|not|ntilde|oacute|ocirc|ograve|ordf|ordm|oslash|otilde|ouml|para|plusmn|pound|quot|raquo|reg|sect|shy|sup1|sup2|sup3|szlig|thorn|times|uacute|ucirc|ugrave|uml|uuml|yacute|yen|yuml|#\d+|#[xX][\da-fA-F]+|[0-9a-zA-Z]+);?/g };
+    exports2.namedReferences = { xml: { entities: { "&lt;": "<", "&gt;": ">", "&quot;": '"', "&apos;": "'", "&amp;": "&" }, characters: { "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;", "&": "&amp;" } }, html4: { entities: { "&apos;": "'", "&nbsp": "\xA0", "&nbsp;": "\xA0", "&iexcl": "\xA1", "&iexcl;": "\xA1", "&cent": "\xA2", "&cent;": "\xA2", "&pound": "\xA3", "&pound;": "\xA3", "&curren": "\xA4", "&curren;": "\xA4", "&yen": "\xA5", "&yen;": "\xA5", "&brvbar": "\xA6", "&brvbar;": "\xA6", "&sect": "\xA7", "&sect;": "\xA7", "&uml": "\xA8", "&uml;": "\xA8", "&copy": "\xA9", "&copy;": "\xA9", "&ordf": "\xAA", "&ordf;": "\xAA", "&laquo": "\xAB", "&laquo;": "\xAB", "&not": "\xAC", "&not;": "\xAC", "&shy": "\xAD", "&shy;": "\xAD", "&reg": "\xAE", "&reg;": "\xAE", "&macr": "\xAF", "&macr;": "\xAF", "&deg": "\xB0", "&deg;": "\xB0", "&plusmn": "\xB1", "&plusmn;": "\xB1", "&sup2": "\xB2", "&sup2;": "\xB2", "&sup3": "\xB3", "&sup3;": "\xB3", "&acute": "\xB4", "&acute;": "\xB4", "&micro": "\xB5", "&micro;": "\xB5", "&para": "\xB6", "&para;": "\xB6", "&middot": "\xB7", "&middot;": "\xB7", "&cedil": "\xB8", "&cedil;": "\xB8", "&sup1": "\xB9", "&sup1;": "\xB9", "&ordm": "\xBA", "&ordm;": "\xBA", "&raquo": "\xBB", "&raquo;": "\xBB", "&frac14": "\xBC", "&frac14;": "\xBC", "&frac12": "\xBD", "&frac12;": "\xBD", "&frac34": "\xBE", "&frac34;": "\xBE", "&iquest": "\xBF", "&iquest;": "\xBF", "&Agrave": "\xC0", "&Agrave;": "\xC0", "&Aacute": "\xC1", "&Aacute;": "\xC1", "&Acirc": "\xC2", "&Acirc;": "\xC2", "&Atilde": "\xC3", "&Atilde;": "\xC3", "&Auml": "\xC4", "&Auml;": "\xC4", "&Aring": "\xC5", "&Aring;": "\xC5", "&AElig": "\xC6", "&AElig;": "\xC6", "&Ccedil": "\xC7", "&Ccedil;": "\xC7", "&Egrave": "\xC8", "&Egrave;": "\xC8", "&Eacute": "\xC9", "&Eacute;": "\xC9", "&Ecirc": "\xCA", "&Ecirc;": "\xCA", "&Euml": "\xCB", "&Euml;": "\xCB", "&Igrave": "\xCC", "&Igrave;": "\xCC", "&Iacute": "\xCD", "&Iacute;": "\xCD", "&Icirc": "\xCE", "&Icirc;": "\xCE", "&Iuml": "\xCF", "&Iuml;": "\xCF", "&ETH": "\xD0", "&ETH;": "\xD0", "&Ntilde": "\xD1", "&Ntilde;": "\xD1", "&Ograve": "\xD2", "&Ograve;": "\xD2", "&Oacute": "\xD3", "&Oacute;": "\xD3", "&Ocirc": "\xD4", "&Ocirc;": "\xD4", "&Otilde": "\xD5", "&Otilde;": "\xD5", "&Ouml": "\xD6", "&Ouml;": "\xD6", "&times": "\xD7", "&times;": "\xD7", "&Oslash": "\xD8", "&Oslash;": "\xD8", "&Ugrave": "\xD9", "&Ugrave;": "\xD9", "&Uacute": "\xDA", "&Uacute;": "\xDA", "&Ucirc": "\xDB", "&Ucirc;": "\xDB", "&Uuml": "\xDC", "&Uuml;": "\xDC", "&Yacute": "\xDD", "&Yacute;": "\xDD", "&THORN": "\xDE", "&THORN;": "\xDE", "&szlig": "\xDF", "&szlig;": "\xDF", "&agrave": "\xE0", "&agrave;": "\xE0", "&aacute": "\xE1", "&aacute;": "\xE1", "&acirc": "\xE2", "&acirc;": "\xE2", "&atilde": "\xE3", "&atilde;": "\xE3", "&auml": "\xE4", "&auml;": "\xE4", "&aring": "\xE5", "&aring;": "\xE5", "&aelig": "\xE6", "&aelig;": "\xE6", "&ccedil": "\xE7", "&ccedil;": "\xE7", "&egrave": "\xE8", "&egrave;": "\xE8", "&eacute": "\xE9", "&eacute;": "\xE9", "&ecirc": "\xEA", "&ecirc;": "\xEA", "&euml": "\xEB", "&euml;": "\xEB", "&igrave": "\xEC", "&igrave;": "\xEC", "&iacute": "\xED", "&iacute;": "\xED", "&icirc": "\xEE", "&icirc;": "\xEE", "&iuml": "\xEF", "&iuml;": "\xEF", "&eth": "\xF0", "&eth;": "\xF0", "&ntilde": "\xF1", "&ntilde;": "\xF1", "&ograve": "\xF2", "&ograve;": "\xF2", "&oacute": "\xF3", "&oacute;": "\xF3", "&ocirc": "\xF4", "&ocirc;": "\xF4", "&otilde": "\xF5", "&otilde;": "\xF5", "&ouml": "\xF6", "&ouml;": "\xF6", "&divide": "\xF7", "&divide;": "\xF7", "&oslash": "\xF8", "&oslash;": "\xF8", "&ugrave": "\xF9", "&ugrave;": "\xF9", "&uacute": "\xFA", "&uacute;": "\xFA", "&ucirc": "\xFB", "&ucirc;": "\xFB", "&uuml": "\xFC", "&uuml;": "\xFC", "&yacute": "\xFD", "&yacute;": "\xFD", "&thorn": "\xFE", "&thorn;": "\xFE", "&yuml": "\xFF", "&yuml;": "\xFF", "&quot": '"', "&quot;": '"', "&amp": "&", "&amp;": "&", "&lt": "<", "&lt;": "<", "&gt": ">", "&gt;": ">", "&OElig;": "\u0152", "&oelig;": "\u0153", "&Scaron;": "\u0160", "&scaron;": "\u0161", "&Yuml;": "\u0178", "&circ;": "\u02C6", "&tilde;": "\u02DC", "&ensp;": "\u2002", "&emsp;": "\u2003", "&thinsp;": "\u2009", "&zwnj;": "\u200C", "&zwj;": "\u200D", "&lrm;": "\u200E", "&rlm;": "\u200F", "&ndash;": "\u2013", "&mdash;": "\u2014", "&lsquo;": "\u2018", "&rsquo;": "\u2019", "&sbquo;": "\u201A", "&ldquo;": "\u201C", "&rdquo;": "\u201D", "&bdquo;": "\u201E", "&dagger;": "\u2020", "&Dagger;": "\u2021", "&permil;": "\u2030", "&lsaquo;": "\u2039", "&rsaquo;": "\u203A", "&euro;": "\u20AC", "&fnof;": "\u0192", "&Alpha;": "\u0391", "&Beta;": "\u0392", "&Gamma;": "\u0393", "&Delta;": "\u0394", "&Epsilon;": "\u0395", "&Zeta;": "\u0396", "&Eta;": "\u0397", "&Theta;": "\u0398", "&Iota;": "\u0399", "&Kappa;": "\u039A", "&Lambda;": "\u039B", "&Mu;": "\u039C", "&Nu;": "\u039D", "&Xi;": "\u039E", "&Omicron;": "\u039F", "&Pi;": "\u03A0", "&Rho;": "\u03A1", "&Sigma;": "\u03A3", "&Tau;": "\u03A4", "&Upsilon;": "\u03A5", "&Phi;": "\u03A6", "&Chi;": "\u03A7", "&Psi;": "\u03A8", "&Omega;": "\u03A9", "&alpha;": "\u03B1", "&beta;": "\u03B2", "&gamma;": "\u03B3", "&delta;": "\u03B4", "&epsilon;": "\u03B5", "&zeta;": "\u03B6", "&eta;": "\u03B7", "&theta;": "\u03B8", "&iota;": "\u03B9", "&kappa;": "\u03BA", "&lambda;": "\u03BB", "&mu;": "\u03BC", "&nu;": "\u03BD", "&xi;": "\u03BE", "&omicron;": "\u03BF", "&pi;": "\u03C0", "&rho;": "\u03C1", "&sigmaf;": "\u03C2", "&sigma;": "\u03C3", "&tau;": "\u03C4", "&upsilon;": "\u03C5", "&phi;": "\u03C6", "&chi;": "\u03C7", "&psi;": "\u03C8", "&omega;": "\u03C9", "&thetasym;": "\u03D1", "&upsih;": "\u03D2", "&piv;": "\u03D6", "&bull;": "\u2022", "&hellip;": "\u2026", "&prime;": "\u2032", "&Prime;": "\u2033", "&oline;": "\u203E", "&frasl;": "\u2044", "&weierp;": "\u2118", "&image;": "\u2111", "&real;": "\u211C", "&trade;": "\u2122", "&alefsym;": "\u2135", "&larr;": "\u2190", "&uarr;": "\u2191", "&rarr;": "\u2192", "&darr;": "\u2193", "&harr;": "\u2194", "&crarr;": "\u21B5", "&lArr;": "\u21D0", "&uArr;": "\u21D1", "&rArr;": "\u21D2", "&dArr;": "\u21D3", "&hArr;": "\u21D4", "&forall;": "\u2200", "&part;": "\u2202", "&exist;": "\u2203", "&empty;": "\u2205", "&nabla;": "\u2207", "&isin;": "\u2208", "&notin;": "\u2209", "&ni;": "\u220B", "&prod;": "\u220F", "&sum;": "\u2211", "&minus;": "\u2212", "&lowast;": "\u2217", "&radic;": "\u221A", "&prop;": "\u221D", "&infin;": "\u221E", "&ang;": "\u2220", "&and;": "\u2227", "&or;": "\u2228", "&cap;": "\u2229", "&cup;": "\u222A", "&int;": "\u222B", "&there4;": "\u2234", "&sim;": "\u223C", "&cong;": "\u2245", "&asymp;": "\u2248", "&ne;": "\u2260", "&equiv;": "\u2261", "&le;": "\u2264", "&ge;": "\u2265", "&sub;": "\u2282", "&sup;": "\u2283", "&nsub;": "\u2284", "&sube;": "\u2286", "&supe;": "\u2287", "&oplus;": "\u2295", "&otimes;": "\u2297", "&perp;": "\u22A5", "&sdot;": "\u22C5", "&lceil;": "\u2308", "&rceil;": "\u2309", "&lfloor;": "\u230A", "&rfloor;": "\u230B", "&lang;": "\u2329", "&rang;": "\u232A", "&loz;": "\u25CA", "&spades;": "\u2660", "&clubs;": "\u2663", "&hearts;": "\u2665", "&diams;": "\u2666" }, characters: { "'": "&apos;", "\xA0": "&nbsp;", "\xA1": "&iexcl;", "\xA2": "&cent;", "\xA3": "&pound;", "\xA4": "&curren;", "\xA5": "&yen;", "\xA6": "&brvbar;", "\xA7": "&sect;", "\xA8": "&uml;", "\xA9": "&copy;", "\xAA": "&ordf;", "\xAB": "&laquo;", "\xAC": "&not;", "\xAD": "&shy;", "\xAE": "&reg;", "\xAF": "&macr;", "\xB0": "&deg;", "\xB1": "&plusmn;", "\xB2": "&sup2;", "\xB3": "&sup3;", "\xB4": "&acute;", "\xB5": "&micro;", "\xB6": "&para;", "\xB7": "&middot;", "\xB8": "&cedil;", "\xB9": "&sup1;", "\xBA": "&ordm;", "\xBB": "&raquo;", "\xBC": "&frac14;", "\xBD": "&frac12;", "\xBE": "&frac34;", "\xBF": "&iquest;", "\xC0": "&Agrave;", "\xC1": "&Aacute;", "\xC2": "&Acirc;", "\xC3": "&Atilde;", "\xC4": "&Auml;", "\xC5": "&Aring;", "\xC6": "&AElig;", "\xC7": "&Ccedil;", "\xC8": "&Egrave;", "\xC9": "&Eacute;", "\xCA": "&Ecirc;", "\xCB": "&Euml;", "\xCC": "&Igrave;", "\xCD": "&Iacute;", "\xCE": "&Icirc;", "\xCF": "&Iuml;", "\xD0": "&ETH;", "\xD1": "&Ntilde;", "\xD2": "&Ograve;", "\xD3": "&Oacute;", "\xD4": "&Ocirc;", "\xD5": "&Otilde;", "\xD6": "&Ouml;", "\xD7": "&times;", "\xD8": "&Oslash;", "\xD9": "&Ugrave;", "\xDA": "&Uacute;", "\xDB": "&Ucirc;", "\xDC": "&Uuml;", "\xDD": "&Yacute;", "\xDE": "&THORN;", "\xDF": "&szlig;", "\xE0": "&agrave;", "\xE1": "&aacute;", "\xE2": "&acirc;", "\xE3": "&atilde;", "\xE4": "&auml;", "\xE5": "&aring;", "\xE6": "&aelig;", "\xE7": "&ccedil;", "\xE8": "&egrave;", "\xE9": "&eacute;", "\xEA": "&ecirc;", "\xEB": "&euml;", "\xEC": "&igrave;", "\xED": "&iacute;", "\xEE": "&icirc;", "\xEF": "&iuml;", "\xF0": "&eth;", "\xF1": "&ntilde;", "\xF2": "&ograve;", "\xF3": "&oacute;", "\xF4": "&ocirc;", "\xF5": "&otilde;", "\xF6": "&ouml;", "\xF7": "&divide;", "\xF8": "&oslash;", "\xF9": "&ugrave;", "\xFA": "&uacute;", "\xFB": "&ucirc;", "\xFC": "&uuml;", "\xFD": "&yacute;", "\xFE": "&thorn;", "\xFF": "&yuml;", '"': "&quot;", "&": "&amp;", "<": "&lt;", ">": "&gt;", "\u0152": "&OElig;", "\u0153": "&oelig;", "\u0160": "&Scaron;", "\u0161": "&scaron;", "\u0178": "&Yuml;", "\u02C6": "&circ;", "\u02DC": "&tilde;", "\u2002": "&ensp;", "\u2003": "&emsp;", "\u2009": "&thinsp;", "\u200C": "&zwnj;", "\u200D": "&zwj;", "\u200E": "&lrm;", "\u200F": "&rlm;", "\u2013": "&ndash;", "\u2014": "&mdash;", "\u2018": "&lsquo;", "\u2019": "&rsquo;", "\u201A": "&sbquo;", "\u201C": "&ldquo;", "\u201D": "&rdquo;", "\u201E": "&bdquo;", "\u2020": "&dagger;", "\u2021": "&Dagger;", "\u2030": "&permil;", "\u2039": "&lsaquo;", "\u203A": "&rsaquo;", "\u20AC": "&euro;", "\u0192": "&fnof;", "\u0391": "&Alpha;", "\u0392": "&Beta;", "\u0393": "&Gamma;", "\u0394": "&Delta;", "\u0395": "&Epsilon;", "\u0396": "&Zeta;", "\u0397": "&Eta;", "\u0398": "&Theta;", "\u0399": "&Iota;", "\u039A": "&Kappa;", "\u039B": "&Lambda;", "\u039C": "&Mu;", "\u039D": "&Nu;", "\u039E": "&Xi;", "\u039F": "&Omicron;", "\u03A0": "&Pi;", "\u03A1": "&Rho;", "\u03A3": "&Sigma;", "\u03A4": "&Tau;", "\u03A5": "&Upsilon;", "\u03A6": "&Phi;", "\u03A7": "&Chi;", "\u03A8": "&Psi;", "\u03A9": "&Omega;", "\u03B1": "&alpha;", "\u03B2": "&beta;", "\u03B3": "&gamma;", "\u03B4": "&delta;", "\u03B5": "&epsilon;", "\u03B6": "&zeta;", "\u03B7": "&eta;", "\u03B8": "&theta;", "\u03B9": "&iota;", "\u03BA": "&kappa;", "\u03BB": "&lambda;", "\u03BC": "&mu;", "\u03BD": "&nu;", "\u03BE": "&xi;", "\u03BF": "&omicron;", "\u03C0": "&pi;", "\u03C1": "&rho;", "\u03C2": "&sigmaf;", "\u03C3": "&sigma;", "\u03C4": "&tau;", "\u03C5": "&upsilon;", "\u03C6": "&phi;", "\u03C7": "&chi;", "\u03C8": "&psi;", "\u03C9": "&omega;", "\u03D1": "&thetasym;", "\u03D2": "&upsih;", "\u03D6": "&piv;", "\u2022": "&bull;", "\u2026": "&hellip;", "\u2032": "&prime;", "\u2033": "&Prime;", "\u203E": "&oline;", "\u2044": "&frasl;", "\u2118": "&weierp;", "\u2111": "&image;", "\u211C": "&real;", "\u2122": "&trade;", "\u2135": "&alefsym;", "\u2190": "&larr;", "\u2191": "&uarr;", "\u2192": "&rarr;", "\u2193": "&darr;", "\u2194": "&harr;", "\u21B5": "&crarr;", "\u21D0": "&lArr;", "\u21D1": "&uArr;", "\u21D2": "&rArr;", "\u21D3": "&dArr;", "\u21D4": "&hArr;", "\u2200": "&forall;", "\u2202": "&part;", "\u2203": "&exist;", "\u2205": "&empty;", "\u2207": "&nabla;", "\u2208": "&isin;", "\u2209": "&notin;", "\u220B": "&ni;", "\u220F": "&prod;", "\u2211": "&sum;", "\u2212": "&minus;", "\u2217": "&lowast;", "\u221A": "&radic;", "\u221D": "&prop;", "\u221E": "&infin;", "\u2220": "&ang;", "\u2227": "&and;", "\u2228": "&or;", "\u2229": "&cap;", "\u222A": "&cup;", "\u222B": "&int;", "\u2234": "&there4;", "\u223C": "&sim;", "\u2245": "&cong;", "\u2248": "&asymp;", "\u2260": "&ne;", "\u2261": "&equiv;", "\u2264": "&le;", "\u2265": "&ge;", "\u2282": "&sub;", "\u2283": "&sup;", "\u2284": "&nsub;", "\u2286": "&sube;", "\u2287": "&supe;", "\u2295": "&oplus;", "\u2297": "&otimes;", "\u22A5": "&perp;", "\u22C5": "&sdot;", "\u2308": "&lceil;", "\u2309": "&rceil;", "\u230A": "&lfloor;", "\u230B": "&rfloor;", "\u2329": "&lang;", "\u232A": "&rang;", "\u25CA": "&loz;", "\u2660": "&spades;", "\u2663": "&clubs;", "\u2665": "&hearts;", "\u2666": "&diams;" } }, html5: { entities: { "&AElig": "\xC6", "&AElig;": "\xC6", "&AMP": "&", "&AMP;": "&", "&Aacute": "\xC1", "&Aacute;": "\xC1", "&Abreve;": "\u0102", "&Acirc": "\xC2", "&Acirc;": "\xC2", "&Acy;": "\u0410", "&Afr;": "\u{1D504}", "&Agrave": "\xC0", "&Agrave;": "\xC0", "&Alpha;": "\u0391", "&Amacr;": "\u0100", "&And;": "\u2A53", "&Aogon;": "\u0104", "&Aopf;": "\u{1D538}", "&ApplyFunction;": "\u2061", "&Aring": "\xC5", "&Aring;": "\xC5", "&Ascr;": "\u{1D49C}", "&Assign;": "\u2254", "&Atilde": "\xC3", "&Atilde;": "\xC3", "&Auml": "\xC4", "&Auml;": "\xC4", "&Backslash;": "\u2216", "&Barv;": "\u2AE7", "&Barwed;": "\u2306", "&Bcy;": "\u0411", "&Because;": "\u2235", "&Bernoullis;": "\u212C", "&Beta;": "\u0392", "&Bfr;": "\u{1D505}", "&Bopf;": "\u{1D539}", "&Breve;": "\u02D8", "&Bscr;": "\u212C", "&Bumpeq;": "\u224E", "&CHcy;": "\u0427", "&COPY": "\xA9", "&COPY;": "\xA9", "&Cacute;": "\u0106", "&Cap;": "\u22D2", "&CapitalDifferentialD;": "\u2145", "&Cayleys;": "\u212D", "&Ccaron;": "\u010C", "&Ccedil": "\xC7", "&Ccedil;": "\xC7", "&Ccirc;": "\u0108", "&Cconint;": "\u2230", "&Cdot;": "\u010A", "&Cedilla;": "\xB8", "&CenterDot;": "\xB7", "&Cfr;": "\u212D", "&Chi;": "\u03A7", "&CircleDot;": "\u2299", "&CircleMinus;": "\u2296", "&CirclePlus;": "\u2295", "&CircleTimes;": "\u2297", "&ClockwiseContourIntegral;": "\u2232", "&CloseCurlyDoubleQuote;": "\u201D", "&CloseCurlyQuote;": "\u2019", "&Colon;": "\u2237", "&Colone;": "\u2A74", "&Congruent;": "\u2261", "&Conint;": "\u222F", "&ContourIntegral;": "\u222E", "&Copf;": "\u2102", "&Coproduct;": "\u2210", "&CounterClockwiseContourIntegral;": "\u2233", "&Cross;": "\u2A2F", "&Cscr;": "\u{1D49E}", "&Cup;": "\u22D3", "&CupCap;": "\u224D", "&DD;": "\u2145", "&DDotrahd;": "\u2911", "&DJcy;": "\u0402", "&DScy;": "\u0405", "&DZcy;": "\u040F", "&Dagger;": "\u2021", "&Darr;": "\u21A1", "&Dashv;": "\u2AE4", "&Dcaron;": "\u010E", "&Dcy;": "\u0414", "&Del;": "\u2207", "&Delta;": "\u0394", "&Dfr;": "\u{1D507}", "&DiacriticalAcute;": "\xB4", "&DiacriticalDot;": "\u02D9", "&DiacriticalDoubleAcute;": "\u02DD", "&DiacriticalGrave;": "`", "&DiacriticalTilde;": "\u02DC", "&Diamond;": "\u22C4", "&DifferentialD;": "\u2146", "&Dopf;": "\u{1D53B}", "&Dot;": "\xA8", "&DotDot;": "\u20DC", "&DotEqual;": "\u2250", "&DoubleContourIntegral;": "\u222F", "&DoubleDot;": "\xA8", "&DoubleDownArrow;": "\u21D3", "&DoubleLeftArrow;": "\u21D0", "&DoubleLeftRightArrow;": "\u21D4", "&DoubleLeftTee;": "\u2AE4", "&DoubleLongLeftArrow;": "\u27F8", "&DoubleLongLeftRightArrow;": "\u27FA", "&DoubleLongRightArrow;": "\u27F9", "&DoubleRightArrow;": "\u21D2", "&DoubleRightTee;": "\u22A8", "&DoubleUpArrow;": "\u21D1", "&DoubleUpDownArrow;": "\u21D5", "&DoubleVerticalBar;": "\u2225", "&DownArrow;": "\u2193", "&DownArrowBar;": "\u2913", "&DownArrowUpArrow;": "\u21F5", "&DownBreve;": "\u0311", "&DownLeftRightVector;": "\u2950", "&DownLeftTeeVector;": "\u295E", "&DownLeftVector;": "\u21BD", "&DownLeftVectorBar;": "\u2956", "&DownRightTeeVector;": "\u295F", "&DownRightVector;": "\u21C1", "&DownRightVectorBar;": "\u2957", "&DownTee;": "\u22A4", "&DownTeeArrow;": "\u21A7", "&Downarrow;": "\u21D3", "&Dscr;": "\u{1D49F}", "&Dstrok;": "\u0110", "&ENG;": "\u014A", "&ETH": "\xD0", "&ETH;": "\xD0", "&Eacute": "\xC9", "&Eacute;": "\xC9", "&Ecaron;": "\u011A", "&Ecirc": "\xCA", "&Ecirc;": "\xCA", "&Ecy;": "\u042D", "&Edot;": "\u0116", "&Efr;": "\u{1D508}", "&Egrave": "\xC8", "&Egrave;": "\xC8", "&Element;": "\u2208", "&Emacr;": "\u0112", "&EmptySmallSquare;": "\u25FB", "&EmptyVerySmallSquare;": "\u25AB", "&Eogon;": "\u0118", "&Eopf;": "\u{1D53C}", "&Epsilon;": "\u0395", "&Equal;": "\u2A75", "&EqualTilde;": "\u2242", "&Equilibrium;": "\u21CC", "&Escr;": "\u2130", "&Esim;": "\u2A73", "&Eta;": "\u0397", "&Euml": "\xCB", "&Euml;": "\xCB", "&Exists;": "\u2203", "&ExponentialE;": "\u2147", "&Fcy;": "\u0424", "&Ffr;": "\u{1D509}", "&FilledSmallSquare;": "\u25FC", "&FilledVerySmallSquare;": "\u25AA", "&Fopf;": "\u{1D53D}", "&ForAll;": "\u2200", "&Fouriertrf;": "\u2131", "&Fscr;": "\u2131", "&GJcy;": "\u0403", "&GT": ">", "&GT;": ">", "&Gamma;": "\u0393", "&Gammad;": "\u03DC", "&Gbreve;": "\u011E", "&Gcedil;": "\u0122", "&Gcirc;": "\u011C", "&Gcy;": "\u0413", "&Gdot;": "\u0120", "&Gfr;": "\u{1D50A}", "&Gg;": "\u22D9", "&Gopf;": "\u{1D53E}", "&GreaterEqual;": "\u2265", "&GreaterEqualLess;": "\u22DB", "&GreaterFullEqual;": "\u2267", "&GreaterGreater;": "\u2AA2", "&GreaterLess;": "\u2277", "&GreaterSlantEqual;": "\u2A7E", "&GreaterTilde;": "\u2273", "&Gscr;": "\u{1D4A2}", "&Gt;": "\u226B", "&HARDcy;": "\u042A", "&Hacek;": "\u02C7", "&Hat;": "^", "&Hcirc;": "\u0124", "&Hfr;": "\u210C", "&HilbertSpace;": "\u210B", "&Hopf;": "\u210D", "&HorizontalLine;": "\u2500", "&Hscr;": "\u210B", "&Hstrok;": "\u0126", "&HumpDownHump;": "\u224E", "&HumpEqual;": "\u224F", "&IEcy;": "\u0415", "&IJlig;": "\u0132", "&IOcy;": "\u0401", "&Iacute": "\xCD", "&Iacute;": "\xCD", "&Icirc": "\xCE", "&Icirc;": "\xCE", "&Icy;": "\u0418", "&Idot;": "\u0130", "&Ifr;": "\u2111", "&Igrave": "\xCC", "&Igrave;": "\xCC", "&Im;": "\u2111", "&Imacr;": "\u012A", "&ImaginaryI;": "\u2148", "&Implies;": "\u21D2", "&Int;": "\u222C", "&Integral;": "\u222B", "&Intersection;": "\u22C2", "&InvisibleComma;": "\u2063", "&InvisibleTimes;": "\u2062", "&Iogon;": "\u012E", "&Iopf;": "\u{1D540}", "&Iota;": "\u0399", "&Iscr;": "\u2110", "&Itilde;": "\u0128", "&Iukcy;": "\u0406", "&Iuml": "\xCF", "&Iuml;": "\xCF", "&Jcirc;": "\u0134", "&Jcy;": "\u0419", "&Jfr;": "\u{1D50D}", "&Jopf;": "\u{1D541}", "&Jscr;": "\u{1D4A5}", "&Jsercy;": "\u0408", "&Jukcy;": "\u0404", "&KHcy;": "\u0425", "&KJcy;": "\u040C", "&Kappa;": "\u039A", "&Kcedil;": "\u0136", "&Kcy;": "\u041A", "&Kfr;": "\u{1D50E}", "&Kopf;": "\u{1D542}", "&Kscr;": "\u{1D4A6}", "&LJcy;": "\u0409", "&LT": "<", "&LT;": "<", "&Lacute;": "\u0139", "&Lambda;": "\u039B", "&Lang;": "\u27EA", "&Laplacetrf;": "\u2112", "&Larr;": "\u219E", "&Lcaron;": "\u013D", "&Lcedil;": "\u013B", "&Lcy;": "\u041B", "&LeftAngleBracket;": "\u27E8", "&LeftArrow;": "\u2190", "&LeftArrowBar;": "\u21E4", "&LeftArrowRightArrow;": "\u21C6", "&LeftCeiling;": "\u2308", "&LeftDoubleBracket;": "\u27E6", "&LeftDownTeeVector;": "\u2961", "&LeftDownVector;": "\u21C3", "&LeftDownVectorBar;": "\u2959", "&LeftFloor;": "\u230A", "&LeftRightArrow;": "\u2194", "&LeftRightVector;": "\u294E", "&LeftTee;": "\u22A3", "&LeftTeeArrow;": "\u21A4", "&LeftTeeVector;": "\u295A", "&LeftTriangle;": "\u22B2", "&LeftTriangleBar;": "\u29CF", "&LeftTriangleEqual;": "\u22B4", "&LeftUpDownVector;": "\u2951", "&LeftUpTeeVector;": "\u2960", "&LeftUpVector;": "\u21BF", "&LeftUpVectorBar;": "\u2958", "&LeftVector;": "\u21BC", "&LeftVectorBar;": "\u2952", "&Leftarrow;": "\u21D0", "&Leftrightarrow;": "\u21D4", "&LessEqualGreater;": "\u22DA", "&LessFullEqual;": "\u2266", "&LessGreater;": "\u2276", "&LessLess;": "\u2AA1", "&LessSlantEqual;": "\u2A7D", "&LessTilde;": "\u2272", "&Lfr;": "\u{1D50F}", "&Ll;": "\u22D8", "&Lleftarrow;": "\u21DA", "&Lmidot;": "\u013F", "&LongLeftArrow;": "\u27F5", "&LongLeftRightArrow;": "\u27F7", "&LongRightArrow;": "\u27F6", "&Longleftarrow;": "\u27F8", "&Longleftrightarrow;": "\u27FA", "&Longrightarrow;": "\u27F9", "&Lopf;": "\u{1D543}", "&LowerLeftArrow;": "\u2199", "&LowerRightArrow;": "\u2198", "&Lscr;": "\u2112", "&Lsh;": "\u21B0", "&Lstrok;": "\u0141", "&Lt;": "\u226A", "&Map;": "\u2905", "&Mcy;": "\u041C", "&MediumSpace;": "\u205F", "&Mellintrf;": "\u2133", "&Mfr;": "\u{1D510}", "&MinusPlus;": "\u2213", "&Mopf;": "\u{1D544}", "&Mscr;": "\u2133", "&Mu;": "\u039C", "&NJcy;": "\u040A", "&Nacute;": "\u0143", "&Ncaron;": "\u0147", "&Ncedil;": "\u0145", "&Ncy;": "\u041D", "&NegativeMediumSpace;": "\u200B", "&NegativeThickSpace;": "\u200B", "&NegativeThinSpace;": "\u200B", "&NegativeVeryThinSpace;": "\u200B", "&NestedGreaterGreater;": "\u226B", "&NestedLessLess;": "\u226A", "&NewLine;": "\n", "&Nfr;": "\u{1D511}", "&NoBreak;": "\u2060", "&NonBreakingSpace;": "\xA0", "&Nopf;": "\u2115", "&Not;": "\u2AEC", "&NotCongruent;": "\u2262", "&NotCupCap;": "\u226D", "&NotDoubleVerticalBar;": "\u2226", "&NotElement;": "\u2209", "&NotEqual;": "\u2260", "&NotEqualTilde;": "\u2242\u0338", "&NotExists;": "\u2204", "&NotGreater;": "\u226F", "&NotGreaterEqual;": "\u2271", "&NotGreaterFullEqual;": "\u2267\u0338", "&NotGreaterGreater;": "\u226B\u0338", "&NotGreaterLess;": "\u2279", "&NotGreaterSlantEqual;": "\u2A7E\u0338", "&NotGreaterTilde;": "\u2275", "&NotHumpDownHump;": "\u224E\u0338", "&NotHumpEqual;": "\u224F\u0338", "&NotLeftTriangle;": "\u22EA", "&NotLeftTriangleBar;": "\u29CF\u0338", "&NotLeftTriangleEqual;": "\u22EC", "&NotLess;": "\u226E", "&NotLessEqual;": "\u2270", "&NotLessGreater;": "\u2278", "&NotLessLess;": "\u226A\u0338", "&NotLessSlantEqual;": "\u2A7D\u0338", "&NotLessTilde;": "\u2274", "&NotNestedGreaterGreater;": "\u2AA2\u0338", "&NotNestedLessLess;": "\u2AA1\u0338", "&NotPrecedes;": "\u2280", "&NotPrecedesEqual;": "\u2AAF\u0338", "&NotPrecedesSlantEqual;": "\u22E0", "&NotReverseElement;": "\u220C", "&NotRightTriangle;": "\u22EB", "&NotRightTriangleBar;": "\u29D0\u0338", "&NotRightTriangleEqual;": "\u22ED", "&NotSquareSubset;": "\u228F\u0338", "&NotSquareSubsetEqual;": "\u22E2", "&NotSquareSuperset;": "\u2290\u0338", "&NotSquareSupersetEqual;": "\u22E3", "&NotSubset;": "\u2282\u20D2", "&NotSubsetEqual;": "\u2288", "&NotSucceeds;": "\u2281", "&NotSucceedsEqual;": "\u2AB0\u0338", "&NotSucceedsSlantEqual;": "\u22E1", "&NotSucceedsTilde;": "\u227F\u0338", "&NotSuperset;": "\u2283\u20D2", "&NotSupersetEqual;": "\u2289", "&NotTilde;": "\u2241", "&NotTildeEqual;": "\u2244", "&NotTildeFullEqual;": "\u2247", "&NotTildeTilde;": "\u2249", "&NotVerticalBar;": "\u2224", "&Nscr;": "\u{1D4A9}", "&Ntilde": "\xD1", "&Ntilde;": "\xD1", "&Nu;": "\u039D", "&OElig;": "\u0152", "&Oacute": "\xD3", "&Oacute;": "\xD3", "&Ocirc": "\xD4", "&Ocirc;": "\xD4", "&Ocy;": "\u041E", "&Odblac;": "\u0150", "&Ofr;": "\u{1D512}", "&Ograve": "\xD2", "&Ograve;": "\xD2", "&Omacr;": "\u014C", "&Omega;": "\u03A9", "&Omicron;": "\u039F", "&Oopf;": "\u{1D546}", "&OpenCurlyDoubleQuote;": "\u201C", "&OpenCurlyQuote;": "\u2018", "&Or;": "\u2A54", "&Oscr;": "\u{1D4AA}", "&Oslash": "\xD8", "&Oslash;": "\xD8", "&Otilde": "\xD5", "&Otilde;": "\xD5", "&Otimes;": "\u2A37", "&Ouml": "\xD6", "&Ouml;": "\xD6", "&OverBar;": "\u203E", "&OverBrace;": "\u23DE", "&OverBracket;": "\u23B4", "&OverParenthesis;": "\u23DC", "&PartialD;": "\u2202", "&Pcy;": "\u041F", "&Pfr;": "\u{1D513}", "&Phi;": "\u03A6", "&Pi;": "\u03A0", "&PlusMinus;": "\xB1", "&Poincareplane;": "\u210C", "&Popf;": "\u2119", "&Pr;": "\u2ABB", "&Precedes;": "\u227A", "&PrecedesEqual;": "\u2AAF", "&PrecedesSlantEqual;": "\u227C", "&PrecedesTilde;": "\u227E", "&Prime;": "\u2033", "&Product;": "\u220F", "&Proportion;": "\u2237", "&Proportional;": "\u221D", "&Pscr;": "\u{1D4AB}", "&Psi;": "\u03A8", "&QUOT": '"', "&QUOT;": '"', "&Qfr;": "\u{1D514}", "&Qopf;": "\u211A", "&Qscr;": "\u{1D4AC}", "&RBarr;": "\u2910", "&REG": "\xAE", "&REG;": "\xAE", "&Racute;": "\u0154", "&Rang;": "\u27EB", "&Rarr;": "\u21A0", "&Rarrtl;": "\u2916", "&Rcaron;": "\u0158", "&Rcedil;": "\u0156", "&Rcy;": "\u0420", "&Re;": "\u211C", "&ReverseElement;": "\u220B", "&ReverseEquilibrium;": "\u21CB", "&ReverseUpEquilibrium;": "\u296F", "&Rfr;": "\u211C", "&Rho;": "\u03A1", "&RightAngleBracket;": "\u27E9", "&RightArrow;": "\u2192", "&RightArrowBar;": "\u21E5", "&RightArrowLeftArrow;": "\u21C4", "&RightCeiling;": "\u2309", "&RightDoubleBracket;": "\u27E7", "&RightDownTeeVector;": "\u295D", "&RightDownVector;": "\u21C2", "&RightDownVectorBar;": "\u2955", "&RightFloor;": "\u230B", "&RightTee;": "\u22A2", "&RightTeeArrow;": "\u21A6", "&RightTeeVector;": "\u295B", "&RightTriangle;": "\u22B3", "&RightTriangleBar;": "\u29D0", "&RightTriangleEqual;": "\u22B5", "&RightUpDownVector;": "\u294F", "&RightUpTeeVector;": "\u295C", "&RightUpVector;": "\u21BE", "&RightUpVectorBar;": "\u2954", "&RightVector;": "\u21C0", "&RightVectorBar;": "\u2953", "&Rightarrow;": "\u21D2", "&Ropf;": "\u211D", "&RoundImplies;": "\u2970", "&Rrightarrow;": "\u21DB", "&Rscr;": "\u211B", "&Rsh;": "\u21B1", "&RuleDelayed;": "\u29F4", "&SHCHcy;": "\u0429", "&SHcy;": "\u0428", "&SOFTcy;": "\u042C", "&Sacute;": "\u015A", "&Sc;": "\u2ABC", "&Scaron;": "\u0160", "&Scedil;": "\u015E", "&Scirc;": "\u015C", "&Scy;": "\u0421", "&Sfr;": "\u{1D516}", "&ShortDownArrow;": "\u2193", "&ShortLeftArrow;": "\u2190", "&ShortRightArrow;": "\u2192", "&ShortUpArrow;": "\u2191", "&Sigma;": "\u03A3", "&SmallCircle;": "\u2218", "&Sopf;": "\u{1D54A}", "&Sqrt;": "\u221A", "&Square;": "\u25A1", "&SquareIntersection;": "\u2293", "&SquareSubset;": "\u228F", "&SquareSubsetEqual;": "\u2291", "&SquareSuperset;": "\u2290", "&SquareSupersetEqual;": "\u2292", "&SquareUnion;": "\u2294", "&Sscr;": "\u{1D4AE}", "&Star;": "\u22C6", "&Sub;": "\u22D0", "&Subset;": "\u22D0", "&SubsetEqual;": "\u2286", "&Succeeds;": "\u227B", "&SucceedsEqual;": "\u2AB0", "&SucceedsSlantEqual;": "\u227D", "&SucceedsTilde;": "\u227F", "&SuchThat;": "\u220B", "&Sum;": "\u2211", "&Sup;": "\u22D1", "&Superset;": "\u2283", "&SupersetEqual;": "\u2287", "&Supset;": "\u22D1", "&THORN": "\xDE", "&THORN;": "\xDE", "&TRADE;": "\u2122", "&TSHcy;": "\u040B", "&TScy;": "\u0426", "&Tab;": "	", "&Tau;": "\u03A4", "&Tcaron;": "\u0164", "&Tcedil;": "\u0162", "&Tcy;": "\u0422", "&Tfr;": "\u{1D517}", "&Therefore;": "\u2234", "&Theta;": "\u0398", "&ThickSpace;": "\u205F\u200A", "&ThinSpace;": "\u2009", "&Tilde;": "\u223C", "&TildeEqual;": "\u2243", "&TildeFullEqual;": "\u2245", "&TildeTilde;": "\u2248", "&Topf;": "\u{1D54B}", "&TripleDot;": "\u20DB", "&Tscr;": "\u{1D4AF}", "&Tstrok;": "\u0166", "&Uacute": "\xDA", "&Uacute;": "\xDA", "&Uarr;": "\u219F", "&Uarrocir;": "\u2949", "&Ubrcy;": "\u040E", "&Ubreve;": "\u016C", "&Ucirc": "\xDB", "&Ucirc;": "\xDB", "&Ucy;": "\u0423", "&Udblac;": "\u0170", "&Ufr;": "\u{1D518}", "&Ugrave": "\xD9", "&Ugrave;": "\xD9", "&Umacr;": "\u016A", "&UnderBar;": "_", "&UnderBrace;": "\u23DF", "&UnderBracket;": "\u23B5", "&UnderParenthesis;": "\u23DD", "&Union;": "\u22C3", "&UnionPlus;": "\u228E", "&Uogon;": "\u0172", "&Uopf;": "\u{1D54C}", "&UpArrow;": "\u2191", "&UpArrowBar;": "\u2912", "&UpArrowDownArrow;": "\u21C5", "&UpDownArrow;": "\u2195", "&UpEquilibrium;": "\u296E", "&UpTee;": "\u22A5", "&UpTeeArrow;": "\u21A5", "&Uparrow;": "\u21D1", "&Updownarrow;": "\u21D5", "&UpperLeftArrow;": "\u2196", "&UpperRightArrow;": "\u2197", "&Upsi;": "\u03D2", "&Upsilon;": "\u03A5", "&Uring;": "\u016E", "&Uscr;": "\u{1D4B0}", "&Utilde;": "\u0168", "&Uuml": "\xDC", "&Uuml;": "\xDC", "&VDash;": "\u22AB", "&Vbar;": "\u2AEB", "&Vcy;": "\u0412", "&Vdash;": "\u22A9", "&Vdashl;": "\u2AE6", "&Vee;": "\u22C1", "&Verbar;": "\u2016", "&Vert;": "\u2016", "&VerticalBar;": "\u2223", "&VerticalLine;": "|", "&VerticalSeparator;": "\u2758", "&VerticalTilde;": "\u2240", "&VeryThinSpace;": "\u200A", "&Vfr;": "\u{1D519}", "&Vopf;": "\u{1D54D}", "&Vscr;": "\u{1D4B1}", "&Vvdash;": "\u22AA", "&Wcirc;": "\u0174", "&Wedge;": "\u22C0", "&Wfr;": "\u{1D51A}", "&Wopf;": "\u{1D54E}", "&Wscr;": "\u{1D4B2}", "&Xfr;": "\u{1D51B}", "&Xi;": "\u039E", "&Xopf;": "\u{1D54F}", "&Xscr;": "\u{1D4B3}", "&YAcy;": "\u042F", "&YIcy;": "\u0407", "&YUcy;": "\u042E", "&Yacute": "\xDD", "&Yacute;": "\xDD", "&Ycirc;": "\u0176", "&Ycy;": "\u042B", "&Yfr;": "\u{1D51C}", "&Yopf;": "\u{1D550}", "&Yscr;": "\u{1D4B4}", "&Yuml;": "\u0178", "&ZHcy;": "\u0416", "&Zacute;": "\u0179", "&Zcaron;": "\u017D", "&Zcy;": "\u0417", "&Zdot;": "\u017B", "&ZeroWidthSpace;": "\u200B", "&Zeta;": "\u0396", "&Zfr;": "\u2128", "&Zopf;": "\u2124", "&Zscr;": "\u{1D4B5}", "&aacute": "\xE1", "&aacute;": "\xE1", "&abreve;": "\u0103", "&ac;": "\u223E", "&acE;": "\u223E\u0333", "&acd;": "\u223F", "&acirc": "\xE2", "&acirc;": "\xE2", "&acute": "\xB4", "&acute;": "\xB4", "&acy;": "\u0430", "&aelig": "\xE6", "&aelig;": "\xE6", "&af;": "\u2061", "&afr;": "\u{1D51E}", "&agrave": "\xE0", "&agrave;": "\xE0", "&alefsym;": "\u2135", "&aleph;": "\u2135", "&alpha;": "\u03B1", "&amacr;": "\u0101", "&amalg;": "\u2A3F", "&amp": "&", "&amp;": "&", "&and;": "\u2227", "&andand;": "\u2A55", "&andd;": "\u2A5C", "&andslope;": "\u2A58", "&andv;": "\u2A5A", "&ang;": "\u2220", "&ange;": "\u29A4", "&angle;": "\u2220", "&angmsd;": "\u2221", "&angmsdaa;": "\u29A8", "&angmsdab;": "\u29A9", "&angmsdac;": "\u29AA", "&angmsdad;": "\u29AB", "&angmsdae;": "\u29AC", "&angmsdaf;": "\u29AD", "&angmsdag;": "\u29AE", "&angmsdah;": "\u29AF", "&angrt;": "\u221F", "&angrtvb;": "\u22BE", "&angrtvbd;": "\u299D", "&angsph;": "\u2222", "&angst;": "\xC5", "&angzarr;": "\u237C", "&aogon;": "\u0105", "&aopf;": "\u{1D552}", "&ap;": "\u2248", "&apE;": "\u2A70", "&apacir;": "\u2A6F", "&ape;": "\u224A", "&apid;": "\u224B", "&apos;": "'", "&approx;": "\u2248", "&approxeq;": "\u224A", "&aring": "\xE5", "&aring;": "\xE5", "&ascr;": "\u{1D4B6}", "&ast;": "*", "&asymp;": "\u2248", "&asympeq;": "\u224D", "&atilde": "\xE3", "&atilde;": "\xE3", "&auml": "\xE4", "&auml;": "\xE4", "&awconint;": "\u2233", "&awint;": "\u2A11", "&bNot;": "\u2AED", "&backcong;": "\u224C", "&backepsilon;": "\u03F6", "&backprime;": "\u2035", "&backsim;": "\u223D", "&backsimeq;": "\u22CD", "&barvee;": "\u22BD", "&barwed;": "\u2305", "&barwedge;": "\u2305", "&bbrk;": "\u23B5", "&bbrktbrk;": "\u23B6", "&bcong;": "\u224C", "&bcy;": "\u0431", "&bdquo;": "\u201E", "&becaus;": "\u2235", "&because;": "\u2235", "&bemptyv;": "\u29B0", "&bepsi;": "\u03F6", "&bernou;": "\u212C", "&beta;": "\u03B2", "&beth;": "\u2136", "&between;": "\u226C", "&bfr;": "\u{1D51F}", "&bigcap;": "\u22C2", "&bigcirc;": "\u25EF", "&bigcup;": "\u22C3", "&bigodot;": "\u2A00", "&bigoplus;": "\u2A01", "&bigotimes;": "\u2A02", "&bigsqcup;": "\u2A06", "&bigstar;": "\u2605", "&bigtriangledown;": "\u25BD", "&bigtriangleup;": "\u25B3", "&biguplus;": "\u2A04", "&bigvee;": "\u22C1", "&bigwedge;": "\u22C0", "&bkarow;": "\u290D", "&blacklozenge;": "\u29EB", "&blacksquare;": "\u25AA", "&blacktriangle;": "\u25B4", "&blacktriangledown;": "\u25BE", "&blacktriangleleft;": "\u25C2", "&blacktriangleright;": "\u25B8", "&blank;": "\u2423", "&blk12;": "\u2592", "&blk14;": "\u2591", "&blk34;": "\u2593", "&block;": "\u2588", "&bne;": "=\u20E5", "&bnequiv;": "\u2261\u20E5", "&bnot;": "\u2310", "&bopf;": "\u{1D553}", "&bot;": "\u22A5", "&bottom;": "\u22A5", "&bowtie;": "\u22C8", "&boxDL;": "\u2557", "&boxDR;": "\u2554", "&boxDl;": "\u2556", "&boxDr;": "\u2553", "&boxH;": "\u2550", "&boxHD;": "\u2566", "&boxHU;": "\u2569", "&boxHd;": "\u2564", "&boxHu;": "\u2567", "&boxUL;": "\u255D", "&boxUR;": "\u255A", "&boxUl;": "\u255C", "&boxUr;": "\u2559", "&boxV;": "\u2551", "&boxVH;": "\u256C", "&boxVL;": "\u2563", "&boxVR;": "\u2560", "&boxVh;": "\u256B", "&boxVl;": "\u2562", "&boxVr;": "\u255F", "&boxbox;": "\u29C9", "&boxdL;": "\u2555", "&boxdR;": "\u2552", "&boxdl;": "\u2510", "&boxdr;": "\u250C", "&boxh;": "\u2500", "&boxhD;": "\u2565", "&boxhU;": "\u2568", "&boxhd;": "\u252C", "&boxhu;": "\u2534", "&boxminus;": "\u229F", "&boxplus;": "\u229E", "&boxtimes;": "\u22A0", "&boxuL;": "\u255B", "&boxuR;": "\u2558", "&boxul;": "\u2518", "&boxur;": "\u2514", "&boxv;": "\u2502", "&boxvH;": "\u256A", "&boxvL;": "\u2561", "&boxvR;": "\u255E", "&boxvh;": "\u253C", "&boxvl;": "\u2524", "&boxvr;": "\u251C", "&bprime;": "\u2035", "&breve;": "\u02D8", "&brvbar": "\xA6", "&brvbar;": "\xA6", "&bscr;": "\u{1D4B7}", "&bsemi;": "\u204F", "&bsim;": "\u223D", "&bsime;": "\u22CD", "&bsol;": "\\", "&bsolb;": "\u29C5", "&bsolhsub;": "\u27C8", "&bull;": "\u2022", "&bullet;": "\u2022", "&bump;": "\u224E", "&bumpE;": "\u2AAE", "&bumpe;": "\u224F", "&bumpeq;": "\u224F", "&cacute;": "\u0107", "&cap;": "\u2229", "&capand;": "\u2A44", "&capbrcup;": "\u2A49", "&capcap;": "\u2A4B", "&capcup;": "\u2A47", "&capdot;": "\u2A40", "&caps;": "\u2229\uFE00", "&caret;": "\u2041", "&caron;": "\u02C7", "&ccaps;": "\u2A4D", "&ccaron;": "\u010D", "&ccedil": "\xE7", "&ccedil;": "\xE7", "&ccirc;": "\u0109", "&ccups;": "\u2A4C", "&ccupssm;": "\u2A50", "&cdot;": "\u010B", "&cedil": "\xB8", "&cedil;": "\xB8", "&cemptyv;": "\u29B2", "&cent": "\xA2", "&cent;": "\xA2", "&centerdot;": "\xB7", "&cfr;": "\u{1D520}", "&chcy;": "\u0447", "&check;": "\u2713", "&checkmark;": "\u2713", "&chi;": "\u03C7", "&cir;": "\u25CB", "&cirE;": "\u29C3", "&circ;": "\u02C6", "&circeq;": "\u2257", "&circlearrowleft;": "\u21BA", "&circlearrowright;": "\u21BB", "&circledR;": "\xAE", "&circledS;": "\u24C8", "&circledast;": "\u229B", "&circledcirc;": "\u229A", "&circleddash;": "\u229D", "&cire;": "\u2257", "&cirfnint;": "\u2A10", "&cirmid;": "\u2AEF", "&cirscir;": "\u29C2", "&clubs;": "\u2663", "&clubsuit;": "\u2663", "&colon;": ":", "&colone;": "\u2254", "&coloneq;": "\u2254", "&comma;": ",", "&commat;": "@", "&comp;": "\u2201", "&compfn;": "\u2218", "&complement;": "\u2201", "&complexes;": "\u2102", "&cong;": "\u2245", "&congdot;": "\u2A6D", "&conint;": "\u222E", "&copf;": "\u{1D554}", "&coprod;": "\u2210", "&copy": "\xA9", "&copy;": "\xA9", "&copysr;": "\u2117", "&crarr;": "\u21B5", "&cross;": "\u2717", "&cscr;": "\u{1D4B8}", "&csub;": "\u2ACF", "&csube;": "\u2AD1", "&csup;": "\u2AD0", "&csupe;": "\u2AD2", "&ctdot;": "\u22EF", "&cudarrl;": "\u2938", "&cudarrr;": "\u2935", "&cuepr;": "\u22DE", "&cuesc;": "\u22DF", "&cularr;": "\u21B6", "&cularrp;": "\u293D", "&cup;": "\u222A", "&cupbrcap;": "\u2A48", "&cupcap;": "\u2A46", "&cupcup;": "\u2A4A", "&cupdot;": "\u228D", "&cupor;": "\u2A45", "&cups;": "\u222A\uFE00", "&curarr;": "\u21B7", "&curarrm;": "\u293C", "&curlyeqprec;": "\u22DE", "&curlyeqsucc;": "\u22DF", "&curlyvee;": "\u22CE", "&curlywedge;": "\u22CF", "&curren": "\xA4", "&curren;": "\xA4", "&curvearrowleft;": "\u21B6", "&curvearrowright;": "\u21B7", "&cuvee;": "\u22CE", "&cuwed;": "\u22CF", "&cwconint;": "\u2232", "&cwint;": "\u2231", "&cylcty;": "\u232D", "&dArr;": "\u21D3", "&dHar;": "\u2965", "&dagger;": "\u2020", "&daleth;": "\u2138", "&darr;": "\u2193", "&dash;": "\u2010", "&dashv;": "\u22A3", "&dbkarow;": "\u290F", "&dblac;": "\u02DD", "&dcaron;": "\u010F", "&dcy;": "\u0434", "&dd;": "\u2146", "&ddagger;": "\u2021", "&ddarr;": "\u21CA", "&ddotseq;": "\u2A77", "&deg": "\xB0", "&deg;": "\xB0", "&delta;": "\u03B4", "&demptyv;": "\u29B1", "&dfisht;": "\u297F", "&dfr;": "\u{1D521}", "&dharl;": "\u21C3", "&dharr;": "\u21C2", "&diam;": "\u22C4", "&diamond;": "\u22C4", "&diamondsuit;": "\u2666", "&diams;": "\u2666", "&die;": "\xA8", "&digamma;": "\u03DD", "&disin;": "\u22F2", "&div;": "\xF7", "&divide": "\xF7", "&divide;": "\xF7", "&divideontimes;": "\u22C7", "&divonx;": "\u22C7", "&djcy;": "\u0452", "&dlcorn;": "\u231E", "&dlcrop;": "\u230D", "&dollar;": "$", "&dopf;": "\u{1D555}", "&dot;": "\u02D9", "&doteq;": "\u2250", "&doteqdot;": "\u2251", "&dotminus;": "\u2238", "&dotplus;": "\u2214", "&dotsquare;": "\u22A1", "&doublebarwedge;": "\u2306", "&downarrow;": "\u2193", "&downdownarrows;": "\u21CA", "&downharpoonleft;": "\u21C3", "&downharpoonright;": "\u21C2", "&drbkarow;": "\u2910", "&drcorn;": "\u231F", "&drcrop;": "\u230C", "&dscr;": "\u{1D4B9}", "&dscy;": "\u0455", "&dsol;": "\u29F6", "&dstrok;": "\u0111", "&dtdot;": "\u22F1", "&dtri;": "\u25BF", "&dtrif;": "\u25BE", "&duarr;": "\u21F5", "&duhar;": "\u296F", "&dwangle;": "\u29A6", "&dzcy;": "\u045F", "&dzigrarr;": "\u27FF", "&eDDot;": "\u2A77", "&eDot;": "\u2251", "&eacute": "\xE9", "&eacute;": "\xE9", "&easter;": "\u2A6E", "&ecaron;": "\u011B", "&ecir;": "\u2256", "&ecirc": "\xEA", "&ecirc;": "\xEA", "&ecolon;": "\u2255", "&ecy;": "\u044D", "&edot;": "\u0117", "&ee;": "\u2147", "&efDot;": "\u2252", "&efr;": "\u{1D522}", "&eg;": "\u2A9A", "&egrave": "\xE8", "&egrave;": "\xE8", "&egs;": "\u2A96", "&egsdot;": "\u2A98", "&el;": "\u2A99", "&elinters;": "\u23E7", "&ell;": "\u2113", "&els;": "\u2A95", "&elsdot;": "\u2A97", "&emacr;": "\u0113", "&empty;": "\u2205", "&emptyset;": "\u2205", "&emptyv;": "\u2205", "&emsp13;": "\u2004", "&emsp14;": "\u2005", "&emsp;": "\u2003", "&eng;": "\u014B", "&ensp;": "\u2002", "&eogon;": "\u0119", "&eopf;": "\u{1D556}", "&epar;": "\u22D5", "&eparsl;": "\u29E3", "&eplus;": "\u2A71", "&epsi;": "\u03B5", "&epsilon;": "\u03B5", "&epsiv;": "\u03F5", "&eqcirc;": "\u2256", "&eqcolon;": "\u2255", "&eqsim;": "\u2242", "&eqslantgtr;": "\u2A96", "&eqslantless;": "\u2A95", "&equals;": "=", "&equest;": "\u225F", "&equiv;": "\u2261", "&equivDD;": "\u2A78", "&eqvparsl;": "\u29E5", "&erDot;": "\u2253", "&erarr;": "\u2971", "&escr;": "\u212F", "&esdot;": "\u2250", "&esim;": "\u2242", "&eta;": "\u03B7", "&eth": "\xF0", "&eth;": "\xF0", "&euml": "\xEB", "&euml;": "\xEB", "&euro;": "\u20AC", "&excl;": "!", "&exist;": "\u2203", "&expectation;": "\u2130", "&exponentiale;": "\u2147", "&fallingdotseq;": "\u2252", "&fcy;": "\u0444", "&female;": "\u2640", "&ffilig;": "\uFB03", "&fflig;": "\uFB00", "&ffllig;": "\uFB04", "&ffr;": "\u{1D523}", "&filig;": "\uFB01", "&fjlig;": "fj", "&flat;": "\u266D", "&fllig;": "\uFB02", "&fltns;": "\u25B1", "&fnof;": "\u0192", "&fopf;": "\u{1D557}", "&forall;": "\u2200", "&fork;": "\u22D4", "&forkv;": "\u2AD9", "&fpartint;": "\u2A0D", "&frac12": "\xBD", "&frac12;": "\xBD", "&frac13;": "\u2153", "&frac14": "\xBC", "&frac14;": "\xBC", "&frac15;": "\u2155", "&frac16;": "\u2159", "&frac18;": "\u215B", "&frac23;": "\u2154", "&frac25;": "\u2156", "&frac34": "\xBE", "&frac34;": "\xBE", "&frac35;": "\u2157", "&frac38;": "\u215C", "&frac45;": "\u2158", "&frac56;": "\u215A", "&frac58;": "\u215D", "&frac78;": "\u215E", "&frasl;": "\u2044", "&frown;": "\u2322", "&fscr;": "\u{1D4BB}", "&gE;": "\u2267", "&gEl;": "\u2A8C", "&gacute;": "\u01F5", "&gamma;": "\u03B3", "&gammad;": "\u03DD", "&gap;": "\u2A86", "&gbreve;": "\u011F", "&gcirc;": "\u011D", "&gcy;": "\u0433", "&gdot;": "\u0121", "&ge;": "\u2265", "&gel;": "\u22DB", "&geq;": "\u2265", "&geqq;": "\u2267", "&geqslant;": "\u2A7E", "&ges;": "\u2A7E", "&gescc;": "\u2AA9", "&gesdot;": "\u2A80", "&gesdoto;": "\u2A82", "&gesdotol;": "\u2A84", "&gesl;": "\u22DB\uFE00", "&gesles;": "\u2A94", "&gfr;": "\u{1D524}", "&gg;": "\u226B", "&ggg;": "\u22D9", "&gimel;": "\u2137", "&gjcy;": "\u0453", "&gl;": "\u2277", "&glE;": "\u2A92", "&gla;": "\u2AA5", "&glj;": "\u2AA4", "&gnE;": "\u2269", "&gnap;": "\u2A8A", "&gnapprox;": "\u2A8A", "&gne;": "\u2A88", "&gneq;": "\u2A88", "&gneqq;": "\u2269", "&gnsim;": "\u22E7", "&gopf;": "\u{1D558}", "&grave;": "`", "&gscr;": "\u210A", "&gsim;": "\u2273", "&gsime;": "\u2A8E", "&gsiml;": "\u2A90", "&gt": ">", "&gt;": ">", "&gtcc;": "\u2AA7", "&gtcir;": "\u2A7A", "&gtdot;": "\u22D7", "&gtlPar;": "\u2995", "&gtquest;": "\u2A7C", "&gtrapprox;": "\u2A86", "&gtrarr;": "\u2978", "&gtrdot;": "\u22D7", "&gtreqless;": "\u22DB", "&gtreqqless;": "\u2A8C", "&gtrless;": "\u2277", "&gtrsim;": "\u2273", "&gvertneqq;": "\u2269\uFE00", "&gvnE;": "\u2269\uFE00", "&hArr;": "\u21D4", "&hairsp;": "\u200A", "&half;": "\xBD", "&hamilt;": "\u210B", "&hardcy;": "\u044A", "&harr;": "\u2194", "&harrcir;": "\u2948", "&harrw;": "\u21AD", "&hbar;": "\u210F", "&hcirc;": "\u0125", "&hearts;": "\u2665", "&heartsuit;": "\u2665", "&hellip;": "\u2026", "&hercon;": "\u22B9", "&hfr;": "\u{1D525}", "&hksearow;": "\u2925", "&hkswarow;": "\u2926", "&hoarr;": "\u21FF", "&homtht;": "\u223B", "&hookleftarrow;": "\u21A9", "&hookrightarrow;": "\u21AA", "&hopf;": "\u{1D559}", "&horbar;": "\u2015", "&hscr;": "\u{1D4BD}", "&hslash;": "\u210F", "&hstrok;": "\u0127", "&hybull;": "\u2043", "&hyphen;": "\u2010", "&iacute": "\xED", "&iacute;": "\xED", "&ic;": "\u2063", "&icirc": "\xEE", "&icirc;": "\xEE", "&icy;": "\u0438", "&iecy;": "\u0435", "&iexcl": "\xA1", "&iexcl;": "\xA1", "&iff;": "\u21D4", "&ifr;": "\u{1D526}", "&igrave": "\xEC", "&igrave;": "\xEC", "&ii;": "\u2148", "&iiiint;": "\u2A0C", "&iiint;": "\u222D", "&iinfin;": "\u29DC", "&iiota;": "\u2129", "&ijlig;": "\u0133", "&imacr;": "\u012B", "&image;": "\u2111", "&imagline;": "\u2110", "&imagpart;": "\u2111", "&imath;": "\u0131", "&imof;": "\u22B7", "&imped;": "\u01B5", "&in;": "\u2208", "&incare;": "\u2105", "&infin;": "\u221E", "&infintie;": "\u29DD", "&inodot;": "\u0131", "&int;": "\u222B", "&intcal;": "\u22BA", "&integers;": "\u2124", "&intercal;": "\u22BA", "&intlarhk;": "\u2A17", "&intprod;": "\u2A3C", "&iocy;": "\u0451", "&iogon;": "\u012F", "&iopf;": "\u{1D55A}", "&iota;": "\u03B9", "&iprod;": "\u2A3C", "&iquest": "\xBF", "&iquest;": "\xBF", "&iscr;": "\u{1D4BE}", "&isin;": "\u2208", "&isinE;": "\u22F9", "&isindot;": "\u22F5", "&isins;": "\u22F4", "&isinsv;": "\u22F3", "&isinv;": "\u2208", "&it;": "\u2062", "&itilde;": "\u0129", "&iukcy;": "\u0456", "&iuml": "\xEF", "&iuml;": "\xEF", "&jcirc;": "\u0135", "&jcy;": "\u0439", "&jfr;": "\u{1D527}", "&jmath;": "\u0237", "&jopf;": "\u{1D55B}", "&jscr;": "\u{1D4BF}", "&jsercy;": "\u0458", "&jukcy;": "\u0454", "&kappa;": "\u03BA", "&kappav;": "\u03F0", "&kcedil;": "\u0137", "&kcy;": "\u043A", "&kfr;": "\u{1D528}", "&kgreen;": "\u0138", "&khcy;": "\u0445", "&kjcy;": "\u045C", "&kopf;": "\u{1D55C}", "&kscr;": "\u{1D4C0}", "&lAarr;": "\u21DA", "&lArr;": "\u21D0", "&lAtail;": "\u291B", "&lBarr;": "\u290E", "&lE;": "\u2266", "&lEg;": "\u2A8B", "&lHar;": "\u2962", "&lacute;": "\u013A", "&laemptyv;": "\u29B4", "&lagran;": "\u2112", "&lambda;": "\u03BB", "&lang;": "\u27E8", "&langd;": "\u2991", "&langle;": "\u27E8", "&lap;": "\u2A85", "&laquo": "\xAB", "&laquo;": "\xAB", "&larr;": "\u2190", "&larrb;": "\u21E4", "&larrbfs;": "\u291F", "&larrfs;": "\u291D", "&larrhk;": "\u21A9", "&larrlp;": "\u21AB", "&larrpl;": "\u2939", "&larrsim;": "\u2973", "&larrtl;": "\u21A2", "&lat;": "\u2AAB", "&latail;": "\u2919", "&late;": "\u2AAD", "&lates;": "\u2AAD\uFE00", "&lbarr;": "\u290C", "&lbbrk;": "\u2772", "&lbrace;": "{", "&lbrack;": "[", "&lbrke;": "\u298B", "&lbrksld;": "\u298F", "&lbrkslu;": "\u298D", "&lcaron;": "\u013E", "&lcedil;": "\u013C", "&lceil;": "\u2308", "&lcub;": "{", "&lcy;": "\u043B", "&ldca;": "\u2936", "&ldquo;": "\u201C", "&ldquor;": "\u201E", "&ldrdhar;": "\u2967", "&ldrushar;": "\u294B", "&ldsh;": "\u21B2", "&le;": "\u2264", "&leftarrow;": "\u2190", "&leftarrowtail;": "\u21A2", "&leftharpoondown;": "\u21BD", "&leftharpoonup;": "\u21BC", "&leftleftarrows;": "\u21C7", "&leftrightarrow;": "\u2194", "&leftrightarrows;": "\u21C6", "&leftrightharpoons;": "\u21CB", "&leftrightsquigarrow;": "\u21AD", "&leftthreetimes;": "\u22CB", "&leg;": "\u22DA", "&leq;": "\u2264", "&leqq;": "\u2266", "&leqslant;": "\u2A7D", "&les;": "\u2A7D", "&lescc;": "\u2AA8", "&lesdot;": "\u2A7F", "&lesdoto;": "\u2A81", "&lesdotor;": "\u2A83", "&lesg;": "\u22DA\uFE00", "&lesges;": "\u2A93", "&lessapprox;": "\u2A85", "&lessdot;": "\u22D6", "&lesseqgtr;": "\u22DA", "&lesseqqgtr;": "\u2A8B", "&lessgtr;": "\u2276", "&lesssim;": "\u2272", "&lfisht;": "\u297C", "&lfloor;": "\u230A", "&lfr;": "\u{1D529}", "&lg;": "\u2276", "&lgE;": "\u2A91", "&lhard;": "\u21BD", "&lharu;": "\u21BC", "&lharul;": "\u296A", "&lhblk;": "\u2584", "&ljcy;": "\u0459", "&ll;": "\u226A", "&llarr;": "\u21C7", "&llcorner;": "\u231E", "&llhard;": "\u296B", "&lltri;": "\u25FA", "&lmidot;": "\u0140", "&lmoust;": "\u23B0", "&lmoustache;": "\u23B0", "&lnE;": "\u2268", "&lnap;": "\u2A89", "&lnapprox;": "\u2A89", "&lne;": "\u2A87", "&lneq;": "\u2A87", "&lneqq;": "\u2268", "&lnsim;": "\u22E6", "&loang;": "\u27EC", "&loarr;": "\u21FD", "&lobrk;": "\u27E6", "&longleftarrow;": "\u27F5", "&longleftrightarrow;": "\u27F7", "&longmapsto;": "\u27FC", "&longrightarrow;": "\u27F6", "&looparrowleft;": "\u21AB", "&looparrowright;": "\u21AC", "&lopar;": "\u2985", "&lopf;": "\u{1D55D}", "&loplus;": "\u2A2D", "&lotimes;": "\u2A34", "&lowast;": "\u2217", "&lowbar;": "_", "&loz;": "\u25CA", "&lozenge;": "\u25CA", "&lozf;": "\u29EB", "&lpar;": "(", "&lparlt;": "\u2993", "&lrarr;": "\u21C6", "&lrcorner;": "\u231F", "&lrhar;": "\u21CB", "&lrhard;": "\u296D", "&lrm;": "\u200E", "&lrtri;": "\u22BF", "&lsaquo;": "\u2039", "&lscr;": "\u{1D4C1}", "&lsh;": "\u21B0", "&lsim;": "\u2272", "&lsime;": "\u2A8D", "&lsimg;": "\u2A8F", "&lsqb;": "[", "&lsquo;": "\u2018", "&lsquor;": "\u201A", "&lstrok;": "\u0142", "&lt": "<", "&lt;": "<", "&ltcc;": "\u2AA6", "&ltcir;": "\u2A79", "&ltdot;": "\u22D6", "&lthree;": "\u22CB", "&ltimes;": "\u22C9", "&ltlarr;": "\u2976", "&ltquest;": "\u2A7B", "&ltrPar;": "\u2996", "&ltri;": "\u25C3", "&ltrie;": "\u22B4", "&ltrif;": "\u25C2", "&lurdshar;": "\u294A", "&luruhar;": "\u2966", "&lvertneqq;": "\u2268\uFE00", "&lvnE;": "\u2268\uFE00", "&mDDot;": "\u223A", "&macr": "\xAF", "&macr;": "\xAF", "&male;": "\u2642", "&malt;": "\u2720", "&maltese;": "\u2720", "&map;": "\u21A6", "&mapsto;": "\u21A6", "&mapstodown;": "\u21A7", "&mapstoleft;": "\u21A4", "&mapstoup;": "\u21A5", "&marker;": "\u25AE", "&mcomma;": "\u2A29", "&mcy;": "\u043C", "&mdash;": "\u2014", "&measuredangle;": "\u2221", "&mfr;": "\u{1D52A}", "&mho;": "\u2127", "&micro": "\xB5", "&micro;": "\xB5", "&mid;": "\u2223", "&midast;": "*", "&midcir;": "\u2AF0", "&middot": "\xB7", "&middot;": "\xB7", "&minus;": "\u2212", "&minusb;": "\u229F", "&minusd;": "\u2238", "&minusdu;": "\u2A2A", "&mlcp;": "\u2ADB", "&mldr;": "\u2026", "&mnplus;": "\u2213", "&models;": "\u22A7", "&mopf;": "\u{1D55E}", "&mp;": "\u2213", "&mscr;": "\u{1D4C2}", "&mstpos;": "\u223E", "&mu;": "\u03BC", "&multimap;": "\u22B8", "&mumap;": "\u22B8", "&nGg;": "\u22D9\u0338", "&nGt;": "\u226B\u20D2", "&nGtv;": "\u226B\u0338", "&nLeftarrow;": "\u21CD", "&nLeftrightarrow;": "\u21CE", "&nLl;": "\u22D8\u0338", "&nLt;": "\u226A\u20D2", "&nLtv;": "\u226A\u0338", "&nRightarrow;": "\u21CF", "&nVDash;": "\u22AF", "&nVdash;": "\u22AE", "&nabla;": "\u2207", "&nacute;": "\u0144", "&nang;": "\u2220\u20D2", "&nap;": "\u2249", "&napE;": "\u2A70\u0338", "&napid;": "\u224B\u0338", "&napos;": "\u0149", "&napprox;": "\u2249", "&natur;": "\u266E", "&natural;": "\u266E", "&naturals;": "\u2115", "&nbsp": "\xA0", "&nbsp;": "\xA0", "&nbump;": "\u224E\u0338", "&nbumpe;": "\u224F\u0338", "&ncap;": "\u2A43", "&ncaron;": "\u0148", "&ncedil;": "\u0146", "&ncong;": "\u2247", "&ncongdot;": "\u2A6D\u0338", "&ncup;": "\u2A42", "&ncy;": "\u043D", "&ndash;": "\u2013", "&ne;": "\u2260", "&neArr;": "\u21D7", "&nearhk;": "\u2924", "&nearr;": "\u2197", "&nearrow;": "\u2197", "&nedot;": "\u2250\u0338", "&nequiv;": "\u2262", "&nesear;": "\u2928", "&nesim;": "\u2242\u0338", "&nexist;": "\u2204", "&nexists;": "\u2204", "&nfr;": "\u{1D52B}", "&ngE;": "\u2267\u0338", "&nge;": "\u2271", "&ngeq;": "\u2271", "&ngeqq;": "\u2267\u0338", "&ngeqslant;": "\u2A7E\u0338", "&nges;": "\u2A7E\u0338", "&ngsim;": "\u2275", "&ngt;": "\u226F", "&ngtr;": "\u226F", "&nhArr;": "\u21CE", "&nharr;": "\u21AE", "&nhpar;": "\u2AF2", "&ni;": "\u220B", "&nis;": "\u22FC", "&nisd;": "\u22FA", "&niv;": "\u220B", "&njcy;": "\u045A", "&nlArr;": "\u21CD", "&nlE;": "\u2266\u0338", "&nlarr;": "\u219A", "&nldr;": "\u2025", "&nle;": "\u2270", "&nleftarrow;": "\u219A", "&nleftrightarrow;": "\u21AE", "&nleq;": "\u2270", "&nleqq;": "\u2266\u0338", "&nleqslant;": "\u2A7D\u0338", "&nles;": "\u2A7D\u0338", "&nless;": "\u226E", "&nlsim;": "\u2274", "&nlt;": "\u226E", "&nltri;": "\u22EA", "&nltrie;": "\u22EC", "&nmid;": "\u2224", "&nopf;": "\u{1D55F}", "&not": "\xAC", "&not;": "\xAC", "&notin;": "\u2209", "&notinE;": "\u22F9\u0338", "&notindot;": "\u22F5\u0338", "&notinva;": "\u2209", "&notinvb;": "\u22F7", "&notinvc;": "\u22F6", "&notni;": "\u220C", "&notniva;": "\u220C", "&notnivb;": "\u22FE", "&notnivc;": "\u22FD", "&npar;": "\u2226", "&nparallel;": "\u2226", "&nparsl;": "\u2AFD\u20E5", "&npart;": "\u2202\u0338", "&npolint;": "\u2A14", "&npr;": "\u2280", "&nprcue;": "\u22E0", "&npre;": "\u2AAF\u0338", "&nprec;": "\u2280", "&npreceq;": "\u2AAF\u0338", "&nrArr;": "\u21CF", "&nrarr;": "\u219B", "&nrarrc;": "\u2933\u0338", "&nrarrw;": "\u219D\u0338", "&nrightarrow;": "\u219B", "&nrtri;": "\u22EB", "&nrtrie;": "\u22ED", "&nsc;": "\u2281", "&nsccue;": "\u22E1", "&nsce;": "\u2AB0\u0338", "&nscr;": "\u{1D4C3}", "&nshortmid;": "\u2224", "&nshortparallel;": "\u2226", "&nsim;": "\u2241", "&nsime;": "\u2244", "&nsimeq;": "\u2244", "&nsmid;": "\u2224", "&nspar;": "\u2226", "&nsqsube;": "\u22E2", "&nsqsupe;": "\u22E3", "&nsub;": "\u2284", "&nsubE;": "\u2AC5\u0338", "&nsube;": "\u2288", "&nsubset;": "\u2282\u20D2", "&nsubseteq;": "\u2288", "&nsubseteqq;": "\u2AC5\u0338", "&nsucc;": "\u2281", "&nsucceq;": "\u2AB0\u0338", "&nsup;": "\u2285", "&nsupE;": "\u2AC6\u0338", "&nsupe;": "\u2289", "&nsupset;": "\u2283\u20D2", "&nsupseteq;": "\u2289", "&nsupseteqq;": "\u2AC6\u0338", "&ntgl;": "\u2279", "&ntilde": "\xF1", "&ntilde;": "\xF1", "&ntlg;": "\u2278", "&ntriangleleft;": "\u22EA", "&ntrianglelefteq;": "\u22EC", "&ntriangleright;": "\u22EB", "&ntrianglerighteq;": "\u22ED", "&nu;": "\u03BD", "&num;": "#", "&numero;": "\u2116", "&numsp;": "\u2007", "&nvDash;": "\u22AD", "&nvHarr;": "\u2904", "&nvap;": "\u224D\u20D2", "&nvdash;": "\u22AC", "&nvge;": "\u2265\u20D2", "&nvgt;": ">\u20D2", "&nvinfin;": "\u29DE", "&nvlArr;": "\u2902", "&nvle;": "\u2264\u20D2", "&nvlt;": "<\u20D2", "&nvltrie;": "\u22B4\u20D2", "&nvrArr;": "\u2903", "&nvrtrie;": "\u22B5\u20D2", "&nvsim;": "\u223C\u20D2", "&nwArr;": "\u21D6", "&nwarhk;": "\u2923", "&nwarr;": "\u2196", "&nwarrow;": "\u2196", "&nwnear;": "\u2927", "&oS;": "\u24C8", "&oacute": "\xF3", "&oacute;": "\xF3", "&oast;": "\u229B", "&ocir;": "\u229A", "&ocirc": "\xF4", "&ocirc;": "\xF4", "&ocy;": "\u043E", "&odash;": "\u229D", "&odblac;": "\u0151", "&odiv;": "\u2A38", "&odot;": "\u2299", "&odsold;": "\u29BC", "&oelig;": "\u0153", "&ofcir;": "\u29BF", "&ofr;": "\u{1D52C}", "&ogon;": "\u02DB", "&ograve": "\xF2", "&ograve;": "\xF2", "&ogt;": "\u29C1", "&ohbar;": "\u29B5", "&ohm;": "\u03A9", "&oint;": "\u222E", "&olarr;": "\u21BA", "&olcir;": "\u29BE", "&olcross;": "\u29BB", "&oline;": "\u203E", "&olt;": "\u29C0", "&omacr;": "\u014D", "&omega;": "\u03C9", "&omicron;": "\u03BF", "&omid;": "\u29B6", "&ominus;": "\u2296", "&oopf;": "\u{1D560}", "&opar;": "\u29B7", "&operp;": "\u29B9", "&oplus;": "\u2295", "&or;": "\u2228", "&orarr;": "\u21BB", "&ord;": "\u2A5D", "&order;": "\u2134", "&orderof;": "\u2134", "&ordf": "\xAA", "&ordf;": "\xAA", "&ordm": "\xBA", "&ordm;": "\xBA", "&origof;": "\u22B6", "&oror;": "\u2A56", "&orslope;": "\u2A57", "&orv;": "\u2A5B", "&oscr;": "\u2134", "&oslash": "\xF8", "&oslash;": "\xF8", "&osol;": "\u2298", "&otilde": "\xF5", "&otilde;": "\xF5", "&otimes;": "\u2297", "&otimesas;": "\u2A36", "&ouml": "\xF6", "&ouml;": "\xF6", "&ovbar;": "\u233D", "&par;": "\u2225", "&para": "\xB6", "&para;": "\xB6", "&parallel;": "\u2225", "&parsim;": "\u2AF3", "&parsl;": "\u2AFD", "&part;": "\u2202", "&pcy;": "\u043F", "&percnt;": "%", "&period;": ".", "&permil;": "\u2030", "&perp;": "\u22A5", "&pertenk;": "\u2031", "&pfr;": "\u{1D52D}", "&phi;": "\u03C6", "&phiv;": "\u03D5", "&phmmat;": "\u2133", "&phone;": "\u260E", "&pi;": "\u03C0", "&pitchfork;": "\u22D4", "&piv;": "\u03D6", "&planck;": "\u210F", "&planckh;": "\u210E", "&plankv;": "\u210F", "&plus;": "+", "&plusacir;": "\u2A23", "&plusb;": "\u229E", "&pluscir;": "\u2A22", "&plusdo;": "\u2214", "&plusdu;": "\u2A25", "&pluse;": "\u2A72", "&plusmn": "\xB1", "&plusmn;": "\xB1", "&plussim;": "\u2A26", "&plustwo;": "\u2A27", "&pm;": "\xB1", "&pointint;": "\u2A15", "&popf;": "\u{1D561}", "&pound": "\xA3", "&pound;": "\xA3", "&pr;": "\u227A", "&prE;": "\u2AB3", "&prap;": "\u2AB7", "&prcue;": "\u227C", "&pre;": "\u2AAF", "&prec;": "\u227A", "&precapprox;": "\u2AB7", "&preccurlyeq;": "\u227C", "&preceq;": "\u2AAF", "&precnapprox;": "\u2AB9", "&precneqq;": "\u2AB5", "&precnsim;": "\u22E8", "&precsim;": "\u227E", "&prime;": "\u2032", "&primes;": "\u2119", "&prnE;": "\u2AB5", "&prnap;": "\u2AB9", "&prnsim;": "\u22E8", "&prod;": "\u220F", "&profalar;": "\u232E", "&profline;": "\u2312", "&profsurf;": "\u2313", "&prop;": "\u221D", "&propto;": "\u221D", "&prsim;": "\u227E", "&prurel;": "\u22B0", "&pscr;": "\u{1D4C5}", "&psi;": "\u03C8", "&puncsp;": "\u2008", "&qfr;": "\u{1D52E}", "&qint;": "\u2A0C", "&qopf;": "\u{1D562}", "&qprime;": "\u2057", "&qscr;": "\u{1D4C6}", "&quaternions;": "\u210D", "&quatint;": "\u2A16", "&quest;": "?", "&questeq;": "\u225F", "&quot": '"', "&quot;": '"', "&rAarr;": "\u21DB", "&rArr;": "\u21D2", "&rAtail;": "\u291C", "&rBarr;": "\u290F", "&rHar;": "\u2964", "&race;": "\u223D\u0331", "&racute;": "\u0155", "&radic;": "\u221A", "&raemptyv;": "\u29B3", "&rang;": "\u27E9", "&rangd;": "\u2992", "&range;": "\u29A5", "&rangle;": "\u27E9", "&raquo": "\xBB", "&raquo;": "\xBB", "&rarr;": "\u2192", "&rarrap;": "\u2975", "&rarrb;": "\u21E5", "&rarrbfs;": "\u2920", "&rarrc;": "\u2933", "&rarrfs;": "\u291E", "&rarrhk;": "\u21AA", "&rarrlp;": "\u21AC", "&rarrpl;": "\u2945", "&rarrsim;": "\u2974", "&rarrtl;": "\u21A3", "&rarrw;": "\u219D", "&ratail;": "\u291A", "&ratio;": "\u2236", "&rationals;": "\u211A", "&rbarr;": "\u290D", "&rbbrk;": "\u2773", "&rbrace;": "}", "&rbrack;": "]", "&rbrke;": "\u298C", "&rbrksld;": "\u298E", "&rbrkslu;": "\u2990", "&rcaron;": "\u0159", "&rcedil;": "\u0157", "&rceil;": "\u2309", "&rcub;": "}", "&rcy;": "\u0440", "&rdca;": "\u2937", "&rdldhar;": "\u2969", "&rdquo;": "\u201D", "&rdquor;": "\u201D", "&rdsh;": "\u21B3", "&real;": "\u211C", "&realine;": "\u211B", "&realpart;": "\u211C", "&reals;": "\u211D", "&rect;": "\u25AD", "&reg": "\xAE", "&reg;": "\xAE", "&rfisht;": "\u297D", "&rfloor;": "\u230B", "&rfr;": "\u{1D52F}", "&rhard;": "\u21C1", "&rharu;": "\u21C0", "&rharul;": "\u296C", "&rho;": "\u03C1", "&rhov;": "\u03F1", "&rightarrow;": "\u2192", "&rightarrowtail;": "\u21A3", "&rightharpoondown;": "\u21C1", "&rightharpoonup;": "\u21C0", "&rightleftarrows;": "\u21C4", "&rightleftharpoons;": "\u21CC", "&rightrightarrows;": "\u21C9", "&rightsquigarrow;": "\u219D", "&rightthreetimes;": "\u22CC", "&ring;": "\u02DA", "&risingdotseq;": "\u2253", "&rlarr;": "\u21C4", "&rlhar;": "\u21CC", "&rlm;": "\u200F", "&rmoust;": "\u23B1", "&rmoustache;": "\u23B1", "&rnmid;": "\u2AEE", "&roang;": "\u27ED", "&roarr;": "\u21FE", "&robrk;": "\u27E7", "&ropar;": "\u2986", "&ropf;": "\u{1D563}", "&roplus;": "\u2A2E", "&rotimes;": "\u2A35", "&rpar;": ")", "&rpargt;": "\u2994", "&rppolint;": "\u2A12", "&rrarr;": "\u21C9", "&rsaquo;": "\u203A", "&rscr;": "\u{1D4C7}", "&rsh;": "\u21B1", "&rsqb;": "]", "&rsquo;": "\u2019", "&rsquor;": "\u2019", "&rthree;": "\u22CC", "&rtimes;": "\u22CA", "&rtri;": "\u25B9", "&rtrie;": "\u22B5", "&rtrif;": "\u25B8", "&rtriltri;": "\u29CE", "&ruluhar;": "\u2968", "&rx;": "\u211E", "&sacute;": "\u015B", "&sbquo;": "\u201A", "&sc;": "\u227B", "&scE;": "\u2AB4", "&scap;": "\u2AB8", "&scaron;": "\u0161", "&sccue;": "\u227D", "&sce;": "\u2AB0", "&scedil;": "\u015F", "&scirc;": "\u015D", "&scnE;": "\u2AB6", "&scnap;": "\u2ABA", "&scnsim;": "\u22E9", "&scpolint;": "\u2A13", "&scsim;": "\u227F", "&scy;": "\u0441", "&sdot;": "\u22C5", "&sdotb;": "\u22A1", "&sdote;": "\u2A66", "&seArr;": "\u21D8", "&searhk;": "\u2925", "&searr;": "\u2198", "&searrow;": "\u2198", "&sect": "\xA7", "&sect;": "\xA7", "&semi;": ";", "&seswar;": "\u2929", "&setminus;": "\u2216", "&setmn;": "\u2216", "&sext;": "\u2736", "&sfr;": "\u{1D530}", "&sfrown;": "\u2322", "&sharp;": "\u266F", "&shchcy;": "\u0449", "&shcy;": "\u0448", "&shortmid;": "\u2223", "&shortparallel;": "\u2225", "&shy": "\xAD", "&shy;": "\xAD", "&sigma;": "\u03C3", "&sigmaf;": "\u03C2", "&sigmav;": "\u03C2", "&sim;": "\u223C", "&simdot;": "\u2A6A", "&sime;": "\u2243", "&simeq;": "\u2243", "&simg;": "\u2A9E", "&simgE;": "\u2AA0", "&siml;": "\u2A9D", "&simlE;": "\u2A9F", "&simne;": "\u2246", "&simplus;": "\u2A24", "&simrarr;": "\u2972", "&slarr;": "\u2190", "&smallsetminus;": "\u2216", "&smashp;": "\u2A33", "&smeparsl;": "\u29E4", "&smid;": "\u2223", "&smile;": "\u2323", "&smt;": "\u2AAA", "&smte;": "\u2AAC", "&smtes;": "\u2AAC\uFE00", "&softcy;": "\u044C", "&sol;": "/", "&solb;": "\u29C4", "&solbar;": "\u233F", "&sopf;": "\u{1D564}", "&spades;": "\u2660", "&spadesuit;": "\u2660", "&spar;": "\u2225", "&sqcap;": "\u2293", "&sqcaps;": "\u2293\uFE00", "&sqcup;": "\u2294", "&sqcups;": "\u2294\uFE00", "&sqsub;": "\u228F", "&sqsube;": "\u2291", "&sqsubset;": "\u228F", "&sqsubseteq;": "\u2291", "&sqsup;": "\u2290", "&sqsupe;": "\u2292", "&sqsupset;": "\u2290", "&sqsupseteq;": "\u2292", "&squ;": "\u25A1", "&square;": "\u25A1", "&squarf;": "\u25AA", "&squf;": "\u25AA", "&srarr;": "\u2192", "&sscr;": "\u{1D4C8}", "&ssetmn;": "\u2216", "&ssmile;": "\u2323", "&sstarf;": "\u22C6", "&star;": "\u2606", "&starf;": "\u2605", "&straightepsilon;": "\u03F5", "&straightphi;": "\u03D5", "&strns;": "\xAF", "&sub;": "\u2282", "&subE;": "\u2AC5", "&subdot;": "\u2ABD", "&sube;": "\u2286", "&subedot;": "\u2AC3", "&submult;": "\u2AC1", "&subnE;": "\u2ACB", "&subne;": "\u228A", "&subplus;": "\u2ABF", "&subrarr;": "\u2979", "&subset;": "\u2282", "&subseteq;": "\u2286", "&subseteqq;": "\u2AC5", "&subsetneq;": "\u228A", "&subsetneqq;": "\u2ACB", "&subsim;": "\u2AC7", "&subsub;": "\u2AD5", "&subsup;": "\u2AD3", "&succ;": "\u227B", "&succapprox;": "\u2AB8", "&succcurlyeq;": "\u227D", "&succeq;": "\u2AB0", "&succnapprox;": "\u2ABA", "&succneqq;": "\u2AB6", "&succnsim;": "\u22E9", "&succsim;": "\u227F", "&sum;": "\u2211", "&sung;": "\u266A", "&sup1": "\xB9", "&sup1;": "\xB9", "&sup2": "\xB2", "&sup2;": "\xB2", "&sup3": "\xB3", "&sup3;": "\xB3", "&sup;": "\u2283", "&supE;": "\u2AC6", "&supdot;": "\u2ABE", "&supdsub;": "\u2AD8", "&supe;": "\u2287", "&supedot;": "\u2AC4", "&suphsol;": "\u27C9", "&suphsub;": "\u2AD7", "&suplarr;": "\u297B", "&supmult;": "\u2AC2", "&supnE;": "\u2ACC", "&supne;": "\u228B", "&supplus;": "\u2AC0", "&supset;": "\u2283", "&supseteq;": "\u2287", "&supseteqq;": "\u2AC6", "&supsetneq;": "\u228B", "&supsetneqq;": "\u2ACC", "&supsim;": "\u2AC8", "&supsub;": "\u2AD4", "&supsup;": "\u2AD6", "&swArr;": "\u21D9", "&swarhk;": "\u2926", "&swarr;": "\u2199", "&swarrow;": "\u2199", "&swnwar;": "\u292A", "&szlig": "\xDF", "&szlig;": "\xDF", "&target;": "\u2316", "&tau;": "\u03C4", "&tbrk;": "\u23B4", "&tcaron;": "\u0165", "&tcedil;": "\u0163", "&tcy;": "\u0442", "&tdot;": "\u20DB", "&telrec;": "\u2315", "&tfr;": "\u{1D531}", "&there4;": "\u2234", "&therefore;": "\u2234", "&theta;": "\u03B8", "&thetasym;": "\u03D1", "&thetav;": "\u03D1", "&thickapprox;": "\u2248", "&thicksim;": "\u223C", "&thinsp;": "\u2009", "&thkap;": "\u2248", "&thksim;": "\u223C", "&thorn": "\xFE", "&thorn;": "\xFE", "&tilde;": "\u02DC", "&times": "\xD7", "&times;": "\xD7", "&timesb;": "\u22A0", "&timesbar;": "\u2A31", "&timesd;": "\u2A30", "&tint;": "\u222D", "&toea;": "\u2928", "&top;": "\u22A4", "&topbot;": "\u2336", "&topcir;": "\u2AF1", "&topf;": "\u{1D565}", "&topfork;": "\u2ADA", "&tosa;": "\u2929", "&tprime;": "\u2034", "&trade;": "\u2122", "&triangle;": "\u25B5", "&triangledown;": "\u25BF", "&triangleleft;": "\u25C3", "&trianglelefteq;": "\u22B4", "&triangleq;": "\u225C", "&triangleright;": "\u25B9", "&trianglerighteq;": "\u22B5", "&tridot;": "\u25EC", "&trie;": "\u225C", "&triminus;": "\u2A3A", "&triplus;": "\u2A39", "&trisb;": "\u29CD", "&tritime;": "\u2A3B", "&trpezium;": "\u23E2", "&tscr;": "\u{1D4C9}", "&tscy;": "\u0446", "&tshcy;": "\u045B", "&tstrok;": "\u0167", "&twixt;": "\u226C", "&twoheadleftarrow;": "\u219E", "&twoheadrightarrow;": "\u21A0", "&uArr;": "\u21D1", "&uHar;": "\u2963", "&uacute": "\xFA", "&uacute;": "\xFA", "&uarr;": "\u2191", "&ubrcy;": "\u045E", "&ubreve;": "\u016D", "&ucirc": "\xFB", "&ucirc;": "\xFB", "&ucy;": "\u0443", "&udarr;": "\u21C5", "&udblac;": "\u0171", "&udhar;": "\u296E", "&ufisht;": "\u297E", "&ufr;": "\u{1D532}", "&ugrave": "\xF9", "&ugrave;": "\xF9", "&uharl;": "\u21BF", "&uharr;": "\u21BE", "&uhblk;": "\u2580", "&ulcorn;": "\u231C", "&ulcorner;": "\u231C", "&ulcrop;": "\u230F", "&ultri;": "\u25F8", "&umacr;": "\u016B", "&uml": "\xA8", "&uml;": "\xA8", "&uogon;": "\u0173", "&uopf;": "\u{1D566}", "&uparrow;": "\u2191", "&updownarrow;": "\u2195", "&upharpoonleft;": "\u21BF", "&upharpoonright;": "\u21BE", "&uplus;": "\u228E", "&upsi;": "\u03C5", "&upsih;": "\u03D2", "&upsilon;": "\u03C5", "&upuparrows;": "\u21C8", "&urcorn;": "\u231D", "&urcorner;": "\u231D", "&urcrop;": "\u230E", "&uring;": "\u016F", "&urtri;": "\u25F9", "&uscr;": "\u{1D4CA}", "&utdot;": "\u22F0", "&utilde;": "\u0169", "&utri;": "\u25B5", "&utrif;": "\u25B4", "&uuarr;": "\u21C8", "&uuml": "\xFC", "&uuml;": "\xFC", "&uwangle;": "\u29A7", "&vArr;": "\u21D5", "&vBar;": "\u2AE8", "&vBarv;": "\u2AE9", "&vDash;": "\u22A8", "&vangrt;": "\u299C", "&varepsilon;": "\u03F5", "&varkappa;": "\u03F0", "&varnothing;": "\u2205", "&varphi;": "\u03D5", "&varpi;": "\u03D6", "&varpropto;": "\u221D", "&varr;": "\u2195", "&varrho;": "\u03F1", "&varsigma;": "\u03C2", "&varsubsetneq;": "\u228A\uFE00", "&varsubsetneqq;": "\u2ACB\uFE00", "&varsupsetneq;": "\u228B\uFE00", "&varsupsetneqq;": "\u2ACC\uFE00", "&vartheta;": "\u03D1", "&vartriangleleft;": "\u22B2", "&vartriangleright;": "\u22B3", "&vcy;": "\u0432", "&vdash;": "\u22A2", "&vee;": "\u2228", "&veebar;": "\u22BB", "&veeeq;": "\u225A", "&vellip;": "\u22EE", "&verbar;": "|", "&vert;": "|", "&vfr;": "\u{1D533}", "&vltri;": "\u22B2", "&vnsub;": "\u2282\u20D2", "&vnsup;": "\u2283\u20D2", "&vopf;": "\u{1D567}", "&vprop;": "\u221D", "&vrtri;": "\u22B3", "&vscr;": "\u{1D4CB}", "&vsubnE;": "\u2ACB\uFE00", "&vsubne;": "\u228A\uFE00", "&vsupnE;": "\u2ACC\uFE00", "&vsupne;": "\u228B\uFE00", "&vzigzag;": "\u299A", "&wcirc;": "\u0175", "&wedbar;": "\u2A5F", "&wedge;": "\u2227", "&wedgeq;": "\u2259", "&weierp;": "\u2118", "&wfr;": "\u{1D534}", "&wopf;": "\u{1D568}", "&wp;": "\u2118", "&wr;": "\u2240", "&wreath;": "\u2240", "&wscr;": "\u{1D4CC}", "&xcap;": "\u22C2", "&xcirc;": "\u25EF", "&xcup;": "\u22C3", "&xdtri;": "\u25BD", "&xfr;": "\u{1D535}", "&xhArr;": "\u27FA", "&xharr;": "\u27F7", "&xi;": "\u03BE", "&xlArr;": "\u27F8", "&xlarr;": "\u27F5", "&xmap;": "\u27FC", "&xnis;": "\u22FB", "&xodot;": "\u2A00", "&xopf;": "\u{1D569}", "&xoplus;": "\u2A01", "&xotime;": "\u2A02", "&xrArr;": "\u27F9", "&xrarr;": "\u27F6", "&xscr;": "\u{1D4CD}", "&xsqcup;": "\u2A06", "&xuplus;": "\u2A04", "&xutri;": "\u25B3", "&xvee;": "\u22C1", "&xwedge;": "\u22C0", "&yacute": "\xFD", "&yacute;": "\xFD", "&yacy;": "\u044F", "&ycirc;": "\u0177", "&ycy;": "\u044B", "&yen": "\xA5", "&yen;": "\xA5", "&yfr;": "\u{1D536}", "&yicy;": "\u0457", "&yopf;": "\u{1D56A}", "&yscr;": "\u{1D4CE}", "&yucy;": "\u044E", "&yuml": "\xFF", "&yuml;": "\xFF", "&zacute;": "\u017A", "&zcaron;": "\u017E", "&zcy;": "\u0437", "&zdot;": "\u017C", "&zeetrf;": "\u2128", "&zeta;": "\u03B6", "&zfr;": "\u{1D537}", "&zhcy;": "\u0436", "&zigrarr;": "\u21DD", "&zopf;": "\u{1D56B}", "&zscr;": "\u{1D4CF}", "&zwj;": "\u200D", "&zwnj;": "\u200C" }, characters: { "\xC6": "&AElig;", "&": "&amp;", "\xC1": "&Aacute;", "\u0102": "&Abreve;", "\xC2": "&Acirc;", "\u0410": "&Acy;", "\u{1D504}": "&Afr;", "\xC0": "&Agrave;", "\u0391": "&Alpha;", "\u0100": "&Amacr;", "\u2A53": "&And;", "\u0104": "&Aogon;", "\u{1D538}": "&Aopf;", "\u2061": "&af;", "\xC5": "&angst;", "\u{1D49C}": "&Ascr;", "\u2254": "&coloneq;", "\xC3": "&Atilde;", "\xC4": "&Auml;", "\u2216": "&ssetmn;", "\u2AE7": "&Barv;", "\u2306": "&doublebarwedge;", "\u0411": "&Bcy;", "\u2235": "&because;", "\u212C": "&bernou;", "\u0392": "&Beta;", "\u{1D505}": "&Bfr;", "\u{1D539}": "&Bopf;", "\u02D8": "&breve;", "\u224E": "&bump;", "\u0427": "&CHcy;", "\xA9": "&copy;", "\u0106": "&Cacute;", "\u22D2": "&Cap;", "\u2145": "&DD;", "\u212D": "&Cfr;", "\u010C": "&Ccaron;", "\xC7": "&Ccedil;", "\u0108": "&Ccirc;", "\u2230": "&Cconint;", "\u010A": "&Cdot;", "\xB8": "&cedil;", "\xB7": "&middot;", "\u03A7": "&Chi;", "\u2299": "&odot;", "\u2296": "&ominus;", "\u2295": "&oplus;", "\u2297": "&otimes;", "\u2232": "&cwconint;", "\u201D": "&rdquor;", "\u2019": "&rsquor;", "\u2237": "&Proportion;", "\u2A74": "&Colone;", "\u2261": "&equiv;", "\u222F": "&DoubleContourIntegral;", "\u222E": "&oint;", "\u2102": "&complexes;", "\u2210": "&coprod;", "\u2233": "&awconint;", "\u2A2F": "&Cross;", "\u{1D49E}": "&Cscr;", "\u22D3": "&Cup;", "\u224D": "&asympeq;", "\u2911": "&DDotrahd;", "\u0402": "&DJcy;", "\u0405": "&DScy;", "\u040F": "&DZcy;", "\u2021": "&ddagger;", "\u21A1": "&Darr;", "\u2AE4": "&DoubleLeftTee;", "\u010E": "&Dcaron;", "\u0414": "&Dcy;", "\u2207": "&nabla;", "\u0394": "&Delta;", "\u{1D507}": "&Dfr;", "\xB4": "&acute;", "\u02D9": "&dot;", "\u02DD": "&dblac;", "`": "&grave;", "\u02DC": "&tilde;", "\u22C4": "&diamond;", "\u2146": "&dd;", "\u{1D53B}": "&Dopf;", "\xA8": "&uml;", "\u20DC": "&DotDot;", "\u2250": "&esdot;", "\u21D3": "&dArr;", "\u21D0": "&lArr;", "\u21D4": "&iff;", "\u27F8": "&xlArr;", "\u27FA": "&xhArr;", "\u27F9": "&xrArr;", "\u21D2": "&rArr;", "\u22A8": "&vDash;", "\u21D1": "&uArr;", "\u21D5": "&vArr;", "\u2225": "&spar;", "\u2193": "&downarrow;", "\u2913": "&DownArrowBar;", "\u21F5": "&duarr;", "\u0311": "&DownBreve;", "\u2950": "&DownLeftRightVector;", "\u295E": "&DownLeftTeeVector;", "\u21BD": "&lhard;", "\u2956": "&DownLeftVectorBar;", "\u295F": "&DownRightTeeVector;", "\u21C1": "&rightharpoondown;", "\u2957": "&DownRightVectorBar;", "\u22A4": "&top;", "\u21A7": "&mapstodown;", "\u{1D49F}": "&Dscr;", "\u0110": "&Dstrok;", "\u014A": "&ENG;", "\xD0": "&ETH;", "\xC9": "&Eacute;", "\u011A": "&Ecaron;", "\xCA": "&Ecirc;", "\u042D": "&Ecy;", "\u0116": "&Edot;", "\u{1D508}": "&Efr;", "\xC8": "&Egrave;", "\u2208": "&isinv;", "\u0112": "&Emacr;", "\u25FB": "&EmptySmallSquare;", "\u25AB": "&EmptyVerySmallSquare;", "\u0118": "&Eogon;", "\u{1D53C}": "&Eopf;", "\u0395": "&Epsilon;", "\u2A75": "&Equal;", "\u2242": "&esim;", "\u21CC": "&rlhar;", "\u2130": "&expectation;", "\u2A73": "&Esim;", "\u0397": "&Eta;", "\xCB": "&Euml;", "\u2203": "&exist;", "\u2147": "&exponentiale;", "\u0424": "&Fcy;", "\u{1D509}": "&Ffr;", "\u25FC": "&FilledSmallSquare;", "\u25AA": "&squf;", "\u{1D53D}": "&Fopf;", "\u2200": "&forall;", "\u2131": "&Fscr;", "\u0403": "&GJcy;", ">": "&gt;", "\u0393": "&Gamma;", "\u03DC": "&Gammad;", "\u011E": "&Gbreve;", "\u0122": "&Gcedil;", "\u011C": "&Gcirc;", "\u0413": "&Gcy;", "\u0120": "&Gdot;", "\u{1D50A}": "&Gfr;", "\u22D9": "&ggg;", "\u{1D53E}": "&Gopf;", "\u2265": "&geq;", "\u22DB": "&gtreqless;", "\u2267": "&geqq;", "\u2AA2": "&GreaterGreater;", "\u2277": "&gtrless;", "\u2A7E": "&ges;", "\u2273": "&gtrsim;", "\u{1D4A2}": "&Gscr;", "\u226B": "&gg;", "\u042A": "&HARDcy;", "\u02C7": "&caron;", "^": "&Hat;", "\u0124": "&Hcirc;", "\u210C": "&Poincareplane;", "\u210B": "&hamilt;", "\u210D": "&quaternions;", "\u2500": "&boxh;", "\u0126": "&Hstrok;", "\u224F": "&bumpeq;", "\u0415": "&IEcy;", "\u0132": "&IJlig;", "\u0401": "&IOcy;", "\xCD": "&Iacute;", "\xCE": "&Icirc;", "\u0418": "&Icy;", "\u0130": "&Idot;", "\u2111": "&imagpart;", "\xCC": "&Igrave;", "\u012A": "&Imacr;", "\u2148": "&ii;", "\u222C": "&Int;", "\u222B": "&int;", "\u22C2": "&xcap;", "\u2063": "&ic;", "\u2062": "&it;", "\u012E": "&Iogon;", "\u{1D540}": "&Iopf;", "\u0399": "&Iota;", "\u2110": "&imagline;", "\u0128": "&Itilde;", "\u0406": "&Iukcy;", "\xCF": "&Iuml;", "\u0134": "&Jcirc;", "\u0419": "&Jcy;", "\u{1D50D}": "&Jfr;", "\u{1D541}": "&Jopf;", "\u{1D4A5}": "&Jscr;", "\u0408": "&Jsercy;", "\u0404": "&Jukcy;", "\u0425": "&KHcy;", "\u040C": "&KJcy;", "\u039A": "&Kappa;", "\u0136": "&Kcedil;", "\u041A": "&Kcy;", "\u{1D50E}": "&Kfr;", "\u{1D542}": "&Kopf;", "\u{1D4A6}": "&Kscr;", "\u0409": "&LJcy;", "<": "&lt;", "\u0139": "&Lacute;", "\u039B": "&Lambda;", "\u27EA": "&Lang;", "\u2112": "&lagran;", "\u219E": "&twoheadleftarrow;", "\u013D": "&Lcaron;", "\u013B": "&Lcedil;", "\u041B": "&Lcy;", "\u27E8": "&langle;", "\u2190": "&slarr;", "\u21E4": "&larrb;", "\u21C6": "&lrarr;", "\u2308": "&lceil;", "\u27E6": "&lobrk;", "\u2961": "&LeftDownTeeVector;", "\u21C3": "&downharpoonleft;", "\u2959": "&LeftDownVectorBar;", "\u230A": "&lfloor;", "\u2194": "&leftrightarrow;", "\u294E": "&LeftRightVector;", "\u22A3": "&dashv;", "\u21A4": "&mapstoleft;", "\u295A": "&LeftTeeVector;", "\u22B2": "&vltri;", "\u29CF": "&LeftTriangleBar;", "\u22B4": "&trianglelefteq;", "\u2951": "&LeftUpDownVector;", "\u2960": "&LeftUpTeeVector;", "\u21BF": "&upharpoonleft;", "\u2958": "&LeftUpVectorBar;", "\u21BC": "&lharu;", "\u2952": "&LeftVectorBar;", "\u22DA": "&lesseqgtr;", "\u2266": "&leqq;", "\u2276": "&lg;", "\u2AA1": "&LessLess;", "\u2A7D": "&les;", "\u2272": "&lsim;", "\u{1D50F}": "&Lfr;", "\u22D8": "&Ll;", "\u21DA": "&lAarr;", "\u013F": "&Lmidot;", "\u27F5": "&xlarr;", "\u27F7": "&xharr;", "\u27F6": "&xrarr;", "\u{1D543}": "&Lopf;", "\u2199": "&swarrow;", "\u2198": "&searrow;", "\u21B0": "&lsh;", "\u0141": "&Lstrok;", "\u226A": "&ll;", "\u2905": "&Map;", "\u041C": "&Mcy;", "\u205F": "&MediumSpace;", "\u2133": "&phmmat;", "\u{1D510}": "&Mfr;", "\u2213": "&mp;", "\u{1D544}": "&Mopf;", "\u039C": "&Mu;", "\u040A": "&NJcy;", "\u0143": "&Nacute;", "\u0147": "&Ncaron;", "\u0145": "&Ncedil;", "\u041D": "&Ncy;", "\u200B": "&ZeroWidthSpace;", "\n": "&NewLine;", "\u{1D511}": "&Nfr;", "\u2060": "&NoBreak;", "\xA0": "&nbsp;", "\u2115": "&naturals;", "\u2AEC": "&Not;", "\u2262": "&nequiv;", "\u226D": "&NotCupCap;", "\u2226": "&nspar;", "\u2209": "&notinva;", "\u2260": "&ne;", "\u2242\u0338": "&nesim;", "\u2204": "&nexists;", "\u226F": "&ngtr;", "\u2271": "&ngeq;", "\u2267\u0338": "&ngeqq;", "\u226B\u0338": "&nGtv;", "\u2279": "&ntgl;", "\u2A7E\u0338": "&nges;", "\u2275": "&ngsim;", "\u224E\u0338": "&nbump;", "\u224F\u0338": "&nbumpe;", "\u22EA": "&ntriangleleft;", "\u29CF\u0338": "&NotLeftTriangleBar;", "\u22EC": "&ntrianglelefteq;", "\u226E": "&nlt;", "\u2270": "&nleq;", "\u2278": "&ntlg;", "\u226A\u0338": "&nLtv;", "\u2A7D\u0338": "&nles;", "\u2274": "&nlsim;", "\u2AA2\u0338": "&NotNestedGreaterGreater;", "\u2AA1\u0338": "&NotNestedLessLess;", "\u2280": "&nprec;", "\u2AAF\u0338": "&npreceq;", "\u22E0": "&nprcue;", "\u220C": "&notniva;", "\u22EB": "&ntriangleright;", "\u29D0\u0338": "&NotRightTriangleBar;", "\u22ED": "&ntrianglerighteq;", "\u228F\u0338": "&NotSquareSubset;", "\u22E2": "&nsqsube;", "\u2290\u0338": "&NotSquareSuperset;", "\u22E3": "&nsqsupe;", "\u2282\u20D2": "&vnsub;", "\u2288": "&nsubseteq;", "\u2281": "&nsucc;", "\u2AB0\u0338": "&nsucceq;", "\u22E1": "&nsccue;", "\u227F\u0338": "&NotSucceedsTilde;", "\u2283\u20D2": "&vnsup;", "\u2289": "&nsupseteq;", "\u2241": "&nsim;", "\u2244": "&nsimeq;", "\u2247": "&ncong;", "\u2249": "&napprox;", "\u2224": "&nsmid;", "\u{1D4A9}": "&Nscr;", "\xD1": "&Ntilde;", "\u039D": "&Nu;", "\u0152": "&OElig;", "\xD3": "&Oacute;", "\xD4": "&Ocirc;", "\u041E": "&Ocy;", "\u0150": "&Odblac;", "\u{1D512}": "&Ofr;", "\xD2": "&Ograve;", "\u014C": "&Omacr;", "\u03A9": "&ohm;", "\u039F": "&Omicron;", "\u{1D546}": "&Oopf;", "\u201C": "&ldquo;", "\u2018": "&lsquo;", "\u2A54": "&Or;", "\u{1D4AA}": "&Oscr;", "\xD8": "&Oslash;", "\xD5": "&Otilde;", "\u2A37": "&Otimes;", "\xD6": "&Ouml;", "\u203E": "&oline;", "\u23DE": "&OverBrace;", "\u23B4": "&tbrk;", "\u23DC": "&OverParenthesis;", "\u2202": "&part;", "\u041F": "&Pcy;", "\u{1D513}": "&Pfr;", "\u03A6": "&Phi;", "\u03A0": "&Pi;", "\xB1": "&pm;", "\u2119": "&primes;", "\u2ABB": "&Pr;", "\u227A": "&prec;", "\u2AAF": "&preceq;", "\u227C": "&preccurlyeq;", "\u227E": "&prsim;", "\u2033": "&Prime;", "\u220F": "&prod;", "\u221D": "&vprop;", "\u{1D4AB}": "&Pscr;", "\u03A8": "&Psi;", '"': "&quot;", "\u{1D514}": "&Qfr;", "\u211A": "&rationals;", "\u{1D4AC}": "&Qscr;", "\u2910": "&drbkarow;", "\xAE": "&reg;", "\u0154": "&Racute;", "\u27EB": "&Rang;", "\u21A0": "&twoheadrightarrow;", "\u2916": "&Rarrtl;", "\u0158": "&Rcaron;", "\u0156": "&Rcedil;", "\u0420": "&Rcy;", "\u211C": "&realpart;", "\u220B": "&niv;", "\u21CB": "&lrhar;", "\u296F": "&duhar;", "\u03A1": "&Rho;", "\u27E9": "&rangle;", "\u2192": "&srarr;", "\u21E5": "&rarrb;", "\u21C4": "&rlarr;", "\u2309": "&rceil;", "\u27E7": "&robrk;", "\u295D": "&RightDownTeeVector;", "\u21C2": "&downharpoonright;", "\u2955": "&RightDownVectorBar;", "\u230B": "&rfloor;", "\u22A2": "&vdash;", "\u21A6": "&mapsto;", "\u295B": "&RightTeeVector;", "\u22B3": "&vrtri;", "\u29D0": "&RightTriangleBar;", "\u22B5": "&trianglerighteq;", "\u294F": "&RightUpDownVector;", "\u295C": "&RightUpTeeVector;", "\u21BE": "&upharpoonright;", "\u2954": "&RightUpVectorBar;", "\u21C0": "&rightharpoonup;", "\u2953": "&RightVectorBar;", "\u211D": "&reals;", "\u2970": "&RoundImplies;", "\u21DB": "&rAarr;", "\u211B": "&realine;", "\u21B1": "&rsh;", "\u29F4": "&RuleDelayed;", "\u0429": "&SHCHcy;", "\u0428": "&SHcy;", "\u042C": "&SOFTcy;", "\u015A": "&Sacute;", "\u2ABC": "&Sc;", "\u0160": "&Scaron;", "\u015E": "&Scedil;", "\u015C": "&Scirc;", "\u0421": "&Scy;", "\u{1D516}": "&Sfr;", "\u2191": "&uparrow;", "\u03A3": "&Sigma;", "\u2218": "&compfn;", "\u{1D54A}": "&Sopf;", "\u221A": "&radic;", "\u25A1": "&square;", "\u2293": "&sqcap;", "\u228F": "&sqsubset;", "\u2291": "&sqsubseteq;", "\u2290": "&sqsupset;", "\u2292": "&sqsupseteq;", "\u2294": "&sqcup;", "\u{1D4AE}": "&Sscr;", "\u22C6": "&sstarf;", "\u22D0": "&Subset;", "\u2286": "&subseteq;", "\u227B": "&succ;", "\u2AB0": "&succeq;", "\u227D": "&succcurlyeq;", "\u227F": "&succsim;", "\u2211": "&sum;", "\u22D1": "&Supset;", "\u2283": "&supset;", "\u2287": "&supseteq;", "\xDE": "&THORN;", "\u2122": "&trade;", "\u040B": "&TSHcy;", "\u0426": "&TScy;", "	": "&Tab;", "\u03A4": "&Tau;", "\u0164": "&Tcaron;", "\u0162": "&Tcedil;", "\u0422": "&Tcy;", "\u{1D517}": "&Tfr;", "\u2234": "&therefore;", "\u0398": "&Theta;", "\u205F\u200A": "&ThickSpace;", "\u2009": "&thinsp;", "\u223C": "&thksim;", "\u2243": "&simeq;", "\u2245": "&cong;", "\u2248": "&thkap;", "\u{1D54B}": "&Topf;", "\u20DB": "&tdot;", "\u{1D4AF}": "&Tscr;", "\u0166": "&Tstrok;", "\xDA": "&Uacute;", "\u219F": "&Uarr;", "\u2949": "&Uarrocir;", "\u040E": "&Ubrcy;", "\u016C": "&Ubreve;", "\xDB": "&Ucirc;", "\u0423": "&Ucy;", "\u0170": "&Udblac;", "\u{1D518}": "&Ufr;", "\xD9": "&Ugrave;", "\u016A": "&Umacr;", _: "&lowbar;", "\u23DF": "&UnderBrace;", "\u23B5": "&bbrk;", "\u23DD": "&UnderParenthesis;", "\u22C3": "&xcup;", "\u228E": "&uplus;", "\u0172": "&Uogon;", "\u{1D54C}": "&Uopf;", "\u2912": "&UpArrowBar;", "\u21C5": "&udarr;", "\u2195": "&varr;", "\u296E": "&udhar;", "\u22A5": "&perp;", "\u21A5": "&mapstoup;", "\u2196": "&nwarrow;", "\u2197": "&nearrow;", "\u03D2": "&upsih;", "\u03A5": "&Upsilon;", "\u016E": "&Uring;", "\u{1D4B0}": "&Uscr;", "\u0168": "&Utilde;", "\xDC": "&Uuml;", "\u22AB": "&VDash;", "\u2AEB": "&Vbar;", "\u0412": "&Vcy;", "\u22A9": "&Vdash;", "\u2AE6": "&Vdashl;", "\u22C1": "&xvee;", "\u2016": "&Vert;", "\u2223": "&smid;", "|": "&vert;", "\u2758": "&VerticalSeparator;", "\u2240": "&wreath;", "\u200A": "&hairsp;", "\u{1D519}": "&Vfr;", "\u{1D54D}": "&Vopf;", "\u{1D4B1}": "&Vscr;", "\u22AA": "&Vvdash;", "\u0174": "&Wcirc;", "\u22C0": "&xwedge;", "\u{1D51A}": "&Wfr;", "\u{1D54E}": "&Wopf;", "\u{1D4B2}": "&Wscr;", "\u{1D51B}": "&Xfr;", "\u039E": "&Xi;", "\u{1D54F}": "&Xopf;", "\u{1D4B3}": "&Xscr;", "\u042F": "&YAcy;", "\u0407": "&YIcy;", "\u042E": "&YUcy;", "\xDD": "&Yacute;", "\u0176": "&Ycirc;", "\u042B": "&Ycy;", "\u{1D51C}": "&Yfr;", "\u{1D550}": "&Yopf;", "\u{1D4B4}": "&Yscr;", "\u0178": "&Yuml;", "\u0416": "&ZHcy;", "\u0179": "&Zacute;", "\u017D": "&Zcaron;", "\u0417": "&Zcy;", "\u017B": "&Zdot;", "\u0396": "&Zeta;", "\u2128": "&zeetrf;", "\u2124": "&integers;", "\u{1D4B5}": "&Zscr;", "\xE1": "&aacute;", "\u0103": "&abreve;", "\u223E": "&mstpos;", "\u223E\u0333": "&acE;", "\u223F": "&acd;", "\xE2": "&acirc;", "\u0430": "&acy;", "\xE6": "&aelig;", "\u{1D51E}": "&afr;", "\xE0": "&agrave;", "\u2135": "&aleph;", "\u03B1": "&alpha;", "\u0101": "&amacr;", "\u2A3F": "&amalg;", "\u2227": "&wedge;", "\u2A55": "&andand;", "\u2A5C": "&andd;", "\u2A58": "&andslope;", "\u2A5A": "&andv;", "\u2220": "&angle;", "\u29A4": "&ange;", "\u2221": "&measuredangle;", "\u29A8": "&angmsdaa;", "\u29A9": "&angmsdab;", "\u29AA": "&angmsdac;", "\u29AB": "&angmsdad;", "\u29AC": "&angmsdae;", "\u29AD": "&angmsdaf;", "\u29AE": "&angmsdag;", "\u29AF": "&angmsdah;", "\u221F": "&angrt;", "\u22BE": "&angrtvb;", "\u299D": "&angrtvbd;", "\u2222": "&angsph;", "\u237C": "&angzarr;", "\u0105": "&aogon;", "\u{1D552}": "&aopf;", "\u2A70": "&apE;", "\u2A6F": "&apacir;", "\u224A": "&approxeq;", "\u224B": "&apid;", "'": "&apos;", "\xE5": "&aring;", "\u{1D4B6}": "&ascr;", "*": "&midast;", "\xE3": "&atilde;", "\xE4": "&auml;", "\u2A11": "&awint;", "\u2AED": "&bNot;", "\u224C": "&bcong;", "\u03F6": "&bepsi;", "\u2035": "&bprime;", "\u223D": "&bsim;", "\u22CD": "&bsime;", "\u22BD": "&barvee;", "\u2305": "&barwedge;", "\u23B6": "&bbrktbrk;", "\u0431": "&bcy;", "\u201E": "&ldquor;", "\u29B0": "&bemptyv;", "\u03B2": "&beta;", "\u2136": "&beth;", "\u226C": "&twixt;", "\u{1D51F}": "&bfr;", "\u25EF": "&xcirc;", "\u2A00": "&xodot;", "\u2A01": "&xoplus;", "\u2A02": "&xotime;", "\u2A06": "&xsqcup;", "\u2605": "&starf;", "\u25BD": "&xdtri;", "\u25B3": "&xutri;", "\u2A04": "&xuplus;", "\u290D": "&rbarr;", "\u29EB": "&lozf;", "\u25B4": "&utrif;", "\u25BE": "&dtrif;", "\u25C2": "&ltrif;", "\u25B8": "&rtrif;", "\u2423": "&blank;", "\u2592": "&blk12;", "\u2591": "&blk14;", "\u2593": "&blk34;", "\u2588": "&block;", "=\u20E5": "&bne;", "\u2261\u20E5": "&bnequiv;", "\u2310": "&bnot;", "\u{1D553}": "&bopf;", "\u22C8": "&bowtie;", "\u2557": "&boxDL;", "\u2554": "&boxDR;", "\u2556": "&boxDl;", "\u2553": "&boxDr;", "\u2550": "&boxH;", "\u2566": "&boxHD;", "\u2569": "&boxHU;", "\u2564": "&boxHd;", "\u2567": "&boxHu;", "\u255D": "&boxUL;", "\u255A": "&boxUR;", "\u255C": "&boxUl;", "\u2559": "&boxUr;", "\u2551": "&boxV;", "\u256C": "&boxVH;", "\u2563": "&boxVL;", "\u2560": "&boxVR;", "\u256B": "&boxVh;", "\u2562": "&boxVl;", "\u255F": "&boxVr;", "\u29C9": "&boxbox;", "\u2555": "&boxdL;", "\u2552": "&boxdR;", "\u2510": "&boxdl;", "\u250C": "&boxdr;", "\u2565": "&boxhD;", "\u2568": "&boxhU;", "\u252C": "&boxhd;", "\u2534": "&boxhu;", "\u229F": "&minusb;", "\u229E": "&plusb;", "\u22A0": "&timesb;", "\u255B": "&boxuL;", "\u2558": "&boxuR;", "\u2518": "&boxul;", "\u2514": "&boxur;", "\u2502": "&boxv;", "\u256A": "&boxvH;", "\u2561": "&boxvL;", "\u255E": "&boxvR;", "\u253C": "&boxvh;", "\u2524": "&boxvl;", "\u251C": "&boxvr;", "\xA6": "&brvbar;", "\u{1D4B7}": "&bscr;", "\u204F": "&bsemi;", "\\": "&bsol;", "\u29C5": "&bsolb;", "\u27C8": "&bsolhsub;", "\u2022": "&bullet;", "\u2AAE": "&bumpE;", "\u0107": "&cacute;", "\u2229": "&cap;", "\u2A44": "&capand;", "\u2A49": "&capbrcup;", "\u2A4B": "&capcap;", "\u2A47": "&capcup;", "\u2A40": "&capdot;", "\u2229\uFE00": "&caps;", "\u2041": "&caret;", "\u2A4D": "&ccaps;", "\u010D": "&ccaron;", "\xE7": "&ccedil;", "\u0109": "&ccirc;", "\u2A4C": "&ccups;", "\u2A50": "&ccupssm;", "\u010B": "&cdot;", "\u29B2": "&cemptyv;", "\xA2": "&cent;", "\u{1D520}": "&cfr;", "\u0447": "&chcy;", "\u2713": "&checkmark;", "\u03C7": "&chi;", "\u25CB": "&cir;", "\u29C3": "&cirE;", "\u02C6": "&circ;", "\u2257": "&cire;", "\u21BA": "&olarr;", "\u21BB": "&orarr;", "\u24C8": "&oS;", "\u229B": "&oast;", "\u229A": "&ocir;", "\u229D": "&odash;", "\u2A10": "&cirfnint;", "\u2AEF": "&cirmid;", "\u29C2": "&cirscir;", "\u2663": "&clubsuit;", ":": "&colon;", ",": "&comma;", "@": "&commat;", "\u2201": "&complement;", "\u2A6D": "&congdot;", "\u{1D554}": "&copf;", "\u2117": "&copysr;", "\u21B5": "&crarr;", "\u2717": "&cross;", "\u{1D4B8}": "&cscr;", "\u2ACF": "&csub;", "\u2AD1": "&csube;", "\u2AD0": "&csup;", "\u2AD2": "&csupe;", "\u22EF": "&ctdot;", "\u2938": "&cudarrl;", "\u2935": "&cudarrr;", "\u22DE": "&curlyeqprec;", "\u22DF": "&curlyeqsucc;", "\u21B6": "&curvearrowleft;", "\u293D": "&cularrp;", "\u222A": "&cup;", "\u2A48": "&cupbrcap;", "\u2A46": "&cupcap;", "\u2A4A": "&cupcup;", "\u228D": "&cupdot;", "\u2A45": "&cupor;", "\u222A\uFE00": "&cups;", "\u21B7": "&curvearrowright;", "\u293C": "&curarrm;", "\u22CE": "&cuvee;", "\u22CF": "&cuwed;", "\xA4": "&curren;", "\u2231": "&cwint;", "\u232D": "&cylcty;", "\u2965": "&dHar;", "\u2020": "&dagger;", "\u2138": "&daleth;", "\u2010": "&hyphen;", "\u290F": "&rBarr;", "\u010F": "&dcaron;", "\u0434": "&dcy;", "\u21CA": "&downdownarrows;", "\u2A77": "&eDDot;", "\xB0": "&deg;", "\u03B4": "&delta;", "\u29B1": "&demptyv;", "\u297F": "&dfisht;", "\u{1D521}": "&dfr;", "\u2666": "&diams;", "\u03DD": "&gammad;", "\u22F2": "&disin;", "\xF7": "&divide;", "\u22C7": "&divonx;", "\u0452": "&djcy;", "\u231E": "&llcorner;", "\u230D": "&dlcrop;", $: "&dollar;", "\u{1D555}": "&dopf;", "\u2251": "&eDot;", "\u2238": "&minusd;", "\u2214": "&plusdo;", "\u22A1": "&sdotb;", "\u231F": "&lrcorner;", "\u230C": "&drcrop;", "\u{1D4B9}": "&dscr;", "\u0455": "&dscy;", "\u29F6": "&dsol;", "\u0111": "&dstrok;", "\u22F1": "&dtdot;", "\u25BF": "&triangledown;", "\u29A6": "&dwangle;", "\u045F": "&dzcy;", "\u27FF": "&dzigrarr;", "\xE9": "&eacute;", "\u2A6E": "&easter;", "\u011B": "&ecaron;", "\u2256": "&eqcirc;", "\xEA": "&ecirc;", "\u2255": "&eqcolon;", "\u044D": "&ecy;", "\u0117": "&edot;", "\u2252": "&fallingdotseq;", "\u{1D522}": "&efr;", "\u2A9A": "&eg;", "\xE8": "&egrave;", "\u2A96": "&eqslantgtr;", "\u2A98": "&egsdot;", "\u2A99": "&el;", "\u23E7": "&elinters;", "\u2113": "&ell;", "\u2A95": "&eqslantless;", "\u2A97": "&elsdot;", "\u0113": "&emacr;", "\u2205": "&varnothing;", "\u2004": "&emsp13;", "\u2005": "&emsp14;", "\u2003": "&emsp;", "\u014B": "&eng;", "\u2002": "&ensp;", "\u0119": "&eogon;", "\u{1D556}": "&eopf;", "\u22D5": "&epar;", "\u29E3": "&eparsl;", "\u2A71": "&eplus;", "\u03B5": "&epsilon;", "\u03F5": "&varepsilon;", "=": "&equals;", "\u225F": "&questeq;", "\u2A78": "&equivDD;", "\u29E5": "&eqvparsl;", "\u2253": "&risingdotseq;", "\u2971": "&erarr;", "\u212F": "&escr;", "\u03B7": "&eta;", "\xF0": "&eth;", "\xEB": "&euml;", "\u20AC": "&euro;", "!": "&excl;", "\u0444": "&fcy;", "\u2640": "&female;", "\uFB03": "&ffilig;", "\uFB00": "&fflig;", "\uFB04": "&ffllig;", "\u{1D523}": "&ffr;", "\uFB01": "&filig;", fj: "&fjlig;", "\u266D": "&flat;", "\uFB02": "&fllig;", "\u25B1": "&fltns;", "\u0192": "&fnof;", "\u{1D557}": "&fopf;", "\u22D4": "&pitchfork;", "\u2AD9": "&forkv;", "\u2A0D": "&fpartint;", "\xBD": "&half;", "\u2153": "&frac13;", "\xBC": "&frac14;", "\u2155": "&frac15;", "\u2159": "&frac16;", "\u215B": "&frac18;", "\u2154": "&frac23;", "\u2156": "&frac25;", "\xBE": "&frac34;", "\u2157": "&frac35;", "\u215C": "&frac38;", "\u2158": "&frac45;", "\u215A": "&frac56;", "\u215D": "&frac58;", "\u215E": "&frac78;", "\u2044": "&frasl;", "\u2322": "&sfrown;", "\u{1D4BB}": "&fscr;", "\u2A8C": "&gtreqqless;", "\u01F5": "&gacute;", "\u03B3": "&gamma;", "\u2A86": "&gtrapprox;", "\u011F": "&gbreve;", "\u011D": "&gcirc;", "\u0433": "&gcy;", "\u0121": "&gdot;", "\u2AA9": "&gescc;", "\u2A80": "&gesdot;", "\u2A82": "&gesdoto;", "\u2A84": "&gesdotol;", "\u22DB\uFE00": "&gesl;", "\u2A94": "&gesles;", "\u{1D524}": "&gfr;", "\u2137": "&gimel;", "\u0453": "&gjcy;", "\u2A92": "&glE;", "\u2AA5": "&gla;", "\u2AA4": "&glj;", "\u2269": "&gneqq;", "\u2A8A": "&gnapprox;", "\u2A88": "&gneq;", "\u22E7": "&gnsim;", "\u{1D558}": "&gopf;", "\u210A": "&gscr;", "\u2A8E": "&gsime;", "\u2A90": "&gsiml;", "\u2AA7": "&gtcc;", "\u2A7A": "&gtcir;", "\u22D7": "&gtrdot;", "\u2995": "&gtlPar;", "\u2A7C": "&gtquest;", "\u2978": "&gtrarr;", "\u2269\uFE00": "&gvnE;", "\u044A": "&hardcy;", "\u2948": "&harrcir;", "\u21AD": "&leftrightsquigarrow;", "\u210F": "&plankv;", "\u0125": "&hcirc;", "\u2665": "&heartsuit;", "\u2026": "&mldr;", "\u22B9": "&hercon;", "\u{1D525}": "&hfr;", "\u2925": "&searhk;", "\u2926": "&swarhk;", "\u21FF": "&hoarr;", "\u223B": "&homtht;", "\u21A9": "&larrhk;", "\u21AA": "&rarrhk;", "\u{1D559}": "&hopf;", "\u2015": "&horbar;", "\u{1D4BD}": "&hscr;", "\u0127": "&hstrok;", "\u2043": "&hybull;", "\xED": "&iacute;", "\xEE": "&icirc;", "\u0438": "&icy;", "\u0435": "&iecy;", "\xA1": "&iexcl;", "\u{1D526}": "&ifr;", "\xEC": "&igrave;", "\u2A0C": "&qint;", "\u222D": "&tint;", "\u29DC": "&iinfin;", "\u2129": "&iiota;", "\u0133": "&ijlig;", "\u012B": "&imacr;", "\u0131": "&inodot;", "\u22B7": "&imof;", "\u01B5": "&imped;", "\u2105": "&incare;", "\u221E": "&infin;", "\u29DD": "&infintie;", "\u22BA": "&intercal;", "\u2A17": "&intlarhk;", "\u2A3C": "&iprod;", "\u0451": "&iocy;", "\u012F": "&iogon;", "\u{1D55A}": "&iopf;", "\u03B9": "&iota;", "\xBF": "&iquest;", "\u{1D4BE}": "&iscr;", "\u22F9": "&isinE;", "\u22F5": "&isindot;", "\u22F4": "&isins;", "\u22F3": "&isinsv;", "\u0129": "&itilde;", "\u0456": "&iukcy;", "\xEF": "&iuml;", "\u0135": "&jcirc;", "\u0439": "&jcy;", "\u{1D527}": "&jfr;", "\u0237": "&jmath;", "\u{1D55B}": "&jopf;", "\u{1D4BF}": "&jscr;", "\u0458": "&jsercy;", "\u0454": "&jukcy;", "\u03BA": "&kappa;", "\u03F0": "&varkappa;", "\u0137": "&kcedil;", "\u043A": "&kcy;", "\u{1D528}": "&kfr;", "\u0138": "&kgreen;", "\u0445": "&khcy;", "\u045C": "&kjcy;", "\u{1D55C}": "&kopf;", "\u{1D4C0}": "&kscr;", "\u291B": "&lAtail;", "\u290E": "&lBarr;", "\u2A8B": "&lesseqqgtr;", "\u2962": "&lHar;", "\u013A": "&lacute;", "\u29B4": "&laemptyv;", "\u03BB": "&lambda;", "\u2991": "&langd;", "\u2A85": "&lessapprox;", "\xAB": "&laquo;", "\u291F": "&larrbfs;", "\u291D": "&larrfs;", "\u21AB": "&looparrowleft;", "\u2939": "&larrpl;", "\u2973": "&larrsim;", "\u21A2": "&leftarrowtail;", "\u2AAB": "&lat;", "\u2919": "&latail;", "\u2AAD": "&late;", "\u2AAD\uFE00": "&lates;", "\u290C": "&lbarr;", "\u2772": "&lbbrk;", "{": "&lcub;", "[": "&lsqb;", "\u298B": "&lbrke;", "\u298F": "&lbrksld;", "\u298D": "&lbrkslu;", "\u013E": "&lcaron;", "\u013C": "&lcedil;", "\u043B": "&lcy;", "\u2936": "&ldca;", "\u2967": "&ldrdhar;", "\u294B": "&ldrushar;", "\u21B2": "&ldsh;", "\u2264": "&leq;", "\u21C7": "&llarr;", "\u22CB": "&lthree;", "\u2AA8": "&lescc;", "\u2A7F": "&lesdot;", "\u2A81": "&lesdoto;", "\u2A83": "&lesdotor;", "\u22DA\uFE00": "&lesg;", "\u2A93": "&lesges;", "\u22D6": "&ltdot;", "\u297C": "&lfisht;", "\u{1D529}": "&lfr;", "\u2A91": "&lgE;", "\u296A": "&lharul;", "\u2584": "&lhblk;", "\u0459": "&ljcy;", "\u296B": "&llhard;", "\u25FA": "&lltri;", "\u0140": "&lmidot;", "\u23B0": "&lmoustache;", "\u2268": "&lneqq;", "\u2A89": "&lnapprox;", "\u2A87": "&lneq;", "\u22E6": "&lnsim;", "\u27EC": "&loang;", "\u21FD": "&loarr;", "\u27FC": "&xmap;", "\u21AC": "&rarrlp;", "\u2985": "&lopar;", "\u{1D55D}": "&lopf;", "\u2A2D": "&loplus;", "\u2A34": "&lotimes;", "\u2217": "&lowast;", "\u25CA": "&lozenge;", "(": "&lpar;", "\u2993": "&lparlt;", "\u296D": "&lrhard;", "\u200E": "&lrm;", "\u22BF": "&lrtri;", "\u2039": "&lsaquo;", "\u{1D4C1}": "&lscr;", "\u2A8D": "&lsime;", "\u2A8F": "&lsimg;", "\u201A": "&sbquo;", "\u0142": "&lstrok;", "\u2AA6": "&ltcc;", "\u2A79": "&ltcir;", "\u22C9": "&ltimes;", "\u2976": "&ltlarr;", "\u2A7B": "&ltquest;", "\u2996": "&ltrPar;", "\u25C3": "&triangleleft;", "\u294A": "&lurdshar;", "\u2966": "&luruhar;", "\u2268\uFE00": "&lvnE;", "\u223A": "&mDDot;", "\xAF": "&strns;", "\u2642": "&male;", "\u2720": "&maltese;", "\u25AE": "&marker;", "\u2A29": "&mcomma;", "\u043C": "&mcy;", "\u2014": "&mdash;", "\u{1D52A}": "&mfr;", "\u2127": "&mho;", "\xB5": "&micro;", "\u2AF0": "&midcir;", "\u2212": "&minus;", "\u2A2A": "&minusdu;", "\u2ADB": "&mlcp;", "\u22A7": "&models;", "\u{1D55E}": "&mopf;", "\u{1D4C2}": "&mscr;", "\u03BC": "&mu;", "\u22B8": "&mumap;", "\u22D9\u0338": "&nGg;", "\u226B\u20D2": "&nGt;", "\u21CD": "&nlArr;", "\u21CE": "&nhArr;", "\u22D8\u0338": "&nLl;", "\u226A\u20D2": "&nLt;", "\u21CF": "&nrArr;", "\u22AF": "&nVDash;", "\u22AE": "&nVdash;", "\u0144": "&nacute;", "\u2220\u20D2": "&nang;", "\u2A70\u0338": "&napE;", "\u224B\u0338": "&napid;", "\u0149": "&napos;", "\u266E": "&natural;", "\u2A43": "&ncap;", "\u0148": "&ncaron;", "\u0146": "&ncedil;", "\u2A6D\u0338": "&ncongdot;", "\u2A42": "&ncup;", "\u043D": "&ncy;", "\u2013": "&ndash;", "\u21D7": "&neArr;", "\u2924": "&nearhk;", "\u2250\u0338": "&nedot;", "\u2928": "&toea;", "\u{1D52B}": "&nfr;", "\u21AE": "&nleftrightarrow;", "\u2AF2": "&nhpar;", "\u22FC": "&nis;", "\u22FA": "&nisd;", "\u045A": "&njcy;", "\u2266\u0338": "&nleqq;", "\u219A": "&nleftarrow;", "\u2025": "&nldr;", "\u{1D55F}": "&nopf;", "\xAC": "&not;", "\u22F9\u0338": "&notinE;", "\u22F5\u0338": "&notindot;", "\u22F7": "&notinvb;", "\u22F6": "&notinvc;", "\u22FE": "&notnivb;", "\u22FD": "&notnivc;", "\u2AFD\u20E5": "&nparsl;", "\u2202\u0338": "&npart;", "\u2A14": "&npolint;", "\u219B": "&nrightarrow;", "\u2933\u0338": "&nrarrc;", "\u219D\u0338": "&nrarrw;", "\u{1D4C3}": "&nscr;", "\u2284": "&nsub;", "\u2AC5\u0338": "&nsubseteqq;", "\u2285": "&nsup;", "\u2AC6\u0338": "&nsupseteqq;", "\xF1": "&ntilde;", "\u03BD": "&nu;", "#": "&num;", "\u2116": "&numero;", "\u2007": "&numsp;", "\u22AD": "&nvDash;", "\u2904": "&nvHarr;", "\u224D\u20D2": "&nvap;", "\u22AC": "&nvdash;", "\u2265\u20D2": "&nvge;", ">\u20D2": "&nvgt;", "\u29DE": "&nvinfin;", "\u2902": "&nvlArr;", "\u2264\u20D2": "&nvle;", "<\u20D2": "&nvlt;", "\u22B4\u20D2": "&nvltrie;", "\u2903": "&nvrArr;", "\u22B5\u20D2": "&nvrtrie;", "\u223C\u20D2": "&nvsim;", "\u21D6": "&nwArr;", "\u2923": "&nwarhk;", "\u2927": "&nwnear;", "\xF3": "&oacute;", "\xF4": "&ocirc;", "\u043E": "&ocy;", "\u0151": "&odblac;", "\u2A38": "&odiv;", "\u29BC": "&odsold;", "\u0153": "&oelig;", "\u29BF": "&ofcir;", "\u{1D52C}": "&ofr;", "\u02DB": "&ogon;", "\xF2": "&ograve;", "\u29C1": "&ogt;", "\u29B5": "&ohbar;", "\u29BE": "&olcir;", "\u29BB": "&olcross;", "\u29C0": "&olt;", "\u014D": "&omacr;", "\u03C9": "&omega;", "\u03BF": "&omicron;", "\u29B6": "&omid;", "\u{1D560}": "&oopf;", "\u29B7": "&opar;", "\u29B9": "&operp;", "\u2228": "&vee;", "\u2A5D": "&ord;", "\u2134": "&oscr;", "\xAA": "&ordf;", "\xBA": "&ordm;", "\u22B6": "&origof;", "\u2A56": "&oror;", "\u2A57": "&orslope;", "\u2A5B": "&orv;", "\xF8": "&oslash;", "\u2298": "&osol;", "\xF5": "&otilde;", "\u2A36": "&otimesas;", "\xF6": "&ouml;", "\u233D": "&ovbar;", "\xB6": "&para;", "\u2AF3": "&parsim;", "\u2AFD": "&parsl;", "\u043F": "&pcy;", "%": "&percnt;", ".": "&period;", "\u2030": "&permil;", "\u2031": "&pertenk;", "\u{1D52D}": "&pfr;", "\u03C6": "&phi;", "\u03D5": "&varphi;", "\u260E": "&phone;", "\u03C0": "&pi;", "\u03D6": "&varpi;", "\u210E": "&planckh;", "+": "&plus;", "\u2A23": "&plusacir;", "\u2A22": "&pluscir;", "\u2A25": "&plusdu;", "\u2A72": "&pluse;", "\u2A26": "&plussim;", "\u2A27": "&plustwo;", "\u2A15": "&pointint;", "\u{1D561}": "&popf;", "\xA3": "&pound;", "\u2AB3": "&prE;", "\u2AB7": "&precapprox;", "\u2AB9": "&prnap;", "\u2AB5": "&prnE;", "\u22E8": "&prnsim;", "\u2032": "&prime;", "\u232E": "&profalar;", "\u2312": "&profline;", "\u2313": "&profsurf;", "\u22B0": "&prurel;", "\u{1D4C5}": "&pscr;", "\u03C8": "&psi;", "\u2008": "&puncsp;", "\u{1D52E}": "&qfr;", "\u{1D562}": "&qopf;", "\u2057": "&qprime;", "\u{1D4C6}": "&qscr;", "\u2A16": "&quatint;", "?": "&quest;", "\u291C": "&rAtail;", "\u2964": "&rHar;", "\u223D\u0331": "&race;", "\u0155": "&racute;", "\u29B3": "&raemptyv;", "\u2992": "&rangd;", "\u29A5": "&range;", "\xBB": "&raquo;", "\u2975": "&rarrap;", "\u2920": "&rarrbfs;", "\u2933": "&rarrc;", "\u291E": "&rarrfs;", "\u2945": "&rarrpl;", "\u2974": "&rarrsim;", "\u21A3": "&rightarrowtail;", "\u219D": "&rightsquigarrow;", "\u291A": "&ratail;", "\u2236": "&ratio;", "\u2773": "&rbbrk;", "}": "&rcub;", "]": "&rsqb;", "\u298C": "&rbrke;", "\u298E": "&rbrksld;", "\u2990": "&rbrkslu;", "\u0159": "&rcaron;", "\u0157": "&rcedil;", "\u0440": "&rcy;", "\u2937": "&rdca;", "\u2969": "&rdldhar;", "\u21B3": "&rdsh;", "\u25AD": "&rect;", "\u297D": "&rfisht;", "\u{1D52F}": "&rfr;", "\u296C": "&rharul;", "\u03C1": "&rho;", "\u03F1": "&varrho;", "\u21C9": "&rrarr;", "\u22CC": "&rthree;", "\u02DA": "&ring;", "\u200F": "&rlm;", "\u23B1": "&rmoustache;", "\u2AEE": "&rnmid;", "\u27ED": "&roang;", "\u21FE": "&roarr;", "\u2986": "&ropar;", "\u{1D563}": "&ropf;", "\u2A2E": "&roplus;", "\u2A35": "&rotimes;", ")": "&rpar;", "\u2994": "&rpargt;", "\u2A12": "&rppolint;", "\u203A": "&rsaquo;", "\u{1D4C7}": "&rscr;", "\u22CA": "&rtimes;", "\u25B9": "&triangleright;", "\u29CE": "&rtriltri;", "\u2968": "&ruluhar;", "\u211E": "&rx;", "\u015B": "&sacute;", "\u2AB4": "&scE;", "\u2AB8": "&succapprox;", "\u0161": "&scaron;", "\u015F": "&scedil;", "\u015D": "&scirc;", "\u2AB6": "&succneqq;", "\u2ABA": "&succnapprox;", "\u22E9": "&succnsim;", "\u2A13": "&scpolint;", "\u0441": "&scy;", "\u22C5": "&sdot;", "\u2A66": "&sdote;", "\u21D8": "&seArr;", "\xA7": "&sect;", ";": "&semi;", "\u2929": "&tosa;", "\u2736": "&sext;", "\u{1D530}": "&sfr;", "\u266F": "&sharp;", "\u0449": "&shchcy;", "\u0448": "&shcy;", "\xAD": "&shy;", "\u03C3": "&sigma;", "\u03C2": "&varsigma;", "\u2A6A": "&simdot;", "\u2A9E": "&simg;", "\u2AA0": "&simgE;", "\u2A9D": "&siml;", "\u2A9F": "&simlE;", "\u2246": "&simne;", "\u2A24": "&simplus;", "\u2972": "&simrarr;", "\u2A33": "&smashp;", "\u29E4": "&smeparsl;", "\u2323": "&ssmile;", "\u2AAA": "&smt;", "\u2AAC": "&smte;", "\u2AAC\uFE00": "&smtes;", "\u044C": "&softcy;", "/": "&sol;", "\u29C4": "&solb;", "\u233F": "&solbar;", "\u{1D564}": "&sopf;", "\u2660": "&spadesuit;", "\u2293\uFE00": "&sqcaps;", "\u2294\uFE00": "&sqcups;", "\u{1D4C8}": "&sscr;", "\u2606": "&star;", "\u2282": "&subset;", "\u2AC5": "&subseteqq;", "\u2ABD": "&subdot;", "\u2AC3": "&subedot;", "\u2AC1": "&submult;", "\u2ACB": "&subsetneqq;", "\u228A": "&subsetneq;", "\u2ABF": "&subplus;", "\u2979": "&subrarr;", "\u2AC7": "&subsim;", "\u2AD5": "&subsub;", "\u2AD3": "&subsup;", "\u266A": "&sung;", "\xB9": "&sup1;", "\xB2": "&sup2;", "\xB3": "&sup3;", "\u2AC6": "&supseteqq;", "\u2ABE": "&supdot;", "\u2AD8": "&supdsub;", "\u2AC4": "&supedot;", "\u27C9": "&suphsol;", "\u2AD7": "&suphsub;", "\u297B": "&suplarr;", "\u2AC2": "&supmult;", "\u2ACC": "&supsetneqq;", "\u228B": "&supsetneq;", "\u2AC0": "&supplus;", "\u2AC8": "&supsim;", "\u2AD4": "&supsub;", "\u2AD6": "&supsup;", "\u21D9": "&swArr;", "\u292A": "&swnwar;", "\xDF": "&szlig;", "\u2316": "&target;", "\u03C4": "&tau;", "\u0165": "&tcaron;", "\u0163": "&tcedil;", "\u0442": "&tcy;", "\u2315": "&telrec;", "\u{1D531}": "&tfr;", "\u03B8": "&theta;", "\u03D1": "&vartheta;", "\xFE": "&thorn;", "\xD7": "&times;", "\u2A31": "&timesbar;", "\u2A30": "&timesd;", "\u2336": "&topbot;", "\u2AF1": "&topcir;", "\u{1D565}": "&topf;", "\u2ADA": "&topfork;", "\u2034": "&tprime;", "\u25B5": "&utri;", "\u225C": "&trie;", "\u25EC": "&tridot;", "\u2A3A": "&triminus;", "\u2A39": "&triplus;", "\u29CD": "&trisb;", "\u2A3B": "&tritime;", "\u23E2": "&trpezium;", "\u{1D4C9}": "&tscr;", "\u0446": "&tscy;", "\u045B": "&tshcy;", "\u0167": "&tstrok;", "\u2963": "&uHar;", "\xFA": "&uacute;", "\u045E": "&ubrcy;", "\u016D": "&ubreve;", "\xFB": "&ucirc;", "\u0443": "&ucy;", "\u0171": "&udblac;", "\u297E": "&ufisht;", "\u{1D532}": "&ufr;", "\xF9": "&ugrave;", "\u2580": "&uhblk;", "\u231C": "&ulcorner;", "\u230F": "&ulcrop;", "\u25F8": "&ultri;", "\u016B": "&umacr;", "\u0173": "&uogon;", "\u{1D566}": "&uopf;", "\u03C5": "&upsilon;", "\u21C8": "&uuarr;", "\u231D": "&urcorner;", "\u230E": "&urcrop;", "\u016F": "&uring;", "\u25F9": "&urtri;", "\u{1D4CA}": "&uscr;", "\u22F0": "&utdot;", "\u0169": "&utilde;", "\xFC": "&uuml;", "\u29A7": "&uwangle;", "\u2AE8": "&vBar;", "\u2AE9": "&vBarv;", "\u299C": "&vangrt;", "\u228A\uFE00": "&vsubne;", "\u2ACB\uFE00": "&vsubnE;", "\u228B\uFE00": "&vsupne;", "\u2ACC\uFE00": "&vsupnE;", "\u0432": "&vcy;", "\u22BB": "&veebar;", "\u225A": "&veeeq;", "\u22EE": "&vellip;", "\u{1D533}": "&vfr;", "\u{1D567}": "&vopf;", "\u{1D4CB}": "&vscr;", "\u299A": "&vzigzag;", "\u0175": "&wcirc;", "\u2A5F": "&wedbar;", "\u2259": "&wedgeq;", "\u2118": "&wp;", "\u{1D534}": "&wfr;", "\u{1D568}": "&wopf;", "\u{1D4CC}": "&wscr;", "\u{1D535}": "&xfr;", "\u03BE": "&xi;", "\u22FB": "&xnis;", "\u{1D569}": "&xopf;", "\u{1D4CD}": "&xscr;", "\xFD": "&yacute;", "\u044F": "&yacy;", "\u0177": "&ycirc;", "\u044B": "&ycy;", "\xA5": "&yen;", "\u{1D536}": "&yfr;", "\u0457": "&yicy;", "\u{1D56A}": "&yopf;", "\u{1D4CE}": "&yscr;", "\u044E": "&yucy;", "\xFF": "&yuml;", "\u017A": "&zacute;", "\u017E": "&zcaron;", "\u0437": "&zcy;", "\u017C": "&zdot;", "\u03B6": "&zeta;", "\u{1D537}": "&zfr;", "\u0436": "&zhcy;", "\u21DD": "&zigrarr;", "\u{1D56B}": "&zopf;", "\u{1D4CF}": "&zscr;", "\u200D": "&zwj;", "\u200C": "&zwnj;" } } };
+  }
+});
+
+// node_modules/html-entities/lib/numeric-unicode-map.js
+var require_numeric_unicode_map = __commonJS({
+  "node_modules/html-entities/lib/numeric-unicode-map.js"(exports2) {
+    "use strict";
+    init_shims();
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.numericUnicodeMap = { 0: 65533, 128: 8364, 130: 8218, 131: 402, 132: 8222, 133: 8230, 134: 8224, 135: 8225, 136: 710, 137: 8240, 138: 352, 139: 8249, 140: 338, 142: 381, 145: 8216, 146: 8217, 147: 8220, 148: 8221, 149: 8226, 150: 8211, 151: 8212, 152: 732, 153: 8482, 154: 353, 155: 8250, 156: 339, 158: 382, 159: 376 };
+  }
+});
+
+// node_modules/html-entities/lib/surrogate-pairs.js
+var require_surrogate_pairs = __commonJS({
+  "node_modules/html-entities/lib/surrogate-pairs.js"(exports2) {
+    "use strict";
+    init_shims();
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.fromCodePoint = String.fromCodePoint || function(astralCodePoint) {
+      return String.fromCharCode(Math.floor((astralCodePoint - 65536) / 1024) + 55296, (astralCodePoint - 65536) % 1024 + 56320);
+    };
+    exports2.getCodePoint = String.prototype.codePointAt ? function(input, position) {
+      return input.codePointAt(position);
+    } : function(input, position) {
+      return (input.charCodeAt(position) - 55296) * 1024 + input.charCodeAt(position + 1) - 56320 + 65536;
+    };
+    exports2.highSurrogateFrom = 55296;
+    exports2.highSurrogateTo = 56319;
+  }
+});
+
+// node_modules/html-entities/lib/index.js
+var require_lib3 = __commonJS({
+  "node_modules/html-entities/lib/index.js"(exports2) {
+    "use strict";
+    init_shims();
+    var __assign2 = exports2 && exports2.__assign || function() {
+      __assign2 = Object.assign || function(t2) {
+        for (var s3, i2 = 1, n = arguments.length; i2 < n; i2++) {
+          s3 = arguments[i2];
+          for (var p2 in s3)
+            if (Object.prototype.hasOwnProperty.call(s3, p2))
+              t2[p2] = s3[p2];
+        }
+        return t2;
+      };
+      return __assign2.apply(this, arguments);
+    };
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var named_references_1 = require_named_references();
+    var numeric_unicode_map_1 = require_numeric_unicode_map();
+    var surrogate_pairs_1 = require_surrogate_pairs();
+    var allNamedReferences = __assign2(__assign2({}, named_references_1.namedReferences), { all: named_references_1.namedReferences.html5 });
+    var encodeRegExps = {
+      specialChars: /[<>'"&]/g,
+      nonAscii: /(?:[<>'"&\u0080-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])/g,
+      nonAsciiPrintable: /(?:[<>'"&\x01-\x08\x11-\x15\x17-\x1F\x7f-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])/g,
+      extensive: /(?:[\x01-\x0c\x0e-\x1f\x21-\x2c\x2e-\x2f\x3a-\x40\x5b-\x60\x7b-\x7d\x7f-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])/g
+    };
+    var defaultEncodeOptions = {
+      mode: "specialChars",
+      level: "all",
+      numeric: "decimal"
+    };
+    function encode4(text, _a) {
+      var _b = _a === void 0 ? defaultEncodeOptions : _a, _c = _b.mode, mode = _c === void 0 ? "specialChars" : _c, _d = _b.numeric, numeric = _d === void 0 ? "decimal" : _d, _e = _b.level, level = _e === void 0 ? "all" : _e;
+      if (!text) {
+        return "";
+      }
+      var encodeRegExp = encodeRegExps[mode];
+      var references = allNamedReferences[level].characters;
+      var isHex = numeric === "hexadecimal";
+      encodeRegExp.lastIndex = 0;
+      var _b = encodeRegExp.exec(text);
+      var _c;
+      if (_b) {
+        _c = "";
+        var _d = 0;
+        do {
+          if (_d !== _b.index) {
+            _c += text.substring(_d, _b.index);
+          }
+          var _e = _b[0];
+          var result_1 = references[_e];
+          if (!result_1) {
+            var code_1 = _e.length > 1 ? surrogate_pairs_1.getCodePoint(_e, 0) : _e.charCodeAt(0);
+            result_1 = (isHex ? "&#x" + code_1.toString(16) : "&#" + code_1) + ";";
+          }
+          _c += result_1;
+          _d = _b.index + _e.length;
+        } while (_b = encodeRegExp.exec(text));
+        if (_d !== text.length) {
+          _c += text.substring(_d);
+        }
+      } else {
+        _c = text;
+      }
+      return _c;
+    }
+    exports2.encode = encode4;
+    var defaultDecodeOptions = {
+      scope: "body",
+      level: "all"
+    };
+    var strict = /&(?:#\d+|#[xX][\da-fA-F]+|[0-9a-zA-Z]+);/g;
+    var attribute = /&(?:#\d+|#[xX][\da-fA-F]+|[0-9a-zA-Z]+)[;=]?/g;
+    var baseDecodeRegExps = {
+      xml: {
+        strict,
+        attribute,
+        body: named_references_1.bodyRegExps.xml
+      },
+      html4: {
+        strict,
+        attribute,
+        body: named_references_1.bodyRegExps.html4
+      },
+      html5: {
+        strict,
+        attribute,
+        body: named_references_1.bodyRegExps.html5
+      }
+    };
+    var decodeRegExps = __assign2(__assign2({}, baseDecodeRegExps), { all: baseDecodeRegExps.html5 });
+    var fromCharCode = String.fromCharCode;
+    var outOfBoundsChar = fromCharCode(65533);
+    var defaultDecodeEntityOptions = {
+      level: "all"
+    };
+    function decodeEntity(entity, _a) {
+      var _b = (_a === void 0 ? defaultDecodeEntityOptions : _a).level, level = _b === void 0 ? "all" : _b;
+      if (!entity) {
+        return "";
+      }
+      var _b = entity;
+      var decodeEntityLastChar_1 = entity[entity.length - 1];
+      if (false) {
+        _b = entity;
+      } else if (false) {
+        _b = entity;
+      } else {
+        var decodeResultByReference_1 = allNamedReferences[level].entities[entity];
+        if (decodeResultByReference_1) {
+          _b = decodeResultByReference_1;
+        } else if (entity[0] === "&" && entity[1] === "#") {
+          var decodeSecondChar_1 = entity[2];
+          var decodeCode_1 = decodeSecondChar_1 == "x" || decodeSecondChar_1 == "X" ? parseInt(entity.substr(3), 16) : parseInt(entity.substr(2));
+          _b = decodeCode_1 >= 1114111 ? outOfBoundsChar : decodeCode_1 > 65535 ? surrogate_pairs_1.fromCodePoint(decodeCode_1) : fromCharCode(numeric_unicode_map_1.numericUnicodeMap[decodeCode_1] || decodeCode_1);
+        }
+      }
+      return _b;
+    }
+    exports2.decodeEntity = decodeEntity;
+    function decode3(text, _a) {
+      var decodeSecondChar_1 = _a === void 0 ? defaultDecodeOptions : _a, decodeCode_1 = decodeSecondChar_1.level, level = decodeCode_1 === void 0 ? "all" : decodeCode_1, _b = decodeSecondChar_1.scope, scope = _b === void 0 ? level === "xml" ? "strict" : "body" : _b;
+      if (!text) {
+        return "";
+      }
+      var decodeRegExp = decodeRegExps[level][scope];
+      var references = allNamedReferences[level].entities;
+      var isAttribute = scope === "attribute";
+      var isStrict = scope === "strict";
+      decodeRegExp.lastIndex = 0;
+      var replaceMatch_1 = decodeRegExp.exec(text);
+      var replaceResult_1;
+      if (replaceMatch_1) {
+        replaceResult_1 = "";
+        var replaceLastIndex_1 = 0;
+        do {
+          if (replaceLastIndex_1 !== replaceMatch_1.index) {
+            replaceResult_1 += text.substring(replaceLastIndex_1, replaceMatch_1.index);
+          }
+          var replaceInput_1 = replaceMatch_1[0];
+          var decodeResult_1 = replaceInput_1;
+          var decodeEntityLastChar_2 = replaceInput_1[replaceInput_1.length - 1];
+          if (isAttribute && decodeEntityLastChar_2 === "=") {
+            decodeResult_1 = replaceInput_1;
+          } else if (isStrict && decodeEntityLastChar_2 !== ";") {
+            decodeResult_1 = replaceInput_1;
+          } else {
+            var decodeResultByReference_2 = references[replaceInput_1];
+            if (decodeResultByReference_2) {
+              decodeResult_1 = decodeResultByReference_2;
+            } else if (replaceInput_1[0] === "&" && replaceInput_1[1] === "#") {
+              var decodeSecondChar_2 = replaceInput_1[2];
+              var decodeCode_2 = decodeSecondChar_2 == "x" || decodeSecondChar_2 == "X" ? parseInt(replaceInput_1.substr(3), 16) : parseInt(replaceInput_1.substr(2));
+              decodeResult_1 = decodeCode_2 >= 1114111 ? outOfBoundsChar : decodeCode_2 > 65535 ? surrogate_pairs_1.fromCodePoint(decodeCode_2) : fromCharCode(numeric_unicode_map_1.numericUnicodeMap[decodeCode_2] || decodeCode_2);
+            }
+          }
+          replaceResult_1 += decodeResult_1;
+          replaceLastIndex_1 = replaceMatch_1.index + replaceInput_1.length;
+        } while (replaceMatch_1 = decodeRegExp.exec(text));
+        if (replaceLastIndex_1 !== text.length) {
+          replaceResult_1 += text.substring(replaceLastIndex_1);
+        }
+      } else {
+        replaceResult_1 = text;
+      }
+      return replaceResult_1;
+    }
+    exports2.decode = decode3;
+  }
+});
+
+// node_modules/ranges-sort/dist/ranges-sort.esm.js
+function g(r2, l) {
+  if (!Array.isArray(r2) || !r2.length)
+    return r2;
+  let n = { ...d, ...l }, s3, o;
+  if (n.strictlyTwoElementsInRangeArrays && !r2.every((e2, t2) => !Array.isArray(e2) || e2.length !== 2 ? (s3 = t2, o = e2.length, false) : true))
+    throw new TypeError(`ranges-sort: [THROW_ID_03] The first argument should be an array and must consist of arrays which are natural number indexes representing TWO string index ranges. However, ${s3}th range (${JSON.stringify(r2[s3], null, 4)}) has not two but ${o} elements!`);
+  if (!r2.every((e2, t2) => !Array.isArray(e2) || !Number.isInteger(e2[0]) || e2[0] < 0 || !Number.isInteger(e2[1]) || e2[1] < 0 ? (s3 = t2, false) : true))
+    throw new TypeError(`ranges-sort: [THROW_ID_04] The first argument should be an array and must consist of arrays which are natural number indexes representing string index ranges. However, ${s3}th range (${JSON.stringify(r2[s3], null, 4)}) does not consist of only natural numbers!`);
+  let a = r2.length ** 2, i2 = 0;
+  return Array.from(r2).sort((e2, t2) => (n.progressFn && (i2 += 1, n.progressFn(Math.floor(i2 * 100 / a))), e2[0] === t2[0] ? e2[1] < t2[1] ? -1 : e2[1] > t2[1] ? 1 : 0 : e2[0] < t2[0] ? -1 : 1));
+}
+var d;
+var init_ranges_sort_esm = __esm({
+  "node_modules/ranges-sort/dist/ranges-sort.esm.js"() {
+    init_shims();
+    d = { strictlyTwoElementsInRangeArrays: false, progressFn: null };
+  }
+});
+
+// node_modules/ranges-merge/dist/ranges-merge.esm.js
+function b(i2, t2) {
+  function a(e2) {
+    return !!e2 && typeof e2 == "object" && !Array.isArray(e2);
+  }
+  if (!Array.isArray(i2) || !i2.length)
+    return null;
+  let n;
+  if (t2)
+    if (a(t2)) {
+      if (n = { ...d2, ...t2 }, n.progressFn && a(n.progressFn) && !Object.keys(n.progressFn).length)
+        n.progressFn = null;
+      else if (n.progressFn && typeof n.progressFn != "function")
+        throw new Error(`ranges-merge: [THROW_ID_01] opts.progressFn must be a function! It was given of a type: "${typeof n.progressFn}", equal to ${JSON.stringify(n.progressFn, null, 4)}`);
+      if (![1, 2, "1", "2"].includes(n.mergeType))
+        throw new Error(`ranges-merge: [THROW_ID_02] opts.mergeType was customised to a wrong thing! It was given of a type: "${typeof n.mergeType}", equal to ${JSON.stringify(n.mergeType, null, 4)}`);
+      if (typeof n.joinRangesThatTouchEdges != "boolean")
+        throw new Error(`ranges-merge: [THROW_ID_04] opts.joinRangesThatTouchEdges was customised to a wrong thing! It was given of a type: "${typeof n.joinRangesThatTouchEdges}", equal to ${JSON.stringify(n.joinRangesThatTouchEdges, null, 4)}`);
+    } else
+      throw new Error(`emlint: [THROW_ID_03] the second input argument must be a plain object. It was given as:
+${JSON.stringify(t2, null, 4)} (type ${typeof t2})`);
+  else
+    n = { ...d2 };
+  let l = i2.filter((e2) => Array.isArray(e2)).map((e2) => [...e2]).filter((e2) => e2[2] !== void 0 || e2[0] !== e2[1]), s3, o, r2;
+  n.progressFn ? s3 = g(l, { progressFn: (e2) => {
+    r2 = Math.floor(e2 / 5), r2 !== o && (o = r2, n.progressFn(r2));
+  } }) : s3 = g(l);
+  let g2 = s3.length - 1;
+  for (let e2 = g2; e2 > 0; e2--)
+    n.progressFn && (r2 = Math.floor((1 - e2 / g2) * 78) + 21, r2 !== o && r2 > o && (o = r2, n.progressFn(r2))), (s3[e2][0] <= s3[e2 - 1][0] || !n.joinRangesThatTouchEdges && s3[e2][0] < s3[e2 - 1][1] || n.joinRangesThatTouchEdges && s3[e2][0] <= s3[e2 - 1][1]) && (s3[e2 - 1][0] = Math.min(s3[e2][0], s3[e2 - 1][0]), s3[e2 - 1][1] = Math.max(s3[e2][1], s3[e2 - 1][1]), s3[e2][2] !== void 0 && (s3[e2 - 1][0] >= s3[e2][0] || s3[e2 - 1][1] <= s3[e2][1]) && s3[e2 - 1][2] !== null && (s3[e2][2] === null && s3[e2 - 1][2] !== null ? s3[e2 - 1][2] = null : s3[e2 - 1][2] != null ? +n.mergeType == 2 && s3[e2 - 1][0] === s3[e2][0] ? s3[e2 - 1][2] = s3[e2][2] : s3[e2 - 1][2] += s3[e2][2] : s3[e2 - 1][2] = s3[e2][2]), s3.splice(e2, 1), e2 = s3.length);
+  return s3.length ? s3 : null;
+}
+var d2;
+var init_ranges_merge_esm = __esm({
+  "node_modules/ranges-merge/dist/ranges-merge.esm.js"() {
+    init_shims();
+    init_ranges_sort_esm();
+    d2 = { mergeType: 1, progressFn: null, joinRangesThatTouchEdges: true };
+  }
+});
+
+// node_modules/tiny-invariant/dist/tiny-invariant.cjs.js
+var require_tiny_invariant_cjs = __commonJS({
+  "node_modules/tiny-invariant/dist/tiny-invariant.cjs.js"(exports2, module2) {
+    "use strict";
+    init_shims();
+    var isProduction = process.env.NODE_ENV === "production";
+    var prefix = "Invariant failed";
+    function invariant(condition, message) {
+      if (condition) {
+        return;
+      }
+      if (isProduction) {
+        throw new Error(prefix);
+      }
+      var provided = typeof message === "function" ? message() : message;
+      var value = provided ? prefix + ": " + provided : prefix;
+      throw new Error(value);
+    }
+    module2.exports = invariant;
+  }
+});
+
+// node_modules/ranges-apply/dist/ranges-apply.esm.js
+function v(s3, r2, n) {
+  let t2 = 0, o = 0;
+  if (arguments.length === 0)
+    throw new Error("ranges-apply: [THROW_ID_01] inputs missing!");
+  if (typeof s3 != "string")
+    throw new TypeError(`ranges-apply: [THROW_ID_02] first input argument must be a string! Currently it's: ${typeof s3}, equal to: ${JSON.stringify(s3, null, 4)}`);
+  if (r2 && !Array.isArray(r2))
+    throw new TypeError(`ranges-apply: [THROW_ID_03] second input argument must be an array (or null)! Currently it's: ${typeof r2}, equal to: ${JSON.stringify(r2, null, 4)}`);
+  if (n && typeof n != "function")
+    throw new TypeError(`ranges-apply: [THROW_ID_04] the third input argument must be a function (or falsey)! Currently it's: ${typeof n}, equal to: ${JSON.stringify(n, null, 4)}`);
+  if (!r2 || !r2.filter((e2) => e2).length)
+    return s3;
+  let a;
+  Array.isArray(r2) && Number.isInteger(r2[0]) && Number.isInteger(r2[1]) ? a = [Array.from(r2)] : a = Array.from(r2);
+  let d3 = a.length, c3 = 0;
+  a.filter((e2) => e2).forEach((e2, i2) => {
+    if (n && (t2 = Math.floor(c3 / d3 * 10), t2 !== o && (o = t2, n(t2))), !Array.isArray(e2))
+      throw new TypeError(`ranges-apply: [THROW_ID_05] ranges array, second input arg., has ${i2}th element not an array: ${JSON.stringify(e2, null, 4)}, which is ${typeof e2}`);
+    if (!Number.isInteger(e2[0])) {
+      if (!Number.isInteger(+e2[0]) || +e2[0] < 0)
+        throw new TypeError(`ranges-apply: [THROW_ID_06] ranges array, second input arg. has ${i2}th element, array ${JSON.stringify(e2, null, 0)}. Its first element is not an integer, string index, but ${typeof e2[0]}, equal to: ${JSON.stringify(e2[0], null, 4)}.`);
+      a[i2][0] = +a[i2][0];
+    }
+    if (!Number.isInteger(e2[1])) {
+      if (!Number.isInteger(+e2[1]) || +e2[1] < 0)
+        throw new TypeError(`ranges-apply: [THROW_ID_07] ranges array, second input arg. has ${i2}th element, array ${JSON.stringify(e2, null, 0)}. Its second element is not an integer, string index, but ${typeof e2[1]}, equal to: ${JSON.stringify(e2[1], null, 4)}.`);
+      a[i2][1] = +a[i2][1];
+    }
+    c3 += 1;
+  });
+  let l = b(a, { progressFn: (e2) => {
+    n && (t2 = 10 + Math.floor(e2 / 10), t2 !== o && (o = t2, n(t2)));
+  } });
+  (0, import_tiny_invariant.default)(l);
+  let y = l.length;
+  if (y > 0) {
+    let e2 = s3.slice(l[y - 1][1]);
+    s3 = l.reduce((i2, $2, p2, u2) => {
+      n && (t2 = 20 + Math.floor(p2 / y * 80), t2 !== o && (o = t2, n(t2)));
+      let g2 = p2 === 0 ? 0 : u2[p2 - 1][1], m3 = u2[p2][0];
+      return `${i2}${s3.slice(g2, m3)}${u2[p2][2] || ""}`;
+    }, ""), s3 += e2;
+  }
+  return s3;
+}
+var import_tiny_invariant;
+var init_ranges_apply_esm = __esm({
+  "node_modules/ranges-apply/dist/ranges-apply.esm.js"() {
+    init_shims();
+    init_ranges_merge_esm();
+    import_tiny_invariant = __toESM(require_tiny_invariant_cjs(), 1);
+  }
+});
+
+// node_modules/string-collapse-leading-whitespace/dist/string-collapse-leading-whitespace.esm.js
+function D(l, u2 = 1) {
+  let $2 = "\xA0";
+  function g2(e2) {
+    return Array.from(e2).reverse().join("");
+  }
+  function a(e2, t2, o) {
+    let r2 = o ? `
+` : "\r", i2 = o ? "\r" : `
+`;
+    if (!e2)
+      return e2;
+    let p2 = 0, c3 = 0, s3 = "";
+    for (let n = 0, f5 = e2.length; n < f5; n++)
+      (e2[n] === r2 || e2[n] === i2 && e2[n - 1] !== r2) && c3++, `\r
+`.includes(e2[n]) || e2[n] === $2 ? (p2 = 0, e2[n] === $2 ? s3 += e2[n] : e2[n] === r2 ? c3 <= t2 && (s3 += e2[n], e2[n + 1] === i2 && (s3 += e2[n + 1], n++)) : e2[n] === i2 && (!e2[n - 1] || e2[n - 1] !== r2) && c3 <= t2 && (s3 += e2[n])) : (p2++, !e2[n + 1] && !c3 && (s3 += " "));
+    return s3;
+  }
+  if (typeof l == "string" && l.length) {
+    let e2 = 1;
+    typeof +u2 == "number" && Number.isInteger(+u2) && +u2 >= 0 && (e2 = +u2);
+    let t2 = "", o = "";
+    if (!l.trim())
+      t2 = l;
+    else if (!l[0].trim()) {
+      for (let r2 = 0, i2 = l.length; r2 < i2; r2++)
+        if (l[r2].trim()) {
+          t2 = l.slice(0, r2);
+          break;
+        }
+    }
+    if (l.trim() && (l.slice(-1).trim() === "" || l.slice(-1) === $2)) {
+      for (let r2 = l.length; r2--; )
+        if (l[r2].trim()) {
+          o = l.slice(r2 + 1);
+          break;
+        }
+    }
+    return `${a(t2, e2, false)}${l.trim()}${g2(a(g2(o), e2, true))}`;
+  }
+  return l;
+}
+var init_string_collapse_leading_whitespace_esm = __esm({
+  "node_modules/string-collapse-leading-whitespace/dist/string-collapse-leading-whitespace.esm.js"() {
+    init_shims();
+  }
+});
+
+// node_modules/ranges-push/dist/ranges-push.esm.js
+function m2(i2, r2) {
+  if (!Array.isArray(i2) || !i2.length)
+    return i2;
+  let t2 = { ...b2, ...r2 }, e2, l;
+  if (t2.strictlyTwoElementsInRangeArrays && !i2.every((o, g2) => !Array.isArray(o) || o.length !== 2 ? (e2 = g2, l = o.length, false) : true))
+    throw new TypeError(`ranges-sort: [THROW_ID_03] The first argument should be an array and must consist of arrays which are natural number indexes representing TWO string index ranges. However, ${e2}th range (${JSON.stringify(i2[e2], null, 4)}) has not two but ${l} elements!`);
+  if (!i2.every((o, g2) => !Array.isArray(o) || !Number.isInteger(o[0]) || o[0] < 0 || !Number.isInteger(o[1]) || o[1] < 0 ? (e2 = g2, false) : true))
+    throw new TypeError(`ranges-sort: [THROW_ID_04] The first argument should be an array and must consist of arrays which are natural number indexes representing string index ranges. However, ${e2}th range (${JSON.stringify(i2[e2], null, 4)}) does not consist of only natural numbers!`);
+  let n = i2.length ** 2, a = 0;
+  return Array.from(i2).sort((o, g2) => (t2.progressFn && (a += 1, t2.progressFn(Math.floor(a * 100 / n))), o[0] === g2[0] ? o[1] < g2[1] ? -1 : o[1] > g2[1] ? 1 : 0 : o[0] < g2[0] ? -1 : 1));
+}
+function f3(i2, r2) {
+  function t2(s3) {
+    return !!s3 && typeof s3 == "object" && !Array.isArray(s3);
+  }
+  if (!Array.isArray(i2) || !i2.length)
+    return null;
+  let e2;
+  if (r2)
+    if (t2(r2)) {
+      if (e2 = { ...c, ...r2 }, e2.progressFn && t2(e2.progressFn) && !Object.keys(e2.progressFn).length)
+        e2.progressFn = null;
+      else if (e2.progressFn && typeof e2.progressFn != "function")
+        throw new Error(`ranges-merge: [THROW_ID_01] resolvedOpts.progressFn must be a function! It was given of a type: "${typeof e2.progressFn}", equal to ${JSON.stringify(e2.progressFn, null, 4)}`);
+      if (![1, 2, "1", "2"].includes(e2.mergeType))
+        throw new Error(`ranges-merge: [THROW_ID_02] resolvedOpts.mergeType was customised to a wrong thing! It was given of a type: "${typeof e2.mergeType}", equal to ${JSON.stringify(e2.mergeType, null, 4)}`);
+      if (typeof e2.joinRangesThatTouchEdges != "boolean")
+        throw new Error(`ranges-merge: [THROW_ID_04] resolvedOpts.joinRangesThatTouchEdges was customised to a wrong thing! It was given of a type: "${typeof e2.joinRangesThatTouchEdges}", equal to ${JSON.stringify(e2.joinRangesThatTouchEdges, null, 4)}`);
+    } else
+      throw new Error(`emlint: [THROW_ID_03] the second input argument must be a plain object. It was given as:
+${JSON.stringify(r2, null, 4)} (type ${typeof r2})`);
+  else
+    e2 = { ...c };
+  let l = i2.filter((s3) => Array.isArray(s3)).map((s3) => [...s3]).filter((s3) => s3[2] !== void 0 || s3[0] !== s3[1]), n, a, o;
+  e2.progressFn ? n = m2(l, { progressFn: (s3) => {
+    o = Math.floor(s3 / 5), o !== a && (a = o, e2.progressFn(o));
+  } }) : n = m2(l);
+  let g2 = n.length - 1;
+  for (let s3 = g2; s3 > 0; s3--)
+    e2.progressFn && (o = Math.floor((1 - s3 / g2) * 78) + 21, o !== a && o > a && (a = o, e2.progressFn(o))), (n[s3][0] <= n[s3 - 1][0] || !e2.joinRangesThatTouchEdges && n[s3][0] < n[s3 - 1][1] || e2.joinRangesThatTouchEdges && n[s3][0] <= n[s3 - 1][1]) && (n[s3 - 1][0] = Math.min(n[s3][0], n[s3 - 1][0]), n[s3 - 1][1] = Math.max(n[s3][1], n[s3 - 1][1]), n[s3][2] !== void 0 && (n[s3 - 1][0] >= n[s3][0] || n[s3 - 1][1] <= n[s3][1]) && n[s3 - 1][2] !== null && (n[s3][2] === null && n[s3 - 1][2] !== null ? n[s3 - 1][2] = null : n[s3 - 1][2] != null ? +e2.mergeType == 2 && n[s3 - 1][0] === n[s3][0] ? n[s3 - 1][2] = n[s3][2] : n[s3 - 1][2] += n[s3][2] : n[s3 - 1][2] = n[s3][2]), n.splice(s3, 1), s3 = n.length);
+  return n.length ? n : null;
+}
+function u(i2) {
+  return i2 != null;
+}
+function p(i2) {
+  return Number.isInteger(i2) && i2 >= 0;
+}
+function h2(i2) {
+  return typeof i2 == "string";
+}
+var b2, c, T, $;
+var init_ranges_push_esm = __esm({
+  "node_modules/ranges-push/dist/ranges-push.esm.js"() {
+    init_shims();
+    init_string_collapse_leading_whitespace_esm();
+    b2 = { strictlyTwoElementsInRangeArrays: false, progressFn: null };
+    c = { mergeType: 1, progressFn: null, joinRangesThatTouchEdges: true };
+    T = { limitToBeAddedWhitespace: false, limitLinebreaksCount: 1, mergeType: 1 };
+    $ = class {
+      constructor(r2) {
+        let t2 = { ...T, ...r2 };
+        if (t2.mergeType && t2.mergeType !== 1 && t2.mergeType !== 2)
+          if (h2(t2.mergeType) && t2.mergeType.trim() === "1")
+            t2.mergeType = 1;
+          else if (h2(t2.mergeType) && t2.mergeType.trim() === "2")
+            t2.mergeType = 2;
+          else
+            throw new Error(`ranges-push: [THROW_ID_02] opts.mergeType was customised to a wrong thing! It was given of a type: "${typeof t2.mergeType}", equal to ${JSON.stringify(t2.mergeType, null, 4)}`);
+        this.opts = t2, this.ranges = [];
+      }
+      ranges;
+      opts;
+      add(r2, t2, e2) {
+        if (r2 == null && t2 == null)
+          return;
+        if (u(r2) && !u(t2)) {
+          if (Array.isArray(r2)) {
+            if (r2.length) {
+              if (r2.some((a) => Array.isArray(a))) {
+                r2.forEach((a) => {
+                  Array.isArray(a) && this.add(...a);
+                });
+                return;
+              }
+              r2.length && p(+r2[0]) && p(+r2[1]) && this.add(...r2);
+            }
+            return;
+          }
+          throw new TypeError(`ranges-push/Ranges/add(): [THROW_ID_12] the first input argument, "from" is set (${JSON.stringify(r2, null, 0)}) but second-one, "to" is not (${JSON.stringify(t2, null, 0)})`);
+        } else if (!u(r2) && u(t2))
+          throw new TypeError(`ranges-push/Ranges/add(): [THROW_ID_13] the second input argument, "to" is set (${JSON.stringify(t2, null, 0)}) but first-one, "from" is not (${JSON.stringify(r2, null, 0)})`);
+        let l = +r2, n = +t2;
+        if (p(e2) && (e2 = String(e2)), p(l) && p(n)) {
+          if (u(e2) && !h2(e2) && !p(e2))
+            throw new TypeError(`ranges-push/Ranges/add(): [THROW_ID_08] The third argument, the value to add, was given not as string but ${typeof e2}, equal to:
+${JSON.stringify(e2, null, 4)}`);
+          if (u(this.ranges) && Array.isArray(this.last()) && l === this.last()[1]) {
+            if (this.last()[1] = n, this.last()[2], this.last()[2] !== null && u(e2)) {
+              let a = this.last()[2] && this.last()[2].length && (!this.opts || !this.opts.mergeType || this.opts.mergeType === 1) ? `${this.last()[2]}${e2}` : e2;
+              this.opts.limitToBeAddedWhitespace && (a = D(a, this.opts.limitLinebreaksCount)), h2(a) && !a.length || (this.last()[2] = a);
+            }
+          } else {
+            this.ranges || (this.ranges = []);
+            let a = e2 !== void 0 && !(h2(e2) && !e2.length) ? [l, n, e2 && this.opts.limitToBeAddedWhitespace ? D(e2, this.opts.limitLinebreaksCount) : e2] : [l, n];
+            this.ranges.push(a);
+          }
+        } else
+          throw p(l) && l >= 0 ? new TypeError(`ranges-push/Ranges/add(): [THROW_ID_10] "to" value, the second input argument, must be a natural number or zero! Currently it's of a type "${typeof n}" equal to: ${JSON.stringify(n, null, 4)}`) : new TypeError(`ranges-push/Ranges/add(): [THROW_ID_09] "from" value, the first input argument, must be a natural number or zero! Currently it's of a type "${typeof l}" equal to: ${JSON.stringify(l, null, 4)}`);
+      }
+      push(r2, t2, e2) {
+        this.add(r2, t2, e2);
+      }
+      current() {
+        return Array.isArray(this.ranges) && this.ranges.length ? (this.ranges = f3(this.ranges, { mergeType: this.opts.mergeType }), this.ranges && this.opts.limitToBeAddedWhitespace ? this.ranges.map((r2) => u(r2[2]) ? [r2[0], r2[1], D(r2[2], this.opts.limitLinebreaksCount)] : r2) : this.ranges) : null;
+      }
+      wipe() {
+        this.ranges = [];
+      }
+      replace(r2) {
+        if (Array.isArray(r2) && r2.length)
+          if (Array.isArray(r2[0]) && p(r2[0][0]))
+            this.ranges = Array.from(r2);
+          else
+            throw new Error(`ranges-push/Ranges/replace(): [THROW_ID_11] Single range was given but we expected array of arrays! The first element, ${JSON.stringify(r2[0], null, 4)} should be an array and its first element should be an integer, a string index.`);
+        else
+          this.ranges = [];
+      }
+      last() {
+        return Array.isArray(this.ranges) && this.ranges.length ? this.ranges[this.ranges.length - 1] : null;
+      }
+    };
+  }
+});
+
+// node_modules/lodash.clonedeep/index.js
+var require_lodash5 = __commonJS({
+  "node_modules/lodash.clonedeep/index.js"(exports2, module2) {
+    init_shims();
+    var LARGE_ARRAY_SIZE = 200;
+    var HASH_UNDEFINED = "__lodash_hash_undefined__";
+    var MAX_SAFE_INTEGER = 9007199254740991;
+    var argsTag = "[object Arguments]";
+    var arrayTag = "[object Array]";
+    var boolTag = "[object Boolean]";
+    var dateTag = "[object Date]";
+    var errorTag = "[object Error]";
+    var funcTag = "[object Function]";
+    var genTag = "[object GeneratorFunction]";
+    var mapTag = "[object Map]";
+    var numberTag = "[object Number]";
+    var objectTag = "[object Object]";
+    var promiseTag = "[object Promise]";
+    var regexpTag = "[object RegExp]";
+    var setTag = "[object Set]";
+    var stringTag = "[object String]";
+    var symbolTag = "[object Symbol]";
+    var weakMapTag = "[object WeakMap]";
+    var arrayBufferTag = "[object ArrayBuffer]";
+    var dataViewTag = "[object DataView]";
+    var float32Tag = "[object Float32Array]";
+    var float64Tag = "[object Float64Array]";
+    var int8Tag = "[object Int8Array]";
+    var int16Tag = "[object Int16Array]";
+    var int32Tag = "[object Int32Array]";
+    var uint8Tag = "[object Uint8Array]";
+    var uint8ClampedTag = "[object Uint8ClampedArray]";
+    var uint16Tag = "[object Uint16Array]";
+    var uint32Tag = "[object Uint32Array]";
+    var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+    var reFlags = /\w*$/;
+    var reIsHostCtor = /^\[object .+?Constructor\]$/;
+    var reIsUint = /^(?:0|[1-9]\d*)$/;
+    var cloneableTags = {};
+    cloneableTags[argsTag] = cloneableTags[arrayTag] = cloneableTags[arrayBufferTag] = cloneableTags[dataViewTag] = cloneableTags[boolTag] = cloneableTags[dateTag] = cloneableTags[float32Tag] = cloneableTags[float64Tag] = cloneableTags[int8Tag] = cloneableTags[int16Tag] = cloneableTags[int32Tag] = cloneableTags[mapTag] = cloneableTags[numberTag] = cloneableTags[objectTag] = cloneableTags[regexpTag] = cloneableTags[setTag] = cloneableTags[stringTag] = cloneableTags[symbolTag] = cloneableTags[uint8Tag] = cloneableTags[uint8ClampedTag] = cloneableTags[uint16Tag] = cloneableTags[uint32Tag] = true;
+    cloneableTags[errorTag] = cloneableTags[funcTag] = cloneableTags[weakMapTag] = false;
+    var freeGlobal = typeof global == "object" && global && global.Object === Object && global;
+    var freeSelf = typeof self == "object" && self && self.Object === Object && self;
+    var root = freeGlobal || freeSelf || Function("return this")();
+    var freeExports = typeof exports2 == "object" && exports2 && !exports2.nodeType && exports2;
+    var freeModule = freeExports && typeof module2 == "object" && module2 && !module2.nodeType && module2;
+    var moduleExports = freeModule && freeModule.exports === freeExports;
+    function addMapEntry(map, pair) {
+      map.set(pair[0], pair[1]);
+      return map;
+    }
+    function addSetEntry(set, value) {
+      set.add(value);
+      return set;
+    }
+    function arrayEach(array2, iteratee) {
+      var index11 = -1, length = array2 ? array2.length : 0;
+      while (++index11 < length) {
+        if (iteratee(array2[index11], index11, array2) === false) {
+          break;
+        }
+      }
+      return array2;
+    }
+    function arrayPush(array2, values) {
+      var index11 = -1, length = values.length, offset = array2.length;
+      while (++index11 < length) {
+        array2[offset + index11] = values[index11];
+      }
+      return array2;
+    }
+    function arrayReduce(array2, iteratee, accumulator, initAccum) {
+      var index11 = -1, length = array2 ? array2.length : 0;
+      if (initAccum && length) {
+        accumulator = array2[++index11];
+      }
+      while (++index11 < length) {
+        accumulator = iteratee(accumulator, array2[index11], index11, array2);
+      }
+      return accumulator;
+    }
+    function baseTimes(n, iteratee) {
+      var index11 = -1, result = Array(n);
+      while (++index11 < n) {
+        result[index11] = iteratee(index11);
+      }
+      return result;
+    }
+    function getValue(object, key2) {
+      return object == null ? void 0 : object[key2];
+    }
+    function isHostObject(value) {
+      var result = false;
+      if (value != null && typeof value.toString != "function") {
+        try {
+          result = !!(value + "");
+        } catch (e2) {
+        }
+      }
+      return result;
+    }
+    function mapToArray(map) {
+      var index11 = -1, result = Array(map.size);
+      map.forEach(function(value, key2) {
+        result[++index11] = [key2, value];
+      });
+      return result;
+    }
+    function overArg(func, transform) {
+      return function(arg) {
+        return func(transform(arg));
+      };
+    }
+    function setToArray(set) {
+      var index11 = -1, result = Array(set.size);
+      set.forEach(function(value) {
+        result[++index11] = value;
+      });
+      return result;
+    }
+    var arrayProto = Array.prototype;
+    var funcProto = Function.prototype;
+    var objectProto = Object.prototype;
+    var coreJsData = root["__core-js_shared__"];
+    var maskSrcKey = function() {
+      var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || "");
+      return uid ? "Symbol(src)_1." + uid : "";
+    }();
+    var funcToString = funcProto.toString;
+    var hasOwnProperty = objectProto.hasOwnProperty;
+    var objectToString = objectProto.toString;
+    var reIsNative = RegExp(
+      "^" + funcToString.call(hasOwnProperty).replace(reRegExpChar, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$"
+    );
+    var Buffer2 = moduleExports ? root.Buffer : void 0;
+    var Symbol2 = root.Symbol;
+    var Uint8Array2 = root.Uint8Array;
+    var getPrototype = overArg(Object.getPrototypeOf, Object);
+    var objectCreate = Object.create;
+    var propertyIsEnumerable = objectProto.propertyIsEnumerable;
+    var splice = arrayProto.splice;
+    var nativeGetSymbols = Object.getOwnPropertySymbols;
+    var nativeIsBuffer = Buffer2 ? Buffer2.isBuffer : void 0;
+    var nativeKeys = overArg(Object.keys, Object);
+    var DataView2 = getNative(root, "DataView");
+    var Map2 = getNative(root, "Map");
+    var Promise2 = getNative(root, "Promise");
+    var Set2 = getNative(root, "Set");
+    var WeakMap2 = getNative(root, "WeakMap");
+    var nativeCreate = getNative(Object, "create");
+    var dataViewCtorString = toSource(DataView2);
+    var mapCtorString = toSource(Map2);
+    var promiseCtorString = toSource(Promise2);
+    var setCtorString = toSource(Set2);
+    var weakMapCtorString = toSource(WeakMap2);
+    var symbolProto = Symbol2 ? Symbol2.prototype : void 0;
+    var symbolValueOf = symbolProto ? symbolProto.valueOf : void 0;
+    function Hash(entries) {
+      var index11 = -1, length = entries ? entries.length : 0;
+      this.clear();
+      while (++index11 < length) {
+        var entry = entries[index11];
+        this.set(entry[0], entry[1]);
+      }
+    }
+    function hashClear() {
+      this.__data__ = nativeCreate ? nativeCreate(null) : {};
+    }
+    function hashDelete(key2) {
+      return this.has(key2) && delete this.__data__[key2];
+    }
+    function hashGet(key2) {
+      var data = this.__data__;
+      if (nativeCreate) {
+        var result = data[key2];
+        return result === HASH_UNDEFINED ? void 0 : result;
+      }
+      return hasOwnProperty.call(data, key2) ? data[key2] : void 0;
+    }
+    function hashHas(key2) {
+      var data = this.__data__;
+      return nativeCreate ? data[key2] !== void 0 : hasOwnProperty.call(data, key2);
+    }
+    function hashSet(key2, value) {
+      var data = this.__data__;
+      data[key2] = nativeCreate && value === void 0 ? HASH_UNDEFINED : value;
+      return this;
+    }
+    Hash.prototype.clear = hashClear;
+    Hash.prototype["delete"] = hashDelete;
+    Hash.prototype.get = hashGet;
+    Hash.prototype.has = hashHas;
+    Hash.prototype.set = hashSet;
+    function ListCache(entries) {
+      var index11 = -1, length = entries ? entries.length : 0;
+      this.clear();
+      while (++index11 < length) {
+        var entry = entries[index11];
+        this.set(entry[0], entry[1]);
+      }
+    }
+    function listCacheClear() {
+      this.__data__ = [];
+    }
+    function listCacheDelete(key2) {
+      var data = this.__data__, index11 = assocIndexOf(data, key2);
+      if (index11 < 0) {
+        return false;
+      }
+      var lastIndex = data.length - 1;
+      if (index11 == lastIndex) {
+        data.pop();
+      } else {
+        splice.call(data, index11, 1);
+      }
+      return true;
+    }
+    function listCacheGet(key2) {
+      var data = this.__data__, index11 = assocIndexOf(data, key2);
+      return index11 < 0 ? void 0 : data[index11][1];
+    }
+    function listCacheHas(key2) {
+      return assocIndexOf(this.__data__, key2) > -1;
+    }
+    function listCacheSet(key2, value) {
+      var data = this.__data__, index11 = assocIndexOf(data, key2);
+      if (index11 < 0) {
+        data.push([key2, value]);
+      } else {
+        data[index11][1] = value;
+      }
+      return this;
+    }
+    ListCache.prototype.clear = listCacheClear;
+    ListCache.prototype["delete"] = listCacheDelete;
+    ListCache.prototype.get = listCacheGet;
+    ListCache.prototype.has = listCacheHas;
+    ListCache.prototype.set = listCacheSet;
+    function MapCache(entries) {
+      var index11 = -1, length = entries ? entries.length : 0;
+      this.clear();
+      while (++index11 < length) {
+        var entry = entries[index11];
+        this.set(entry[0], entry[1]);
+      }
+    }
+    function mapCacheClear() {
+      this.__data__ = {
+        "hash": new Hash(),
+        "map": new (Map2 || ListCache)(),
+        "string": new Hash()
+      };
+    }
+    function mapCacheDelete(key2) {
+      return getMapData(this, key2)["delete"](key2);
+    }
+    function mapCacheGet(key2) {
+      return getMapData(this, key2).get(key2);
+    }
+    function mapCacheHas(key2) {
+      return getMapData(this, key2).has(key2);
+    }
+    function mapCacheSet(key2, value) {
+      getMapData(this, key2).set(key2, value);
+      return this;
+    }
+    MapCache.prototype.clear = mapCacheClear;
+    MapCache.prototype["delete"] = mapCacheDelete;
+    MapCache.prototype.get = mapCacheGet;
+    MapCache.prototype.has = mapCacheHas;
+    MapCache.prototype.set = mapCacheSet;
+    function Stack(entries) {
+      this.__data__ = new ListCache(entries);
+    }
+    function stackClear() {
+      this.__data__ = new ListCache();
+    }
+    function stackDelete(key2) {
+      return this.__data__["delete"](key2);
+    }
+    function stackGet(key2) {
+      return this.__data__.get(key2);
+    }
+    function stackHas(key2) {
+      return this.__data__.has(key2);
+    }
+    function stackSet(key2, value) {
+      var cache = this.__data__;
+      if (cache instanceof ListCache) {
+        var pairs = cache.__data__;
+        if (!Map2 || pairs.length < LARGE_ARRAY_SIZE - 1) {
+          pairs.push([key2, value]);
+          return this;
+        }
+        cache = this.__data__ = new MapCache(pairs);
+      }
+      cache.set(key2, value);
+      return this;
+    }
+    Stack.prototype.clear = stackClear;
+    Stack.prototype["delete"] = stackDelete;
+    Stack.prototype.get = stackGet;
+    Stack.prototype.has = stackHas;
+    Stack.prototype.set = stackSet;
+    function arrayLikeKeys(value, inherited) {
+      var result = isArray2(value) || isArguments(value) ? baseTimes(value.length, String) : [];
+      var length = result.length, skipIndexes = !!length;
+      for (var key2 in value) {
+        if ((inherited || hasOwnProperty.call(value, key2)) && !(skipIndexes && (key2 == "length" || isIndex(key2, length)))) {
+          result.push(key2);
+        }
+      }
+      return result;
+    }
+    function assignValue(object, key2, value) {
+      var objValue = object[key2];
+      if (!(hasOwnProperty.call(object, key2) && eq(objValue, value)) || value === void 0 && !(key2 in object)) {
+        object[key2] = value;
+      }
+    }
+    function assocIndexOf(array2, key2) {
+      var length = array2.length;
+      while (length--) {
+        if (eq(array2[length][0], key2)) {
+          return length;
+        }
+      }
+      return -1;
+    }
+    function baseAssign(object, source) {
+      return object && copyObject(source, keys(source), object);
+    }
+    function baseClone(value, isDeep, isFull, customizer, key2, object, stack) {
+      var result;
+      if (customizer) {
+        result = object ? customizer(value, key2, object, stack) : customizer(value);
+      }
+      if (result !== void 0) {
+        return result;
+      }
+      if (!isObject3(value)) {
+        return value;
+      }
+      var isArr = isArray2(value);
+      if (isArr) {
+        result = initCloneArray(value);
+        if (!isDeep) {
+          return copyArray(value, result);
+        }
+      } else {
+        var tag = getTag(value), isFunc = tag == funcTag || tag == genTag;
+        if (isBuffer2(value)) {
+          return cloneBuffer(value, isDeep);
+        }
+        if (tag == objectTag || tag == argsTag || isFunc && !object) {
+          if (isHostObject(value)) {
+            return object ? value : {};
+          }
+          result = initCloneObject(isFunc ? {} : value);
+          if (!isDeep) {
+            return copySymbols(value, baseAssign(result, value));
+          }
+        } else {
+          if (!cloneableTags[tag]) {
+            return object ? value : {};
+          }
+          result = initCloneByTag(value, tag, baseClone, isDeep);
+        }
+      }
+      stack || (stack = new Stack());
+      var stacked = stack.get(value);
+      if (stacked) {
+        return stacked;
+      }
+      stack.set(value, result);
+      if (!isArr) {
+        var props = isFull ? getAllKeys(value) : keys(value);
+      }
+      arrayEach(props || value, function(subValue, key3) {
+        if (props) {
+          key3 = subValue;
+          subValue = value[key3];
+        }
+        assignValue(result, key3, baseClone(subValue, isDeep, isFull, customizer, key3, value, stack));
+      });
+      return result;
+    }
+    function baseCreate(proto) {
+      return isObject3(proto) ? objectCreate(proto) : {};
+    }
+    function baseGetAllKeys(object, keysFunc, symbolsFunc) {
+      var result = keysFunc(object);
+      return isArray2(object) ? result : arrayPush(result, symbolsFunc(object));
+    }
+    function baseGetTag(value) {
+      return objectToString.call(value);
+    }
+    function baseIsNative(value) {
+      if (!isObject3(value) || isMasked(value)) {
+        return false;
+      }
+      var pattern = isFunction(value) || isHostObject(value) ? reIsNative : reIsHostCtor;
+      return pattern.test(toSource(value));
+    }
+    function baseKeys(object) {
+      if (!isPrototype(object)) {
+        return nativeKeys(object);
+      }
+      var result = [];
+      for (var key2 in Object(object)) {
+        if (hasOwnProperty.call(object, key2) && key2 != "constructor") {
+          result.push(key2);
+        }
+      }
+      return result;
+    }
+    function cloneBuffer(buffer, isDeep) {
+      if (isDeep) {
+        return buffer.slice();
+      }
+      var result = new buffer.constructor(buffer.length);
+      buffer.copy(result);
+      return result;
+    }
+    function cloneArrayBuffer(arrayBuffer) {
+      var result = new arrayBuffer.constructor(arrayBuffer.byteLength);
+      new Uint8Array2(result).set(new Uint8Array2(arrayBuffer));
+      return result;
+    }
+    function cloneDataView(dataView, isDeep) {
+      var buffer = isDeep ? cloneArrayBuffer(dataView.buffer) : dataView.buffer;
+      return new dataView.constructor(buffer, dataView.byteOffset, dataView.byteLength);
+    }
+    function cloneMap(map, isDeep, cloneFunc) {
+      var array2 = isDeep ? cloneFunc(mapToArray(map), true) : mapToArray(map);
+      return arrayReduce(array2, addMapEntry, new map.constructor());
+    }
+    function cloneRegExp(regexp) {
+      var result = new regexp.constructor(regexp.source, reFlags.exec(regexp));
+      result.lastIndex = regexp.lastIndex;
+      return result;
+    }
+    function cloneSet(set, isDeep, cloneFunc) {
+      var array2 = isDeep ? cloneFunc(setToArray(set), true) : setToArray(set);
+      return arrayReduce(array2, addSetEntry, new set.constructor());
+    }
+    function cloneSymbol(symbol) {
+      return symbolValueOf ? Object(symbolValueOf.call(symbol)) : {};
+    }
+    function cloneTypedArray(typedArray, isDeep) {
+      var buffer = isDeep ? cloneArrayBuffer(typedArray.buffer) : typedArray.buffer;
+      return new typedArray.constructor(buffer, typedArray.byteOffset, typedArray.length);
+    }
+    function copyArray(source, array2) {
+      var index11 = -1, length = source.length;
+      array2 || (array2 = Array(length));
+      while (++index11 < length) {
+        array2[index11] = source[index11];
+      }
+      return array2;
+    }
+    function copyObject(source, props, object, customizer) {
+      object || (object = {});
+      var index11 = -1, length = props.length;
+      while (++index11 < length) {
+        var key2 = props[index11];
+        var newValue = customizer ? customizer(object[key2], source[key2], key2, object, source) : void 0;
+        assignValue(object, key2, newValue === void 0 ? source[key2] : newValue);
+      }
+      return object;
+    }
+    function copySymbols(source, object) {
+      return copyObject(source, getSymbols(source), object);
+    }
+    function getAllKeys(object) {
+      return baseGetAllKeys(object, keys, getSymbols);
+    }
+    function getMapData(map, key2) {
+      var data = map.__data__;
+      return isKeyable(key2) ? data[typeof key2 == "string" ? "string" : "hash"] : data.map;
+    }
+    function getNative(object, key2) {
+      var value = getValue(object, key2);
+      return baseIsNative(value) ? value : void 0;
+    }
+    var getSymbols = nativeGetSymbols ? overArg(nativeGetSymbols, Object) : stubArray;
+    var getTag = baseGetTag;
+    if (DataView2 && getTag(new DataView2(new ArrayBuffer(1))) != dataViewTag || Map2 && getTag(new Map2()) != mapTag || Promise2 && getTag(Promise2.resolve()) != promiseTag || Set2 && getTag(new Set2()) != setTag || WeakMap2 && getTag(new WeakMap2()) != weakMapTag) {
+      getTag = function(value) {
+        var result = objectToString.call(value), Ctor = result == objectTag ? value.constructor : void 0, ctorString = Ctor ? toSource(Ctor) : void 0;
+        if (ctorString) {
+          switch (ctorString) {
+            case dataViewCtorString:
+              return dataViewTag;
+            case mapCtorString:
+              return mapTag;
+            case promiseCtorString:
+              return promiseTag;
+            case setCtorString:
+              return setTag;
+            case weakMapCtorString:
+              return weakMapTag;
+          }
+        }
+        return result;
+      };
+    }
+    function initCloneArray(array2) {
+      var length = array2.length, result = array2.constructor(length);
+      if (length && typeof array2[0] == "string" && hasOwnProperty.call(array2, "index")) {
+        result.index = array2.index;
+        result.input = array2.input;
+      }
+      return result;
+    }
+    function initCloneObject(object) {
+      return typeof object.constructor == "function" && !isPrototype(object) ? baseCreate(getPrototype(object)) : {};
+    }
+    function initCloneByTag(object, tag, cloneFunc, isDeep) {
+      var Ctor = object.constructor;
+      switch (tag) {
+        case arrayBufferTag:
+          return cloneArrayBuffer(object);
+        case boolTag:
+        case dateTag:
+          return new Ctor(+object);
+        case dataViewTag:
+          return cloneDataView(object, isDeep);
+        case float32Tag:
+        case float64Tag:
+        case int8Tag:
+        case int16Tag:
+        case int32Tag:
+        case uint8Tag:
+        case uint8ClampedTag:
+        case uint16Tag:
+        case uint32Tag:
+          return cloneTypedArray(object, isDeep);
+        case mapTag:
+          return cloneMap(object, isDeep, cloneFunc);
+        case numberTag:
+        case stringTag:
+          return new Ctor(object);
+        case regexpTag:
+          return cloneRegExp(object);
+        case setTag:
+          return cloneSet(object, isDeep, cloneFunc);
+        case symbolTag:
+          return cloneSymbol(object);
+      }
+    }
+    function isIndex(value, length) {
+      length = length == null ? MAX_SAFE_INTEGER : length;
+      return !!length && (typeof value == "number" || reIsUint.test(value)) && (value > -1 && value % 1 == 0 && value < length);
+    }
+    function isKeyable(value) {
+      var type = typeof value;
+      return type == "string" || type == "number" || type == "symbol" || type == "boolean" ? value !== "__proto__" : value === null;
+    }
+    function isMasked(func) {
+      return !!maskSrcKey && maskSrcKey in func;
+    }
+    function isPrototype(value) {
+      var Ctor = value && value.constructor, proto = typeof Ctor == "function" && Ctor.prototype || objectProto;
+      return value === proto;
+    }
+    function toSource(func) {
+      if (func != null) {
+        try {
+          return funcToString.call(func);
+        } catch (e2) {
+        }
+        try {
+          return func + "";
+        } catch (e2) {
+        }
+      }
+      return "";
+    }
+    function cloneDeep(value) {
+      return baseClone(value, true, true);
+    }
+    function eq(value, other) {
+      return value === other || value !== value && other !== other;
+    }
+    function isArguments(value) {
+      return isArrayLikeObject(value) && hasOwnProperty.call(value, "callee") && (!propertyIsEnumerable.call(value, "callee") || objectToString.call(value) == argsTag);
+    }
+    var isArray2 = Array.isArray;
+    function isArrayLike(value) {
+      return value != null && isLength(value.length) && !isFunction(value);
+    }
+    function isArrayLikeObject(value) {
+      return isObjectLike(value) && isArrayLike(value);
+    }
+    var isBuffer2 = nativeIsBuffer || stubFalse;
+    function isFunction(value) {
+      var tag = isObject3(value) ? objectToString.call(value) : "";
+      return tag == funcTag || tag == genTag;
+    }
+    function isLength(value) {
+      return typeof value == "number" && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+    }
+    function isObject3(value) {
+      var type = typeof value;
+      return !!value && (type == "object" || type == "function");
+    }
+    function isObjectLike(value) {
+      return !!value && typeof value == "object";
+    }
+    function keys(object) {
+      return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
+    }
+    function stubArray() {
+      return [];
+    }
+    function stubFalse() {
+      return false;
+    }
+    module2.exports = cloneDeep;
+  }
+});
+
+// node_modules/string-left-right/dist/string-left-right.esm.js
+function D2({ str: n, idx: e2 = 0, stopAtNewlines: l = false, stopAtRawNbsp: u2 = false }) {
+  if (typeof n != "string" || !n.length || ((!e2 || typeof e2 != "number") && (e2 = 0), !n[e2 + 1]))
+    return null;
+  if (n[e2 + 1] && (n[e2 + 1].trim() || l && `
+\r`.includes(n[e2 + 1]) || u2 && n[e2 + 1] === c2))
+    return e2 + 1;
+  if (n[e2 + 2] && (n[e2 + 2].trim() || l && `
+\r`.includes(n[e2 + 2]) || u2 && n[e2 + 2] === c2))
+    return e2 + 2;
+  for (let t2 = e2 + 1, m3 = n.length; t2 < m3; t2++)
+    if (n[t2].trim() || l && `
+\r`.includes(n[t2]) || u2 && n[t2] === c2)
+      return t2;
+  return null;
+}
+function E(n, e2 = 0) {
+  return D2({ str: n, idx: e2, stopAtNewlines: false, stopAtRawNbsp: false });
+}
+var import_lodash, import_lodash2, c2;
+var init_string_left_right_esm = __esm({
+  "node_modules/string-left-right/dist/string-left-right.esm.js"() {
+    init_shims();
+    import_lodash = __toESM(require_lodash2(), 1);
+    import_lodash2 = __toESM(require_lodash5(), 1);
+    c2 = "\xA0";
+  }
+});
+
+// node_modules/string-strip-html/dist/string-strip-html.esm.js
+function K(t2) {
+  return /[-_A-Za-z0-9]/.test(t2);
+}
+function M(t2, c3) {
+  if (!t2)
+    return [];
+  if (Array.isArray(t2))
+    return t2.filter((D3) => typeof D3 == "string" && D3.trim());
+  if (typeof t2 == "string")
+    return t2.trim() ? [t2] : [];
+  throw new TypeError(`string-strip-html/stripHtml(): [THROW_ID_03] ${c3} must be array containing zero or more strings or something falsey. Currently it's equal to: ${t2}, that a type of ${typeof t2}.`);
+}
+function ae(t2, c3, D3, b4) {
+  for (let d3 = c3, p2 = t2.length; d3 < p2; d3++) {
+    if (t2.startsWith(D3, d3))
+      return true;
+    if (t2.startsWith(b4, d3))
+      return false;
+  }
+  return false;
+}
+function _(t2, c3, D3) {
+  return !t2 || !t2.quotes || !ae(c3, D3 + 1, t2.quotes.value, ">");
+}
+function ge(t2, c3) {
+  var _a, _b, _c, _d;
+  let D3 = Date.now(), b4 = [], d3 = [], p2 = [], m3 = [], n = {};
+  function ne() {
+    n = { attributes: [] };
+  }
+  ne();
+  let V = null, w2 = null, a = {}, h3 = { tagName: "", hrefValue: "", openingTagEnds: void 0 }, E2 = "", B = false, C = null, I = true;
+  function te(e2) {
+    return e2 != null;
+  }
+  function le(e2) {
+    return typeof e2 == "string";
+  }
+  function H(e2, o, l) {
+    if (Array.isArray(o.stripTogetherWithTheirContents) && (o.stripTogetherWithTheirContents.includes(n.name) || o.stripTogetherWithTheirContents.includes("*")))
+      if (n.slashPresent && Array.isArray(b4) && b4.some((i2) => i2.name === n.name)) {
+        for (let i2 = b4.length; i2--; )
+          if (b4[i2].name === n.name) {
+            m3 = m3.filter(([$2, g2]) => ($2 < b4[i2].lastOpeningBracketAt || $2 >= e2 + 1) && (g2 <= b4[i2].lastOpeningBracketAt || g2 > e2 + 1));
+            let r2 = e2 + 1;
+            n.lastClosingBracketAt && (r2 = n.lastClosingBracketAt + 1), m3.push([b4[i2].lastOpeningBracketAt, r2]), G.has(t2[e2]) && o.cb ? o.cb({ tag: n, deleteFrom: b4[i2].lastOpeningBracketAt, deleteTo: e2 + 1, insert: null, rangesArr: l, proposedReturn: [b4[i2].lastOpeningBracketAt, e2, null] }) : o.cb && o.cb({ tag: n, deleteFrom: b4[i2].lastOpeningBracketAt, deleteTo: e2, insert: "", rangesArr: l, proposedReturn: [b4[i2].lastOpeningBracketAt, e2, ""] }), b4.splice(i2, 1);
+            break;
+          }
+      } else
+        n.slashPresent || b4.push(n);
+    else
+      Array.isArray(o.ignoreTagsWithTheirContents) && x2(e2, o, n) && (I = false);
+  }
+  function R(e2, o, l, i2, r2, $2) {
+    if (Array.isArray(u2.current()) && typeof l == "number" && u2.current()[0][0] === 0 && u2.current()[0][1] >= l)
+      return "";
+    if (t2.length === i2 && $2 && (!s3.dumpLinkHrefsNearby || !s3.dumpLinkHrefsNearby.enabled))
+      return null;
+    let g2 = "";
+    if (Number.isInteger(l) && l < r2 && (g2 += e2.slice(l, r2)), Number.isInteger(i2) && i2 > $2 + 1) {
+      let S2 = e2.slice($2 + 1, i2);
+      i2 && !E(t2, i2 - 1) && (S2 = S2.trimEnd()), S2.includes(`
+`) && T2(i2, e2) ? g2 += " " : g2 += S2;
+    }
+    let f5 = !G.has(e2[o]), N = e2[i2 - 1] !== ">" || !e2[l].trim(), z = !['"', "("].includes(e2[r2 - 1]), se = ![";", ".", ":", "!"].includes(e2[o]);
+    if ((f5 || N && z && se) && (N || z) && e2[o] !== "!" && (!Q.has(n.name) || typeof l == "number" && l < r2 || typeof i2 == "number" && i2 > $2 + 1)) {
+      let S2 = g2.match(/\n/g);
+      return Array.isArray(S2) && S2.length ? S2.length === 1 ? `
+` : S2.length === 2 ? `
+
+` : `
+
+
+` : " ";
+    }
+    return "";
+  }
+  function q(e2, o) {
+    if (e2.dumpLinkHrefsNearby.enabled && h3.tagName && h3.tagName === n.name && n.lastOpeningBracketAt && (h3.openingTagEnds && n.lastOpeningBracketAt > h3.openingTagEnds || !h3.openingTagEnds) && (B = true), B) {
+      let l = e2.dumpLinkHrefsNearby.putOnNewLine ? `
+
+` : "";
+      E2 = `${l}${h3.hrefValue}`, (typeof o != "number" || E(t2, o - 1)) && (E2 += l);
+    }
+  }
+  function T2(e2, o) {
+    return o ? o[e2] === "<" && o[e2 + 1] !== "%" : t2[e2] === "<" && t2[e2 + 1] !== "%";
+  }
+  function k(e2) {
+    return t2[e2] === ">" && t2[e2 - 1] !== "%";
+  }
+  function x2(e2, o, l) {
+    if (o.ignoreTagsWithTheirContents.includes("*"))
+      return true;
+    let i2 = t2.indexOf(`<${l.name}`, e2), r2 = t2.indexOf(`</${l.name}`, e2);
+    return !l.slashPresent && r2 === -1 || l.slashPresent && !d3.some(($2) => $2.name === l.name) || r2 > -1 && i2 > -1 && i2 < r2 ? false : o.ignoreTagsWithTheirContents.includes(l.name);
+  }
+  if (typeof t2 != "string")
+    throw new TypeError(`string-strip-html/stripHtml(): [THROW_ID_01] Input must be string! Currently it's: ${(typeof t2).toLowerCase()}, equal to:
+${JSON.stringify(t2, null, 4)}`);
+  if (c3 && !(0, import_lodash3.default)(c3))
+    throw new TypeError(`string-strip-html/stripHtml(): [THROW_ID_02] Optional Options Object must be a plain object! Currently it's: ${(typeof c3).toLowerCase()}, equal to:
+${JSON.stringify(c3, null, 4)}`);
+  function U() {
+    B && (h3 = { tagName: "", hrefValue: "", openingTagEnds: void 0 }, B = false);
+  }
+  let s3 = { ...F2, ...c3 };
+  if (Object.prototype.hasOwnProperty.call(s3, "returnRangesOnly"))
+    throw new TypeError("string-strip-html/stripHtml(): [THROW_ID_03] resolvedOpts.returnRangesOnly has been removed from the API since v.5 release.");
+  s3.ignoreTags = M(s3.ignoreTags, "resolvedOpts.ignoreTags"), s3.onlyStripTags = M(s3.onlyStripTags, "resolvedOpts.onlyStripTags");
+  let Y = !!s3.onlyStripTags.length;
+  if (s3.onlyStripTags.length && s3.ignoreTags.length && (s3.onlyStripTags = (0, import_lodash5.default)(s3.onlyStripTags, ...s3.ignoreTags)), (0, import_lodash3.default)(s3.dumpLinkHrefsNearby) || (s3.dumpLinkHrefsNearby = { ...F2.dumpLinkHrefsNearby }), s3.dumpLinkHrefsNearby = F2.dumpLinkHrefsNearby, c3 && Object.prototype.hasOwnProperty.call(c3, "dumpLinkHrefsNearby") && te(c3.dumpLinkHrefsNearby)) {
+    if ((0, import_lodash3.default)(c3.dumpLinkHrefsNearby))
+      s3.dumpLinkHrefsNearby = { ...F2.dumpLinkHrefsNearby, ...c3.dumpLinkHrefsNearby };
+    else if (c3.dumpLinkHrefsNearby)
+      throw new TypeError(`string-strip-html/stripHtml(): [THROW_ID_04] Optional Options Object's key dumpLinkHrefsNearby was set to ${typeof c3.dumpLinkHrefsNearby}, equal to ${JSON.stringify(c3.dumpLinkHrefsNearby, null, 4)}. The only allowed value is a plain object. See the API reference.`);
+  }
+  s3.stripTogetherWithTheirContents ? typeof s3.stripTogetherWithTheirContents == "string" && s3.stripTogetherWithTheirContents.length && (s3.stripTogetherWithTheirContents = [s3.stripTogetherWithTheirContents]) : s3.stripTogetherWithTheirContents = [];
+  let J = {};
+  if (s3.stripTogetherWithTheirContents && Array.isArray(s3.stripTogetherWithTheirContents) && s3.stripTogetherWithTheirContents.length && !s3.stripTogetherWithTheirContents.every((e2, o) => typeof e2 != "string" ? (J.el = e2, J.i = o, false) : true))
+    throw new TypeError(`string-strip-html/stripHtml(): [THROW_ID_05] Optional Options Object's key stripTogetherWithTheirContents was set to contain not just string elements! For example, element at index ${J.i} has a value ${J.el} which is not string but ${(typeof J.el).toLowerCase()}.`);
+  s3.cb || (s3.cb = ({ rangesArr: e2, proposedReturn: o }) => {
+    o && e2.push(...o);
+  });
+  let u2 = new $({ limitToBeAddedWhitespace: true, limitLinebreaksCount: 2 });
+  if (!s3.skipHtmlDecoding)
+    for (; t2 !== (0, import_html_entities.decode)(t2, { scope: "strict" }); )
+      t2 = (0, import_html_entities.decode)(t2, { scope: "strict" });
+  let L = false, A2 = false;
+  for (let e2 = 0, o = t2.length; e2 < o; e2++) {
+    if (Object.keys(n).length > 1 && n.lastClosingBracketAt && n.lastClosingBracketAt < e2 && t2[e2] !== " " && C === null && (C = e2), !L && t2[e2] === "%" && t2[e2 - 1] === "{" && t2.includes("%}", e2 + 1)) {
+      let l = t2.indexOf("%}", e2) - 1;
+      if (l > e2) {
+        e2 = l;
+        continue;
+      }
+    }
+    if (!L && k(e2) && (!n || Object.keys(n).length < 2) && e2 > 1) {
+      for (let l = e2; l--; )
+        if (t2[l - 1] === void 0 || k(l)) {
+          let i2 = t2[l - 1] === void 0 ? l : l + 1, r2 = t2.slice(i2, e2 + 1);
+          if (t2 !== `<${(0, import_lodash4.default)(r2.trim(), "/>")}>` && [...W].some(($2) => (0, import_lodash4.default)(r2.trim().split(/\s+/).filter((g2) => g2.trim()).filter((g2, f5) => f5 === 0), "/>").toLowerCase() === $2) && ge(`<${r2.trim()}>`, s3).result === "") {
+            (!p2.length || p2[p2.length - 1][0] !== n.lastOpeningBracketAt) && p2.push([i2, e2 + 1]), (!m3.length || m3[m3.length - 1][0] !== n.lastOpeningBracketAt) && m3.push([i2, e2 + 1]);
+            let $2 = R(t2, e2, i2, e2 + 1, i2, e2 + 1), g2 = e2 + 1;
+            if (t2[g2] && !t2[g2].trim()) {
+              for (let f5 = g2; f5 < o; f5++)
+                if (t2[f5].trim()) {
+                  g2 = f5;
+                  break;
+                }
+            }
+            s3.cb({ tag: n, deleteFrom: i2, deleteTo: g2, insert: $2, rangesArr: u2, proposedReturn: [i2, g2, $2] });
+          }
+          break;
+        }
+    }
+    if (!A2 && t2[e2] === "/" && !((_a = n.quotes) == null ? void 0 : _a.value) && Number.isInteger(n.lastOpeningBracketAt) && !Number.isInteger(n.lastClosingBracketAt) && (n.slashPresent = e2), t2[e2] === '"' || t2[e2] === "'")
+      if (!A2 && n.nameStarts && n.quotes && n.quotes.value && n.quotes.value === t2[e2]) {
+        a.valueEnds = e2, a.value = t2.slice(a.valueStarts, e2), n.attributes.push(a), a = {}, delete n.quotes;
+        let l;
+        s3.dumpLinkHrefsNearby.enabled && n.attributes.some((i2) => {
+          if (typeof i2.name == "string" && i2.name.toLowerCase() === "href")
+            return l = `${s3.dumpLinkHrefsNearby.wrapHeads || ""}${i2.value}${s3.dumpLinkHrefsNearby.wrapTails || ""}`, true;
+        }) && (h3 = { tagName: n.name, hrefValue: l, openingTagEnds: void 0 });
+      } else
+        !A2 && !n.quotes && n.nameStarts && (n.quotes = {}, n.quotes.value = t2[e2], n.quotes.start = e2, a.nameStarts && a.nameEnds && a.nameEnds < e2 && a.nameStarts < e2 && !a.valueStarts && (a.name = t2.slice(a.nameStarts, a.nameEnds)));
+    if (n.nameStarts !== void 0 && n.nameEnds === void 0 && (!t2[e2].trim() || !K(t2[e2]))) {
+      if (n.nameEnds = e2, n.name = t2.slice(n.nameStarts, n.nameEnds + (!k(e2) && t2[e2] !== "/" && t2[e2 + 1] === void 0 ? 1 : 0)), t2[n.nameStarts - 1] !== "!" && !n.name.replace(/-/g, "").length || /^\d+$/.test(n.name[0])) {
+        n = {};
+        continue;
+      }
+      if (typeof n.name == "string" && n.name.toLowerCase() === "doctype" && (A2 = true), T2(e2)) {
+        q(s3);
+        let l = R(t2, e2, n.leftOuterWhitespace, e2, n.lastOpeningBracketAt, e2);
+        (s3.stripTogetherWithTheirContents.includes(n.name) || s3.stripTogetherWithTheirContents.includes("*")) && (m3 = m3.filter(([i2, r2]) => !(i2 === n.leftOuterWhitespace && r2 === e2))), s3.cb({ tag: n, deleteFrom: n.leftOuterWhitespace, deleteTo: e2, insert: `${l}${E2}${l}`, rangesArr: u2, proposedReturn: [n.leftOuterWhitespace, e2, `${l}${E2}${l}`] }), U(), H(e2, s3, u2);
+      }
+    }
+    if (((_b = n.quotes) == null ? void 0 : _b.start) && n.quotes.start < e2 && !n.quotes.end && a.nameEnds && a.equalsAt && !a.valueStarts && (a.valueStarts = e2), !n.quotes && a.nameEnds && t2[e2] === "=" && !a.valueStarts && !a.equalsAt && (a.equalsAt = e2), !n.quotes && a.nameStarts && a.nameEnds && !a.valueStarts && t2[e2].trim() && t2[e2] !== "=" && (n.attributes.push(a), a = {}), !n.quotes && a.nameStarts && !a.nameEnds && (A2 && `'"`.includes(t2[a.nameStarts]) ? a.nameStarts < e2 && t2[e2] === t2[a.nameStarts] && (a.nameEnds = e2 + 1, a.name = t2.slice(a.nameStarts, a.nameEnds)) : t2[e2].trim() ? t2[e2] === "=" ? a.equalsAt || (a.nameEnds = e2, a.equalsAt = e2, a.name = t2.slice(a.nameStarts, a.nameEnds)) : t2[e2] === "/" || k(e2) ? (a.nameEnds = e2, a.name = t2.slice(a.nameStarts, a.nameEnds), n.attributes.push(a), a = {}) : T2(e2) && (a.nameEnds = e2, a.name = t2.slice(a.nameStarts, a.nameEnds), n.attributes.push(a), a = {}) : (a.nameEnds = e2, a.name = t2.slice(a.nameStarts, a.nameEnds))), !n.quotes && n.nameEnds < e2 && !t2[e2 - 1].trim() && t2[e2].trim() && !"<>/!".includes(t2[e2]) && !a.nameStarts && !n.lastClosingBracketAt && (a.nameStarts = e2), n.lastOpeningBracketAt !== null && n.lastOpeningBracketAt < e2 && t2[e2] === "/" && n.onlyPlausible && (n.onlyPlausible = false), n.lastOpeningBracketAt !== null && n.lastOpeningBracketAt < e2 && t2[e2] !== "/" && (n.onlyPlausible === void 0 && ((!t2[e2].trim() || T2(e2)) && !n.slashPresent ? n.onlyPlausible = true : n.onlyPlausible = false), t2[e2].trim() && n.nameStarts === void 0 && !T2(e2) && t2[e2] !== "/" && !k(e2) && t2[e2] !== "!" && (n.nameStarts = e2, n.nameContainsLetters = false)), n.nameStarts && !n.quotes && typeof t2[e2] == "string" && t2[e2].toLowerCase() !== t2[e2].toUpperCase() && (n.nameContainsLetters = true), k(e2) && _(n, t2, e2) && true && n.lastOpeningBracketAt !== void 0 && (n.lastClosingBracketAt = e2, C = null, Object.keys(a).length && (n.attributes.push(a), a = {}), s3.dumpLinkHrefsNearby.enabled && h3.tagName && !h3.openingTagEnds && (h3.openingTagEnds = e2)), (!A2 || t2[e2] === ">") && n.lastOpeningBracketAt !== void 0) {
+      if (n.lastClosingBracketAt === void 0) {
+        if (n.lastOpeningBracketAt < e2 && !T2(e2) && (t2[e2 + 1] === void 0 || T2(e2 + 1)) && n.nameContainsLetters && typeof n.nameStarts == "number") {
+          if (n.name = t2.slice(n.nameStarts, n.nameEnds || e2 + 1).toLowerCase(), (!p2.length || p2[p2.length - 1][0] !== n.lastOpeningBracketAt) && p2.push([n.lastOpeningBracketAt, e2 + 1]), s3.ignoreTags.includes(n.name) || x2(e2, s3, n) || !W.has(n.name) && (n.onlyPlausible || s3.stripRecognisedHTMLOnly)) {
+            n = {}, a = {};
+            continue;
+          }
+          if ((W.has(n.name) || P.has(n.name)) && (n.onlyPlausible === false || n.onlyPlausible === true && n.attributes.length) || t2[e2 + 1] === void 0) {
+            q(s3);
+            let l = R(t2, e2, n.leftOuterWhitespace, e2 + 1, n.lastOpeningBracketAt, n.lastClosingBracketAt);
+            L && n.name === "script" && n.slashPresent && (L = false);
+            let i2;
+            l === null || E2 === null ? i2 = null : i2 = `${l}${E2}${l}`, s3.cb({ tag: n, deleteFrom: n.leftOuterWhitespace, deleteTo: e2 + 1, insert: i2, rangesArr: u2, proposedReturn: [n.leftOuterWhitespace, e2 + 1, i2] }), U(), H(e2, s3, u2);
+          }
+          if (!m3.length || m3[m3.length - 1][0] !== n.lastOpeningBracketAt && m3[m3.length - 1][1] !== e2 + 1)
+            if (s3.stripTogetherWithTheirContents.includes(n.name) || s3.stripTogetherWithTheirContents.includes("*")) {
+              let l;
+              for (let i2 = b4.length; i2--; )
+                b4[i2].name === n.name && (l = b4[i2]);
+              l ? (m3 = m3.filter(([i2]) => i2 !== l.lastOpeningBracketAt), m3.push([l.lastOpeningBracketAt, e2 + 1])) : m3.push([n.lastOpeningBracketAt, e2 + 1]);
+            } else
+              m3.push([n.lastOpeningBracketAt, e2 + 1]);
+        }
+      } else if (e2 > n.lastClosingBracketAt && t2[e2].trim() || t2[e2 + 1] === void 0) {
+        let l = n.lastClosingBracketAt === e2 ? e2 + 1 : e2;
+        s3.trimOnlySpaces && l === o - 1 && C !== null && C < e2 && (l = C), (!p2.length || p2[p2.length - 1][0] !== n.lastOpeningBracketAt) && p2.push([n.lastOpeningBracketAt, n.lastClosingBracketAt + 1]);
+        let i2 = s3.ignoreTags.includes(n.name), r2 = x2(e2, s3, n);
+        if (!I || s3.stripRecognisedHTMLOnly && typeof n.name == "string" && !W.has(n.name.toLowerCase()) && !P.has(n.name.toLowerCase()) || !Y && (i2 || r2) || Y && !s3.onlyStripTags.includes(n.name)) {
+          if (r2)
+            if (n.slashPresent) {
+              for (let $2 = d3.length; $2--; )
+                if (d3[$2].name === n.name) {
+                  d3.splice($2, 1);
+                  break;
+                }
+              d3.length || (I = true);
+            } else
+              I && (I = false), d3.push(n);
+          s3.cb({ tag: n, deleteFrom: null, deleteTo: null, insert: null, rangesArr: u2, proposedReturn: null }), n = {}, a = {};
+        } else if (!n.onlyPlausible || n.attributes.length === 0 && n.name && (W.has(n.name.toLowerCase()) || P.has(n.name.toLowerCase())) || ((_c = n.attributes) == null ? void 0 : _c.some(($2) => $2.equalsAt))) {
+          (!m3.length || m3[m3.length - 1][0] !== n.lastOpeningBracketAt) && m3.push([n.lastOpeningBracketAt, n.lastClosingBracketAt + 1]);
+          let $2 = R(t2, e2, n.leftOuterWhitespace, l, n.lastOpeningBracketAt, n.lastClosingBracketAt);
+          E2 = "", B = false, q(s3, l);
+          let g2;
+          le(E2) && E2.length ? (g2 = `${$2}${E2}${$2 === `
+
+` ? `
+` : $2}`, l === n.lastClosingBracketAt + 1 && (!t2[l] || !v2.has(t2[l])) && (g2 += " "), n.leftOuterWhitespace === n.lastOpeningBracketAt && u2.last() && u2.last()[1] < n.lastOpeningBracketAt && (!s3.dumpLinkHrefsNearby || !s3.dumpLinkHrefsNearby.putOnNewLine || !v2.has(t2[l])) && (g2 = " " + g2)) : g2 = $2, g2 !== null && (n.leftOuterWhitespace === 0 || !E(t2, l - 1)) && !((_d = s3.dumpLinkHrefsNearby) == null ? void 0 : _d.enabled) && (g2 = void 0);
+          let f5 = 0;
+          if (B && v2.has(t2[l])) {
+            console.log("2345"), s3.dumpLinkHrefsNearby.putOnNewLine && (console.log(`2348 bring ${t2[l]} forward from index ${l} to ${n.leftOuterWhitespace}`), g2 = `${t2[l]}${g2}`);
+            let N = E(t2, l);
+            N && (g2 == null ? void 0 : g2.endsWith(`
+`)) ? f5 += N - e2 : (!N || N > e2) && f5++;
+          }
+          s3.cb({ tag: n, deleteFrom: n.leftOuterWhitespace, deleteTo: l + f5, insert: g2, rangesArr: u2, proposedReturn: [n.leftOuterWhitespace, l + f5, g2] }), U(), H(e2, s3, u2);
+        } else
+          n = {};
+        k(e2) || (n = {});
+      }
+      A2 && (A2 = false);
+    }
+    if ((!L || t2[e2] === "<" && E(t2, E(t2, e2)) && t2[E(t2, e2)] === "/" && t2.startsWith("script", E(t2, E(t2, e2)))) && T2(e2) && !T2(e2 - 1) && !`'"`.includes(t2[e2 + 1]) && (!`'"`.includes(t2[e2 + 2]) || /\w/.test(t2[e2 + 1])) && !(t2[e2 + 1] === "c" && t2[e2 + 2] === ":") && !(t2[e2 + 1] === "f" && t2[e2 + 2] === "m" && t2[e2 + 3] === "t" && t2[e2 + 4] === ":") && !(t2[e2 + 1] === "s" && t2[e2 + 2] === "q" && t2[e2 + 3] === "l" && t2[e2 + 4] === ":") && !(t2[e2 + 1] === "x" && t2[e2 + 2] === ":") && !(t2[e2 + 1] === "f" && t2[e2 + 2] === "n" && t2[e2 + 3] === ":") && _(n, t2, e2)) {
+      if (k(E(t2, e2)))
+        continue;
+      if (n.nameEnds && n.nameEnds < e2 && !n.lastClosingBracketAt && (n.onlyPlausible === true && n.attributes && n.attributes.length || n.onlyPlausible === false)) {
+        let l = R(t2, e2, n.leftOuterWhitespace, e2, n.lastOpeningBracketAt, e2);
+        s3.cb({ tag: n, deleteFrom: n.leftOuterWhitespace, deleteTo: e2, insert: l, rangesArr: u2, proposedReturn: [n.leftOuterWhitespace, e2, l] }), H(e2, s3, u2), n = {}, a = {};
+      }
+      if (n.lastOpeningBracketAt !== void 0 && n.onlyPlausible && n.name && !n.quotes && (n.lastOpeningBracketAt = void 0, n.name = void 0, n.onlyPlausible = false), (n.lastOpeningBracketAt === void 0 || !n.onlyPlausible) && !n.quotes && (n.lastOpeningBracketAt = e2, n.slashPresent = false, n.attributes = [], V === null ? n.leftOuterWhitespace = e2 : s3.trimOnlySpaces && V === 0 ? n.leftOuterWhitespace = w2 || e2 : n.leftOuterWhitespace = V, `${t2[e2 + 1]}${t2[e2 + 2]}${t2[e2 + 3]}` == "!--" || `${t2[e2 + 1]}${t2[e2 + 2]}${t2[e2 + 3]}${t2[e2 + 4]}${t2[e2 + 5]}${t2[e2 + 6]}${t2[e2 + 7]}${t2[e2 + 8]}` == "![CDATA[")) {
+        let l = true;
+        t2[e2 + 2] === "-" && (l = false);
+        let i2;
+        for (let r2 = e2; r2 < o; r2++)
+          if ((!i2 && l && `${t2[r2 - 2]}${t2[r2 - 1]}${t2[r2]}` == "]]>" || !l && `${t2[r2 - 2]}${t2[r2 - 1]}${t2[r2]}` == "-->") && (i2 = r2), i2 && (i2 < r2 && t2[r2].trim() || t2[r2 + 1] === void 0)) {
+            let $2 = r2;
+            (t2[r2 + 1] === void 0 && !t2[r2].trim() || t2[r2] === ">") && ($2 += 1), (!p2.length || p2[p2.length - 1][0] !== n.lastOpeningBracketAt) && p2.push([n.lastOpeningBracketAt, i2 + 1]), (!m3.length || m3[m3.length - 1][0] !== n.lastOpeningBracketAt) && m3.push([n.lastOpeningBracketAt, i2 + 1]);
+            let g2 = R(t2, r2, n.leftOuterWhitespace, $2, n.lastOpeningBracketAt, i2);
+            s3.cb({ tag: n, deleteFrom: n.leftOuterWhitespace, deleteTo: $2, insert: g2, rangesArr: u2, proposedReturn: [n.leftOuterWhitespace, $2, g2] }), e2 = r2 - 1, t2[r2] === ">" && (e2 = r2), n = {}, a = {};
+            break;
+          }
+      }
+    }
+    t2[e2].trim() ? V !== null && (!n.quotes && a.equalsAt > V - 1 && a.nameEnds && a.equalsAt > a.nameEnds && t2[e2] !== '"' && t2[e2] !== "'" && ((0, import_lodash3.default)(a) && n.attributes.push(a), a = {}, n.equalsSpottedAt = void 0), V = null) : V === null && (V = e2, n.lastOpeningBracketAt !== void 0 && n.lastOpeningBracketAt < e2 && n.nameStarts && n.nameStarts < n.lastOpeningBracketAt && e2 === n.lastOpeningBracketAt + 1 && !b4.some((l) => l.name === n.name) && (n.onlyPlausible = true, n.name = void 0, n.nameStarts = void 0)), t2[e2] === " " ? w2 === null && (w2 = e2) : w2 !== null && (w2 = null), n.name === "script" && (L = !n.slashPresent);
+  }
+  if (t2 && (s3.trimOnlySpaces && t2[0] === " " || !s3.trimOnlySpaces && !t2[0].trim()))
+    for (let e2 = 0, o = t2.length; e2 < o; e2++)
+      if (s3.trimOnlySpaces && t2[e2] !== " " || !s3.trimOnlySpaces && t2[e2].trim()) {
+        u2.push([0, e2]);
+        break;
+      } else
+        t2[e2 + 1] || u2.push([0, e2 + 1]);
+  if (t2 && (s3.trimOnlySpaces && t2[t2.length - 1] === " " || !s3.trimOnlySpaces && !t2[t2.length - 1].trim())) {
+    for (let e2 = t2.length; e2--; )
+      if (s3.trimOnlySpaces && t2[e2] !== " " || !s3.trimOnlySpaces && t2[e2].trim()) {
+        u2.push([e2 + 1, t2.length]);
+        break;
+      }
+  }
+  let O = u2.current();
+  if ((!c3 || !c3.cb) && O) {
+    if (O[0] && !O[0][0]) {
+      let e2 = O[0][1];
+      u2.ranges[0] = [u2.ranges[0][0], u2.ranges[0][1]];
+    }
+    if (O[O.length - 1] && O[O.length - 1][1] === t2.length) {
+      let e2 = O[O.length - 1][0];
+      if (u2.ranges) {
+        let o = u2.ranges[u2.ranges.length - 1][0];
+        t2[o - 1] && (s3.trimOnlySpaces && t2[o - 1] === " " || !s3.trimOnlySpaces && !t2[o - 1].trim()) && (o -= 1);
+        let l = u2.ranges[u2.ranges.length - 1][2];
+        u2.ranges[u2.ranges.length - 1] = [o, u2.ranges[u2.ranges.length - 1][1]], (l == null ? void 0 : l.trim()) && u2.ranges[u2.ranges.length - 1].push(l.trimEnd());
+      }
+    }
+  }
+  return { log: { timeTakenInMilliseconds: Date.now() - D3 }, result: v(t2, u2.current()), ranges: u2.current(), allTagLocations: p2, filteredTagLocations: m3 };
+}
+var import_lodash3, import_lodash4, import_lodash5, import_html_entities, W, P, v2, G, Q, F2;
+var init_string_strip_html_esm = __esm({
+  "node_modules/string-strip-html/dist/string-strip-html.esm.js"() {
+    init_shims();
+    import_lodash3 = __toESM(require_lodash2(), 1);
+    import_lodash4 = __toESM(require_lodash3(), 1);
+    import_lodash5 = __toESM(require_lodash4(), 1);
+    import_html_entities = __toESM(require_lib3(), 1);
+    init_ranges_apply_esm();
+    init_ranges_push_esm();
+    init_string_left_right_esm();
+    W = /* @__PURE__ */ new Set(["!doctype", "abbr", "address", "area", "article", "aside", "audio", "base", "bdi", "bdo", "blockquote", "body", "br", "button", "canvas", "caption", "cite", "code", "col", "colgroup", "data", "datalist", "dd", "del", "details", "dfn", "dialog", "div", "dl", "doctype", "dt", "em", "embed", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "head", "header", "hgroup", "hr", "html", "iframe", "img", "input", "ins", "kbd", "keygen", "label", "legend", "li", "link", "main", "map", "mark", "math", "menu", "menuitem", "meta", "meter", "nav", "noscript", "object", "ol", "optgroup", "option", "output", "param", "picture", "pre", "progress", "rb", "rp", "rt", "rtc", "ruby", "samp", "script", "section", "select", "slot", "small", "source", "span", "strong", "style", "sub", "summary", "sup", "svg", "table", "tbody", "td", "template", "textarea", "tfoot", "th", "thead", "time", "title", "tr", "track", "ul", "var", "video", "wbr", "xml"]);
+    P = /* @__PURE__ */ new Set(["a", "b", "i", "p", "q", "s", "u"]);
+    v2 = /* @__PURE__ */ new Set([".", ",", ";", "!", "?"]);
+    G = /* @__PURE__ */ new Set([".", ",", "?", ";", ")", "\u2026", '"', "\xBB"]);
+    Q = /* @__PURE__ */ new Set(["a", "abbr", "acronym", "audio", "b", "bdi", "bdo", "big", "button", "canvas", "cite", "code", "data", "datalist", "del", "dfn", "em", "embed", "i", "iframe", "input", "ins", "kbd", "label", "map", "mark", "meter", "noscript", "object", "output", "picture", "progress", "q", "ruby", "s", "samp", "select", "slot", "small", "span", "strong", "sub", "sup", "svg", "template", "textarea", "time", "u", "tt", "var", "video", "wbr"]);
+    F2 = { ignoreTags: [], ignoreTagsWithTheirContents: [], onlyStripTags: [], stripTogetherWithTheirContents: ["script", "style", "xml"], skipHtmlDecoding: false, trimOnlySpaces: false, stripRecognisedHTMLOnly: false, dumpLinkHrefsNearby: { enabled: false, putOnNewLine: false, wrapHeads: "", wrapTails: "" }, cb: null };
+  }
+});
+
+// .svelte-kit/output/server/_app/immutable/chunks/tags-340d2028.js
+var import_chroma_js2, strings, css$2, Content, css$12, Preview, tagConfig, colors, TAGS, css3, Tags;
+var init_tags_340d2028 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/tags-340d2028.js"() {
     init_shims();
     init_index_35b769a7();
-    import_chroma_js2 = __toESM(require_chroma(), 1);
+    init_string_strip_html_esm();
     init_store_e5ca78fd();
+    import_chroma_js2 = __toESM(require_chroma(), 1);
     init_text_input_a12d339e();
+    strings = {
+      read_more: [
+        "\u0DC0\u0DD0\u0DA9\u0DD2\u0DAF\u0DD4\u0DBB \u0D9A\u0DD2\u0DBA\u0DC0\u0DB1\u0DCA\u0DB1",
+        "read more",
+        "\u0BAE\u0BC7\u0BB2\u0BC1\u0BAE\u0BCD \u0BAA\u0B9F\u0BBF\u0B95\u0BCD\u0B95"
+      ]
+    };
+    css$2 = { code: ".s-DkLwbhZttZVG{}", map: null };
+    Content = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $_lang, $$unsubscribe__lang;
+      validate_store(_lang, "_lang");
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let { data } = $$props;
+      let { contentField } = $$props;
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+        $$bindings.data(data);
+      if ($$props.contentField === void 0 && $$bindings.contentField && contentField !== void 0)
+        $$bindings.contentField(contentField);
+      $$result.css.add(css$2);
+      $$unsubscribe__lang();
+      return `
+
+
+<div class="${"s-DkLwbhZttZVG"}">
+    <!-- HTML_TAG_START -->${data[contentField][data._viewOriginal ? 3 : $_lang]}<!-- HTML_TAG_END -->  
+</div>`;
+    });
+    css$12 = {
+      code: ".preview-image.s-Aln3qbhUrjzf{background-image:var(--url);background-color:#7b7b7b;height:var(--theme-previewheight);width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;border-radius:var(--s3px);margin-top:var(--theme-cardseparationhalf);filter:grayscale(0.6)}.preview-container.s-Aln3qbhUrjzf{position:relative}.preview-overlay.s-Aln3qbhUrjzf{position:absolute;top:0;left:0;height:var(--theme-previewheight);width:100%;background-color:black;opacity:var(--theme-previewopacity);border-radius:3px}.s-Aln3qbhUrjzf{}",
+      map: null
+    };
+    Preview = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let contentString;
+      let images;
+      let $_lang, $$unsubscribe__lang;
+      validate_store(_lang, "_lang");
+      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
+      let { data } = $$props;
+      let { contentField } = $$props;
+      let { limit: limit2 } = $$props;
+      let { expanded } = $$props;
+      createEventDispatcher();
+      if (!data[contentField] == void 0) {
+        console.log(`data.${contentField} not defined, data type: ${data.type} data id: ${data.id}`);
+        data[contentField] = "";
+      }
+      let content = data[contentField];
+      let text, croppedText, croppedFlag;
+      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+        $$bindings.data(data);
+      if ($$props.contentField === void 0 && $$bindings.contentField && contentField !== void 0)
+        $$bindings.contentField(contentField);
+      if ($$props.limit === void 0 && $$bindings.limit && limit2 !== void 0)
+        $$bindings.limit(limit2);
+      if ($$props.expanded === void 0 && $$bindings.expanded && expanded !== void 0)
+        $$bindings.expanded(expanded);
+      $$result.css.add(css$12);
+      contentString = Array.isArray(content) ? content[data._viewOriginal ? 3 : $_lang] : content;
+      images = contentString.match(/src="([\w\W]+?)"/g);
+      images = images && images.map((src, _i) => {
+        return src.replace('src="', "").replace('"', "").replace("&amp;", "&");
+      });
+      text = ge(contentString).result;
+      croppedText = text.substring(0, limit2);
+      croppedFlag = text.length > limit2 || images;
+      croppedText += croppedFlag ? "..." : "";
+      $$unsubscribe__lang();
+      return `
+
+
+<div class="${"preview s-Aln3qbhUrjzf"}">${expanded ? `${validate_component(Content, "Content").$$render($$result, { data, contentField }, {}, {})}` : `<div class="${"_clickable s-Aln3qbhUrjzf"}">${escape(croppedText)}
+            ${croppedFlag ? `<span style="${"font-weight:bold; text-decoration:underline"}" class="${"s-Aln3qbhUrjzf"}">${escape(strings["read_more"][$_lang])}</span>
+                ${images ? `<div class="${"preview-container s-Aln3qbhUrjzf"}"><div class="${"preview-image s-Aln3qbhUrjzf"}" style="${"--url: url(" + escape(images[0], true) + ")"}"></div>
+                    <div class="${"preview-overlay s-Aln3qbhUrjzf"}"></div></div>` : ``}` : ``}</div>`}
+</div>`;
+    });
     tagConfig = {
       mainstream: [
         "\u0DB4\u0DCA\u200D\u0DBB\u0DB0\u0DCF\u0DB1 \u0DB0\u0DCF\u0DBB\u0DCF\u0DC0\u0DDA \u0DB4\u0DD4\u0DC0\u0DAD\u0DCA",
@@ -88861,7 +90987,7 @@ var layout_svelte_exports = {};
 __export(layout_svelte_exports, {
   default: () => _layout
 });
-var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_extension_link, import_extension_hard_break, import_chroma_js3, strings$1, css$8, Login, strings, css$7, Tiptap_editor, css$6, Html_input, css$5, Select, css$4, Form, css$3, Theme_selector, css$2, Loader, css$12, Toasts, css4, _layout;
+var import_extension_text, import_extension_bold, import_extension_italic, import_extension_strike, import_extension_bullet_list, import_extension_document, import_extension_list_item, import_extension_ordered_list, import_extension_image, import_extension_dropcursor, import_extension_paragraph, import_extension_heading, import_extension_placeholder, import_extension_link, import_extension_hard_break, import_chroma_js3, strings$1, css$8, Login, strings2, css$7, Tiptap_editor, css$6, Html_input, css$5, Select, css$4, Form, css$3, Theme_selector, css$22, Loader, css$13, Toasts, css4, _layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
     init_shims();
@@ -88871,7 +90997,7 @@ var init_layout_svelte = __esm({
     init_text_input_a12d339e();
     init_dist3();
     init_progress_svelte_svelte_type_style_lang_bb563ac3();
-    init_tags_8586509e();
+    init_tags_340d2028();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
     import_extension_bold = __toESM(require_tiptap_extension_bold_cjs(), 1);
     import_extension_italic = __toESM(require_tiptap_extension_italic_cjs(), 1);
@@ -88892,6 +91018,7 @@ var init_layout_svelte = __esm({
     init_dist4();
     init_dist5();
     import_chroma_js3 = __toESM(require_chroma(), 1);
+    init_string_strip_html_esm();
     strings$1 = {
       enter: [
         "\u0D87\u0DAD\u0DD4\u0DBD\u0DCA\u0DC0\u0DB1\u0DCA\u0DB1",
@@ -88932,10 +91059,24 @@ var init_layout_svelte = __esm({
         "\u0DB1\u0DB8 \u0D87\u0DAD\u0DD4\u0DBD\u0DAD\u0DCA \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1",
         "enter name",
         "\u0BAA\u0BC6\u0BAF\u0BB0\u0BC8 \u0B89\u0BB3\u0BCD\u0BB3\u0BBF\u0B9F\u0BC1\u0B95"
+      ],
+      privacy_policy: [
+        `<b>\u0DBB\u0DC4\u0DC3\u0DCA\u200D\u0DBA\u0DAD\u0DCF \u0DB4\u0DCA\u200D\u0DBB\u0DAD\u0DD2\u0DB4\u0DAD\u0DCA\u0DAD\u0DD2\u0DBA:</b><br><br>
+        \u0D85\u0DB4\u0DD2 \u0D94\u0DB6\u0D9C\u0DDA \u0DC3\u0DB4\u0DBA\u0DCF \u0D87\u0DAD\u0DD2 \u0DB1\u0DB8 \u0DC3\u0DC4 \u0DC0\u0DD2\u0DAF\u0DCA\u200D\u0DBA\u0DD4\u0DAD\u0DCA \u0DAD\u0DD0\u0DB4\u0DD1\u0DBD \u0DC4\u0DD0\u0DBB \u0DC0\u0DD9\u0DB1\u0DAD\u0DCA \u0D9A\u0DD2\u0DC3\u0DD2\u0DAF\u0DD4 \u0DAD\u0DDC\u0DBB\u0DAD\u0DD4\u0DBB\u0D9A\u0DCA \u0DBB\u0DD0\u0DC3\u0DCA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8 \u0DC4\u0DDD \u0D9C\u0DB6\u0DA9\u0DCF \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8 \u0DB1\u0DDC\u0D9A\u0DBB\u0DB8\u0DD4.<br>
+        \u0DB8\u0DD9\u0DB8 \u0DAD\u0DDC\u0DBB\u0DAD\u0DD4\u0DBB\u0DD4 \u0D86\u0DBB\u0D9A\u0DCA\u0DC2\u0DD2\u0DAD\u0DC0 \u0D9C\u0DB6\u0DA9\u0DCF \u0D9A\u0DBB \u0D87\u0DAD\u0DD2 \u0D85\u0DAD\u0DBB \u0DC0\u0DD9\u0DB1\u0DAD\u0DCA \u0D9A\u0DD2\u0DC3\u0DD2\u0DAF\u0DD4 \u0D9A\u0DA7\u0DBA\u0DD4\u0DAD\u0DCA\u0DAD\u0D9A\u0DCA \u0DC3\u0DB3\u0DC4\u0DCF \u0DB7\u0DCF\u0DC0\u0DD2\u0DAD\u0DCF \u0DB1\u0DDC\u0D9A\u0DBB\u0DB1 \u0DB6\u0DC0\u0DA7 \u0D85\u0DB4\u0DD2 \u0DC3\u0DC4\u0DAD\u0DD2\u0D9A \u0DC0\u0DD9\u0DB8\u0DD4.<br><br>
+        \u0D94\u0DB6\u0DA7 \u0D94\u0DB6\u0D9C\u0DDA \u0DC0\u0DD2\u0DAF\u0DCA\u200D\u0DBA\u0DD4\u0DAD\u0DCA \u0DAD\u0DD0\u0DB4\u0DD1\u0DBD \u0DC3\u0DD0\u0D9F\u0DC0\u0DD3\u0DB8\u0DA7 \u0D85\u0DC0\u0DC1\u0DCA\u200D\u0DBA \u0DB1\u0DB8\u0DCA, \u0D94\u0DB6\u0DA7 facebook \u0DB4\u0DD4\u0DBB\u0DB1\u0DBA \u0DC0\u0DD3\u0DB8\u0DDA \u0D9A\u0DCA\u200D\u0DBB\u0DB8\u0DBA \u0DB7\u0DCF\u0DC0\u0DD2\u0DAD\u0DCF \u0D9A\u0DBB, 'edit access' \u0D9A\u0DCA\u0DBD\u0DD2\u0D9A\u0DCA \u0D9A\u0DBB \u0D94\u0DB6\u0D9C\u0DDA \u0DC0\u0DD2\u0DAF\u0DCA\u200D\u0DBA\u0DD4\u0DAD\u0DCA \u0DAD\u0DD0\u0DB4\u0DD1\u0DBD \u0DC3\u0DD0\u0D9F\u0DC0\u0DD2\u0DBA \u0DC4\u0DD0\u0D9A.`,
+        `<b>privacy policy:</b><br><br>
+        we do not collect or store any information other your provided name and email.<br>
+        we gurantee that this information is stored securely and will not be used for any other purpose.<br><br>
+        if you wish to hide your email, you can use the facebook sign-in method, click 'edit access' and hide your email.`,
+        `<b>\u0BA4\u0BA9\u0BBF\u0BAF\u0BC1\u0BB0\u0BBF\u0BAE\u0BC8\u0B95\u0BCD \u0B95\u0BCA\u0BB3\u0BCD\u0B95\u0BC8:</b><br><br>
+        \u0BA8\u0BC0\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0BB5\u0BB4\u0B99\u0BCD\u0B95\u0BBF\u0BAF \u0BAA\u0BC6\u0BAF\u0BB0\u0BCD \u0BAE\u0BB1\u0BCD\u0BB1\u0BC1\u0BAE\u0BCD \u0BAE\u0BBF\u0BA9\u0BCD\u0BA9\u0B9E\u0BCD\u0B9A\u0BB2\u0BC8 \u0BA8\u0BBE\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0B9A\u0BC7\u0B95\u0BB0\u0BBF\u0B95\u0BCD\u0B95\u0BB5\u0BCB \u0B85\u0BB2\u0BCD\u0BB2\u0BA4\u0BC1 \u0B9A\u0BC7\u0BAE\u0BBF\u0B95\u0BCD\u0B95\u0BB5\u0BCB \u0BAE\u0BBE\u0B9F\u0BCD\u0B9F\u0BCB\u0BAE\u0BCD.<br>
+        \u0B87\u0BA8\u0BCD\u0BA4\u0BA4\u0BCD \u0BA4\u0B95\u0BB5\u0BB2\u0BCD \u0BAA\u0BBE\u0BA4\u0BC1\u0B95\u0BBE\u0BAA\u0BCD\u0BAA\u0BBE\u0B95\u0B9A\u0BCD \u0B9A\u0BC7\u0BAE\u0BBF\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BCD\u0B9F\u0BC1, \u0BB5\u0BC7\u0BB1\u0BC1 \u0B8E\u0BA8\u0BCD\u0BA4 \u0BA8\u0BCB\u0B95\u0BCD\u0B95\u0BA4\u0BCD\u0BA4\u0BBF\u0BB1\u0BCD\u0B95\u0BBE\u0B95\u0BB5\u0BC1\u0BAE\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4\u0BAA\u0BCD\u0BAA\u0B9F\u0BBE\u0BA4\u0BC1 \u0B8E\u0BA9\u0BCD\u0BAA\u0BA4\u0BB1\u0BCD\u0B95\u0BC1 \u0BA8\u0BBE\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0B89\u0BA4\u0BCD\u0BA4\u0BB0\u0BB5\u0BBE\u0BA4\u0BAE\u0BCD \u0B85\u0BB3\u0BBF\u0B95\u0BCD\u0B95\u0BBF\u0BB1\u0BCB\u0BAE\u0BCD.<br><br>
+        \u0B89\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0BAE\u0BBF\u0BA9\u0BCD\u0BA9\u0B9E\u0BCD\u0B9A\u0BB2\u0BC8 \u0BAE\u0BB1\u0BC8\u0B95\u0BCD\u0B95 \u0BB5\u0BBF\u0BB0\u0BC1\u0BAE\u0BCD\u0BAA\u0BBF\u0BA9\u0BBE\u0BB2\u0BCD, \u0BA8\u0BC0\u0B99\u0BCD\u0B95\u0BB3\u0BCD facebook \u0B89\u0BB3\u0BCD\u0BA8\u0BC1\u0BB4\u0BC8\u0BB5\u0BC1 \u0BAE\u0BC1\u0BB1\u0BC8\u0BAF\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4\u0BB2\u0BBE\u0BAE\u0BCD, '\u0B8E\u0B9F\u0BBF\u0B9F\u0BCD \u0B85\u0B95\u0BCD\u0B9A\u0BB8\u0BCD' \u0B8E\u0BA9\u0BCD\u0BAA\u0BA4\u0BC8\u0B95\u0BCD \u0B95\u0BBF\u0BB3\u0BBF\u0B95\u0BCD \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BC1 \u0B89\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0BAE\u0BBF\u0BA9\u0BCD\u0BA9\u0B9E\u0BCD\u0B9A\u0BB2\u0BC8 \u0BAE\u0BB1\u0BC8\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD.`
       ]
     };
     css$8 = {
-      code: ".overlay.s-yeySwwqjZFKq{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;width:100vw;height:100vh;background-color:rgba(0,0,0,0.9)}.overlay.s-yeySwwqjZFKq:hover{cursor:ne-resize}.login_c.s-yeySwwqjZFKq{width:var(--s340px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c;cursor:auto}.login.s-yeySwwqjZFKq{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s20px);width:100%;height:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}.fb-button.s-yeySwwqjZFKq{display:flex;align-items:center;justify-content:center;height:var(--s45px);width:100%;border-radius:var(--s5px);padding:var(--s5px);background-color:var(--button);cursor:pointer;color:white;font-size:1.1rem;font-weight:bold;font-family:'Roboto', sans-serif;font-size:var(--s13px);background-color:#0a82ec}.fa-facebook-square.s-yeySwwqjZFKq{font-size:1.3rem;margin-right:var(--s10px)}.preloader.s-yeySwwqjZFKq{position:relative;width:calc(90% - var(--s5px))}.s-yeySwwqjZFKq{}",
+      code: ".overlay.s-yeySwwqjZFKq{display:flex;position:fixed;z-index:10000;width:100vw;min-height:100vh;max-height:100vh;overflow-y:scroll;background-color:rgba(0,0,0,0.9)}.overlay.s-yeySwwqjZFKq:hover{cursor:ne-resize}.login_c.s-yeySwwqjZFKq{width:var(--s340px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c;cursor:auto;margin:auto}.login.s-yeySwwqjZFKq{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--s20px);width:100%;height:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}.fb-button.s-yeySwwqjZFKq{display:flex;align-items:center;justify-content:center;height:var(--s45px);width:100%;border-radius:var(--s5px);padding:var(--s5px);background-color:var(--button);cursor:pointer;color:white;font-size:1.1rem;font-weight:bold;font-family:'Roboto', sans-serif;font-size:var(--s13px);background-color:#0a82ec}.fa-facebook-square.s-yeySwwqjZFKq{font-size:1.3rem;margin-right:var(--s10px)}.preloader.s-yeySwwqjZFKq{position:relative;width:calc(100% - var(--s5px))}.s-yeySwwqjZFKq{}",
       map: null
     };
     Login = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -88946,6 +91087,7 @@ var init_layout_svelte = __esm({
       let adminLogin = false;
       let loginProgress = false;
       let forceEnterName = false;
+      let expandPrivacyPolicy = false;
       let user2 = {};
       let emailError, nameError, passwordError, repeatPasswordError;
       let signinOrSignup = 0;
@@ -89068,6 +91210,7 @@ var init_layout_svelte = __esm({
         nameError = false;
         passwordError = false;
         repeatPasswordError = false;
+        expandPrivacyPolicy = false;
         signinOrSignup = 0;
       };
       $$result.css.add(css$8);
@@ -89180,9 +91323,34 @@ var init_layout_svelte = __esm({
             <div class="${"fb-button s-yeySwwqjZFKq"}"><i class="${"fa-brands fa-facebook-square s-yeySwwqjZFKq"}"></i>
                 facebook
             </div>
-            ${``}</div></div></div>` : ``}`;
+            ${``}
+            ${validate_component(Font, "Font").$$render(
+        $$result,
+        {
+          font: 0,
+          size: 0.9,
+          color: "rgb(57, 56, 56);",
+          style: "\n                    margin-top: var(--s20px);\n                    margin-bottom: var(--s14px);"
+        },
+        {},
+        {
+          default: () => {
+            return `${validate_component(Preview, "Preview").$$render(
+              $$result,
+              {
+                data: strings$1,
+                contentField: "privacy_policy",
+                limit: 60,
+                expanded: expandPrivacyPolicy
+              },
+              {},
+              {}
+            )}`;
+          }
+        }
+      )}</div></div></div>` : ``}`;
     });
-    strings = {
+    strings2 = {
       tags: [
         "\u0D85\u0DAF\u0DCF\u0DBD \u0D9A\u0DCF\u0DAB\u0DCA\u0DA9 \u0DAD\u0DDD\u0DBB\u0DB1\u0DCA\u0DB1",
         "select tags",
@@ -89328,7 +91496,7 @@ var init_layout_svelte = __esm({
 </div>`;
     });
     css$4 = {
-      code: ".overlay.s-mtBDmpwXHSHy{display:flex;position:fixed;z-index:10000;width:100vw;min-height:100vh;max-height:100vh;overflow-y:scroll;padding:var(--s50px) 0;background-color:rgba(0,0,0,0.9)}.form_c.s-mtBDmpwXHSHy{width:var(--s500px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c;margin:auto;margin-bottom:var(--s100px)}.form.s-mtBDmpwXHSHy{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--theme-cardpadding);width:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}.language-select.s-mtBDmpwXHSHy{display:flex;align-items:center;justify-content:space-between;width:90%;margin-bottom:var(--s10px)}.language.s-mtBDmpwXHSHy{display:inline-flex;width:33%}.s-mtBDmpwXHSHy{}",
+      code: ".overlay.s-mtBDmpwXHSHy{display:flex;position:fixed;z-index:10000;width:100vw;min-height:100vh;max-height:100vh;overflow-y:scroll;padding:var(--s50px) 0;background-color:rgba(0,0,0,0.9)}.form_c.s-mtBDmpwXHSHy{width:var(--s500px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c;margin:auto}.form.s-mtBDmpwXHSHy{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--theme-cardpadding);width:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}.language-select.s-mtBDmpwXHSHy{display:flex;align-items:center;justify-content:space-between;width:90%;margin-bottom:var(--s10px)}.language.s-mtBDmpwXHSHy{display:inline-flex;width:33%}.s-mtBDmpwXHSHy{}",
       map: null
     };
     Form = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -89586,7 +91754,7 @@ var init_layout_svelte = __esm({
             ${validate_component(Select, "Select").$$render(
         $$result,
         {
-          placeholder: strings["tags"][$_lang],
+          placeholder: strings2["tags"][$_lang],
           options: unselectedTagNames.map((tag) => TAGS[tag]),
           error: tagError
         },
@@ -89598,7 +91766,7 @@ var init_layout_svelte = __esm({
         {
           form: true,
           onclick: editPost,
-          text: strings["save"]
+          text: strings2["save"]
         },
         {},
         {}
@@ -89608,7 +91776,7 @@ var init_layout_svelte = __esm({
         {
           form: true,
           onclick: deletePost,
-          text: strings[confirmDelete ? "confirm_delete" : "delete"]
+          text: strings2[confirmDelete ? "confirm_delete" : "delete"]
         },
         {},
         {}
@@ -89660,7 +91828,7 @@ var init_layout_svelte = __esm({
       })}
 </span>`;
     });
-    css$2 = {
+    css$22 = {
       code: ".loader.s-o47rfqMMGVwP{position:fixed;top:0;left:0;z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background-color:white}.title.s-o47rfqMMGVwP{padding:10px}.progress-bar.s-o47rfqMMGVwP{position:relative;width:90%}.s-o47rfqMMGVwP{}",
       map: null
     };
@@ -89683,7 +91851,7 @@ var init_layout_svelte = __esm({
       $$unsubscribe__appContentReady = subscribe(_appContentReady, (value) => value);
       validate_store(_redirected, "_redirected");
       $$unsubscribe__redirected = subscribe(_redirected, (value) => value);
-      $$result.css.add(css$2);
+      $$result.css.add(css$22);
       $$unsubscribe__authStateChecked();
       $$unsubscribe__scaledPixelsReady();
       $$unsubscribe__themeSizesReady();
@@ -89693,7 +91861,7 @@ var init_layout_svelte = __esm({
       return `${`<div class="${"loader s-o47rfqMMGVwP"}"><div class="${"title s-o47rfqMMGVwP"}"><img src="${"/logo-tiny.png"}" alt="${"\u0D85\u0DBB\u0D9C\u0DBD\u0DBA.online"}" class="${"s-o47rfqMMGVwP"}"></div>
     <div class="${"progress-bar s-o47rfqMMGVwP"}">${validate_component(Preloading_indicator, "PreloadingIndicator").$$render($$result, {}, {}, {})}</div></div>`}`;
     });
-    css$12 = {
+    css$13 = {
       code: ".toast-container.s-F3BFPhrY-hZv{position:fixed;bottom:0;left:0;display:flex;justify-content:center;width:100vw;z-index:100}.event.s-F3BFPhrY-hZv{top:var(--eventy);left:var(--eventx);bottom:auto;width:auto;display:flex;justify-content:center}.toast.s-F3BFPhrY-hZv{display:inline-flex;max-width:var(--theme-columnwidth);padding:var(--s3px);border-radius:var(--s3px);border:var(--s1px) solid rgb(114, 114, 114);color:black;background-color:#ffffff;margin-bottom:var(--s5px);text-align:center}.s-F3BFPhrY-hZv{}",
       map: null
     };
@@ -89718,7 +91886,7 @@ var init_layout_svelte = __esm({
         );
       });
       onDestroy(() => showToastEvent.unsubscribe());
-      $$result.css.add(css$12);
+      $$result.css.add(css$13);
       $$unsubscribe__lang();
       return `
 
@@ -89824,9 +91992,9 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-6bae1c75.js";
-    imports = ["_app/immutable/pages/__layout.svelte-6bae1c75.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/text-input-b22cc3e4.js", "_app/immutable/chunks/progress-be54f2dc.js", "_app/immutable/chunks/tags-d7f721e3.js", "_app/immutable/chunks/select-7a4d7384.js"];
-    stylesheets = ["_app/immutable/assets/__layout-82676c06.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/progress-6061950c.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/select-77dda6f0.css"];
+    file2 = "_app/immutable/pages/__layout.svelte-f175260c.js";
+    imports = ["_app/immutable/pages/__layout.svelte-f175260c.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/text-input-eec74927.js", "_app/immutable/chunks/progress-d186047a.js", "_app/immutable/chunks/tags-7596142e.js", "_app/immutable/chunks/select-71c446ae.js"];
+    stylesheets = ["_app/immutable/assets/__layout-1a81adca.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/progress-6061950c.css", "_app/immutable/assets/tags-0c886ac3.css", "_app/immutable/assets/select-77dda6f0.css"];
   }
 });
 
@@ -89884,2067 +92052,17 @@ var init__2 = __esm({
   }
 });
 
-// node_modules/lodash.isplainobject/index.js
-var require_lodash2 = __commonJS({
-  "node_modules/lodash.isplainobject/index.js"(exports2, module2) {
-    init_shims();
-    var objectTag = "[object Object]";
-    function isHostObject(value) {
-      var result = false;
-      if (value != null && typeof value.toString != "function") {
-        try {
-          result = !!(value + "");
-        } catch (e2) {
-        }
-      }
-      return result;
-    }
-    function overArg(func, transform) {
-      return function(arg) {
-        return func(transform(arg));
-      };
-    }
-    var funcProto = Function.prototype;
-    var objectProto = Object.prototype;
-    var funcToString = funcProto.toString;
-    var hasOwnProperty = objectProto.hasOwnProperty;
-    var objectCtorString = funcToString.call(Object);
-    var objectToString = objectProto.toString;
-    var getPrototype = overArg(Object.getPrototypeOf, Object);
-    function isObjectLike(value) {
-      return !!value && typeof value == "object";
-    }
-    function isPlainObject2(value) {
-      if (!isObjectLike(value) || objectToString.call(value) != objectTag || isHostObject(value)) {
-        return false;
-      }
-      var proto = getPrototype(value);
-      if (proto === null) {
-        return true;
-      }
-      var Ctor = hasOwnProperty.call(proto, "constructor") && proto.constructor;
-      return typeof Ctor == "function" && Ctor instanceof Ctor && funcToString.call(Ctor) == objectCtorString;
-    }
-    module2.exports = isPlainObject2;
-  }
-});
-
-// node_modules/lodash.trim/index.js
-var require_lodash3 = __commonJS({
-  "node_modules/lodash.trim/index.js"(exports2, module2) {
-    init_shims();
-    var INFINITY = 1 / 0;
-    var symbolTag = "[object Symbol]";
-    var reTrim = /^\s+|\s+$/g;
-    var rsAstralRange = "\\ud800-\\udfff";
-    var rsComboMarksRange = "\\u0300-\\u036f\\ufe20-\\ufe23";
-    var rsComboSymbolsRange = "\\u20d0-\\u20f0";
-    var rsVarRange = "\\ufe0e\\ufe0f";
-    var rsAstral = "[" + rsAstralRange + "]";
-    var rsCombo = "[" + rsComboMarksRange + rsComboSymbolsRange + "]";
-    var rsFitz = "\\ud83c[\\udffb-\\udfff]";
-    var rsModifier = "(?:" + rsCombo + "|" + rsFitz + ")";
-    var rsNonAstral = "[^" + rsAstralRange + "]";
-    var rsRegional = "(?:\\ud83c[\\udde6-\\uddff]){2}";
-    var rsSurrPair = "[\\ud800-\\udbff][\\udc00-\\udfff]";
-    var rsZWJ = "\\u200d";
-    var reOptMod = rsModifier + "?";
-    var rsOptVar = "[" + rsVarRange + "]?";
-    var rsOptJoin = "(?:" + rsZWJ + "(?:" + [rsNonAstral, rsRegional, rsSurrPair].join("|") + ")" + rsOptVar + reOptMod + ")*";
-    var rsSeq = rsOptVar + reOptMod + rsOptJoin;
-    var rsSymbol = "(?:" + [rsNonAstral + rsCombo + "?", rsCombo, rsRegional, rsSurrPair, rsAstral].join("|") + ")";
-    var reUnicode = RegExp(rsFitz + "(?=" + rsFitz + ")|" + rsSymbol + rsSeq, "g");
-    var reHasUnicode = RegExp("[" + rsZWJ + rsAstralRange + rsComboMarksRange + rsComboSymbolsRange + rsVarRange + "]");
-    var freeGlobal = typeof global == "object" && global && global.Object === Object && global;
-    var freeSelf = typeof self == "object" && self && self.Object === Object && self;
-    var root = freeGlobal || freeSelf || Function("return this")();
-    function asciiToArray(string) {
-      return string.split("");
-    }
-    function baseFindIndex(array2, predicate, fromIndex, fromRight) {
-      var length = array2.length, index11 = fromIndex + (fromRight ? 1 : -1);
-      while (fromRight ? index11-- : ++index11 < length) {
-        if (predicate(array2[index11], index11, array2)) {
-          return index11;
-        }
-      }
-      return -1;
-    }
-    function baseIndexOf(array2, value, fromIndex) {
-      if (value !== value) {
-        return baseFindIndex(array2, baseIsNaN, fromIndex);
-      }
-      var index11 = fromIndex - 1, length = array2.length;
-      while (++index11 < length) {
-        if (array2[index11] === value) {
-          return index11;
-        }
-      }
-      return -1;
-    }
-    function baseIsNaN(value) {
-      return value !== value;
-    }
-    function charsStartIndex(strSymbols, chrSymbols) {
-      var index11 = -1, length = strSymbols.length;
-      while (++index11 < length && baseIndexOf(chrSymbols, strSymbols[index11], 0) > -1) {
-      }
-      return index11;
-    }
-    function charsEndIndex(strSymbols, chrSymbols) {
-      var index11 = strSymbols.length;
-      while (index11-- && baseIndexOf(chrSymbols, strSymbols[index11], 0) > -1) {
-      }
-      return index11;
-    }
-    function hasUnicode(string) {
-      return reHasUnicode.test(string);
-    }
-    function stringToArray(string) {
-      return hasUnicode(string) ? unicodeToArray(string) : asciiToArray(string);
-    }
-    function unicodeToArray(string) {
-      return string.match(reUnicode) || [];
-    }
-    var objectProto = Object.prototype;
-    var objectToString = objectProto.toString;
-    var Symbol2 = root.Symbol;
-    var symbolProto = Symbol2 ? Symbol2.prototype : void 0;
-    var symbolToString = symbolProto ? symbolProto.toString : void 0;
-    function baseSlice(array2, start2, end) {
-      var index11 = -1, length = array2.length;
-      if (start2 < 0) {
-        start2 = -start2 > length ? 0 : length + start2;
-      }
-      end = end > length ? length : end;
-      if (end < 0) {
-        end += length;
-      }
-      length = start2 > end ? 0 : end - start2 >>> 0;
-      start2 >>>= 0;
-      var result = Array(length);
-      while (++index11 < length) {
-        result[index11] = array2[index11 + start2];
-      }
-      return result;
-    }
-    function baseToString(value) {
-      if (typeof value == "string") {
-        return value;
-      }
-      if (isSymbol(value)) {
-        return symbolToString ? symbolToString.call(value) : "";
-      }
-      var result = value + "";
-      return result == "0" && 1 / value == -INFINITY ? "-0" : result;
-    }
-    function castSlice(array2, start2, end) {
-      var length = array2.length;
-      end = end === void 0 ? length : end;
-      return !start2 && end >= length ? array2 : baseSlice(array2, start2, end);
-    }
-    function isObjectLike(value) {
-      return !!value && typeof value == "object";
-    }
-    function isSymbol(value) {
-      return typeof value == "symbol" || isObjectLike(value) && objectToString.call(value) == symbolTag;
-    }
-    function toString(value) {
-      return value == null ? "" : baseToString(value);
-    }
-    function trim(string, chars2, guard) {
-      string = toString(string);
-      if (string && (guard || chars2 === void 0)) {
-        return string.replace(reTrim, "");
-      }
-      if (!string || !(chars2 = baseToString(chars2))) {
-        return string;
-      }
-      var strSymbols = stringToArray(string), chrSymbols = stringToArray(chars2), start2 = charsStartIndex(strSymbols, chrSymbols), end = charsEndIndex(strSymbols, chrSymbols) + 1;
-      return castSlice(strSymbols, start2, end).join("");
-    }
-    module2.exports = trim;
-  }
-});
-
-// node_modules/lodash.without/index.js
-var require_lodash4 = __commonJS({
-  "node_modules/lodash.without/index.js"(exports2, module2) {
-    init_shims();
-    var LARGE_ARRAY_SIZE = 200;
-    var HASH_UNDEFINED = "__lodash_hash_undefined__";
-    var MAX_SAFE_INTEGER = 9007199254740991;
-    var funcTag = "[object Function]";
-    var genTag = "[object GeneratorFunction]";
-    var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
-    var reIsHostCtor = /^\[object .+?Constructor\]$/;
-    var freeGlobal = typeof global == "object" && global && global.Object === Object && global;
-    var freeSelf = typeof self == "object" && self && self.Object === Object && self;
-    var root = freeGlobal || freeSelf || Function("return this")();
-    function apply(func, thisArg, args) {
-      switch (args.length) {
-        case 0:
-          return func.call(thisArg);
-        case 1:
-          return func.call(thisArg, args[0]);
-        case 2:
-          return func.call(thisArg, args[0], args[1]);
-        case 3:
-          return func.call(thisArg, args[0], args[1], args[2]);
-      }
-      return func.apply(thisArg, args);
-    }
-    function arrayIncludes(array2, value) {
-      var length = array2 ? array2.length : 0;
-      return !!length && baseIndexOf(array2, value, 0) > -1;
-    }
-    function arrayIncludesWith(array2, value, comparator) {
-      var index11 = -1, length = array2 ? array2.length : 0;
-      while (++index11 < length) {
-        if (comparator(value, array2[index11])) {
-          return true;
-        }
-      }
-      return false;
-    }
-    function arrayMap(array2, iteratee) {
-      var index11 = -1, length = array2 ? array2.length : 0, result = Array(length);
-      while (++index11 < length) {
-        result[index11] = iteratee(array2[index11], index11, array2);
-      }
-      return result;
-    }
-    function baseFindIndex(array2, predicate, fromIndex, fromRight) {
-      var length = array2.length, index11 = fromIndex + (fromRight ? 1 : -1);
-      while (fromRight ? index11-- : ++index11 < length) {
-        if (predicate(array2[index11], index11, array2)) {
-          return index11;
-        }
-      }
-      return -1;
-    }
-    function baseIndexOf(array2, value, fromIndex) {
-      if (value !== value) {
-        return baseFindIndex(array2, baseIsNaN, fromIndex);
-      }
-      var index11 = fromIndex - 1, length = array2.length;
-      while (++index11 < length) {
-        if (array2[index11] === value) {
-          return index11;
-        }
-      }
-      return -1;
-    }
-    function baseIsNaN(value) {
-      return value !== value;
-    }
-    function baseUnary(func) {
-      return function(value) {
-        return func(value);
-      };
-    }
-    function cacheHas(cache, key2) {
-      return cache.has(key2);
-    }
-    function getValue(object, key2) {
-      return object == null ? void 0 : object[key2];
-    }
-    function isHostObject(value) {
-      var result = false;
-      if (value != null && typeof value.toString != "function") {
-        try {
-          result = !!(value + "");
-        } catch (e2) {
-        }
-      }
-      return result;
-    }
-    var arrayProto = Array.prototype;
-    var funcProto = Function.prototype;
-    var objectProto = Object.prototype;
-    var coreJsData = root["__core-js_shared__"];
-    var maskSrcKey = function() {
-      var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || "");
-      return uid ? "Symbol(src)_1." + uid : "";
-    }();
-    var funcToString = funcProto.toString;
-    var hasOwnProperty = objectProto.hasOwnProperty;
-    var objectToString = objectProto.toString;
-    var reIsNative = RegExp(
-      "^" + funcToString.call(hasOwnProperty).replace(reRegExpChar, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$"
-    );
-    var splice = arrayProto.splice;
-    var nativeMax = Math.max;
-    var Map2 = getNative(root, "Map");
-    var nativeCreate = getNative(Object, "create");
-    function Hash(entries) {
-      var index11 = -1, length = entries ? entries.length : 0;
-      this.clear();
-      while (++index11 < length) {
-        var entry = entries[index11];
-        this.set(entry[0], entry[1]);
-      }
-    }
-    function hashClear() {
-      this.__data__ = nativeCreate ? nativeCreate(null) : {};
-    }
-    function hashDelete(key2) {
-      return this.has(key2) && delete this.__data__[key2];
-    }
-    function hashGet(key2) {
-      var data = this.__data__;
-      if (nativeCreate) {
-        var result = data[key2];
-        return result === HASH_UNDEFINED ? void 0 : result;
-      }
-      return hasOwnProperty.call(data, key2) ? data[key2] : void 0;
-    }
-    function hashHas(key2) {
-      var data = this.__data__;
-      return nativeCreate ? data[key2] !== void 0 : hasOwnProperty.call(data, key2);
-    }
-    function hashSet(key2, value) {
-      var data = this.__data__;
-      data[key2] = nativeCreate && value === void 0 ? HASH_UNDEFINED : value;
-      return this;
-    }
-    Hash.prototype.clear = hashClear;
-    Hash.prototype["delete"] = hashDelete;
-    Hash.prototype.get = hashGet;
-    Hash.prototype.has = hashHas;
-    Hash.prototype.set = hashSet;
-    function ListCache(entries) {
-      var index11 = -1, length = entries ? entries.length : 0;
-      this.clear();
-      while (++index11 < length) {
-        var entry = entries[index11];
-        this.set(entry[0], entry[1]);
-      }
-    }
-    function listCacheClear() {
-      this.__data__ = [];
-    }
-    function listCacheDelete(key2) {
-      var data = this.__data__, index11 = assocIndexOf(data, key2);
-      if (index11 < 0) {
-        return false;
-      }
-      var lastIndex = data.length - 1;
-      if (index11 == lastIndex) {
-        data.pop();
-      } else {
-        splice.call(data, index11, 1);
-      }
-      return true;
-    }
-    function listCacheGet(key2) {
-      var data = this.__data__, index11 = assocIndexOf(data, key2);
-      return index11 < 0 ? void 0 : data[index11][1];
-    }
-    function listCacheHas(key2) {
-      return assocIndexOf(this.__data__, key2) > -1;
-    }
-    function listCacheSet(key2, value) {
-      var data = this.__data__, index11 = assocIndexOf(data, key2);
-      if (index11 < 0) {
-        data.push([key2, value]);
-      } else {
-        data[index11][1] = value;
-      }
-      return this;
-    }
-    ListCache.prototype.clear = listCacheClear;
-    ListCache.prototype["delete"] = listCacheDelete;
-    ListCache.prototype.get = listCacheGet;
-    ListCache.prototype.has = listCacheHas;
-    ListCache.prototype.set = listCacheSet;
-    function MapCache(entries) {
-      var index11 = -1, length = entries ? entries.length : 0;
-      this.clear();
-      while (++index11 < length) {
-        var entry = entries[index11];
-        this.set(entry[0], entry[1]);
-      }
-    }
-    function mapCacheClear() {
-      this.__data__ = {
-        "hash": new Hash(),
-        "map": new (Map2 || ListCache)(),
-        "string": new Hash()
-      };
-    }
-    function mapCacheDelete(key2) {
-      return getMapData(this, key2)["delete"](key2);
-    }
-    function mapCacheGet(key2) {
-      return getMapData(this, key2).get(key2);
-    }
-    function mapCacheHas(key2) {
-      return getMapData(this, key2).has(key2);
-    }
-    function mapCacheSet(key2, value) {
-      getMapData(this, key2).set(key2, value);
-      return this;
-    }
-    MapCache.prototype.clear = mapCacheClear;
-    MapCache.prototype["delete"] = mapCacheDelete;
-    MapCache.prototype.get = mapCacheGet;
-    MapCache.prototype.has = mapCacheHas;
-    MapCache.prototype.set = mapCacheSet;
-    function SetCache(values) {
-      var index11 = -1, length = values ? values.length : 0;
-      this.__data__ = new MapCache();
-      while (++index11 < length) {
-        this.add(values[index11]);
-      }
-    }
-    function setCacheAdd(value) {
-      this.__data__.set(value, HASH_UNDEFINED);
-      return this;
-    }
-    function setCacheHas(value) {
-      return this.__data__.has(value);
-    }
-    SetCache.prototype.add = SetCache.prototype.push = setCacheAdd;
-    SetCache.prototype.has = setCacheHas;
-    function assocIndexOf(array2, key2) {
-      var length = array2.length;
-      while (length--) {
-        if (eq(array2[length][0], key2)) {
-          return length;
-        }
-      }
-      return -1;
-    }
-    function baseDifference(array2, values, iteratee, comparator) {
-      var index11 = -1, includes = arrayIncludes, isCommon = true, length = array2.length, result = [], valuesLength = values.length;
-      if (!length) {
-        return result;
-      }
-      if (iteratee) {
-        values = arrayMap(values, baseUnary(iteratee));
-      }
-      if (comparator) {
-        includes = arrayIncludesWith;
-        isCommon = false;
-      } else if (values.length >= LARGE_ARRAY_SIZE) {
-        includes = cacheHas;
-        isCommon = false;
-        values = new SetCache(values);
-      }
-      outer:
-        while (++index11 < length) {
-          var value = array2[index11], computed = iteratee ? iteratee(value) : value;
-          value = comparator || value !== 0 ? value : 0;
-          if (isCommon && computed === computed) {
-            var valuesIndex = valuesLength;
-            while (valuesIndex--) {
-              if (values[valuesIndex] === computed) {
-                continue outer;
-              }
-            }
-            result.push(value);
-          } else if (!includes(values, computed, comparator)) {
-            result.push(value);
-          }
-        }
-      return result;
-    }
-    function baseIsNative(value) {
-      if (!isObject3(value) || isMasked(value)) {
-        return false;
-      }
-      var pattern = isFunction(value) || isHostObject(value) ? reIsNative : reIsHostCtor;
-      return pattern.test(toSource(value));
-    }
-    function baseRest(func, start2) {
-      start2 = nativeMax(start2 === void 0 ? func.length - 1 : start2, 0);
-      return function() {
-        var args = arguments, index11 = -1, length = nativeMax(args.length - start2, 0), array2 = Array(length);
-        while (++index11 < length) {
-          array2[index11] = args[start2 + index11];
-        }
-        index11 = -1;
-        var otherArgs = Array(start2 + 1);
-        while (++index11 < start2) {
-          otherArgs[index11] = args[index11];
-        }
-        otherArgs[start2] = array2;
-        return apply(func, this, otherArgs);
-      };
-    }
-    function getMapData(map, key2) {
-      var data = map.__data__;
-      return isKeyable(key2) ? data[typeof key2 == "string" ? "string" : "hash"] : data.map;
-    }
-    function getNative(object, key2) {
-      var value = getValue(object, key2);
-      return baseIsNative(value) ? value : void 0;
-    }
-    function isKeyable(value) {
-      var type = typeof value;
-      return type == "string" || type == "number" || type == "symbol" || type == "boolean" ? value !== "__proto__" : value === null;
-    }
-    function isMasked(func) {
-      return !!maskSrcKey && maskSrcKey in func;
-    }
-    function toSource(func) {
-      if (func != null) {
-        try {
-          return funcToString.call(func);
-        } catch (e2) {
-        }
-        try {
-          return func + "";
-        } catch (e2) {
-        }
-      }
-      return "";
-    }
-    var without = baseRest(function(array2, values) {
-      return isArrayLikeObject(array2) ? baseDifference(array2, values) : [];
-    });
-    function eq(value, other) {
-      return value === other || value !== value && other !== other;
-    }
-    function isArrayLike(value) {
-      return value != null && isLength(value.length) && !isFunction(value);
-    }
-    function isArrayLikeObject(value) {
-      return isObjectLike(value) && isArrayLike(value);
-    }
-    function isFunction(value) {
-      var tag = isObject3(value) ? objectToString.call(value) : "";
-      return tag == funcTag || tag == genTag;
-    }
-    function isLength(value) {
-      return typeof value == "number" && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
-    }
-    function isObject3(value) {
-      var type = typeof value;
-      return !!value && (type == "object" || type == "function");
-    }
-    function isObjectLike(value) {
-      return !!value && typeof value == "object";
-    }
-    module2.exports = without;
-  }
-});
-
-// node_modules/html-entities/lib/named-references.js
-var require_named_references = __commonJS({
-  "node_modules/html-entities/lib/named-references.js"(exports2) {
-    "use strict";
-    init_shims();
-    Object.defineProperty(exports2, "__esModule", { value: true });
-    exports2.bodyRegExps = { xml: /&(?:#\d+|#[xX][\da-fA-F]+|[0-9a-zA-Z]+);?/g, html4: /&(?:nbsp|iexcl|cent|pound|curren|yen|brvbar|sect|uml|copy|ordf|laquo|not|shy|reg|macr|deg|plusmn|sup2|sup3|acute|micro|para|middot|cedil|sup1|ordm|raquo|frac14|frac12|frac34|iquest|Agrave|Aacute|Acirc|Atilde|Auml|Aring|AElig|Ccedil|Egrave|Eacute|Ecirc|Euml|Igrave|Iacute|Icirc|Iuml|ETH|Ntilde|Ograve|Oacute|Ocirc|Otilde|Ouml|times|Oslash|Ugrave|Uacute|Ucirc|Uuml|Yacute|THORN|szlig|agrave|aacute|acirc|atilde|auml|aring|aelig|ccedil|egrave|eacute|ecirc|euml|igrave|iacute|icirc|iuml|eth|ntilde|ograve|oacute|ocirc|otilde|ouml|divide|oslash|ugrave|uacute|ucirc|uuml|yacute|thorn|yuml|quot|amp|lt|gt|#\d+|#[xX][\da-fA-F]+|[0-9a-zA-Z]+);?/g, html5: /&(?:AElig|AMP|Aacute|Acirc|Agrave|Aring|Atilde|Auml|COPY|Ccedil|ETH|Eacute|Ecirc|Egrave|Euml|GT|Iacute|Icirc|Igrave|Iuml|LT|Ntilde|Oacute|Ocirc|Ograve|Oslash|Otilde|Ouml|QUOT|REG|THORN|Uacute|Ucirc|Ugrave|Uuml|Yacute|aacute|acirc|acute|aelig|agrave|amp|aring|atilde|auml|brvbar|ccedil|cedil|cent|copy|curren|deg|divide|eacute|ecirc|egrave|eth|euml|frac12|frac14|frac34|gt|iacute|icirc|iexcl|igrave|iquest|iuml|laquo|lt|macr|micro|middot|nbsp|not|ntilde|oacute|ocirc|ograve|ordf|ordm|oslash|otilde|ouml|para|plusmn|pound|quot|raquo|reg|sect|shy|sup1|sup2|sup3|szlig|thorn|times|uacute|ucirc|ugrave|uml|uuml|yacute|yen|yuml|#\d+|#[xX][\da-fA-F]+|[0-9a-zA-Z]+);?/g };
-    exports2.namedReferences = { xml: { entities: { "&lt;": "<", "&gt;": ">", "&quot;": '"', "&apos;": "'", "&amp;": "&" }, characters: { "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;", "&": "&amp;" } }, html4: { entities: { "&apos;": "'", "&nbsp": "\xA0", "&nbsp;": "\xA0", "&iexcl": "\xA1", "&iexcl;": "\xA1", "&cent": "\xA2", "&cent;": "\xA2", "&pound": "\xA3", "&pound;": "\xA3", "&curren": "\xA4", "&curren;": "\xA4", "&yen": "\xA5", "&yen;": "\xA5", "&brvbar": "\xA6", "&brvbar;": "\xA6", "&sect": "\xA7", "&sect;": "\xA7", "&uml": "\xA8", "&uml;": "\xA8", "&copy": "\xA9", "&copy;": "\xA9", "&ordf": "\xAA", "&ordf;": "\xAA", "&laquo": "\xAB", "&laquo;": "\xAB", "&not": "\xAC", "&not;": "\xAC", "&shy": "\xAD", "&shy;": "\xAD", "&reg": "\xAE", "&reg;": "\xAE", "&macr": "\xAF", "&macr;": "\xAF", "&deg": "\xB0", "&deg;": "\xB0", "&plusmn": "\xB1", "&plusmn;": "\xB1", "&sup2": "\xB2", "&sup2;": "\xB2", "&sup3": "\xB3", "&sup3;": "\xB3", "&acute": "\xB4", "&acute;": "\xB4", "&micro": "\xB5", "&micro;": "\xB5", "&para": "\xB6", "&para;": "\xB6", "&middot": "\xB7", "&middot;": "\xB7", "&cedil": "\xB8", "&cedil;": "\xB8", "&sup1": "\xB9", "&sup1;": "\xB9", "&ordm": "\xBA", "&ordm;": "\xBA", "&raquo": "\xBB", "&raquo;": "\xBB", "&frac14": "\xBC", "&frac14;": "\xBC", "&frac12": "\xBD", "&frac12;": "\xBD", "&frac34": "\xBE", "&frac34;": "\xBE", "&iquest": "\xBF", "&iquest;": "\xBF", "&Agrave": "\xC0", "&Agrave;": "\xC0", "&Aacute": "\xC1", "&Aacute;": "\xC1", "&Acirc": "\xC2", "&Acirc;": "\xC2", "&Atilde": "\xC3", "&Atilde;": "\xC3", "&Auml": "\xC4", "&Auml;": "\xC4", "&Aring": "\xC5", "&Aring;": "\xC5", "&AElig": "\xC6", "&AElig;": "\xC6", "&Ccedil": "\xC7", "&Ccedil;": "\xC7", "&Egrave": "\xC8", "&Egrave;": "\xC8", "&Eacute": "\xC9", "&Eacute;": "\xC9", "&Ecirc": "\xCA", "&Ecirc;": "\xCA", "&Euml": "\xCB", "&Euml;": "\xCB", "&Igrave": "\xCC", "&Igrave;": "\xCC", "&Iacute": "\xCD", "&Iacute;": "\xCD", "&Icirc": "\xCE", "&Icirc;": "\xCE", "&Iuml": "\xCF", "&Iuml;": "\xCF", "&ETH": "\xD0", "&ETH;": "\xD0", "&Ntilde": "\xD1", "&Ntilde;": "\xD1", "&Ograve": "\xD2", "&Ograve;": "\xD2", "&Oacute": "\xD3", "&Oacute;": "\xD3", "&Ocirc": "\xD4", "&Ocirc;": "\xD4", "&Otilde": "\xD5", "&Otilde;": "\xD5", "&Ouml": "\xD6", "&Ouml;": "\xD6", "&times": "\xD7", "&times;": "\xD7", "&Oslash": "\xD8", "&Oslash;": "\xD8", "&Ugrave": "\xD9", "&Ugrave;": "\xD9", "&Uacute": "\xDA", "&Uacute;": "\xDA", "&Ucirc": "\xDB", "&Ucirc;": "\xDB", "&Uuml": "\xDC", "&Uuml;": "\xDC", "&Yacute": "\xDD", "&Yacute;": "\xDD", "&THORN": "\xDE", "&THORN;": "\xDE", "&szlig": "\xDF", "&szlig;": "\xDF", "&agrave": "\xE0", "&agrave;": "\xE0", "&aacute": "\xE1", "&aacute;": "\xE1", "&acirc": "\xE2", "&acirc;": "\xE2", "&atilde": "\xE3", "&atilde;": "\xE3", "&auml": "\xE4", "&auml;": "\xE4", "&aring": "\xE5", "&aring;": "\xE5", "&aelig": "\xE6", "&aelig;": "\xE6", "&ccedil": "\xE7", "&ccedil;": "\xE7", "&egrave": "\xE8", "&egrave;": "\xE8", "&eacute": "\xE9", "&eacute;": "\xE9", "&ecirc": "\xEA", "&ecirc;": "\xEA", "&euml": "\xEB", "&euml;": "\xEB", "&igrave": "\xEC", "&igrave;": "\xEC", "&iacute": "\xED", "&iacute;": "\xED", "&icirc": "\xEE", "&icirc;": "\xEE", "&iuml": "\xEF", "&iuml;": "\xEF", "&eth": "\xF0", "&eth;": "\xF0", "&ntilde": "\xF1", "&ntilde;": "\xF1", "&ograve": "\xF2", "&ograve;": "\xF2", "&oacute": "\xF3", "&oacute;": "\xF3", "&ocirc": "\xF4", "&ocirc;": "\xF4", "&otilde": "\xF5", "&otilde;": "\xF5", "&ouml": "\xF6", "&ouml;": "\xF6", "&divide": "\xF7", "&divide;": "\xF7", "&oslash": "\xF8", "&oslash;": "\xF8", "&ugrave": "\xF9", "&ugrave;": "\xF9", "&uacute": "\xFA", "&uacute;": "\xFA", "&ucirc": "\xFB", "&ucirc;": "\xFB", "&uuml": "\xFC", "&uuml;": "\xFC", "&yacute": "\xFD", "&yacute;": "\xFD", "&thorn": "\xFE", "&thorn;": "\xFE", "&yuml": "\xFF", "&yuml;": "\xFF", "&quot": '"', "&quot;": '"', "&amp": "&", "&amp;": "&", "&lt": "<", "&lt;": "<", "&gt": ">", "&gt;": ">", "&OElig;": "\u0152", "&oelig;": "\u0153", "&Scaron;": "\u0160", "&scaron;": "\u0161", "&Yuml;": "\u0178", "&circ;": "\u02C6", "&tilde;": "\u02DC", "&ensp;": "\u2002", "&emsp;": "\u2003", "&thinsp;": "\u2009", "&zwnj;": "\u200C", "&zwj;": "\u200D", "&lrm;": "\u200E", "&rlm;": "\u200F", "&ndash;": "\u2013", "&mdash;": "\u2014", "&lsquo;": "\u2018", "&rsquo;": "\u2019", "&sbquo;": "\u201A", "&ldquo;": "\u201C", "&rdquo;": "\u201D", "&bdquo;": "\u201E", "&dagger;": "\u2020", "&Dagger;": "\u2021", "&permil;": "\u2030", "&lsaquo;": "\u2039", "&rsaquo;": "\u203A", "&euro;": "\u20AC", "&fnof;": "\u0192", "&Alpha;": "\u0391", "&Beta;": "\u0392", "&Gamma;": "\u0393", "&Delta;": "\u0394", "&Epsilon;": "\u0395", "&Zeta;": "\u0396", "&Eta;": "\u0397", "&Theta;": "\u0398", "&Iota;": "\u0399", "&Kappa;": "\u039A", "&Lambda;": "\u039B", "&Mu;": "\u039C", "&Nu;": "\u039D", "&Xi;": "\u039E", "&Omicron;": "\u039F", "&Pi;": "\u03A0", "&Rho;": "\u03A1", "&Sigma;": "\u03A3", "&Tau;": "\u03A4", "&Upsilon;": "\u03A5", "&Phi;": "\u03A6", "&Chi;": "\u03A7", "&Psi;": "\u03A8", "&Omega;": "\u03A9", "&alpha;": "\u03B1", "&beta;": "\u03B2", "&gamma;": "\u03B3", "&delta;": "\u03B4", "&epsilon;": "\u03B5", "&zeta;": "\u03B6", "&eta;": "\u03B7", "&theta;": "\u03B8", "&iota;": "\u03B9", "&kappa;": "\u03BA", "&lambda;": "\u03BB", "&mu;": "\u03BC", "&nu;": "\u03BD", "&xi;": "\u03BE", "&omicron;": "\u03BF", "&pi;": "\u03C0", "&rho;": "\u03C1", "&sigmaf;": "\u03C2", "&sigma;": "\u03C3", "&tau;": "\u03C4", "&upsilon;": "\u03C5", "&phi;": "\u03C6", "&chi;": "\u03C7", "&psi;": "\u03C8", "&omega;": "\u03C9", "&thetasym;": "\u03D1", "&upsih;": "\u03D2", "&piv;": "\u03D6", "&bull;": "\u2022", "&hellip;": "\u2026", "&prime;": "\u2032", "&Prime;": "\u2033", "&oline;": "\u203E", "&frasl;": "\u2044", "&weierp;": "\u2118", "&image;": "\u2111", "&real;": "\u211C", "&trade;": "\u2122", "&alefsym;": "\u2135", "&larr;": "\u2190", "&uarr;": "\u2191", "&rarr;": "\u2192", "&darr;": "\u2193", "&harr;": "\u2194", "&crarr;": "\u21B5", "&lArr;": "\u21D0", "&uArr;": "\u21D1", "&rArr;": "\u21D2", "&dArr;": "\u21D3", "&hArr;": "\u21D4", "&forall;": "\u2200", "&part;": "\u2202", "&exist;": "\u2203", "&empty;": "\u2205", "&nabla;": "\u2207", "&isin;": "\u2208", "&notin;": "\u2209", "&ni;": "\u220B", "&prod;": "\u220F", "&sum;": "\u2211", "&minus;": "\u2212", "&lowast;": "\u2217", "&radic;": "\u221A", "&prop;": "\u221D", "&infin;": "\u221E", "&ang;": "\u2220", "&and;": "\u2227", "&or;": "\u2228", "&cap;": "\u2229", "&cup;": "\u222A", "&int;": "\u222B", "&there4;": "\u2234", "&sim;": "\u223C", "&cong;": "\u2245", "&asymp;": "\u2248", "&ne;": "\u2260", "&equiv;": "\u2261", "&le;": "\u2264", "&ge;": "\u2265", "&sub;": "\u2282", "&sup;": "\u2283", "&nsub;": "\u2284", "&sube;": "\u2286", "&supe;": "\u2287", "&oplus;": "\u2295", "&otimes;": "\u2297", "&perp;": "\u22A5", "&sdot;": "\u22C5", "&lceil;": "\u2308", "&rceil;": "\u2309", "&lfloor;": "\u230A", "&rfloor;": "\u230B", "&lang;": "\u2329", "&rang;": "\u232A", "&loz;": "\u25CA", "&spades;": "\u2660", "&clubs;": "\u2663", "&hearts;": "\u2665", "&diams;": "\u2666" }, characters: { "'": "&apos;", "\xA0": "&nbsp;", "\xA1": "&iexcl;", "\xA2": "&cent;", "\xA3": "&pound;", "\xA4": "&curren;", "\xA5": "&yen;", "\xA6": "&brvbar;", "\xA7": "&sect;", "\xA8": "&uml;", "\xA9": "&copy;", "\xAA": "&ordf;", "\xAB": "&laquo;", "\xAC": "&not;", "\xAD": "&shy;", "\xAE": "&reg;", "\xAF": "&macr;", "\xB0": "&deg;", "\xB1": "&plusmn;", "\xB2": "&sup2;", "\xB3": "&sup3;", "\xB4": "&acute;", "\xB5": "&micro;", "\xB6": "&para;", "\xB7": "&middot;", "\xB8": "&cedil;", "\xB9": "&sup1;", "\xBA": "&ordm;", "\xBB": "&raquo;", "\xBC": "&frac14;", "\xBD": "&frac12;", "\xBE": "&frac34;", "\xBF": "&iquest;", "\xC0": "&Agrave;", "\xC1": "&Aacute;", "\xC2": "&Acirc;", "\xC3": "&Atilde;", "\xC4": "&Auml;", "\xC5": "&Aring;", "\xC6": "&AElig;", "\xC7": "&Ccedil;", "\xC8": "&Egrave;", "\xC9": "&Eacute;", "\xCA": "&Ecirc;", "\xCB": "&Euml;", "\xCC": "&Igrave;", "\xCD": "&Iacute;", "\xCE": "&Icirc;", "\xCF": "&Iuml;", "\xD0": "&ETH;", "\xD1": "&Ntilde;", "\xD2": "&Ograve;", "\xD3": "&Oacute;", "\xD4": "&Ocirc;", "\xD5": "&Otilde;", "\xD6": "&Ouml;", "\xD7": "&times;", "\xD8": "&Oslash;", "\xD9": "&Ugrave;", "\xDA": "&Uacute;", "\xDB": "&Ucirc;", "\xDC": "&Uuml;", "\xDD": "&Yacute;", "\xDE": "&THORN;", "\xDF": "&szlig;", "\xE0": "&agrave;", "\xE1": "&aacute;", "\xE2": "&acirc;", "\xE3": "&atilde;", "\xE4": "&auml;", "\xE5": "&aring;", "\xE6": "&aelig;", "\xE7": "&ccedil;", "\xE8": "&egrave;", "\xE9": "&eacute;", "\xEA": "&ecirc;", "\xEB": "&euml;", "\xEC": "&igrave;", "\xED": "&iacute;", "\xEE": "&icirc;", "\xEF": "&iuml;", "\xF0": "&eth;", "\xF1": "&ntilde;", "\xF2": "&ograve;", "\xF3": "&oacute;", "\xF4": "&ocirc;", "\xF5": "&otilde;", "\xF6": "&ouml;", "\xF7": "&divide;", "\xF8": "&oslash;", "\xF9": "&ugrave;", "\xFA": "&uacute;", "\xFB": "&ucirc;", "\xFC": "&uuml;", "\xFD": "&yacute;", "\xFE": "&thorn;", "\xFF": "&yuml;", '"': "&quot;", "&": "&amp;", "<": "&lt;", ">": "&gt;", "\u0152": "&OElig;", "\u0153": "&oelig;", "\u0160": "&Scaron;", "\u0161": "&scaron;", "\u0178": "&Yuml;", "\u02C6": "&circ;", "\u02DC": "&tilde;", "\u2002": "&ensp;", "\u2003": "&emsp;", "\u2009": "&thinsp;", "\u200C": "&zwnj;", "\u200D": "&zwj;", "\u200E": "&lrm;", "\u200F": "&rlm;", "\u2013": "&ndash;", "\u2014": "&mdash;", "\u2018": "&lsquo;", "\u2019": "&rsquo;", "\u201A": "&sbquo;", "\u201C": "&ldquo;", "\u201D": "&rdquo;", "\u201E": "&bdquo;", "\u2020": "&dagger;", "\u2021": "&Dagger;", "\u2030": "&permil;", "\u2039": "&lsaquo;", "\u203A": "&rsaquo;", "\u20AC": "&euro;", "\u0192": "&fnof;", "\u0391": "&Alpha;", "\u0392": "&Beta;", "\u0393": "&Gamma;", "\u0394": "&Delta;", "\u0395": "&Epsilon;", "\u0396": "&Zeta;", "\u0397": "&Eta;", "\u0398": "&Theta;", "\u0399": "&Iota;", "\u039A": "&Kappa;", "\u039B": "&Lambda;", "\u039C": "&Mu;", "\u039D": "&Nu;", "\u039E": "&Xi;", "\u039F": "&Omicron;", "\u03A0": "&Pi;", "\u03A1": "&Rho;", "\u03A3": "&Sigma;", "\u03A4": "&Tau;", "\u03A5": "&Upsilon;", "\u03A6": "&Phi;", "\u03A7": "&Chi;", "\u03A8": "&Psi;", "\u03A9": "&Omega;", "\u03B1": "&alpha;", "\u03B2": "&beta;", "\u03B3": "&gamma;", "\u03B4": "&delta;", "\u03B5": "&epsilon;", "\u03B6": "&zeta;", "\u03B7": "&eta;", "\u03B8": "&theta;", "\u03B9": "&iota;", "\u03BA": "&kappa;", "\u03BB": "&lambda;", "\u03BC": "&mu;", "\u03BD": "&nu;", "\u03BE": "&xi;", "\u03BF": "&omicron;", "\u03C0": "&pi;", "\u03C1": "&rho;", "\u03C2": "&sigmaf;", "\u03C3": "&sigma;", "\u03C4": "&tau;", "\u03C5": "&upsilon;", "\u03C6": "&phi;", "\u03C7": "&chi;", "\u03C8": "&psi;", "\u03C9": "&omega;", "\u03D1": "&thetasym;", "\u03D2": "&upsih;", "\u03D6": "&piv;", "\u2022": "&bull;", "\u2026": "&hellip;", "\u2032": "&prime;", "\u2033": "&Prime;", "\u203E": "&oline;", "\u2044": "&frasl;", "\u2118": "&weierp;", "\u2111": "&image;", "\u211C": "&real;", "\u2122": "&trade;", "\u2135": "&alefsym;", "\u2190": "&larr;", "\u2191": "&uarr;", "\u2192": "&rarr;", "\u2193": "&darr;", "\u2194": "&harr;", "\u21B5": "&crarr;", "\u21D0": "&lArr;", "\u21D1": "&uArr;", "\u21D2": "&rArr;", "\u21D3": "&dArr;", "\u21D4": "&hArr;", "\u2200": "&forall;", "\u2202": "&part;", "\u2203": "&exist;", "\u2205": "&empty;", "\u2207": "&nabla;", "\u2208": "&isin;", "\u2209": "&notin;", "\u220B": "&ni;", "\u220F": "&prod;", "\u2211": "&sum;", "\u2212": "&minus;", "\u2217": "&lowast;", "\u221A": "&radic;", "\u221D": "&prop;", "\u221E": "&infin;", "\u2220": "&ang;", "\u2227": "&and;", "\u2228": "&or;", "\u2229": "&cap;", "\u222A": "&cup;", "\u222B": "&int;", "\u2234": "&there4;", "\u223C": "&sim;", "\u2245": "&cong;", "\u2248": "&asymp;", "\u2260": "&ne;", "\u2261": "&equiv;", "\u2264": "&le;", "\u2265": "&ge;", "\u2282": "&sub;", "\u2283": "&sup;", "\u2284": "&nsub;", "\u2286": "&sube;", "\u2287": "&supe;", "\u2295": "&oplus;", "\u2297": "&otimes;", "\u22A5": "&perp;", "\u22C5": "&sdot;", "\u2308": "&lceil;", "\u2309": "&rceil;", "\u230A": "&lfloor;", "\u230B": "&rfloor;", "\u2329": "&lang;", "\u232A": "&rang;", "\u25CA": "&loz;", "\u2660": "&spades;", "\u2663": "&clubs;", "\u2665": "&hearts;", "\u2666": "&diams;" } }, html5: { entities: { "&AElig": "\xC6", "&AElig;": "\xC6", "&AMP": "&", "&AMP;": "&", "&Aacute": "\xC1", "&Aacute;": "\xC1", "&Abreve;": "\u0102", "&Acirc": "\xC2", "&Acirc;": "\xC2", "&Acy;": "\u0410", "&Afr;": "\u{1D504}", "&Agrave": "\xC0", "&Agrave;": "\xC0", "&Alpha;": "\u0391", "&Amacr;": "\u0100", "&And;": "\u2A53", "&Aogon;": "\u0104", "&Aopf;": "\u{1D538}", "&ApplyFunction;": "\u2061", "&Aring": "\xC5", "&Aring;": "\xC5", "&Ascr;": "\u{1D49C}", "&Assign;": "\u2254", "&Atilde": "\xC3", "&Atilde;": "\xC3", "&Auml": "\xC4", "&Auml;": "\xC4", "&Backslash;": "\u2216", "&Barv;": "\u2AE7", "&Barwed;": "\u2306", "&Bcy;": "\u0411", "&Because;": "\u2235", "&Bernoullis;": "\u212C", "&Beta;": "\u0392", "&Bfr;": "\u{1D505}", "&Bopf;": "\u{1D539}", "&Breve;": "\u02D8", "&Bscr;": "\u212C", "&Bumpeq;": "\u224E", "&CHcy;": "\u0427", "&COPY": "\xA9", "&COPY;": "\xA9", "&Cacute;": "\u0106", "&Cap;": "\u22D2", "&CapitalDifferentialD;": "\u2145", "&Cayleys;": "\u212D", "&Ccaron;": "\u010C", "&Ccedil": "\xC7", "&Ccedil;": "\xC7", "&Ccirc;": "\u0108", "&Cconint;": "\u2230", "&Cdot;": "\u010A", "&Cedilla;": "\xB8", "&CenterDot;": "\xB7", "&Cfr;": "\u212D", "&Chi;": "\u03A7", "&CircleDot;": "\u2299", "&CircleMinus;": "\u2296", "&CirclePlus;": "\u2295", "&CircleTimes;": "\u2297", "&ClockwiseContourIntegral;": "\u2232", "&CloseCurlyDoubleQuote;": "\u201D", "&CloseCurlyQuote;": "\u2019", "&Colon;": "\u2237", "&Colone;": "\u2A74", "&Congruent;": "\u2261", "&Conint;": "\u222F", "&ContourIntegral;": "\u222E", "&Copf;": "\u2102", "&Coproduct;": "\u2210", "&CounterClockwiseContourIntegral;": "\u2233", "&Cross;": "\u2A2F", "&Cscr;": "\u{1D49E}", "&Cup;": "\u22D3", "&CupCap;": "\u224D", "&DD;": "\u2145", "&DDotrahd;": "\u2911", "&DJcy;": "\u0402", "&DScy;": "\u0405", "&DZcy;": "\u040F", "&Dagger;": "\u2021", "&Darr;": "\u21A1", "&Dashv;": "\u2AE4", "&Dcaron;": "\u010E", "&Dcy;": "\u0414", "&Del;": "\u2207", "&Delta;": "\u0394", "&Dfr;": "\u{1D507}", "&DiacriticalAcute;": "\xB4", "&DiacriticalDot;": "\u02D9", "&DiacriticalDoubleAcute;": "\u02DD", "&DiacriticalGrave;": "`", "&DiacriticalTilde;": "\u02DC", "&Diamond;": "\u22C4", "&DifferentialD;": "\u2146", "&Dopf;": "\u{1D53B}", "&Dot;": "\xA8", "&DotDot;": "\u20DC", "&DotEqual;": "\u2250", "&DoubleContourIntegral;": "\u222F", "&DoubleDot;": "\xA8", "&DoubleDownArrow;": "\u21D3", "&DoubleLeftArrow;": "\u21D0", "&DoubleLeftRightArrow;": "\u21D4", "&DoubleLeftTee;": "\u2AE4", "&DoubleLongLeftArrow;": "\u27F8", "&DoubleLongLeftRightArrow;": "\u27FA", "&DoubleLongRightArrow;": "\u27F9", "&DoubleRightArrow;": "\u21D2", "&DoubleRightTee;": "\u22A8", "&DoubleUpArrow;": "\u21D1", "&DoubleUpDownArrow;": "\u21D5", "&DoubleVerticalBar;": "\u2225", "&DownArrow;": "\u2193", "&DownArrowBar;": "\u2913", "&DownArrowUpArrow;": "\u21F5", "&DownBreve;": "\u0311", "&DownLeftRightVector;": "\u2950", "&DownLeftTeeVector;": "\u295E", "&DownLeftVector;": "\u21BD", "&DownLeftVectorBar;": "\u2956", "&DownRightTeeVector;": "\u295F", "&DownRightVector;": "\u21C1", "&DownRightVectorBar;": "\u2957", "&DownTee;": "\u22A4", "&DownTeeArrow;": "\u21A7", "&Downarrow;": "\u21D3", "&Dscr;": "\u{1D49F}", "&Dstrok;": "\u0110", "&ENG;": "\u014A", "&ETH": "\xD0", "&ETH;": "\xD0", "&Eacute": "\xC9", "&Eacute;": "\xC9", "&Ecaron;": "\u011A", "&Ecirc": "\xCA", "&Ecirc;": "\xCA", "&Ecy;": "\u042D", "&Edot;": "\u0116", "&Efr;": "\u{1D508}", "&Egrave": "\xC8", "&Egrave;": "\xC8", "&Element;": "\u2208", "&Emacr;": "\u0112", "&EmptySmallSquare;": "\u25FB", "&EmptyVerySmallSquare;": "\u25AB", "&Eogon;": "\u0118", "&Eopf;": "\u{1D53C}", "&Epsilon;": "\u0395", "&Equal;": "\u2A75", "&EqualTilde;": "\u2242", "&Equilibrium;": "\u21CC", "&Escr;": "\u2130", "&Esim;": "\u2A73", "&Eta;": "\u0397", "&Euml": "\xCB", "&Euml;": "\xCB", "&Exists;": "\u2203", "&ExponentialE;": "\u2147", "&Fcy;": "\u0424", "&Ffr;": "\u{1D509}", "&FilledSmallSquare;": "\u25FC", "&FilledVerySmallSquare;": "\u25AA", "&Fopf;": "\u{1D53D}", "&ForAll;": "\u2200", "&Fouriertrf;": "\u2131", "&Fscr;": "\u2131", "&GJcy;": "\u0403", "&GT": ">", "&GT;": ">", "&Gamma;": "\u0393", "&Gammad;": "\u03DC", "&Gbreve;": "\u011E", "&Gcedil;": "\u0122", "&Gcirc;": "\u011C", "&Gcy;": "\u0413", "&Gdot;": "\u0120", "&Gfr;": "\u{1D50A}", "&Gg;": "\u22D9", "&Gopf;": "\u{1D53E}", "&GreaterEqual;": "\u2265", "&GreaterEqualLess;": "\u22DB", "&GreaterFullEqual;": "\u2267", "&GreaterGreater;": "\u2AA2", "&GreaterLess;": "\u2277", "&GreaterSlantEqual;": "\u2A7E", "&GreaterTilde;": "\u2273", "&Gscr;": "\u{1D4A2}", "&Gt;": "\u226B", "&HARDcy;": "\u042A", "&Hacek;": "\u02C7", "&Hat;": "^", "&Hcirc;": "\u0124", "&Hfr;": "\u210C", "&HilbertSpace;": "\u210B", "&Hopf;": "\u210D", "&HorizontalLine;": "\u2500", "&Hscr;": "\u210B", "&Hstrok;": "\u0126", "&HumpDownHump;": "\u224E", "&HumpEqual;": "\u224F", "&IEcy;": "\u0415", "&IJlig;": "\u0132", "&IOcy;": "\u0401", "&Iacute": "\xCD", "&Iacute;": "\xCD", "&Icirc": "\xCE", "&Icirc;": "\xCE", "&Icy;": "\u0418", "&Idot;": "\u0130", "&Ifr;": "\u2111", "&Igrave": "\xCC", "&Igrave;": "\xCC", "&Im;": "\u2111", "&Imacr;": "\u012A", "&ImaginaryI;": "\u2148", "&Implies;": "\u21D2", "&Int;": "\u222C", "&Integral;": "\u222B", "&Intersection;": "\u22C2", "&InvisibleComma;": "\u2063", "&InvisibleTimes;": "\u2062", "&Iogon;": "\u012E", "&Iopf;": "\u{1D540}", "&Iota;": "\u0399", "&Iscr;": "\u2110", "&Itilde;": "\u0128", "&Iukcy;": "\u0406", "&Iuml": "\xCF", "&Iuml;": "\xCF", "&Jcirc;": "\u0134", "&Jcy;": "\u0419", "&Jfr;": "\u{1D50D}", "&Jopf;": "\u{1D541}", "&Jscr;": "\u{1D4A5}", "&Jsercy;": "\u0408", "&Jukcy;": "\u0404", "&KHcy;": "\u0425", "&KJcy;": "\u040C", "&Kappa;": "\u039A", "&Kcedil;": "\u0136", "&Kcy;": "\u041A", "&Kfr;": "\u{1D50E}", "&Kopf;": "\u{1D542}", "&Kscr;": "\u{1D4A6}", "&LJcy;": "\u0409", "&LT": "<", "&LT;": "<", "&Lacute;": "\u0139", "&Lambda;": "\u039B", "&Lang;": "\u27EA", "&Laplacetrf;": "\u2112", "&Larr;": "\u219E", "&Lcaron;": "\u013D", "&Lcedil;": "\u013B", "&Lcy;": "\u041B", "&LeftAngleBracket;": "\u27E8", "&LeftArrow;": "\u2190", "&LeftArrowBar;": "\u21E4", "&LeftArrowRightArrow;": "\u21C6", "&LeftCeiling;": "\u2308", "&LeftDoubleBracket;": "\u27E6", "&LeftDownTeeVector;": "\u2961", "&LeftDownVector;": "\u21C3", "&LeftDownVectorBar;": "\u2959", "&LeftFloor;": "\u230A", "&LeftRightArrow;": "\u2194", "&LeftRightVector;": "\u294E", "&LeftTee;": "\u22A3", "&LeftTeeArrow;": "\u21A4", "&LeftTeeVector;": "\u295A", "&LeftTriangle;": "\u22B2", "&LeftTriangleBar;": "\u29CF", "&LeftTriangleEqual;": "\u22B4", "&LeftUpDownVector;": "\u2951", "&LeftUpTeeVector;": "\u2960", "&LeftUpVector;": "\u21BF", "&LeftUpVectorBar;": "\u2958", "&LeftVector;": "\u21BC", "&LeftVectorBar;": "\u2952", "&Leftarrow;": "\u21D0", "&Leftrightarrow;": "\u21D4", "&LessEqualGreater;": "\u22DA", "&LessFullEqual;": "\u2266", "&LessGreater;": "\u2276", "&LessLess;": "\u2AA1", "&LessSlantEqual;": "\u2A7D", "&LessTilde;": "\u2272", "&Lfr;": "\u{1D50F}", "&Ll;": "\u22D8", "&Lleftarrow;": "\u21DA", "&Lmidot;": "\u013F", "&LongLeftArrow;": "\u27F5", "&LongLeftRightArrow;": "\u27F7", "&LongRightArrow;": "\u27F6", "&Longleftarrow;": "\u27F8", "&Longleftrightarrow;": "\u27FA", "&Longrightarrow;": "\u27F9", "&Lopf;": "\u{1D543}", "&LowerLeftArrow;": "\u2199", "&LowerRightArrow;": "\u2198", "&Lscr;": "\u2112", "&Lsh;": "\u21B0", "&Lstrok;": "\u0141", "&Lt;": "\u226A", "&Map;": "\u2905", "&Mcy;": "\u041C", "&MediumSpace;": "\u205F", "&Mellintrf;": "\u2133", "&Mfr;": "\u{1D510}", "&MinusPlus;": "\u2213", "&Mopf;": "\u{1D544}", "&Mscr;": "\u2133", "&Mu;": "\u039C", "&NJcy;": "\u040A", "&Nacute;": "\u0143", "&Ncaron;": "\u0147", "&Ncedil;": "\u0145", "&Ncy;": "\u041D", "&NegativeMediumSpace;": "\u200B", "&NegativeThickSpace;": "\u200B", "&NegativeThinSpace;": "\u200B", "&NegativeVeryThinSpace;": "\u200B", "&NestedGreaterGreater;": "\u226B", "&NestedLessLess;": "\u226A", "&NewLine;": "\n", "&Nfr;": "\u{1D511}", "&NoBreak;": "\u2060", "&NonBreakingSpace;": "\xA0", "&Nopf;": "\u2115", "&Not;": "\u2AEC", "&NotCongruent;": "\u2262", "&NotCupCap;": "\u226D", "&NotDoubleVerticalBar;": "\u2226", "&NotElement;": "\u2209", "&NotEqual;": "\u2260", "&NotEqualTilde;": "\u2242\u0338", "&NotExists;": "\u2204", "&NotGreater;": "\u226F", "&NotGreaterEqual;": "\u2271", "&NotGreaterFullEqual;": "\u2267\u0338", "&NotGreaterGreater;": "\u226B\u0338", "&NotGreaterLess;": "\u2279", "&NotGreaterSlantEqual;": "\u2A7E\u0338", "&NotGreaterTilde;": "\u2275", "&NotHumpDownHump;": "\u224E\u0338", "&NotHumpEqual;": "\u224F\u0338", "&NotLeftTriangle;": "\u22EA", "&NotLeftTriangleBar;": "\u29CF\u0338", "&NotLeftTriangleEqual;": "\u22EC", "&NotLess;": "\u226E", "&NotLessEqual;": "\u2270", "&NotLessGreater;": "\u2278", "&NotLessLess;": "\u226A\u0338", "&NotLessSlantEqual;": "\u2A7D\u0338", "&NotLessTilde;": "\u2274", "&NotNestedGreaterGreater;": "\u2AA2\u0338", "&NotNestedLessLess;": "\u2AA1\u0338", "&NotPrecedes;": "\u2280", "&NotPrecedesEqual;": "\u2AAF\u0338", "&NotPrecedesSlantEqual;": "\u22E0", "&NotReverseElement;": "\u220C", "&NotRightTriangle;": "\u22EB", "&NotRightTriangleBar;": "\u29D0\u0338", "&NotRightTriangleEqual;": "\u22ED", "&NotSquareSubset;": "\u228F\u0338", "&NotSquareSubsetEqual;": "\u22E2", "&NotSquareSuperset;": "\u2290\u0338", "&NotSquareSupersetEqual;": "\u22E3", "&NotSubset;": "\u2282\u20D2", "&NotSubsetEqual;": "\u2288", "&NotSucceeds;": "\u2281", "&NotSucceedsEqual;": "\u2AB0\u0338", "&NotSucceedsSlantEqual;": "\u22E1", "&NotSucceedsTilde;": "\u227F\u0338", "&NotSuperset;": "\u2283\u20D2", "&NotSupersetEqual;": "\u2289", "&NotTilde;": "\u2241", "&NotTildeEqual;": "\u2244", "&NotTildeFullEqual;": "\u2247", "&NotTildeTilde;": "\u2249", "&NotVerticalBar;": "\u2224", "&Nscr;": "\u{1D4A9}", "&Ntilde": "\xD1", "&Ntilde;": "\xD1", "&Nu;": "\u039D", "&OElig;": "\u0152", "&Oacute": "\xD3", "&Oacute;": "\xD3", "&Ocirc": "\xD4", "&Ocirc;": "\xD4", "&Ocy;": "\u041E", "&Odblac;": "\u0150", "&Ofr;": "\u{1D512}", "&Ograve": "\xD2", "&Ograve;": "\xD2", "&Omacr;": "\u014C", "&Omega;": "\u03A9", "&Omicron;": "\u039F", "&Oopf;": "\u{1D546}", "&OpenCurlyDoubleQuote;": "\u201C", "&OpenCurlyQuote;": "\u2018", "&Or;": "\u2A54", "&Oscr;": "\u{1D4AA}", "&Oslash": "\xD8", "&Oslash;": "\xD8", "&Otilde": "\xD5", "&Otilde;": "\xD5", "&Otimes;": "\u2A37", "&Ouml": "\xD6", "&Ouml;": "\xD6", "&OverBar;": "\u203E", "&OverBrace;": "\u23DE", "&OverBracket;": "\u23B4", "&OverParenthesis;": "\u23DC", "&PartialD;": "\u2202", "&Pcy;": "\u041F", "&Pfr;": "\u{1D513}", "&Phi;": "\u03A6", "&Pi;": "\u03A0", "&PlusMinus;": "\xB1", "&Poincareplane;": "\u210C", "&Popf;": "\u2119", "&Pr;": "\u2ABB", "&Precedes;": "\u227A", "&PrecedesEqual;": "\u2AAF", "&PrecedesSlantEqual;": "\u227C", "&PrecedesTilde;": "\u227E", "&Prime;": "\u2033", "&Product;": "\u220F", "&Proportion;": "\u2237", "&Proportional;": "\u221D", "&Pscr;": "\u{1D4AB}", "&Psi;": "\u03A8", "&QUOT": '"', "&QUOT;": '"', "&Qfr;": "\u{1D514}", "&Qopf;": "\u211A", "&Qscr;": "\u{1D4AC}", "&RBarr;": "\u2910", "&REG": "\xAE", "&REG;": "\xAE", "&Racute;": "\u0154", "&Rang;": "\u27EB", "&Rarr;": "\u21A0", "&Rarrtl;": "\u2916", "&Rcaron;": "\u0158", "&Rcedil;": "\u0156", "&Rcy;": "\u0420", "&Re;": "\u211C", "&ReverseElement;": "\u220B", "&ReverseEquilibrium;": "\u21CB", "&ReverseUpEquilibrium;": "\u296F", "&Rfr;": "\u211C", "&Rho;": "\u03A1", "&RightAngleBracket;": "\u27E9", "&RightArrow;": "\u2192", "&RightArrowBar;": "\u21E5", "&RightArrowLeftArrow;": "\u21C4", "&RightCeiling;": "\u2309", "&RightDoubleBracket;": "\u27E7", "&RightDownTeeVector;": "\u295D", "&RightDownVector;": "\u21C2", "&RightDownVectorBar;": "\u2955", "&RightFloor;": "\u230B", "&RightTee;": "\u22A2", "&RightTeeArrow;": "\u21A6", "&RightTeeVector;": "\u295B", "&RightTriangle;": "\u22B3", "&RightTriangleBar;": "\u29D0", "&RightTriangleEqual;": "\u22B5", "&RightUpDownVector;": "\u294F", "&RightUpTeeVector;": "\u295C", "&RightUpVector;": "\u21BE", "&RightUpVectorBar;": "\u2954", "&RightVector;": "\u21C0", "&RightVectorBar;": "\u2953", "&Rightarrow;": "\u21D2", "&Ropf;": "\u211D", "&RoundImplies;": "\u2970", "&Rrightarrow;": "\u21DB", "&Rscr;": "\u211B", "&Rsh;": "\u21B1", "&RuleDelayed;": "\u29F4", "&SHCHcy;": "\u0429", "&SHcy;": "\u0428", "&SOFTcy;": "\u042C", "&Sacute;": "\u015A", "&Sc;": "\u2ABC", "&Scaron;": "\u0160", "&Scedil;": "\u015E", "&Scirc;": "\u015C", "&Scy;": "\u0421", "&Sfr;": "\u{1D516}", "&ShortDownArrow;": "\u2193", "&ShortLeftArrow;": "\u2190", "&ShortRightArrow;": "\u2192", "&ShortUpArrow;": "\u2191", "&Sigma;": "\u03A3", "&SmallCircle;": "\u2218", "&Sopf;": "\u{1D54A}", "&Sqrt;": "\u221A", "&Square;": "\u25A1", "&SquareIntersection;": "\u2293", "&SquareSubset;": "\u228F", "&SquareSubsetEqual;": "\u2291", "&SquareSuperset;": "\u2290", "&SquareSupersetEqual;": "\u2292", "&SquareUnion;": "\u2294", "&Sscr;": "\u{1D4AE}", "&Star;": "\u22C6", "&Sub;": "\u22D0", "&Subset;": "\u22D0", "&SubsetEqual;": "\u2286", "&Succeeds;": "\u227B", "&SucceedsEqual;": "\u2AB0", "&SucceedsSlantEqual;": "\u227D", "&SucceedsTilde;": "\u227F", "&SuchThat;": "\u220B", "&Sum;": "\u2211", "&Sup;": "\u22D1", "&Superset;": "\u2283", "&SupersetEqual;": "\u2287", "&Supset;": "\u22D1", "&THORN": "\xDE", "&THORN;": "\xDE", "&TRADE;": "\u2122", "&TSHcy;": "\u040B", "&TScy;": "\u0426", "&Tab;": "	", "&Tau;": "\u03A4", "&Tcaron;": "\u0164", "&Tcedil;": "\u0162", "&Tcy;": "\u0422", "&Tfr;": "\u{1D517}", "&Therefore;": "\u2234", "&Theta;": "\u0398", "&ThickSpace;": "\u205F\u200A", "&ThinSpace;": "\u2009", "&Tilde;": "\u223C", "&TildeEqual;": "\u2243", "&TildeFullEqual;": "\u2245", "&TildeTilde;": "\u2248", "&Topf;": "\u{1D54B}", "&TripleDot;": "\u20DB", "&Tscr;": "\u{1D4AF}", "&Tstrok;": "\u0166", "&Uacute": "\xDA", "&Uacute;": "\xDA", "&Uarr;": "\u219F", "&Uarrocir;": "\u2949", "&Ubrcy;": "\u040E", "&Ubreve;": "\u016C", "&Ucirc": "\xDB", "&Ucirc;": "\xDB", "&Ucy;": "\u0423", "&Udblac;": "\u0170", "&Ufr;": "\u{1D518}", "&Ugrave": "\xD9", "&Ugrave;": "\xD9", "&Umacr;": "\u016A", "&UnderBar;": "_", "&UnderBrace;": "\u23DF", "&UnderBracket;": "\u23B5", "&UnderParenthesis;": "\u23DD", "&Union;": "\u22C3", "&UnionPlus;": "\u228E", "&Uogon;": "\u0172", "&Uopf;": "\u{1D54C}", "&UpArrow;": "\u2191", "&UpArrowBar;": "\u2912", "&UpArrowDownArrow;": "\u21C5", "&UpDownArrow;": "\u2195", "&UpEquilibrium;": "\u296E", "&UpTee;": "\u22A5", "&UpTeeArrow;": "\u21A5", "&Uparrow;": "\u21D1", "&Updownarrow;": "\u21D5", "&UpperLeftArrow;": "\u2196", "&UpperRightArrow;": "\u2197", "&Upsi;": "\u03D2", "&Upsilon;": "\u03A5", "&Uring;": "\u016E", "&Uscr;": "\u{1D4B0}", "&Utilde;": "\u0168", "&Uuml": "\xDC", "&Uuml;": "\xDC", "&VDash;": "\u22AB", "&Vbar;": "\u2AEB", "&Vcy;": "\u0412", "&Vdash;": "\u22A9", "&Vdashl;": "\u2AE6", "&Vee;": "\u22C1", "&Verbar;": "\u2016", "&Vert;": "\u2016", "&VerticalBar;": "\u2223", "&VerticalLine;": "|", "&VerticalSeparator;": "\u2758", "&VerticalTilde;": "\u2240", "&VeryThinSpace;": "\u200A", "&Vfr;": "\u{1D519}", "&Vopf;": "\u{1D54D}", "&Vscr;": "\u{1D4B1}", "&Vvdash;": "\u22AA", "&Wcirc;": "\u0174", "&Wedge;": "\u22C0", "&Wfr;": "\u{1D51A}", "&Wopf;": "\u{1D54E}", "&Wscr;": "\u{1D4B2}", "&Xfr;": "\u{1D51B}", "&Xi;": "\u039E", "&Xopf;": "\u{1D54F}", "&Xscr;": "\u{1D4B3}", "&YAcy;": "\u042F", "&YIcy;": "\u0407", "&YUcy;": "\u042E", "&Yacute": "\xDD", "&Yacute;": "\xDD", "&Ycirc;": "\u0176", "&Ycy;": "\u042B", "&Yfr;": "\u{1D51C}", "&Yopf;": "\u{1D550}", "&Yscr;": "\u{1D4B4}", "&Yuml;": "\u0178", "&ZHcy;": "\u0416", "&Zacute;": "\u0179", "&Zcaron;": "\u017D", "&Zcy;": "\u0417", "&Zdot;": "\u017B", "&ZeroWidthSpace;": "\u200B", "&Zeta;": "\u0396", "&Zfr;": "\u2128", "&Zopf;": "\u2124", "&Zscr;": "\u{1D4B5}", "&aacute": "\xE1", "&aacute;": "\xE1", "&abreve;": "\u0103", "&ac;": "\u223E", "&acE;": "\u223E\u0333", "&acd;": "\u223F", "&acirc": "\xE2", "&acirc;": "\xE2", "&acute": "\xB4", "&acute;": "\xB4", "&acy;": "\u0430", "&aelig": "\xE6", "&aelig;": "\xE6", "&af;": "\u2061", "&afr;": "\u{1D51E}", "&agrave": "\xE0", "&agrave;": "\xE0", "&alefsym;": "\u2135", "&aleph;": "\u2135", "&alpha;": "\u03B1", "&amacr;": "\u0101", "&amalg;": "\u2A3F", "&amp": "&", "&amp;": "&", "&and;": "\u2227", "&andand;": "\u2A55", "&andd;": "\u2A5C", "&andslope;": "\u2A58", "&andv;": "\u2A5A", "&ang;": "\u2220", "&ange;": "\u29A4", "&angle;": "\u2220", "&angmsd;": "\u2221", "&angmsdaa;": "\u29A8", "&angmsdab;": "\u29A9", "&angmsdac;": "\u29AA", "&angmsdad;": "\u29AB", "&angmsdae;": "\u29AC", "&angmsdaf;": "\u29AD", "&angmsdag;": "\u29AE", "&angmsdah;": "\u29AF", "&angrt;": "\u221F", "&angrtvb;": "\u22BE", "&angrtvbd;": "\u299D", "&angsph;": "\u2222", "&angst;": "\xC5", "&angzarr;": "\u237C", "&aogon;": "\u0105", "&aopf;": "\u{1D552}", "&ap;": "\u2248", "&apE;": "\u2A70", "&apacir;": "\u2A6F", "&ape;": "\u224A", "&apid;": "\u224B", "&apos;": "'", "&approx;": "\u2248", "&approxeq;": "\u224A", "&aring": "\xE5", "&aring;": "\xE5", "&ascr;": "\u{1D4B6}", "&ast;": "*", "&asymp;": "\u2248", "&asympeq;": "\u224D", "&atilde": "\xE3", "&atilde;": "\xE3", "&auml": "\xE4", "&auml;": "\xE4", "&awconint;": "\u2233", "&awint;": "\u2A11", "&bNot;": "\u2AED", "&backcong;": "\u224C", "&backepsilon;": "\u03F6", "&backprime;": "\u2035", "&backsim;": "\u223D", "&backsimeq;": "\u22CD", "&barvee;": "\u22BD", "&barwed;": "\u2305", "&barwedge;": "\u2305", "&bbrk;": "\u23B5", "&bbrktbrk;": "\u23B6", "&bcong;": "\u224C", "&bcy;": "\u0431", "&bdquo;": "\u201E", "&becaus;": "\u2235", "&because;": "\u2235", "&bemptyv;": "\u29B0", "&bepsi;": "\u03F6", "&bernou;": "\u212C", "&beta;": "\u03B2", "&beth;": "\u2136", "&between;": "\u226C", "&bfr;": "\u{1D51F}", "&bigcap;": "\u22C2", "&bigcirc;": "\u25EF", "&bigcup;": "\u22C3", "&bigodot;": "\u2A00", "&bigoplus;": "\u2A01", "&bigotimes;": "\u2A02", "&bigsqcup;": "\u2A06", "&bigstar;": "\u2605", "&bigtriangledown;": "\u25BD", "&bigtriangleup;": "\u25B3", "&biguplus;": "\u2A04", "&bigvee;": "\u22C1", "&bigwedge;": "\u22C0", "&bkarow;": "\u290D", "&blacklozenge;": "\u29EB", "&blacksquare;": "\u25AA", "&blacktriangle;": "\u25B4", "&blacktriangledown;": "\u25BE", "&blacktriangleleft;": "\u25C2", "&blacktriangleright;": "\u25B8", "&blank;": "\u2423", "&blk12;": "\u2592", "&blk14;": "\u2591", "&blk34;": "\u2593", "&block;": "\u2588", "&bne;": "=\u20E5", "&bnequiv;": "\u2261\u20E5", "&bnot;": "\u2310", "&bopf;": "\u{1D553}", "&bot;": "\u22A5", "&bottom;": "\u22A5", "&bowtie;": "\u22C8", "&boxDL;": "\u2557", "&boxDR;": "\u2554", "&boxDl;": "\u2556", "&boxDr;": "\u2553", "&boxH;": "\u2550", "&boxHD;": "\u2566", "&boxHU;": "\u2569", "&boxHd;": "\u2564", "&boxHu;": "\u2567", "&boxUL;": "\u255D", "&boxUR;": "\u255A", "&boxUl;": "\u255C", "&boxUr;": "\u2559", "&boxV;": "\u2551", "&boxVH;": "\u256C", "&boxVL;": "\u2563", "&boxVR;": "\u2560", "&boxVh;": "\u256B", "&boxVl;": "\u2562", "&boxVr;": "\u255F", "&boxbox;": "\u29C9", "&boxdL;": "\u2555", "&boxdR;": "\u2552", "&boxdl;": "\u2510", "&boxdr;": "\u250C", "&boxh;": "\u2500", "&boxhD;": "\u2565", "&boxhU;": "\u2568", "&boxhd;": "\u252C", "&boxhu;": "\u2534", "&boxminus;": "\u229F", "&boxplus;": "\u229E", "&boxtimes;": "\u22A0", "&boxuL;": "\u255B", "&boxuR;": "\u2558", "&boxul;": "\u2518", "&boxur;": "\u2514", "&boxv;": "\u2502", "&boxvH;": "\u256A", "&boxvL;": "\u2561", "&boxvR;": "\u255E", "&boxvh;": "\u253C", "&boxvl;": "\u2524", "&boxvr;": "\u251C", "&bprime;": "\u2035", "&breve;": "\u02D8", "&brvbar": "\xA6", "&brvbar;": "\xA6", "&bscr;": "\u{1D4B7}", "&bsemi;": "\u204F", "&bsim;": "\u223D", "&bsime;": "\u22CD", "&bsol;": "\\", "&bsolb;": "\u29C5", "&bsolhsub;": "\u27C8", "&bull;": "\u2022", "&bullet;": "\u2022", "&bump;": "\u224E", "&bumpE;": "\u2AAE", "&bumpe;": "\u224F", "&bumpeq;": "\u224F", "&cacute;": "\u0107", "&cap;": "\u2229", "&capand;": "\u2A44", "&capbrcup;": "\u2A49", "&capcap;": "\u2A4B", "&capcup;": "\u2A47", "&capdot;": "\u2A40", "&caps;": "\u2229\uFE00", "&caret;": "\u2041", "&caron;": "\u02C7", "&ccaps;": "\u2A4D", "&ccaron;": "\u010D", "&ccedil": "\xE7", "&ccedil;": "\xE7", "&ccirc;": "\u0109", "&ccups;": "\u2A4C", "&ccupssm;": "\u2A50", "&cdot;": "\u010B", "&cedil": "\xB8", "&cedil;": "\xB8", "&cemptyv;": "\u29B2", "&cent": "\xA2", "&cent;": "\xA2", "&centerdot;": "\xB7", "&cfr;": "\u{1D520}", "&chcy;": "\u0447", "&check;": "\u2713", "&checkmark;": "\u2713", "&chi;": "\u03C7", "&cir;": "\u25CB", "&cirE;": "\u29C3", "&circ;": "\u02C6", "&circeq;": "\u2257", "&circlearrowleft;": "\u21BA", "&circlearrowright;": "\u21BB", "&circledR;": "\xAE", "&circledS;": "\u24C8", "&circledast;": "\u229B", "&circledcirc;": "\u229A", "&circleddash;": "\u229D", "&cire;": "\u2257", "&cirfnint;": "\u2A10", "&cirmid;": "\u2AEF", "&cirscir;": "\u29C2", "&clubs;": "\u2663", "&clubsuit;": "\u2663", "&colon;": ":", "&colone;": "\u2254", "&coloneq;": "\u2254", "&comma;": ",", "&commat;": "@", "&comp;": "\u2201", "&compfn;": "\u2218", "&complement;": "\u2201", "&complexes;": "\u2102", "&cong;": "\u2245", "&congdot;": "\u2A6D", "&conint;": "\u222E", "&copf;": "\u{1D554}", "&coprod;": "\u2210", "&copy": "\xA9", "&copy;": "\xA9", "&copysr;": "\u2117", "&crarr;": "\u21B5", "&cross;": "\u2717", "&cscr;": "\u{1D4B8}", "&csub;": "\u2ACF", "&csube;": "\u2AD1", "&csup;": "\u2AD0", "&csupe;": "\u2AD2", "&ctdot;": "\u22EF", "&cudarrl;": "\u2938", "&cudarrr;": "\u2935", "&cuepr;": "\u22DE", "&cuesc;": "\u22DF", "&cularr;": "\u21B6", "&cularrp;": "\u293D", "&cup;": "\u222A", "&cupbrcap;": "\u2A48", "&cupcap;": "\u2A46", "&cupcup;": "\u2A4A", "&cupdot;": "\u228D", "&cupor;": "\u2A45", "&cups;": "\u222A\uFE00", "&curarr;": "\u21B7", "&curarrm;": "\u293C", "&curlyeqprec;": "\u22DE", "&curlyeqsucc;": "\u22DF", "&curlyvee;": "\u22CE", "&curlywedge;": "\u22CF", "&curren": "\xA4", "&curren;": "\xA4", "&curvearrowleft;": "\u21B6", "&curvearrowright;": "\u21B7", "&cuvee;": "\u22CE", "&cuwed;": "\u22CF", "&cwconint;": "\u2232", "&cwint;": "\u2231", "&cylcty;": "\u232D", "&dArr;": "\u21D3", "&dHar;": "\u2965", "&dagger;": "\u2020", "&daleth;": "\u2138", "&darr;": "\u2193", "&dash;": "\u2010", "&dashv;": "\u22A3", "&dbkarow;": "\u290F", "&dblac;": "\u02DD", "&dcaron;": "\u010F", "&dcy;": "\u0434", "&dd;": "\u2146", "&ddagger;": "\u2021", "&ddarr;": "\u21CA", "&ddotseq;": "\u2A77", "&deg": "\xB0", "&deg;": "\xB0", "&delta;": "\u03B4", "&demptyv;": "\u29B1", "&dfisht;": "\u297F", "&dfr;": "\u{1D521}", "&dharl;": "\u21C3", "&dharr;": "\u21C2", "&diam;": "\u22C4", "&diamond;": "\u22C4", "&diamondsuit;": "\u2666", "&diams;": "\u2666", "&die;": "\xA8", "&digamma;": "\u03DD", "&disin;": "\u22F2", "&div;": "\xF7", "&divide": "\xF7", "&divide;": "\xF7", "&divideontimes;": "\u22C7", "&divonx;": "\u22C7", "&djcy;": "\u0452", "&dlcorn;": "\u231E", "&dlcrop;": "\u230D", "&dollar;": "$", "&dopf;": "\u{1D555}", "&dot;": "\u02D9", "&doteq;": "\u2250", "&doteqdot;": "\u2251", "&dotminus;": "\u2238", "&dotplus;": "\u2214", "&dotsquare;": "\u22A1", "&doublebarwedge;": "\u2306", "&downarrow;": "\u2193", "&downdownarrows;": "\u21CA", "&downharpoonleft;": "\u21C3", "&downharpoonright;": "\u21C2", "&drbkarow;": "\u2910", "&drcorn;": "\u231F", "&drcrop;": "\u230C", "&dscr;": "\u{1D4B9}", "&dscy;": "\u0455", "&dsol;": "\u29F6", "&dstrok;": "\u0111", "&dtdot;": "\u22F1", "&dtri;": "\u25BF", "&dtrif;": "\u25BE", "&duarr;": "\u21F5", "&duhar;": "\u296F", "&dwangle;": "\u29A6", "&dzcy;": "\u045F", "&dzigrarr;": "\u27FF", "&eDDot;": "\u2A77", "&eDot;": "\u2251", "&eacute": "\xE9", "&eacute;": "\xE9", "&easter;": "\u2A6E", "&ecaron;": "\u011B", "&ecir;": "\u2256", "&ecirc": "\xEA", "&ecirc;": "\xEA", "&ecolon;": "\u2255", "&ecy;": "\u044D", "&edot;": "\u0117", "&ee;": "\u2147", "&efDot;": "\u2252", "&efr;": "\u{1D522}", "&eg;": "\u2A9A", "&egrave": "\xE8", "&egrave;": "\xE8", "&egs;": "\u2A96", "&egsdot;": "\u2A98", "&el;": "\u2A99", "&elinters;": "\u23E7", "&ell;": "\u2113", "&els;": "\u2A95", "&elsdot;": "\u2A97", "&emacr;": "\u0113", "&empty;": "\u2205", "&emptyset;": "\u2205", "&emptyv;": "\u2205", "&emsp13;": "\u2004", "&emsp14;": "\u2005", "&emsp;": "\u2003", "&eng;": "\u014B", "&ensp;": "\u2002", "&eogon;": "\u0119", "&eopf;": "\u{1D556}", "&epar;": "\u22D5", "&eparsl;": "\u29E3", "&eplus;": "\u2A71", "&epsi;": "\u03B5", "&epsilon;": "\u03B5", "&epsiv;": "\u03F5", "&eqcirc;": "\u2256", "&eqcolon;": "\u2255", "&eqsim;": "\u2242", "&eqslantgtr;": "\u2A96", "&eqslantless;": "\u2A95", "&equals;": "=", "&equest;": "\u225F", "&equiv;": "\u2261", "&equivDD;": "\u2A78", "&eqvparsl;": "\u29E5", "&erDot;": "\u2253", "&erarr;": "\u2971", "&escr;": "\u212F", "&esdot;": "\u2250", "&esim;": "\u2242", "&eta;": "\u03B7", "&eth": "\xF0", "&eth;": "\xF0", "&euml": "\xEB", "&euml;": "\xEB", "&euro;": "\u20AC", "&excl;": "!", "&exist;": "\u2203", "&expectation;": "\u2130", "&exponentiale;": "\u2147", "&fallingdotseq;": "\u2252", "&fcy;": "\u0444", "&female;": "\u2640", "&ffilig;": "\uFB03", "&fflig;": "\uFB00", "&ffllig;": "\uFB04", "&ffr;": "\u{1D523}", "&filig;": "\uFB01", "&fjlig;": "fj", "&flat;": "\u266D", "&fllig;": "\uFB02", "&fltns;": "\u25B1", "&fnof;": "\u0192", "&fopf;": "\u{1D557}", "&forall;": "\u2200", "&fork;": "\u22D4", "&forkv;": "\u2AD9", "&fpartint;": "\u2A0D", "&frac12": "\xBD", "&frac12;": "\xBD", "&frac13;": "\u2153", "&frac14": "\xBC", "&frac14;": "\xBC", "&frac15;": "\u2155", "&frac16;": "\u2159", "&frac18;": "\u215B", "&frac23;": "\u2154", "&frac25;": "\u2156", "&frac34": "\xBE", "&frac34;": "\xBE", "&frac35;": "\u2157", "&frac38;": "\u215C", "&frac45;": "\u2158", "&frac56;": "\u215A", "&frac58;": "\u215D", "&frac78;": "\u215E", "&frasl;": "\u2044", "&frown;": "\u2322", "&fscr;": "\u{1D4BB}", "&gE;": "\u2267", "&gEl;": "\u2A8C", "&gacute;": "\u01F5", "&gamma;": "\u03B3", "&gammad;": "\u03DD", "&gap;": "\u2A86", "&gbreve;": "\u011F", "&gcirc;": "\u011D", "&gcy;": "\u0433", "&gdot;": "\u0121", "&ge;": "\u2265", "&gel;": "\u22DB", "&geq;": "\u2265", "&geqq;": "\u2267", "&geqslant;": "\u2A7E", "&ges;": "\u2A7E", "&gescc;": "\u2AA9", "&gesdot;": "\u2A80", "&gesdoto;": "\u2A82", "&gesdotol;": "\u2A84", "&gesl;": "\u22DB\uFE00", "&gesles;": "\u2A94", "&gfr;": "\u{1D524}", "&gg;": "\u226B", "&ggg;": "\u22D9", "&gimel;": "\u2137", "&gjcy;": "\u0453", "&gl;": "\u2277", "&glE;": "\u2A92", "&gla;": "\u2AA5", "&glj;": "\u2AA4", "&gnE;": "\u2269", "&gnap;": "\u2A8A", "&gnapprox;": "\u2A8A", "&gne;": "\u2A88", "&gneq;": "\u2A88", "&gneqq;": "\u2269", "&gnsim;": "\u22E7", "&gopf;": "\u{1D558}", "&grave;": "`", "&gscr;": "\u210A", "&gsim;": "\u2273", "&gsime;": "\u2A8E", "&gsiml;": "\u2A90", "&gt": ">", "&gt;": ">", "&gtcc;": "\u2AA7", "&gtcir;": "\u2A7A", "&gtdot;": "\u22D7", "&gtlPar;": "\u2995", "&gtquest;": "\u2A7C", "&gtrapprox;": "\u2A86", "&gtrarr;": "\u2978", "&gtrdot;": "\u22D7", "&gtreqless;": "\u22DB", "&gtreqqless;": "\u2A8C", "&gtrless;": "\u2277", "&gtrsim;": "\u2273", "&gvertneqq;": "\u2269\uFE00", "&gvnE;": "\u2269\uFE00", "&hArr;": "\u21D4", "&hairsp;": "\u200A", "&half;": "\xBD", "&hamilt;": "\u210B", "&hardcy;": "\u044A", "&harr;": "\u2194", "&harrcir;": "\u2948", "&harrw;": "\u21AD", "&hbar;": "\u210F", "&hcirc;": "\u0125", "&hearts;": "\u2665", "&heartsuit;": "\u2665", "&hellip;": "\u2026", "&hercon;": "\u22B9", "&hfr;": "\u{1D525}", "&hksearow;": "\u2925", "&hkswarow;": "\u2926", "&hoarr;": "\u21FF", "&homtht;": "\u223B", "&hookleftarrow;": "\u21A9", "&hookrightarrow;": "\u21AA", "&hopf;": "\u{1D559}", "&horbar;": "\u2015", "&hscr;": "\u{1D4BD}", "&hslash;": "\u210F", "&hstrok;": "\u0127", "&hybull;": "\u2043", "&hyphen;": "\u2010", "&iacute": "\xED", "&iacute;": "\xED", "&ic;": "\u2063", "&icirc": "\xEE", "&icirc;": "\xEE", "&icy;": "\u0438", "&iecy;": "\u0435", "&iexcl": "\xA1", "&iexcl;": "\xA1", "&iff;": "\u21D4", "&ifr;": "\u{1D526}", "&igrave": "\xEC", "&igrave;": "\xEC", "&ii;": "\u2148", "&iiiint;": "\u2A0C", "&iiint;": "\u222D", "&iinfin;": "\u29DC", "&iiota;": "\u2129", "&ijlig;": "\u0133", "&imacr;": "\u012B", "&image;": "\u2111", "&imagline;": "\u2110", "&imagpart;": "\u2111", "&imath;": "\u0131", "&imof;": "\u22B7", "&imped;": "\u01B5", "&in;": "\u2208", "&incare;": "\u2105", "&infin;": "\u221E", "&infintie;": "\u29DD", "&inodot;": "\u0131", "&int;": "\u222B", "&intcal;": "\u22BA", "&integers;": "\u2124", "&intercal;": "\u22BA", "&intlarhk;": "\u2A17", "&intprod;": "\u2A3C", "&iocy;": "\u0451", "&iogon;": "\u012F", "&iopf;": "\u{1D55A}", "&iota;": "\u03B9", "&iprod;": "\u2A3C", "&iquest": "\xBF", "&iquest;": "\xBF", "&iscr;": "\u{1D4BE}", "&isin;": "\u2208", "&isinE;": "\u22F9", "&isindot;": "\u22F5", "&isins;": "\u22F4", "&isinsv;": "\u22F3", "&isinv;": "\u2208", "&it;": "\u2062", "&itilde;": "\u0129", "&iukcy;": "\u0456", "&iuml": "\xEF", "&iuml;": "\xEF", "&jcirc;": "\u0135", "&jcy;": "\u0439", "&jfr;": "\u{1D527}", "&jmath;": "\u0237", "&jopf;": "\u{1D55B}", "&jscr;": "\u{1D4BF}", "&jsercy;": "\u0458", "&jukcy;": "\u0454", "&kappa;": "\u03BA", "&kappav;": "\u03F0", "&kcedil;": "\u0137", "&kcy;": "\u043A", "&kfr;": "\u{1D528}", "&kgreen;": "\u0138", "&khcy;": "\u0445", "&kjcy;": "\u045C", "&kopf;": "\u{1D55C}", "&kscr;": "\u{1D4C0}", "&lAarr;": "\u21DA", "&lArr;": "\u21D0", "&lAtail;": "\u291B", "&lBarr;": "\u290E", "&lE;": "\u2266", "&lEg;": "\u2A8B", "&lHar;": "\u2962", "&lacute;": "\u013A", "&laemptyv;": "\u29B4", "&lagran;": "\u2112", "&lambda;": "\u03BB", "&lang;": "\u27E8", "&langd;": "\u2991", "&langle;": "\u27E8", "&lap;": "\u2A85", "&laquo": "\xAB", "&laquo;": "\xAB", "&larr;": "\u2190", "&larrb;": "\u21E4", "&larrbfs;": "\u291F", "&larrfs;": "\u291D", "&larrhk;": "\u21A9", "&larrlp;": "\u21AB", "&larrpl;": "\u2939", "&larrsim;": "\u2973", "&larrtl;": "\u21A2", "&lat;": "\u2AAB", "&latail;": "\u2919", "&late;": "\u2AAD", "&lates;": "\u2AAD\uFE00", "&lbarr;": "\u290C", "&lbbrk;": "\u2772", "&lbrace;": "{", "&lbrack;": "[", "&lbrke;": "\u298B", "&lbrksld;": "\u298F", "&lbrkslu;": "\u298D", "&lcaron;": "\u013E", "&lcedil;": "\u013C", "&lceil;": "\u2308", "&lcub;": "{", "&lcy;": "\u043B", "&ldca;": "\u2936", "&ldquo;": "\u201C", "&ldquor;": "\u201E", "&ldrdhar;": "\u2967", "&ldrushar;": "\u294B", "&ldsh;": "\u21B2", "&le;": "\u2264", "&leftarrow;": "\u2190", "&leftarrowtail;": "\u21A2", "&leftharpoondown;": "\u21BD", "&leftharpoonup;": "\u21BC", "&leftleftarrows;": "\u21C7", "&leftrightarrow;": "\u2194", "&leftrightarrows;": "\u21C6", "&leftrightharpoons;": "\u21CB", "&leftrightsquigarrow;": "\u21AD", "&leftthreetimes;": "\u22CB", "&leg;": "\u22DA", "&leq;": "\u2264", "&leqq;": "\u2266", "&leqslant;": "\u2A7D", "&les;": "\u2A7D", "&lescc;": "\u2AA8", "&lesdot;": "\u2A7F", "&lesdoto;": "\u2A81", "&lesdotor;": "\u2A83", "&lesg;": "\u22DA\uFE00", "&lesges;": "\u2A93", "&lessapprox;": "\u2A85", "&lessdot;": "\u22D6", "&lesseqgtr;": "\u22DA", "&lesseqqgtr;": "\u2A8B", "&lessgtr;": "\u2276", "&lesssim;": "\u2272", "&lfisht;": "\u297C", "&lfloor;": "\u230A", "&lfr;": "\u{1D529}", "&lg;": "\u2276", "&lgE;": "\u2A91", "&lhard;": "\u21BD", "&lharu;": "\u21BC", "&lharul;": "\u296A", "&lhblk;": "\u2584", "&ljcy;": "\u0459", "&ll;": "\u226A", "&llarr;": "\u21C7", "&llcorner;": "\u231E", "&llhard;": "\u296B", "&lltri;": "\u25FA", "&lmidot;": "\u0140", "&lmoust;": "\u23B0", "&lmoustache;": "\u23B0", "&lnE;": "\u2268", "&lnap;": "\u2A89", "&lnapprox;": "\u2A89", "&lne;": "\u2A87", "&lneq;": "\u2A87", "&lneqq;": "\u2268", "&lnsim;": "\u22E6", "&loang;": "\u27EC", "&loarr;": "\u21FD", "&lobrk;": "\u27E6", "&longleftarrow;": "\u27F5", "&longleftrightarrow;": "\u27F7", "&longmapsto;": "\u27FC", "&longrightarrow;": "\u27F6", "&looparrowleft;": "\u21AB", "&looparrowright;": "\u21AC", "&lopar;": "\u2985", "&lopf;": "\u{1D55D}", "&loplus;": "\u2A2D", "&lotimes;": "\u2A34", "&lowast;": "\u2217", "&lowbar;": "_", "&loz;": "\u25CA", "&lozenge;": "\u25CA", "&lozf;": "\u29EB", "&lpar;": "(", "&lparlt;": "\u2993", "&lrarr;": "\u21C6", "&lrcorner;": "\u231F", "&lrhar;": "\u21CB", "&lrhard;": "\u296D", "&lrm;": "\u200E", "&lrtri;": "\u22BF", "&lsaquo;": "\u2039", "&lscr;": "\u{1D4C1}", "&lsh;": "\u21B0", "&lsim;": "\u2272", "&lsime;": "\u2A8D", "&lsimg;": "\u2A8F", "&lsqb;": "[", "&lsquo;": "\u2018", "&lsquor;": "\u201A", "&lstrok;": "\u0142", "&lt": "<", "&lt;": "<", "&ltcc;": "\u2AA6", "&ltcir;": "\u2A79", "&ltdot;": "\u22D6", "&lthree;": "\u22CB", "&ltimes;": "\u22C9", "&ltlarr;": "\u2976", "&ltquest;": "\u2A7B", "&ltrPar;": "\u2996", "&ltri;": "\u25C3", "&ltrie;": "\u22B4", "&ltrif;": "\u25C2", "&lurdshar;": "\u294A", "&luruhar;": "\u2966", "&lvertneqq;": "\u2268\uFE00", "&lvnE;": "\u2268\uFE00", "&mDDot;": "\u223A", "&macr": "\xAF", "&macr;": "\xAF", "&male;": "\u2642", "&malt;": "\u2720", "&maltese;": "\u2720", "&map;": "\u21A6", "&mapsto;": "\u21A6", "&mapstodown;": "\u21A7", "&mapstoleft;": "\u21A4", "&mapstoup;": "\u21A5", "&marker;": "\u25AE", "&mcomma;": "\u2A29", "&mcy;": "\u043C", "&mdash;": "\u2014", "&measuredangle;": "\u2221", "&mfr;": "\u{1D52A}", "&mho;": "\u2127", "&micro": "\xB5", "&micro;": "\xB5", "&mid;": "\u2223", "&midast;": "*", "&midcir;": "\u2AF0", "&middot": "\xB7", "&middot;": "\xB7", "&minus;": "\u2212", "&minusb;": "\u229F", "&minusd;": "\u2238", "&minusdu;": "\u2A2A", "&mlcp;": "\u2ADB", "&mldr;": "\u2026", "&mnplus;": "\u2213", "&models;": "\u22A7", "&mopf;": "\u{1D55E}", "&mp;": "\u2213", "&mscr;": "\u{1D4C2}", "&mstpos;": "\u223E", "&mu;": "\u03BC", "&multimap;": "\u22B8", "&mumap;": "\u22B8", "&nGg;": "\u22D9\u0338", "&nGt;": "\u226B\u20D2", "&nGtv;": "\u226B\u0338", "&nLeftarrow;": "\u21CD", "&nLeftrightarrow;": "\u21CE", "&nLl;": "\u22D8\u0338", "&nLt;": "\u226A\u20D2", "&nLtv;": "\u226A\u0338", "&nRightarrow;": "\u21CF", "&nVDash;": "\u22AF", "&nVdash;": "\u22AE", "&nabla;": "\u2207", "&nacute;": "\u0144", "&nang;": "\u2220\u20D2", "&nap;": "\u2249", "&napE;": "\u2A70\u0338", "&napid;": "\u224B\u0338", "&napos;": "\u0149", "&napprox;": "\u2249", "&natur;": "\u266E", "&natural;": "\u266E", "&naturals;": "\u2115", "&nbsp": "\xA0", "&nbsp;": "\xA0", "&nbump;": "\u224E\u0338", "&nbumpe;": "\u224F\u0338", "&ncap;": "\u2A43", "&ncaron;": "\u0148", "&ncedil;": "\u0146", "&ncong;": "\u2247", "&ncongdot;": "\u2A6D\u0338", "&ncup;": "\u2A42", "&ncy;": "\u043D", "&ndash;": "\u2013", "&ne;": "\u2260", "&neArr;": "\u21D7", "&nearhk;": "\u2924", "&nearr;": "\u2197", "&nearrow;": "\u2197", "&nedot;": "\u2250\u0338", "&nequiv;": "\u2262", "&nesear;": "\u2928", "&nesim;": "\u2242\u0338", "&nexist;": "\u2204", "&nexists;": "\u2204", "&nfr;": "\u{1D52B}", "&ngE;": "\u2267\u0338", "&nge;": "\u2271", "&ngeq;": "\u2271", "&ngeqq;": "\u2267\u0338", "&ngeqslant;": "\u2A7E\u0338", "&nges;": "\u2A7E\u0338", "&ngsim;": "\u2275", "&ngt;": "\u226F", "&ngtr;": "\u226F", "&nhArr;": "\u21CE", "&nharr;": "\u21AE", "&nhpar;": "\u2AF2", "&ni;": "\u220B", "&nis;": "\u22FC", "&nisd;": "\u22FA", "&niv;": "\u220B", "&njcy;": "\u045A", "&nlArr;": "\u21CD", "&nlE;": "\u2266\u0338", "&nlarr;": "\u219A", "&nldr;": "\u2025", "&nle;": "\u2270", "&nleftarrow;": "\u219A", "&nleftrightarrow;": "\u21AE", "&nleq;": "\u2270", "&nleqq;": "\u2266\u0338", "&nleqslant;": "\u2A7D\u0338", "&nles;": "\u2A7D\u0338", "&nless;": "\u226E", "&nlsim;": "\u2274", "&nlt;": "\u226E", "&nltri;": "\u22EA", "&nltrie;": "\u22EC", "&nmid;": "\u2224", "&nopf;": "\u{1D55F}", "&not": "\xAC", "&not;": "\xAC", "&notin;": "\u2209", "&notinE;": "\u22F9\u0338", "&notindot;": "\u22F5\u0338", "&notinva;": "\u2209", "&notinvb;": "\u22F7", "&notinvc;": "\u22F6", "&notni;": "\u220C", "&notniva;": "\u220C", "&notnivb;": "\u22FE", "&notnivc;": "\u22FD", "&npar;": "\u2226", "&nparallel;": "\u2226", "&nparsl;": "\u2AFD\u20E5", "&npart;": "\u2202\u0338", "&npolint;": "\u2A14", "&npr;": "\u2280", "&nprcue;": "\u22E0", "&npre;": "\u2AAF\u0338", "&nprec;": "\u2280", "&npreceq;": "\u2AAF\u0338", "&nrArr;": "\u21CF", "&nrarr;": "\u219B", "&nrarrc;": "\u2933\u0338", "&nrarrw;": "\u219D\u0338", "&nrightarrow;": "\u219B", "&nrtri;": "\u22EB", "&nrtrie;": "\u22ED", "&nsc;": "\u2281", "&nsccue;": "\u22E1", "&nsce;": "\u2AB0\u0338", "&nscr;": "\u{1D4C3}", "&nshortmid;": "\u2224", "&nshortparallel;": "\u2226", "&nsim;": "\u2241", "&nsime;": "\u2244", "&nsimeq;": "\u2244", "&nsmid;": "\u2224", "&nspar;": "\u2226", "&nsqsube;": "\u22E2", "&nsqsupe;": "\u22E3", "&nsub;": "\u2284", "&nsubE;": "\u2AC5\u0338", "&nsube;": "\u2288", "&nsubset;": "\u2282\u20D2", "&nsubseteq;": "\u2288", "&nsubseteqq;": "\u2AC5\u0338", "&nsucc;": "\u2281", "&nsucceq;": "\u2AB0\u0338", "&nsup;": "\u2285", "&nsupE;": "\u2AC6\u0338", "&nsupe;": "\u2289", "&nsupset;": "\u2283\u20D2", "&nsupseteq;": "\u2289", "&nsupseteqq;": "\u2AC6\u0338", "&ntgl;": "\u2279", "&ntilde": "\xF1", "&ntilde;": "\xF1", "&ntlg;": "\u2278", "&ntriangleleft;": "\u22EA", "&ntrianglelefteq;": "\u22EC", "&ntriangleright;": "\u22EB", "&ntrianglerighteq;": "\u22ED", "&nu;": "\u03BD", "&num;": "#", "&numero;": "\u2116", "&numsp;": "\u2007", "&nvDash;": "\u22AD", "&nvHarr;": "\u2904", "&nvap;": "\u224D\u20D2", "&nvdash;": "\u22AC", "&nvge;": "\u2265\u20D2", "&nvgt;": ">\u20D2", "&nvinfin;": "\u29DE", "&nvlArr;": "\u2902", "&nvle;": "\u2264\u20D2", "&nvlt;": "<\u20D2", "&nvltrie;": "\u22B4\u20D2", "&nvrArr;": "\u2903", "&nvrtrie;": "\u22B5\u20D2", "&nvsim;": "\u223C\u20D2", "&nwArr;": "\u21D6", "&nwarhk;": "\u2923", "&nwarr;": "\u2196", "&nwarrow;": "\u2196", "&nwnear;": "\u2927", "&oS;": "\u24C8", "&oacute": "\xF3", "&oacute;": "\xF3", "&oast;": "\u229B", "&ocir;": "\u229A", "&ocirc": "\xF4", "&ocirc;": "\xF4", "&ocy;": "\u043E", "&odash;": "\u229D", "&odblac;": "\u0151", "&odiv;": "\u2A38", "&odot;": "\u2299", "&odsold;": "\u29BC", "&oelig;": "\u0153", "&ofcir;": "\u29BF", "&ofr;": "\u{1D52C}", "&ogon;": "\u02DB", "&ograve": "\xF2", "&ograve;": "\xF2", "&ogt;": "\u29C1", "&ohbar;": "\u29B5", "&ohm;": "\u03A9", "&oint;": "\u222E", "&olarr;": "\u21BA", "&olcir;": "\u29BE", "&olcross;": "\u29BB", "&oline;": "\u203E", "&olt;": "\u29C0", "&omacr;": "\u014D", "&omega;": "\u03C9", "&omicron;": "\u03BF", "&omid;": "\u29B6", "&ominus;": "\u2296", "&oopf;": "\u{1D560}", "&opar;": "\u29B7", "&operp;": "\u29B9", "&oplus;": "\u2295", "&or;": "\u2228", "&orarr;": "\u21BB", "&ord;": "\u2A5D", "&order;": "\u2134", "&orderof;": "\u2134", "&ordf": "\xAA", "&ordf;": "\xAA", "&ordm": "\xBA", "&ordm;": "\xBA", "&origof;": "\u22B6", "&oror;": "\u2A56", "&orslope;": "\u2A57", "&orv;": "\u2A5B", "&oscr;": "\u2134", "&oslash": "\xF8", "&oslash;": "\xF8", "&osol;": "\u2298", "&otilde": "\xF5", "&otilde;": "\xF5", "&otimes;": "\u2297", "&otimesas;": "\u2A36", "&ouml": "\xF6", "&ouml;": "\xF6", "&ovbar;": "\u233D", "&par;": "\u2225", "&para": "\xB6", "&para;": "\xB6", "&parallel;": "\u2225", "&parsim;": "\u2AF3", "&parsl;": "\u2AFD", "&part;": "\u2202", "&pcy;": "\u043F", "&percnt;": "%", "&period;": ".", "&permil;": "\u2030", "&perp;": "\u22A5", "&pertenk;": "\u2031", "&pfr;": "\u{1D52D}", "&phi;": "\u03C6", "&phiv;": "\u03D5", "&phmmat;": "\u2133", "&phone;": "\u260E", "&pi;": "\u03C0", "&pitchfork;": "\u22D4", "&piv;": "\u03D6", "&planck;": "\u210F", "&planckh;": "\u210E", "&plankv;": "\u210F", "&plus;": "+", "&plusacir;": "\u2A23", "&plusb;": "\u229E", "&pluscir;": "\u2A22", "&plusdo;": "\u2214", "&plusdu;": "\u2A25", "&pluse;": "\u2A72", "&plusmn": "\xB1", "&plusmn;": "\xB1", "&plussim;": "\u2A26", "&plustwo;": "\u2A27", "&pm;": "\xB1", "&pointint;": "\u2A15", "&popf;": "\u{1D561}", "&pound": "\xA3", "&pound;": "\xA3", "&pr;": "\u227A", "&prE;": "\u2AB3", "&prap;": "\u2AB7", "&prcue;": "\u227C", "&pre;": "\u2AAF", "&prec;": "\u227A", "&precapprox;": "\u2AB7", "&preccurlyeq;": "\u227C", "&preceq;": "\u2AAF", "&precnapprox;": "\u2AB9", "&precneqq;": "\u2AB5", "&precnsim;": "\u22E8", "&precsim;": "\u227E", "&prime;": "\u2032", "&primes;": "\u2119", "&prnE;": "\u2AB5", "&prnap;": "\u2AB9", "&prnsim;": "\u22E8", "&prod;": "\u220F", "&profalar;": "\u232E", "&profline;": "\u2312", "&profsurf;": "\u2313", "&prop;": "\u221D", "&propto;": "\u221D", "&prsim;": "\u227E", "&prurel;": "\u22B0", "&pscr;": "\u{1D4C5}", "&psi;": "\u03C8", "&puncsp;": "\u2008", "&qfr;": "\u{1D52E}", "&qint;": "\u2A0C", "&qopf;": "\u{1D562}", "&qprime;": "\u2057", "&qscr;": "\u{1D4C6}", "&quaternions;": "\u210D", "&quatint;": "\u2A16", "&quest;": "?", "&questeq;": "\u225F", "&quot": '"', "&quot;": '"', "&rAarr;": "\u21DB", "&rArr;": "\u21D2", "&rAtail;": "\u291C", "&rBarr;": "\u290F", "&rHar;": "\u2964", "&race;": "\u223D\u0331", "&racute;": "\u0155", "&radic;": "\u221A", "&raemptyv;": "\u29B3", "&rang;": "\u27E9", "&rangd;": "\u2992", "&range;": "\u29A5", "&rangle;": "\u27E9", "&raquo": "\xBB", "&raquo;": "\xBB", "&rarr;": "\u2192", "&rarrap;": "\u2975", "&rarrb;": "\u21E5", "&rarrbfs;": "\u2920", "&rarrc;": "\u2933", "&rarrfs;": "\u291E", "&rarrhk;": "\u21AA", "&rarrlp;": "\u21AC", "&rarrpl;": "\u2945", "&rarrsim;": "\u2974", "&rarrtl;": "\u21A3", "&rarrw;": "\u219D", "&ratail;": "\u291A", "&ratio;": "\u2236", "&rationals;": "\u211A", "&rbarr;": "\u290D", "&rbbrk;": "\u2773", "&rbrace;": "}", "&rbrack;": "]", "&rbrke;": "\u298C", "&rbrksld;": "\u298E", "&rbrkslu;": "\u2990", "&rcaron;": "\u0159", "&rcedil;": "\u0157", "&rceil;": "\u2309", "&rcub;": "}", "&rcy;": "\u0440", "&rdca;": "\u2937", "&rdldhar;": "\u2969", "&rdquo;": "\u201D", "&rdquor;": "\u201D", "&rdsh;": "\u21B3", "&real;": "\u211C", "&realine;": "\u211B", "&realpart;": "\u211C", "&reals;": "\u211D", "&rect;": "\u25AD", "&reg": "\xAE", "&reg;": "\xAE", "&rfisht;": "\u297D", "&rfloor;": "\u230B", "&rfr;": "\u{1D52F}", "&rhard;": "\u21C1", "&rharu;": "\u21C0", "&rharul;": "\u296C", "&rho;": "\u03C1", "&rhov;": "\u03F1", "&rightarrow;": "\u2192", "&rightarrowtail;": "\u21A3", "&rightharpoondown;": "\u21C1", "&rightharpoonup;": "\u21C0", "&rightleftarrows;": "\u21C4", "&rightleftharpoons;": "\u21CC", "&rightrightarrows;": "\u21C9", "&rightsquigarrow;": "\u219D", "&rightthreetimes;": "\u22CC", "&ring;": "\u02DA", "&risingdotseq;": "\u2253", "&rlarr;": "\u21C4", "&rlhar;": "\u21CC", "&rlm;": "\u200F", "&rmoust;": "\u23B1", "&rmoustache;": "\u23B1", "&rnmid;": "\u2AEE", "&roang;": "\u27ED", "&roarr;": "\u21FE", "&robrk;": "\u27E7", "&ropar;": "\u2986", "&ropf;": "\u{1D563}", "&roplus;": "\u2A2E", "&rotimes;": "\u2A35", "&rpar;": ")", "&rpargt;": "\u2994", "&rppolint;": "\u2A12", "&rrarr;": "\u21C9", "&rsaquo;": "\u203A", "&rscr;": "\u{1D4C7}", "&rsh;": "\u21B1", "&rsqb;": "]", "&rsquo;": "\u2019", "&rsquor;": "\u2019", "&rthree;": "\u22CC", "&rtimes;": "\u22CA", "&rtri;": "\u25B9", "&rtrie;": "\u22B5", "&rtrif;": "\u25B8", "&rtriltri;": "\u29CE", "&ruluhar;": "\u2968", "&rx;": "\u211E", "&sacute;": "\u015B", "&sbquo;": "\u201A", "&sc;": "\u227B", "&scE;": "\u2AB4", "&scap;": "\u2AB8", "&scaron;": "\u0161", "&sccue;": "\u227D", "&sce;": "\u2AB0", "&scedil;": "\u015F", "&scirc;": "\u015D", "&scnE;": "\u2AB6", "&scnap;": "\u2ABA", "&scnsim;": "\u22E9", "&scpolint;": "\u2A13", "&scsim;": "\u227F", "&scy;": "\u0441", "&sdot;": "\u22C5", "&sdotb;": "\u22A1", "&sdote;": "\u2A66", "&seArr;": "\u21D8", "&searhk;": "\u2925", "&searr;": "\u2198", "&searrow;": "\u2198", "&sect": "\xA7", "&sect;": "\xA7", "&semi;": ";", "&seswar;": "\u2929", "&setminus;": "\u2216", "&setmn;": "\u2216", "&sext;": "\u2736", "&sfr;": "\u{1D530}", "&sfrown;": "\u2322", "&sharp;": "\u266F", "&shchcy;": "\u0449", "&shcy;": "\u0448", "&shortmid;": "\u2223", "&shortparallel;": "\u2225", "&shy": "\xAD", "&shy;": "\xAD", "&sigma;": "\u03C3", "&sigmaf;": "\u03C2", "&sigmav;": "\u03C2", "&sim;": "\u223C", "&simdot;": "\u2A6A", "&sime;": "\u2243", "&simeq;": "\u2243", "&simg;": "\u2A9E", "&simgE;": "\u2AA0", "&siml;": "\u2A9D", "&simlE;": "\u2A9F", "&simne;": "\u2246", "&simplus;": "\u2A24", "&simrarr;": "\u2972", "&slarr;": "\u2190", "&smallsetminus;": "\u2216", "&smashp;": "\u2A33", "&smeparsl;": "\u29E4", "&smid;": "\u2223", "&smile;": "\u2323", "&smt;": "\u2AAA", "&smte;": "\u2AAC", "&smtes;": "\u2AAC\uFE00", "&softcy;": "\u044C", "&sol;": "/", "&solb;": "\u29C4", "&solbar;": "\u233F", "&sopf;": "\u{1D564}", "&spades;": "\u2660", "&spadesuit;": "\u2660", "&spar;": "\u2225", "&sqcap;": "\u2293", "&sqcaps;": "\u2293\uFE00", "&sqcup;": "\u2294", "&sqcups;": "\u2294\uFE00", "&sqsub;": "\u228F", "&sqsube;": "\u2291", "&sqsubset;": "\u228F", "&sqsubseteq;": "\u2291", "&sqsup;": "\u2290", "&sqsupe;": "\u2292", "&sqsupset;": "\u2290", "&sqsupseteq;": "\u2292", "&squ;": "\u25A1", "&square;": "\u25A1", "&squarf;": "\u25AA", "&squf;": "\u25AA", "&srarr;": "\u2192", "&sscr;": "\u{1D4C8}", "&ssetmn;": "\u2216", "&ssmile;": "\u2323", "&sstarf;": "\u22C6", "&star;": "\u2606", "&starf;": "\u2605", "&straightepsilon;": "\u03F5", "&straightphi;": "\u03D5", "&strns;": "\xAF", "&sub;": "\u2282", "&subE;": "\u2AC5", "&subdot;": "\u2ABD", "&sube;": "\u2286", "&subedot;": "\u2AC3", "&submult;": "\u2AC1", "&subnE;": "\u2ACB", "&subne;": "\u228A", "&subplus;": "\u2ABF", "&subrarr;": "\u2979", "&subset;": "\u2282", "&subseteq;": "\u2286", "&subseteqq;": "\u2AC5", "&subsetneq;": "\u228A", "&subsetneqq;": "\u2ACB", "&subsim;": "\u2AC7", "&subsub;": "\u2AD5", "&subsup;": "\u2AD3", "&succ;": "\u227B", "&succapprox;": "\u2AB8", "&succcurlyeq;": "\u227D", "&succeq;": "\u2AB0", "&succnapprox;": "\u2ABA", "&succneqq;": "\u2AB6", "&succnsim;": "\u22E9", "&succsim;": "\u227F", "&sum;": "\u2211", "&sung;": "\u266A", "&sup1": "\xB9", "&sup1;": "\xB9", "&sup2": "\xB2", "&sup2;": "\xB2", "&sup3": "\xB3", "&sup3;": "\xB3", "&sup;": "\u2283", "&supE;": "\u2AC6", "&supdot;": "\u2ABE", "&supdsub;": "\u2AD8", "&supe;": "\u2287", "&supedot;": "\u2AC4", "&suphsol;": "\u27C9", "&suphsub;": "\u2AD7", "&suplarr;": "\u297B", "&supmult;": "\u2AC2", "&supnE;": "\u2ACC", "&supne;": "\u228B", "&supplus;": "\u2AC0", "&supset;": "\u2283", "&supseteq;": "\u2287", "&supseteqq;": "\u2AC6", "&supsetneq;": "\u228B", "&supsetneqq;": "\u2ACC", "&supsim;": "\u2AC8", "&supsub;": "\u2AD4", "&supsup;": "\u2AD6", "&swArr;": "\u21D9", "&swarhk;": "\u2926", "&swarr;": "\u2199", "&swarrow;": "\u2199", "&swnwar;": "\u292A", "&szlig": "\xDF", "&szlig;": "\xDF", "&target;": "\u2316", "&tau;": "\u03C4", "&tbrk;": "\u23B4", "&tcaron;": "\u0165", "&tcedil;": "\u0163", "&tcy;": "\u0442", "&tdot;": "\u20DB", "&telrec;": "\u2315", "&tfr;": "\u{1D531}", "&there4;": "\u2234", "&therefore;": "\u2234", "&theta;": "\u03B8", "&thetasym;": "\u03D1", "&thetav;": "\u03D1", "&thickapprox;": "\u2248", "&thicksim;": "\u223C", "&thinsp;": "\u2009", "&thkap;": "\u2248", "&thksim;": "\u223C", "&thorn": "\xFE", "&thorn;": "\xFE", "&tilde;": "\u02DC", "&times": "\xD7", "&times;": "\xD7", "&timesb;": "\u22A0", "&timesbar;": "\u2A31", "&timesd;": "\u2A30", "&tint;": "\u222D", "&toea;": "\u2928", "&top;": "\u22A4", "&topbot;": "\u2336", "&topcir;": "\u2AF1", "&topf;": "\u{1D565}", "&topfork;": "\u2ADA", "&tosa;": "\u2929", "&tprime;": "\u2034", "&trade;": "\u2122", "&triangle;": "\u25B5", "&triangledown;": "\u25BF", "&triangleleft;": "\u25C3", "&trianglelefteq;": "\u22B4", "&triangleq;": "\u225C", "&triangleright;": "\u25B9", "&trianglerighteq;": "\u22B5", "&tridot;": "\u25EC", "&trie;": "\u225C", "&triminus;": "\u2A3A", "&triplus;": "\u2A39", "&trisb;": "\u29CD", "&tritime;": "\u2A3B", "&trpezium;": "\u23E2", "&tscr;": "\u{1D4C9}", "&tscy;": "\u0446", "&tshcy;": "\u045B", "&tstrok;": "\u0167", "&twixt;": "\u226C", "&twoheadleftarrow;": "\u219E", "&twoheadrightarrow;": "\u21A0", "&uArr;": "\u21D1", "&uHar;": "\u2963", "&uacute": "\xFA", "&uacute;": "\xFA", "&uarr;": "\u2191", "&ubrcy;": "\u045E", "&ubreve;": "\u016D", "&ucirc": "\xFB", "&ucirc;": "\xFB", "&ucy;": "\u0443", "&udarr;": "\u21C5", "&udblac;": "\u0171", "&udhar;": "\u296E", "&ufisht;": "\u297E", "&ufr;": "\u{1D532}", "&ugrave": "\xF9", "&ugrave;": "\xF9", "&uharl;": "\u21BF", "&uharr;": "\u21BE", "&uhblk;": "\u2580", "&ulcorn;": "\u231C", "&ulcorner;": "\u231C", "&ulcrop;": "\u230F", "&ultri;": "\u25F8", "&umacr;": "\u016B", "&uml": "\xA8", "&uml;": "\xA8", "&uogon;": "\u0173", "&uopf;": "\u{1D566}", "&uparrow;": "\u2191", "&updownarrow;": "\u2195", "&upharpoonleft;": "\u21BF", "&upharpoonright;": "\u21BE", "&uplus;": "\u228E", "&upsi;": "\u03C5", "&upsih;": "\u03D2", "&upsilon;": "\u03C5", "&upuparrows;": "\u21C8", "&urcorn;": "\u231D", "&urcorner;": "\u231D", "&urcrop;": "\u230E", "&uring;": "\u016F", "&urtri;": "\u25F9", "&uscr;": "\u{1D4CA}", "&utdot;": "\u22F0", "&utilde;": "\u0169", "&utri;": "\u25B5", "&utrif;": "\u25B4", "&uuarr;": "\u21C8", "&uuml": "\xFC", "&uuml;": "\xFC", "&uwangle;": "\u29A7", "&vArr;": "\u21D5", "&vBar;": "\u2AE8", "&vBarv;": "\u2AE9", "&vDash;": "\u22A8", "&vangrt;": "\u299C", "&varepsilon;": "\u03F5", "&varkappa;": "\u03F0", "&varnothing;": "\u2205", "&varphi;": "\u03D5", "&varpi;": "\u03D6", "&varpropto;": "\u221D", "&varr;": "\u2195", "&varrho;": "\u03F1", "&varsigma;": "\u03C2", "&varsubsetneq;": "\u228A\uFE00", "&varsubsetneqq;": "\u2ACB\uFE00", "&varsupsetneq;": "\u228B\uFE00", "&varsupsetneqq;": "\u2ACC\uFE00", "&vartheta;": "\u03D1", "&vartriangleleft;": "\u22B2", "&vartriangleright;": "\u22B3", "&vcy;": "\u0432", "&vdash;": "\u22A2", "&vee;": "\u2228", "&veebar;": "\u22BB", "&veeeq;": "\u225A", "&vellip;": "\u22EE", "&verbar;": "|", "&vert;": "|", "&vfr;": "\u{1D533}", "&vltri;": "\u22B2", "&vnsub;": "\u2282\u20D2", "&vnsup;": "\u2283\u20D2", "&vopf;": "\u{1D567}", "&vprop;": "\u221D", "&vrtri;": "\u22B3", "&vscr;": "\u{1D4CB}", "&vsubnE;": "\u2ACB\uFE00", "&vsubne;": "\u228A\uFE00", "&vsupnE;": "\u2ACC\uFE00", "&vsupne;": "\u228B\uFE00", "&vzigzag;": "\u299A", "&wcirc;": "\u0175", "&wedbar;": "\u2A5F", "&wedge;": "\u2227", "&wedgeq;": "\u2259", "&weierp;": "\u2118", "&wfr;": "\u{1D534}", "&wopf;": "\u{1D568}", "&wp;": "\u2118", "&wr;": "\u2240", "&wreath;": "\u2240", "&wscr;": "\u{1D4CC}", "&xcap;": "\u22C2", "&xcirc;": "\u25EF", "&xcup;": "\u22C3", "&xdtri;": "\u25BD", "&xfr;": "\u{1D535}", "&xhArr;": "\u27FA", "&xharr;": "\u27F7", "&xi;": "\u03BE", "&xlArr;": "\u27F8", "&xlarr;": "\u27F5", "&xmap;": "\u27FC", "&xnis;": "\u22FB", "&xodot;": "\u2A00", "&xopf;": "\u{1D569}", "&xoplus;": "\u2A01", "&xotime;": "\u2A02", "&xrArr;": "\u27F9", "&xrarr;": "\u27F6", "&xscr;": "\u{1D4CD}", "&xsqcup;": "\u2A06", "&xuplus;": "\u2A04", "&xutri;": "\u25B3", "&xvee;": "\u22C1", "&xwedge;": "\u22C0", "&yacute": "\xFD", "&yacute;": "\xFD", "&yacy;": "\u044F", "&ycirc;": "\u0177", "&ycy;": "\u044B", "&yen": "\xA5", "&yen;": "\xA5", "&yfr;": "\u{1D536}", "&yicy;": "\u0457", "&yopf;": "\u{1D56A}", "&yscr;": "\u{1D4CE}", "&yucy;": "\u044E", "&yuml": "\xFF", "&yuml;": "\xFF", "&zacute;": "\u017A", "&zcaron;": "\u017E", "&zcy;": "\u0437", "&zdot;": "\u017C", "&zeetrf;": "\u2128", "&zeta;": "\u03B6", "&zfr;": "\u{1D537}", "&zhcy;": "\u0436", "&zigrarr;": "\u21DD", "&zopf;": "\u{1D56B}", "&zscr;": "\u{1D4CF}", "&zwj;": "\u200D", "&zwnj;": "\u200C" }, characters: { "\xC6": "&AElig;", "&": "&amp;", "\xC1": "&Aacute;", "\u0102": "&Abreve;", "\xC2": "&Acirc;", "\u0410": "&Acy;", "\u{1D504}": "&Afr;", "\xC0": "&Agrave;", "\u0391": "&Alpha;", "\u0100": "&Amacr;", "\u2A53": "&And;", "\u0104": "&Aogon;", "\u{1D538}": "&Aopf;", "\u2061": "&af;", "\xC5": "&angst;", "\u{1D49C}": "&Ascr;", "\u2254": "&coloneq;", "\xC3": "&Atilde;", "\xC4": "&Auml;", "\u2216": "&ssetmn;", "\u2AE7": "&Barv;", "\u2306": "&doublebarwedge;", "\u0411": "&Bcy;", "\u2235": "&because;", "\u212C": "&bernou;", "\u0392": "&Beta;", "\u{1D505}": "&Bfr;", "\u{1D539}": "&Bopf;", "\u02D8": "&breve;", "\u224E": "&bump;", "\u0427": "&CHcy;", "\xA9": "&copy;", "\u0106": "&Cacute;", "\u22D2": "&Cap;", "\u2145": "&DD;", "\u212D": "&Cfr;", "\u010C": "&Ccaron;", "\xC7": "&Ccedil;", "\u0108": "&Ccirc;", "\u2230": "&Cconint;", "\u010A": "&Cdot;", "\xB8": "&cedil;", "\xB7": "&middot;", "\u03A7": "&Chi;", "\u2299": "&odot;", "\u2296": "&ominus;", "\u2295": "&oplus;", "\u2297": "&otimes;", "\u2232": "&cwconint;", "\u201D": "&rdquor;", "\u2019": "&rsquor;", "\u2237": "&Proportion;", "\u2A74": "&Colone;", "\u2261": "&equiv;", "\u222F": "&DoubleContourIntegral;", "\u222E": "&oint;", "\u2102": "&complexes;", "\u2210": "&coprod;", "\u2233": "&awconint;", "\u2A2F": "&Cross;", "\u{1D49E}": "&Cscr;", "\u22D3": "&Cup;", "\u224D": "&asympeq;", "\u2911": "&DDotrahd;", "\u0402": "&DJcy;", "\u0405": "&DScy;", "\u040F": "&DZcy;", "\u2021": "&ddagger;", "\u21A1": "&Darr;", "\u2AE4": "&DoubleLeftTee;", "\u010E": "&Dcaron;", "\u0414": "&Dcy;", "\u2207": "&nabla;", "\u0394": "&Delta;", "\u{1D507}": "&Dfr;", "\xB4": "&acute;", "\u02D9": "&dot;", "\u02DD": "&dblac;", "`": "&grave;", "\u02DC": "&tilde;", "\u22C4": "&diamond;", "\u2146": "&dd;", "\u{1D53B}": "&Dopf;", "\xA8": "&uml;", "\u20DC": "&DotDot;", "\u2250": "&esdot;", "\u21D3": "&dArr;", "\u21D0": "&lArr;", "\u21D4": "&iff;", "\u27F8": "&xlArr;", "\u27FA": "&xhArr;", "\u27F9": "&xrArr;", "\u21D2": "&rArr;", "\u22A8": "&vDash;", "\u21D1": "&uArr;", "\u21D5": "&vArr;", "\u2225": "&spar;", "\u2193": "&downarrow;", "\u2913": "&DownArrowBar;", "\u21F5": "&duarr;", "\u0311": "&DownBreve;", "\u2950": "&DownLeftRightVector;", "\u295E": "&DownLeftTeeVector;", "\u21BD": "&lhard;", "\u2956": "&DownLeftVectorBar;", "\u295F": "&DownRightTeeVector;", "\u21C1": "&rightharpoondown;", "\u2957": "&DownRightVectorBar;", "\u22A4": "&top;", "\u21A7": "&mapstodown;", "\u{1D49F}": "&Dscr;", "\u0110": "&Dstrok;", "\u014A": "&ENG;", "\xD0": "&ETH;", "\xC9": "&Eacute;", "\u011A": "&Ecaron;", "\xCA": "&Ecirc;", "\u042D": "&Ecy;", "\u0116": "&Edot;", "\u{1D508}": "&Efr;", "\xC8": "&Egrave;", "\u2208": "&isinv;", "\u0112": "&Emacr;", "\u25FB": "&EmptySmallSquare;", "\u25AB": "&EmptyVerySmallSquare;", "\u0118": "&Eogon;", "\u{1D53C}": "&Eopf;", "\u0395": "&Epsilon;", "\u2A75": "&Equal;", "\u2242": "&esim;", "\u21CC": "&rlhar;", "\u2130": "&expectation;", "\u2A73": "&Esim;", "\u0397": "&Eta;", "\xCB": "&Euml;", "\u2203": "&exist;", "\u2147": "&exponentiale;", "\u0424": "&Fcy;", "\u{1D509}": "&Ffr;", "\u25FC": "&FilledSmallSquare;", "\u25AA": "&squf;", "\u{1D53D}": "&Fopf;", "\u2200": "&forall;", "\u2131": "&Fscr;", "\u0403": "&GJcy;", ">": "&gt;", "\u0393": "&Gamma;", "\u03DC": "&Gammad;", "\u011E": "&Gbreve;", "\u0122": "&Gcedil;", "\u011C": "&Gcirc;", "\u0413": "&Gcy;", "\u0120": "&Gdot;", "\u{1D50A}": "&Gfr;", "\u22D9": "&ggg;", "\u{1D53E}": "&Gopf;", "\u2265": "&geq;", "\u22DB": "&gtreqless;", "\u2267": "&geqq;", "\u2AA2": "&GreaterGreater;", "\u2277": "&gtrless;", "\u2A7E": "&ges;", "\u2273": "&gtrsim;", "\u{1D4A2}": "&Gscr;", "\u226B": "&gg;", "\u042A": "&HARDcy;", "\u02C7": "&caron;", "^": "&Hat;", "\u0124": "&Hcirc;", "\u210C": "&Poincareplane;", "\u210B": "&hamilt;", "\u210D": "&quaternions;", "\u2500": "&boxh;", "\u0126": "&Hstrok;", "\u224F": "&bumpeq;", "\u0415": "&IEcy;", "\u0132": "&IJlig;", "\u0401": "&IOcy;", "\xCD": "&Iacute;", "\xCE": "&Icirc;", "\u0418": "&Icy;", "\u0130": "&Idot;", "\u2111": "&imagpart;", "\xCC": "&Igrave;", "\u012A": "&Imacr;", "\u2148": "&ii;", "\u222C": "&Int;", "\u222B": "&int;", "\u22C2": "&xcap;", "\u2063": "&ic;", "\u2062": "&it;", "\u012E": "&Iogon;", "\u{1D540}": "&Iopf;", "\u0399": "&Iota;", "\u2110": "&imagline;", "\u0128": "&Itilde;", "\u0406": "&Iukcy;", "\xCF": "&Iuml;", "\u0134": "&Jcirc;", "\u0419": "&Jcy;", "\u{1D50D}": "&Jfr;", "\u{1D541}": "&Jopf;", "\u{1D4A5}": "&Jscr;", "\u0408": "&Jsercy;", "\u0404": "&Jukcy;", "\u0425": "&KHcy;", "\u040C": "&KJcy;", "\u039A": "&Kappa;", "\u0136": "&Kcedil;", "\u041A": "&Kcy;", "\u{1D50E}": "&Kfr;", "\u{1D542}": "&Kopf;", "\u{1D4A6}": "&Kscr;", "\u0409": "&LJcy;", "<": "&lt;", "\u0139": "&Lacute;", "\u039B": "&Lambda;", "\u27EA": "&Lang;", "\u2112": "&lagran;", "\u219E": "&twoheadleftarrow;", "\u013D": "&Lcaron;", "\u013B": "&Lcedil;", "\u041B": "&Lcy;", "\u27E8": "&langle;", "\u2190": "&slarr;", "\u21E4": "&larrb;", "\u21C6": "&lrarr;", "\u2308": "&lceil;", "\u27E6": "&lobrk;", "\u2961": "&LeftDownTeeVector;", "\u21C3": "&downharpoonleft;", "\u2959": "&LeftDownVectorBar;", "\u230A": "&lfloor;", "\u2194": "&leftrightarrow;", "\u294E": "&LeftRightVector;", "\u22A3": "&dashv;", "\u21A4": "&mapstoleft;", "\u295A": "&LeftTeeVector;", "\u22B2": "&vltri;", "\u29CF": "&LeftTriangleBar;", "\u22B4": "&trianglelefteq;", "\u2951": "&LeftUpDownVector;", "\u2960": "&LeftUpTeeVector;", "\u21BF": "&upharpoonleft;", "\u2958": "&LeftUpVectorBar;", "\u21BC": "&lharu;", "\u2952": "&LeftVectorBar;", "\u22DA": "&lesseqgtr;", "\u2266": "&leqq;", "\u2276": "&lg;", "\u2AA1": "&LessLess;", "\u2A7D": "&les;", "\u2272": "&lsim;", "\u{1D50F}": "&Lfr;", "\u22D8": "&Ll;", "\u21DA": "&lAarr;", "\u013F": "&Lmidot;", "\u27F5": "&xlarr;", "\u27F7": "&xharr;", "\u27F6": "&xrarr;", "\u{1D543}": "&Lopf;", "\u2199": "&swarrow;", "\u2198": "&searrow;", "\u21B0": "&lsh;", "\u0141": "&Lstrok;", "\u226A": "&ll;", "\u2905": "&Map;", "\u041C": "&Mcy;", "\u205F": "&MediumSpace;", "\u2133": "&phmmat;", "\u{1D510}": "&Mfr;", "\u2213": "&mp;", "\u{1D544}": "&Mopf;", "\u039C": "&Mu;", "\u040A": "&NJcy;", "\u0143": "&Nacute;", "\u0147": "&Ncaron;", "\u0145": "&Ncedil;", "\u041D": "&Ncy;", "\u200B": "&ZeroWidthSpace;", "\n": "&NewLine;", "\u{1D511}": "&Nfr;", "\u2060": "&NoBreak;", "\xA0": "&nbsp;", "\u2115": "&naturals;", "\u2AEC": "&Not;", "\u2262": "&nequiv;", "\u226D": "&NotCupCap;", "\u2226": "&nspar;", "\u2209": "&notinva;", "\u2260": "&ne;", "\u2242\u0338": "&nesim;", "\u2204": "&nexists;", "\u226F": "&ngtr;", "\u2271": "&ngeq;", "\u2267\u0338": "&ngeqq;", "\u226B\u0338": "&nGtv;", "\u2279": "&ntgl;", "\u2A7E\u0338": "&nges;", "\u2275": "&ngsim;", "\u224E\u0338": "&nbump;", "\u224F\u0338": "&nbumpe;", "\u22EA": "&ntriangleleft;", "\u29CF\u0338": "&NotLeftTriangleBar;", "\u22EC": "&ntrianglelefteq;", "\u226E": "&nlt;", "\u2270": "&nleq;", "\u2278": "&ntlg;", "\u226A\u0338": "&nLtv;", "\u2A7D\u0338": "&nles;", "\u2274": "&nlsim;", "\u2AA2\u0338": "&NotNestedGreaterGreater;", "\u2AA1\u0338": "&NotNestedLessLess;", "\u2280": "&nprec;", "\u2AAF\u0338": "&npreceq;", "\u22E0": "&nprcue;", "\u220C": "&notniva;", "\u22EB": "&ntriangleright;", "\u29D0\u0338": "&NotRightTriangleBar;", "\u22ED": "&ntrianglerighteq;", "\u228F\u0338": "&NotSquareSubset;", "\u22E2": "&nsqsube;", "\u2290\u0338": "&NotSquareSuperset;", "\u22E3": "&nsqsupe;", "\u2282\u20D2": "&vnsub;", "\u2288": "&nsubseteq;", "\u2281": "&nsucc;", "\u2AB0\u0338": "&nsucceq;", "\u22E1": "&nsccue;", "\u227F\u0338": "&NotSucceedsTilde;", "\u2283\u20D2": "&vnsup;", "\u2289": "&nsupseteq;", "\u2241": "&nsim;", "\u2244": "&nsimeq;", "\u2247": "&ncong;", "\u2249": "&napprox;", "\u2224": "&nsmid;", "\u{1D4A9}": "&Nscr;", "\xD1": "&Ntilde;", "\u039D": "&Nu;", "\u0152": "&OElig;", "\xD3": "&Oacute;", "\xD4": "&Ocirc;", "\u041E": "&Ocy;", "\u0150": "&Odblac;", "\u{1D512}": "&Ofr;", "\xD2": "&Ograve;", "\u014C": "&Omacr;", "\u03A9": "&ohm;", "\u039F": "&Omicron;", "\u{1D546}": "&Oopf;", "\u201C": "&ldquo;", "\u2018": "&lsquo;", "\u2A54": "&Or;", "\u{1D4AA}": "&Oscr;", "\xD8": "&Oslash;", "\xD5": "&Otilde;", "\u2A37": "&Otimes;", "\xD6": "&Ouml;", "\u203E": "&oline;", "\u23DE": "&OverBrace;", "\u23B4": "&tbrk;", "\u23DC": "&OverParenthesis;", "\u2202": "&part;", "\u041F": "&Pcy;", "\u{1D513}": "&Pfr;", "\u03A6": "&Phi;", "\u03A0": "&Pi;", "\xB1": "&pm;", "\u2119": "&primes;", "\u2ABB": "&Pr;", "\u227A": "&prec;", "\u2AAF": "&preceq;", "\u227C": "&preccurlyeq;", "\u227E": "&prsim;", "\u2033": "&Prime;", "\u220F": "&prod;", "\u221D": "&vprop;", "\u{1D4AB}": "&Pscr;", "\u03A8": "&Psi;", '"': "&quot;", "\u{1D514}": "&Qfr;", "\u211A": "&rationals;", "\u{1D4AC}": "&Qscr;", "\u2910": "&drbkarow;", "\xAE": "&reg;", "\u0154": "&Racute;", "\u27EB": "&Rang;", "\u21A0": "&twoheadrightarrow;", "\u2916": "&Rarrtl;", "\u0158": "&Rcaron;", "\u0156": "&Rcedil;", "\u0420": "&Rcy;", "\u211C": "&realpart;", "\u220B": "&niv;", "\u21CB": "&lrhar;", "\u296F": "&duhar;", "\u03A1": "&Rho;", "\u27E9": "&rangle;", "\u2192": "&srarr;", "\u21E5": "&rarrb;", "\u21C4": "&rlarr;", "\u2309": "&rceil;", "\u27E7": "&robrk;", "\u295D": "&RightDownTeeVector;", "\u21C2": "&downharpoonright;", "\u2955": "&RightDownVectorBar;", "\u230B": "&rfloor;", "\u22A2": "&vdash;", "\u21A6": "&mapsto;", "\u295B": "&RightTeeVector;", "\u22B3": "&vrtri;", "\u29D0": "&RightTriangleBar;", "\u22B5": "&trianglerighteq;", "\u294F": "&RightUpDownVector;", "\u295C": "&RightUpTeeVector;", "\u21BE": "&upharpoonright;", "\u2954": "&RightUpVectorBar;", "\u21C0": "&rightharpoonup;", "\u2953": "&RightVectorBar;", "\u211D": "&reals;", "\u2970": "&RoundImplies;", "\u21DB": "&rAarr;", "\u211B": "&realine;", "\u21B1": "&rsh;", "\u29F4": "&RuleDelayed;", "\u0429": "&SHCHcy;", "\u0428": "&SHcy;", "\u042C": "&SOFTcy;", "\u015A": "&Sacute;", "\u2ABC": "&Sc;", "\u0160": "&Scaron;", "\u015E": "&Scedil;", "\u015C": "&Scirc;", "\u0421": "&Scy;", "\u{1D516}": "&Sfr;", "\u2191": "&uparrow;", "\u03A3": "&Sigma;", "\u2218": "&compfn;", "\u{1D54A}": "&Sopf;", "\u221A": "&radic;", "\u25A1": "&square;", "\u2293": "&sqcap;", "\u228F": "&sqsubset;", "\u2291": "&sqsubseteq;", "\u2290": "&sqsupset;", "\u2292": "&sqsupseteq;", "\u2294": "&sqcup;", "\u{1D4AE}": "&Sscr;", "\u22C6": "&sstarf;", "\u22D0": "&Subset;", "\u2286": "&subseteq;", "\u227B": "&succ;", "\u2AB0": "&succeq;", "\u227D": "&succcurlyeq;", "\u227F": "&succsim;", "\u2211": "&sum;", "\u22D1": "&Supset;", "\u2283": "&supset;", "\u2287": "&supseteq;", "\xDE": "&THORN;", "\u2122": "&trade;", "\u040B": "&TSHcy;", "\u0426": "&TScy;", "	": "&Tab;", "\u03A4": "&Tau;", "\u0164": "&Tcaron;", "\u0162": "&Tcedil;", "\u0422": "&Tcy;", "\u{1D517}": "&Tfr;", "\u2234": "&therefore;", "\u0398": "&Theta;", "\u205F\u200A": "&ThickSpace;", "\u2009": "&thinsp;", "\u223C": "&thksim;", "\u2243": "&simeq;", "\u2245": "&cong;", "\u2248": "&thkap;", "\u{1D54B}": "&Topf;", "\u20DB": "&tdot;", "\u{1D4AF}": "&Tscr;", "\u0166": "&Tstrok;", "\xDA": "&Uacute;", "\u219F": "&Uarr;", "\u2949": "&Uarrocir;", "\u040E": "&Ubrcy;", "\u016C": "&Ubreve;", "\xDB": "&Ucirc;", "\u0423": "&Ucy;", "\u0170": "&Udblac;", "\u{1D518}": "&Ufr;", "\xD9": "&Ugrave;", "\u016A": "&Umacr;", _: "&lowbar;", "\u23DF": "&UnderBrace;", "\u23B5": "&bbrk;", "\u23DD": "&UnderParenthesis;", "\u22C3": "&xcup;", "\u228E": "&uplus;", "\u0172": "&Uogon;", "\u{1D54C}": "&Uopf;", "\u2912": "&UpArrowBar;", "\u21C5": "&udarr;", "\u2195": "&varr;", "\u296E": "&udhar;", "\u22A5": "&perp;", "\u21A5": "&mapstoup;", "\u2196": "&nwarrow;", "\u2197": "&nearrow;", "\u03D2": "&upsih;", "\u03A5": "&Upsilon;", "\u016E": "&Uring;", "\u{1D4B0}": "&Uscr;", "\u0168": "&Utilde;", "\xDC": "&Uuml;", "\u22AB": "&VDash;", "\u2AEB": "&Vbar;", "\u0412": "&Vcy;", "\u22A9": "&Vdash;", "\u2AE6": "&Vdashl;", "\u22C1": "&xvee;", "\u2016": "&Vert;", "\u2223": "&smid;", "|": "&vert;", "\u2758": "&VerticalSeparator;", "\u2240": "&wreath;", "\u200A": "&hairsp;", "\u{1D519}": "&Vfr;", "\u{1D54D}": "&Vopf;", "\u{1D4B1}": "&Vscr;", "\u22AA": "&Vvdash;", "\u0174": "&Wcirc;", "\u22C0": "&xwedge;", "\u{1D51A}": "&Wfr;", "\u{1D54E}": "&Wopf;", "\u{1D4B2}": "&Wscr;", "\u{1D51B}": "&Xfr;", "\u039E": "&Xi;", "\u{1D54F}": "&Xopf;", "\u{1D4B3}": "&Xscr;", "\u042F": "&YAcy;", "\u0407": "&YIcy;", "\u042E": "&YUcy;", "\xDD": "&Yacute;", "\u0176": "&Ycirc;", "\u042B": "&Ycy;", "\u{1D51C}": "&Yfr;", "\u{1D550}": "&Yopf;", "\u{1D4B4}": "&Yscr;", "\u0178": "&Yuml;", "\u0416": "&ZHcy;", "\u0179": "&Zacute;", "\u017D": "&Zcaron;", "\u0417": "&Zcy;", "\u017B": "&Zdot;", "\u0396": "&Zeta;", "\u2128": "&zeetrf;", "\u2124": "&integers;", "\u{1D4B5}": "&Zscr;", "\xE1": "&aacute;", "\u0103": "&abreve;", "\u223E": "&mstpos;", "\u223E\u0333": "&acE;", "\u223F": "&acd;", "\xE2": "&acirc;", "\u0430": "&acy;", "\xE6": "&aelig;", "\u{1D51E}": "&afr;", "\xE0": "&agrave;", "\u2135": "&aleph;", "\u03B1": "&alpha;", "\u0101": "&amacr;", "\u2A3F": "&amalg;", "\u2227": "&wedge;", "\u2A55": "&andand;", "\u2A5C": "&andd;", "\u2A58": "&andslope;", "\u2A5A": "&andv;", "\u2220": "&angle;", "\u29A4": "&ange;", "\u2221": "&measuredangle;", "\u29A8": "&angmsdaa;", "\u29A9": "&angmsdab;", "\u29AA": "&angmsdac;", "\u29AB": "&angmsdad;", "\u29AC": "&angmsdae;", "\u29AD": "&angmsdaf;", "\u29AE": "&angmsdag;", "\u29AF": "&angmsdah;", "\u221F": "&angrt;", "\u22BE": "&angrtvb;", "\u299D": "&angrtvbd;", "\u2222": "&angsph;", "\u237C": "&angzarr;", "\u0105": "&aogon;", "\u{1D552}": "&aopf;", "\u2A70": "&apE;", "\u2A6F": "&apacir;", "\u224A": "&approxeq;", "\u224B": "&apid;", "'": "&apos;", "\xE5": "&aring;", "\u{1D4B6}": "&ascr;", "*": "&midast;", "\xE3": "&atilde;", "\xE4": "&auml;", "\u2A11": "&awint;", "\u2AED": "&bNot;", "\u224C": "&bcong;", "\u03F6": "&bepsi;", "\u2035": "&bprime;", "\u223D": "&bsim;", "\u22CD": "&bsime;", "\u22BD": "&barvee;", "\u2305": "&barwedge;", "\u23B6": "&bbrktbrk;", "\u0431": "&bcy;", "\u201E": "&ldquor;", "\u29B0": "&bemptyv;", "\u03B2": "&beta;", "\u2136": "&beth;", "\u226C": "&twixt;", "\u{1D51F}": "&bfr;", "\u25EF": "&xcirc;", "\u2A00": "&xodot;", "\u2A01": "&xoplus;", "\u2A02": "&xotime;", "\u2A06": "&xsqcup;", "\u2605": "&starf;", "\u25BD": "&xdtri;", "\u25B3": "&xutri;", "\u2A04": "&xuplus;", "\u290D": "&rbarr;", "\u29EB": "&lozf;", "\u25B4": "&utrif;", "\u25BE": "&dtrif;", "\u25C2": "&ltrif;", "\u25B8": "&rtrif;", "\u2423": "&blank;", "\u2592": "&blk12;", "\u2591": "&blk14;", "\u2593": "&blk34;", "\u2588": "&block;", "=\u20E5": "&bne;", "\u2261\u20E5": "&bnequiv;", "\u2310": "&bnot;", "\u{1D553}": "&bopf;", "\u22C8": "&bowtie;", "\u2557": "&boxDL;", "\u2554": "&boxDR;", "\u2556": "&boxDl;", "\u2553": "&boxDr;", "\u2550": "&boxH;", "\u2566": "&boxHD;", "\u2569": "&boxHU;", "\u2564": "&boxHd;", "\u2567": "&boxHu;", "\u255D": "&boxUL;", "\u255A": "&boxUR;", "\u255C": "&boxUl;", "\u2559": "&boxUr;", "\u2551": "&boxV;", "\u256C": "&boxVH;", "\u2563": "&boxVL;", "\u2560": "&boxVR;", "\u256B": "&boxVh;", "\u2562": "&boxVl;", "\u255F": "&boxVr;", "\u29C9": "&boxbox;", "\u2555": "&boxdL;", "\u2552": "&boxdR;", "\u2510": "&boxdl;", "\u250C": "&boxdr;", "\u2565": "&boxhD;", "\u2568": "&boxhU;", "\u252C": "&boxhd;", "\u2534": "&boxhu;", "\u229F": "&minusb;", "\u229E": "&plusb;", "\u22A0": "&timesb;", "\u255B": "&boxuL;", "\u2558": "&boxuR;", "\u2518": "&boxul;", "\u2514": "&boxur;", "\u2502": "&boxv;", "\u256A": "&boxvH;", "\u2561": "&boxvL;", "\u255E": "&boxvR;", "\u253C": "&boxvh;", "\u2524": "&boxvl;", "\u251C": "&boxvr;", "\xA6": "&brvbar;", "\u{1D4B7}": "&bscr;", "\u204F": "&bsemi;", "\\": "&bsol;", "\u29C5": "&bsolb;", "\u27C8": "&bsolhsub;", "\u2022": "&bullet;", "\u2AAE": "&bumpE;", "\u0107": "&cacute;", "\u2229": "&cap;", "\u2A44": "&capand;", "\u2A49": "&capbrcup;", "\u2A4B": "&capcap;", "\u2A47": "&capcup;", "\u2A40": "&capdot;", "\u2229\uFE00": "&caps;", "\u2041": "&caret;", "\u2A4D": "&ccaps;", "\u010D": "&ccaron;", "\xE7": "&ccedil;", "\u0109": "&ccirc;", "\u2A4C": "&ccups;", "\u2A50": "&ccupssm;", "\u010B": "&cdot;", "\u29B2": "&cemptyv;", "\xA2": "&cent;", "\u{1D520}": "&cfr;", "\u0447": "&chcy;", "\u2713": "&checkmark;", "\u03C7": "&chi;", "\u25CB": "&cir;", "\u29C3": "&cirE;", "\u02C6": "&circ;", "\u2257": "&cire;", "\u21BA": "&olarr;", "\u21BB": "&orarr;", "\u24C8": "&oS;", "\u229B": "&oast;", "\u229A": "&ocir;", "\u229D": "&odash;", "\u2A10": "&cirfnint;", "\u2AEF": "&cirmid;", "\u29C2": "&cirscir;", "\u2663": "&clubsuit;", ":": "&colon;", ",": "&comma;", "@": "&commat;", "\u2201": "&complement;", "\u2A6D": "&congdot;", "\u{1D554}": "&copf;", "\u2117": "&copysr;", "\u21B5": "&crarr;", "\u2717": "&cross;", "\u{1D4B8}": "&cscr;", "\u2ACF": "&csub;", "\u2AD1": "&csube;", "\u2AD0": "&csup;", "\u2AD2": "&csupe;", "\u22EF": "&ctdot;", "\u2938": "&cudarrl;", "\u2935": "&cudarrr;", "\u22DE": "&curlyeqprec;", "\u22DF": "&curlyeqsucc;", "\u21B6": "&curvearrowleft;", "\u293D": "&cularrp;", "\u222A": "&cup;", "\u2A48": "&cupbrcap;", "\u2A46": "&cupcap;", "\u2A4A": "&cupcup;", "\u228D": "&cupdot;", "\u2A45": "&cupor;", "\u222A\uFE00": "&cups;", "\u21B7": "&curvearrowright;", "\u293C": "&curarrm;", "\u22CE": "&cuvee;", "\u22CF": "&cuwed;", "\xA4": "&curren;", "\u2231": "&cwint;", "\u232D": "&cylcty;", "\u2965": "&dHar;", "\u2020": "&dagger;", "\u2138": "&daleth;", "\u2010": "&hyphen;", "\u290F": "&rBarr;", "\u010F": "&dcaron;", "\u0434": "&dcy;", "\u21CA": "&downdownarrows;", "\u2A77": "&eDDot;", "\xB0": "&deg;", "\u03B4": "&delta;", "\u29B1": "&demptyv;", "\u297F": "&dfisht;", "\u{1D521}": "&dfr;", "\u2666": "&diams;", "\u03DD": "&gammad;", "\u22F2": "&disin;", "\xF7": "&divide;", "\u22C7": "&divonx;", "\u0452": "&djcy;", "\u231E": "&llcorner;", "\u230D": "&dlcrop;", $: "&dollar;", "\u{1D555}": "&dopf;", "\u2251": "&eDot;", "\u2238": "&minusd;", "\u2214": "&plusdo;", "\u22A1": "&sdotb;", "\u231F": "&lrcorner;", "\u230C": "&drcrop;", "\u{1D4B9}": "&dscr;", "\u0455": "&dscy;", "\u29F6": "&dsol;", "\u0111": "&dstrok;", "\u22F1": "&dtdot;", "\u25BF": "&triangledown;", "\u29A6": "&dwangle;", "\u045F": "&dzcy;", "\u27FF": "&dzigrarr;", "\xE9": "&eacute;", "\u2A6E": "&easter;", "\u011B": "&ecaron;", "\u2256": "&eqcirc;", "\xEA": "&ecirc;", "\u2255": "&eqcolon;", "\u044D": "&ecy;", "\u0117": "&edot;", "\u2252": "&fallingdotseq;", "\u{1D522}": "&efr;", "\u2A9A": "&eg;", "\xE8": "&egrave;", "\u2A96": "&eqslantgtr;", "\u2A98": "&egsdot;", "\u2A99": "&el;", "\u23E7": "&elinters;", "\u2113": "&ell;", "\u2A95": "&eqslantless;", "\u2A97": "&elsdot;", "\u0113": "&emacr;", "\u2205": "&varnothing;", "\u2004": "&emsp13;", "\u2005": "&emsp14;", "\u2003": "&emsp;", "\u014B": "&eng;", "\u2002": "&ensp;", "\u0119": "&eogon;", "\u{1D556}": "&eopf;", "\u22D5": "&epar;", "\u29E3": "&eparsl;", "\u2A71": "&eplus;", "\u03B5": "&epsilon;", "\u03F5": "&varepsilon;", "=": "&equals;", "\u225F": "&questeq;", "\u2A78": "&equivDD;", "\u29E5": "&eqvparsl;", "\u2253": "&risingdotseq;", "\u2971": "&erarr;", "\u212F": "&escr;", "\u03B7": "&eta;", "\xF0": "&eth;", "\xEB": "&euml;", "\u20AC": "&euro;", "!": "&excl;", "\u0444": "&fcy;", "\u2640": "&female;", "\uFB03": "&ffilig;", "\uFB00": "&fflig;", "\uFB04": "&ffllig;", "\u{1D523}": "&ffr;", "\uFB01": "&filig;", fj: "&fjlig;", "\u266D": "&flat;", "\uFB02": "&fllig;", "\u25B1": "&fltns;", "\u0192": "&fnof;", "\u{1D557}": "&fopf;", "\u22D4": "&pitchfork;", "\u2AD9": "&forkv;", "\u2A0D": "&fpartint;", "\xBD": "&half;", "\u2153": "&frac13;", "\xBC": "&frac14;", "\u2155": "&frac15;", "\u2159": "&frac16;", "\u215B": "&frac18;", "\u2154": "&frac23;", "\u2156": "&frac25;", "\xBE": "&frac34;", "\u2157": "&frac35;", "\u215C": "&frac38;", "\u2158": "&frac45;", "\u215A": "&frac56;", "\u215D": "&frac58;", "\u215E": "&frac78;", "\u2044": "&frasl;", "\u2322": "&sfrown;", "\u{1D4BB}": "&fscr;", "\u2A8C": "&gtreqqless;", "\u01F5": "&gacute;", "\u03B3": "&gamma;", "\u2A86": "&gtrapprox;", "\u011F": "&gbreve;", "\u011D": "&gcirc;", "\u0433": "&gcy;", "\u0121": "&gdot;", "\u2AA9": "&gescc;", "\u2A80": "&gesdot;", "\u2A82": "&gesdoto;", "\u2A84": "&gesdotol;", "\u22DB\uFE00": "&gesl;", "\u2A94": "&gesles;", "\u{1D524}": "&gfr;", "\u2137": "&gimel;", "\u0453": "&gjcy;", "\u2A92": "&glE;", "\u2AA5": "&gla;", "\u2AA4": "&glj;", "\u2269": "&gneqq;", "\u2A8A": "&gnapprox;", "\u2A88": "&gneq;", "\u22E7": "&gnsim;", "\u{1D558}": "&gopf;", "\u210A": "&gscr;", "\u2A8E": "&gsime;", "\u2A90": "&gsiml;", "\u2AA7": "&gtcc;", "\u2A7A": "&gtcir;", "\u22D7": "&gtrdot;", "\u2995": "&gtlPar;", "\u2A7C": "&gtquest;", "\u2978": "&gtrarr;", "\u2269\uFE00": "&gvnE;", "\u044A": "&hardcy;", "\u2948": "&harrcir;", "\u21AD": "&leftrightsquigarrow;", "\u210F": "&plankv;", "\u0125": "&hcirc;", "\u2665": "&heartsuit;", "\u2026": "&mldr;", "\u22B9": "&hercon;", "\u{1D525}": "&hfr;", "\u2925": "&searhk;", "\u2926": "&swarhk;", "\u21FF": "&hoarr;", "\u223B": "&homtht;", "\u21A9": "&larrhk;", "\u21AA": "&rarrhk;", "\u{1D559}": "&hopf;", "\u2015": "&horbar;", "\u{1D4BD}": "&hscr;", "\u0127": "&hstrok;", "\u2043": "&hybull;", "\xED": "&iacute;", "\xEE": "&icirc;", "\u0438": "&icy;", "\u0435": "&iecy;", "\xA1": "&iexcl;", "\u{1D526}": "&ifr;", "\xEC": "&igrave;", "\u2A0C": "&qint;", "\u222D": "&tint;", "\u29DC": "&iinfin;", "\u2129": "&iiota;", "\u0133": "&ijlig;", "\u012B": "&imacr;", "\u0131": "&inodot;", "\u22B7": "&imof;", "\u01B5": "&imped;", "\u2105": "&incare;", "\u221E": "&infin;", "\u29DD": "&infintie;", "\u22BA": "&intercal;", "\u2A17": "&intlarhk;", "\u2A3C": "&iprod;", "\u0451": "&iocy;", "\u012F": "&iogon;", "\u{1D55A}": "&iopf;", "\u03B9": "&iota;", "\xBF": "&iquest;", "\u{1D4BE}": "&iscr;", "\u22F9": "&isinE;", "\u22F5": "&isindot;", "\u22F4": "&isins;", "\u22F3": "&isinsv;", "\u0129": "&itilde;", "\u0456": "&iukcy;", "\xEF": "&iuml;", "\u0135": "&jcirc;", "\u0439": "&jcy;", "\u{1D527}": "&jfr;", "\u0237": "&jmath;", "\u{1D55B}": "&jopf;", "\u{1D4BF}": "&jscr;", "\u0458": "&jsercy;", "\u0454": "&jukcy;", "\u03BA": "&kappa;", "\u03F0": "&varkappa;", "\u0137": "&kcedil;", "\u043A": "&kcy;", "\u{1D528}": "&kfr;", "\u0138": "&kgreen;", "\u0445": "&khcy;", "\u045C": "&kjcy;", "\u{1D55C}": "&kopf;", "\u{1D4C0}": "&kscr;", "\u291B": "&lAtail;", "\u290E": "&lBarr;", "\u2A8B": "&lesseqqgtr;", "\u2962": "&lHar;", "\u013A": "&lacute;", "\u29B4": "&laemptyv;", "\u03BB": "&lambda;", "\u2991": "&langd;", "\u2A85": "&lessapprox;", "\xAB": "&laquo;", "\u291F": "&larrbfs;", "\u291D": "&larrfs;", "\u21AB": "&looparrowleft;", "\u2939": "&larrpl;", "\u2973": "&larrsim;", "\u21A2": "&leftarrowtail;", "\u2AAB": "&lat;", "\u2919": "&latail;", "\u2AAD": "&late;", "\u2AAD\uFE00": "&lates;", "\u290C": "&lbarr;", "\u2772": "&lbbrk;", "{": "&lcub;", "[": "&lsqb;", "\u298B": "&lbrke;", "\u298F": "&lbrksld;", "\u298D": "&lbrkslu;", "\u013E": "&lcaron;", "\u013C": "&lcedil;", "\u043B": "&lcy;", "\u2936": "&ldca;", "\u2967": "&ldrdhar;", "\u294B": "&ldrushar;", "\u21B2": "&ldsh;", "\u2264": "&leq;", "\u21C7": "&llarr;", "\u22CB": "&lthree;", "\u2AA8": "&lescc;", "\u2A7F": "&lesdot;", "\u2A81": "&lesdoto;", "\u2A83": "&lesdotor;", "\u22DA\uFE00": "&lesg;", "\u2A93": "&lesges;", "\u22D6": "&ltdot;", "\u297C": "&lfisht;", "\u{1D529}": "&lfr;", "\u2A91": "&lgE;", "\u296A": "&lharul;", "\u2584": "&lhblk;", "\u0459": "&ljcy;", "\u296B": "&llhard;", "\u25FA": "&lltri;", "\u0140": "&lmidot;", "\u23B0": "&lmoustache;", "\u2268": "&lneqq;", "\u2A89": "&lnapprox;", "\u2A87": "&lneq;", "\u22E6": "&lnsim;", "\u27EC": "&loang;", "\u21FD": "&loarr;", "\u27FC": "&xmap;", "\u21AC": "&rarrlp;", "\u2985": "&lopar;", "\u{1D55D}": "&lopf;", "\u2A2D": "&loplus;", "\u2A34": "&lotimes;", "\u2217": "&lowast;", "\u25CA": "&lozenge;", "(": "&lpar;", "\u2993": "&lparlt;", "\u296D": "&lrhard;", "\u200E": "&lrm;", "\u22BF": "&lrtri;", "\u2039": "&lsaquo;", "\u{1D4C1}": "&lscr;", "\u2A8D": "&lsime;", "\u2A8F": "&lsimg;", "\u201A": "&sbquo;", "\u0142": "&lstrok;", "\u2AA6": "&ltcc;", "\u2A79": "&ltcir;", "\u22C9": "&ltimes;", "\u2976": "&ltlarr;", "\u2A7B": "&ltquest;", "\u2996": "&ltrPar;", "\u25C3": "&triangleleft;", "\u294A": "&lurdshar;", "\u2966": "&luruhar;", "\u2268\uFE00": "&lvnE;", "\u223A": "&mDDot;", "\xAF": "&strns;", "\u2642": "&male;", "\u2720": "&maltese;", "\u25AE": "&marker;", "\u2A29": "&mcomma;", "\u043C": "&mcy;", "\u2014": "&mdash;", "\u{1D52A}": "&mfr;", "\u2127": "&mho;", "\xB5": "&micro;", "\u2AF0": "&midcir;", "\u2212": "&minus;", "\u2A2A": "&minusdu;", "\u2ADB": "&mlcp;", "\u22A7": "&models;", "\u{1D55E}": "&mopf;", "\u{1D4C2}": "&mscr;", "\u03BC": "&mu;", "\u22B8": "&mumap;", "\u22D9\u0338": "&nGg;", "\u226B\u20D2": "&nGt;", "\u21CD": "&nlArr;", "\u21CE": "&nhArr;", "\u22D8\u0338": "&nLl;", "\u226A\u20D2": "&nLt;", "\u21CF": "&nrArr;", "\u22AF": "&nVDash;", "\u22AE": "&nVdash;", "\u0144": "&nacute;", "\u2220\u20D2": "&nang;", "\u2A70\u0338": "&napE;", "\u224B\u0338": "&napid;", "\u0149": "&napos;", "\u266E": "&natural;", "\u2A43": "&ncap;", "\u0148": "&ncaron;", "\u0146": "&ncedil;", "\u2A6D\u0338": "&ncongdot;", "\u2A42": "&ncup;", "\u043D": "&ncy;", "\u2013": "&ndash;", "\u21D7": "&neArr;", "\u2924": "&nearhk;", "\u2250\u0338": "&nedot;", "\u2928": "&toea;", "\u{1D52B}": "&nfr;", "\u21AE": "&nleftrightarrow;", "\u2AF2": "&nhpar;", "\u22FC": "&nis;", "\u22FA": "&nisd;", "\u045A": "&njcy;", "\u2266\u0338": "&nleqq;", "\u219A": "&nleftarrow;", "\u2025": "&nldr;", "\u{1D55F}": "&nopf;", "\xAC": "&not;", "\u22F9\u0338": "&notinE;", "\u22F5\u0338": "&notindot;", "\u22F7": "&notinvb;", "\u22F6": "&notinvc;", "\u22FE": "&notnivb;", "\u22FD": "&notnivc;", "\u2AFD\u20E5": "&nparsl;", "\u2202\u0338": "&npart;", "\u2A14": "&npolint;", "\u219B": "&nrightarrow;", "\u2933\u0338": "&nrarrc;", "\u219D\u0338": "&nrarrw;", "\u{1D4C3}": "&nscr;", "\u2284": "&nsub;", "\u2AC5\u0338": "&nsubseteqq;", "\u2285": "&nsup;", "\u2AC6\u0338": "&nsupseteqq;", "\xF1": "&ntilde;", "\u03BD": "&nu;", "#": "&num;", "\u2116": "&numero;", "\u2007": "&numsp;", "\u22AD": "&nvDash;", "\u2904": "&nvHarr;", "\u224D\u20D2": "&nvap;", "\u22AC": "&nvdash;", "\u2265\u20D2": "&nvge;", ">\u20D2": "&nvgt;", "\u29DE": "&nvinfin;", "\u2902": "&nvlArr;", "\u2264\u20D2": "&nvle;", "<\u20D2": "&nvlt;", "\u22B4\u20D2": "&nvltrie;", "\u2903": "&nvrArr;", "\u22B5\u20D2": "&nvrtrie;", "\u223C\u20D2": "&nvsim;", "\u21D6": "&nwArr;", "\u2923": "&nwarhk;", "\u2927": "&nwnear;", "\xF3": "&oacute;", "\xF4": "&ocirc;", "\u043E": "&ocy;", "\u0151": "&odblac;", "\u2A38": "&odiv;", "\u29BC": "&odsold;", "\u0153": "&oelig;", "\u29BF": "&ofcir;", "\u{1D52C}": "&ofr;", "\u02DB": "&ogon;", "\xF2": "&ograve;", "\u29C1": "&ogt;", "\u29B5": "&ohbar;", "\u29BE": "&olcir;", "\u29BB": "&olcross;", "\u29C0": "&olt;", "\u014D": "&omacr;", "\u03C9": "&omega;", "\u03BF": "&omicron;", "\u29B6": "&omid;", "\u{1D560}": "&oopf;", "\u29B7": "&opar;", "\u29B9": "&operp;", "\u2228": "&vee;", "\u2A5D": "&ord;", "\u2134": "&oscr;", "\xAA": "&ordf;", "\xBA": "&ordm;", "\u22B6": "&origof;", "\u2A56": "&oror;", "\u2A57": "&orslope;", "\u2A5B": "&orv;", "\xF8": "&oslash;", "\u2298": "&osol;", "\xF5": "&otilde;", "\u2A36": "&otimesas;", "\xF6": "&ouml;", "\u233D": "&ovbar;", "\xB6": "&para;", "\u2AF3": "&parsim;", "\u2AFD": "&parsl;", "\u043F": "&pcy;", "%": "&percnt;", ".": "&period;", "\u2030": "&permil;", "\u2031": "&pertenk;", "\u{1D52D}": "&pfr;", "\u03C6": "&phi;", "\u03D5": "&varphi;", "\u260E": "&phone;", "\u03C0": "&pi;", "\u03D6": "&varpi;", "\u210E": "&planckh;", "+": "&plus;", "\u2A23": "&plusacir;", "\u2A22": "&pluscir;", "\u2A25": "&plusdu;", "\u2A72": "&pluse;", "\u2A26": "&plussim;", "\u2A27": "&plustwo;", "\u2A15": "&pointint;", "\u{1D561}": "&popf;", "\xA3": "&pound;", "\u2AB3": "&prE;", "\u2AB7": "&precapprox;", "\u2AB9": "&prnap;", "\u2AB5": "&prnE;", "\u22E8": "&prnsim;", "\u2032": "&prime;", "\u232E": "&profalar;", "\u2312": "&profline;", "\u2313": "&profsurf;", "\u22B0": "&prurel;", "\u{1D4C5}": "&pscr;", "\u03C8": "&psi;", "\u2008": "&puncsp;", "\u{1D52E}": "&qfr;", "\u{1D562}": "&qopf;", "\u2057": "&qprime;", "\u{1D4C6}": "&qscr;", "\u2A16": "&quatint;", "?": "&quest;", "\u291C": "&rAtail;", "\u2964": "&rHar;", "\u223D\u0331": "&race;", "\u0155": "&racute;", "\u29B3": "&raemptyv;", "\u2992": "&rangd;", "\u29A5": "&range;", "\xBB": "&raquo;", "\u2975": "&rarrap;", "\u2920": "&rarrbfs;", "\u2933": "&rarrc;", "\u291E": "&rarrfs;", "\u2945": "&rarrpl;", "\u2974": "&rarrsim;", "\u21A3": "&rightarrowtail;", "\u219D": "&rightsquigarrow;", "\u291A": "&ratail;", "\u2236": "&ratio;", "\u2773": "&rbbrk;", "}": "&rcub;", "]": "&rsqb;", "\u298C": "&rbrke;", "\u298E": "&rbrksld;", "\u2990": "&rbrkslu;", "\u0159": "&rcaron;", "\u0157": "&rcedil;", "\u0440": "&rcy;", "\u2937": "&rdca;", "\u2969": "&rdldhar;", "\u21B3": "&rdsh;", "\u25AD": "&rect;", "\u297D": "&rfisht;", "\u{1D52F}": "&rfr;", "\u296C": "&rharul;", "\u03C1": "&rho;", "\u03F1": "&varrho;", "\u21C9": "&rrarr;", "\u22CC": "&rthree;", "\u02DA": "&ring;", "\u200F": "&rlm;", "\u23B1": "&rmoustache;", "\u2AEE": "&rnmid;", "\u27ED": "&roang;", "\u21FE": "&roarr;", "\u2986": "&ropar;", "\u{1D563}": "&ropf;", "\u2A2E": "&roplus;", "\u2A35": "&rotimes;", ")": "&rpar;", "\u2994": "&rpargt;", "\u2A12": "&rppolint;", "\u203A": "&rsaquo;", "\u{1D4C7}": "&rscr;", "\u22CA": "&rtimes;", "\u25B9": "&triangleright;", "\u29CE": "&rtriltri;", "\u2968": "&ruluhar;", "\u211E": "&rx;", "\u015B": "&sacute;", "\u2AB4": "&scE;", "\u2AB8": "&succapprox;", "\u0161": "&scaron;", "\u015F": "&scedil;", "\u015D": "&scirc;", "\u2AB6": "&succneqq;", "\u2ABA": "&succnapprox;", "\u22E9": "&succnsim;", "\u2A13": "&scpolint;", "\u0441": "&scy;", "\u22C5": "&sdot;", "\u2A66": "&sdote;", "\u21D8": "&seArr;", "\xA7": "&sect;", ";": "&semi;", "\u2929": "&tosa;", "\u2736": "&sext;", "\u{1D530}": "&sfr;", "\u266F": "&sharp;", "\u0449": "&shchcy;", "\u0448": "&shcy;", "\xAD": "&shy;", "\u03C3": "&sigma;", "\u03C2": "&varsigma;", "\u2A6A": "&simdot;", "\u2A9E": "&simg;", "\u2AA0": "&simgE;", "\u2A9D": "&siml;", "\u2A9F": "&simlE;", "\u2246": "&simne;", "\u2A24": "&simplus;", "\u2972": "&simrarr;", "\u2A33": "&smashp;", "\u29E4": "&smeparsl;", "\u2323": "&ssmile;", "\u2AAA": "&smt;", "\u2AAC": "&smte;", "\u2AAC\uFE00": "&smtes;", "\u044C": "&softcy;", "/": "&sol;", "\u29C4": "&solb;", "\u233F": "&solbar;", "\u{1D564}": "&sopf;", "\u2660": "&spadesuit;", "\u2293\uFE00": "&sqcaps;", "\u2294\uFE00": "&sqcups;", "\u{1D4C8}": "&sscr;", "\u2606": "&star;", "\u2282": "&subset;", "\u2AC5": "&subseteqq;", "\u2ABD": "&subdot;", "\u2AC3": "&subedot;", "\u2AC1": "&submult;", "\u2ACB": "&subsetneqq;", "\u228A": "&subsetneq;", "\u2ABF": "&subplus;", "\u2979": "&subrarr;", "\u2AC7": "&subsim;", "\u2AD5": "&subsub;", "\u2AD3": "&subsup;", "\u266A": "&sung;", "\xB9": "&sup1;", "\xB2": "&sup2;", "\xB3": "&sup3;", "\u2AC6": "&supseteqq;", "\u2ABE": "&supdot;", "\u2AD8": "&supdsub;", "\u2AC4": "&supedot;", "\u27C9": "&suphsol;", "\u2AD7": "&suphsub;", "\u297B": "&suplarr;", "\u2AC2": "&supmult;", "\u2ACC": "&supsetneqq;", "\u228B": "&supsetneq;", "\u2AC0": "&supplus;", "\u2AC8": "&supsim;", "\u2AD4": "&supsub;", "\u2AD6": "&supsup;", "\u21D9": "&swArr;", "\u292A": "&swnwar;", "\xDF": "&szlig;", "\u2316": "&target;", "\u03C4": "&tau;", "\u0165": "&tcaron;", "\u0163": "&tcedil;", "\u0442": "&tcy;", "\u2315": "&telrec;", "\u{1D531}": "&tfr;", "\u03B8": "&theta;", "\u03D1": "&vartheta;", "\xFE": "&thorn;", "\xD7": "&times;", "\u2A31": "&timesbar;", "\u2A30": "&timesd;", "\u2336": "&topbot;", "\u2AF1": "&topcir;", "\u{1D565}": "&topf;", "\u2ADA": "&topfork;", "\u2034": "&tprime;", "\u25B5": "&utri;", "\u225C": "&trie;", "\u25EC": "&tridot;", "\u2A3A": "&triminus;", "\u2A39": "&triplus;", "\u29CD": "&trisb;", "\u2A3B": "&tritime;", "\u23E2": "&trpezium;", "\u{1D4C9}": "&tscr;", "\u0446": "&tscy;", "\u045B": "&tshcy;", "\u0167": "&tstrok;", "\u2963": "&uHar;", "\xFA": "&uacute;", "\u045E": "&ubrcy;", "\u016D": "&ubreve;", "\xFB": "&ucirc;", "\u0443": "&ucy;", "\u0171": "&udblac;", "\u297E": "&ufisht;", "\u{1D532}": "&ufr;", "\xF9": "&ugrave;", "\u2580": "&uhblk;", "\u231C": "&ulcorner;", "\u230F": "&ulcrop;", "\u25F8": "&ultri;", "\u016B": "&umacr;", "\u0173": "&uogon;", "\u{1D566}": "&uopf;", "\u03C5": "&upsilon;", "\u21C8": "&uuarr;", "\u231D": "&urcorner;", "\u230E": "&urcrop;", "\u016F": "&uring;", "\u25F9": "&urtri;", "\u{1D4CA}": "&uscr;", "\u22F0": "&utdot;", "\u0169": "&utilde;", "\xFC": "&uuml;", "\u29A7": "&uwangle;", "\u2AE8": "&vBar;", "\u2AE9": "&vBarv;", "\u299C": "&vangrt;", "\u228A\uFE00": "&vsubne;", "\u2ACB\uFE00": "&vsubnE;", "\u228B\uFE00": "&vsupne;", "\u2ACC\uFE00": "&vsupnE;", "\u0432": "&vcy;", "\u22BB": "&veebar;", "\u225A": "&veeeq;", "\u22EE": "&vellip;", "\u{1D533}": "&vfr;", "\u{1D567}": "&vopf;", "\u{1D4CB}": "&vscr;", "\u299A": "&vzigzag;", "\u0175": "&wcirc;", "\u2A5F": "&wedbar;", "\u2259": "&wedgeq;", "\u2118": "&wp;", "\u{1D534}": "&wfr;", "\u{1D568}": "&wopf;", "\u{1D4CC}": "&wscr;", "\u{1D535}": "&xfr;", "\u03BE": "&xi;", "\u22FB": "&xnis;", "\u{1D569}": "&xopf;", "\u{1D4CD}": "&xscr;", "\xFD": "&yacute;", "\u044F": "&yacy;", "\u0177": "&ycirc;", "\u044B": "&ycy;", "\xA5": "&yen;", "\u{1D536}": "&yfr;", "\u0457": "&yicy;", "\u{1D56A}": "&yopf;", "\u{1D4CE}": "&yscr;", "\u044E": "&yucy;", "\xFF": "&yuml;", "\u017A": "&zacute;", "\u017E": "&zcaron;", "\u0437": "&zcy;", "\u017C": "&zdot;", "\u03B6": "&zeta;", "\u{1D537}": "&zfr;", "\u0436": "&zhcy;", "\u21DD": "&zigrarr;", "\u{1D56B}": "&zopf;", "\u{1D4CF}": "&zscr;", "\u200D": "&zwj;", "\u200C": "&zwnj;" } } };
-  }
-});
-
-// node_modules/html-entities/lib/numeric-unicode-map.js
-var require_numeric_unicode_map = __commonJS({
-  "node_modules/html-entities/lib/numeric-unicode-map.js"(exports2) {
-    "use strict";
-    init_shims();
-    Object.defineProperty(exports2, "__esModule", { value: true });
-    exports2.numericUnicodeMap = { 0: 65533, 128: 8364, 130: 8218, 131: 402, 132: 8222, 133: 8230, 134: 8224, 135: 8225, 136: 710, 137: 8240, 138: 352, 139: 8249, 140: 338, 142: 381, 145: 8216, 146: 8217, 147: 8220, 148: 8221, 149: 8226, 150: 8211, 151: 8212, 152: 732, 153: 8482, 154: 353, 155: 8250, 156: 339, 158: 382, 159: 376 };
-  }
-});
-
-// node_modules/html-entities/lib/surrogate-pairs.js
-var require_surrogate_pairs = __commonJS({
-  "node_modules/html-entities/lib/surrogate-pairs.js"(exports2) {
-    "use strict";
-    init_shims();
-    Object.defineProperty(exports2, "__esModule", { value: true });
-    exports2.fromCodePoint = String.fromCodePoint || function(astralCodePoint) {
-      return String.fromCharCode(Math.floor((astralCodePoint - 65536) / 1024) + 55296, (astralCodePoint - 65536) % 1024 + 56320);
-    };
-    exports2.getCodePoint = String.prototype.codePointAt ? function(input, position) {
-      return input.codePointAt(position);
-    } : function(input, position) {
-      return (input.charCodeAt(position) - 55296) * 1024 + input.charCodeAt(position + 1) - 56320 + 65536;
-    };
-    exports2.highSurrogateFrom = 55296;
-    exports2.highSurrogateTo = 56319;
-  }
-});
-
-// node_modules/html-entities/lib/index.js
-var require_lib3 = __commonJS({
-  "node_modules/html-entities/lib/index.js"(exports2) {
-    "use strict";
-    init_shims();
-    var __assign2 = exports2 && exports2.__assign || function() {
-      __assign2 = Object.assign || function(t2) {
-        for (var s3, i2 = 1, n = arguments.length; i2 < n; i2++) {
-          s3 = arguments[i2];
-          for (var p2 in s3)
-            if (Object.prototype.hasOwnProperty.call(s3, p2))
-              t2[p2] = s3[p2];
-        }
-        return t2;
-      };
-      return __assign2.apply(this, arguments);
-    };
-    Object.defineProperty(exports2, "__esModule", { value: true });
-    var named_references_1 = require_named_references();
-    var numeric_unicode_map_1 = require_numeric_unicode_map();
-    var surrogate_pairs_1 = require_surrogate_pairs();
-    var allNamedReferences = __assign2(__assign2({}, named_references_1.namedReferences), { all: named_references_1.namedReferences.html5 });
-    var encodeRegExps = {
-      specialChars: /[<>'"&]/g,
-      nonAscii: /(?:[<>'"&\u0080-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])/g,
-      nonAsciiPrintable: /(?:[<>'"&\x01-\x08\x11-\x15\x17-\x1F\x7f-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])/g,
-      extensive: /(?:[\x01-\x0c\x0e-\x1f\x21-\x2c\x2e-\x2f\x3a-\x40\x5b-\x60\x7b-\x7d\x7f-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])/g
-    };
-    var defaultEncodeOptions = {
-      mode: "specialChars",
-      level: "all",
-      numeric: "decimal"
-    };
-    function encode4(text, _a) {
-      var _b = _a === void 0 ? defaultEncodeOptions : _a, _c = _b.mode, mode = _c === void 0 ? "specialChars" : _c, _d = _b.numeric, numeric = _d === void 0 ? "decimal" : _d, _e = _b.level, level = _e === void 0 ? "all" : _e;
-      if (!text) {
-        return "";
-      }
-      var encodeRegExp = encodeRegExps[mode];
-      var references = allNamedReferences[level].characters;
-      var isHex = numeric === "hexadecimal";
-      encodeRegExp.lastIndex = 0;
-      var _b = encodeRegExp.exec(text);
-      var _c;
-      if (_b) {
-        _c = "";
-        var _d = 0;
-        do {
-          if (_d !== _b.index) {
-            _c += text.substring(_d, _b.index);
-          }
-          var _e = _b[0];
-          var result_1 = references[_e];
-          if (!result_1) {
-            var code_1 = _e.length > 1 ? surrogate_pairs_1.getCodePoint(_e, 0) : _e.charCodeAt(0);
-            result_1 = (isHex ? "&#x" + code_1.toString(16) : "&#" + code_1) + ";";
-          }
-          _c += result_1;
-          _d = _b.index + _e.length;
-        } while (_b = encodeRegExp.exec(text));
-        if (_d !== text.length) {
-          _c += text.substring(_d);
-        }
-      } else {
-        _c = text;
-      }
-      return _c;
-    }
-    exports2.encode = encode4;
-    var defaultDecodeOptions = {
-      scope: "body",
-      level: "all"
-    };
-    var strict = /&(?:#\d+|#[xX][\da-fA-F]+|[0-9a-zA-Z]+);/g;
-    var attribute = /&(?:#\d+|#[xX][\da-fA-F]+|[0-9a-zA-Z]+)[;=]?/g;
-    var baseDecodeRegExps = {
-      xml: {
-        strict,
-        attribute,
-        body: named_references_1.bodyRegExps.xml
-      },
-      html4: {
-        strict,
-        attribute,
-        body: named_references_1.bodyRegExps.html4
-      },
-      html5: {
-        strict,
-        attribute,
-        body: named_references_1.bodyRegExps.html5
-      }
-    };
-    var decodeRegExps = __assign2(__assign2({}, baseDecodeRegExps), { all: baseDecodeRegExps.html5 });
-    var fromCharCode = String.fromCharCode;
-    var outOfBoundsChar = fromCharCode(65533);
-    var defaultDecodeEntityOptions = {
-      level: "all"
-    };
-    function decodeEntity(entity, _a) {
-      var _b = (_a === void 0 ? defaultDecodeEntityOptions : _a).level, level = _b === void 0 ? "all" : _b;
-      if (!entity) {
-        return "";
-      }
-      var _b = entity;
-      var decodeEntityLastChar_1 = entity[entity.length - 1];
-      if (false) {
-        _b = entity;
-      } else if (false) {
-        _b = entity;
-      } else {
-        var decodeResultByReference_1 = allNamedReferences[level].entities[entity];
-        if (decodeResultByReference_1) {
-          _b = decodeResultByReference_1;
-        } else if (entity[0] === "&" && entity[1] === "#") {
-          var decodeSecondChar_1 = entity[2];
-          var decodeCode_1 = decodeSecondChar_1 == "x" || decodeSecondChar_1 == "X" ? parseInt(entity.substr(3), 16) : parseInt(entity.substr(2));
-          _b = decodeCode_1 >= 1114111 ? outOfBoundsChar : decodeCode_1 > 65535 ? surrogate_pairs_1.fromCodePoint(decodeCode_1) : fromCharCode(numeric_unicode_map_1.numericUnicodeMap[decodeCode_1] || decodeCode_1);
-        }
-      }
-      return _b;
-    }
-    exports2.decodeEntity = decodeEntity;
-    function decode3(text, _a) {
-      var decodeSecondChar_1 = _a === void 0 ? defaultDecodeOptions : _a, decodeCode_1 = decodeSecondChar_1.level, level = decodeCode_1 === void 0 ? "all" : decodeCode_1, _b = decodeSecondChar_1.scope, scope = _b === void 0 ? level === "xml" ? "strict" : "body" : _b;
-      if (!text) {
-        return "";
-      }
-      var decodeRegExp = decodeRegExps[level][scope];
-      var references = allNamedReferences[level].entities;
-      var isAttribute = scope === "attribute";
-      var isStrict = scope === "strict";
-      decodeRegExp.lastIndex = 0;
-      var replaceMatch_1 = decodeRegExp.exec(text);
-      var replaceResult_1;
-      if (replaceMatch_1) {
-        replaceResult_1 = "";
-        var replaceLastIndex_1 = 0;
-        do {
-          if (replaceLastIndex_1 !== replaceMatch_1.index) {
-            replaceResult_1 += text.substring(replaceLastIndex_1, replaceMatch_1.index);
-          }
-          var replaceInput_1 = replaceMatch_1[0];
-          var decodeResult_1 = replaceInput_1;
-          var decodeEntityLastChar_2 = replaceInput_1[replaceInput_1.length - 1];
-          if (isAttribute && decodeEntityLastChar_2 === "=") {
-            decodeResult_1 = replaceInput_1;
-          } else if (isStrict && decodeEntityLastChar_2 !== ";") {
-            decodeResult_1 = replaceInput_1;
-          } else {
-            var decodeResultByReference_2 = references[replaceInput_1];
-            if (decodeResultByReference_2) {
-              decodeResult_1 = decodeResultByReference_2;
-            } else if (replaceInput_1[0] === "&" && replaceInput_1[1] === "#") {
-              var decodeSecondChar_2 = replaceInput_1[2];
-              var decodeCode_2 = decodeSecondChar_2 == "x" || decodeSecondChar_2 == "X" ? parseInt(replaceInput_1.substr(3), 16) : parseInt(replaceInput_1.substr(2));
-              decodeResult_1 = decodeCode_2 >= 1114111 ? outOfBoundsChar : decodeCode_2 > 65535 ? surrogate_pairs_1.fromCodePoint(decodeCode_2) : fromCharCode(numeric_unicode_map_1.numericUnicodeMap[decodeCode_2] || decodeCode_2);
-            }
-          }
-          replaceResult_1 += decodeResult_1;
-          replaceLastIndex_1 = replaceMatch_1.index + replaceInput_1.length;
-        } while (replaceMatch_1 = decodeRegExp.exec(text));
-        if (replaceLastIndex_1 !== text.length) {
-          replaceResult_1 += text.substring(replaceLastIndex_1);
-        }
-      } else {
-        replaceResult_1 = text;
-      }
-      return replaceResult_1;
-    }
-    exports2.decode = decode3;
-  }
-});
-
-// node_modules/ranges-sort/dist/ranges-sort.esm.js
-function g(r2, l) {
-  if (!Array.isArray(r2) || !r2.length)
-    return r2;
-  let n = { ...d, ...l }, s3, o;
-  if (n.strictlyTwoElementsInRangeArrays && !r2.every((e2, t2) => !Array.isArray(e2) || e2.length !== 2 ? (s3 = t2, o = e2.length, false) : true))
-    throw new TypeError(`ranges-sort: [THROW_ID_03] The first argument should be an array and must consist of arrays which are natural number indexes representing TWO string index ranges. However, ${s3}th range (${JSON.stringify(r2[s3], null, 4)}) has not two but ${o} elements!`);
-  if (!r2.every((e2, t2) => !Array.isArray(e2) || !Number.isInteger(e2[0]) || e2[0] < 0 || !Number.isInteger(e2[1]) || e2[1] < 0 ? (s3 = t2, false) : true))
-    throw new TypeError(`ranges-sort: [THROW_ID_04] The first argument should be an array and must consist of arrays which are natural number indexes representing string index ranges. However, ${s3}th range (${JSON.stringify(r2[s3], null, 4)}) does not consist of only natural numbers!`);
-  let a = r2.length ** 2, i2 = 0;
-  return Array.from(r2).sort((e2, t2) => (n.progressFn && (i2 += 1, n.progressFn(Math.floor(i2 * 100 / a))), e2[0] === t2[0] ? e2[1] < t2[1] ? -1 : e2[1] > t2[1] ? 1 : 0 : e2[0] < t2[0] ? -1 : 1));
-}
-var d;
-var init_ranges_sort_esm = __esm({
-  "node_modules/ranges-sort/dist/ranges-sort.esm.js"() {
-    init_shims();
-    d = { strictlyTwoElementsInRangeArrays: false, progressFn: null };
-  }
-});
-
-// node_modules/ranges-merge/dist/ranges-merge.esm.js
-function b(i2, t2) {
-  function a(e2) {
-    return !!e2 && typeof e2 == "object" && !Array.isArray(e2);
-  }
-  if (!Array.isArray(i2) || !i2.length)
-    return null;
-  let n;
-  if (t2)
-    if (a(t2)) {
-      if (n = { ...d2, ...t2 }, n.progressFn && a(n.progressFn) && !Object.keys(n.progressFn).length)
-        n.progressFn = null;
-      else if (n.progressFn && typeof n.progressFn != "function")
-        throw new Error(`ranges-merge: [THROW_ID_01] opts.progressFn must be a function! It was given of a type: "${typeof n.progressFn}", equal to ${JSON.stringify(n.progressFn, null, 4)}`);
-      if (![1, 2, "1", "2"].includes(n.mergeType))
-        throw new Error(`ranges-merge: [THROW_ID_02] opts.mergeType was customised to a wrong thing! It was given of a type: "${typeof n.mergeType}", equal to ${JSON.stringify(n.mergeType, null, 4)}`);
-      if (typeof n.joinRangesThatTouchEdges != "boolean")
-        throw new Error(`ranges-merge: [THROW_ID_04] opts.joinRangesThatTouchEdges was customised to a wrong thing! It was given of a type: "${typeof n.joinRangesThatTouchEdges}", equal to ${JSON.stringify(n.joinRangesThatTouchEdges, null, 4)}`);
-    } else
-      throw new Error(`emlint: [THROW_ID_03] the second input argument must be a plain object. It was given as:
-${JSON.stringify(t2, null, 4)} (type ${typeof t2})`);
-  else
-    n = { ...d2 };
-  let l = i2.filter((e2) => Array.isArray(e2)).map((e2) => [...e2]).filter((e2) => e2[2] !== void 0 || e2[0] !== e2[1]), s3, o, r2;
-  n.progressFn ? s3 = g(l, { progressFn: (e2) => {
-    r2 = Math.floor(e2 / 5), r2 !== o && (o = r2, n.progressFn(r2));
-  } }) : s3 = g(l);
-  let g2 = s3.length - 1;
-  for (let e2 = g2; e2 > 0; e2--)
-    n.progressFn && (r2 = Math.floor((1 - e2 / g2) * 78) + 21, r2 !== o && r2 > o && (o = r2, n.progressFn(r2))), (s3[e2][0] <= s3[e2 - 1][0] || !n.joinRangesThatTouchEdges && s3[e2][0] < s3[e2 - 1][1] || n.joinRangesThatTouchEdges && s3[e2][0] <= s3[e2 - 1][1]) && (s3[e2 - 1][0] = Math.min(s3[e2][0], s3[e2 - 1][0]), s3[e2 - 1][1] = Math.max(s3[e2][1], s3[e2 - 1][1]), s3[e2][2] !== void 0 && (s3[e2 - 1][0] >= s3[e2][0] || s3[e2 - 1][1] <= s3[e2][1]) && s3[e2 - 1][2] !== null && (s3[e2][2] === null && s3[e2 - 1][2] !== null ? s3[e2 - 1][2] = null : s3[e2 - 1][2] != null ? +n.mergeType == 2 && s3[e2 - 1][0] === s3[e2][0] ? s3[e2 - 1][2] = s3[e2][2] : s3[e2 - 1][2] += s3[e2][2] : s3[e2 - 1][2] = s3[e2][2]), s3.splice(e2, 1), e2 = s3.length);
-  return s3.length ? s3 : null;
-}
-var d2;
-var init_ranges_merge_esm = __esm({
-  "node_modules/ranges-merge/dist/ranges-merge.esm.js"() {
-    init_shims();
-    init_ranges_sort_esm();
-    d2 = { mergeType: 1, progressFn: null, joinRangesThatTouchEdges: true };
-  }
-});
-
-// node_modules/tiny-invariant/dist/tiny-invariant.cjs.js
-var require_tiny_invariant_cjs = __commonJS({
-  "node_modules/tiny-invariant/dist/tiny-invariant.cjs.js"(exports2, module2) {
-    "use strict";
-    init_shims();
-    var isProduction = process.env.NODE_ENV === "production";
-    var prefix = "Invariant failed";
-    function invariant(condition, message) {
-      if (condition) {
-        return;
-      }
-      if (isProduction) {
-        throw new Error(prefix);
-      }
-      var provided = typeof message === "function" ? message() : message;
-      var value = provided ? prefix + ": " + provided : prefix;
-      throw new Error(value);
-    }
-    module2.exports = invariant;
-  }
-});
-
-// node_modules/ranges-apply/dist/ranges-apply.esm.js
-function v(s3, r2, n) {
-  let t2 = 0, o = 0;
-  if (arguments.length === 0)
-    throw new Error("ranges-apply: [THROW_ID_01] inputs missing!");
-  if (typeof s3 != "string")
-    throw new TypeError(`ranges-apply: [THROW_ID_02] first input argument must be a string! Currently it's: ${typeof s3}, equal to: ${JSON.stringify(s3, null, 4)}`);
-  if (r2 && !Array.isArray(r2))
-    throw new TypeError(`ranges-apply: [THROW_ID_03] second input argument must be an array (or null)! Currently it's: ${typeof r2}, equal to: ${JSON.stringify(r2, null, 4)}`);
-  if (n && typeof n != "function")
-    throw new TypeError(`ranges-apply: [THROW_ID_04] the third input argument must be a function (or falsey)! Currently it's: ${typeof n}, equal to: ${JSON.stringify(n, null, 4)}`);
-  if (!r2 || !r2.filter((e2) => e2).length)
-    return s3;
-  let a;
-  Array.isArray(r2) && Number.isInteger(r2[0]) && Number.isInteger(r2[1]) ? a = [Array.from(r2)] : a = Array.from(r2);
-  let d3 = a.length, c3 = 0;
-  a.filter((e2) => e2).forEach((e2, i2) => {
-    if (n && (t2 = Math.floor(c3 / d3 * 10), t2 !== o && (o = t2, n(t2))), !Array.isArray(e2))
-      throw new TypeError(`ranges-apply: [THROW_ID_05] ranges array, second input arg., has ${i2}th element not an array: ${JSON.stringify(e2, null, 4)}, which is ${typeof e2}`);
-    if (!Number.isInteger(e2[0])) {
-      if (!Number.isInteger(+e2[0]) || +e2[0] < 0)
-        throw new TypeError(`ranges-apply: [THROW_ID_06] ranges array, second input arg. has ${i2}th element, array ${JSON.stringify(e2, null, 0)}. Its first element is not an integer, string index, but ${typeof e2[0]}, equal to: ${JSON.stringify(e2[0], null, 4)}.`);
-      a[i2][0] = +a[i2][0];
-    }
-    if (!Number.isInteger(e2[1])) {
-      if (!Number.isInteger(+e2[1]) || +e2[1] < 0)
-        throw new TypeError(`ranges-apply: [THROW_ID_07] ranges array, second input arg. has ${i2}th element, array ${JSON.stringify(e2, null, 0)}. Its second element is not an integer, string index, but ${typeof e2[1]}, equal to: ${JSON.stringify(e2[1], null, 4)}.`);
-      a[i2][1] = +a[i2][1];
-    }
-    c3 += 1;
-  });
-  let l = b(a, { progressFn: (e2) => {
-    n && (t2 = 10 + Math.floor(e2 / 10), t2 !== o && (o = t2, n(t2)));
-  } });
-  (0, import_tiny_invariant.default)(l);
-  let y = l.length;
-  if (y > 0) {
-    let e2 = s3.slice(l[y - 1][1]);
-    s3 = l.reduce((i2, $2, p2, u2) => {
-      n && (t2 = 20 + Math.floor(p2 / y * 80), t2 !== o && (o = t2, n(t2)));
-      let g2 = p2 === 0 ? 0 : u2[p2 - 1][1], m3 = u2[p2][0];
-      return `${i2}${s3.slice(g2, m3)}${u2[p2][2] || ""}`;
-    }, ""), s3 += e2;
-  }
-  return s3;
-}
-var import_tiny_invariant;
-var init_ranges_apply_esm = __esm({
-  "node_modules/ranges-apply/dist/ranges-apply.esm.js"() {
-    init_shims();
-    init_ranges_merge_esm();
-    import_tiny_invariant = __toESM(require_tiny_invariant_cjs(), 1);
-  }
-});
-
-// node_modules/string-collapse-leading-whitespace/dist/string-collapse-leading-whitespace.esm.js
-function D(l, u2 = 1) {
-  let $2 = "\xA0";
-  function g2(e2) {
-    return Array.from(e2).reverse().join("");
-  }
-  function a(e2, t2, o) {
-    let r2 = o ? `
-` : "\r", i2 = o ? "\r" : `
-`;
-    if (!e2)
-      return e2;
-    let p2 = 0, c3 = 0, s3 = "";
-    for (let n = 0, f5 = e2.length; n < f5; n++)
-      (e2[n] === r2 || e2[n] === i2 && e2[n - 1] !== r2) && c3++, `\r
-`.includes(e2[n]) || e2[n] === $2 ? (p2 = 0, e2[n] === $2 ? s3 += e2[n] : e2[n] === r2 ? c3 <= t2 && (s3 += e2[n], e2[n + 1] === i2 && (s3 += e2[n + 1], n++)) : e2[n] === i2 && (!e2[n - 1] || e2[n - 1] !== r2) && c3 <= t2 && (s3 += e2[n])) : (p2++, !e2[n + 1] && !c3 && (s3 += " "));
-    return s3;
-  }
-  if (typeof l == "string" && l.length) {
-    let e2 = 1;
-    typeof +u2 == "number" && Number.isInteger(+u2) && +u2 >= 0 && (e2 = +u2);
-    let t2 = "", o = "";
-    if (!l.trim())
-      t2 = l;
-    else if (!l[0].trim()) {
-      for (let r2 = 0, i2 = l.length; r2 < i2; r2++)
-        if (l[r2].trim()) {
-          t2 = l.slice(0, r2);
-          break;
-        }
-    }
-    if (l.trim() && (l.slice(-1).trim() === "" || l.slice(-1) === $2)) {
-      for (let r2 = l.length; r2--; )
-        if (l[r2].trim()) {
-          o = l.slice(r2 + 1);
-          break;
-        }
-    }
-    return `${a(t2, e2, false)}${l.trim()}${g2(a(g2(o), e2, true))}`;
-  }
-  return l;
-}
-var init_string_collapse_leading_whitespace_esm = __esm({
-  "node_modules/string-collapse-leading-whitespace/dist/string-collapse-leading-whitespace.esm.js"() {
-    init_shims();
-  }
-});
-
-// node_modules/ranges-push/dist/ranges-push.esm.js
-function m2(i2, r2) {
-  if (!Array.isArray(i2) || !i2.length)
-    return i2;
-  let t2 = { ...b2, ...r2 }, e2, l;
-  if (t2.strictlyTwoElementsInRangeArrays && !i2.every((o, g2) => !Array.isArray(o) || o.length !== 2 ? (e2 = g2, l = o.length, false) : true))
-    throw new TypeError(`ranges-sort: [THROW_ID_03] The first argument should be an array and must consist of arrays which are natural number indexes representing TWO string index ranges. However, ${e2}th range (${JSON.stringify(i2[e2], null, 4)}) has not two but ${l} elements!`);
-  if (!i2.every((o, g2) => !Array.isArray(o) || !Number.isInteger(o[0]) || o[0] < 0 || !Number.isInteger(o[1]) || o[1] < 0 ? (e2 = g2, false) : true))
-    throw new TypeError(`ranges-sort: [THROW_ID_04] The first argument should be an array and must consist of arrays which are natural number indexes representing string index ranges. However, ${e2}th range (${JSON.stringify(i2[e2], null, 4)}) does not consist of only natural numbers!`);
-  let n = i2.length ** 2, a = 0;
-  return Array.from(i2).sort((o, g2) => (t2.progressFn && (a += 1, t2.progressFn(Math.floor(a * 100 / n))), o[0] === g2[0] ? o[1] < g2[1] ? -1 : o[1] > g2[1] ? 1 : 0 : o[0] < g2[0] ? -1 : 1));
-}
-function f3(i2, r2) {
-  function t2(s3) {
-    return !!s3 && typeof s3 == "object" && !Array.isArray(s3);
-  }
-  if (!Array.isArray(i2) || !i2.length)
-    return null;
-  let e2;
-  if (r2)
-    if (t2(r2)) {
-      if (e2 = { ...c, ...r2 }, e2.progressFn && t2(e2.progressFn) && !Object.keys(e2.progressFn).length)
-        e2.progressFn = null;
-      else if (e2.progressFn && typeof e2.progressFn != "function")
-        throw new Error(`ranges-merge: [THROW_ID_01] resolvedOpts.progressFn must be a function! It was given of a type: "${typeof e2.progressFn}", equal to ${JSON.stringify(e2.progressFn, null, 4)}`);
-      if (![1, 2, "1", "2"].includes(e2.mergeType))
-        throw new Error(`ranges-merge: [THROW_ID_02] resolvedOpts.mergeType was customised to a wrong thing! It was given of a type: "${typeof e2.mergeType}", equal to ${JSON.stringify(e2.mergeType, null, 4)}`);
-      if (typeof e2.joinRangesThatTouchEdges != "boolean")
-        throw new Error(`ranges-merge: [THROW_ID_04] resolvedOpts.joinRangesThatTouchEdges was customised to a wrong thing! It was given of a type: "${typeof e2.joinRangesThatTouchEdges}", equal to ${JSON.stringify(e2.joinRangesThatTouchEdges, null, 4)}`);
-    } else
-      throw new Error(`emlint: [THROW_ID_03] the second input argument must be a plain object. It was given as:
-${JSON.stringify(r2, null, 4)} (type ${typeof r2})`);
-  else
-    e2 = { ...c };
-  let l = i2.filter((s3) => Array.isArray(s3)).map((s3) => [...s3]).filter((s3) => s3[2] !== void 0 || s3[0] !== s3[1]), n, a, o;
-  e2.progressFn ? n = m2(l, { progressFn: (s3) => {
-    o = Math.floor(s3 / 5), o !== a && (a = o, e2.progressFn(o));
-  } }) : n = m2(l);
-  let g2 = n.length - 1;
-  for (let s3 = g2; s3 > 0; s3--)
-    e2.progressFn && (o = Math.floor((1 - s3 / g2) * 78) + 21, o !== a && o > a && (a = o, e2.progressFn(o))), (n[s3][0] <= n[s3 - 1][0] || !e2.joinRangesThatTouchEdges && n[s3][0] < n[s3 - 1][1] || e2.joinRangesThatTouchEdges && n[s3][0] <= n[s3 - 1][1]) && (n[s3 - 1][0] = Math.min(n[s3][0], n[s3 - 1][0]), n[s3 - 1][1] = Math.max(n[s3][1], n[s3 - 1][1]), n[s3][2] !== void 0 && (n[s3 - 1][0] >= n[s3][0] || n[s3 - 1][1] <= n[s3][1]) && n[s3 - 1][2] !== null && (n[s3][2] === null && n[s3 - 1][2] !== null ? n[s3 - 1][2] = null : n[s3 - 1][2] != null ? +e2.mergeType == 2 && n[s3 - 1][0] === n[s3][0] ? n[s3 - 1][2] = n[s3][2] : n[s3 - 1][2] += n[s3][2] : n[s3 - 1][2] = n[s3][2]), n.splice(s3, 1), s3 = n.length);
-  return n.length ? n : null;
-}
-function u(i2) {
-  return i2 != null;
-}
-function p(i2) {
-  return Number.isInteger(i2) && i2 >= 0;
-}
-function h2(i2) {
-  return typeof i2 == "string";
-}
-var b2, c, T, $;
-var init_ranges_push_esm = __esm({
-  "node_modules/ranges-push/dist/ranges-push.esm.js"() {
-    init_shims();
-    init_string_collapse_leading_whitespace_esm();
-    b2 = { strictlyTwoElementsInRangeArrays: false, progressFn: null };
-    c = { mergeType: 1, progressFn: null, joinRangesThatTouchEdges: true };
-    T = { limitToBeAddedWhitespace: false, limitLinebreaksCount: 1, mergeType: 1 };
-    $ = class {
-      constructor(r2) {
-        let t2 = { ...T, ...r2 };
-        if (t2.mergeType && t2.mergeType !== 1 && t2.mergeType !== 2)
-          if (h2(t2.mergeType) && t2.mergeType.trim() === "1")
-            t2.mergeType = 1;
-          else if (h2(t2.mergeType) && t2.mergeType.trim() === "2")
-            t2.mergeType = 2;
-          else
-            throw new Error(`ranges-push: [THROW_ID_02] opts.mergeType was customised to a wrong thing! It was given of a type: "${typeof t2.mergeType}", equal to ${JSON.stringify(t2.mergeType, null, 4)}`);
-        this.opts = t2, this.ranges = [];
-      }
-      ranges;
-      opts;
-      add(r2, t2, e2) {
-        if (r2 == null && t2 == null)
-          return;
-        if (u(r2) && !u(t2)) {
-          if (Array.isArray(r2)) {
-            if (r2.length) {
-              if (r2.some((a) => Array.isArray(a))) {
-                r2.forEach((a) => {
-                  Array.isArray(a) && this.add(...a);
-                });
-                return;
-              }
-              r2.length && p(+r2[0]) && p(+r2[1]) && this.add(...r2);
-            }
-            return;
-          }
-          throw new TypeError(`ranges-push/Ranges/add(): [THROW_ID_12] the first input argument, "from" is set (${JSON.stringify(r2, null, 0)}) but second-one, "to" is not (${JSON.stringify(t2, null, 0)})`);
-        } else if (!u(r2) && u(t2))
-          throw new TypeError(`ranges-push/Ranges/add(): [THROW_ID_13] the second input argument, "to" is set (${JSON.stringify(t2, null, 0)}) but first-one, "from" is not (${JSON.stringify(r2, null, 0)})`);
-        let l = +r2, n = +t2;
-        if (p(e2) && (e2 = String(e2)), p(l) && p(n)) {
-          if (u(e2) && !h2(e2) && !p(e2))
-            throw new TypeError(`ranges-push/Ranges/add(): [THROW_ID_08] The third argument, the value to add, was given not as string but ${typeof e2}, equal to:
-${JSON.stringify(e2, null, 4)}`);
-          if (u(this.ranges) && Array.isArray(this.last()) && l === this.last()[1]) {
-            if (this.last()[1] = n, this.last()[2], this.last()[2] !== null && u(e2)) {
-              let a = this.last()[2] && this.last()[2].length && (!this.opts || !this.opts.mergeType || this.opts.mergeType === 1) ? `${this.last()[2]}${e2}` : e2;
-              this.opts.limitToBeAddedWhitespace && (a = D(a, this.opts.limitLinebreaksCount)), h2(a) && !a.length || (this.last()[2] = a);
-            }
-          } else {
-            this.ranges || (this.ranges = []);
-            let a = e2 !== void 0 && !(h2(e2) && !e2.length) ? [l, n, e2 && this.opts.limitToBeAddedWhitespace ? D(e2, this.opts.limitLinebreaksCount) : e2] : [l, n];
-            this.ranges.push(a);
-          }
-        } else
-          throw p(l) && l >= 0 ? new TypeError(`ranges-push/Ranges/add(): [THROW_ID_10] "to" value, the second input argument, must be a natural number or zero! Currently it's of a type "${typeof n}" equal to: ${JSON.stringify(n, null, 4)}`) : new TypeError(`ranges-push/Ranges/add(): [THROW_ID_09] "from" value, the first input argument, must be a natural number or zero! Currently it's of a type "${typeof l}" equal to: ${JSON.stringify(l, null, 4)}`);
-      }
-      push(r2, t2, e2) {
-        this.add(r2, t2, e2);
-      }
-      current() {
-        return Array.isArray(this.ranges) && this.ranges.length ? (this.ranges = f3(this.ranges, { mergeType: this.opts.mergeType }), this.ranges && this.opts.limitToBeAddedWhitespace ? this.ranges.map((r2) => u(r2[2]) ? [r2[0], r2[1], D(r2[2], this.opts.limitLinebreaksCount)] : r2) : this.ranges) : null;
-      }
-      wipe() {
-        this.ranges = [];
-      }
-      replace(r2) {
-        if (Array.isArray(r2) && r2.length)
-          if (Array.isArray(r2[0]) && p(r2[0][0]))
-            this.ranges = Array.from(r2);
-          else
-            throw new Error(`ranges-push/Ranges/replace(): [THROW_ID_11] Single range was given but we expected array of arrays! The first element, ${JSON.stringify(r2[0], null, 4)} should be an array and its first element should be an integer, a string index.`);
-        else
-          this.ranges = [];
-      }
-      last() {
-        return Array.isArray(this.ranges) && this.ranges.length ? this.ranges[this.ranges.length - 1] : null;
-      }
-    };
-  }
-});
-
-// node_modules/lodash.clonedeep/index.js
-var require_lodash5 = __commonJS({
-  "node_modules/lodash.clonedeep/index.js"(exports2, module2) {
-    init_shims();
-    var LARGE_ARRAY_SIZE = 200;
-    var HASH_UNDEFINED = "__lodash_hash_undefined__";
-    var MAX_SAFE_INTEGER = 9007199254740991;
-    var argsTag = "[object Arguments]";
-    var arrayTag = "[object Array]";
-    var boolTag = "[object Boolean]";
-    var dateTag = "[object Date]";
-    var errorTag = "[object Error]";
-    var funcTag = "[object Function]";
-    var genTag = "[object GeneratorFunction]";
-    var mapTag = "[object Map]";
-    var numberTag = "[object Number]";
-    var objectTag = "[object Object]";
-    var promiseTag = "[object Promise]";
-    var regexpTag = "[object RegExp]";
-    var setTag = "[object Set]";
-    var stringTag = "[object String]";
-    var symbolTag = "[object Symbol]";
-    var weakMapTag = "[object WeakMap]";
-    var arrayBufferTag = "[object ArrayBuffer]";
-    var dataViewTag = "[object DataView]";
-    var float32Tag = "[object Float32Array]";
-    var float64Tag = "[object Float64Array]";
-    var int8Tag = "[object Int8Array]";
-    var int16Tag = "[object Int16Array]";
-    var int32Tag = "[object Int32Array]";
-    var uint8Tag = "[object Uint8Array]";
-    var uint8ClampedTag = "[object Uint8ClampedArray]";
-    var uint16Tag = "[object Uint16Array]";
-    var uint32Tag = "[object Uint32Array]";
-    var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
-    var reFlags = /\w*$/;
-    var reIsHostCtor = /^\[object .+?Constructor\]$/;
-    var reIsUint = /^(?:0|[1-9]\d*)$/;
-    var cloneableTags = {};
-    cloneableTags[argsTag] = cloneableTags[arrayTag] = cloneableTags[arrayBufferTag] = cloneableTags[dataViewTag] = cloneableTags[boolTag] = cloneableTags[dateTag] = cloneableTags[float32Tag] = cloneableTags[float64Tag] = cloneableTags[int8Tag] = cloneableTags[int16Tag] = cloneableTags[int32Tag] = cloneableTags[mapTag] = cloneableTags[numberTag] = cloneableTags[objectTag] = cloneableTags[regexpTag] = cloneableTags[setTag] = cloneableTags[stringTag] = cloneableTags[symbolTag] = cloneableTags[uint8Tag] = cloneableTags[uint8ClampedTag] = cloneableTags[uint16Tag] = cloneableTags[uint32Tag] = true;
-    cloneableTags[errorTag] = cloneableTags[funcTag] = cloneableTags[weakMapTag] = false;
-    var freeGlobal = typeof global == "object" && global && global.Object === Object && global;
-    var freeSelf = typeof self == "object" && self && self.Object === Object && self;
-    var root = freeGlobal || freeSelf || Function("return this")();
-    var freeExports = typeof exports2 == "object" && exports2 && !exports2.nodeType && exports2;
-    var freeModule = freeExports && typeof module2 == "object" && module2 && !module2.nodeType && module2;
-    var moduleExports = freeModule && freeModule.exports === freeExports;
-    function addMapEntry(map, pair) {
-      map.set(pair[0], pair[1]);
-      return map;
-    }
-    function addSetEntry(set, value) {
-      set.add(value);
-      return set;
-    }
-    function arrayEach(array2, iteratee) {
-      var index11 = -1, length = array2 ? array2.length : 0;
-      while (++index11 < length) {
-        if (iteratee(array2[index11], index11, array2) === false) {
-          break;
-        }
-      }
-      return array2;
-    }
-    function arrayPush(array2, values) {
-      var index11 = -1, length = values.length, offset = array2.length;
-      while (++index11 < length) {
-        array2[offset + index11] = values[index11];
-      }
-      return array2;
-    }
-    function arrayReduce(array2, iteratee, accumulator, initAccum) {
-      var index11 = -1, length = array2 ? array2.length : 0;
-      if (initAccum && length) {
-        accumulator = array2[++index11];
-      }
-      while (++index11 < length) {
-        accumulator = iteratee(accumulator, array2[index11], index11, array2);
-      }
-      return accumulator;
-    }
-    function baseTimes(n, iteratee) {
-      var index11 = -1, result = Array(n);
-      while (++index11 < n) {
-        result[index11] = iteratee(index11);
-      }
-      return result;
-    }
-    function getValue(object, key2) {
-      return object == null ? void 0 : object[key2];
-    }
-    function isHostObject(value) {
-      var result = false;
-      if (value != null && typeof value.toString != "function") {
-        try {
-          result = !!(value + "");
-        } catch (e2) {
-        }
-      }
-      return result;
-    }
-    function mapToArray(map) {
-      var index11 = -1, result = Array(map.size);
-      map.forEach(function(value, key2) {
-        result[++index11] = [key2, value];
-      });
-      return result;
-    }
-    function overArg(func, transform) {
-      return function(arg) {
-        return func(transform(arg));
-      };
-    }
-    function setToArray(set) {
-      var index11 = -1, result = Array(set.size);
-      set.forEach(function(value) {
-        result[++index11] = value;
-      });
-      return result;
-    }
-    var arrayProto = Array.prototype;
-    var funcProto = Function.prototype;
-    var objectProto = Object.prototype;
-    var coreJsData = root["__core-js_shared__"];
-    var maskSrcKey = function() {
-      var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || "");
-      return uid ? "Symbol(src)_1." + uid : "";
-    }();
-    var funcToString = funcProto.toString;
-    var hasOwnProperty = objectProto.hasOwnProperty;
-    var objectToString = objectProto.toString;
-    var reIsNative = RegExp(
-      "^" + funcToString.call(hasOwnProperty).replace(reRegExpChar, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$"
-    );
-    var Buffer2 = moduleExports ? root.Buffer : void 0;
-    var Symbol2 = root.Symbol;
-    var Uint8Array2 = root.Uint8Array;
-    var getPrototype = overArg(Object.getPrototypeOf, Object);
-    var objectCreate = Object.create;
-    var propertyIsEnumerable = objectProto.propertyIsEnumerable;
-    var splice = arrayProto.splice;
-    var nativeGetSymbols = Object.getOwnPropertySymbols;
-    var nativeIsBuffer = Buffer2 ? Buffer2.isBuffer : void 0;
-    var nativeKeys = overArg(Object.keys, Object);
-    var DataView2 = getNative(root, "DataView");
-    var Map2 = getNative(root, "Map");
-    var Promise2 = getNative(root, "Promise");
-    var Set2 = getNative(root, "Set");
-    var WeakMap2 = getNative(root, "WeakMap");
-    var nativeCreate = getNative(Object, "create");
-    var dataViewCtorString = toSource(DataView2);
-    var mapCtorString = toSource(Map2);
-    var promiseCtorString = toSource(Promise2);
-    var setCtorString = toSource(Set2);
-    var weakMapCtorString = toSource(WeakMap2);
-    var symbolProto = Symbol2 ? Symbol2.prototype : void 0;
-    var symbolValueOf = symbolProto ? symbolProto.valueOf : void 0;
-    function Hash(entries) {
-      var index11 = -1, length = entries ? entries.length : 0;
-      this.clear();
-      while (++index11 < length) {
-        var entry = entries[index11];
-        this.set(entry[0], entry[1]);
-      }
-    }
-    function hashClear() {
-      this.__data__ = nativeCreate ? nativeCreate(null) : {};
-    }
-    function hashDelete(key2) {
-      return this.has(key2) && delete this.__data__[key2];
-    }
-    function hashGet(key2) {
-      var data = this.__data__;
-      if (nativeCreate) {
-        var result = data[key2];
-        return result === HASH_UNDEFINED ? void 0 : result;
-      }
-      return hasOwnProperty.call(data, key2) ? data[key2] : void 0;
-    }
-    function hashHas(key2) {
-      var data = this.__data__;
-      return nativeCreate ? data[key2] !== void 0 : hasOwnProperty.call(data, key2);
-    }
-    function hashSet(key2, value) {
-      var data = this.__data__;
-      data[key2] = nativeCreate && value === void 0 ? HASH_UNDEFINED : value;
-      return this;
-    }
-    Hash.prototype.clear = hashClear;
-    Hash.prototype["delete"] = hashDelete;
-    Hash.prototype.get = hashGet;
-    Hash.prototype.has = hashHas;
-    Hash.prototype.set = hashSet;
-    function ListCache(entries) {
-      var index11 = -1, length = entries ? entries.length : 0;
-      this.clear();
-      while (++index11 < length) {
-        var entry = entries[index11];
-        this.set(entry[0], entry[1]);
-      }
-    }
-    function listCacheClear() {
-      this.__data__ = [];
-    }
-    function listCacheDelete(key2) {
-      var data = this.__data__, index11 = assocIndexOf(data, key2);
-      if (index11 < 0) {
-        return false;
-      }
-      var lastIndex = data.length - 1;
-      if (index11 == lastIndex) {
-        data.pop();
-      } else {
-        splice.call(data, index11, 1);
-      }
-      return true;
-    }
-    function listCacheGet(key2) {
-      var data = this.__data__, index11 = assocIndexOf(data, key2);
-      return index11 < 0 ? void 0 : data[index11][1];
-    }
-    function listCacheHas(key2) {
-      return assocIndexOf(this.__data__, key2) > -1;
-    }
-    function listCacheSet(key2, value) {
-      var data = this.__data__, index11 = assocIndexOf(data, key2);
-      if (index11 < 0) {
-        data.push([key2, value]);
-      } else {
-        data[index11][1] = value;
-      }
-      return this;
-    }
-    ListCache.prototype.clear = listCacheClear;
-    ListCache.prototype["delete"] = listCacheDelete;
-    ListCache.prototype.get = listCacheGet;
-    ListCache.prototype.has = listCacheHas;
-    ListCache.prototype.set = listCacheSet;
-    function MapCache(entries) {
-      var index11 = -1, length = entries ? entries.length : 0;
-      this.clear();
-      while (++index11 < length) {
-        var entry = entries[index11];
-        this.set(entry[0], entry[1]);
-      }
-    }
-    function mapCacheClear() {
-      this.__data__ = {
-        "hash": new Hash(),
-        "map": new (Map2 || ListCache)(),
-        "string": new Hash()
-      };
-    }
-    function mapCacheDelete(key2) {
-      return getMapData(this, key2)["delete"](key2);
-    }
-    function mapCacheGet(key2) {
-      return getMapData(this, key2).get(key2);
-    }
-    function mapCacheHas(key2) {
-      return getMapData(this, key2).has(key2);
-    }
-    function mapCacheSet(key2, value) {
-      getMapData(this, key2).set(key2, value);
-      return this;
-    }
-    MapCache.prototype.clear = mapCacheClear;
-    MapCache.prototype["delete"] = mapCacheDelete;
-    MapCache.prototype.get = mapCacheGet;
-    MapCache.prototype.has = mapCacheHas;
-    MapCache.prototype.set = mapCacheSet;
-    function Stack(entries) {
-      this.__data__ = new ListCache(entries);
-    }
-    function stackClear() {
-      this.__data__ = new ListCache();
-    }
-    function stackDelete(key2) {
-      return this.__data__["delete"](key2);
-    }
-    function stackGet(key2) {
-      return this.__data__.get(key2);
-    }
-    function stackHas(key2) {
-      return this.__data__.has(key2);
-    }
-    function stackSet(key2, value) {
-      var cache = this.__data__;
-      if (cache instanceof ListCache) {
-        var pairs = cache.__data__;
-        if (!Map2 || pairs.length < LARGE_ARRAY_SIZE - 1) {
-          pairs.push([key2, value]);
-          return this;
-        }
-        cache = this.__data__ = new MapCache(pairs);
-      }
-      cache.set(key2, value);
-      return this;
-    }
-    Stack.prototype.clear = stackClear;
-    Stack.prototype["delete"] = stackDelete;
-    Stack.prototype.get = stackGet;
-    Stack.prototype.has = stackHas;
-    Stack.prototype.set = stackSet;
-    function arrayLikeKeys(value, inherited) {
-      var result = isArray2(value) || isArguments(value) ? baseTimes(value.length, String) : [];
-      var length = result.length, skipIndexes = !!length;
-      for (var key2 in value) {
-        if ((inherited || hasOwnProperty.call(value, key2)) && !(skipIndexes && (key2 == "length" || isIndex(key2, length)))) {
-          result.push(key2);
-        }
-      }
-      return result;
-    }
-    function assignValue(object, key2, value) {
-      var objValue = object[key2];
-      if (!(hasOwnProperty.call(object, key2) && eq(objValue, value)) || value === void 0 && !(key2 in object)) {
-        object[key2] = value;
-      }
-    }
-    function assocIndexOf(array2, key2) {
-      var length = array2.length;
-      while (length--) {
-        if (eq(array2[length][0], key2)) {
-          return length;
-        }
-      }
-      return -1;
-    }
-    function baseAssign(object, source) {
-      return object && copyObject(source, keys(source), object);
-    }
-    function baseClone(value, isDeep, isFull, customizer, key2, object, stack) {
-      var result;
-      if (customizer) {
-        result = object ? customizer(value, key2, object, stack) : customizer(value);
-      }
-      if (result !== void 0) {
-        return result;
-      }
-      if (!isObject3(value)) {
-        return value;
-      }
-      var isArr = isArray2(value);
-      if (isArr) {
-        result = initCloneArray(value);
-        if (!isDeep) {
-          return copyArray(value, result);
-        }
-      } else {
-        var tag = getTag(value), isFunc = tag == funcTag || tag == genTag;
-        if (isBuffer2(value)) {
-          return cloneBuffer(value, isDeep);
-        }
-        if (tag == objectTag || tag == argsTag || isFunc && !object) {
-          if (isHostObject(value)) {
-            return object ? value : {};
-          }
-          result = initCloneObject(isFunc ? {} : value);
-          if (!isDeep) {
-            return copySymbols(value, baseAssign(result, value));
-          }
-        } else {
-          if (!cloneableTags[tag]) {
-            return object ? value : {};
-          }
-          result = initCloneByTag(value, tag, baseClone, isDeep);
-        }
-      }
-      stack || (stack = new Stack());
-      var stacked = stack.get(value);
-      if (stacked) {
-        return stacked;
-      }
-      stack.set(value, result);
-      if (!isArr) {
-        var props = isFull ? getAllKeys(value) : keys(value);
-      }
-      arrayEach(props || value, function(subValue, key3) {
-        if (props) {
-          key3 = subValue;
-          subValue = value[key3];
-        }
-        assignValue(result, key3, baseClone(subValue, isDeep, isFull, customizer, key3, value, stack));
-      });
-      return result;
-    }
-    function baseCreate(proto) {
-      return isObject3(proto) ? objectCreate(proto) : {};
-    }
-    function baseGetAllKeys(object, keysFunc, symbolsFunc) {
-      var result = keysFunc(object);
-      return isArray2(object) ? result : arrayPush(result, symbolsFunc(object));
-    }
-    function baseGetTag(value) {
-      return objectToString.call(value);
-    }
-    function baseIsNative(value) {
-      if (!isObject3(value) || isMasked(value)) {
-        return false;
-      }
-      var pattern = isFunction(value) || isHostObject(value) ? reIsNative : reIsHostCtor;
-      return pattern.test(toSource(value));
-    }
-    function baseKeys(object) {
-      if (!isPrototype(object)) {
-        return nativeKeys(object);
-      }
-      var result = [];
-      for (var key2 in Object(object)) {
-        if (hasOwnProperty.call(object, key2) && key2 != "constructor") {
-          result.push(key2);
-        }
-      }
-      return result;
-    }
-    function cloneBuffer(buffer, isDeep) {
-      if (isDeep) {
-        return buffer.slice();
-      }
-      var result = new buffer.constructor(buffer.length);
-      buffer.copy(result);
-      return result;
-    }
-    function cloneArrayBuffer(arrayBuffer) {
-      var result = new arrayBuffer.constructor(arrayBuffer.byteLength);
-      new Uint8Array2(result).set(new Uint8Array2(arrayBuffer));
-      return result;
-    }
-    function cloneDataView(dataView, isDeep) {
-      var buffer = isDeep ? cloneArrayBuffer(dataView.buffer) : dataView.buffer;
-      return new dataView.constructor(buffer, dataView.byteOffset, dataView.byteLength);
-    }
-    function cloneMap(map, isDeep, cloneFunc) {
-      var array2 = isDeep ? cloneFunc(mapToArray(map), true) : mapToArray(map);
-      return arrayReduce(array2, addMapEntry, new map.constructor());
-    }
-    function cloneRegExp(regexp) {
-      var result = new regexp.constructor(regexp.source, reFlags.exec(regexp));
-      result.lastIndex = regexp.lastIndex;
-      return result;
-    }
-    function cloneSet(set, isDeep, cloneFunc) {
-      var array2 = isDeep ? cloneFunc(setToArray(set), true) : setToArray(set);
-      return arrayReduce(array2, addSetEntry, new set.constructor());
-    }
-    function cloneSymbol(symbol) {
-      return symbolValueOf ? Object(symbolValueOf.call(symbol)) : {};
-    }
-    function cloneTypedArray(typedArray, isDeep) {
-      var buffer = isDeep ? cloneArrayBuffer(typedArray.buffer) : typedArray.buffer;
-      return new typedArray.constructor(buffer, typedArray.byteOffset, typedArray.length);
-    }
-    function copyArray(source, array2) {
-      var index11 = -1, length = source.length;
-      array2 || (array2 = Array(length));
-      while (++index11 < length) {
-        array2[index11] = source[index11];
-      }
-      return array2;
-    }
-    function copyObject(source, props, object, customizer) {
-      object || (object = {});
-      var index11 = -1, length = props.length;
-      while (++index11 < length) {
-        var key2 = props[index11];
-        var newValue = customizer ? customizer(object[key2], source[key2], key2, object, source) : void 0;
-        assignValue(object, key2, newValue === void 0 ? source[key2] : newValue);
-      }
-      return object;
-    }
-    function copySymbols(source, object) {
-      return copyObject(source, getSymbols(source), object);
-    }
-    function getAllKeys(object) {
-      return baseGetAllKeys(object, keys, getSymbols);
-    }
-    function getMapData(map, key2) {
-      var data = map.__data__;
-      return isKeyable(key2) ? data[typeof key2 == "string" ? "string" : "hash"] : data.map;
-    }
-    function getNative(object, key2) {
-      var value = getValue(object, key2);
-      return baseIsNative(value) ? value : void 0;
-    }
-    var getSymbols = nativeGetSymbols ? overArg(nativeGetSymbols, Object) : stubArray;
-    var getTag = baseGetTag;
-    if (DataView2 && getTag(new DataView2(new ArrayBuffer(1))) != dataViewTag || Map2 && getTag(new Map2()) != mapTag || Promise2 && getTag(Promise2.resolve()) != promiseTag || Set2 && getTag(new Set2()) != setTag || WeakMap2 && getTag(new WeakMap2()) != weakMapTag) {
-      getTag = function(value) {
-        var result = objectToString.call(value), Ctor = result == objectTag ? value.constructor : void 0, ctorString = Ctor ? toSource(Ctor) : void 0;
-        if (ctorString) {
-          switch (ctorString) {
-            case dataViewCtorString:
-              return dataViewTag;
-            case mapCtorString:
-              return mapTag;
-            case promiseCtorString:
-              return promiseTag;
-            case setCtorString:
-              return setTag;
-            case weakMapCtorString:
-              return weakMapTag;
-          }
-        }
-        return result;
-      };
-    }
-    function initCloneArray(array2) {
-      var length = array2.length, result = array2.constructor(length);
-      if (length && typeof array2[0] == "string" && hasOwnProperty.call(array2, "index")) {
-        result.index = array2.index;
-        result.input = array2.input;
-      }
-      return result;
-    }
-    function initCloneObject(object) {
-      return typeof object.constructor == "function" && !isPrototype(object) ? baseCreate(getPrototype(object)) : {};
-    }
-    function initCloneByTag(object, tag, cloneFunc, isDeep) {
-      var Ctor = object.constructor;
-      switch (tag) {
-        case arrayBufferTag:
-          return cloneArrayBuffer(object);
-        case boolTag:
-        case dateTag:
-          return new Ctor(+object);
-        case dataViewTag:
-          return cloneDataView(object, isDeep);
-        case float32Tag:
-        case float64Tag:
-        case int8Tag:
-        case int16Tag:
-        case int32Tag:
-        case uint8Tag:
-        case uint8ClampedTag:
-        case uint16Tag:
-        case uint32Tag:
-          return cloneTypedArray(object, isDeep);
-        case mapTag:
-          return cloneMap(object, isDeep, cloneFunc);
-        case numberTag:
-        case stringTag:
-          return new Ctor(object);
-        case regexpTag:
-          return cloneRegExp(object);
-        case setTag:
-          return cloneSet(object, isDeep, cloneFunc);
-        case symbolTag:
-          return cloneSymbol(object);
-      }
-    }
-    function isIndex(value, length) {
-      length = length == null ? MAX_SAFE_INTEGER : length;
-      return !!length && (typeof value == "number" || reIsUint.test(value)) && (value > -1 && value % 1 == 0 && value < length);
-    }
-    function isKeyable(value) {
-      var type = typeof value;
-      return type == "string" || type == "number" || type == "symbol" || type == "boolean" ? value !== "__proto__" : value === null;
-    }
-    function isMasked(func) {
-      return !!maskSrcKey && maskSrcKey in func;
-    }
-    function isPrototype(value) {
-      var Ctor = value && value.constructor, proto = typeof Ctor == "function" && Ctor.prototype || objectProto;
-      return value === proto;
-    }
-    function toSource(func) {
-      if (func != null) {
-        try {
-          return funcToString.call(func);
-        } catch (e2) {
-        }
-        try {
-          return func + "";
-        } catch (e2) {
-        }
-      }
-      return "";
-    }
-    function cloneDeep(value) {
-      return baseClone(value, true, true);
-    }
-    function eq(value, other) {
-      return value === other || value !== value && other !== other;
-    }
-    function isArguments(value) {
-      return isArrayLikeObject(value) && hasOwnProperty.call(value, "callee") && (!propertyIsEnumerable.call(value, "callee") || objectToString.call(value) == argsTag);
-    }
-    var isArray2 = Array.isArray;
-    function isArrayLike(value) {
-      return value != null && isLength(value.length) && !isFunction(value);
-    }
-    function isArrayLikeObject(value) {
-      return isObjectLike(value) && isArrayLike(value);
-    }
-    var isBuffer2 = nativeIsBuffer || stubFalse;
-    function isFunction(value) {
-      var tag = isObject3(value) ? objectToString.call(value) : "";
-      return tag == funcTag || tag == genTag;
-    }
-    function isLength(value) {
-      return typeof value == "number" && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
-    }
-    function isObject3(value) {
-      var type = typeof value;
-      return !!value && (type == "object" || type == "function");
-    }
-    function isObjectLike(value) {
-      return !!value && typeof value == "object";
-    }
-    function keys(object) {
-      return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
-    }
-    function stubArray() {
-      return [];
-    }
-    function stubFalse() {
-      return false;
-    }
-    module2.exports = cloneDeep;
-  }
-});
-
-// node_modules/string-left-right/dist/string-left-right.esm.js
-function D2({ str: n, idx: e2 = 0, stopAtNewlines: l = false, stopAtRawNbsp: u2 = false }) {
-  if (typeof n != "string" || !n.length || ((!e2 || typeof e2 != "number") && (e2 = 0), !n[e2 + 1]))
-    return null;
-  if (n[e2 + 1] && (n[e2 + 1].trim() || l && `
-\r`.includes(n[e2 + 1]) || u2 && n[e2 + 1] === c2))
-    return e2 + 1;
-  if (n[e2 + 2] && (n[e2 + 2].trim() || l && `
-\r`.includes(n[e2 + 2]) || u2 && n[e2 + 2] === c2))
-    return e2 + 2;
-  for (let t2 = e2 + 1, m3 = n.length; t2 < m3; t2++)
-    if (n[t2].trim() || l && `
-\r`.includes(n[t2]) || u2 && n[t2] === c2)
-      return t2;
-  return null;
-}
-function E(n, e2 = 0) {
-  return D2({ str: n, idx: e2, stopAtNewlines: false, stopAtRawNbsp: false });
-}
-var import_lodash, import_lodash2, c2;
-var init_string_left_right_esm = __esm({
-  "node_modules/string-left-right/dist/string-left-right.esm.js"() {
-    init_shims();
-    import_lodash = __toESM(require_lodash2(), 1);
-    import_lodash2 = __toESM(require_lodash5(), 1);
-    c2 = "\xA0";
-  }
-});
-
-// node_modules/string-strip-html/dist/string-strip-html.esm.js
-function K(t2) {
-  return /[-_A-Za-z0-9]/.test(t2);
-}
-function M(t2, c3) {
-  if (!t2)
-    return [];
-  if (Array.isArray(t2))
-    return t2.filter((D3) => typeof D3 == "string" && D3.trim());
-  if (typeof t2 == "string")
-    return t2.trim() ? [t2] : [];
-  throw new TypeError(`string-strip-html/stripHtml(): [THROW_ID_03] ${c3} must be array containing zero or more strings or something falsey. Currently it's equal to: ${t2}, that a type of ${typeof t2}.`);
-}
-function ae(t2, c3, D3, b4) {
-  for (let d3 = c3, p2 = t2.length; d3 < p2; d3++) {
-    if (t2.startsWith(D3, d3))
-      return true;
-    if (t2.startsWith(b4, d3))
-      return false;
-  }
-  return false;
-}
-function _(t2, c3, D3) {
-  return !t2 || !t2.quotes || !ae(c3, D3 + 1, t2.quotes.value, ">");
-}
-function ge(t2, c3) {
-  var _a, _b, _c, _d;
-  let D3 = Date.now(), b4 = [], d3 = [], p2 = [], m3 = [], n = {};
-  function ne() {
-    n = { attributes: [] };
-  }
-  ne();
-  let V = null, w2 = null, a = {}, h3 = { tagName: "", hrefValue: "", openingTagEnds: void 0 }, E2 = "", B = false, C = null, I = true;
-  function te(e2) {
-    return e2 != null;
-  }
-  function le(e2) {
-    return typeof e2 == "string";
-  }
-  function H(e2, o, l) {
-    if (Array.isArray(o.stripTogetherWithTheirContents) && (o.stripTogetherWithTheirContents.includes(n.name) || o.stripTogetherWithTheirContents.includes("*")))
-      if (n.slashPresent && Array.isArray(b4) && b4.some((i2) => i2.name === n.name)) {
-        for (let i2 = b4.length; i2--; )
-          if (b4[i2].name === n.name) {
-            m3 = m3.filter(([$2, g2]) => ($2 < b4[i2].lastOpeningBracketAt || $2 >= e2 + 1) && (g2 <= b4[i2].lastOpeningBracketAt || g2 > e2 + 1));
-            let r2 = e2 + 1;
-            n.lastClosingBracketAt && (r2 = n.lastClosingBracketAt + 1), m3.push([b4[i2].lastOpeningBracketAt, r2]), G.has(t2[e2]) && o.cb ? o.cb({ tag: n, deleteFrom: b4[i2].lastOpeningBracketAt, deleteTo: e2 + 1, insert: null, rangesArr: l, proposedReturn: [b4[i2].lastOpeningBracketAt, e2, null] }) : o.cb && o.cb({ tag: n, deleteFrom: b4[i2].lastOpeningBracketAt, deleteTo: e2, insert: "", rangesArr: l, proposedReturn: [b4[i2].lastOpeningBracketAt, e2, ""] }), b4.splice(i2, 1);
-            break;
-          }
-      } else
-        n.slashPresent || b4.push(n);
-    else
-      Array.isArray(o.ignoreTagsWithTheirContents) && x2(e2, o, n) && (I = false);
-  }
-  function R(e2, o, l, i2, r2, $2) {
-    if (Array.isArray(u2.current()) && typeof l == "number" && u2.current()[0][0] === 0 && u2.current()[0][1] >= l)
-      return "";
-    if (t2.length === i2 && $2 && (!s3.dumpLinkHrefsNearby || !s3.dumpLinkHrefsNearby.enabled))
-      return null;
-    let g2 = "";
-    if (Number.isInteger(l) && l < r2 && (g2 += e2.slice(l, r2)), Number.isInteger(i2) && i2 > $2 + 1) {
-      let S2 = e2.slice($2 + 1, i2);
-      i2 && !E(t2, i2 - 1) && (S2 = S2.trimEnd()), S2.includes(`
-`) && T2(i2, e2) ? g2 += " " : g2 += S2;
-    }
-    let f5 = !G.has(e2[o]), N = e2[i2 - 1] !== ">" || !e2[l].trim(), z = !['"', "("].includes(e2[r2 - 1]), se = ![";", ".", ":", "!"].includes(e2[o]);
-    if ((f5 || N && z && se) && (N || z) && e2[o] !== "!" && (!Q.has(n.name) || typeof l == "number" && l < r2 || typeof i2 == "number" && i2 > $2 + 1)) {
-      let S2 = g2.match(/\n/g);
-      return Array.isArray(S2) && S2.length ? S2.length === 1 ? `
-` : S2.length === 2 ? `
-
-` : `
-
-
-` : " ";
-    }
-    return "";
-  }
-  function q(e2, o) {
-    if (e2.dumpLinkHrefsNearby.enabled && h3.tagName && h3.tagName === n.name && n.lastOpeningBracketAt && (h3.openingTagEnds && n.lastOpeningBracketAt > h3.openingTagEnds || !h3.openingTagEnds) && (B = true), B) {
-      let l = e2.dumpLinkHrefsNearby.putOnNewLine ? `
-
-` : "";
-      E2 = `${l}${h3.hrefValue}`, (typeof o != "number" || E(t2, o - 1)) && (E2 += l);
-    }
-  }
-  function T2(e2, o) {
-    return o ? o[e2] === "<" && o[e2 + 1] !== "%" : t2[e2] === "<" && t2[e2 + 1] !== "%";
-  }
-  function k(e2) {
-    return t2[e2] === ">" && t2[e2 - 1] !== "%";
-  }
-  function x2(e2, o, l) {
-    if (o.ignoreTagsWithTheirContents.includes("*"))
-      return true;
-    let i2 = t2.indexOf(`<${l.name}`, e2), r2 = t2.indexOf(`</${l.name}`, e2);
-    return !l.slashPresent && r2 === -1 || l.slashPresent && !d3.some(($2) => $2.name === l.name) || r2 > -1 && i2 > -1 && i2 < r2 ? false : o.ignoreTagsWithTheirContents.includes(l.name);
-  }
-  if (typeof t2 != "string")
-    throw new TypeError(`string-strip-html/stripHtml(): [THROW_ID_01] Input must be string! Currently it's: ${(typeof t2).toLowerCase()}, equal to:
-${JSON.stringify(t2, null, 4)}`);
-  if (c3 && !(0, import_lodash3.default)(c3))
-    throw new TypeError(`string-strip-html/stripHtml(): [THROW_ID_02] Optional Options Object must be a plain object! Currently it's: ${(typeof c3).toLowerCase()}, equal to:
-${JSON.stringify(c3, null, 4)}`);
-  function U() {
-    B && (h3 = { tagName: "", hrefValue: "", openingTagEnds: void 0 }, B = false);
-  }
-  let s3 = { ...F2, ...c3 };
-  if (Object.prototype.hasOwnProperty.call(s3, "returnRangesOnly"))
-    throw new TypeError("string-strip-html/stripHtml(): [THROW_ID_03] resolvedOpts.returnRangesOnly has been removed from the API since v.5 release.");
-  s3.ignoreTags = M(s3.ignoreTags, "resolvedOpts.ignoreTags"), s3.onlyStripTags = M(s3.onlyStripTags, "resolvedOpts.onlyStripTags");
-  let Y = !!s3.onlyStripTags.length;
-  if (s3.onlyStripTags.length && s3.ignoreTags.length && (s3.onlyStripTags = (0, import_lodash5.default)(s3.onlyStripTags, ...s3.ignoreTags)), (0, import_lodash3.default)(s3.dumpLinkHrefsNearby) || (s3.dumpLinkHrefsNearby = { ...F2.dumpLinkHrefsNearby }), s3.dumpLinkHrefsNearby = F2.dumpLinkHrefsNearby, c3 && Object.prototype.hasOwnProperty.call(c3, "dumpLinkHrefsNearby") && te(c3.dumpLinkHrefsNearby)) {
-    if ((0, import_lodash3.default)(c3.dumpLinkHrefsNearby))
-      s3.dumpLinkHrefsNearby = { ...F2.dumpLinkHrefsNearby, ...c3.dumpLinkHrefsNearby };
-    else if (c3.dumpLinkHrefsNearby)
-      throw new TypeError(`string-strip-html/stripHtml(): [THROW_ID_04] Optional Options Object's key dumpLinkHrefsNearby was set to ${typeof c3.dumpLinkHrefsNearby}, equal to ${JSON.stringify(c3.dumpLinkHrefsNearby, null, 4)}. The only allowed value is a plain object. See the API reference.`);
-  }
-  s3.stripTogetherWithTheirContents ? typeof s3.stripTogetherWithTheirContents == "string" && s3.stripTogetherWithTheirContents.length && (s3.stripTogetherWithTheirContents = [s3.stripTogetherWithTheirContents]) : s3.stripTogetherWithTheirContents = [];
-  let J = {};
-  if (s3.stripTogetherWithTheirContents && Array.isArray(s3.stripTogetherWithTheirContents) && s3.stripTogetherWithTheirContents.length && !s3.stripTogetherWithTheirContents.every((e2, o) => typeof e2 != "string" ? (J.el = e2, J.i = o, false) : true))
-    throw new TypeError(`string-strip-html/stripHtml(): [THROW_ID_05] Optional Options Object's key stripTogetherWithTheirContents was set to contain not just string elements! For example, element at index ${J.i} has a value ${J.el} which is not string but ${(typeof J.el).toLowerCase()}.`);
-  s3.cb || (s3.cb = ({ rangesArr: e2, proposedReturn: o }) => {
-    o && e2.push(...o);
-  });
-  let u2 = new $({ limitToBeAddedWhitespace: true, limitLinebreaksCount: 2 });
-  if (!s3.skipHtmlDecoding)
-    for (; t2 !== (0, import_html_entities.decode)(t2, { scope: "strict" }); )
-      t2 = (0, import_html_entities.decode)(t2, { scope: "strict" });
-  let L = false, A2 = false;
-  for (let e2 = 0, o = t2.length; e2 < o; e2++) {
-    if (Object.keys(n).length > 1 && n.lastClosingBracketAt && n.lastClosingBracketAt < e2 && t2[e2] !== " " && C === null && (C = e2), !L && t2[e2] === "%" && t2[e2 - 1] === "{" && t2.includes("%}", e2 + 1)) {
-      let l = t2.indexOf("%}", e2) - 1;
-      if (l > e2) {
-        e2 = l;
-        continue;
-      }
-    }
-    if (!L && k(e2) && (!n || Object.keys(n).length < 2) && e2 > 1) {
-      for (let l = e2; l--; )
-        if (t2[l - 1] === void 0 || k(l)) {
-          let i2 = t2[l - 1] === void 0 ? l : l + 1, r2 = t2.slice(i2, e2 + 1);
-          if (t2 !== `<${(0, import_lodash4.default)(r2.trim(), "/>")}>` && [...W].some(($2) => (0, import_lodash4.default)(r2.trim().split(/\s+/).filter((g2) => g2.trim()).filter((g2, f5) => f5 === 0), "/>").toLowerCase() === $2) && ge(`<${r2.trim()}>`, s3).result === "") {
-            (!p2.length || p2[p2.length - 1][0] !== n.lastOpeningBracketAt) && p2.push([i2, e2 + 1]), (!m3.length || m3[m3.length - 1][0] !== n.lastOpeningBracketAt) && m3.push([i2, e2 + 1]);
-            let $2 = R(t2, e2, i2, e2 + 1, i2, e2 + 1), g2 = e2 + 1;
-            if (t2[g2] && !t2[g2].trim()) {
-              for (let f5 = g2; f5 < o; f5++)
-                if (t2[f5].trim()) {
-                  g2 = f5;
-                  break;
-                }
-            }
-            s3.cb({ tag: n, deleteFrom: i2, deleteTo: g2, insert: $2, rangesArr: u2, proposedReturn: [i2, g2, $2] });
-          }
-          break;
-        }
-    }
-    if (!A2 && t2[e2] === "/" && !((_a = n.quotes) == null ? void 0 : _a.value) && Number.isInteger(n.lastOpeningBracketAt) && !Number.isInteger(n.lastClosingBracketAt) && (n.slashPresent = e2), t2[e2] === '"' || t2[e2] === "'")
-      if (!A2 && n.nameStarts && n.quotes && n.quotes.value && n.quotes.value === t2[e2]) {
-        a.valueEnds = e2, a.value = t2.slice(a.valueStarts, e2), n.attributes.push(a), a = {}, delete n.quotes;
-        let l;
-        s3.dumpLinkHrefsNearby.enabled && n.attributes.some((i2) => {
-          if (typeof i2.name == "string" && i2.name.toLowerCase() === "href")
-            return l = `${s3.dumpLinkHrefsNearby.wrapHeads || ""}${i2.value}${s3.dumpLinkHrefsNearby.wrapTails || ""}`, true;
-        }) && (h3 = { tagName: n.name, hrefValue: l, openingTagEnds: void 0 });
-      } else
-        !A2 && !n.quotes && n.nameStarts && (n.quotes = {}, n.quotes.value = t2[e2], n.quotes.start = e2, a.nameStarts && a.nameEnds && a.nameEnds < e2 && a.nameStarts < e2 && !a.valueStarts && (a.name = t2.slice(a.nameStarts, a.nameEnds)));
-    if (n.nameStarts !== void 0 && n.nameEnds === void 0 && (!t2[e2].trim() || !K(t2[e2]))) {
-      if (n.nameEnds = e2, n.name = t2.slice(n.nameStarts, n.nameEnds + (!k(e2) && t2[e2] !== "/" && t2[e2 + 1] === void 0 ? 1 : 0)), t2[n.nameStarts - 1] !== "!" && !n.name.replace(/-/g, "").length || /^\d+$/.test(n.name[0])) {
-        n = {};
-        continue;
-      }
-      if (typeof n.name == "string" && n.name.toLowerCase() === "doctype" && (A2 = true), T2(e2)) {
-        q(s3);
-        let l = R(t2, e2, n.leftOuterWhitespace, e2, n.lastOpeningBracketAt, e2);
-        (s3.stripTogetherWithTheirContents.includes(n.name) || s3.stripTogetherWithTheirContents.includes("*")) && (m3 = m3.filter(([i2, r2]) => !(i2 === n.leftOuterWhitespace && r2 === e2))), s3.cb({ tag: n, deleteFrom: n.leftOuterWhitespace, deleteTo: e2, insert: `${l}${E2}${l}`, rangesArr: u2, proposedReturn: [n.leftOuterWhitespace, e2, `${l}${E2}${l}`] }), U(), H(e2, s3, u2);
-      }
-    }
-    if (((_b = n.quotes) == null ? void 0 : _b.start) && n.quotes.start < e2 && !n.quotes.end && a.nameEnds && a.equalsAt && !a.valueStarts && (a.valueStarts = e2), !n.quotes && a.nameEnds && t2[e2] === "=" && !a.valueStarts && !a.equalsAt && (a.equalsAt = e2), !n.quotes && a.nameStarts && a.nameEnds && !a.valueStarts && t2[e2].trim() && t2[e2] !== "=" && (n.attributes.push(a), a = {}), !n.quotes && a.nameStarts && !a.nameEnds && (A2 && `'"`.includes(t2[a.nameStarts]) ? a.nameStarts < e2 && t2[e2] === t2[a.nameStarts] && (a.nameEnds = e2 + 1, a.name = t2.slice(a.nameStarts, a.nameEnds)) : t2[e2].trim() ? t2[e2] === "=" ? a.equalsAt || (a.nameEnds = e2, a.equalsAt = e2, a.name = t2.slice(a.nameStarts, a.nameEnds)) : t2[e2] === "/" || k(e2) ? (a.nameEnds = e2, a.name = t2.slice(a.nameStarts, a.nameEnds), n.attributes.push(a), a = {}) : T2(e2) && (a.nameEnds = e2, a.name = t2.slice(a.nameStarts, a.nameEnds), n.attributes.push(a), a = {}) : (a.nameEnds = e2, a.name = t2.slice(a.nameStarts, a.nameEnds))), !n.quotes && n.nameEnds < e2 && !t2[e2 - 1].trim() && t2[e2].trim() && !"<>/!".includes(t2[e2]) && !a.nameStarts && !n.lastClosingBracketAt && (a.nameStarts = e2), n.lastOpeningBracketAt !== null && n.lastOpeningBracketAt < e2 && t2[e2] === "/" && n.onlyPlausible && (n.onlyPlausible = false), n.lastOpeningBracketAt !== null && n.lastOpeningBracketAt < e2 && t2[e2] !== "/" && (n.onlyPlausible === void 0 && ((!t2[e2].trim() || T2(e2)) && !n.slashPresent ? n.onlyPlausible = true : n.onlyPlausible = false), t2[e2].trim() && n.nameStarts === void 0 && !T2(e2) && t2[e2] !== "/" && !k(e2) && t2[e2] !== "!" && (n.nameStarts = e2, n.nameContainsLetters = false)), n.nameStarts && !n.quotes && typeof t2[e2] == "string" && t2[e2].toLowerCase() !== t2[e2].toUpperCase() && (n.nameContainsLetters = true), k(e2) && _(n, t2, e2) && true && n.lastOpeningBracketAt !== void 0 && (n.lastClosingBracketAt = e2, C = null, Object.keys(a).length && (n.attributes.push(a), a = {}), s3.dumpLinkHrefsNearby.enabled && h3.tagName && !h3.openingTagEnds && (h3.openingTagEnds = e2)), (!A2 || t2[e2] === ">") && n.lastOpeningBracketAt !== void 0) {
-      if (n.lastClosingBracketAt === void 0) {
-        if (n.lastOpeningBracketAt < e2 && !T2(e2) && (t2[e2 + 1] === void 0 || T2(e2 + 1)) && n.nameContainsLetters && typeof n.nameStarts == "number") {
-          if (n.name = t2.slice(n.nameStarts, n.nameEnds || e2 + 1).toLowerCase(), (!p2.length || p2[p2.length - 1][0] !== n.lastOpeningBracketAt) && p2.push([n.lastOpeningBracketAt, e2 + 1]), s3.ignoreTags.includes(n.name) || x2(e2, s3, n) || !W.has(n.name) && (n.onlyPlausible || s3.stripRecognisedHTMLOnly)) {
-            n = {}, a = {};
-            continue;
-          }
-          if ((W.has(n.name) || P.has(n.name)) && (n.onlyPlausible === false || n.onlyPlausible === true && n.attributes.length) || t2[e2 + 1] === void 0) {
-            q(s3);
-            let l = R(t2, e2, n.leftOuterWhitespace, e2 + 1, n.lastOpeningBracketAt, n.lastClosingBracketAt);
-            L && n.name === "script" && n.slashPresent && (L = false);
-            let i2;
-            l === null || E2 === null ? i2 = null : i2 = `${l}${E2}${l}`, s3.cb({ tag: n, deleteFrom: n.leftOuterWhitespace, deleteTo: e2 + 1, insert: i2, rangesArr: u2, proposedReturn: [n.leftOuterWhitespace, e2 + 1, i2] }), U(), H(e2, s3, u2);
-          }
-          if (!m3.length || m3[m3.length - 1][0] !== n.lastOpeningBracketAt && m3[m3.length - 1][1] !== e2 + 1)
-            if (s3.stripTogetherWithTheirContents.includes(n.name) || s3.stripTogetherWithTheirContents.includes("*")) {
-              let l;
-              for (let i2 = b4.length; i2--; )
-                b4[i2].name === n.name && (l = b4[i2]);
-              l ? (m3 = m3.filter(([i2]) => i2 !== l.lastOpeningBracketAt), m3.push([l.lastOpeningBracketAt, e2 + 1])) : m3.push([n.lastOpeningBracketAt, e2 + 1]);
-            } else
-              m3.push([n.lastOpeningBracketAt, e2 + 1]);
-        }
-      } else if (e2 > n.lastClosingBracketAt && t2[e2].trim() || t2[e2 + 1] === void 0) {
-        let l = n.lastClosingBracketAt === e2 ? e2 + 1 : e2;
-        s3.trimOnlySpaces && l === o - 1 && C !== null && C < e2 && (l = C), (!p2.length || p2[p2.length - 1][0] !== n.lastOpeningBracketAt) && p2.push([n.lastOpeningBracketAt, n.lastClosingBracketAt + 1]);
-        let i2 = s3.ignoreTags.includes(n.name), r2 = x2(e2, s3, n);
-        if (!I || s3.stripRecognisedHTMLOnly && typeof n.name == "string" && !W.has(n.name.toLowerCase()) && !P.has(n.name.toLowerCase()) || !Y && (i2 || r2) || Y && !s3.onlyStripTags.includes(n.name)) {
-          if (r2)
-            if (n.slashPresent) {
-              for (let $2 = d3.length; $2--; )
-                if (d3[$2].name === n.name) {
-                  d3.splice($2, 1);
-                  break;
-                }
-              d3.length || (I = true);
-            } else
-              I && (I = false), d3.push(n);
-          s3.cb({ tag: n, deleteFrom: null, deleteTo: null, insert: null, rangesArr: u2, proposedReturn: null }), n = {}, a = {};
-        } else if (!n.onlyPlausible || n.attributes.length === 0 && n.name && (W.has(n.name.toLowerCase()) || P.has(n.name.toLowerCase())) || ((_c = n.attributes) == null ? void 0 : _c.some(($2) => $2.equalsAt))) {
-          (!m3.length || m3[m3.length - 1][0] !== n.lastOpeningBracketAt) && m3.push([n.lastOpeningBracketAt, n.lastClosingBracketAt + 1]);
-          let $2 = R(t2, e2, n.leftOuterWhitespace, l, n.lastOpeningBracketAt, n.lastClosingBracketAt);
-          E2 = "", B = false, q(s3, l);
-          let g2;
-          le(E2) && E2.length ? (g2 = `${$2}${E2}${$2 === `
-
-` ? `
-` : $2}`, l === n.lastClosingBracketAt + 1 && (!t2[l] || !v2.has(t2[l])) && (g2 += " "), n.leftOuterWhitespace === n.lastOpeningBracketAt && u2.last() && u2.last()[1] < n.lastOpeningBracketAt && (!s3.dumpLinkHrefsNearby || !s3.dumpLinkHrefsNearby.putOnNewLine || !v2.has(t2[l])) && (g2 = " " + g2)) : g2 = $2, g2 !== null && (n.leftOuterWhitespace === 0 || !E(t2, l - 1)) && !((_d = s3.dumpLinkHrefsNearby) == null ? void 0 : _d.enabled) && (g2 = void 0);
-          let f5 = 0;
-          if (B && v2.has(t2[l])) {
-            console.log("2345"), s3.dumpLinkHrefsNearby.putOnNewLine && (console.log(`2348 bring ${t2[l]} forward from index ${l} to ${n.leftOuterWhitespace}`), g2 = `${t2[l]}${g2}`);
-            let N = E(t2, l);
-            N && (g2 == null ? void 0 : g2.endsWith(`
-`)) ? f5 += N - e2 : (!N || N > e2) && f5++;
-          }
-          s3.cb({ tag: n, deleteFrom: n.leftOuterWhitespace, deleteTo: l + f5, insert: g2, rangesArr: u2, proposedReturn: [n.leftOuterWhitespace, l + f5, g2] }), U(), H(e2, s3, u2);
-        } else
-          n = {};
-        k(e2) || (n = {});
-      }
-      A2 && (A2 = false);
-    }
-    if ((!L || t2[e2] === "<" && E(t2, E(t2, e2)) && t2[E(t2, e2)] === "/" && t2.startsWith("script", E(t2, E(t2, e2)))) && T2(e2) && !T2(e2 - 1) && !`'"`.includes(t2[e2 + 1]) && (!`'"`.includes(t2[e2 + 2]) || /\w/.test(t2[e2 + 1])) && !(t2[e2 + 1] === "c" && t2[e2 + 2] === ":") && !(t2[e2 + 1] === "f" && t2[e2 + 2] === "m" && t2[e2 + 3] === "t" && t2[e2 + 4] === ":") && !(t2[e2 + 1] === "s" && t2[e2 + 2] === "q" && t2[e2 + 3] === "l" && t2[e2 + 4] === ":") && !(t2[e2 + 1] === "x" && t2[e2 + 2] === ":") && !(t2[e2 + 1] === "f" && t2[e2 + 2] === "n" && t2[e2 + 3] === ":") && _(n, t2, e2)) {
-      if (k(E(t2, e2)))
-        continue;
-      if (n.nameEnds && n.nameEnds < e2 && !n.lastClosingBracketAt && (n.onlyPlausible === true && n.attributes && n.attributes.length || n.onlyPlausible === false)) {
-        let l = R(t2, e2, n.leftOuterWhitespace, e2, n.lastOpeningBracketAt, e2);
-        s3.cb({ tag: n, deleteFrom: n.leftOuterWhitespace, deleteTo: e2, insert: l, rangesArr: u2, proposedReturn: [n.leftOuterWhitespace, e2, l] }), H(e2, s3, u2), n = {}, a = {};
-      }
-      if (n.lastOpeningBracketAt !== void 0 && n.onlyPlausible && n.name && !n.quotes && (n.lastOpeningBracketAt = void 0, n.name = void 0, n.onlyPlausible = false), (n.lastOpeningBracketAt === void 0 || !n.onlyPlausible) && !n.quotes && (n.lastOpeningBracketAt = e2, n.slashPresent = false, n.attributes = [], V === null ? n.leftOuterWhitespace = e2 : s3.trimOnlySpaces && V === 0 ? n.leftOuterWhitespace = w2 || e2 : n.leftOuterWhitespace = V, `${t2[e2 + 1]}${t2[e2 + 2]}${t2[e2 + 3]}` == "!--" || `${t2[e2 + 1]}${t2[e2 + 2]}${t2[e2 + 3]}${t2[e2 + 4]}${t2[e2 + 5]}${t2[e2 + 6]}${t2[e2 + 7]}${t2[e2 + 8]}` == "![CDATA[")) {
-        let l = true;
-        t2[e2 + 2] === "-" && (l = false);
-        let i2;
-        for (let r2 = e2; r2 < o; r2++)
-          if ((!i2 && l && `${t2[r2 - 2]}${t2[r2 - 1]}${t2[r2]}` == "]]>" || !l && `${t2[r2 - 2]}${t2[r2 - 1]}${t2[r2]}` == "-->") && (i2 = r2), i2 && (i2 < r2 && t2[r2].trim() || t2[r2 + 1] === void 0)) {
-            let $2 = r2;
-            (t2[r2 + 1] === void 0 && !t2[r2].trim() || t2[r2] === ">") && ($2 += 1), (!p2.length || p2[p2.length - 1][0] !== n.lastOpeningBracketAt) && p2.push([n.lastOpeningBracketAt, i2 + 1]), (!m3.length || m3[m3.length - 1][0] !== n.lastOpeningBracketAt) && m3.push([n.lastOpeningBracketAt, i2 + 1]);
-            let g2 = R(t2, r2, n.leftOuterWhitespace, $2, n.lastOpeningBracketAt, i2);
-            s3.cb({ tag: n, deleteFrom: n.leftOuterWhitespace, deleteTo: $2, insert: g2, rangesArr: u2, proposedReturn: [n.leftOuterWhitespace, $2, g2] }), e2 = r2 - 1, t2[r2] === ">" && (e2 = r2), n = {}, a = {};
-            break;
-          }
-      }
-    }
-    t2[e2].trim() ? V !== null && (!n.quotes && a.equalsAt > V - 1 && a.nameEnds && a.equalsAt > a.nameEnds && t2[e2] !== '"' && t2[e2] !== "'" && ((0, import_lodash3.default)(a) && n.attributes.push(a), a = {}, n.equalsSpottedAt = void 0), V = null) : V === null && (V = e2, n.lastOpeningBracketAt !== void 0 && n.lastOpeningBracketAt < e2 && n.nameStarts && n.nameStarts < n.lastOpeningBracketAt && e2 === n.lastOpeningBracketAt + 1 && !b4.some((l) => l.name === n.name) && (n.onlyPlausible = true, n.name = void 0, n.nameStarts = void 0)), t2[e2] === " " ? w2 === null && (w2 = e2) : w2 !== null && (w2 = null), n.name === "script" && (L = !n.slashPresent);
-  }
-  if (t2 && (s3.trimOnlySpaces && t2[0] === " " || !s3.trimOnlySpaces && !t2[0].trim()))
-    for (let e2 = 0, o = t2.length; e2 < o; e2++)
-      if (s3.trimOnlySpaces && t2[e2] !== " " || !s3.trimOnlySpaces && t2[e2].trim()) {
-        u2.push([0, e2]);
-        break;
-      } else
-        t2[e2 + 1] || u2.push([0, e2 + 1]);
-  if (t2 && (s3.trimOnlySpaces && t2[t2.length - 1] === " " || !s3.trimOnlySpaces && !t2[t2.length - 1].trim())) {
-    for (let e2 = t2.length; e2--; )
-      if (s3.trimOnlySpaces && t2[e2] !== " " || !s3.trimOnlySpaces && t2[e2].trim()) {
-        u2.push([e2 + 1, t2.length]);
-        break;
-      }
-  }
-  let O = u2.current();
-  if ((!c3 || !c3.cb) && O) {
-    if (O[0] && !O[0][0]) {
-      let e2 = O[0][1];
-      u2.ranges[0] = [u2.ranges[0][0], u2.ranges[0][1]];
-    }
-    if (O[O.length - 1] && O[O.length - 1][1] === t2.length) {
-      let e2 = O[O.length - 1][0];
-      if (u2.ranges) {
-        let o = u2.ranges[u2.ranges.length - 1][0];
-        t2[o - 1] && (s3.trimOnlySpaces && t2[o - 1] === " " || !s3.trimOnlySpaces && !t2[o - 1].trim()) && (o -= 1);
-        let l = u2.ranges[u2.ranges.length - 1][2];
-        u2.ranges[u2.ranges.length - 1] = [o, u2.ranges[u2.ranges.length - 1][1]], (l == null ? void 0 : l.trim()) && u2.ranges[u2.ranges.length - 1].push(l.trimEnd());
-      }
-    }
-  }
-  return { log: { timeTakenInMilliseconds: Date.now() - D3 }, result: v(t2, u2.current()), ranges: u2.current(), allTagLocations: p2, filteredTagLocations: m3 };
-}
-var import_lodash3, import_lodash4, import_lodash5, import_html_entities, W, P, v2, G, Q, F2;
-var init_string_strip_html_esm = __esm({
-  "node_modules/string-strip-html/dist/string-strip-html.esm.js"() {
-    init_shims();
-    import_lodash3 = __toESM(require_lodash2(), 1);
-    import_lodash4 = __toESM(require_lodash3(), 1);
-    import_lodash5 = __toESM(require_lodash4(), 1);
-    import_html_entities = __toESM(require_lib3(), 1);
-    init_ranges_apply_esm();
-    init_ranges_push_esm();
-    init_string_left_right_esm();
-    W = /* @__PURE__ */ new Set(["!doctype", "abbr", "address", "area", "article", "aside", "audio", "base", "bdi", "bdo", "blockquote", "body", "br", "button", "canvas", "caption", "cite", "code", "col", "colgroup", "data", "datalist", "dd", "del", "details", "dfn", "dialog", "div", "dl", "doctype", "dt", "em", "embed", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "head", "header", "hgroup", "hr", "html", "iframe", "img", "input", "ins", "kbd", "keygen", "label", "legend", "li", "link", "main", "map", "mark", "math", "menu", "menuitem", "meta", "meter", "nav", "noscript", "object", "ol", "optgroup", "option", "output", "param", "picture", "pre", "progress", "rb", "rp", "rt", "rtc", "ruby", "samp", "script", "section", "select", "slot", "small", "source", "span", "strong", "style", "sub", "summary", "sup", "svg", "table", "tbody", "td", "template", "textarea", "tfoot", "th", "thead", "time", "title", "tr", "track", "ul", "var", "video", "wbr", "xml"]);
-    P = /* @__PURE__ */ new Set(["a", "b", "i", "p", "q", "s", "u"]);
-    v2 = /* @__PURE__ */ new Set([".", ",", ";", "!", "?"]);
-    G = /* @__PURE__ */ new Set([".", ",", "?", ";", ")", "\u2026", '"', "\xBB"]);
-    Q = /* @__PURE__ */ new Set(["a", "abbr", "acronym", "audio", "b", "bdi", "bdo", "big", "button", "canvas", "cite", "code", "data", "datalist", "del", "dfn", "em", "embed", "i", "iframe", "input", "ins", "kbd", "label", "map", "mark", "meter", "noscript", "object", "output", "picture", "progress", "q", "ruby", "s", "samp", "select", "slot", "small", "span", "strong", "sub", "sup", "svg", "template", "textarea", "time", "u", "tt", "var", "video", "wbr"]);
-    F2 = { ignoreTags: [], ignoreTagsWithTheirContents: [], onlyStripTags: [], stripTogetherWithTheirContents: ["script", "style", "xml"], skipHtmlDecoding: false, trimOnlySpaces: false, stripRecognisedHTMLOnly: false, dumpLinkHrefsNearby: { enabled: false, putOnNewLine: false, wrapHeads: "", wrapTails: "" }, cb: null };
-  }
-});
-
-// .svelte-kit/output/server/_app/immutable/chunks/proposal-06844b37.js
-var css$32, Card, strings$3, Timestamp2, strings$2, css$22, Content, css$13, Preview, strings$12, css5, Toolbar, strings2, Proposal;
-var init_proposal_06844b37 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/proposal-06844b37.js"() {
+// .svelte-kit/output/server/_app/immutable/chunks/proposal-5a78251b.js
+var css$14, Card, strings$2, Timestamp2, strings$12, css5, Toolbar, strings3, Proposal;
+var init_proposal_5a78251b = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/proposal-5a78251b.js"() {
     init_shims();
     init_index_35b769a7();
     init_store_e5ca78fd();
     init_database_40aebd93();
     init_text_input_a12d339e();
-    init_string_strip_html_esm();
-    init_tags_8586509e();
-    css$32 = {
+    init_tags_340d2028();
+    css$14 = {
       code: ".card-container.s-Hio59jcNIlCL{padding:var(--theme-cardseparationhalf)}.card.s-Hio59jcNIlCL{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.comment-container.s-Hio59jcNIlCL{position:relative;margin-top:var(--s9px);border-left:var(--s1px) solid #f0f0f0;padding-left:var(--s3px)}.comment-author.s-Hio59jcNIlCL{display:flex;align-items:baseline;justify-content:flex-start}.author-name.s-Hio59jcNIlCL{font-size:var(--s11px);color:black;font-weight:bold}.comment.s-Hio59jcNIlCL{display:inline-flex;font-size:var(--s12px);padding:2px 0px 0 0;border-radius:4px;color:rgb(57, 56, 56)}.comment-box.s-Hio59jcNIlCL{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:var(--theme-cardseparation)}.comment-text.s-Hio59jcNIlCL{position:relative;display:inline-flex;width:100%}.submit-button.s-Hio59jcNIlCL{position:absolute;display:flex;align-items:center;justify-content:center;z-index:1;top:0;right:0;height:100%;width:var(--comment-button-size);background-color:#f5f5f5;color:white;border-top-right-radius:var(--s3px);border-bottom-right-radius:var(--s3px)}.progress.s-Hio59jcNIlCL{animation:s-Hio59jcNIlCL-progress;animation-duration:500ms;animation-iteration-count:infinite}.delete-button.s-Hio59jcNIlCL{position:absolute;display:flex;align-items:center;justify-content:center;z-index:1;top:0;right:0;height:var(--comment-button-size);width:var(--comment-button-size);background-color:#e1e1e1;color:white;border-radius:var(--s3px)}@keyframes s-Hio59jcNIlCL-progress{from{background-color:#e1e1e1}to{background-color:#f5f5f5}}.s-Hio59jcNIlCL{}",
       map: null
     };
@@ -91968,7 +92086,7 @@ var init_proposal_06844b37 = __esm({
       onDestroy(appContentReadyUnsubscribe);
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      $$result.css.add(css$32);
+      $$result.css.add(css$14);
       $$unsubscribe__admin();
       $$unsubscribe__user();
       return `
@@ -92005,7 +92123,7 @@ var init_proposal_06844b37 = __esm({
                 <div class="${["submit-button _clickable s-Hio59jcNIlCL", ""].join(" ").trim()}" style="${"background-color: " + escape("#f9f9f9", true) + ";"}"${add_attribute("this", submitButton, 0)}><i class="${"fa-solid fa-location-arrow s-Hio59jcNIlCL"}"></i></div></div></div>` : ``}</div>
 </div>`;
     });
-    strings$3 = {
+    strings$2 = {
       yesterday: [
         "\u0D8A\u0DBA\u0DDA",
         "yesterday",
@@ -92103,17 +92221,17 @@ var init_proposal_06844b37 = __esm({
         const isYesterday = yesterday.toDateString() === date.toDateString();
         const isThisYear = today.getFullYear() === date.getFullYear();
         if (seconds < 5) {
-          return strings$3["now"][language2];
+          return strings$2["now"][language2];
         } else if (seconds < 60) {
-          return strings$3["secondsAgo"][language2].replace("*seconds*", seconds.toString());
+          return strings$2["secondsAgo"][language2].replace("*seconds*", seconds.toString());
         } else if (seconds < 90) {
-          return strings$3["minuteAgo"][language2];
+          return strings$2["minuteAgo"][language2];
         } else if (minutes < 60) {
-          return strings$3["minutesAgo"][language2].replace("*minutes*", minutes.toString());
+          return strings$2["minutesAgo"][language2].replace("*minutes*", minutes.toString());
         } else if (isToday) {
-          return getFormattedDate(date, strings$3["today"][language2]);
+          return getFormattedDate(date, strings$2["today"][language2]);
         } else if (isYesterday) {
-          return getFormattedDate(date, strings$3["yesterday"][language2]);
+          return getFormattedDate(date, strings$2["yesterday"][language2]);
         } else if (isThisYear) {
           return getFormattedDate(date, false, true);
         }
@@ -92147,82 +92265,6 @@ var init_proposal_06844b37 = __esm({
       if ($$props.inline === void 0 && $$bindings.inline && inline !== void 0)
         $$bindings.inline(inline);
       return `<div class="${"timestamp"}" style="${"display: " + escape(inline ? "inline-block" : "block", true)}">${escape(timeAgoString)}</div>`;
-    });
-    strings$2 = {
-      read_more: [
-        "\u0DC0\u0DD0\u0DA9\u0DD2\u0DAF\u0DD4\u0DBB \u0D9A\u0DD2\u0DBA\u0DC0\u0DB1\u0DCA\u0DB1",
-        "read more",
-        "\u0BAE\u0BC7\u0BB2\u0BC1\u0BAE\u0BCD \u0BAA\u0B9F\u0BBF\u0B95\u0BCD\u0B95"
-      ]
-    };
-    css$22 = { code: ".s-DkLwbhZttZVG{}", map: null };
-    Content = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let $_lang, $$unsubscribe__lang;
-      validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
-      let { data } = $$props;
-      let { contentField } = $$props;
-      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
-        $$bindings.data(data);
-      if ($$props.contentField === void 0 && $$bindings.contentField && contentField !== void 0)
-        $$bindings.contentField(contentField);
-      $$result.css.add(css$22);
-      $$unsubscribe__lang();
-      return `
-
-
-<div class="${"s-DkLwbhZttZVG"}">
-    <!-- HTML_TAG_START -->${data[contentField][data._viewOriginal ? 3 : $_lang]}<!-- HTML_TAG_END -->  
-</div>`;
-    });
-    css$13 = {
-      code: ".preview-image.s-Aln3qbhUrjzf{background-image:var(--url);background-color:#7b7b7b;height:var(--theme-previewheight);width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;border-radius:var(--s3px);margin-top:var(--theme-cardseparationhalf);filter:grayscale(0.6)}.preview-container.s-Aln3qbhUrjzf{position:relative}.preview-overlay.s-Aln3qbhUrjzf{position:absolute;top:0;left:0;height:var(--theme-previewheight);width:100%;background-color:black;opacity:var(--theme-previewopacity);border-radius:3px}.s-Aln3qbhUrjzf{}",
-      map: null
-    };
-    Preview = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let contentString;
-      let images;
-      let $_lang, $$unsubscribe__lang;
-      validate_store(_lang, "_lang");
-      $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
-      let { data } = $$props;
-      let { contentField } = $$props;
-      let { limit: limit2 } = $$props;
-      let { expanded } = $$props;
-      createEventDispatcher();
-      if (!data[contentField] == void 0) {
-        console.log(`data.${contentField} not defined, data type: ${data.type} data id: ${data.id}`);
-        data[contentField] = "";
-      }
-      let content = data[contentField];
-      let text, croppedText, croppedFlag;
-      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
-        $$bindings.data(data);
-      if ($$props.contentField === void 0 && $$bindings.contentField && contentField !== void 0)
-        $$bindings.contentField(contentField);
-      if ($$props.limit === void 0 && $$bindings.limit && limit2 !== void 0)
-        $$bindings.limit(limit2);
-      if ($$props.expanded === void 0 && $$bindings.expanded && expanded !== void 0)
-        $$bindings.expanded(expanded);
-      $$result.css.add(css$13);
-      contentString = Array.isArray(content) ? content[data._viewOriginal ? 3 : $_lang] : content;
-      images = contentString.match(/src="([\w\W]+?)"/g);
-      images = images && images.map((src, _i) => {
-        return src.replace('src="', "").replace('"', "").replace("&amp;", "&");
-      });
-      text = ge(contentString).result;
-      croppedText = text.substring(0, limit2);
-      croppedFlag = text.length > limit2 || images;
-      croppedText += croppedFlag ? "..." : "";
-      $$unsubscribe__lang();
-      return `
-
-
-<div class="${"preview s-Aln3qbhUrjzf"}">${expanded ? `${validate_component(Content, "Content").$$render($$result, { data, contentField }, {}, {})}` : `<div class="${"_clickable s-Aln3qbhUrjzf"}">${escape(croppedText)}
-            ${croppedFlag ? `<span style="${"font-weight:bold; text-decoration:underline"}" class="${"s-Aln3qbhUrjzf"}">${escape(strings$2["read_more"][$_lang])}</span>
-                ${images ? `<div class="${"preview-container s-Aln3qbhUrjzf"}"><div class="${"preview-image s-Aln3qbhUrjzf"}" style="${"--url: url(" + escape(images[0], true) + ")"}"></div>
-                    <div class="${"preview-overlay s-Aln3qbhUrjzf"}"></div></div>` : ``}` : ``}</div>`}
-</div>`;
     });
     strings$12 = {
       verified: [
@@ -92304,7 +92346,7 @@ var init_proposal_06844b37 = __esm({
         <div class="${"icon not-verified s-A62t8M1ucyij"}"><i class="${"fa-solid fa-exclamation s-A62t8M1ucyij"}"></i></div>`}</div>
 </div>`;
     });
-    strings2 = {
+    strings3 = {
       motive: [
         "\u0D86\u0DBA\u0DAD\u0DB1\u0DBA\u0DDA \u0D85\u0DBB\u0DB8\u0DD4\u0DAB:",
         "organization's motive:",
@@ -92368,7 +92410,7 @@ var init_proposal_06844b37 = __esm({
             {},
             {
               default: () => {
-                return `${escape(strings2["motive"][$_lang])}`;
+                return `${escape(strings3["motive"][$_lang])}`;
               }
             }
           )}
@@ -92400,7 +92442,7 @@ var init_proposal_06844b37 = __esm({
             {},
             {
               default: () => {
-                return `${escape(strings2["proposal"][$_lang])}`;
+                return `${escape(strings3["proposal"][$_lang])}`;
               }
             }
           )}
@@ -92561,7 +92603,7 @@ function tweened(value, defaults = {}) {
     subscribe: store.subscribe
   };
 }
-var import_chroma_js4, css$72, Nav, css$62, Template, strings$32, css$52, Mt, Bulletin, News, strings$22, css$42, Post, strings$13, css$33, Filter2, strings3, css$23, Wip, css$14, Youtube, Video, css6, COMPONENTS, Routes;
+var import_chroma_js4, css$72, Nav, css$62, Template, strings$3, css$52, Mt, Bulletin, News, strings$22, css$42, Post, strings$13, css$32, Filter2, strings4, css$23, Wip, css$15, Youtube, Video, css6, COMPONENTS, Routes;
 var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
@@ -92571,8 +92613,8 @@ var init_index_svelte = __esm({
     init_store_e5ca78fd();
     init_text_input_a12d339e();
     init_progress_svelte_svelte_type_style_lang_bb563ac3();
-    init_proposal_06844b37();
-    init_tags_8586509e();
+    init_proposal_5a78251b();
+    init_tags_340d2028();
     init_dist();
     init_dist2();
     init_dist3();
@@ -92670,7 +92712,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
         }
       })}`;
     });
-    strings$32 = {
+    strings$3 = {
       machine_translated: [
         "\u0DC3\u0DCA\u0DC0\u0DBA\u0D82\u0D9A\u0DCA\u200D\u0DBB\u0DD3\u0DBA \u0DB4\u0DBB\u0DD2\u0DC0\u0DBB\u0DCA\u0DAD\u0DB1\u0DBA\u0D9A\u0DD2, \u0DB8\u0DD4\u0DBD\u0DCA \u0DB4\u0DD2\u0DA7\u0DB4\u0DAD \u0DB6\u0DBD\u0DB1\u0DCA\u0DB1.",
         "automatic translation, view original.",
@@ -92713,7 +92755,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         {},
         {
           default: () => {
-            return `${`<i class="${"fa-solid fa-globe s-Q7XEqeLz3oYK"}"></i> ${escape(strings$32["machine_translated"][$_lang])}`}`;
+            return `${`<i class="${"fa-solid fa-globe s-Q7XEqeLz3oYK"}"></i> ${escape(strings$3["machine_translated"][$_lang])}`}`;
           }
         }
       )}</div>` : ``}`;
@@ -92974,7 +93016,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         "\u0BB5\u0B9F\u0BBF\u0B95\u0B9F\u0BCD\u0B9F\u0BC1"
       ]
     };
-    css$33 = {
+    css$32 = {
       code: ".filters.s-BJo09dFzrlwu{position:relative;width:100%;padding:var(--theme-cardseparationhalf) 0 0 0}.tag.s-BJo09dFzrlwu{background-color:white;border:var(--s1px) solid #cfcfcf;border-radius:var(--s5px);padding:var(--s3px) var(--s5px);margin-right:var(--s5px);filter:grayscale(0.8);margin-bottom:var(--s6px)}.tag.s-BJo09dFzrlwu:hover{cursor:pointer}.selected-tags.s-BJo09dFzrlwu{background-color:var(--color);filter:none}.button-container.s-BJo09dFzrlwu{display:flex;justify-content:center}.button.s-BJo09dFzrlwu{display:inline-flex;justify-content:center;align-items:center;margin-right:var(--s5px);padding:var(--s7px);background-color:rgb(199, 226, 249);border-radius:var(--s3px);width:var(--s30px)}.button.s-BJo09dFzrlwu:hover{cursor:pointer}.filter.s-BJo09dFzrlwu{background-color:rgb(127, 191, 247);padding:var(--s5px) var(--s10px);width:var(--s150px)}.s-BJo09dFzrlwu{}",
       map: null
     };
@@ -92994,7 +93036,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         $$bindings.show(show);
       if ($$props.columnId === void 0 && $$bindings.columnId && columnId !== void 0)
         $$bindings.columnId(columnId);
-      $$result.css.add(css$33);
+      $$result.css.add(css$32);
       $$unsubscribe__lang();
       return `
 
@@ -93051,7 +93093,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
         }
       })}</div>` : ``}`;
     });
-    strings3 = {
+    strings4 = {
       wip: [
         "\u0DB8\u0DD9\u0DB8 \u0DC3\u0DDA\u0DC0\u0DCF\u0DC0 \u0DAD\u0DC0\u0DB8\u0DAD\u0DCA \u0D89\u0DAF\u0DD2\u0D9A\u0DBB\u0DB8\u0DD2\u0DB1\u0DCA \u0DB4\u0DC0\u0DAD\u0DD3",
         "this service is still under construction",
@@ -93095,7 +93137,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             {},
             {
               default: () => {
-                return `${escape(strings3["wip"][$_lang])}`;
+                return `${escape(strings4["wip"][$_lang])}`;
               }
             }
           )}
@@ -93126,14 +93168,14 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             {},
             {
               default: () => {
-                return `${escape(strings3["release"][$_lang] + ": " + data.releaseDate)}`;
+                return `${escape(strings4["release"][$_lang] + ": " + data.releaseDate)}`;
               }
             }
           )}`;
         }
       })}`;
     });
-    css$14 = {
+    css$15 = {
       code: ".youtube.s-pP_MCOEFRNVA{position:relative;border-radius:var(--s3px);overflow:hidden;height:var(--theme-previewheight);width:100%}.youtube-preview.s-pP_MCOEFRNVA{background-image:var(--thumbnail);background-color:#7b7b7b;height:var(--theme-previewheight);width:100%;background-position:center;background-repeat:no-repeat;background-size:cover;filter:grayscale(0.6)}.youtube-overlay.s-pP_MCOEFRNVA{position:absolute;top:0;left:0;display:flex;align-items:center;justify-content:center;color:white;font-size:var(--s35px);height:var(--theme-previewheight);width:100%;background-color:rgba(0,0,0, var(--theme-previewopacity));border-radius:3px}.s-pP_MCOEFRNVA{}",
       map: null
     };
@@ -93145,7 +93187,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
         $$bindings.data(data);
       if ($$props.style === void 0 && $$bindings.style && style !== void 0)
         $$bindings.style(style);
-      $$result.css.add(css$14);
+      $$result.css.add(css$15);
       return `<div class="${["youtube s-pP_MCOEFRNVA", "youtube-preview"].join(" ").trim()}"${add_attribute("style", youtubeStyles, 0)}><div id="${"player-" + escape(data.id, true)}" class="${"s-pP_MCOEFRNVA"}"></div>
     ${`<div class="${"youtube-overlay s-pP_MCOEFRNVA"}"><i class="${"fa-solid fa-play s-pP_MCOEFRNVA"}"></i></div>`}
 </div>`;
@@ -93389,9 +93431,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    file4 = "_app/immutable/pages/index.svelte-529f7848.js";
-    imports3 = ["_app/immutable/pages/index.svelte-529f7848.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/text-input-b22cc3e4.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/proposal-be04c02c.js", "_app/immutable/chunks/tags-d7f721e3.js", "_app/immutable/chunks/progress-be54f2dc.js"];
-    stylesheets3 = ["_app/immutable/assets/index-bf28beb3.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/proposal-96974fc1.css", "_app/immutable/assets/tags-95a7f94d.css", "_app/immutable/assets/progress-6061950c.css"];
+    file4 = "_app/immutable/pages/index.svelte-b8ba63a7.js";
+    imports3 = ["_app/immutable/pages/index.svelte-b8ba63a7.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/text-input-eec74927.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/tags-7596142e.js", "_app/immutable/chunks/progress-d186047a.js", "_app/immutable/chunks/proposal-2dc840b4.js"];
+    stylesheets3 = ["_app/immutable/assets/index-bf28beb3.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/tags-0c886ac3.css", "_app/immutable/assets/progress-6061950c.css", "_app/immutable/assets/proposal-6e142b05.css"];
   }
 });
 
@@ -93405,7 +93447,7 @@ var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_35b769a7();
-    init_proposal_06844b37();
+    init_proposal_5a78251b();
     init_store_e5ca78fd();
     init_database_40aebd93();
     init_dist();
@@ -93415,8 +93457,8 @@ var init_post_preview_svelte = __esm({
     init_dist5();
     init_text_input_a12d339e();
     import_chroma_js5 = __toESM(require_chroma(), 1);
+    init_tags_340d2028();
     init_string_strip_html_esm();
-    init_tags_8586509e();
     css7 = {
       code: ".preview.s-nkO0SViUUGe1{display:flex;justify-content:center;background-color:var(--theme-columnbackground);width:100%;height:100vh}.column-container.s-nkO0SViUUGe1{padding:var(--theme-cardseparationhalf);height:100%}.column.s-nkO0SViUUGe1{display:flex;align-items:center;justify-content:center;flex-direction:column;width:var(--theme-columnwidth);height:100%;padding:0 var(--theme-cardseparationhalf)}.s-nkO0SViUUGe1{}",
       map: null
@@ -93462,9 +93504,9 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 4;
-    file5 = "_app/immutable/pages/post_preview.svelte-832b27d7.js";
-    imports4 = ["_app/immutable/pages/post_preview.svelte-832b27d7.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/proposal-be04c02c.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/text-input-b22cc3e4.js", "_app/immutable/chunks/tags-d7f721e3.js"];
-    stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-96974fc1.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/tags-95a7f94d.css"];
+    file5 = "_app/immutable/pages/post_preview.svelte-2ab93045.js";
+    imports4 = ["_app/immutable/pages/post_preview.svelte-2ab93045.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/proposal-2dc840b4.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/text-input-eec74927.js", "_app/immutable/chunks/tags-7596142e.js"];
+    stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-6e142b05.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/tags-0c886ac3.css"];
   }
 });
 
@@ -93584,8 +93626,8 @@ var init__6 = __esm({
     init_shims();
     init_users_svelte();
     index6 = 2;
-    file7 = "_app/immutable/pages/admin/users.svelte-ff6ab6b3.js";
-    imports6 = ["_app/immutable/pages/admin/users.svelte-ff6ab6b3.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/text-input-b22cc3e4.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/select-7a4d7384.js"];
+    file7 = "_app/immutable/pages/admin/users.svelte-347615d4.js";
+    imports6 = ["_app/immutable/pages/admin/users.svelte-347615d4.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/text-input-eec74927.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/select-71c446ae.js"];
     stylesheets6 = ["_app/immutable/assets/users-ad6cc9f1.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/select-77dda6f0.css"];
   }
 });
@@ -96446,7 +96488,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-7789612c.js", "imports": ["_app/immutable/start-7789612c.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/index-b62ca7b4.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-1e6da960.js", "imports": ["_app/immutable/start-1e6da960.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/index-b62ca7b4.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

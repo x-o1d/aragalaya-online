@@ -93,7 +93,7 @@
             // initialize the editor with the post data
             originalData = event.data;
             selectedTagNames = originalData.tags;
-            unselectedTagNames = COLUMNS[columnIndex].tags
+            unselectedTagNames = JSON.parse(JSON.stringify(COLUMNS[columnIndex].tags))
                 .filter(t => !selectedTagNames.includes(t));
             columnIndex = originalData._columnIndex;
 
@@ -108,8 +108,10 @@
         } 
         // create post mode
         else {
+            selectedTagNames = [];
+            unselectedTagNames = JSON.parse(JSON.stringify(COLUMNS[columnIndex].tags));
             columnIndex = event.columnIndex;
-            unselectedTagNames = COLUMNS[columnIndex].tags;
+
             showForm = true;
             lang = $_lang;
         }
@@ -376,22 +378,26 @@
             <Button
                 form
                 onclick={editPost}
-                text={_strings['save']}/>
+                text={_strings['save']}
+                style="margin-bottom: var(--s10px)"/>
             <Button
                 form
                 onclick={deletePost}
-                text={_strings[confirmDelete? 'confirm_delete': 'delete']}/>
+                text={_strings[confirmDelete? 'confirm_delete': 'delete']}
+                style="margin-bottom: var(--s10px)"/>
             {:else}
             <Button
                 form
                 onclick={createPost}
-                text={COLUMNS[columnIndex].submitButton}/>
+                text={COLUMNS[columnIndex].submitButton}
+                style="margin-bottom: var(--s10px)"/>
             {/if}
             <Button
                 form
                 cancel
                 onclick={resetForm}
-                text={COLUMNS[columnIndex].cancelButton}/>
+                text={COLUMNS[columnIndex].cancelButton}
+                style="margin-bottom: var(--s10px)"/>
         </div>
     </div>
 </div>
@@ -446,7 +452,7 @@
         align-items: center;
         justify-content: space-between;
 
-        width: 90%;
+        width: 100%;
         margin-bottom: var(--s10px);
     }
     .language {

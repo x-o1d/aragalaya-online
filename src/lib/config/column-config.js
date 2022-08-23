@@ -29,7 +29,8 @@ export const COLUMNS = [
         type: 'news',
         verified: true,
         tags: ['mainstream', 'aragala', 'economy', 'political', 'legal',
-                    'international', 'energy', 'downloads'],
+                    'international', 'energy', 'downloads', 'religion',
+                    'agriculture', 'elections', 'education'],
         // END - column properties
         // START - input form field properties
         data: {
@@ -85,8 +86,9 @@ export const COLUMNS = [
         height: '310px',
         type: 'video',
         verified: true,
-        tags: ['economy', 'political', 'legal',
-                    'international', 'energy', 'philosophy', 'english', 'discussion'],
+        tags: ['economy', 'political', 'legal', 'international', 'energy', 
+                    'philosophy', 'english', 'discussion',  'religion',
+                    'agriculture', 'elections', 'education'],
         // START - input form field properties
         data: {
             youtubeURL: {
@@ -164,7 +166,8 @@ export const COLUMNS = [
         type: 'bulletin',
         verified: true,
         tags: ['mainstream', 'aragala', 'economy', 'political', 'legal',
-                    'international', 'energy', 'downloads'],
+                    'international', 'energy', 'downloads', 'religion',
+                    'agriculture', 'elections', 'education'],
         // START - input form field properties
         data: {
             title: {
@@ -220,7 +223,8 @@ export const COLUMNS = [
         type: 'proposal',
         verified: true,
         tags: ['mainstream', 'aragala', 'economy', 'political', 'legal',
-                    'international', 'energy', 'downloads'],
+                    'international', 'energy', 'downloads', 'religion',
+                    'agriculture', 'elections', 'education'],
         // START - input form field properties
         data: {
             organization: {

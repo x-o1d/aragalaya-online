@@ -55,6 +55,26 @@ const tagConfig = {
         'බාගත කිරීම්',
         'downloads',
         'பதிவிறக்கங்கள்'
+    ],
+    religion: [
+        'ආගම',
+        'religion',
+        'மதம்'
+    ],
+    agriculture: [
+        'කෘෂිකර්මය',
+        'agriculture',
+        'வேளாண்மை'
+    ],
+    elections: [
+        'මැතිවරණ',
+        'elections',
+        'தேர்தல்கள்'
+    ],
+    education: [
+        'අධ්‍යාපන',
+        'education',
+        'கல்வி'
     ]
 };
 

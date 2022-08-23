@@ -38,7 +38,6 @@
 {#if buttonProgress || progress}
     <div class="preloader"><PreloadingIndicator height={2}/></div>
 {/if}
-<div style="margin-bottom: var(--s14px);"></div>
 
 <style>
     .button {
