@@ -98,7 +98,7 @@
         <img src="/logo-tiny.png" alt="අරගලය.online">
     </div>
     <div class="progress-bar">
-        <PreloadingIndicator></PreloadingIndicator>
+        <PreloadingIndicator height={2}></PreloadingIndicator>
     </div>
 </div>
 {/if}

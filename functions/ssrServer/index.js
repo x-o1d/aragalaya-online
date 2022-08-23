@@ -66653,10 +66653,10 @@ var require_cjs = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/database-40aebd93.js
+// .svelte-kit/output/server/_app/immutable/chunks/database-feef22ab.js
 var import_rxjs, COLUMNS, COLUMN_COUNT, firebaseConfig, app, dev, events, _emitEvent, _eventListener, functions, _createPost, auth, user, signUpInProgress, language, theme, _userSignedIn, _emailSignup, _emailSignin, _changePassword, _userLogout, db, _createError2, _updatePost, _deletePost, _getPosts, _getPost, _createUserRecord, _setUserTheme, _getUserRecord;
-var init_database_40aebd93 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/database-40aebd93.js"() {
+var init_database_feef22ab = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/database-feef22ab.js"() {
     init_shims();
     init_dist();
     init_dist2();
@@ -66684,7 +66684,11 @@ var init_database_40aebd93 = __esm({
           "legal",
           "international",
           "energy",
-          "downloads"
+          "downloads",
+          "religion",
+          "agriculture",
+          "elections",
+          "education"
         ],
         data: {
           title: {
@@ -66744,7 +66748,11 @@ var init_database_40aebd93 = __esm({
           "energy",
           "philosophy",
           "english",
-          "discussion"
+          "discussion",
+          "religion",
+          "agriculture",
+          "elections",
+          "education"
         ],
         data: {
           youtubeURL: {
@@ -66826,7 +66834,11 @@ var init_database_40aebd93 = __esm({
           "legal",
           "international",
           "energy",
-          "downloads"
+          "downloads",
+          "religion",
+          "agriculture",
+          "elections",
+          "education"
         ],
         data: {
           title: {
@@ -66886,7 +66898,11 @@ var init_database_40aebd93 = __esm({
           "legal",
           "international",
           "energy",
-          "downloads"
+          "downloads",
+          "religion",
+          "agriculture",
+          "elections",
+          "education"
         ],
         data: {
           organization: {
@@ -70337,14 +70353,14 @@ var require_chroma = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/text-input-a12d339e.js
+// .svelte-kit/output/server/_app/immutable/chunks/text-input-f1078574.js
 var import_chroma_js, _isMobile, _fontGroups, _fontSizes, pallettes, _headerFontColor, _previewOpacity, _themes, layoutHeaderHeight, columnWidth, columnHeaderHeight, cardSeparation, cardPadding, navSize, previewHeight, toolbarButtonSize, _getSizeConfig, Font, css, Text_input;
-var init_text_input_a12d339e = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/text-input-a12d339e.js"() {
+var init_text_input_f1078574 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/text-input-f1078574.js"() {
     init_shims();
     init_index_35b769a7();
     init_store_e5ca78fd();
-    init_database_40aebd93();
+    init_database_feef22ab();
     import_chroma_js = __toESM(require_chroma(), 1);
     _isMobile = writable2(false);
     _fontGroups = [
@@ -70531,15 +70547,15 @@ var init_text_input_a12d339e = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/progress.svelte_svelte_type_style_lang-bb563ac3.js
+// .svelte-kit/output/server/_app/immutable/chunks/progress.svelte_svelte_type_style_lang-e6e66e7e.js
 var css$1, Preloading_indicator, css2, Button;
-var init_progress_svelte_svelte_type_style_lang_bb563ac3 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/progress.svelte_svelte_type_style_lang-bb563ac3.js"() {
+var init_progress_svelte_svelte_type_style_lang_e6e66e7e = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/progress.svelte_svelte_type_style_lang-e6e66e7e.js"() {
     init_shims();
     init_index_35b769a7();
     init_store_e5ca78fd();
-    init_text_input_a12d339e();
-    init_database_40aebd93();
+    init_text_input_f1078574();
+    init_database_feef22ab();
     init_dist5();
     css$1 = {
       code: ".progress-container.s-O_aVUB49AbpB{position:absolute;top:0;left:0;width:80%;height:var(--height);z-index:997}.progress.s-O_aVUB49AbpB{position:absolute;left:0;top:0;height:100%;background-color:green;transition:width 0.4s}@keyframes s-O_aVUB49AbpB-fade{from{opacity:0}to{opacity:1}}.s-O_aVUB49AbpB{}",
@@ -70598,8 +70614,7 @@ var init_progress_svelte_svelte_type_style_lang_bb563ac3 = __esm({
           return `${escape(Array.isArray(text) ? text[$_lang] : text)}`;
         }
       })}</div>
-${progress ? `<div class="${"preloader s-d9-80eNJ_c8b"}">${validate_component(Preloading_indicator, "PreloadingIndicator").$$render($$result, { height: 2 }, {}, {})}</div>` : ``}
-<div style="${"margin-bottom: var(--s14px);"}" class="${"s-d9-80eNJ_c8b"}"></div>`;
+${progress ? `<div class="${"preloader s-d9-80eNJ_c8b"}">${validate_component(Preloading_indicator, "PreloadingIndicator").$$render($$result, { height: 2 }, {}, {})}</div>` : ``}`;
     });
     getStorage(app);
   }
@@ -72654,16 +72669,16 @@ var init_string_strip_html_esm = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/tags-340d2028.js
+// .svelte-kit/output/server/_app/immutable/chunks/tags-1994a1d0.js
 var import_chroma_js2, strings, css$2, Content, css$12, Preview, tagConfig, colors, TAGS, css3, Tags;
-var init_tags_340d2028 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/tags-340d2028.js"() {
+var init_tags_1994a1d0 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/tags-1994a1d0.js"() {
     init_shims();
     init_index_35b769a7();
     init_string_strip_html_esm();
     init_store_e5ca78fd();
     import_chroma_js2 = __toESM(require_chroma(), 1);
-    init_text_input_a12d339e();
+    init_text_input_f1078574();
     strings = {
       read_more: [
         "\u0DC0\u0DD0\u0DA9\u0DD2\u0DAF\u0DD4\u0DBB \u0D9A\u0DD2\u0DBA\u0DC0\u0DB1\u0DCA\u0DB1",
@@ -72795,6 +72810,26 @@ var init_tags_340d2028 = __esm({
         "\u0DB6\u0DCF\u0D9C\u0DAD \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8\u0DCA",
         "downloads",
         "\u0BAA\u0BA4\u0BBF\u0BB5\u0BBF\u0BB1\u0B95\u0BCD\u0B95\u0B99\u0BCD\u0B95\u0BB3\u0BCD"
+      ],
+      religion: [
+        "\u0D86\u0D9C\u0DB8",
+        "religion",
+        "\u0BAE\u0BA4\u0BAE\u0BCD"
+      ],
+      agriculture: [
+        "\u0D9A\u0DD8\u0DC2\u0DD2\u0D9A\u0DBB\u0DCA\u0DB8\u0DBA",
+        "agriculture",
+        "\u0BB5\u0BC7\u0BB3\u0BBE\u0BA3\u0BCD\u0BAE\u0BC8"
+      ],
+      elections: [
+        "\u0DB8\u0DD0\u0DAD\u0DD2\u0DC0\u0DBB\u0DAB",
+        "elections",
+        "\u0BA4\u0BC7\u0BB0\u0BCD\u0BA4\u0BB2\u0BCD\u0B95\u0BB3\u0BCD"
+      ],
+      education: [
+        "\u0D85\u0DB0\u0DCA\u200D\u0DBA\u0DCF\u0DB4\u0DB1",
+        "education",
+        "\u0B95\u0BB2\u0BCD\u0BB5\u0BBF"
       ]
     };
     colors = import_chroma_js2.default.scale(["#c1f437", "#00e0ff", "#ff6161", "#ffca99", "#ff58d3"]).colors(Object.keys(tagConfig).length);
@@ -72833,7 +72868,7 @@ var init_tags_340d2028 = __esm({
         {
           font: 0,
           size: 0.75,
-          style: "\n        display: flex;\n        width: calc(90% - 4px);\n        flex-wrap: wrap;" + style + ";\n        margin-top: var(--theme-cardseparation);\n        margin-bottom: calc(var(--theme-cardseparation) - var(--s3px));"
+          style: "\n        display: flex;\n        width: calc(100% - 4px);\n        flex-wrap: wrap;" + style + ";\n        margin-top: var(--theme-cardseparation);\n        margin-bottom: calc(var(--theme-cardseparation) - var(--s3px));"
         },
         {},
         {
@@ -90993,11 +91028,11 @@ var init_layout_svelte = __esm({
     init_shims();
     init_index_35b769a7();
     init_store_e5ca78fd();
-    init_database_40aebd93();
-    init_text_input_a12d339e();
+    init_database_feef22ab();
+    init_text_input_f1078574();
     init_dist3();
-    init_progress_svelte_svelte_type_style_lang_bb563ac3();
-    init_tags_340d2028();
+    init_progress_svelte_svelte_type_style_lang_e6e66e7e();
+    init_tags_1994a1d0();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
     import_extension_bold = __toESM(require_tiptap_extension_bold_cjs(), 1);
     import_extension_italic = __toESM(require_tiptap_extension_italic_cjs(), 1);
@@ -91300,7 +91335,8 @@ var init_layout_svelte = __esm({
           form: true,
           onclick: continueEmailSignin,
           text: strings$1["continue"],
-          progress: loginProgress
+          progress: loginProgress,
+          style: "margin-bottom: var(--s10px)"
         },
         {},
         {}
@@ -91311,7 +91347,7 @@ var init_layout_svelte = __esm({
           font: 0,
           size: 1,
           color: "#5c5c5c",
-          style: "\n                    margin-bottom: var(--s14px);"
+          style: "\n                    margin-bottom: var(--s10px);"
         },
         {},
         {
@@ -91496,7 +91532,7 @@ var init_layout_svelte = __esm({
 </div>`;
     });
     css$4 = {
-      code: ".overlay.s-mtBDmpwXHSHy{display:flex;position:fixed;z-index:10000;width:100vw;min-height:100vh;max-height:100vh;overflow-y:scroll;padding:var(--s50px) 0;background-color:rgba(0,0,0,0.9)}.form_c.s-mtBDmpwXHSHy{width:var(--s500px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c;margin:auto}.form.s-mtBDmpwXHSHy{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--theme-cardpadding);width:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}.language-select.s-mtBDmpwXHSHy{display:flex;align-items:center;justify-content:space-between;width:90%;margin-bottom:var(--s10px)}.language.s-mtBDmpwXHSHy{display:inline-flex;width:33%}.s-mtBDmpwXHSHy{}",
+      code: ".overlay.s-mtBDmpwXHSHy{display:flex;position:fixed;z-index:10000;width:100vw;min-height:100vh;max-height:100vh;overflow-y:scroll;padding:var(--s50px) 0;background-color:rgba(0,0,0,0.9)}.form_c.s-mtBDmpwXHSHy{width:var(--s500px);padding:var(--s3_75px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom left, \n            var(--theme-columns-0) 25%, \n            var(--theme-columns-2) 50%,\n            var(--theme-columns-4) 75%, \n            var(--theme-columns-6) 100%);border-radius:var(--s15px);border:var(--s1px) solid #5c5c5c;margin:auto}.form.s-mtBDmpwXHSHy{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--theme-cardpadding);width:100%;background-color:#f0f0f0;border-radius:var(--s15px);border:var(--s1px) solid #707070}.language-select.s-mtBDmpwXHSHy{display:flex;align-items:center;justify-content:space-between;width:100%;margin-bottom:var(--s10px)}.language.s-mtBDmpwXHSHy{display:inline-flex;width:33%}.s-mtBDmpwXHSHy{}",
       map: null
     };
     Form = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -91559,7 +91595,7 @@ var init_layout_svelte = __esm({
         if (event.data) {
           originalData = event.data;
           selectedTagNames = originalData.tags;
-          unselectedTagNames = COLUMNS[columnIndex].tags.filter((t2) => !selectedTagNames.includes(t2));
+          unselectedTagNames = JSON.parse(JSON.stringify(COLUMNS[columnIndex].tags)).filter((t2) => !selectedTagNames.includes(t2));
           columnIndex = originalData._columnIndex;
           modifiedData = JSON.parse(JSON.stringify(originalData));
           editMode = true;
@@ -91567,8 +91603,9 @@ var init_layout_svelte = __esm({
           lang = $_lang;
           setFormData();
         } else {
+          selectedTagNames = [];
+          unselectedTagNames = JSON.parse(JSON.stringify(COLUMNS[columnIndex].tags));
           columnIndex = event.columnIndex;
-          unselectedTagNames = COLUMNS[columnIndex].tags;
           showForm = true;
           lang = $_lang;
         }
@@ -91766,7 +91803,8 @@ var init_layout_svelte = __esm({
         {
           form: true,
           onclick: editPost,
-          text: strings2["save"]
+          text: strings2["save"],
+          style: "margin-bottom: var(--s10px)"
         },
         {},
         {}
@@ -91776,7 +91814,8 @@ var init_layout_svelte = __esm({
         {
           form: true,
           onclick: deletePost,
-          text: strings2[confirmDelete ? "confirm_delete" : "delete"]
+          text: strings2[confirmDelete ? "confirm_delete" : "delete"],
+          style: "margin-bottom: var(--s10px)"
         },
         {},
         {}
@@ -91785,7 +91824,8 @@ var init_layout_svelte = __esm({
         {
           form: true,
           onclick: createPost,
-          text: COLUMNS[columnIndex].submitButton
+          text: COLUMNS[columnIndex].submitButton,
+          style: "margin-bottom: var(--s10px)"
         },
         {},
         {}
@@ -91796,7 +91836,8 @@ var init_layout_svelte = __esm({
           form: true,
           cancel: true,
           onclick: resetForm,
-          text: COLUMNS[columnIndex].cancelButton
+          text: COLUMNS[columnIndex].cancelButton,
+          style: "margin-bottom: var(--s10px)"
         },
         {},
         {}
@@ -91992,9 +92033,9 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-f175260c.js";
-    imports = ["_app/immutable/pages/__layout.svelte-f175260c.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/text-input-eec74927.js", "_app/immutable/chunks/progress-d186047a.js", "_app/immutable/chunks/tags-7596142e.js", "_app/immutable/chunks/select-71c446ae.js"];
-    stylesheets = ["_app/immutable/assets/__layout-1a81adca.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/progress-6061950c.css", "_app/immutable/assets/tags-0c886ac3.css", "_app/immutable/assets/select-77dda6f0.css"];
+    file2 = "_app/immutable/pages/__layout.svelte-55cabfe6.js";
+    imports = ["_app/immutable/pages/__layout.svelte-55cabfe6.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/text-input-91e8440c.js", "_app/immutable/chunks/progress-a2e74fe9.js", "_app/immutable/chunks/tags-5c549625.js", "_app/immutable/chunks/select-c21a0fa7.js"];
+    stylesheets = ["_app/immutable/assets/__layout-11dba28c.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/progress-6061950c.css", "_app/immutable/assets/tags-0c886ac3.css", "_app/immutable/assets/select-77dda6f0.css"];
   }
 });
 
@@ -92052,16 +92093,16 @@ var init__2 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/proposal-5a78251b.js
+// .svelte-kit/output/server/_app/immutable/chunks/proposal-3f4da2a4.js
 var css$14, Card, strings$2, Timestamp2, strings$12, css5, Toolbar, strings3, Proposal;
-var init_proposal_5a78251b = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/proposal-5a78251b.js"() {
+var init_proposal_3f4da2a4 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/proposal-3f4da2a4.js"() {
     init_shims();
     init_index_35b769a7();
     init_store_e5ca78fd();
-    init_database_40aebd93();
-    init_text_input_a12d339e();
-    init_tags_340d2028();
+    init_database_feef22ab();
+    init_text_input_f1078574();
+    init_tags_1994a1d0();
     css$14 = {
       code: ".card-container.s-Hio59jcNIlCL{padding:var(--theme-cardseparationhalf)}.card.s-Hio59jcNIlCL{position:relative;max-height:-20px;width:100%;border-radius:var(--s3px);background-color:white;padding:var(--theme-cardpadding);overflow:hidden}.comment-container.s-Hio59jcNIlCL{position:relative;margin-top:var(--s9px);border-left:var(--s1px) solid #f0f0f0;padding-left:var(--s3px)}.comment-author.s-Hio59jcNIlCL{display:flex;align-items:baseline;justify-content:flex-start}.author-name.s-Hio59jcNIlCL{font-size:var(--s11px);color:black;font-weight:bold}.comment.s-Hio59jcNIlCL{display:inline-flex;font-size:var(--s12px);padding:2px 0px 0 0;border-radius:4px;color:rgb(57, 56, 56)}.comment-box.s-Hio59jcNIlCL{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:var(--theme-cardseparation)}.comment-text.s-Hio59jcNIlCL{position:relative;display:inline-flex;width:100%}.submit-button.s-Hio59jcNIlCL{position:absolute;display:flex;align-items:center;justify-content:center;z-index:1;top:0;right:0;height:100%;width:var(--comment-button-size);background-color:#f5f5f5;color:white;border-top-right-radius:var(--s3px);border-bottom-right-radius:var(--s3px)}.progress.s-Hio59jcNIlCL{animation:s-Hio59jcNIlCL-progress;animation-duration:500ms;animation-iteration-count:infinite}.delete-button.s-Hio59jcNIlCL{position:absolute;display:flex;align-items:center;justify-content:center;z-index:1;top:0;right:0;height:var(--comment-button-size);width:var(--comment-button-size);background-color:#e1e1e1;color:white;border-radius:var(--s3px)}@keyframes s-Hio59jcNIlCL-progress{from{background-color:#e1e1e1}to{background-color:#f5f5f5}}.s-Hio59jcNIlCL{}",
       map: null
@@ -92608,13 +92649,13 @@ var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
     init_shims();
     init_index_35b769a7();
-    init_database_40aebd93();
+    init_database_feef22ab();
     init_string_strip_html_esm();
     init_store_e5ca78fd();
-    init_text_input_a12d339e();
-    init_progress_svelte_svelte_type_style_lang_bb563ac3();
-    init_proposal_5a78251b();
-    init_tags_340d2028();
+    init_text_input_f1078574();
+    init_progress_svelte_svelte_type_style_lang_e6e66e7e();
+    init_proposal_3f4da2a4();
+    init_tags_1994a1d0();
     init_dist();
     init_dist2();
     init_dist3();
@@ -93431,8 +93472,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    file4 = "_app/immutable/pages/index.svelte-b8ba63a7.js";
-    imports3 = ["_app/immutable/pages/index.svelte-b8ba63a7.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/text-input-eec74927.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/tags-7596142e.js", "_app/immutable/chunks/progress-d186047a.js", "_app/immutable/chunks/proposal-2dc840b4.js"];
+    file4 = "_app/immutable/pages/index.svelte-aa9b4415.js";
+    imports3 = ["_app/immutable/pages/index.svelte-aa9b4415.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/text-input-91e8440c.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/tags-5c549625.js", "_app/immutable/chunks/progress-a2e74fe9.js", "_app/immutable/chunks/proposal-cba3592f.js"];
     stylesheets3 = ["_app/immutable/assets/index-bf28beb3.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/tags-0c886ac3.css", "_app/immutable/assets/progress-6061950c.css", "_app/immutable/assets/proposal-6e142b05.css"];
   }
 });
@@ -93447,17 +93488,17 @@ var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_35b769a7();
-    init_proposal_5a78251b();
+    init_proposal_3f4da2a4();
     init_store_e5ca78fd();
-    init_database_40aebd93();
+    init_database_feef22ab();
     init_dist();
     init_dist2();
     init_dist3();
     init_dist4();
     init_dist5();
-    init_text_input_a12d339e();
+    init_text_input_f1078574();
     import_chroma_js5 = __toESM(require_chroma(), 1);
-    init_tags_340d2028();
+    init_tags_1994a1d0();
     init_string_strip_html_esm();
     css7 = {
       code: ".preview.s-nkO0SViUUGe1{display:flex;justify-content:center;background-color:var(--theme-columnbackground);width:100%;height:100vh}.column-container.s-nkO0SViUUGe1{padding:var(--theme-cardseparationhalf);height:100%}.column.s-nkO0SViUUGe1{display:flex;align-items:center;justify-content:center;flex-direction:column;width:var(--theme-columnwidth);height:100%;padding:0 var(--theme-cardseparationhalf)}.s-nkO0SViUUGe1{}",
@@ -93504,8 +93545,8 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 4;
-    file5 = "_app/immutable/pages/post_preview.svelte-2ab93045.js";
-    imports4 = ["_app/immutable/pages/post_preview.svelte-2ab93045.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/proposal-2dc840b4.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/text-input-eec74927.js", "_app/immutable/chunks/tags-7596142e.js"];
+    file5 = "_app/immutable/pages/post_preview.svelte-84c22fb1.js";
+    imports4 = ["_app/immutable/pages/post_preview.svelte-84c22fb1.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/proposal-cba3592f.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/text-input-91e8440c.js", "_app/immutable/chunks/tags-5c549625.js"];
     stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-6e142b05.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/tags-0c886ac3.css"];
   }
 });
@@ -93564,9 +93605,9 @@ var init_users_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/admin/users.svelte.js"() {
     init_shims();
     init_index_35b769a7();
-    init_database_40aebd93();
+    init_database_feef22ab();
     init_store_e5ca78fd();
-    init_text_input_a12d339e();
+    init_text_input_f1078574();
     init_dist();
     init_dist2();
     init_dist3();
@@ -93626,8 +93667,8 @@ var init__6 = __esm({
     init_shims();
     init_users_svelte();
     index6 = 2;
-    file7 = "_app/immutable/pages/admin/users.svelte-347615d4.js";
-    imports6 = ["_app/immutable/pages/admin/users.svelte-347615d4.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/text-input-eec74927.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/select-71c446ae.js"];
+    file7 = "_app/immutable/pages/admin/users.svelte-4a145767.js";
+    imports6 = ["_app/immutable/pages/admin/users.svelte-4a145767.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/text-input-91e8440c.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/select-c21a0fa7.js"];
     stylesheets6 = ["_app/immutable/assets/users-ad6cc9f1.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/select-77dda6f0.css"];
   }
 });
@@ -93825,7 +93866,7 @@ var GET;
 var init_endpoints = __esm({
   ".svelte-kit/output/server/entries/endpoints/index.js"() {
     init_shims();
-    init_database_40aebd93();
+    init_database_feef22ab();
     init_dist();
     init_dist2();
     init_dist3();
@@ -96488,7 +96529,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-1e6da960.js", "imports": ["_app/immutable/start-1e6da960.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/index-b62ca7b4.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-a1cd7ba4.js", "imports": ["_app/immutable/start-a1cd7ba4.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/index-b62ca7b4.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

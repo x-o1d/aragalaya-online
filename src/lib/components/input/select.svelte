@@ -7,7 +7,7 @@
     import Font from "../display/font.svelte";
 
     export let style = '';
-    export let value;
+    export let value = undefined;
     export let placeholder;
     export let options;
     export let error;

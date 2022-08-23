@@ -95,7 +95,7 @@
     let url = _URL;
     let description = 'The online portal for the aragalaya movement in Sri Lanka';
     let type = 'website';
-    let imagex = 'https://firebasestorage.googleapis.com/v0/b/aragalaya-online.appspot.com/o/aragalaya-image.jpeg?alt=media&token=46171892-7f2f-49bb-8424-65ca7411271e';
+    let image = 'https://aragalaya.online/images/aragalaya-online-og-image-001.png';
     
     // if the url is for a specific post (?post=<post_id>) opengraph meta tags will be populated
     // with the data from that post.
@@ -123,7 +123,7 @@
                 images.push(...postData[key]);
             }
         })
-        if(images[0] && images[0].href) imagex = images[0].href;
+        if(images[0] && images[0].href) image = _URL + images[0].url;
     }
     // START - SSR: setup open graph tags for social shares
     
@@ -235,7 +235,7 @@
     <meta property="og:type"        content="{type}"/>
     <meta property="og:title"       content="{title}"/>
     <meta property="og:description" content="{description}"/>
-    <meta property="og:image"       content="{imagex}"/>
+    <meta property="og:image"       content="{image}"/>
 </svelte:head>
 
 <!-- Nav is the navigation bar component which is a fixed overlay-->

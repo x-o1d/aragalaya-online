@@ -124,9 +124,21 @@ export const _setupNavAnimations = (scrollElement) => {
     });
 
     // setup a listener for navigation menu click events
-    _eventListener('nav-click').subscribe((index) => {
+    _eventListener('nav-click').subscribe(({index, change}) => {
         // find the maximum horizontalIndex that can be scrolled to
         const maxLeft = (COLUMN_COUNT - Math.floor(window.innerWidth/sizeConfig.columnWidth));
+        // if change is true index is added to the current 
+        // horizontal index
+        if(change) {
+            if(((index < 0) && (hScrollIndex > 0)) ||
+                    ((index > 0) && (hScrollIndex < maxLeft))) {
+                index += hScrollIndex;
+            } else {
+                scrollEndAnimation(hScrollIndex? 1: -1);
+                return;
+            }
+            
+        }
 
         // if clicked index smaller than max left, scroll to it
         if(index < maxLeft) {
@@ -364,15 +376,19 @@ const move = (direction) => {
     } 
     // end of scroll
     else {
-        const SCROLL_END_ANIMATION = 10;
-        hScrollPositionTween.set(getHorizontalScrollPosition() - (SCROLL_END_ANIMATION*direction), {
-            duration: 100
-        });
-        setTimeout(() => {
-            hScrollPositionTween.set(getHorizontalScrollPosition());
-        }, 100);
+        scrollEndAnimation(direction);
     }
     moved = true;
+}
+
+const scrollEndAnimation = (direction) => {
+    const SCROLL_END_ANIMATION = 10;
+    hScrollPositionTween.set(getHorizontalScrollPosition() - (SCROLL_END_ANIMATION*direction), {
+        duration: 100
+    });
+    setTimeout(() => {
+        hScrollPositionTween.set(getHorizontalScrollPosition());
+    }, 100);
 }
 
 // calculate the scrollLeft value for the current hScrollIndex value

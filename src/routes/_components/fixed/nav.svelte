@@ -47,7 +47,7 @@
     // nav bar hidden flag
     let hidden = false;
     
-    function showHide() {
+    const showHide = () => {
         if(hidden) {
             height.set((COLUMN_COUNT + 1) * _getSizeConfig().navSize);
         } else {
@@ -55,6 +55,15 @@
         }
         hidden = !hidden;
     }
+
+    const goRight = () => {
+        _emitEvent('nav-click', {index: 1, change: true})
+    }
+
+    const goLeft = () => {
+        _emitEvent('nav-click', {index: -1, change: true})
+    }
+
 </script>
 
 <div class="navigation">
@@ -66,7 +75,7 @@
                 <div 
                     style="color: var(--theme-navigation-{_i})"
                     class="icon _clickable"
-                    on:click={() => _emitEvent('nav-click', _i)}>
+                    on:click={() => _emitEvent('nav-click', {index: _i})}>
                     <i class={column.icon}/>
                 </div>
             {/each}
@@ -77,6 +86,18 @@
             </div>
         </div>
     </div>
+    {#if $_isMobile}
+    <div 
+        on:click={goRight}
+        class="icon go _clickable">
+            <i class="fa-solid fa-angle-right"/>
+    </div>
+    <div 
+        on:click={goLeft}
+        class="icon go _clickable">
+            <i class="fa-solid fa-angle-left"/>
+    </div>
+    {/if}
     <div 
         on:click={showHide}
         class="icon show-hide _clickable">
@@ -128,6 +149,9 @@
         z-index: 1;
         color: white;
         border-radius: var(--s6px);
+    }
+    .go {
+        color: white;
     }
     .scroll {
         position: absolute;

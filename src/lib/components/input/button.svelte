@@ -9,8 +9,8 @@
     // TODO:: change onclick to a standard on:click event dispatcher
     export let onclick;
     export let text;
-    export let cancel;
-    export let form;
+    export let cancel = false;
+    export let form = false;
     export let selected = false;
     export let style = undefined;
     export let fontSize = undefined;
