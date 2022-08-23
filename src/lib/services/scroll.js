@@ -159,6 +159,8 @@ let lastScrollTime = Array(COLUMN_COUNT).fill(0);
 // position of each column
 let columnHeight;
 export const _handleColumnScroll = (event, columnIndex) => {
+    // scrollbar animation is diabled in mobile for performance
+    if(isMobile) return;
 
     // calculate the height of the column
     // it is calculated for once a single scroll session and reset by
@@ -275,8 +277,8 @@ const unfiedMoveHandler = (deltaX, deltaY) => {
     moveDeltaXCache.unshift(deltaX);
     moveDeltaYCache.unshift(deltaY);
 
-    const PEEK_THRESHOLD = 20;
-    const MOVE_THRESHOLD = 40;
+    const PEEK_THRESHOLD = 16;
+    const MOVE_THRESHOLD = 32;
 
     // call peek or move based on the values in the xCache
     let xTotal = 0;
@@ -297,7 +299,7 @@ const unfiedMoveHandler = (deltaX, deltaY) => {
         }
     });
 
-    const HIDE_NAV_THRESHOLD = 20;
+    const HIDE_NAV_THRESHOLD = 16;
 
     // hide navbar based on the values in the yCache
     let yTotal = 0;
