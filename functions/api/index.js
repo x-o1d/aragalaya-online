@@ -152,9 +152,17 @@ exports.add_post = functions.region(region).runWith(runtimeOpts).https.onCall(as
     if((process.env.MODE == 'prod') && modifiedData.verified) {
         let title = (modifiedData.title && modifiedData.title[0]) || 
                             (modifiedData.organization && modifiedData.organization[0]);
-        title = urlencode(title);
-        if(title) {
-            const url = `https://graph.facebook.com/aragalaya.online/feed?message=${title}&link=https://aragalaya.online/?post=${modifiedData.id}&access_token=${FACEBOOK_PAGE_TOKEN}`
+        let image;
+        Object.keys(modifiedData).find(key => {
+            if(key.includes('_images')) {
+                if(modifiedData[key][0].href) {
+                    image = modifiedData[key][0].href;
+                    return true;
+                }
+            }
+        })
+        if(title && image) {
+            const url = `https://graph.facebook.com/aragalaya.online/photos?alt_text_custom$=${urlencode(title)}&caption=${urlencode(title)}%0A%0Ahttps://aragalaya.online/?post=${modifiedData.id}&url=${urlencode(image)}&access_token=${FACEBOOK_PAGE_TOKEN}`
             await (new Promise((resolve) => {
                 request.post({
                     url,
@@ -344,7 +352,7 @@ exports.images = functions.region(region).runWith(imageRuntimeOpts).https.onRequ
     const imageURL = req.url;
     const imageName = imageURL.split('/images/')[1];
     let image = (await firestore.collection('Images').doc(imageName).get()).data();
-    
+
     // fetch image from firebase storage
     const imageBuffer = await (new Promise(resolve => {
         request({

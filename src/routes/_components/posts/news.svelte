@@ -42,7 +42,7 @@
         size={0.75}
         color="rgb(55, 55, 55);"
         style="margin-bottom: var(--theme-cardseparationhalf);">
-        {data.createdByName}
+        {data.createdByName.toLowerCase()}
     </Font>
     <!-- description -->
     <Font

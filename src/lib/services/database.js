@@ -228,6 +228,7 @@ export const _createImage = async (image) => {
     try {
         const docRef = doc(collection(db, 'Images'), image.name);
         const result = await setDoc(docRef, image);
+        console.log(result, image);
         return image;
     } catch (error) {
         if(error.code == 'permission-denied') {

@@ -6,10 +6,10 @@ let app = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
 
-let uid = 'XeZQPuTZdPh0ver3P2w4EqpCvsk2'
+let uid = '6FaB0kRzOUZebqon7Mx4s6yOiTC2'
 
 const claims = {
-    super: true,
+    admin: true,
 }
   
 const firestore = admin.firestore(app);
