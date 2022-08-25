@@ -8,9 +8,11 @@ export const GET = async ({ url }) => {
     // index.svelte route will automatically display the post data in
     // an overlay
     let postData;
-    if(url.search.includes('=')) {
-        let postId = url.search.split('=')[1];
-        promises.push(_getPost(postId)
+    // find post id
+    const regex = /post=([^&;]+)/g;
+    const match = regex.exec(url.search);
+    if(match) {
+        promises.push(_getPost(match[1])
             .then(result => { postData = result }));
     }
     // fetch the initial column data

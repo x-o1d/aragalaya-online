@@ -9,6 +9,8 @@ const admin = require('firebase-admin');
 const service = google.youtube('v3');
 const { API_KEY } = require('../sensitive/google-apikey.cjs');
 const { API_KEY_PROD } = require('../sensitive/google-apikey-prod.cjs');
+const { FACEBOOK_PAGE_TOKEN } = require('../sensitive/facebook-page-token.cjs');
+const urlencode = require('urlencode');
 
 admin.initializeApp();
 
@@ -27,7 +29,6 @@ if(process.env.MODE == "localhost") {
 // so that it can be specified in og:image tag for video post
 // social shares
 async function getThumbnail(data) {
-    logger.info(process.env.MODE)
     for (let key of Object.keys(data)) {
         if(key.includes('_videoId')) {
             let thumbnail = await new Promise((resolve) => {
@@ -36,8 +37,13 @@ async function getThumbnail(data) {
                     part: 'snippet',
                     id: data[key],
                 }, function(err, response) {
-                    if(!err && response.data.items[0]) {
-                        resolve(response.data.items[0].snippet.thumbnails.standard);
+                    if(!err) {
+                        if(response.data.items[0]) {
+                            let thumbnails = response.data.items[0].snippet.thumbnails;
+                            resolve(thumbnails.medium || thumbnails.high || thumbnails.standard || thumbnails.default);
+                        } else {
+                            logger.info('Error getting thumbnail: ', 'response.data.items[0] not defined');
+                        }
                     } else {
                         logger.info('Error getting thumbnail: ', err);
                     }
@@ -45,6 +51,8 @@ async function getThumbnail(data) {
             });
             if(thumbnail) {
                 data[key.split('_')[0] + '_images'] = [{href: thumbnail.url}];
+            } else {
+                logger.info('Error getting thumbnail: ', 'thumbnail not found in snippet.thumbnails');
             }
         }
     }
@@ -139,6 +147,24 @@ exports.add_post = functions.region(region).runWith(runtimeOpts).https.onCall(as
     let document = firestore.collection('Posts').doc();
     modifiedData.id = document.id;
     await document.set(modifiedData);
+
+    // create a facebook post in the aragalaya.online facebook page
+    if((process.env.MODE == 'prod') && modifiedData.verified) {
+        let title = (modifiedData.title && modifiedData.title[0]) || 
+                            (modifiedData.organization && modifiedData.organization[0]);
+        title = urlencode(title);
+        if(title) {
+            const url = `https://graph.facebook.com/aragalaya.online/feed?message=${title}&link=https://aragalaya.online/?post=${modifiedData.id}&access_token=${FACEBOOK_PAGE_TOKEN}`
+            await (new Promise((resolve) => {
+                request.post({
+                    url,
+                }, (err) => {
+                    if(err) logger.info(err);
+                    resolve();
+                })
+            }));
+        }
+    }
 
     return modifiedData;
 });

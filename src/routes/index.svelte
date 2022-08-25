@@ -95,7 +95,7 @@
     let url = _URL;
     let description = 'The online portal for the aragalaya movement in Sri Lanka';
     let type = 'website';
-    let image = 'https://aragalaya.online/images/aragalaya-online-og-image-001.png';
+    let image = 'https://aragalaya.online/images/aragalaya-online-og-image-002.png';
     
     // if the url is for a specific post (?post=<post_id>) opengraph meta tags will be populated
     // with the data from that post.
@@ -123,7 +123,18 @@
                 images.push(...postData[key]);
             }
         })
-        if(images[0] && images[0].href) image = _URL + images[0].url;
+        if(images[0] && (images[0].url || images[0].href)) {
+            // images added in text posts has a url property which is relative
+            // to the app domain
+            if(images[0].url) {
+                image = _URL + images[0].url;
+            } 
+            // images added in youtube video posts has an href property which
+            // is an absolute url
+            else {
+                image = images[0].href;
+            }
+        }
     }
     // START - SSR: setup open graph tags for social shares
     

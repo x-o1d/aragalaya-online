@@ -93,9 +93,9 @@
             // initialize the editor with the post data
             originalData = event.data;
             selectedTagNames = originalData.tags;
+            columnIndex = originalData._columnIndex;
             unselectedTagNames = JSON.parse(JSON.stringify(COLUMNS[columnIndex].tags))
                 .filter(t => !selectedTagNames.includes(t));
-            columnIndex = originalData._columnIndex;
 
             // clone original data
             modifiedData = JSON.parse(JSON.stringify(originalData));
@@ -109,8 +109,8 @@
         // create post mode
         else {
             selectedTagNames = [];
-            unselectedTagNames = JSON.parse(JSON.stringify(COLUMNS[columnIndex].tags));
             columnIndex = event.columnIndex;
+            unselectedTagNames = JSON.parse(JSON.stringify(COLUMNS[columnIndex].tags));
 
             showForm = true;
             lang = $_lang;
@@ -378,26 +378,22 @@
             <Button
                 form
                 onclick={editPost}
-                text={_strings['save']}
-                style="margin-bottom: var(--s10px)"/>
+                text={_strings['save']}/>
             <Button
                 form
                 onclick={deletePost}
-                text={_strings[confirmDelete? 'confirm_delete': 'delete']}
-                style="margin-bottom: var(--s10px)"/>
+                text={_strings[confirmDelete? 'confirm_delete': 'delete']}/>
             {:else}
             <Button
                 form
                 onclick={createPost}
-                text={COLUMNS[columnIndex].submitButton}
-                style="margin-bottom: var(--s10px)"/>
+                text={COLUMNS[columnIndex].submitButton}/>
             {/if}
             <Button
                 form
                 cancel
                 onclick={resetForm}
-                text={COLUMNS[columnIndex].cancelButton}
-                style="margin-bottom: var(--s10px)"/>
+                text={COLUMNS[columnIndex].cancelButton}/>
         </div>
     </div>
 </div>

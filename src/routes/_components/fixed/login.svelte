@@ -284,8 +284,7 @@
                 form
                 onclick={continueEmailSignin}
                 text={_strings['continue']}
-                progress={loginProgress}
-                style="margin-bottom: var(--s10px)"/>
+                progress={loginProgress}/>
             <Font
                 font={0}
                 size={1}

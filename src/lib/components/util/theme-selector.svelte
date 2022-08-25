@@ -72,7 +72,7 @@
 <style>
     span {
         position: fixed;
-        z-index: 10;
+        z-index: 10000;
     }
     div {
         width: var(--s30px);

@@ -205,7 +205,7 @@
 			.online
 		</div>
         <div class="beta">
-            {import.meta.env.MODE == 'prod'? '(beta)': '(dev-beta)'}
+            {import.meta.env.MODE == 'prod'? '(public 𝛃)': '(dev 𝛃)'}
         </div>
 	</div>
 	<ul class="header-right">
@@ -414,7 +414,7 @@
         top: var(--s35px);
         right: var(--s-22_5px);
 
-        z-index: 10;
+        z-index: 10000;
         width: var(--s80px);
 
         border-radius: var(--s3px);

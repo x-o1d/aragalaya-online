@@ -70547,10 +70547,10 @@ var init_text_input_f1078574 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/progress.svelte_svelte_type_style_lang-e6e66e7e.js
+// .svelte-kit/output/server/_app/immutable/chunks/progress.svelte_svelte_type_style_lang-62dae9a2.js
 var css$1, Preloading_indicator, css2, Button;
-var init_progress_svelte_svelte_type_style_lang_e6e66e7e = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/progress.svelte_svelte_type_style_lang-e6e66e7e.js"() {
+var init_progress_svelte_svelte_type_style_lang_62dae9a2 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/progress.svelte_svelte_type_style_lang-62dae9a2.js"() {
     init_shims();
     init_index_35b769a7();
     init_store_e5ca78fd();
@@ -70579,8 +70579,8 @@ var init_progress_svelte_svelte_type_style_lang_e6e66e7e = __esm({
       $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
       let { onclick } = $$props;
       let { text } = $$props;
-      let { cancel } = $$props;
-      let { form } = $$props;
+      let { cancel = false } = $$props;
+      let { form = false } = $$props;
       let { selected = false } = $$props;
       let { style = void 0 } = $$props;
       let { fontSize = void 0 } = $$props;
@@ -70614,7 +70614,8 @@ var init_progress_svelte_svelte_type_style_lang_e6e66e7e = __esm({
           return `${escape(Array.isArray(text) ? text[$_lang] : text)}`;
         }
       })}</div>
-${progress ? `<div class="${"preloader s-d9-80eNJ_c8b"}">${validate_component(Preloading_indicator, "PreloadingIndicator").$$render($$result, { height: 2 }, {}, {})}</div>` : ``}`;
+${progress ? `<div class="${"preloader s-d9-80eNJ_c8b"}">${validate_component(Preloading_indicator, "PreloadingIndicator").$$render($$result, { height: 2 }, {}, {})}</div>` : ``}
+<div style="${"margin-bottom: var(--s10px)"}" class="${"s-d9-80eNJ_c8b"}"></div>`;
     });
     getStorage(app);
   }
@@ -91031,7 +91032,7 @@ var init_layout_svelte = __esm({
     init_database_feef22ab();
     init_text_input_f1078574();
     init_dist3();
-    init_progress_svelte_svelte_type_style_lang_e6e66e7e();
+    init_progress_svelte_svelte_type_style_lang_62dae9a2();
     init_tags_1994a1d0();
     import_extension_text = __toESM(require_tiptap_extension_text_cjs(), 1);
     import_extension_bold = __toESM(require_tiptap_extension_bold_cjs(), 1);
@@ -91099,15 +91100,18 @@ var init_layout_svelte = __esm({
         `<b>\u0DBB\u0DC4\u0DC3\u0DCA\u200D\u0DBA\u0DAD\u0DCF \u0DB4\u0DCA\u200D\u0DBB\u0DAD\u0DD2\u0DB4\u0DAD\u0DCA\u0DAD\u0DD2\u0DBA:</b><br><br>
         \u0D85\u0DB4\u0DD2 \u0D94\u0DB6\u0D9C\u0DDA \u0DC3\u0DB4\u0DBA\u0DCF \u0D87\u0DAD\u0DD2 \u0DB1\u0DB8 \u0DC3\u0DC4 \u0DC0\u0DD2\u0DAF\u0DCA\u200D\u0DBA\u0DD4\u0DAD\u0DCA \u0DAD\u0DD0\u0DB4\u0DD1\u0DBD \u0DC4\u0DD0\u0DBB \u0DC0\u0DD9\u0DB1\u0DAD\u0DCA \u0D9A\u0DD2\u0DC3\u0DD2\u0DAF\u0DD4 \u0DAD\u0DDC\u0DBB\u0DAD\u0DD4\u0DBB\u0D9A\u0DCA \u0DBB\u0DD0\u0DC3\u0DCA \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8 \u0DC4\u0DDD \u0D9C\u0DB6\u0DA9\u0DCF \u0D9A\u0DD2\u0DBB\u0DD3\u0DB8 \u0DB1\u0DDC\u0D9A\u0DBB\u0DB8\u0DD4.<br>
         \u0DB8\u0DD9\u0DB8 \u0DAD\u0DDC\u0DBB\u0DAD\u0DD4\u0DBB\u0DD4 \u0D86\u0DBB\u0D9A\u0DCA\u0DC2\u0DD2\u0DAD\u0DC0 \u0D9C\u0DB6\u0DA9\u0DCF \u0D9A\u0DBB \u0D87\u0DAD\u0DD2 \u0D85\u0DAD\u0DBB \u0DC0\u0DD9\u0DB1\u0DAD\u0DCA \u0D9A\u0DD2\u0DC3\u0DD2\u0DAF\u0DD4 \u0D9A\u0DA7\u0DBA\u0DD4\u0DAD\u0DCA\u0DAD\u0D9A\u0DCA \u0DC3\u0DB3\u0DC4\u0DCF \u0DB7\u0DCF\u0DC0\u0DD2\u0DAD\u0DCF \u0DB1\u0DDC\u0D9A\u0DBB\u0DB1 \u0DB6\u0DC0\u0DA7 \u0D85\u0DB4\u0DD2 \u0DC3\u0DC4\u0DAD\u0DD2\u0D9A \u0DC0\u0DD9\u0DB8\u0DD4.<br><br>
-        \u0D94\u0DB6\u0DA7 \u0D94\u0DB6\u0D9C\u0DDA \u0DC0\u0DD2\u0DAF\u0DCA\u200D\u0DBA\u0DD4\u0DAD\u0DCA \u0DAD\u0DD0\u0DB4\u0DD1\u0DBD \u0DC3\u0DD0\u0D9F\u0DC0\u0DD3\u0DB8\u0DA7 \u0D85\u0DC0\u0DC1\u0DCA\u200D\u0DBA \u0DB1\u0DB8\u0DCA, \u0D94\u0DB6\u0DA7 facebook \u0DB4\u0DD4\u0DBB\u0DB1\u0DBA \u0DC0\u0DD3\u0DB8\u0DDA \u0D9A\u0DCA\u200D\u0DBB\u0DB8\u0DBA \u0DB7\u0DCF\u0DC0\u0DD2\u0DAD\u0DCF \u0D9A\u0DBB, 'edit access' \u0D9A\u0DCA\u0DBD\u0DD2\u0D9A\u0DCA \u0D9A\u0DBB \u0D94\u0DB6\u0D9C\u0DDA \u0DC0\u0DD2\u0DAF\u0DCA\u200D\u0DBA\u0DD4\u0DAD\u0DCA \u0DAD\u0DD0\u0DB4\u0DD1\u0DBD \u0DC3\u0DD0\u0D9F\u0DC0\u0DD2\u0DBA \u0DC4\u0DD0\u0D9A.`,
+        \u0D94\u0DB6\u0DA7 \u0D94\u0DB6\u0D9C\u0DDA \u0DC0\u0DD2\u0DAF\u0DCA\u200D\u0DBA\u0DD4\u0DAD\u0DCA \u0DAD\u0DD0\u0DB4\u0DD1\u0DBD \u0DC3\u0DD0\u0D9F\u0DC0\u0DD3\u0DB8\u0DA7 \u0D85\u0DC0\u0DC1\u0DCA\u200D\u0DBA \u0DB1\u0DB8\u0DCA, \u0D94\u0DB6\u0DA7 facebook \u0DB4\u0DD4\u0DBB\u0DB1\u0DBA \u0DC0\u0DD3\u0DB8\u0DDA \u0D9A\u0DCA\u200D\u0DBB\u0DB8\u0DBA \u0DB7\u0DCF\u0DC0\u0DD2\u0DAD\u0DCF \u0D9A\u0DBB, 'edit access' \u0D9A\u0DCA\u0DBD\u0DD2\u0D9A\u0DCA \u0D9A\u0DBB \u0D94\u0DB6\u0D9C\u0DDA \u0DC0\u0DD2\u0DAF\u0DCA\u200D\u0DBA\u0DD4\u0DAD\u0DCA \u0DAD\u0DD0\u0DB4\u0DD1\u0DBD \u0DC3\u0DD0\u0D9F\u0DC0\u0DD2\u0DBA \u0DC4\u0DD0\u0D9A..<br><br>
+        \u0D94\u0DB6 \u0DB8\u0DD9\u0DB8 \u0DBA\u0DD9\u0DAF\u0DD4\u0DB8 \u0DAD\u0DD4\u0DC5 \u0D87\u0DAD\u0DD4\u0DC5\u0DAD\u0DCA \u0D9A\u0DBB\u0DB1 \u0D95\u0DB1\u0DD1\u0DB8 \u0DAF\u0DAD\u0DCA\u0DAD\u0DBA\u0D9A \u0DC3\u0DB8\u0DCA\u0DB4\u0DD6\u0DBB\u0DCA\u0DAB \u0DC4\u0DD2\u0DB8\u0DD2\u0D9A\u0DCF\u0DBB\u0DD2\u0DAD\u0DCA\u0DC0\u0DBA \u0D94\u0DB6 \u0DC3\u0DAD\u0DD4 \u0DC0\u0DB1 \u0D85\u0DAD\u0DBB, \u0D94\u0DB6\u0DDA \u0DB4\u0DD6\u0DBB\u0DCA\u0DC0 \u0D85\u0DB1\u0DD4\u0DB8\u0DD0\u0DAD\u0DD2\u0DBA\u0D9A\u0DD2\u0DB1\u0DCA \u0DAD\u0DDC\u0DBB\u0DC0 \u0D94\u0DB6\u0DDA \u0DAF\u0DAD\u0DCA\u0DAD \u0DC0\u0DD9\u0DB1\u0DC3\u0DCA \u0DB1\u0DDC\u0D9A\u0DBB\u0DB1\u0DD4 \u0D87\u0DAD. \u0D9A\u0DD9\u0DC3\u0DDA \u0DC0\u0DD9\u0DAD\u0DAD\u0DCA \u0D85\u0DB4\u0D9C\u0DDA \u0D9A\u0DBB\u0DD4\u0DAB\u0DD4 \u0DB4\u0DBB\u0DD3\u0D9A\u0DCA\u0DC2\u0D9A\u0DBA\u0DD2\u0DB1\u0DCA \u0D91\u0DC4\u0DD2 \u0D85\u0DB1\u0DCA\u0DAD\u0DBB\u0DCA\u0D9C\u0DAD\u0DBA\u0DDA \u0DC3\u0DAD\u0DCA\u200D\u0DBA\u0DAD\u0DCF\u0DC0 \u0DAD\u0DC4\u0DC0\u0DD4\u0DBB\u0DD4 \u0D9A\u0DBB \u0DC3\u0DAD\u0DCA\u200D\u0DBA\u0DCF\u0DB4\u0DD2\u0DAD \u0DC3\u0DBD\u0D9A\u0DD4\u0DAB \u0DBA\u0DDC\u0DAF\u0DB1\u0DD4 \u0D87\u0DAD.`,
         `<b>privacy policy:</b><br><br>
         we do not collect or store any information other your provided name and email.<br>
         we gurantee that this information is stored securely and will not be used for any other purpose.<br><br>
-        if you wish to hide your email, you can use the facebook sign-in method, click 'edit access' and hide your email.`,
+        if you wish to hide your email, you can use the facebook sign-in method, click 'edit access' and hide your email.<br><br>
+        you will have the complete ownership of any data you enter in this app, and your data will not be modified without your prior consent. however our fact checkers will verify the truthfulness of the content and set the verified status.`,
         `<b>\u0BA4\u0BA9\u0BBF\u0BAF\u0BC1\u0BB0\u0BBF\u0BAE\u0BC8\u0B95\u0BCD \u0B95\u0BCA\u0BB3\u0BCD\u0B95\u0BC8:</b><br><br>
         \u0BA8\u0BC0\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0BB5\u0BB4\u0B99\u0BCD\u0B95\u0BBF\u0BAF \u0BAA\u0BC6\u0BAF\u0BB0\u0BCD \u0BAE\u0BB1\u0BCD\u0BB1\u0BC1\u0BAE\u0BCD \u0BAE\u0BBF\u0BA9\u0BCD\u0BA9\u0B9E\u0BCD\u0B9A\u0BB2\u0BC8 \u0BA8\u0BBE\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0B9A\u0BC7\u0B95\u0BB0\u0BBF\u0B95\u0BCD\u0B95\u0BB5\u0BCB \u0B85\u0BB2\u0BCD\u0BB2\u0BA4\u0BC1 \u0B9A\u0BC7\u0BAE\u0BBF\u0B95\u0BCD\u0B95\u0BB5\u0BCB \u0BAE\u0BBE\u0B9F\u0BCD\u0B9F\u0BCB\u0BAE\u0BCD.<br>
         \u0B87\u0BA8\u0BCD\u0BA4\u0BA4\u0BCD \u0BA4\u0B95\u0BB5\u0BB2\u0BCD \u0BAA\u0BBE\u0BA4\u0BC1\u0B95\u0BBE\u0BAA\u0BCD\u0BAA\u0BBE\u0B95\u0B9A\u0BCD \u0B9A\u0BC7\u0BAE\u0BBF\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BCD\u0B9F\u0BC1, \u0BB5\u0BC7\u0BB1\u0BC1 \u0B8E\u0BA8\u0BCD\u0BA4 \u0BA8\u0BCB\u0B95\u0BCD\u0B95\u0BA4\u0BCD\u0BA4\u0BBF\u0BB1\u0BCD\u0B95\u0BBE\u0B95\u0BB5\u0BC1\u0BAE\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4\u0BAA\u0BCD\u0BAA\u0B9F\u0BBE\u0BA4\u0BC1 \u0B8E\u0BA9\u0BCD\u0BAA\u0BA4\u0BB1\u0BCD\u0B95\u0BC1 \u0BA8\u0BBE\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0B89\u0BA4\u0BCD\u0BA4\u0BB0\u0BB5\u0BBE\u0BA4\u0BAE\u0BCD \u0B85\u0BB3\u0BBF\u0B95\u0BCD\u0B95\u0BBF\u0BB1\u0BCB\u0BAE\u0BCD.<br><br>
-        \u0B89\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0BAE\u0BBF\u0BA9\u0BCD\u0BA9\u0B9E\u0BCD\u0B9A\u0BB2\u0BC8 \u0BAE\u0BB1\u0BC8\u0B95\u0BCD\u0B95 \u0BB5\u0BBF\u0BB0\u0BC1\u0BAE\u0BCD\u0BAA\u0BBF\u0BA9\u0BBE\u0BB2\u0BCD, \u0BA8\u0BC0\u0B99\u0BCD\u0B95\u0BB3\u0BCD facebook \u0B89\u0BB3\u0BCD\u0BA8\u0BC1\u0BB4\u0BC8\u0BB5\u0BC1 \u0BAE\u0BC1\u0BB1\u0BC8\u0BAF\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4\u0BB2\u0BBE\u0BAE\u0BCD, '\u0B8E\u0B9F\u0BBF\u0B9F\u0BCD \u0B85\u0B95\u0BCD\u0B9A\u0BB8\u0BCD' \u0B8E\u0BA9\u0BCD\u0BAA\u0BA4\u0BC8\u0B95\u0BCD \u0B95\u0BBF\u0BB3\u0BBF\u0B95\u0BCD \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BC1 \u0B89\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0BAE\u0BBF\u0BA9\u0BCD\u0BA9\u0B9E\u0BCD\u0B9A\u0BB2\u0BC8 \u0BAE\u0BB1\u0BC8\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD.`
+        \u0B89\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0BAE\u0BBF\u0BA9\u0BCD\u0BA9\u0B9E\u0BCD\u0B9A\u0BB2\u0BC8 \u0BAE\u0BB1\u0BC8\u0B95\u0BCD\u0B95 \u0BB5\u0BBF\u0BB0\u0BC1\u0BAE\u0BCD\u0BAA\u0BBF\u0BA9\u0BBE\u0BB2\u0BCD, \u0BA8\u0BC0\u0B99\u0BCD\u0B95\u0BB3\u0BCD facebook \u0B89\u0BB3\u0BCD\u0BA8\u0BC1\u0BB4\u0BC8\u0BB5\u0BC1 \u0BAE\u0BC1\u0BB1\u0BC8\u0BAF\u0BC8\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4\u0BB2\u0BBE\u0BAE\u0BCD, '\u0B8E\u0B9F\u0BBF\u0B9F\u0BCD \u0B85\u0B95\u0BCD\u0B9A\u0BB8\u0BCD' \u0B8E\u0BA9\u0BCD\u0BAA\u0BA4\u0BC8\u0B95\u0BCD \u0B95\u0BBF\u0BB3\u0BBF\u0B95\u0BCD \u0B9A\u0BC6\u0BAF\u0BCD\u0BA4\u0BC1 \u0B89\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0BAE\u0BBF\u0BA9\u0BCD\u0BA9\u0B9E\u0BCD\u0B9A\u0BB2\u0BC8 \u0BAE\u0BB1\u0BC8\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD.<br><br>
+        \u0B87\u0BA8\u0BCD\u0BA4\u0BAA\u0BCD \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0BBE\u0B9F\u0BCD\u0B9F\u0BBF\u0BB2\u0BCD \u0BA8\u0BC0\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0B89\u0BB3\u0BCD\u0BB3\u0BBF\u0B9F\u0BC1\u0BAE\u0BCD \u0B8E\u0BA8\u0BCD\u0BA4\u0BB5\u0BCA\u0BB0\u0BC1 \u0BA4\u0BB0\u0BB5\u0BBF\u0BA9\u0BCD \u0BAE\u0BC1\u0BB4\u0BC1 \u0B89\u0BB0\u0BBF\u0BAE\u0BC8\u0BAF\u0BC1\u0BAE\u0BCD \u0B89\u0B99\u0BCD\u0B95\u0BB3\u0BBF\u0B9F\u0BAE\u0BCD \u0B87\u0BB0\u0BC1\u0B95\u0BCD\u0B95\u0BC1\u0BAE\u0BCD, \u0BAE\u0BC7\u0BB2\u0BC1\u0BAE\u0BCD \u0B89\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0BAE\u0BC1\u0BA9\u0BCD \u0B85\u0BA9\u0BC1\u0BAE\u0BA4\u0BBF\u0BAF\u0BBF\u0BA9\u0BCD\u0BB1\u0BBF \u0B89\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0BA4\u0BB0\u0BB5\u0BC1 \u0BAE\u0BBE\u0BB1\u0BCD\u0BB1\u0BAA\u0BCD\u0BAA\u0B9F\u0BBE\u0BA4\u0BC1. \u0B8E\u0BB5\u0BCD\u0BB5\u0BBE\u0BB1\u0BBE\u0BAF\u0BBF\u0BA9\u0BC1\u0BAE\u0BCD, \u0B8E\u0B99\u0BCD\u0B95\u0BB3\u0BCD \u0B89\u0BA3\u0BCD\u0BAE\u0BC8\u0B9A\u0BCD \u0B9A\u0BB0\u0BBF\u0BAA\u0BBE\u0BB0\u0BCD\u0BAA\u0BCD\u0BAA\u0BBE\u0BB3\u0BB0\u0BCD\u0B95\u0BB3\u0BCD \u0B89\u0BB3\u0BCD\u0BB3\u0B9F\u0B95\u0BCD\u0B95\u0BA4\u0BCD\u0BA4\u0BBF\u0BA9\u0BCD \u0B89\u0BA3\u0BCD\u0BAE\u0BC8\u0BA4\u0BCD\u0BA4\u0BA9\u0BCD\u0BAE\u0BC8\u0BAF\u0BC8 \u0B9A\u0BB0\u0BBF\u0BAA\u0BBE\u0BB0\u0BCD\u0BA4\u0BCD\u0BA4\u0BC1, \u0B9A\u0BB0\u0BBF\u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BAA\u0BCD\u0BAA\u0B9F\u0BCD\u0B9F \u0BA8\u0BBF\u0BB2\u0BC8\u0BAF\u0BC8 \u0B85\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BBE\u0BB0\u0BCD\u0B95\u0BB3\u0BCD.`
       ]
     };
     css$8 = {
@@ -91335,8 +91339,7 @@ var init_layout_svelte = __esm({
           form: true,
           onclick: continueEmailSignin,
           text: strings$1["continue"],
-          progress: loginProgress,
-          style: "margin-bottom: var(--s10px)"
+          progress: loginProgress
         },
         {},
         {}
@@ -91492,7 +91495,7 @@ var init_layout_svelte = __esm({
       validate_store(_lang, "_lang");
       $$unsubscribe__lang = subscribe(_lang, (value2) => value2);
       let { style = "" } = $$props;
-      let { value } = $$props;
+      let { value = void 0 } = $$props;
       let { placeholder } = $$props;
       let { options } = $$props;
       let { error: error2 } = $$props;
@@ -91595,8 +91598,8 @@ var init_layout_svelte = __esm({
         if (event.data) {
           originalData = event.data;
           selectedTagNames = originalData.tags;
-          unselectedTagNames = JSON.parse(JSON.stringify(COLUMNS[columnIndex].tags)).filter((t2) => !selectedTagNames.includes(t2));
           columnIndex = originalData._columnIndex;
+          unselectedTagNames = JSON.parse(JSON.stringify(COLUMNS[columnIndex].tags)).filter((t2) => !selectedTagNames.includes(t2));
           modifiedData = JSON.parse(JSON.stringify(originalData));
           editMode = true;
           showForm = true;
@@ -91604,8 +91607,8 @@ var init_layout_svelte = __esm({
           setFormData();
         } else {
           selectedTagNames = [];
-          unselectedTagNames = JSON.parse(JSON.stringify(COLUMNS[columnIndex].tags));
           columnIndex = event.columnIndex;
+          unselectedTagNames = JSON.parse(JSON.stringify(COLUMNS[columnIndex].tags));
           showForm = true;
           lang = $_lang;
         }
@@ -91803,8 +91806,7 @@ var init_layout_svelte = __esm({
         {
           form: true,
           onclick: editPost,
-          text: strings2["save"],
-          style: "margin-bottom: var(--s10px)"
+          text: strings2["save"]
         },
         {},
         {}
@@ -91814,8 +91816,7 @@ var init_layout_svelte = __esm({
         {
           form: true,
           onclick: deletePost,
-          text: strings2[confirmDelete ? "confirm_delete" : "delete"],
-          style: "margin-bottom: var(--s10px)"
+          text: strings2[confirmDelete ? "confirm_delete" : "delete"]
         },
         {},
         {}
@@ -91824,8 +91825,7 @@ var init_layout_svelte = __esm({
         {
           form: true,
           onclick: createPost,
-          text: COLUMNS[columnIndex].submitButton,
-          style: "margin-bottom: var(--s10px)"
+          text: COLUMNS[columnIndex].submitButton
         },
         {},
         {}
@@ -91836,15 +91836,14 @@ var init_layout_svelte = __esm({
           form: true,
           cancel: true,
           onclick: resetForm,
-          text: COLUMNS[columnIndex].cancelButton,
-          style: "margin-bottom: var(--s10px)"
+          text: COLUMNS[columnIndex].cancelButton
         },
         {},
         {}
       )}</div></div></div>` : ``}`;
     });
     css$3 = {
-      code: "span.s-LohSOtP4JF2y.s-LohSOtP4JF2y{position:fixed;z-index:10}div.s-LohSOtP4JF2y.s-LohSOtP4JF2y{width:var(--s30px);height:var(--s30px);background:var(--theme-1);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-1) 25%, \n            var(--theme-2) 50%,\n            var(--theme-3) 75%, \n            var(--theme-4) 100%);border-radius:var(--s3px);border:0.0520vw solid black;cursor:pointer}span.s-LohSOtP4JF2y div.s-LohSOtP4JF2y{margin-bottom:var(--s5px)}.s-LohSOtP4JF2y.s-LohSOtP4JF2y{}",
+      code: "span.s-LohSOtP4JF2y.s-LohSOtP4JF2y{position:fixed;z-index:10000}div.s-LohSOtP4JF2y.s-LohSOtP4JF2y{width:var(--s30px);height:var(--s30px);background:var(--theme-1);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-1) 25%, \n            var(--theme-2) 50%,\n            var(--theme-3) 75%, \n            var(--theme-4) 100%);border-radius:var(--s3px);border:0.0520vw solid black;cursor:pointer}span.s-LohSOtP4JF2y div.s-LohSOtP4JF2y{margin-bottom:var(--s5px)}.s-LohSOtP4JF2y.s-LohSOtP4JF2y{}",
       map: null
     };
     Theme_selector = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -91900,7 +91899,7 @@ var init_layout_svelte = __esm({
       $$unsubscribe__appContentReady();
       $$unsubscribe__redirected();
       return `${`<div class="${"loader s-o47rfqMMGVwP"}"><div class="${"title s-o47rfqMMGVwP"}"><img src="${"/logo-tiny.png"}" alt="${"\u0D85\u0DBB\u0D9C\u0DBD\u0DBA.online"}" class="${"s-o47rfqMMGVwP"}"></div>
-    <div class="${"progress-bar s-o47rfqMMGVwP"}">${validate_component(Preloading_indicator, "PreloadingIndicator").$$render($$result, {}, {}, {})}</div></div>`}`;
+    <div class="${"progress-bar s-o47rfqMMGVwP"}">${validate_component(Preloading_indicator, "PreloadingIndicator").$$render($$result, { height: 2 }, {}, {})}</div></div>`}`;
     });
     css$13 = {
       code: ".toast-container.s-F3BFPhrY-hZv{position:fixed;bottom:0;left:0;display:flex;justify-content:center;width:100vw;z-index:100}.event.s-F3BFPhrY-hZv{top:var(--eventy);left:var(--eventx);bottom:auto;width:auto;display:flex;justify-content:center}.toast.s-F3BFPhrY-hZv{display:inline-flex;max-width:var(--theme-columnwidth);padding:var(--s3px);border-radius:var(--s3px);border:var(--s1px) solid rgb(114, 114, 114);color:black;background-color:#ffffff;margin-bottom:var(--s5px);text-align:center}.s-F3BFPhrY-hZv{}",
@@ -91939,7 +91938,7 @@ ${showText ? `<div class="${["toast-container s-F3BFPhrY-hZv", event ? "event" :
       })}</div></div>` : ``}`;
     });
     css4 = {
-      code: "html{font-family:'Roboto', sans-serif}body{margin:0;overflow:hidden}*{box-sizing:border-box}._clickable:hover{cursor:pointer}p{margin:0}.card img{background-color:#000000;min-height:var(--theme-previewheight);width:100%;border-radius:3px}.form img{background-color:#000000;min-height:var(--theme-previewheight);width:100%;height:100%;border-radius:3px}ul.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-flex}.header.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{--text:rgb(163, 47, 47);--shadow-height:0.5rem;--shadow-gradient:linear-gradient(\n			to bottom,\n			rgba(0, 0, 0, 0.3) 0%,\n			rgba(0, 0, 0, 0.1) 30%,\n			transparent 100%\n		);height:var(--theme-layoutheaderheight);display:flex;align-items:center;justify-content:space-between;width:100vw;margin:0;font-family:var(--font);transition:transform 0.2s;user-select:none;padding:0;background-color:var(--theme-headerbackground)}.logo.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:flex;padding:var(--s10px) var(--s7px);align-items:baseline;padding-bottom:var(--s10px)}.aragalaya.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-block;font-size:var(--s36px);line-height:var(--s28px);font-weight:bold;font-family:'Gemunu Libre', sans-serif}.online.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-block;font-size:var(--s18px);font-family:'Roboto', sans-serif}.beta.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{padding:var(--s5px);font-size:var(--s9px);font-weight:bold;color:green}.header-right.s-PoaHcXV6SIWL li.s-PoaHcXV6SIWL{font-size:var(--s14px);line-height:var(--s14px);padding:0 var(--s5px);font-family:'Roboto', sans-serif}.header-right.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL:last-child{margin-right:var(--s5px)}.login.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{margin-left:var(--s30px)}.login.s-PoaHcXV6SIWL .fa-solid.s-PoaHcXV6SIWL{font-size:var(--s19px);margin-right:var(--s3px)}.header-right.s-PoaHcXV6SIWL li.s-PoaHcXV6SIWL{cursor:pointer}.language-select.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:relative}.language-button.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:flex;align-items:center;justify-content:center;width:var(--s30px);height:var(--s30px);background:white;color:black;font-size:18px;border-radius:var(--s3px);border:0.0520vw solid black;cursor:pointer}.languages.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:absolute;top:var(--s35px);right:var(--s-22_5px);z-index:10;width:var(--s80px);border-radius:var(--s3px);border:0.0520vw solid black}.languages.s-PoaHcXV6SIWL>div.s-PoaHcXV6SIWL{padding:var(--s10px);background-color:white;text-align:center}main.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:relative;margin:0 auto;overflow:hiden}.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{}",
+      code: "html{font-family:'Roboto', sans-serif}body{margin:0;overflow:hidden}*{box-sizing:border-box}._clickable:hover{cursor:pointer}p{margin:0}.card img{background-color:#000000;min-height:var(--theme-previewheight);width:100%;border-radius:3px}.form img{background-color:#000000;min-height:var(--theme-previewheight);width:100%;height:100%;border-radius:3px}ul.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-flex;align-items:center;margin:0;padding:0;list-style:none}li.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-flex}.header.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{--text:rgb(163, 47, 47);--shadow-height:0.5rem;--shadow-gradient:linear-gradient(\n			to bottom,\n			rgba(0, 0, 0, 0.3) 0%,\n			rgba(0, 0, 0, 0.1) 30%,\n			transparent 100%\n		);height:var(--theme-layoutheaderheight);display:flex;align-items:center;justify-content:space-between;width:100vw;margin:0;font-family:var(--font);transition:transform 0.2s;user-select:none;padding:0;background-color:var(--theme-headerbackground)}.logo.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:flex;padding:var(--s10px) var(--s7px);align-items:baseline;padding-bottom:var(--s10px)}.aragalaya.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-block;font-size:var(--s36px);line-height:var(--s28px);font-weight:bold;font-family:'Gemunu Libre', sans-serif}.online.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:inline-block;font-size:var(--s18px);font-family:'Roboto', sans-serif}.beta.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{padding:var(--s5px);font-size:var(--s9px);font-weight:bold;color:green}.header-right.s-PoaHcXV6SIWL li.s-PoaHcXV6SIWL{font-size:var(--s14px);line-height:var(--s14px);padding:0 var(--s5px);font-family:'Roboto', sans-serif}.header-right.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL:last-child{margin-right:var(--s5px)}.login.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{margin-left:var(--s30px)}.login.s-PoaHcXV6SIWL .fa-solid.s-PoaHcXV6SIWL{font-size:var(--s19px);margin-right:var(--s3px)}.header-right.s-PoaHcXV6SIWL li.s-PoaHcXV6SIWL{cursor:pointer}.language-select.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:relative}.language-button.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{display:flex;align-items:center;justify-content:center;width:var(--s30px);height:var(--s30px);background:white;color:black;font-size:18px;border-radius:var(--s3px);border:0.0520vw solid black;cursor:pointer}.languages.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:absolute;top:var(--s35px);right:var(--s-22_5px);z-index:10000;width:var(--s80px);border-radius:var(--s3px);border:0.0520vw solid black}.languages.s-PoaHcXV6SIWL>div.s-PoaHcXV6SIWL{padding:var(--s10px);background-color:white;text-align:center}main.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{position:relative;margin:0 auto;overflow:hiden}.s-PoaHcXV6SIWL.s-PoaHcXV6SIWL{}",
       map: null
     };
     _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -91995,7 +91994,7 @@ ${validate_component(Toasts, "Toasts").$$render($$result, {}, {}, {})}
 		</div>
 		<div class="${"online s-PoaHcXV6SIWL"}">.online
 		</div>
-        <div class="${"beta s-PoaHcXV6SIWL"}">${escape("(dev-beta)")}</div></div>
+        <div class="${"beta s-PoaHcXV6SIWL"}">${escape("(dev \u{1D6C3})")}</div></div>
 	<ul class="${"header-right s-PoaHcXV6SIWL"}">${!$_isMobile ? `<li class="${"s-PoaHcXV6SIWL"}">\u0DC3\u0DD2\u0D82\u0DC4\u0DBD 
 		</li>
 		<li class="${"s-PoaHcXV6SIWL"}">English 
@@ -92033,9 +92032,9 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-55cabfe6.js";
-    imports = ["_app/immutable/pages/__layout.svelte-55cabfe6.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/text-input-91e8440c.js", "_app/immutable/chunks/progress-a2e74fe9.js", "_app/immutable/chunks/tags-5c549625.js", "_app/immutable/chunks/select-c21a0fa7.js"];
-    stylesheets = ["_app/immutable/assets/__layout-11dba28c.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/progress-6061950c.css", "_app/immutable/assets/tags-0c886ac3.css", "_app/immutable/assets/select-77dda6f0.css"];
+    file2 = "_app/immutable/pages/__layout.svelte-fb4ca3dc.js";
+    imports = ["_app/immutable/pages/__layout.svelte-fb4ca3dc.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/text-input-91e8440c.js", "_app/immutable/chunks/progress-daf547b6.js", "_app/immutable/chunks/tags-5c549625.js", "_app/immutable/chunks/select-f1a1a11d.js"];
+    stylesheets = ["_app/immutable/assets/__layout-ca5e5ee2.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/progress-6061950c.css", "_app/immutable/assets/tags-0c886ac3.css", "_app/immutable/assets/select-77dda6f0.css"];
   }
 });
 
@@ -92653,7 +92652,7 @@ var init_index_svelte = __esm({
     init_string_strip_html_esm();
     init_store_e5ca78fd();
     init_text_input_f1078574();
-    init_progress_svelte_svelte_type_style_lang_e6e66e7e();
+    init_progress_svelte_svelte_type_style_lang_62dae9a2();
     init_proposal_3f4da2a4();
     init_tags_1994a1d0();
     init_dist();
@@ -92689,7 +92688,7 @@ var init_index_svelte = __esm({
     });
     Array(COLUMN_COUNT).fill(0);
     css$72 = {
-      code: ".navigation.s-QYN83HapRChq{position:fixed;right:var(--s5px);bottom:var(--s5px);z-index:100;display:flex;align-items:center;flex-direction:column;background-color:black;border-radius:var(--s6px);border:var(--s0_5px) solid white}.animated.s-QYN83HapRChq{position:relative}.icons.s-QYN83HapRChq{position:relative;overflow:hidden}.icon.s-QYN83HapRChq{position:relative;width:var(--theme-navsize);height:var(--theme-navsize);display:flex;align-items:center;justify-content:center;color:var(--nav-buttons);font-size:var(--theme-naviconsize)}.toggle.s-QYN83HapRChq{color:white}.show-hide.s-QYN83HapRChq{background-color:black;z-index:1;color:white;border-radius:var(--s6px)}.scroll.s-QYN83HapRChq{position:absolute;right:0;width:var(--s4px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-columns-7) 25%, \n            var(--theme-columns-5) 50%,\n            var(--theme-columns-3) 75%, \n            var(--theme-columns-1) 100%);border-radius:var(--s6px)}.s-QYN83HapRChq{}",
+      code: ".navigation.s-QYN83HapRChq{position:fixed;right:var(--s5px);bottom:var(--s5px);z-index:100;display:flex;align-items:center;flex-direction:column;background-color:black;border-radius:var(--s6px);border:var(--s0_5px) solid white}.animated.s-QYN83HapRChq{position:relative}.icons.s-QYN83HapRChq{position:relative;overflow:hidden}.icon.s-QYN83HapRChq{position:relative;width:var(--theme-navsize);height:var(--theme-navsize);display:flex;align-items:center;justify-content:center;color:var(--nav-buttons);font-size:var(--theme-naviconsize)}.toggle.s-QYN83HapRChq{color:white}.show-hide.s-QYN83HapRChq{background-color:black;z-index:1;color:white;border-radius:var(--s6px)}.go.s-QYN83HapRChq{color:white}.scroll.s-QYN83HapRChq{position:absolute;right:0;width:var(--s4px);background:var(--theme-columns-0);background:radial-gradient(\n            circle at bottom right, \n            var(--theme-columns-7) 25%, \n            var(--theme-columns-5) 50%,\n            var(--theme-columns-3) 75%, \n            var(--theme-columns-1) 100%);border-radius:var(--s6px)}.s-QYN83HapRChq{}",
       map: null
     };
     Nav = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -92711,14 +92710,14 @@ var init_index_svelte = __esm({
       });
       onDestroy(() => hideNavMenulEvent.unsubscribe());
       let hidden = false;
-      function showHide() {
+      const showHide = () => {
         if (hidden) {
           height.set((COLUMN_COUNT + 1) * _getSizeConfig().navSize);
         } else {
           height.set(0);
         }
         hidden = !hidden;
-      }
+      };
       $$result.css.add(css$72);
       $$unsubscribe__isMobile();
       $$unsubscribe_height();
@@ -92730,6 +92729,8 @@ var init_index_svelte = __esm({
                 </div>`;
       })}
             <div class="${"scroll s-QYN83HapRChq"}" style="${"height: " + escape(scrollBarHeight, true) + "px;"}"${add_attribute("this", scrollBarElement, 0)}></div></div></div>
+    ${$_isMobile ? `<div class="${"icon go _clickable s-QYN83HapRChq"}"><i class="${"fa-solid fa-angle-right s-QYN83HapRChq"}"></i></div>
+    <div class="${"icon go _clickable s-QYN83HapRChq"}"><i class="${"fa-solid fa-angle-left s-QYN83HapRChq"}"></i></div>` : ``}
     <div class="${"icon show-hide _clickable s-QYN83HapRChq"}">${!hidden ? `<i class="${"fa-solid fa-angles-down s-QYN83HapRChq"}"></i>` : `<i class="${"fa-solid fa-angles-up s-QYN83HapRChq"}"></i>`}</div>
 </div>`;
     });
@@ -93341,7 +93342,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
       let url = _URL;
       let description = "The online portal for the aragalaya movement in Sri Lanka";
       let type = "website";
-      let imagex = "https://firebasestorage.googleapis.com/v0/b/aragalaya-online.appspot.com/o/aragalaya-image.jpeg?alt=media&token=46171892-7f2f-49bb-8424-65ca7411271e";
+      let image = "https://aragalaya.online/images/aragalaya-online-og-image-002.png";
       if (postData) {
         postData._expanded = true;
         postData._initialLoad = true;
@@ -93355,8 +93356,13 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
             images.push(...postData[key2]);
           }
         });
-        if (images[0] && images[0].href)
-          imagex = images[0].href;
+        if (images[0] && (images[0].url || images[0].href)) {
+          if (images[0].url) {
+            image = _URL + images[0].url;
+          } else {
+            image = images[0].href;
+          }
+        }
       }
       let showFilters = Array(COLUMN_COUNT).fill(false);
       const filteredPostsEvent = _eventListener("filtered-posts").subscribe((data) => {
@@ -93406,7 +93412,7 @@ ${show ? `<div class="${"filters s-BJo09dFzrlwu"}">${validate_component(Card, "C
 
 
 
-${$$result.head += `${$$result.title = `<title>${escape(title)}</title>`, ""}<meta property="${"fb:app_id"}" content="${"420214326726915"}" class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-i30uf"><meta property="${"og:url"}"${add_attribute("content", url, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-i30uf"><meta property="${"og:type"}"${add_attribute("content", type, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-i30uf"><meta property="${"og:title"}"${add_attribute("content", title, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-i30uf"><meta property="${"og:description"}"${add_attribute("content", description, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-i30uf"><meta property="${"og:image"}"${add_attribute("content", imagex, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-i30uf">`, ""}
+${$$result.head += `${$$result.title = `<title>${escape(title)}</title>`, ""}<meta property="${"fb:app_id"}" content="${"420214326726915"}" class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-1maaxn1"><meta property="${"og:url"}"${add_attribute("content", url, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-1maaxn1"><meta property="${"og:type"}"${add_attribute("content", type, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-1maaxn1"><meta property="${"og:title"}"${add_attribute("content", title, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-1maaxn1"><meta property="${"og:description"}"${add_attribute("content", description, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-1maaxn1"><meta property="${"og:image"}"${add_attribute("content", image, 0)} class="${"s-Uap-jPRb-uiE"}" data-svelte="svelte-1maaxn1">`, ""}
 
 
 ${validate_component(Nav, "Nav").$$render($$result, {}, {}, {})}  
@@ -93472,9 +93478,9 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    file4 = "_app/immutable/pages/index.svelte-aa9b4415.js";
-    imports3 = ["_app/immutable/pages/index.svelte-aa9b4415.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/text-input-91e8440c.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/tags-5c549625.js", "_app/immutable/chunks/progress-a2e74fe9.js", "_app/immutable/chunks/proposal-cba3592f.js"];
-    stylesheets3 = ["_app/immutable/assets/index-bf28beb3.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/tags-0c886ac3.css", "_app/immutable/assets/progress-6061950c.css", "_app/immutable/assets/proposal-6e142b05.css"];
+    file4 = "_app/immutable/pages/index.svelte-4b11d3df.js";
+    imports3 = ["_app/immutable/pages/index.svelte-4b11d3df.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/text-input-91e8440c.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/tags-5c549625.js", "_app/immutable/chunks/progress-daf547b6.js", "_app/immutable/chunks/proposal-cba3592f.js"];
+    stylesheets3 = ["_app/immutable/assets/index-7688b9e4.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/tags-0c886ac3.css", "_app/immutable/assets/progress-6061950c.css", "_app/immutable/assets/proposal-6e142b05.css"];
   }
 });
 
@@ -93667,8 +93673,8 @@ var init__6 = __esm({
     init_shims();
     init_users_svelte();
     index6 = 2;
-    file7 = "_app/immutable/pages/admin/users.svelte-4a145767.js";
-    imports6 = ["_app/immutable/pages/admin/users.svelte-4a145767.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/text-input-91e8440c.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/select-c21a0fa7.js"];
+    file7 = "_app/immutable/pages/admin/users.svelte-06ca60dc.js";
+    imports6 = ["_app/immutable/pages/admin/users.svelte-06ca60dc.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/text-input-91e8440c.js", "_app/immutable/chunks/store-cdd2804c.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/select-f1a1a11d.js"];
     stylesheets6 = ["_app/immutable/assets/users-ad6cc9f1.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/select-77dda6f0.css"];
   }
 });
@@ -96529,7 +96535,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-a1cd7ba4.js", "imports": ["_app/immutable/start-a1cd7ba4.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/index-b62ca7b4.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-95113879.js", "imports": ["_app/immutable/start-95113879.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/index-b62ca7b4.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
