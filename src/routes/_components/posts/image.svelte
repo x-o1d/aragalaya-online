@@ -7,6 +7,8 @@
 	import Card from '$lib/components/util/card.svelte';
     import Toolbar from '$lib/components/util/toolbar.svelte';
     import Tags from '$lib/components/util/tags.svelte';
+    import Content from '$lib/components/display/content.svelte';
+    import Font from '$lib/components/display/font.svelte';
     
 	export let data;
 
@@ -15,6 +17,13 @@
 <Card>
     <!-- post image -->
 	<img src={data.image.url} alt="newspaper cartoon">
+    <Font 
+        font={0}
+        size={1}>
+        <Content
+            data={data}
+            contentField={'source'}/>
+    </Font>
     <!-- post tags -->
     <Tags 
         tags={data.tags}/>

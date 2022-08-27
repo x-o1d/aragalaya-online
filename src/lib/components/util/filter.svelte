@@ -78,10 +78,18 @@
 
     const filterPosts = async () => {
         filterProgress = true;
-        const posts = await _getFilteredPosts(COLUMNS[columnIndex].type, (verified && !notVerified) || !(COLUMNS[columnIndex].verified), tagNames);
+        // fetch filtered posts
+        const posts = await _getFilteredPosts(
+            COLUMNS[columnIndex].type, 
+            (verified && !notVerified) && (COLUMNS[columnIndex].verified), 
+            tagNames);
+
+        // add columnIndex to post data
+        posts.map(p => p._columnIndex = columnIndex);
+        // trigger filtered-posts to update the column
         _emitEvent('filtered-posts', {
             column: columnIndex,
-            posts: posts.map(p => p._columnIndex = columnIndex)
+            posts: posts
         })
         filterProgress = false;
     }

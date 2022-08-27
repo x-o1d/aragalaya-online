@@ -225,14 +225,25 @@ export const COLUMNS = [
         verified: false,
         // maximum 10 tags per column
         tags: [ 'aragala', 'economy', 'political', 'legal',
-                    'international', 'energy', 'religion',
-                    'agriculture', 'elections', 'education'],
+                    'international', 'agriculture', 'elections', 
+                    'education'],
         // END - column properties
         // START - input form field properties
         data: {
             image: {
                 type: 'image',
                 required: true,
+            },
+            source: {
+                type: 'text',
+                maxlength: 100,
+                placeholder: [
+                    'මූලාශ්‍රය',
+                    'source',
+                    'ஆதாரம்'
+                ],
+                required: true,
+                translate: true,
             }
         },
         // END - input form field properties

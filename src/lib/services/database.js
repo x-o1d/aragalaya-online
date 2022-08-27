@@ -94,7 +94,10 @@ export const _deletePost = async (post) => {
 export const _getPosts = async (type) => {
     try {
         const c = collection(db, 'Posts');
-        const q = query(c, orderBy("createdOn", "desc"), where("type", "==", type), limit(10));
+        const q = query(c, orderBy("createdOn", "desc"), 
+            where("type", "==", type), 
+            where("verified", "==", true),
+            limit(10));
         const qs = await getDocs(q);
 
         const items = [];
@@ -115,7 +118,6 @@ export const _getPosts = async (type) => {
 }
 
 export const _getFilteredPosts = async (type, verified, tags) => {
-    console.log(type, verified, tags);
     try {
         const c = collection(db, 'Posts');
         let q;
@@ -228,7 +230,7 @@ export const _createImage = async (image) => {
     try {
         const docRef = doc(collection(db, 'Images'), image.name);
         const result = await setDoc(docRef, image);
-        console.log(result, image);
+
         return image;
     } catch (error) {
         if(error.code == 'permission-denied') {
