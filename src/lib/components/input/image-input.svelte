@@ -8,6 +8,7 @@
     import _strings from './image-input-strings';
 
     import Font from '../display/font.svelte';
+    import Button from '$lib/components/input/button.svelte';
 
     export let data;
     export let config;
@@ -15,8 +16,10 @@
 
     let imageSelector;
     let image;
+    let progress = false;
 
     const addImage = async (event) => {
+        progress = true;
         const imageRef = await _uploadToImages(event.target.files[0]);
         if(!Array.isArray(data[config.name + '_images'])) {
             data[config.name + '_images'] = [];
@@ -24,6 +27,7 @@
         data[config.name + '_images'].push(imageRef);
         data[config.name] = imageRef;
         image = imageRef;
+        progress = false;
     }
 
     const selectImage = () => {
@@ -33,16 +37,11 @@
 </script>
 
 <div class="image-input">
-    <div 
-        class="image-selector"
-        on:click={selectImage}
-        class:disabled={image}>
-        <Font
-            font={0}
-            size={1}>
-            {_strings['add_image'][$_lang]}
-        </Font>
-    </div>
+    <Button
+        form
+        onclick={selectImage}
+        text={_strings['add_image']}
+        progress={progress}/>
     {#if image}
     <div 
         class="preview-image"

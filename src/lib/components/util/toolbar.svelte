@@ -31,7 +31,7 @@ EXAMPLE:
     // component props
     export let data;
 
-    let verified = COLUMNS[data._columnIndex].verified;
+    let verified = data._columnIndex && COLUMNS[data._columnIndex].verified;
 
     // check if the browser support navigator.share for sharing links
     let navigatorShareAvailable = false;

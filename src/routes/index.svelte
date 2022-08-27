@@ -86,7 +86,6 @@
     // using the page endpoint allows the data to be fetched in the backend
     // itself for SSR
     export let columnData;
-
     // if a postId was specified in the url, the data for that post will be
     // available in this prop, this is populated by the page endpoint (./index.js)
     export let postData = undefined;
@@ -113,6 +112,9 @@
                     (postData.organization && postData.organization[0]) ||
                         'අරගලය.online';
         url = _shareLink + postData.id;
+        const columnIndex = COLUMNS.findIndex(c => c.type == postData.type);
+        const columnTitle = COLUMNS[columnIndex].title[0];
+        console.log(columnTitle);
         description = stripHtml(
                 (postData.description && postData.description[0]) ||
                     (postData.shortDescription && postData.shortDescription[0]) || 

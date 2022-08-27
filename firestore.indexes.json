@@ -47,6 +47,22 @@
                 "order": "DESCENDING"
             }
         ]
+    },
+    {
+        "collectionGroup": "Posts",
+        "queryScope": "COLLECTION",
+        "fields": [
+            {
+                "fieldPath": "type",
+                "order": "ASCENDING"
+            },{
+                "fieldPath": "verified",
+                "order": "ASCENDING"
+            },{
+                "fieldPath": "createdOn",
+                "order": "DESCENDING"
+            }
+        ]
     }
   ],
   "fieldOverrides": []
