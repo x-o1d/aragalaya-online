@@ -11,6 +11,9 @@ EXAMPLE:
     on:toggleExpanded={(e) => data._expanded = e.detail}/>
 --->
 <script>
+    // configs
+    import { COLUMNS } from '$lib/config/column-config';
+
     // npm modules
     import { createEventDispatcher, onMount } from 'svelte';
 
@@ -27,6 +30,8 @@ EXAMPLE:
 
     // component props
     export let data;
+
+    let verified = COLUMNS[data._columnIndex].verified;
 
     // check if the browser support navigator.share for sharing links
     let navigatorShareAvailable = false;
@@ -172,6 +177,7 @@ EXAMPLE:
         </div>
         {/if}
     </div>
+    {#if verified}
     <div class="toolbar-right"
         class:_clickable={$_admin}
         on:click={toggleVerified}>
@@ -198,6 +204,7 @@ EXAMPLE:
         </div>
         {/if}
     </div>
+    {/if}
 </div>
 
 <style>

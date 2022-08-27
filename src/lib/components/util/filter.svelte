@@ -19,13 +19,13 @@
     import Progress from './progress.svelte';
 
     export let show;
-    export let columnId;
+    export let columnIndex;
 
     let filterProgress = false;
 
     let configTags = [];
-    if(COLUMNS[columnId].tags) {
-        configTags = COLUMNS[columnId].tags.map(tag => TAGS[tag]);
+    if(COLUMNS[columnIndex].tags) {
+        configTags = COLUMNS[columnIndex].tags.map(tag => TAGS[tag]);
     }
 
     let verified = true;
@@ -78,10 +78,10 @@
 
     const filterPosts = async () => {
         filterProgress = true;
-        const posts = await _getFilteredPosts(COLUMNS[columnId].type, verified && !notVerified, tagNames);
+        const posts = await _getFilteredPosts(COLUMNS[columnIndex].type, (verified && !notVerified) || !(COLUMNS[columnIndex].verified), tagNames);
         _emitEvent('filtered-posts', {
-            column: columnId,
-            posts: posts
+            column: columnIndex,
+            posts: posts.map(p => p._columnIndex = columnIndex)
         })
         filterProgress = false;
     }
@@ -98,6 +98,7 @@
                 margin-bottom: var(--s5px);
                 justify-content: center;
                 flex-wrap: wrap;">
+            {#if COLUMNS[columnIndex].verified}
             <!-- verified tag -->
             <span
                 class="tag" 
@@ -115,6 +116,7 @@
                 on:click={notVerifiedClick}>
                 {_strings['not_verified'][$_lang]}
             </span>
+            {/if}
         </Font>
         <Font
             font={0}

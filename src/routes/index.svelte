@@ -22,6 +22,7 @@
         bulletin: Bulletin,
         proposal: Proposal,
         wip: Wip,
+        cartoon: Image
     }
 </script>
 <!-- index route logic -->
@@ -54,6 +55,7 @@
     import Proposal from './_components/posts/proposal.svelte';
     import Wip from './_components/posts/wip.svelte';
     import Video from './_components/posts/video.svelte';
+    import Image from './_components/posts/image.svelte';
 
     // the DOM element that contains all the columns
     // this element is moves left and right to produce the
@@ -317,7 +319,7 @@
                 </div>
                 <Filter 
                     show={showFilters[_i]}
-                    columnId={_i}/>
+                    columnIndex={_i}/>
                 <!-- column cards -->
                 <div 
                     class="cards"

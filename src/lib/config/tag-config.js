@@ -75,6 +75,11 @@ const tagConfig = {
         'අධ්‍යාපන',
         'education',
         'கல்வி'
+    ],
+    technology: [
+        'තාක්ෂණය',
+        'technology',
+        'தொழில்நுட்பம்'
     ]
 };
 

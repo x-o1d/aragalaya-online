@@ -29,7 +29,7 @@ export const COLUMNS = [
         type: 'news',
         verified: true,
         tags: ['mainstream', 'aragala', 'economy', 'political', 'legal',
-                    'international', 'energy', 'downloads', 'religion',
+                    'international', 'downloads',
                     'agriculture', 'elections', 'education'],
         // END - column properties
         // START - input form field properties
@@ -86,8 +86,8 @@ export const COLUMNS = [
         height: '310px',
         type: 'video',
         verified: true,
-        tags: ['economy', 'political', 'legal', 'international', 'energy', 
-                    'philosophy', 'english', 'discussion',  'religion',
+        tags: ['economy', 'political', 'legal', 'international', 
+                    'philosophy', 'english', 'discussion',
                     'agriculture', 'elections', 'education'],
         // START - input form field properties
         data: {
@@ -166,8 +166,8 @@ export const COLUMNS = [
         type: 'bulletin',
         verified: true,
         tags: ['mainstream', 'aragala', 'economy', 'political', 'legal',
-                    'international', 'energy', 'downloads', 'religion',
-                    'agriculture', 'elections', 'education'],
+                    'international', 'downloads', 'agriculture', 
+                    'elections', 'education'],
         // START - input form field properties
         data: {
             title: {
@@ -213,6 +213,48 @@ export const COLUMNS = [
         // END - input form properties
     },
     {
+        // START - column properties
+        title: [
+            'කාටූන්', 
+            'Cartoon', 
+            'கார்ட்டூன்'
+        ],
+        icon: 'fa-solid fa-paintbrush',
+        height: '200px',
+        type: 'cartoon',
+        verified: false,
+        // maximum 10 tags per column
+        tags: [ 'aragala', 'economy', 'political', 'legal',
+                    'international', 'energy', 'religion',
+                    'agriculture', 'elections', 'education'],
+        // END - column properties
+        // START - input form field properties
+        data: {
+            image: {
+                type: 'image',
+                required: true,
+            }
+        },
+        // END - input form field properties
+        // START - input form properties
+        dataFormTitle: [
+            'කාටූනයක් එකතු කරන්න',
+            'add a cartoon',
+            'ஒரு கார்ட்டூன் சேர்க்கவும்'
+        ],
+        submitButton: [
+            'ඇතුල් කරන්න',
+            'create',
+            'உருவாக்க'
+        ],
+        cancelButton: [
+            'අවලංගු කරන්න',
+            'cancel',
+            'ரத்து செய்'
+        ],
+        // END - input form properties
+    },
+    {
         title: [
             'මහජන අදහස් සඳහා යෝජනා', 
             'Proposals for public comments', 
@@ -222,9 +264,10 @@ export const COLUMNS = [
         height: '400px',
         type: 'proposal',
         verified: true,
+        // maximum 10 tags per column
         tags: ['mainstream', 'aragala', 'economy', 'political', 'legal',
-                    'international', 'energy', 'downloads', 'religion',
-                    'agriculture', 'elections', 'education'],
+                    'international', 'downloads', 'agriculture', 
+                    'elections', 'education'],
         // START - input form field properties
         data: {
             organization: {

@@ -12,6 +12,7 @@
     import _strings from './form-strings'
 
     import TextInput from '$lib/components/input/text-input.svelte';
+    import ImageInput from '$lib/components/input/image-input.svelte';
     import HtmlInput from '$lib/components/input/html-input.svelte';
     import Button from '$lib/components/input/button.svelte';
     import Font from '$lib/components/display/font.svelte';
@@ -110,6 +111,9 @@
         else {
             selectedTagNames = [];
             columnIndex = event.columnIndex;
+            if(!COLUMNS[columnIndex].tags) {
+                console.log('error: tags are not specified for this column in column-config.js');
+            }
             unselectedTagNames = JSON.parse(JSON.stringify(COLUMNS[columnIndex].tags));
 
             showForm = true;
@@ -151,9 +155,13 @@
     let tagError = false;
 
     // map field types to input components
+    // NOTE: if a new form input type is being added it has be added here
+    // a type in the column-config.js data: {} property must 
+    // match a key in the below object
     const COMPONENTS = {
         text: TextInput,
-        html: HtmlInput
+        html: HtmlInput,
+        image: ImageInput
     }
 
     const createPost = async () => {
@@ -162,10 +170,13 @@
         // call the validation function if it's specified in the conlumn config
         errors = fieldConfigs.map(config => {
             if(config.required) {
-                if(!formData[config.name] || 
-                    (formData[config.name] && !(formData[config.name].trim())))
-                {
-                    return true;
+                // if form data is not defined show error
+                if(!formData[config.name]) {
+                    return 'required';
+                } 
+                // if form data is defined but is an empty string shoe error
+                else if((typeof formData[config.name] == 'string') && !(formData[config.name].trim())) {
+                    return 'required';
                 }
             }
             if(config.validate) {
