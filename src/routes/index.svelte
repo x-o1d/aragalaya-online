@@ -115,10 +115,11 @@
         const columnIndex = COLUMNS.findIndex(c => c.type == postData.type);
         const columnTitle = COLUMNS[columnIndex].title[0];
 
-        description = `[${columnTitle}]` + stripHtml(
+        description = `[${columnTitle}] ` + stripHtml(
                 (postData.description && postData.description[0]) ||
                     (postData.shortDescription && postData.shortDescription[0]) || 
-                        (postData.proposal && postData.proposal[0])
+                    (postData.proposal && postData.proposal[0]) || 
+                    (postData.source && postData.source[0]) || ''
                 ).result;
         type = 'article';
         let images = [];

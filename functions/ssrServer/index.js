@@ -92224,10 +92224,10 @@ var init__2 = __esm({
   }
 });
 
-// .svelte-kit/output/server/_app/immutable/chunks/proposal-36d3c4b3.js
+// .svelte-kit/output/server/_app/immutable/chunks/proposal-2e53ae33.js
 var css$14, Card, strings$22, Timestamp2, strings$12, css5, Toolbar, strings3, Proposal;
-var init_proposal_36d3c4b3 = __esm({
-  ".svelte-kit/output/server/_app/immutable/chunks/proposal-36d3c4b3.js"() {
+var init_proposal_2e53ae33 = __esm({
+  ".svelte-kit/output/server/_app/immutable/chunks/proposal-2e53ae33.js"() {
     init_shims();
     init_index_35b769a7();
     init_store_b064923f();
@@ -92468,7 +92468,7 @@ var init_proposal_36d3c4b3 = __esm({
       validate_store(_lang, "_lang");
       $$unsubscribe__lang = subscribe(_lang, (value) => $_lang = value);
       let { data } = $$props;
-      let verified = data._columnIndex && COLUMNS[data._columnIndex].verified;
+      let verified = data._columnIndex != void 0 && COLUMNS[data._columnIndex].verified;
       createEventDispatcher();
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
@@ -92786,7 +92786,7 @@ var init_index_svelte = __esm({
     init_store_b064923f();
     init_text_input_6523ab46();
     init_progress_svelte_svelte_type_style_lang_d45f7918();
-    init_proposal_36d3c4b3();
+    init_proposal_2e53ae33();
     init_tags_3496c954();
     init_dist();
     init_dist2();
@@ -93136,7 +93136,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
       const columnIndex = COLUMNS.findIndex((c3) => c3.type == data.type);
       const appContentReadyUnsubscribe = _appContentReady.subscribe(() => {
         if ($_isMobile) {
-          _emitEvent("nav-click", columnIndex);
+          _emitEvent("nav-click", { index: columnIndex });
         }
       });
       onDestroy(appContentReadyUnsubscribe);
@@ -93509,8 +93509,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
         url = _shareLink + postData.id;
         const columnIndex = COLUMNS.findIndex((c3) => c3.type == postData.type);
         const columnTitle = COLUMNS[columnIndex].title[0];
-        console.log(columnTitle);
-        description = ge(postData.description && postData.description[0] || postData.shortDescription && postData.shortDescription[0] || postData.proposal && postData.proposal[0]).result;
+        description = `[${columnTitle}]` + ge(postData.description && postData.description[0] || postData.shortDescription && postData.shortDescription[0] || postData.proposal && postData.proposal[0] || postData.source && postData.source[0] || "").result;
         type = "article";
         let images = [];
         Object.keys(postData).map((key2) => {
@@ -93640,8 +93639,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    file4 = "_app/immutable/pages/index.svelte-8493f5cb.js";
-    imports3 = ["_app/immutable/pages/index.svelte-8493f5cb.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/text-input-9c0ae75c.js", "_app/immutable/chunks/store-04dd07b0.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/tags-0fe242d0.js", "_app/immutable/chunks/progress-cb1de7ba.js", "_app/immutable/chunks/proposal-a8ae750a.js"];
+    file4 = "_app/immutable/pages/index.svelte-2b21a770.js";
+    imports3 = ["_app/immutable/pages/index.svelte-2b21a770.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/text-input-9c0ae75c.js", "_app/immutable/chunks/store-04dd07b0.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/tags-0fe242d0.js", "_app/immutable/chunks/progress-cb1de7ba.js", "_app/immutable/chunks/proposal-30f72b19.js"];
     stylesheets3 = ["_app/immutable/assets/index-7688b9e4.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/tags-0c886ac3.css", "_app/immutable/assets/progress-6061950c.css", "_app/immutable/assets/proposal-6e142b05.css"];
   }
 });
@@ -93656,7 +93655,7 @@ var init_post_preview_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/post_preview.svelte.js"() {
     init_shims();
     init_index_35b769a7();
-    init_proposal_36d3c4b3();
+    init_proposal_2e53ae33();
     init_store_b064923f();
     init_database_67aec90d();
     init_dist();
@@ -93713,8 +93712,8 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 4;
-    file5 = "_app/immutable/pages/post_preview.svelte-c52ad24a.js";
-    imports4 = ["_app/immutable/pages/post_preview.svelte-c52ad24a.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/proposal-a8ae750a.js", "_app/immutable/chunks/store-04dd07b0.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/text-input-9c0ae75c.js", "_app/immutable/chunks/tags-0fe242d0.js"];
+    file5 = "_app/immutable/pages/post_preview.svelte-3e8cf93e.js";
+    imports4 = ["_app/immutable/pages/post_preview.svelte-3e8cf93e.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/proposal-30f72b19.js", "_app/immutable/chunks/store-04dd07b0.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/text-input-9c0ae75c.js", "_app/immutable/chunks/tags-0fe242d0.js"];
     stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-6e142b05.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/tags-0c886ac3.css"];
   }
 });
@@ -96698,7 +96697,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-7ba1a66b.js", "imports": ["_app/immutable/start-7ba1a66b.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/index-b62ca7b4.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-d5662993.js", "imports": ["_app/immutable/start-d5662993.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/index-b62ca7b4.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
