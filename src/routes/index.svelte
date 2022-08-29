@@ -237,7 +237,7 @@
 
     // goto column
     const goToColumn = (index) => {
-        _emitEvent('nav-click', index);
+        _emitEvent('nav-click', {index: index});
         _emitEvent('hide-post');
     }
 </script>

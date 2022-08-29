@@ -21,7 +21,7 @@
 
     const appContentReadyUnsubscribe = _appContentReady.subscribe(() => {
         if($_isMobile) {
-            _emitEvent('nav-click', columnIndex);
+            _emitEvent('nav-click', {index: columnIndex});
         }
     })
     onDestroy(appContentReadyUnsubscribe)
