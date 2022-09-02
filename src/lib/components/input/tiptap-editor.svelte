@@ -102,6 +102,7 @@
     const addImage = async (event) => {
         editorDisabled = true;
         const imageRef = await _uploadToImages(event.target.files[0]);
+        console.log(imageRef);
         if(!Array.isArray(data[config.name + '_images'])) {
             data[config.name + '_images'] = [];
         }

@@ -55,6 +55,14 @@ export const COLUMNS = [
                 ],
                 required: true,
                 translate: true,
+                validate: (value) => {
+                    console.log(value);
+                    if(!value.includes('src="')) {
+                        return 'please add an image';
+                    } else {
+                        return false;
+                    }
+                }
             }
         },
         // END - input form field properties

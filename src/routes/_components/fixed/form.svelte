@@ -274,6 +274,7 @@
         formData = {};
         originalData = undefined;
         modifiedData = undefined;
+        errors = Array(fields.length).fill(false);
 
         selectedTagNames = [];
         unselectedTagNames = [];

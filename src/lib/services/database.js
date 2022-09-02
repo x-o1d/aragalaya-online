@@ -227,12 +227,14 @@ export const _getUserRecord = async (uid) => {
 }
 
 export const _createImage = async (image) => {
+    console.log(image);
     try {
         const docRef = doc(collection(db, 'Images'), image.name);
         const result = await setDoc(docRef, image);
-
+        console.log(result);
         return image;
     } catch (error) {
+        console.log(error);
         if(error.code == 'permission-denied') {
             _userLogout();
             return;

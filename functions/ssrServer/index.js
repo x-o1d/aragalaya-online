@@ -93509,7 +93509,7 @@ ${validate_component(Card, "Card").$$render($$result, {}, {}, {
         url = _shareLink + postData.id;
         const columnIndex = COLUMNS.findIndex((c3) => c3.type == postData.type);
         const columnTitle = COLUMNS[columnIndex].title[0];
-        description = `[${columnTitle}]` + ge(postData.description && postData.description[0] || postData.shortDescription && postData.shortDescription[0] || postData.proposal && postData.proposal[0] || postData.source && postData.source[0] || "").result;
+        description = `[${columnTitle}] ` + ge(postData.description && postData.description[0] || postData.shortDescription && postData.shortDescription[0] || postData.proposal && postData.proposal[0] || postData.source && postData.source[0] || "").result;
         type = "article";
         let images = [];
         Object.keys(postData).map((key2) => {
@@ -93639,8 +93639,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    file4 = "_app/immutable/pages/index.svelte-2b21a770.js";
-    imports3 = ["_app/immutable/pages/index.svelte-2b21a770.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/text-input-9c0ae75c.js", "_app/immutable/chunks/store-04dd07b0.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/tags-0fe242d0.js", "_app/immutable/chunks/progress-cb1de7ba.js", "_app/immutable/chunks/proposal-30f72b19.js"];
+    file4 = "_app/immutable/pages/index.svelte-fb970b9b.js";
+    imports3 = ["_app/immutable/pages/index.svelte-fb970b9b.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/text-input-9c0ae75c.js", "_app/immutable/chunks/store-04dd07b0.js", "_app/immutable/chunks/index-b62ca7b4.js", "_app/immutable/chunks/tags-0fe242d0.js", "_app/immutable/chunks/progress-cb1de7ba.js", "_app/immutable/chunks/proposal-30f72b19.js"];
     stylesheets3 = ["_app/immutable/assets/index-7688b9e4.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/tags-0c886ac3.css", "_app/immutable/assets/progress-6061950c.css", "_app/immutable/assets/proposal-6e142b05.css"];
   }
 });
@@ -96697,7 +96697,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-d5662993.js", "imports": ["_app/immutable/start-d5662993.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/index-b62ca7b4.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-c7ab5686.js", "imports": ["_app/immutable/start-c7ab5686.js", "_app/immutable/chunks/index-52eb79f8.js", "_app/immutable/chunks/index-b62ca7b4.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

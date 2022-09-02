@@ -2,6 +2,7 @@
 ---- with tags
 --->
 <script>
+    import { _getImageURL } from '$lib/services/storage';
     // the Card component defines the boundary of any post.
     // it can also be used to provide transition animations on post creation/deletion
 	import Card from '$lib/components/util/card.svelte';
@@ -16,7 +17,7 @@
 
 <Card>
     <!-- post image -->
-	<img src={data.image.url} alt="newspaper cartoon">
+	<img src={_getImageURL(data.image.url)} alt="newspaper cartoon">
     <Font 
         font={0}
         size={1}>

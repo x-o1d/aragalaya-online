@@ -351,8 +351,9 @@ exports.images = functions.region(region).runWith(imageRuntimeOpts).https.onRequ
     // fetch image data from the images collection
     const imageURL = req.url;
     const imageName = imageURL.split('/images/')[1];
+    console.log(imageURL, imageName);
     let image = (await firestore.collection('Images').doc(imageName).get()).data();
-
+    console.log(image);
     // fetch image from firebase storage
     const imageBuffer = await (new Promise(resolve => {
         request({

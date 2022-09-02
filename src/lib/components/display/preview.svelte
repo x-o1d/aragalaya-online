@@ -26,6 +26,7 @@
 
     // services
     import { _lang } from '$lib/services/store';
+    import { _getImageURL } from '$lib/services/storage';
     import _strings from './preview-strings';
 
     // components
@@ -65,6 +66,7 @@
                         .replace('&amp;', '&')
             });
     
+    
     // reactive declaration $:
     // https://svelte.dev/docs#component-format-script-3-$-marks-a-statement-as-reactive
     // as _lang changes the text variable needs to be reactively updated
@@ -102,7 +104,7 @@
                 <div class="preview-container">
                     <div 
                         class="preview-image"
-                        style="--url: url({images[0]})">
+                        style="--url: url({_getImageURL(images[0])})">
                     </div>
                     <div class="preview-overlay"></div>
                 </div>  

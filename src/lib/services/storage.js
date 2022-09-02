@@ -13,6 +13,15 @@ const storage = getStorage(app);
 // an underscore (_) so that they can easily be distinguished from component properties.
 // --
 
+export const _getImageURL = (url) => {
+    let DEV = (import.meta.env.MODE == 'dev');
+    if(DEV) {
+        return 'https://aragalaya-online.web.app/' + url;
+    } else {
+        return url;
+    }
+}
+
 export const _uploadToImages = async (file) => {
     try {
         let user = _userSignedIn();
