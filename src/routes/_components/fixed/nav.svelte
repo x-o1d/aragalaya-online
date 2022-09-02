@@ -86,7 +86,7 @@
             </div>
         </div>
     </div>
-    {#if $_isMobile}
+    {#if $_isMobile && false}
     <div 
         on:click={goRight}
         class="icon go _clickable">

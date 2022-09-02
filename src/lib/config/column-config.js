@@ -281,7 +281,7 @@ export const COLUMNS = [
     },
     {
         title: [
-            'නීති ආධාර', 
+            'නීති උපකාර', 
             'Legal help', 
             'சட்ட உதவி'
         ],
@@ -324,7 +324,7 @@ export const COLUMNS = [
         // END - input form field properties
         // START - input form properties
         dataFormTitle: [
-            'නීති ආධාර දැන්වීමක් ඇතුල් කරන්න',
+            'නීති උපකාර දැන්වීමක් ඇතුල් කරන්න',
             'Create a legal help notice',
             'சட்ட உதவி அறிவிப்பை உருவாக்கவும்'
         ],
