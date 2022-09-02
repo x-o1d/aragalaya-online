@@ -15,7 +15,7 @@ const storage = getStorage(app);
 
 export const _getImageURL = (url) => {
     let DEV = (import.meta.env.MODE == 'dev');
-    if(DEV) {
+    if(DEV && !url.startsWith('http')) {
         return 'https://aragalaya-online.web.app/' + url;
     } else {
         return url;

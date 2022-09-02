@@ -56,7 +56,6 @@ export const COLUMNS = [
                 required: true,
                 translate: true,
                 validate: (value) => {
-                    console.log(value);
                     if(!value.includes('src="')) {
                         return 'please add an image';
                     } else {
@@ -199,13 +198,20 @@ export const COLUMNS = [
                 ],
                 required: true,
                 translate: true,
+                validate: (value) => {
+                    if(!value.includes('src="')) {
+                        return 'please add an image';
+                    } else {
+                        return false;
+                    }
+                }
             }
         },
         // END - input form field properties
         // START - input form properties
         dataFormTitle: [
             'දැන්වීමක් ඇතුල් කරන්න',
-            'Create a bulletin',
+            'Create a notice',
             'ஒரு புல்லட்டின் உருவாக்கவும்'
         ],
         submitButton: [
@@ -260,6 +266,67 @@ export const COLUMNS = [
             'කාටූනයක් එකතු කරන්න',
             'add a cartoon',
             'ஒரு கார்ட்டூன் சேர்க்கவும்'
+        ],
+        submitButton: [
+            'ඇතුල් කරන්න',
+            'create',
+            'உருவாக்க'
+        ],
+        cancelButton: [
+            'අවලංගු කරන්න',
+            'cancel',
+            'ரத்து செய்'
+        ],
+        // END - input form properties
+    },
+    {
+        title: [
+            'නීති ආධාර', 
+            'Legal help', 
+            'சட்ட உதவி'
+        ],
+        icon: 'fa-solid fa-scale-balanced',
+        height: '300px',
+        type: 'legal',
+        verified: true,
+        // START - input form field properties
+        data: {
+            title: {
+                type: 'text',
+                maxlength: 100,
+                placeholder: [
+                    'ශීර්ෂය',
+                    'title',
+                    'தலைப்பு'
+                ],
+                required: true,
+                translate: true,
+            },
+            description: {
+                type: 'html',
+                maxlength: 100,
+                placeholder: [
+                    'සවිස්තරාත්මක දැන්වීම ',
+                    'details',
+                    'விவரங்கள்'
+                ],
+                required: true,
+                translate: true,
+                validate: (value) => {
+                    if(!value.includes('src="')) {
+                        return 'please add an image';
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        },
+        // END - input form field properties
+        // START - input form properties
+        dataFormTitle: [
+            'නීති ආධාර දැන්වීමක් ඇතුල් කරන්න',
+            'Create a legal help notice',
+            'சட்ட உதவி அறிவிப்பை உருவாக்கவும்'
         ],
         submitButton: [
             'ඇතුල් කරන්න',

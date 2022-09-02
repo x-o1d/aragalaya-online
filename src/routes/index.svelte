@@ -22,7 +22,8 @@
         bulletin: Bulletin,
         proposal: Proposal,
         wip: Wip,
-        cartoon: Image
+        cartoon: Image,
+        legal: Bulletin
     }
 </script>
 <!-- index route logic -->

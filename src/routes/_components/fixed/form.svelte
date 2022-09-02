@@ -95,9 +95,10 @@
             originalData = event.data;
             selectedTagNames = originalData.tags;
             columnIndex = originalData._columnIndex;
-            unselectedTagNames = JSON.parse(JSON.stringify(COLUMNS[columnIndex].tags))
-                .filter(t => !selectedTagNames.includes(t));
-
+            if(COLUMNS[columnIndex].tags) {
+                unselectedTagNames = JSON.parse(JSON.stringify(COLUMNS[columnIndex].tags))
+                    .filter(t => !selectedTagNames.includes(t));
+            }
             // clone original data
             modifiedData = JSON.parse(JSON.stringify(originalData));
 
@@ -111,10 +112,9 @@
         else {
             selectedTagNames = [];
             columnIndex = event.columnIndex;
-            if(!COLUMNS[columnIndex].tags) {
-                console.log('error: tags are not specified for this column in column-config.js');
+            if(COLUMNS[columnIndex].tags) {
+                unselectedTagNames = JSON.parse(JSON.stringify(COLUMNS[columnIndex].tags));
             }
-            unselectedTagNames = JSON.parse(JSON.stringify(COLUMNS[columnIndex].tags));
 
             showForm = true;
             lang = $_lang;
@@ -187,7 +187,7 @@
         });
         
         // set tagError if no tags are selected
-        tagError = !selectedTagNames.length;
+        tagError = !selectedTagNames.length && COLUMNS[columnIndex].tags;
 
         if(errors.some(e => e) || tagError) return;
 
@@ -377,6 +377,7 @@
                     error={errors[_i]}
                     form/>
             {/each}
+            {#if COLUMNS[columnIndex].tags}
             <Tags  
                 clickable
                 tags={selectedTagNames}
@@ -386,6 +387,7 @@
                 options={unselectedTagNames.map(tag => TAGS[tag])}
                 on:select={(e) => selectTag(e.detail)}
                 error={tagError}/>
+            {/if}
             {#if editMode}
             <Button
                 form

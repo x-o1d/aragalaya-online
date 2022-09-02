@@ -93161,7 +93161,7 @@ ${machineTranslated ? `<div class="${"machine-translated s-Q7XEqeLz3oYK"}">${val
         $$result,
         {
           form: true,
-          text: data._initialLoad ? strings$23["more"][$_lang] + COLUMNS[columnIndex].title[$_lang] : strings$23["back"][$_lang],
+          text: data._initialLoad ? strings$23["more"][$_lang] + COLUMNS[columnIndex].title[$_lang].toLowerCase() : strings$23["back"][$_lang],
           style: "\n                width: calc(100% - var(--theme-cardseparation));\n                margin: var(--theme-cardseparationhalf);\n                margin-bottom: var(--s100px);",
           onclick: hidePost
         },
@@ -93645,8 +93645,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    file4 = "_app/immutable/pages/index.svelte-acc403ce.js";
-    imports3 = ["_app/immutable/pages/index.svelte-acc403ce.js", "_app/immutable/chunks/index-e5563d1b.js", "_app/immutable/chunks/text-input-023d5515.js", "_app/immutable/chunks/store-f03b9c04.js", "_app/immutable/chunks/index-4a80932d.js", "_app/immutable/chunks/tags-b5512a92.js", "_app/immutable/chunks/proposal-d5c7f33d.js", "_app/immutable/chunks/progress-51ddef6c.js"];
+    file4 = "_app/immutable/pages/index.svelte-f2cb8543.js";
+    imports3 = ["_app/immutable/pages/index.svelte-f2cb8543.js", "_app/immutable/chunks/index-e5563d1b.js", "_app/immutable/chunks/text-input-023d5515.js", "_app/immutable/chunks/store-f03b9c04.js", "_app/immutable/chunks/index-4a80932d.js", "_app/immutable/chunks/tags-b5512a92.js", "_app/immutable/chunks/proposal-d5c7f33d.js", "_app/immutable/chunks/progress-51ddef6c.js"];
     stylesheets3 = ["_app/immutable/assets/index-7688b9e4.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/tags-0c886ac3.css", "_app/immutable/assets/proposal-6e142b05.css", "_app/immutable/assets/progress-6061950c.css"];
   }
 });
@@ -96703,7 +96703,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-ed0b3457.js", "imports": ["_app/immutable/start-ed0b3457.js", "_app/immutable/chunks/index-e5563d1b.js", "_app/immutable/chunks/index-4a80932d.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-6856178d.js", "imports": ["_app/immutable/start-6856178d.js", "_app/immutable/chunks/index-e5563d1b.js", "_app/immutable/chunks/index-4a80932d.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

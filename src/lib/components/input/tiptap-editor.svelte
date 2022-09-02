@@ -20,7 +20,7 @@
     import Link from '@tiptap/extension-link';
     import HardBreak from '@tiptap/extension-hard-break';
 
-    import { _getFileURL, _uploadToImages, _uploadToDocuments } from '$lib/services/storage';
+    import { _getFileURL, _uploadToImages, _uploadToDocuments, _getImageURL } from '$lib/services/storage';
     import { _lang } from '$lib/services/store';
 
     import Progress from '$lib/components/util/progress.svelte';
@@ -108,7 +108,7 @@
         }
         data[config.name + '_images'].push(imageRef);
         editor.chain().focus().setImage({ 
-            src: imageRef.url,
+            src: _getImageURL(imageRef.url),
             alt: 'user image'
         }).run();
         // add an empty paragraph after an image is added
