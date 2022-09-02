@@ -25,9 +25,13 @@
         user = userData;
         if(user) {
             // change the theme to user's default
-            _currentTheme.set(user.theme);
+            if(user.theme != undefined) {
+                _currentTheme.set(user.theme);
+            }
             // set the user's languages
-            _lang.set(user.language);
+            if(user.language != undefined) {
+                _lang.set(user.language);
+            }
         } 
     });
     onDestroy(userUnsubscribe);

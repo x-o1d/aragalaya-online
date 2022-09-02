@@ -117,21 +117,21 @@ export const _getPosts = async (type) => {
     }
 }
 
-export const _getFilteredPosts = async (type, verified, tags) => {
+export const _getFilteredPosts = async (type, verified, unvefified, tags) => {
     try {
         const c = collection(db, 'Posts');
         let q;
-        if(verified) {
-            q = query(c, orderBy("createdOn", "desc"), 
-            where("type", "==", type), 
-            where("verified", "==", true), 
-            where("tags", "array-contains-any", tags)
-            ,limit(10));
-        } else {
+        if(verified && unvefified) {
             q = query(c, orderBy("createdOn", "desc"), 
             where("type", "==", type),
-            where("tags", "array-contains-any", tags)
-            ,limit(10));
+            where("tags", "array-contains-any", tags),
+            limit(10));
+        } else {
+            q = query(c, orderBy("createdOn", "desc"), 
+            where("type", "==", type), 
+            where("verified", "==", verified), 
+            where("tags", "array-contains-any", tags),
+            limit(10));
         }
         
         const qs = await getDocs(q);

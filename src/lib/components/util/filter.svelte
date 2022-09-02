@@ -81,7 +81,8 @@
         // fetch filtered posts
         const posts = await _getFilteredPosts(
             COLUMNS[columnIndex].type, 
-            (verified && !notVerified) && (COLUMNS[columnIndex].verified), 
+            verified || !COLUMNS[columnIndex].verified,     // if the column is not a verified 
+            notVerified || !COLUMNS[columnIndex].verified,  // column, getch all posts
             tagNames);
 
         // add columnIndex to post data

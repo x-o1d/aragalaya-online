@@ -109,6 +109,7 @@ EXAMPLE:
         if($_admin) {
             data.verified = !data.verified;
             let result = await _adminToggleVerified(data.id);
+            console.log(result);
             if(result.error) {
                 data.verified = !data.verified;
             }
