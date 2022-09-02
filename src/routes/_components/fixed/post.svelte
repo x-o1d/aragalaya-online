@@ -44,7 +44,7 @@
         <Button
             form
             text={data._initialLoad? 
-                    (_strings['more'][$_lang] + COLUMNS[columnIndex].title[$_lang]):
+                    (_strings['more'][$_lang] + COLUMNS[columnIndex].title[$_lang].toLowerCase()):
                     _strings['back'][$_lang]}
             style="
                 width: calc(100% - var(--theme-cardseparation));

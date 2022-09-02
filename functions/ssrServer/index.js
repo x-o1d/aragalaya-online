@@ -92083,8 +92083,12 @@ ${showText ? `<div class="${["toast-container s-F3BFPhrY-hZv", event ? "event" :
       const userUnsubscribe = _user.subscribe((userData) => {
         user2 = userData;
         if (user2) {
-          _currentTheme.set(user2.theme);
-          _lang.set(user2.language);
+          if (user2.theme != void 0) {
+            _currentTheme.set(user2.theme);
+          }
+          if (user2.language != void 0) {
+            _lang.set(user2.language);
+          }
         }
       });
       onDestroy(userUnsubscribe);
@@ -92166,8 +92170,8 @@ var init__ = __esm({
     init_shims();
     init_layout_svelte();
     index = 0;
-    file2 = "_app/immutable/pages/__layout.svelte-89d8959e.js";
-    imports = ["_app/immutable/pages/__layout.svelte-89d8959e.js", "_app/immutable/chunks/index-e5563d1b.js", "_app/immutable/chunks/store-f03b9c04.js", "_app/immutable/chunks/index-4a80932d.js", "_app/immutable/chunks/text-input-8e42054e.js", "_app/immutable/chunks/progress-1f580253.js", "_app/immutable/chunks/tags-4d552c04.js", "_app/immutable/chunks/select-00f35d89.js"];
+    file2 = "_app/immutable/pages/__layout.svelte-32c40ca7.js";
+    imports = ["_app/immutable/pages/__layout.svelte-32c40ca7.js", "_app/immutable/chunks/index-e5563d1b.js", "_app/immutable/chunks/store-f03b9c04.js", "_app/immutable/chunks/index-4a80932d.js", "_app/immutable/chunks/text-input-023d5515.js", "_app/immutable/chunks/progress-51ddef6c.js", "_app/immutable/chunks/tags-b5512a92.js", "_app/immutable/chunks/select-578875da.js"];
     stylesheets = ["_app/immutable/assets/__layout-2f6285bc.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/progress-6061950c.css", "_app/immutable/assets/tags-0c886ac3.css", "_app/immutable/assets/select-77dda6f0.css"];
   }
 });
@@ -93641,8 +93645,8 @@ var init__3 = __esm({
     init_shims();
     init_index_svelte();
     index3 = 3;
-    file4 = "_app/immutable/pages/index.svelte-0496d42b.js";
-    imports3 = ["_app/immutable/pages/index.svelte-0496d42b.js", "_app/immutable/chunks/index-e5563d1b.js", "_app/immutable/chunks/text-input-8e42054e.js", "_app/immutable/chunks/store-f03b9c04.js", "_app/immutable/chunks/index-4a80932d.js", "_app/immutable/chunks/tags-4d552c04.js", "_app/immutable/chunks/proposal-a2e4e5ac.js", "_app/immutable/chunks/progress-1f580253.js"];
+    file4 = "_app/immutable/pages/index.svelte-acc403ce.js";
+    imports3 = ["_app/immutable/pages/index.svelte-acc403ce.js", "_app/immutable/chunks/index-e5563d1b.js", "_app/immutable/chunks/text-input-023d5515.js", "_app/immutable/chunks/store-f03b9c04.js", "_app/immutable/chunks/index-4a80932d.js", "_app/immutable/chunks/tags-b5512a92.js", "_app/immutable/chunks/proposal-d5c7f33d.js", "_app/immutable/chunks/progress-51ddef6c.js"];
     stylesheets3 = ["_app/immutable/assets/index-7688b9e4.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/tags-0c886ac3.css", "_app/immutable/assets/proposal-6e142b05.css", "_app/immutable/assets/progress-6061950c.css"];
   }
 });
@@ -93714,8 +93718,8 @@ var init__4 = __esm({
     init_shims();
     init_post_preview_svelte();
     index4 = 4;
-    file5 = "_app/immutable/pages/post_preview.svelte-2596a991.js";
-    imports4 = ["_app/immutable/pages/post_preview.svelte-2596a991.js", "_app/immutable/chunks/index-e5563d1b.js", "_app/immutable/chunks/proposal-a2e4e5ac.js", "_app/immutable/chunks/store-f03b9c04.js", "_app/immutable/chunks/index-4a80932d.js", "_app/immutable/chunks/text-input-8e42054e.js", "_app/immutable/chunks/tags-4d552c04.js"];
+    file5 = "_app/immutable/pages/post_preview.svelte-c812790c.js";
+    imports4 = ["_app/immutable/pages/post_preview.svelte-c812790c.js", "_app/immutable/chunks/index-e5563d1b.js", "_app/immutable/chunks/proposal-d5c7f33d.js", "_app/immutable/chunks/store-f03b9c04.js", "_app/immutable/chunks/index-4a80932d.js", "_app/immutable/chunks/text-input-023d5515.js", "_app/immutable/chunks/tags-b5512a92.js"];
     stylesheets4 = ["_app/immutable/assets/post_preview-af983cf0.css", "_app/immutable/assets/proposal-6e142b05.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/tags-0c886ac3.css"];
   }
 });
@@ -93836,8 +93840,8 @@ var init__6 = __esm({
     init_shims();
     init_users_svelte();
     index6 = 2;
-    file7 = "_app/immutable/pages/admin/users.svelte-1a054441.js";
-    imports6 = ["_app/immutable/pages/admin/users.svelte-1a054441.js", "_app/immutable/chunks/index-e5563d1b.js", "_app/immutable/chunks/text-input-8e42054e.js", "_app/immutable/chunks/store-f03b9c04.js", "_app/immutable/chunks/index-4a80932d.js", "_app/immutable/chunks/select-00f35d89.js"];
+    file7 = "_app/immutable/pages/admin/users.svelte-efd64960.js";
+    imports6 = ["_app/immutable/pages/admin/users.svelte-efd64960.js", "_app/immutable/chunks/index-e5563d1b.js", "_app/immutable/chunks/text-input-023d5515.js", "_app/immutable/chunks/store-f03b9c04.js", "_app/immutable/chunks/index-4a80932d.js", "_app/immutable/chunks/select-578875da.js"];
     stylesheets6 = ["_app/immutable/assets/users-ad6cc9f1.css", "_app/immutable/assets/text-input-8719407d.css", "_app/immutable/assets/select-77dda6f0.css"];
   }
 });
@@ -96699,7 +96703,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "logo-tiny.png", "normalize.css"]),
   mimeTypes: { ".png": "image/png", ".css": "text/css" },
   _: {
-    entry: { "file": "_app/immutable/start-0c92e321.js", "imports": ["_app/immutable/start-0c92e321.js", "_app/immutable/chunks/index-e5563d1b.js", "_app/immutable/chunks/index-4a80932d.js"], "stylesheets": [] },
+    entry: { "file": "_app/immutable/start-ed0b3457.js", "imports": ["_app/immutable/start-ed0b3457.js", "_app/immutable/chunks/index-e5563d1b.js", "_app/immutable/chunks/index-4a80932d.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
