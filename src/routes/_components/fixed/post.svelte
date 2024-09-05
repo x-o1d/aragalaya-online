@@ -1,7 +1,7 @@
 <script>
     // configs
     import { COLUMNS } from '$lib/config/column-config';
-    import { COMPONENTS } from '../../index.svelte';
+    import { COMPONENTS } from '../../+page.svelte';
 
     // npm modules
     import { onDestroy } from 'svelte';

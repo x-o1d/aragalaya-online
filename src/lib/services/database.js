@@ -20,7 +20,7 @@ import { getAuth } from 'firebase/auth';
 
 const db = getFirestore(app);
 
-import { dev } from '$app/env';
+import { dev } from '$app/environment';
 import { _userLogout } from './auth';
 
 // --
