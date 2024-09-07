@@ -57,14 +57,15 @@
     import Wip from './_components/posts/wip.svelte';
     import Video from './_components/posts/video.svelte';
     import Image from './_components/posts/image.svelte';
-
+    
+    console.log(COLUMN_COUNT)
     // the DOM element that contains all the columns
     // this element is moves left and right to produce the
     // horizontal scroll effect
     let appWindowElement;
     // the cards container element for each column, this element
     // is vertically scrolled on wheel and touch events
-    let columnElements = Array(COLUMN_COUNT).fill(null);
+    let columnElements = Array(COLUMN_COUNT).fill([null]);
     // the scroll bar element for each column, this element
     // moves vertically to indicate the current scroll position
     let columnScrollBarElements = Array(COLUMN_COUNT).fill(null);
@@ -75,6 +76,7 @@
     // these elements are sent to the scroll service after mount and
     // they are animated based on wheel and touch events
     onMount(() => {
+        console.log('gets mounted')
         _setupIndexAnimations(
             appWindowElement, 
             columnElements, 
@@ -83,10 +85,11 @@
         );
     });
 
+    let posts = [[],[],[],[],[],[],[],[],[]]
     // column data, this is populated by the page endpoint (./index.js)
     // using the page endpoint allows the data to be fetched in the backend
     // itself for SSR
-    export let columnData;
+    export let columnData = [[]];
     // if a postId was specified in the url, the data for that post will be
     // available in this prop, this is populated by the page endpoint (./index.js)
     export let postData = undefined;
@@ -242,6 +245,7 @@
         _emitEvent('nav-click', {index: index});
         _emitEvent('hide-post');
     }
+
 </script>
 
 <svelte:head>
@@ -325,18 +329,9 @@
                     show={showFilters[_i]}
                     columnIndex={_i}/>
                 <!-- column cards -->
-                <div 
-                    class="cards"
-                    bind:this={columnElements[_i]}
-                    on:scroll|stopPropagation={(e) => _handleColumnScroll(e, _i)}>
-                    {#each columnData[_i] as item, _i (item.id + updateCount)}
-                    <div>
-                        <svelte:component 
-                            this={COMPONENTS[item.type] || Empty}
-                            data={item}/>
-                    </div>
-                    {/each}
-                </div>
+                 {#each posts[_i] as post}
+                 <div>this is a post</div>
+                 {/each}
                 <div class="scrollbar">
                     <div 
                         bind:this={columnScrollBarElements[_i]}
